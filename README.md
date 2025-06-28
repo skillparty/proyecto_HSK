@@ -84,7 +84,7 @@ También puedes abrir directamente el archivo `index.html` en tu navegador, aunq
 
 ## 📚 Contenido del Vocabulario
 
-El archivo `hsk_vocabulary.json` contiene vocabulario HSK estructurado con:
+El archivo `hsk_vocabulary.json` contiene **1200 palabras oficiales del HSK** estructuradas con:
 
 ```json
 {
@@ -95,10 +95,22 @@ El archivo `hsk_vocabulary.json` contiene vocabulario HSK estructurado con:
 }
 ```
 
-- **character**: El carácter chino
-- **pinyin**: La pronunciación en pinyin
+### 📊 **Distribución Oficial HSK:**
+- **HSK 1**: 150 palabras
+- **HSK 2**: 150 palabras  
+- **HSK 3**: 300 palabras
+- **HSK 4**: 600 palabras (Fuente oficial)
+- **Total**: 1200 palabras
+
+### 🏛️ **Fuentes:**
+- **Niveles 1-3**: Vocabulario estándar HSK
+- **Nivel 4**: [HSK Official Lists](https://github.com/glxxyz/hskhsk.com) - Lista oficial 2012
+
+### 📝 **Estructura de Datos:**
+- **character**: El carácter chino (simplificado)
+- **pinyin**: La pronunciación con tonos diacríticos
 - **translation**: Traducción al inglés
-- **level**: Nivel HSK (1-6)
+- **level**: Nivel HSK (1-4)
 
 ## 🎨 Tecnologías Utilizadas
 
