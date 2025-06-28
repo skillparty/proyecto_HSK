@@ -6,6 +6,7 @@
     <title>HSK Chinese Learning App</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="translations.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,19 +15,25 @@
                 <div class="logo-section">
                     <img src="dev_logo.png" alt="Developer Logo" class="dev-logo">
                     <div class="header-text">
-                        <h1>🀄 HSK Chinese Learning</h1>
-                        <p>Aprende caracteres chinos, pinyin y traducciones</p>
+                        <h1 data-i18n="appTitle">🀄 HSK Chinese Learning</h1>
+                        <p data-i18n="appSubtitle">Aprende caracteres chinos, pinyin y traducciones</p>
                     </div>
                 </div>
                 <div class="header-controls">
+                    <div class="language-selector">
+                        <select id="language-select" class="language-btn" data-i18n-title="language">
+                            <option value="es" data-i18n="spanish">Español</option>
+                            <option value="en" data-i18n="english">English</option>
+                        </select>
+                    </div>
                     <div class="theme-toggle">
-                        <button id="theme-toggle" class="theme-btn" title="Cambiar tema">
+                        <button id="theme-toggle" class="theme-btn" data-i18n-title="themeToggleTitle">
                             <span class="theme-icon light-icon">☀️</span>
                             <span class="theme-icon dark-icon">🌙</span>
                         </button>
                     </div>
                     <div class="audio-controls">
-                        <button id="audio-toggle" class="audio-btn" title="Activar/Desactivar audio">
+                        <button id="audio-toggle" class="audio-btn" data-i18n-title="audioToggleTitle">
                             <span class="audio-icon">🔊</span>
                         </button>
                     </div>
@@ -35,19 +42,19 @@
         </header>
 
         <nav class="nav-tabs">
-            <button class="tab-btn active" data-tab="practice">Práctica</button>
-            <button class="tab-btn" data-tab="browse">Explorar</button>
-            <button class="tab-btn" data-tab="quiz">Quiz</button>
-            <button class="tab-btn" data-tab="stats">Estadísticas</button>
+            <button class="tab-btn active" data-tab="practice" data-i18n="practiceTab">Práctica</button>
+            <button class="tab-btn" data-tab="browse" data-i18n="browseTab">Explorar</button>
+            <button class="tab-btn" data-tab="quiz" data-i18n="quizTab">Quiz</button>
+            <button class="tab-btn" data-tab="stats" data-i18n="statsTab">Estadísticas</button>
         </nav>
 
         <!-- Practice Tab -->
         <div id="practice" class="tab-content active">
             <div class="controls">
                 <div class="level-selector">
-                    <label for="level-select">Nivel HSK:</label>
+                    <label for="level-select" data-i18n="levelLabel">Nivel HSK:</label>
                     <select id="level-select">
-                        <option value="all">Todos los niveles</option>
+                        <option value="all" data-i18n="allLevels">Todos los niveles</option>
                         <option value="1">HSK 1</option>
                         <option value="2">HSK 2</option>
                         <option value="3">HSK 3</option>

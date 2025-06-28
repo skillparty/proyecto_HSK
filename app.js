@@ -18,9 +18,10 @@ class HSKApp {
             isActive: false
         };
         
-        // Dark mode and audio settings
+        // Dark mode, audio and language settings
         this.isDarkMode = this.loadTheme();
         this.isAudioEnabled = this.loadAudioSetting();
+        this.languageManager = new LanguageManager();
         
         this.init();
     }
@@ -32,12 +33,14 @@ class HSKApp {
             this.initializeTabs();
             this.initializeTheme();
             this.initializeAudio();
+            this.languageManager.updateInterface();
             this.renderBrowseTab();
             this.updateStatsDisplay();
             this.setupPracticeSession();
         } catch (error) {
             console.error('Error initializing app:', error);
-            alert('Error loading vocabulary data. Please check the console for details.');
+            const errorMsg = this.languageManager.t('loadingError');
+            alert(errorMsg);
         }
     }
 
@@ -138,6 +141,16 @@ class HSKApp {
         document.getElementById('audio-toggle').addEventListener('click', () => {
             this.toggleAudio();
         });
+
+        // Language selector
+        document.getElementById('language-select').addEventListener('change', (e) => {
+            this.languageManager.setLanguage(e.target.value);
+        });
+
+        // Listen for language changes to update dynamic content
+        window.addEventListener('languageChanged', (e) => {
+            this.updateDynamicContent();
+        });
     }
 
     initializeTabs() {
@@ -206,7 +219,7 @@ class HSKApp {
         flashcard.classList.remove('flipped');
 
         if (!this.currentWord) {
-            questionText.textContent = 'No hay más palabras disponibles';
+            questionText.textContent = this.languageManager.t('noWordsAvailable');
             hintText.textContent = '';
             return;
         }
@@ -237,10 +250,10 @@ class HSKApp {
 
         // Set full info for back of card
         fullInfo.innerHTML = `
-            <div><strong>Carácter:</strong> <span class="clickable-character">${this.currentWord.character}</span></div>
-            <div><strong>Pinyin:</strong> ${this.currentWord.pinyin}</div>
-            <div><strong>Traducción:</strong> ${this.currentWord.translation}</div>
-            <div><strong>Nivel HSK:</strong> ${this.currentWord.level}</div>
+            <div><strong>${this.languageManager.t('character')}</strong> <span class="clickable-character">${this.currentWord.character}</span></div>
+            <div><strong>${this.languageManager.t('pinyin')}</strong> ${this.currentWord.pinyin}</div>
+            <div><strong>${this.languageManager.t('translation')}</strong> ${this.currentWord.translation}</div>
+            <div><strong>${this.languageManager.t('level')}</strong> ${this.currentWord.level}</div>
         `;
         
         // Add pronunciation to characters
@@ -803,6 +816,39 @@ class HSKApp {
         };
 
         this.speechSynthesis.speak(utterance);
+    }
+
+    // Language management
+    updateDynamicContent() {
+        // Update question text if current word exists
+        if (this.currentWord) {
+            this.updateCard();
+        }
+        
+        // Update quiz confirmation messages
+        const resetBtn = document.getElementById('reset-stats');
+        if (resetBtn) {
+            resetBtn.onclick = () => {
+                if (confirm(this.languageManager.t('resetConfirm'))) {
+                    this.resetStats();
+                }
+            };
+        }
+        
+        // Update audio button titles
+        this.updateAudioButton();
+        
+        // Update search placeholder
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.placeholder = this.languageManager.t('searchPlaceholder');
+        }
+        
+        // Update initial flashcard text
+        const questionText = document.getElementById('question-text');
+        if (questionText && questionText.textContent === '点击"Siguiente" para comenzar') {
+            questionText.textContent = this.languageManager.t('clickToStart');
+        }
     }
 
     // Add pronunciation to character display
