@@ -551,6 +551,11 @@ class HSKApp {
         for (let level = 1; level <= 6; level++) {
             const levelWords = this.vocabulary.filter(w => w.level === level);
             
+            // Si no hay palabras para este nivel, saltarlo
+            if (levelWords.length === 0) {
+                continue;
+            }
+            
             // Contar palabras únicas conocidas (evitar duplicados del mismo carácter)
             const studiedWordsSet = new Set();
             this.practiceHistory.forEach(h => {
