@@ -5,12 +5,47 @@
     box-sizing: border-box;
 }
 
+:root {
+    /* Light theme colors */
+    --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f8f9fa;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    --text-inverse: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --accent-color: #667eea;
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --warning-color: #ffc107;
+}
+
+[data-theme="dark"] {
+    /* Dark theme colors */
+    --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --bg-secondary: #2d3748;
+    --bg-tertiary: #4a5568;
+    --text-primary: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --text-inverse: #1a202c;
+    --border-color: #4a5568;
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.5);
+    --accent-color: #90cdf4;
+    --success-color: #68d391;
+    --error-color: #fc8181;
+    --warning-color: #f6e05e;
+}
+
 body {
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--bg-primary);
     min-height: 100vh;
-    color: #333;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
 }
 
 .container {
@@ -28,8 +63,12 @@ body {
 
 .header-content {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .logo-section {
@@ -66,14 +105,77 @@ body {
     opacity: 0.9;
 }
 
+/* Header controls */
+.header-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.theme-toggle,
+.audio-controls {
+    position: relative;
+}
+
+.theme-btn,
+.audio-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-btn:hover,
+.audio-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.theme-icon {
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .theme-icon.dark-icon,
+[data-theme="dark"] .theme-icon.light-icon {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.5);
+}
+
+[data-theme="light"] .theme-icon.light-icon,
+[data-theme="dark"] .theme-icon.dark-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.audio-btn.muted {
+    opacity: 0.6;
+}
+
+.audio-btn.muted::after {
+    content: '🔇';
+    position: absolute;
+    font-size: 0.8rem;
+}
+
 /* Navigation tabs */
 .nav-tabs {
     display: flex;
-    background: white;
+    background: var(--bg-secondary);
     border-radius: 12px;
     padding: 6px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px var(--shadow-light);
     gap: 4px;
 }
 
@@ -86,27 +188,27 @@ body {
     cursor: pointer;
     font-weight: 500;
     transition: all 0.3s ease;
-    color: #666;
+    color: var(--text-secondary);
 }
 
 .tab-btn:hover {
-    background: #f8f9fa;
-    color: #333;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
 }
 
 .tab-btn.active {
-    background: #667eea;
-    color: white;
+    background: var(--accent-color);
+    color: var(--text-inverse);
     box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
 /* Tab content */
 .tab-content {
     display: none;
-    background: white;
+    background: var(--bg-secondary);
     border-radius: 16px;
     padding: 30px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 32px var(--shadow-light);
     backdrop-filter: blur(10px);
 }
 
@@ -121,7 +223,7 @@ body {
     gap: 30px;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .level-selector label,
@@ -129,22 +231,23 @@ body {
     display: block;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .level-selector select {
     width: 100%;
     padding: 12px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     font-size: 16px;
-    background: white;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
     transition: border-color 0.3s ease;
 }
 
 .level-selector select:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--accent-color);
 }
 
 .radio-group {
@@ -161,22 +264,24 @@ body {
     display: flex;
     align-items: center;
     padding: 10px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 400;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
 }
 
 .radio-group label:hover {
-    border-color: #667eea;
-    background: #f8f9ff;
+    border-color: var(--accent-color);
+    background: var(--bg-tertiary);
 }
 
 .radio-group input[type="radio"]:checked + label {
-    border-color: #667eea;
-    background: #667eea;
-    color: white;
+    border-color: var(--accent-color);
+    background: var(--accent-color);
+    color: var(--text-inverse);
 }
 
 /* Flashcard */
@@ -301,7 +406,7 @@ body {
 /* Progress bar */
 .progress-bar {
     position: relative;
-    background: #e0e0e0;
+    background: var(--border-color);
     border-radius: 10px;
     height: 20px;
     overflow: hidden;
@@ -322,7 +427,7 @@ body {
     transform: translate(-50%, -50%);
     font-weight: 600;
     font-size: 14px;
-    color: #333;
+    color: var(--text-primary);
 }
 
 /* Browse section */
@@ -336,23 +441,27 @@ body {
 #search-input {
     flex: 1;
     padding: 15px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--border-color);
     border-radius: 12px;
     font-size: 16px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
     transition: border-color 0.3s ease;
 }
 
 #search-input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--accent-color);
 }
 
 .filter-controls select {
     padding: 15px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--border-color);
     border-radius: 12px;
     font-size: 16px;
     min-width: 150px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
 }
 
 .vocabulary-grid {
@@ -362,8 +471,8 @@ body {
 }
 
 .vocab-item {
-    background: white;
-    border: 2px solid #f0f0f0;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
     border-radius: 12px;
     padding: 20px;
     transition: all 0.3s ease;
@@ -371,23 +480,24 @@ body {
 }
 
 .vocab-item:hover {
-    border-color: #667eea;
+    border-color: var(--accent-color);
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px var(--shadow-light);
 }
 
 .vocab-character {
     font-size: 2.5rem;
     font-family: 'Noto Sans SC', sans-serif;
     font-weight: 500;
-    color: #333;
+    color: var(--text-primary);
     margin-bottom: 10px;
     text-align: center;
+    transition: transform 0.2s ease;
 }
 
 .vocab-pinyin {
     font-size: 1.2rem;
-    color: #667eea;
+    color: var(--accent-color);
     font-weight: 500;
     text-align: center;
     margin-bottom: 8px;
@@ -395,15 +505,15 @@ body {
 
 .vocab-translation {
     font-size: 1rem;
-    color: #666;
+    color: var(--text-secondary);
     text-align: center;
     margin-bottom: 10px;
 }
 
 .vocab-level {
     display: inline-block;
-    background: #667eea;
-    color: white;
+    background: var(--accent-color);
+    color: var(--text-inverse);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -758,6 +868,27 @@ body {
     opacity: 0.6;
 }
 
+/* Pronunciation styles */
+.clickable-character {
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.clickable-character:hover {
+    transform: scale(1.05);
+}
+
+.pronunciation-icon {
+    opacity: 0.7;
+    font-size: 0.6em;
+    margin-left: 5px;
+    transition: opacity 0.2s ease;
+}
+
+.clickable-character:hover .pronunciation-icon {
+    opacity: 1;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .container {
@@ -833,5 +964,15 @@ body {
     .footer-logo {
         width: 50px;
         height: 50px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .header-controls {
+        order: -1;
     }
 }

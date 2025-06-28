@@ -18,6 +18,10 @@ class HSKApp {
             isActive: false
         };
         
+        // Dark mode and audio settings
+        this.isDarkMode = this.loadTheme();
+        this.isAudioEnabled = this.loadAudioSetting();
+        
         this.init();
     }
 
@@ -26,6 +30,8 @@ class HSKApp {
             await this.loadVocabulary();
             this.setupEventListeners();
             this.initializeTabs();
+            this.initializeTheme();
+            this.initializeAudio();
             this.renderBrowseTab();
             this.updateStatsDisplay();
             this.setupPracticeSession();
@@ -121,6 +127,16 @@ class HSKApp {
             if (this.currentWord && !this.isFlipped) {
                 this.flipCard();
             }
+        });
+
+        // Theme toggle
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            this.toggleTheme();
+        });
+
+        // Audio toggle
+        document.getElementById('audio-toggle').addEventListener('click', () => {
+            this.toggleAudio();
         });
     }
 
@@ -221,11 +237,21 @@ class HSKApp {
 
         // Set full info for back of card
         fullInfo.innerHTML = `
-            <div><strong>Carácter:</strong> ${this.currentWord.character}</div>
+            <div><strong>Carácter:</strong> <span class="clickable-character">${this.currentWord.character}</span></div>
             <div><strong>Pinyin:</strong> ${this.currentWord.pinyin}</div>
             <div><strong>Traducción:</strong> ${this.currentWord.translation}</div>
             <div><strong>Nivel HSK:</strong> ${this.currentWord.level}</div>
         `;
+        
+        // Add pronunciation to characters
+        setTimeout(() => {
+            const characterElements = document.querySelectorAll('#question-text, #answer-text, .clickable-character');
+            characterElements.forEach(el => {
+                if (el.textContent.match(/[\u4e00-\u9fff]/)) {
+                    this.addPronunciationToCharacter(el, this.currentWord.character);
+                }
+            });
+        }, 100);
     }
 
     flipCard() {
@@ -287,11 +313,16 @@ class HSKApp {
             const item = document.createElement('div');
             item.className = 'vocab-item';
             item.innerHTML = `
-                <div class="vocab-character">${word.character}</div>
+                <div class="vocab-character clickable-character">${word.character}</div>
                 <div class="vocab-pinyin">${word.pinyin}</div>
                 <div class="vocab-translation">${word.translation}</div>
                 <div class="vocab-level">HSK ${word.level}</div>
             `;
+            
+            // Add pronunciation to character
+            const charElement = item.querySelector('.vocab-character');
+            this.addPronunciationToCharacter(charElement, word.character);
+            
             grid.appendChild(item);
         });
     }
@@ -319,11 +350,16 @@ class HSKApp {
             const item = document.createElement('div');
             item.className = 'vocab-item';
             item.innerHTML = `
-                <div class="vocab-character">${word.character}</div>
+                <div class="vocab-character clickable-character">${word.character}</div>
                 <div class="vocab-pinyin">${word.pinyin}</div>
                 <div class="vocab-translation">${word.translation}</div>
                 <div class="vocab-level">HSK ${word.level}</div>
             `;
+            
+            // Add pronunciation to character
+            const charElement = item.querySelector('.vocab-character');
+            this.addPronunciationToCharacter(charElement, word.character);
+            
             grid.appendChild(item);
         });
     }
@@ -388,6 +424,10 @@ class HSKApp {
         // Display question
         if (question.type === 'char-to-meaning') {
             questionDisplay.textContent = question.word.character;
+            // Add pronunciation to quiz question
+            setTimeout(() => {
+                this.addPronunciationToCharacter(questionDisplay, question.word.character);
+            }, 100);
         } else {
             questionDisplay.textContent = `${question.word.translation} (${question.word.pinyin})`;
         }
@@ -630,6 +670,171 @@ class HSKApp {
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
         return shuffled;
+    }
+
+    // Theme management
+    initializeTheme() {
+        document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
+        this.updateThemeButton();
+    }
+
+    toggleTheme() {
+        this.isDarkMode = !this.isDarkMode;
+        document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
+        this.saveTheme();
+        this.updateThemeButton();
+    }
+
+    updateThemeButton() {
+        const themeBtn = document.getElementById('theme-toggle');
+        const lightIcon = themeBtn.querySelector('.light-icon');
+        const darkIcon = themeBtn.querySelector('.dark-icon');
+        
+        if (this.isDarkMode) {
+            lightIcon.style.opacity = '0';
+            lightIcon.style.transform = 'rotate(180deg) scale(0.5)';
+            darkIcon.style.opacity = '1';
+            darkIcon.style.transform = 'rotate(0deg) scale(1)';
+        } else {
+            lightIcon.style.opacity = '1';
+            lightIcon.style.transform = 'rotate(0deg) scale(1)';
+            darkIcon.style.opacity = '0';
+            darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
+        }
+    }
+
+    loadTheme() {
+        const saved = localStorage.getItem('hsk-dark-mode');
+        return saved === 'true';
+    }
+
+    saveTheme() {
+        localStorage.setItem('hsk-dark-mode', this.isDarkMode.toString());
+    }
+
+    // Audio management
+    initializeAudio() {
+        this.updateAudioButton();
+        
+        // Initialize speech synthesis
+        if ('speechSynthesis' in window) {
+            this.speechSynthesis = window.speechSynthesis;
+            this.setupChineseVoice();
+        } else {
+            console.warn('Speech synthesis not supported');
+            document.getElementById('audio-toggle').style.display = 'none';
+        }
+    }
+
+    setupChineseVoice() {
+        // Wait for voices to load
+        const setVoice = () => {
+            const voices = this.speechSynthesis.getVoices();
+            
+            // Try to find Chinese voices
+            this.chineseVoice = voices.find(voice => 
+                voice.lang.includes('zh') || 
+                voice.name.toLowerCase().includes('chinese') ||
+                voice.name.toLowerCase().includes('mandarin')
+            ) || voices.find(voice => voice.lang.includes('zh-CN')) || voices[0];
+            
+            console.log('Selected voice:', this.chineseVoice?.name || 'Default');
+        };
+
+        if (this.speechSynthesis.getVoices().length > 0) {
+            setVoice();
+        } else {
+            this.speechSynthesis.addEventListener('voiceschanged', setVoice);
+        }
+    }
+
+    toggleAudio() {
+        this.isAudioEnabled = !this.isAudioEnabled;
+        this.saveAudioSetting();
+        this.updateAudioButton();
+    }
+
+    updateAudioButton() {
+        const audioBtn = document.getElementById('audio-toggle');
+        const audioIcon = audioBtn.querySelector('.audio-icon');
+        
+        if (this.isAudioEnabled) {
+            audioBtn.classList.remove('muted');
+            audioIcon.textContent = '🔊';
+            audioBtn.title = 'Desactivar audio';
+        } else {
+            audioBtn.classList.add('muted');
+            audioIcon.textContent = '🔇';
+            audioBtn.title = 'Activar audio';
+        }
+    }
+
+    loadAudioSetting() {
+        const saved = localStorage.getItem('hsk-audio-enabled');
+        return saved !== 'false'; // Default to true
+    }
+
+    saveAudioSetting() {
+        localStorage.setItem('hsk-audio-enabled', this.isAudioEnabled.toString());
+    }
+
+    // Pronunciation function
+    pronounceText(text, language = 'zh-CN') {
+        if (!this.isAudioEnabled || !this.speechSynthesis || !text) {
+            return;
+        }
+
+        // Cancel any ongoing speech
+        this.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = language;
+        utterance.rate = 0.8; // Slightly slower for learning
+        utterance.pitch = 1;
+        utterance.volume = 0.8;
+
+        if (this.chineseVoice) {
+            utterance.voice = this.chineseVoice;
+        }
+
+        // Error handling
+        utterance.onerror = (event) => {
+            console.warn('Speech synthesis error:', event.error);
+        };
+
+        this.speechSynthesis.speak(utterance);
+    }
+
+    // Add pronunciation to character display
+    addPronunciationToCharacter(element, character) {
+        if (!this.isAudioEnabled || !character) return;
+        
+        // Add click listener for pronunciation
+        element.style.cursor = 'pointer';
+        element.title = 'Hacer clic para escuchar pronunciación';
+        
+        const clickHandler = (e) => {
+            e.stopPropagation();
+            this.pronounceText(character);
+            
+            // Visual feedback
+            element.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 200);
+        };
+        
+        element.addEventListener('click', clickHandler);
+        
+        // Add pronunciation icon
+        if (!element.querySelector('.pronunciation-icon')) {
+            const icon = document.createElement('span');
+            icon.className = 'pronunciation-icon';
+            icon.innerHTML = ' 🔊';
+            icon.style.fontSize = '0.6em';
+            icon.style.opacity = '0.7';
+            element.appendChild(icon);
+        }
     }
 }
 
