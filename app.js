@@ -23,6 +23,10 @@ class HSKApp {
         this.isAudioEnabled = this.loadAudioSetting();
         this.languageManager = new LanguageManager();
         
+        // PWA features
+        this.deferredPrompt = null;
+        this.initializePWA();
+        
         this.init();
     }
 
@@ -880,6 +884,146 @@ class HSKApp {
             icon.style.fontSize = '0.6em';
             icon.style.opacity = '0.7';
             element.appendChild(icon);
+        }
+    }
+
+    // PWA initialization
+    initializePWA() {
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('SW: Service Worker registered successfully:', registration.scope);
+                        
+                        // Listen for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New update available
+                                    this.showUpdateAvailable();
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.log('SW: Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // Handle install prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            this.deferredPrompt = e;
+            this.showInstallButton();
+        });
+
+        // Handle app installation
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA: App installed successfully');
+            this.hideInstallButton();
+            this.deferredPrompt = null;
+        });
+
+        // Handle online/offline status
+        window.addEventListener('online', () => {
+            this.showConnectionStatus('online');
+        });
+
+        window.addEventListener('offline', () => {
+            this.showConnectionStatus('offline');
+        });
+    }
+
+    showInstallButton() {
+        // Create install button if it doesn't exist
+        if (!document.getElementById('install-btn')) {
+            const installBtn = document.createElement('button');
+            installBtn.id = 'install-btn';
+            installBtn.className = 'install-btn';
+            installBtn.innerHTML = '📱 Instalar App';
+            installBtn.title = 'Instalar HSK Learning en tu dispositivo';
+            
+            installBtn.addEventListener('click', () => {
+                this.installApp();
+            });
+            
+            // Add to header controls
+            const headerControls = document.querySelector('.header-controls');
+            headerControls.insertBefore(installBtn, headerControls.firstChild);
+        }
+    }
+
+    hideInstallButton() {
+        const installBtn = document.getElementById('install-btn');
+        if (installBtn) {
+            installBtn.remove();
+        }
+    }
+
+    async installApp() {
+        if (this.deferredPrompt) {
+            this.deferredPrompt.prompt();
+            const { outcome } = await this.deferredPrompt.userChoice;
+            
+            if (outcome === 'accepted') {
+                console.log('PWA: User accepted the install prompt');
+            } else {
+                console.log('PWA: User dismissed the install prompt');
+            }
+            
+            this.deferredPrompt = null;
+            this.hideInstallButton();
+        }
+    }
+
+    showUpdateAvailable() {
+        // Create update notification
+        const updateBanner = document.createElement('div');
+        updateBanner.className = 'update-banner';
+        updateBanner.innerHTML = `
+            <div class="update-content">
+                <span>🆕 Nueva versión disponible</span>
+                <button onclick="window.location.reload()">Actualizar</button>
+            </div>
+        `;
+        
+        document.body.insertBefore(updateBanner, document.body.firstChild);
+        
+        // Auto-hide after 10 seconds
+        setTimeout(() => {
+            if (updateBanner && updateBanner.parentNode) {
+                updateBanner.remove();
+            }
+        }, 10000);
+    }
+
+    showConnectionStatus(status) {
+        // Create connection status indicator
+        let statusIndicator = document.getElementById('connection-status');
+        
+        if (!statusIndicator) {
+            statusIndicator = document.createElement('div');
+            statusIndicator.id = 'connection-status';
+            statusIndicator.className = 'connection-status';
+            document.body.appendChild(statusIndicator);
+        }
+        
+        if (status === 'offline') {
+            statusIndicator.innerHTML = '📴 Sin conexión - Modo offline';
+            statusIndicator.className = 'connection-status offline';
+        } else {
+            statusIndicator.innerHTML = '🌐 Conectado';
+            statusIndicator.className = 'connection-status online';
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                if (statusIndicator) {
+                    statusIndicator.style.display = 'none';
+                }
+            }, 3000);
         }
     }
 }
