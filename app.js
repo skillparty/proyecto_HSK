@@ -21,6 +21,7 @@ class HSKApp {
         // Dark mode, audio and language settings
         this.isDarkMode = this.loadTheme();
         this.isAudioEnabled = this.loadAudioSetting();
+        this.voicePreference = this.loadVoicePreference();
         this.languageManager = new LanguageManager();
         
         // PWA features
@@ -149,6 +150,14 @@ class HSKApp {
         // Language selector
         document.getElementById('language-select').addEventListener('change', (e) => {
             this.languageManager.setLanguage(e.target.value);
+        });
+
+        // Voice selector
+        document.getElementById('voice-select').addEventListener('change', (e) => {
+            this.voicePreference = e.target.value;
+            this.saveVoicePreference();
+            this.setupChineseVoice();
+            console.log('Voice preference changed to:', this.voicePreference);
         });
 
         // Listen for language changes to update dynamic content
@@ -691,17 +700,33 @@ class HSKApp {
 
     // Theme management
     initializeTheme() {
-        document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
+        // Asegurar que el tema se aplique correctamente al body y html
+        const theme = this.isDarkMode ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.body.setAttribute('data-theme', theme);
         this.updateThemeButton();
         this.updateAppLogo();
+        console.log('Theme initialized:', theme);
     }
 
     toggleTheme() {
         this.isDarkMode = !this.isDarkMode;
-        document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
+        const theme = this.isDarkMode ? 'dark' : 'light';
+        
+        // Aplicar tema al documento completo
+        document.documentElement.setAttribute('data-theme', theme);
+        document.body.setAttribute('data-theme', theme);
+        
         this.saveTheme();
         this.updateThemeButton();
         this.updateAppLogo();
+        
+        console.log('Theme toggled to:', theme);
+        
+        // Forzar re-renderizado de estilos
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // Trigger reflow
+        document.body.style.display = '';
     }
 
     updateThemeButton() {
@@ -766,14 +791,50 @@ class HSKApp {
         const setVoice = () => {
             const voices = this.speechSynthesis.getVoices();
             
-            // Try to find Chinese voices
-            this.chineseVoice = voices.find(voice => 
+            // Filter Chinese voices
+            const chineseVoices = voices.filter(voice => 
                 voice.lang.includes('zh') || 
                 voice.name.toLowerCase().includes('chinese') ||
-                voice.name.toLowerCase().includes('mandarin')
-            ) || voices.find(voice => voice.lang.includes('zh-CN')) || voices[0];
+                voice.name.toLowerCase().includes('mandarin') ||
+                voice.lang.includes('zh-CN')
+            );
             
-            console.log('Selected voice:', this.chineseVoice?.name || 'Default');
+            let selectedVoice = null;
+            
+            if (this.voicePreference === 'male') {
+                // Try to find male voice
+                selectedVoice = chineseVoices.find(voice =>
+                    voice.name.toLowerCase().includes('male') ||
+                    voice.name.toLowerCase().includes('masculino') ||
+                    voice.name.toLowerCase().includes('hombre') ||
+                    voice.name.toLowerCase().includes('man')
+                );
+            } else if (this.voicePreference === 'female') {
+                // Try to find female voice
+                selectedVoice = chineseVoices.find(voice =>
+                    voice.name.toLowerCase().includes('female') ||
+                    voice.name.toLowerCase().includes('femenina') ||
+                    voice.name.toLowerCase().includes('mujer') ||
+                    voice.name.toLowerCase().includes('woman')
+                );
+            }
+            
+            // If no specific preference match or auto mode, use any Chinese voice
+            if (!selectedVoice && chineseVoices.length > 0) {
+                selectedVoice = chineseVoices[0];
+            }
+            
+            // Fallback to any available voice
+            this.chineseVoice = selectedVoice || voices[0];
+            
+            console.log('Selected voice:', this.chineseVoice?.name || 'Default', 
+                       'Preference:', this.voicePreference);
+                       
+            // Update voice selector UI
+            const voiceSelect = document.getElementById('voice-select');
+            if (voiceSelect) {
+                voiceSelect.value = this.voicePreference;
+            }
         };
 
         if (this.speechSynthesis.getVoices().length > 0) {
@@ -811,6 +872,16 @@ class HSKApp {
 
     saveAudioSetting() {
         localStorage.setItem('hsk-audio-enabled', this.isAudioEnabled.toString());
+    }
+
+    // Voice preference management
+    loadVoicePreference() {
+        const saved = localStorage.getItem('hsk-voice-preference');
+        return saved || 'auto';
+    }
+
+    saveVoicePreference() {
+        localStorage.setItem('hsk-voice-preference', this.voicePreference);
     }
 
     // Pronunciation function

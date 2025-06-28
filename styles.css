@@ -1,3 +1,4 @@
+/* Updated: 20250628_200115 - Creative Chinese Experience */
 /* Reset and base styles */
 * {
     margin: 0;
@@ -6,70 +7,112 @@
 }
 
 :root {
-    /* Confuc10++ Brand Colors - Light Mode */
-    --brand-yellow: #FFD700;
-    --brand-red: #FF4444;
-    --brand-green: #00CC66;
-    --brand-cyan: #00CCFF;
+    /* Paleta Creativa Inspirada en el Logo - Colores Dinámicos Chinos */
+    --imperial-red: #CC2936;        /* Rojo imperial profundo */
+    --dragon-gold: #F4D03F;         /* Oro dragón brillante */
+    --jade-green: #27AE60;          /* Verde jade tradicional */
+    --lantern-orange: #FF6B35;      /* Naranja linterna festiva */
+    --ink-black: #2C3E50;           /* Negro tinta caligrafía */
+    --paper-white: #FDFEFE;         /* Blanco papel de arroz */
+    --silk-cream: #FEF9E7;          /* Crema seda suave */
+    --bamboo-green: #58D68D;        /* Verde bambú fresco */
+    --sunset-pink: #F1948A;         /* Rosa atardecer */
+    --dynasty-purple: #8E44AD;      /* Púrpura dinastía */
     
-    /* Light theme colors */
-    --bg-primary: linear-gradient(135deg, var(--brand-cyan) 0%, var(--brand-green) 50%, var(--brand-yellow) 100%);
-    --bg-secondary: #ffffff;
-    --bg-tertiary: #f8f9fa;
-    --bg-card: rgba(255, 255, 255, 0.95);
-    --text-primary: #2c3e50;
-    --text-secondary: #7f8c8d;
-    --text-inverse: #ffffff;
-    --text-brand: #34495e;
-    --border-color: #e8f4fd;
-    --shadow-light: rgba(0, 204, 255, 0.1);
-    --shadow-medium: rgba(0, 204, 255, 0.2);
-    --shadow-brand: rgba(255, 215, 0, 0.3);
-    --accent-color: var(--brand-cyan);
-    --success-color: var(--brand-green);
-    --error-color: var(--brand-red);
-    --warning-color: var(--brand-yellow);
-    --overlay-light: rgba(255, 255, 255, 0.1);
-    --overlay-medium: rgba(255, 255, 255, 0.2);
+    /* Light theme - Inspirado en arte tradicional chino */
+    --bg-primary: linear-gradient(135deg, var(--paper-white) 0%, var(--silk-cream) 100%);
+    --bg-secondary: linear-gradient(45deg, var(--silk-cream) 0%, #FDF2E9 100%);
+    --bg-tertiary: linear-gradient(90deg, #FEF9E7 0%, #FADBD8 100%);
+    --bg-card: rgba(253, 254, 254, 0.95);
+    --text-primary: var(--ink-black);
+    --text-secondary: #5D6D7E;
+    --text-inverse: var(--paper-white);
+    --text-brand: var(--imperial-red);
+    --text-gold: var(--dragon-gold);
+    --border-color: rgba(204, 41, 54, 0.2);
+    --shadow-light: rgba(204, 41, 54, 0.15);
+    --shadow-medium: rgba(204, 41, 54, 0.25);
+    --shadow-brand: rgba(244, 208, 63, 0.3);
+    --shadow-magical: 0 8px 32px rgba(244, 208, 63, 0.2), 0 4px 16px rgba(204, 41, 54, 0.1);
+    --accent-color: var(--imperial-red);
+    --accent-secondary: var(--dragon-gold);
+    --success-color: var(--jade-green);
+    --error-color: #E74C3C;
+    --warning-color: var(--lantern-orange);
+    --overlay-light: rgba(253, 249, 231, 0.9);
+    --overlay-medium: rgba(253, 249, 231, 0.95);
+    --gradient-primary: linear-gradient(135deg, var(--imperial-red) 0%, var(--lantern-orange) 100%);
+    --gradient-secondary: linear-gradient(45deg, var(--dragon-gold) 0%, var(--sunset-pink) 100%);
+    --gradient-success: linear-gradient(90deg, var(--jade-green) 0%, var(--bamboo-green) 100%);
 }
 
 [data-theme="dark"] {
-    /* Confuc10++ Brand Colors - Dark Mode */
-    --brand-yellow: #FFA500;
-    --brand-red: #FF6B6B;
-    --brand-green: #4ECDC4;
-    --brand-cyan: #45B7D1;
+    /* Tema Oscuro Creativo - Inspirado en Noche China Tradicional */
+    --imperial-red: #FF6B88;        /* Rojo imperial suave para modo oscuro */
+    --dragon-gold: #FFD93D;         /* Oro dragón luminoso */
+    --jade-green: #4ECDC4;          /* Verde jade luminoso */
+    --lantern-orange: #FF8C42;      /* Naranja linterna cálido */
+    --ink-black: #1A1A2E;           /* Negro profundo noche */
+    --paper-white: #F0F0F0;         /* Blanco suave para contraste */
+    --silk-cream: #16213E;          /* Azul oscuro seda nocturna */
+    --bamboo-green: #6BCF7F;        /* Verde bambú luminoso */
+    --sunset-pink: #FF6B9D;         /* Rosa atardecer brillante */
+    --dynasty-purple: #A8E6CF;      /* Púrpura dinastía claro */
     
-    /* Dark theme colors */
-    --bg-primary: linear-gradient(135deg, #0f1419 0%, #1a1f3a 50%, #2d1b69 100%);
-    --bg-secondary: #1e2a3a;
-    --bg-tertiary: #2c3e50;
-    --bg-card: rgba(30, 42, 58, 0.95);
-    --text-primary: #ecf0f1;
-    --text-secondary: #bdc3c7;
-    --text-inverse: #1e2a3a;
-    --text-brand: #ecf0f1;
-    --border-color: #34495e;
-    --shadow-light: rgba(69, 183, 209, 0.2);
-    --shadow-medium: rgba(69, 183, 209, 0.3);
-    --shadow-brand: rgba(255, 165, 0, 0.4);
-    --accent-color: var(--brand-cyan);
-    --success-color: var(--brand-green);
-    --error-color: var(--brand-red);
-    --warning-color: var(--brand-yellow);
-    --overlay-light: rgba(0, 0, 0, 0.2);
-    --overlay-medium: rgba(0, 0, 0, 0.4);
+    /* Dark theme - Noche Mágica China */
+    --bg-primary: linear-gradient(135deg, #0F0F23 0%, #16213E 100%);
+    --bg-secondary: linear-gradient(45deg, #16213E 0%, #1A1A2E 100%);
+    --bg-tertiary: linear-gradient(90deg, #1A1A2E 0%, #0E3B43 100%);
+    --bg-card: rgba(26, 26, 46, 0.95);
+    --text-primary: var(--paper-white);
+    --text-secondary: #B8BCC8;
+    --text-inverse: var(--ink-black);
+    --text-brand: var(--dragon-gold);
+    --text-gold: var(--imperial-red);
+    --border-color: rgba(255, 107, 136, 0.3);
+    --shadow-light: rgba(255, 217, 61, 0.2);
+    --shadow-medium: rgba(255, 107, 136, 0.3);
+    --shadow-brand: rgba(255, 217, 61, 0.4);
+    --shadow-magical: 0 8px 32px rgba(255, 217, 61, 0.3), 0 4px 16px rgba(255, 107, 136, 0.2);
+    --accent-color: var(--dragon-gold);
+    --accent-secondary: var(--imperial-red);
+    --success-color: var(--jade-green);
+    --error-color: #FF6B6B;
+    --warning-color: var(--lantern-orange);
+    --overlay-light: rgba(22, 33, 62, 0.9);
+    --overlay-medium: rgba(22, 33, 62, 0.95);
+    --gradient-primary: linear-gradient(135deg, var(--dragon-gold) 0%, var(--lantern-orange) 100%);
+    --gradient-secondary: linear-gradient(45deg, var(--imperial-red) 0%, var(--sunset-pink) 100%);
+    --gradient-success: linear-gradient(90deg, var(--jade-green) 0%, var(--bamboo-green) 100%);
+}
+
+[data-theme="dark"] body::before {
+    /* Mantener colores originales, solo ajustar opacidad y blur */
+    filter: blur(1px);
+    opacity: 0.15;
+}
+
+[data-theme="dark"] .container {
+    background: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 body {
     font-family: 'Ubuntu', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     background: var(--bg-primary);
-    background-attachment: fixed;
     min-height: 100vh;
     color: var(--text-primary);
-    transition: all 0.3s ease;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    overflow-x: hidden;
+    animation: fadeInPage 1s ease-out;
+}
+
+@keyframes fadeInPage {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 body::before {
@@ -80,18 +123,56 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: url('logo_background.png');
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.05;
+    opacity: 0.2;
     z-index: -1;
     pointer-events: none;
+    filter: blur(1px);
+    animation: backgroundFloat 20s ease-in-out infinite;
+}
+
+@keyframes backgroundFloat {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.02) rotate(0.5deg); }
+    50% { transform: scale(0.98) rotate(-0.5deg); }
+    75% { transform: scale(1.01) rotate(0.3deg); }
+}
+
+/* Partículas flotantes tradicionales chinas */
+body::after {
+    content: '🀄 🎋 🏮 🎎 🐲 ⛩️ 🌸 🎍';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+    opacity: 0.1;
+    z-index: -1;
+    pointer-events: none;
+    animation: particleFloat 25s linear infinite;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: space-around;
+    line-height: 2;
+}
+
+@keyframes particleFloat {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-light);
 }
 
 /* Header */
@@ -99,6 +180,37 @@ body::before {
     text-align: center;
     margin-bottom: 30px;
     color: white;
+    background: var(--gradient-primary);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-magical);
+    animation: headerGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes headerGlow {
+    from { box-shadow: var(--shadow-magical); }
+    to { box-shadow: 0 12px 40px rgba(244, 208, 63, 0.4), 0 6px 20px rgba(204, 41, 54, 0.2); }
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: floating 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(20px, -20px) rotate(1deg); }
+    50% { transform: translate(-10px, 15px) rotate(-1deg); }
+    75% { transform: translate(-20px, -10px) rotate(0.5deg); }
 }
 
 .header-content {
@@ -140,13 +252,9 @@ body::before {
     font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: 10px;
-    background: linear-gradient(45deg, var(--brand-yellow), var(--brand-cyan), var(--brand-green));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    color: var(--text-brand);
     font-family: 'Ubuntu', sans-serif;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .header p {
@@ -252,6 +360,42 @@ body::before {
     font-size: 0.8rem;
 }
 
+.voice-selector {
+    margin-left: 10px;
+}
+
+.voice-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 8px 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 110px;
+}
+
+.voice-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.voice-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.voice-btn option {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 8px;
+    font-size: 12px;
+}
+
 /* Navigation tabs */
 .nav-tabs {
     display: flex;
@@ -287,21 +431,38 @@ body::before {
 }
 
 .tab-btn.active {
-    background: linear-gradient(135deg, var(--brand-cyan), var(--brand-green));
+    background: var(--gradient-primary);
     color: var(--text-inverse);
-    box-shadow: 0 4px 15px var(--shadow-brand);
+    box-shadow: var(--shadow-magical);
     transform: translateY(-2px);
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: tabGlow 2s ease-in-out infinite;
+}
+
+@keyframes tabGlow {
+    0%, 100% { left: -100%; }
+    50% { left: 100%; }
 }
 
 /* Tab content */
 .tab-content {
     display: none;
     background: var(--bg-card);
-    border-radius: 20px;
+    border-radius: 12px;
     padding: 35px;
-    box-shadow: 0 10px 40px var(--shadow-light);
-    backdrop-filter: blur(20px);
-    border: 2px solid var(--overlay-light);
+    box-shadow: var(--shadow-light);
+    border: 1px solid var(--border-color);
     position: relative;
 }
 
@@ -377,15 +538,33 @@ body::before {
     color: var(--text-inverse);
 }
 
-/* Flashcard */
+/* Flashcard - Experiencia Inmersiva China */
 .flashcard-container {
     margin-bottom: 30px;
+    position: relative;
 }
 
 .flashcard {
-    perspective: 1000px;
-    height: 300px;
+    perspective: 1200px;
+    height: 320px;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.flashcard::before {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.5rem;
+    z-index: 10;
+    animation: sparkle 2s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
 }
 
 .flashcard-inner {
@@ -393,13 +572,26 @@ body::before {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
     cursor: pointer;
+    animation: cardFloat 6s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0) rotateX(0deg); }
+    50% { transform: translateY(-5px) rotateX(1deg); }
 }
 
 .flashcard.flipped .flashcard-inner {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateY(-5px);
+    animation: cardFlipGlow 0.8s ease-out;
+}
+
+@keyframes cardFlipGlow {
+    0% { box-shadow: var(--shadow-magical); }
+    50% { box-shadow: 0 15px 50px rgba(244, 208, 63, 0.5), 0 8px 25px rgba(204, 41, 54, 0.3); }
+    100% { box-shadow: var(--shadow-magical); }
 }
 
 .flashcard-front,
@@ -408,26 +600,77 @@ body::before {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 16px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 40px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-magical);
+    position: relative;
+    overflow: hidden;
+}
+
+.flashcard-front::before,
+.flashcard-back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.flashcard:hover .flashcard-front::before,
+.flashcard:hover .flashcard-back::before {
+    left: 100%;
 }
 
 .flashcard-front {
-    background: linear-gradient(135deg, var(--brand-cyan) 0%, var(--brand-green) 50%, var(--brand-yellow) 100%);
-    color: white;
-    border: 3px solid var(--overlay-light);
+    background: var(--gradient-primary);
+    color: var(--text-inverse);
+    border: 3px solid var(--dragon-gold);
+    position: relative;
+}
+
+.flashcard-front::after {
+    content: '🎎';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 1.5rem;
+    opacity: 0.6;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .flashcard-back {
-    background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-red) 50%, var(--brand-cyan) 100%);
-    color: white;
+    background: var(--gradient-success);
+    color: var(--text-inverse);
     transform: rotateY(180deg);
-    border: 3px solid var(--overlay-light);
+    border: 3px solid var(--jade-green);
+    position: relative;
+}
+
+.flashcard-back::after {
+    content: '🐲';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    opacity: 0.6;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .question-text,
@@ -464,11 +707,34 @@ body::before {
 .flashcard-controls button {
     padding: 12px 24px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 16px;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.flashcard-controls button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.flashcard-controls button:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .flashcard-controls button:hover:not(:disabled) {
@@ -484,24 +750,77 @@ body::before {
 
 #flip-btn,
 #next-btn {
-    background: linear-gradient(135deg, var(--brand-cyan), var(--brand-green));
-    color: white;
+    background: var(--gradient-primary);
+    color: var(--text-inverse);
     font-family: 'Ubuntu', sans-serif;
     font-weight: 600;
+    border: 3px solid var(--dragon-gold);
+    position: relative;
+    z-index: 1;
 }
 
+#flip-btn::after,
+#next-btn::after {
+    content: '🀄';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.1); }
+}
+
+#know-btn,
 #know-btn.success {
-    background: linear-gradient(135deg, var(--brand-green), var(--success-color));
-    color: white;
+    background: var(--gradient-success);
+    color: var(--text-inverse);
     font-family: 'Ubuntu', sans-serif;
     font-weight: 600;
+    border: 3px solid var(--jade-green);
+    position: relative;
+    z-index: 1;
 }
 
+#know-btn::after {
+    content: '🐲';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+#dont-know-btn,
 #dont-know-btn.error {
-    background: linear-gradient(135deg, var(--brand-red), var(--error-color));
-    color: white;
+    background: var(--gradient-secondary);
+    color: var(--text-inverse);
     font-family: 'Ubuntu', sans-serif;
     font-weight: 600;
+    border: 3px solid var(--lantern-orange);
+    position: relative;
+    z-index: 1;
+}
+
+#dont-know-btn::after {
+    content: '🏮';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    animation: sway 3s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0%, 100% { transform: translateY(-50%) rotate(0deg); }
+    25% { transform: translateY(-50%) rotate(3deg); }
+    75% { transform: translateY(-50%) rotate(-3deg); }
 }
 
 /* Progress bar */
@@ -515,7 +834,7 @@ body::before {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: var(--accent-color);
     border-radius: 10px;
     transition: width 0.3s ease;
     width: 0%;
@@ -656,9 +975,9 @@ body::before {
 }
 
 .primary-btn {
-    background: #667eea;
-    color: white;
-    border: none;
+    background: var(--accent-color);
+    color: var(--text-inverse);
+    border: 2px solid var(--accent-color);
     padding: 15px 30px;
     border-radius: 8px;
     font-size: 16px;
@@ -668,9 +987,10 @@ body::before {
 }
 
 .primary-btn:hover {
-    background: #5a6fd8;
+    background: var(--academic-dark-red);
+    border-color: var(--academic-dark-red);
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 16px var(--shadow-brand);
 }
 
 .quiz-header {
@@ -695,10 +1015,10 @@ body::before {
     text-align: center;
     margin-bottom: 30px;
     padding: 40px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: var(--accent-color);
+    color: var(--text-inverse);
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 32px var(--shadow-brand);
 }
 
 .quiz-options {
@@ -814,12 +1134,12 @@ body::before {
 }
 
 .stat-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: var(--accent-color);
+    color: var(--text-inverse);
     padding: 30px;
     border-radius: 16px;
     text-align: center;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 32px var(--shadow-brand);
 }
 
 .stat-number {
@@ -865,7 +1185,7 @@ body::before {
 
 .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #667eea, #764ba2);
+    background: var(--accent-color);
     border-radius: 10px;
     transition: width 0.3s ease;
 }
@@ -1018,8 +1338,8 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: var(--accent-color);
+    color: var(--text-inverse);
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
