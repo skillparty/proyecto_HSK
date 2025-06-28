@@ -1,0 +1,506 @@
+[
+  {
+    "character": "阿姨",
+    "pinyin": "āyí",
+    "translation": "auntie",
+    "level": 4
+  },
+  {
+    "character": "啊",
+    "pinyin": "a",
+    "translation": "what",
+    "level": 4
+  },
+  {
+    "character": "矮",
+    "pinyin": "ǎi",
+    "translation": "short",
+    "level": 4
+  },
+  {
+    "character": "爱",
+    "pinyin": "ài",
+    "translation": "love",
+    "level": 4
+  },
+  {
+    "character": "爱好",
+    "pinyin": "àihào",
+    "translation": "hobbies",
+    "level": 4
+  },
+  {
+    "character": "爱情",
+    "pinyin": "àiqíng",
+    "translation": "love",
+    "level": 4
+  },
+  {
+    "character": "安静",
+    "pinyin": "ānjìng",
+    "translation": "be quiet",
+    "level": 4
+  },
+  {
+    "character": "安排",
+    "pinyin": "ānpái",
+    "translation": "arrangement",
+    "level": 4
+  },
+  {
+    "character": "安全",
+    "pinyin": "ānquán",
+    "translation": "safety",
+    "level": 4
+  },
+  {
+    "character": "按时",
+    "pinyin": "ànshí",
+    "translation": "on time",
+    "level": 4
+  },
+  {
+    "character": "按照",
+    "pinyin": "ànzhào",
+    "translation": "according to",
+    "level": 4
+  },
+  {
+    "character": "八",
+    "pinyin": "bā",
+    "translation": "eight",
+    "level": 4
+  },
+  {
+    "character": "把",
+    "pinyin": "bǎ",
+    "translation": "put",
+    "level": 4
+  },
+  {
+    "character": "爸爸",
+    "pinyin": "bàba",
+    "translation": "dad",
+    "level": 4
+  },
+  {
+    "character": "吧",
+    "pinyin": "ba",
+    "translation": "auxiliary word",
+    "level": 4
+  },
+  {
+    "character": "白",
+    "pinyin": "bái",
+    "translation": "white",
+    "level": 4
+  },
+  {
+    "character": "百",
+    "pinyin": "bǎi",
+    "translation": "one hundred",
+    "level": 4
+  },
+  {
+    "character": "百分之",
+    "pinyin": "bǎi fēn zhī",
+    "translation": "percent",
+    "level": 4
+  },
+  {
+    "character": "班",
+    "pinyin": "bān",
+    "translation": "class",
+    "level": 4
+  },
+  {
+    "character": "搬",
+    "pinyin": "bān",
+    "translation": "move",
+    "level": 4
+  },
+  {
+    "character": "办法",
+    "pinyin": "bànfǎ",
+    "translation": "method",
+    "level": 4
+  },
+  {
+    "character": "办公室",
+    "pinyin": "bàngōngshì",
+    "translation": "office",
+    "level": 4
+  },
+  {
+    "character": "半",
+    "pinyin": "bàn",
+    "translation": "half",
+    "level": 4
+  },
+  {
+    "character": "帮忙",
+    "pinyin": "bāngmáng",
+    "translation": "help",
+    "level": 4
+  },
+  {
+    "character": "帮助",
+    "pinyin": "bāngzhù",
+    "translation": "help",
+    "level": 4
+  },
+  {
+    "character": "棒",
+    "pinyin": "bàng",
+    "translation": "excellent",
+    "level": 4
+  },
+  {
+    "character": "包",
+    "pinyin": "bāo",
+    "translation": "package",
+    "level": 4
+  },
+  {
+    "character": "包子",
+    "pinyin": "bāozi",
+    "translation": "bun",
+    "level": 4
+  },
+  {
+    "character": "饱",
+    "pinyin": "bǎo",
+    "translation": "full",
+    "level": 4
+  },
+  {
+    "character": "保护",
+    "pinyin": "bǎohù",
+    "translation": "protection",
+    "level": 4
+  },
+  {
+    "character": "保证",
+    "pinyin": "bǎozhèng",
+    "translation": "guarantee",
+    "level": 4
+  },
+  {
+    "character": "报名",
+    "pinyin": "bàomíng",
+    "translation": "sign up",
+    "level": 4
+  },
+  {
+    "character": "报纸",
+    "pinyin": "bàozhǐ",
+    "translation": "newspaper",
+    "level": 4
+  },
+  {
+    "character": "抱",
+    "pinyin": "bào",
+    "translation": "hold",
+    "level": 4
+  },
+  {
+    "character": "抱歉",
+    "pinyin": "bàoqiàn",
+    "translation": "sorry",
+    "level": 4
+  },
+  {
+    "character": "杯子",
+    "pinyin": "bēizi",
+    "translation": "cup",
+    "level": 4
+  },
+  {
+    "character": "北方",
+    "pinyin": "běifāng",
+    "translation": "north",
+    "level": 4
+  },
+  {
+    "character": "北京",
+    "pinyin": "běijīng",
+    "translation": "Beijing",
+    "level": 4
+  },
+  {
+    "character": "倍",
+    "pinyin": "bèi",
+    "translation": "times",
+    "level": 4
+  },
+  {
+    "character": "被",
+    "pinyin": "bèi",
+    "translation": "be",
+    "level": 4
+  },
+  {
+    "character": "本",
+    "pinyin": "běn",
+    "translation": "original",
+    "level": 4
+  },
+  {
+    "character": "本来",
+    "pinyin": "běnlái",
+    "translation": "originally",
+    "level": 4
+  },
+  {
+    "character": "笨",
+    "pinyin": "bèn",
+    "translation": "stupid",
+    "level": 4
+  },
+  {
+    "character": "鼻子",
+    "pinyin": "bízi",
+    "translation": "nose",
+    "level": 4
+  },
+  {
+    "character": "比",
+    "pinyin": "bǐ",
+    "translation": "than",
+    "level": 4
+  },
+  {
+    "character": "比较",
+    "pinyin": "bǐjiào",
+    "translation": "compare",
+    "level": 4
+  },
+  {
+    "character": "比如",
+    "pinyin": "bǐrú",
+    "translation": "such as",
+    "level": 4
+  },
+  {
+    "character": "比赛",
+    "pinyin": "bǐsài",
+    "translation": "game",
+    "level": 4
+  },
+  {
+    "character": "笔记本",
+    "pinyin": "bǐjìběn",
+    "translation": "notebook",
+    "level": 4
+  },
+  {
+    "character": "必须",
+    "pinyin": "bìxū",
+    "translation": "have to",
+    "level": 4
+  },
+  {
+    "character": "毕业",
+    "pinyin": "bìyè",
+    "translation": "graduation",
+    "level": 4
+  },
+  {
+    "character": "变化",
+    "pinyin": "biànhuà",
+    "translation": "variety",
+    "level": 4
+  },
+  {
+    "character": "遍",
+    "pinyin": "biàn",
+    "translation": "all over",
+    "level": 4
+  },
+  {
+    "character": "标准",
+    "pinyin": "biāozhǔn",
+    "translation": "standard",
+    "level": 4
+  },
+  {
+    "character": "表格",
+    "pinyin": "biǎogé",
+    "translation": "form",
+    "level": 4
+  },
+  {
+    "character": "表示",
+    "pinyin": "biǎoshì",
+    "translation": "said",
+    "level": 4
+  },
+  {
+    "character": "表演",
+    "pinyin": "biǎoyǎn",
+    "translation": "performance",
+    "level": 4
+  },
+  {
+    "character": "表扬",
+    "pinyin": "biǎoyáng",
+    "translation": "praise",
+    "level": 4
+  },
+  {
+    "character": "别",
+    "pinyin": "bié",
+    "translation": "do not",
+    "level": 4
+  },
+  {
+    "character": "别人",
+    "pinyin": "biérén",
+    "translation": "other people",
+    "level": 4
+  },
+  {
+    "character": "宾馆",
+    "pinyin": "bīnguǎn",
+    "translation": "hotel",
+    "level": 4
+  },
+  {
+    "character": "冰箱",
+    "pinyin": "bīngxiāng",
+    "translation": "refrigerator",
+    "level": 4
+  },
+  {
+    "character": "饼干",
+    "pinyin": "bǐnggān",
+    "translation": "cookies",
+    "level": 4
+  },
+  {
+    "character": "并且",
+    "pinyin": "bìngqiě",
+    "translation": "and",
+    "level": 4
+  },
+  {
+    "character": "博士",
+    "pinyin": "bóshì",
+    "translation": "doctor",
+    "level": 4
+  },
+  {
+    "character": "不但",
+    "pinyin": "búdàn",
+    "translation": "not only",
+    "level": 4
+  },
+  {
+    "character": "不得不",
+    "pinyin": "bùdé bù",
+    "translation": "have to",
+    "level": 4
+  },
+  {
+    "character": "不管",
+    "pinyin": "bùguǎn",
+    "translation": "regardless",
+    "level": 4
+  },
+  {
+    "character": "不过",
+    "pinyin": "búguò",
+    "translation": "however",
+    "level": 4
+  },
+  {
+    "character": "不仅",
+    "pinyin": "bùjǐn",
+    "translation": "not only",
+    "level": 4
+  },
+  {
+    "character": "不客气",
+    "pinyin": "bú kèqì",
+    "translation": "you are welcome",
+    "level": 4
+  },
+  {
+    "character": "部分",
+    "pinyin": "bùfèn",
+    "translation": "part",
+    "level": 4
+  },
+  {
+    "character": "擦",
+    "pinyin": "cā",
+    "translation": "wipe",
+    "level": 4
+  },
+  {
+    "character": "猜",
+    "pinyin": "cāi",
+    "translation": "guess",
+    "level": 4
+  },
+  {
+    "character": "材料",
+    "pinyin": "cáiliào",
+    "translation": "material",
+    "level": 4
+  },
+  {
+    "character": "参观",
+    "pinyin": "cānguān",
+    "translation": "visit",
+    "level": 4
+  },
+  {
+    "character": "参加",
+    "pinyin": "cānjiā",
+    "translation": "participate",
+    "level": 4
+  },
+  {
+    "character": "餐厅",
+    "pinyin": "cāntīng",
+    "translation": "restaurant",
+    "level": 4
+  },
+  {
+    "character": "草",
+    "pinyin": "cǎo",
+    "translation": "grass",
+    "level": 4
+  },
+  {
+    "character": "厕所",
+    "pinyin": "cèsuǒ",
+    "translation": "toilet",
+    "level": 4
+  },
+  {
+    "character": "曾经",
+    "pinyin": "céngjīng",
+    "translation": "once",
+    "level": 4
+  },
+  {
+    "character": "差",
+    "pinyin": "chà",
+    "translation": "poor",
+    "level": 4
+  },
+  {
+    "character": "差不多",
+    "pinyin": "chàbuduō",
+    "translation": "almost",
+    "level": 4
+  },
+  {
+    "character": "产品",
+    "pinyin": "chǎnpǐn",
+    "translation": "product",
+    "level": 4
+  }
+]

@@ -26,6 +26,34 @@ body {
     color: white;
 }
 
+.header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.dev-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.dev-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.header-text {
+    text-align: left;
+}
+
 .header h1 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -657,6 +685,79 @@ body {
     box-shadow: 0 4px 16px rgba(220, 53, 69, 0.3);
 }
 
+/* Footer */
+.footer {
+    margin-top: 50px;
+    padding: 30px 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px 16px 0 0;
+    color: white;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dev-signature {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.05) rotate(-5deg);
+}
+
+.signature-text p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.signature-text .version {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.95rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.footer-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+.separator {
+    opacity: 0.6;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .container {
@@ -702,5 +803,35 @@ body {
     .answer-text,
     .question-display {
         font-size: 2rem;
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .header-text {
+        text-align: center;
+    }
+    
+    .dev-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .dev-signature {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .footer-logo {
+        width: 50px;
+        height: 50px;
     }
 }
