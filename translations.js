@@ -2,7 +2,7 @@
 const translations = {
     es: {
         // Header
-        appTitle: "HSK Chinese Learning",
+        appTitle: "Confuc10 ++",
         appSubtitle: "Aprende caracteres chinos, pinyin y traducciones",
         themeToggleTitle: "Cambiar tema",
         audioToggleTitle: "Activar/Desactivar audio",
@@ -66,7 +66,7 @@ const translations = {
         
         // Footer
         developedBy: "Desarrollado con ❤️ por",
-        version: "v2.0.0 | HSK Chinese Learning Platform",
+        version: "v2.0.0 | Confuc10 ++ Platform",
         githubLink: "📂 GitHub",
         confuciusInspired: "🀄 Instituto Confucio inspired",
         
@@ -83,7 +83,7 @@ const translations = {
     
     en: {
         // Header
-        appTitle: "HSK Chinese Learning",
+        appTitle: "Confuc10 ++",
         appSubtitle: "Learn Chinese characters, pinyin and translations",
         themeToggleTitle: "Toggle theme",
         audioToggleTitle: "Enable/Disable audio",
@@ -147,7 +147,7 @@ const translations = {
         
         // Footer
         developedBy: "Developed with ❤️ by",
-        version: "v2.0.0 | HSK Chinese Learning Platform",
+        version: "v2.0.0 | Confuc10 ++ Platform",
         githubLink: "📂 GitHub",
         confuciusInspired: "🀄 Confucius Institute inspired",
         

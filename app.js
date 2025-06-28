@@ -693,6 +693,7 @@ class HSKApp {
     initializeTheme() {
         document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
         this.updateThemeButton();
+        this.updateAppLogo();
     }
 
     toggleTheme() {
@@ -700,6 +701,7 @@ class HSKApp {
         document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
         this.saveTheme();
         this.updateThemeButton();
+        this.updateAppLogo();
     }
 
     updateThemeButton() {
@@ -717,6 +719,22 @@ class HSKApp {
             lightIcon.style.transform = 'rotate(0deg) scale(1)';
             darkIcon.style.opacity = '0';
             darkIcon.style.transform = 'rotate(180deg) scale(0.5)';
+        }
+    }
+
+    updateAppLogo() {
+        const appLogo = document.getElementById('app-logo');
+        if (appLogo) {
+            const logoSrc = this.isDarkMode ? 'logo_appDM.png' : 'logo_appLM.png';
+            appLogo.src = logoSrc;
+            
+            // Add smooth transition
+            appLogo.style.transition = 'all 0.3s ease';
+            appLogo.style.transform = 'scale(0.9)';
+            
+            setTimeout(() => {
+                appLogo.style.transform = 'scale(1)';
+            }, 150);
         }
     }
 

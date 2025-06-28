@@ -6,46 +6,86 @@
 }
 
 :root {
+    /* Confuc10++ Brand Colors - Light Mode */
+    --brand-yellow: #FFD700;
+    --brand-red: #FF4444;
+    --brand-green: #00CC66;
+    --brand-cyan: #00CCFF;
+    
     /* Light theme colors */
-    --bg-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-primary: linear-gradient(135deg, var(--brand-cyan) 0%, var(--brand-green) 50%, var(--brand-yellow) 100%);
     --bg-secondary: #ffffff;
     --bg-tertiary: #f8f9fa;
-    --text-primary: #333333;
-    --text-secondary: #666666;
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
     --text-inverse: #ffffff;
-    --border-color: #e0e0e0;
-    --shadow-light: rgba(0, 0, 0, 0.1);
-    --shadow-medium: rgba(0, 0, 0, 0.2);
-    --accent-color: #667eea;
-    --success-color: #28a745;
-    --error-color: #dc3545;
-    --warning-color: #ffc107;
+    --text-brand: #34495e;
+    --border-color: #e8f4fd;
+    --shadow-light: rgba(0, 204, 255, 0.1);
+    --shadow-medium: rgba(0, 204, 255, 0.2);
+    --shadow-brand: rgba(255, 215, 0, 0.3);
+    --accent-color: var(--brand-cyan);
+    --success-color: var(--brand-green);
+    --error-color: var(--brand-red);
+    --warning-color: var(--brand-yellow);
+    --overlay-light: rgba(255, 255, 255, 0.1);
+    --overlay-medium: rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="dark"] {
+    /* Confuc10++ Brand Colors - Dark Mode */
+    --brand-yellow: #FFA500;
+    --brand-red: #FF6B6B;
+    --brand-green: #4ECDC4;
+    --brand-cyan: #45B7D1;
+    
     /* Dark theme colors */
-    --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    --bg-secondary: #2d3748;
-    --bg-tertiary: #4a5568;
-    --text-primary: #e2e8f0;
-    --text-secondary: #a0aec0;
-    --text-inverse: #1a202c;
-    --border-color: #4a5568;
-    --shadow-light: rgba(0, 0, 0, 0.3);
-    --shadow-medium: rgba(0, 0, 0, 0.5);
-    --accent-color: #90cdf4;
-    --success-color: #68d391;
-    --error-color: #fc8181;
-    --warning-color: #f6e05e;
+    --bg-primary: linear-gradient(135deg, #0f1419 0%, #1a1f3a 50%, #2d1b69 100%);
+    --bg-secondary: #1e2a3a;
+    --bg-tertiary: #2c3e50;
+    --bg-card: rgba(30, 42, 58, 0.95);
+    --text-primary: #ecf0f1;
+    --text-secondary: #bdc3c7;
+    --text-inverse: #1e2a3a;
+    --text-brand: #ecf0f1;
+    --border-color: #34495e;
+    --shadow-light: rgba(69, 183, 209, 0.2);
+    --shadow-medium: rgba(69, 183, 209, 0.3);
+    --shadow-brand: rgba(255, 165, 0, 0.4);
+    --accent-color: var(--brand-cyan);
+    --success-color: var(--brand-green);
+    --error-color: var(--brand-red);
+    --warning-color: var(--brand-yellow);
+    --overlay-light: rgba(0, 0, 0, 0.2);
+    --overlay-medium: rgba(0, 0, 0, 0.4);
 }
 
 body {
-    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Ubuntu', 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     background: var(--bg-primary);
+    background-attachment: fixed;
     min-height: 100vh;
     color: var(--text-primary);
     transition: all 0.3s ease;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('logo_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.05;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .container {
@@ -77,27 +117,36 @@ body {
     gap: 20px;
 }
 
-.dev-logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+.app-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px var(--shadow-brand);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
 }
 
-.dev-logo:hover {
-    transform: scale(1.1) rotate(5deg);
+.app-logo:hover {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 0 8px 25px var(--shadow-brand);
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5));
 }
 
 .header-text {
     text-align: left;
 }
 
-.header h1 {
-    font-size: 2.5rem;
+.app-title {
+    font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: 10px;
+    background: linear-gradient(45deg, var(--brand-yellow), var(--brand-cyan), var(--brand-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 1px;
 }
 
 .header p {
@@ -206,45 +255,54 @@ body {
 /* Navigation tabs */
 .nav-tabs {
     display: flex;
-    background: var(--bg-secondary);
-    border-radius: 12px;
-    padding: 6px;
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 8px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 20px var(--shadow-light);
-    gap: 4px;
+    box-shadow: 0 6px 25px var(--shadow-light);
+    gap: 6px;
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--overlay-light);
 }
 
 .tab-btn {
     flex: 1;
-    padding: 12px 20px;
+    padding: 14px 22px;
     border: none;
     background: transparent;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    font-family: 'Ubuntu', sans-serif;
     transition: all 0.3s ease;
     color: var(--text-secondary);
+    position: relative;
+    overflow: hidden;
 }
 
 .tab-btn:hover {
-    background: var(--bg-tertiary);
+    background: var(--overlay-light);
     color: var(--text-primary);
+    transform: translateY(-2px);
 }
 
 .tab-btn.active {
-    background: var(--accent-color);
+    background: linear-gradient(135deg, var(--brand-cyan), var(--brand-green));
     color: var(--text-inverse);
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px var(--shadow-brand);
+    transform: translateY(-2px);
 }
 
 /* Tab content */
 .tab-content {
     display: none;
-    background: var(--bg-secondary);
-    border-radius: 16px;
-    padding: 30px;
-    box-shadow: 0 8px 32px var(--shadow-light);
-    backdrop-filter: blur(10px);
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 40px var(--shadow-light);
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--overlay-light);
+    position: relative;
 }
 
 .tab-content.active {
@@ -360,14 +418,16 @@ body {
 }
 
 .flashcard-front {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--brand-cyan) 0%, var(--brand-green) 50%, var(--brand-yellow) 100%);
     color: white;
+    border: 3px solid var(--overlay-light);
 }
 
 .flashcard-back {
-    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-    color: #333;
+    background: linear-gradient(135deg, var(--brand-yellow) 0%, var(--brand-red) 50%, var(--brand-cyan) 100%);
+    color: white;
     transform: rotateY(180deg);
+    border: 3px solid var(--overlay-light);
 }
 
 .question-text,
@@ -424,18 +484,24 @@ body {
 
 #flip-btn,
 #next-btn {
-    background: #667eea;
+    background: linear-gradient(135deg, var(--brand-cyan), var(--brand-green));
     color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 600;
 }
 
 #know-btn.success {
-    background: #28a745;
+    background: linear-gradient(135deg, var(--brand-green), var(--success-color));
     color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 600;
 }
 
 #dont-know-btn.error {
-    background: #dc3545;
+    background: linear-gradient(135deg, var(--brand-red), var(--error-color));
     color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 600;
 }
 
 /* Progress bar */
