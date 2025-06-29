@@ -30,7 +30,7 @@
                 <div class="logo-section">
                     <img src="logo_appLM.png" alt="Confuc10 ++ Logo" class="app-logo" id="app-logo">
                     <div class="header-text">
-                        <h1 class="app-title">🀄 Confuc10 ++</h1>
+                        <h1 class="app-title">Confuc10 ++</h1>
                         <p data-i18n="appSubtitle">Aprende caracteres chinos, pinyin y traducciones</p>
                     </div>
                 </div>
@@ -43,19 +43,19 @@
                     </div>
                     <div class="theme-toggle">
                         <button id="theme-toggle" class="theme-btn" data-i18n-title="themeToggleTitle">
-                            <span class="theme-icon light-icon">☀️</span>
-                            <span class="theme-icon dark-icon">🌙</span>
+                            <span class="theme-icon light-icon">☀</span>
+                            <span class="theme-icon dark-icon">☾</span>
                         </button>
                     </div>
                     <div class="audio-controls">
                         <button id="audio-toggle" class="audio-btn" data-i18n-title="audioToggleTitle">
-                            <span class="audio-icon">🔊</span>
+                            <span class="audio-icon">♪</span>
                         </button>
                         <div class="voice-selector">
                             <select id="voice-select" class="voice-btn" title="Seleccionar voz">
-                                <option value="auto">🤖 Auto</option>
-                                <option value="male">👨 Masculino</option>
-                                <option value="female">👩 Femenino</option>
+                                <option value="auto">Auto</option>
+                                <option value="male">Masculino</option>
+                                <option value="female">Femenino</option>
                             </select>
                         </div>
                     </div>
@@ -120,8 +120,23 @@
                 <div class="flashcard-controls">
                     <button id="flip-btn" disabled>Mostrar respuesta</button>
                     <button id="next-btn">Siguiente</button>
-                    <button id="know-btn" class="success" disabled>✓ Lo sé</button>
-                    <button id="dont-know-btn" class="error" disabled>✗ No lo sé</button>
+                    
+                    <!-- SRS Performance Buttons -->
+                    <div class="srs-buttons" style="display: none;">
+                        <button id="srs-again" class="srs-btn error" title="Muy difícil - Repetir mañana">Repetir</button>
+                        <button id="srs-hard" class="srs-btn warning" title="Difícil - Revisión en pocos días">Difícil</button>
+                        <button id="srs-good" class="srs-btn success" title="Bien - Revisión normal">Bien</button>
+                        <button id="srs-easy" class="srs-btn easy" title="Fácil - Revisión en más tiempo">Fácil</button>
+                    </div>
+                    
+                    <!-- Original Simple Buttons -->
+                    <div class="simple-buttons">
+                        <button id="know-btn" class="success" disabled>Lo sé</button>
+                        <button id="dont-know-btn" class="error" disabled>No lo sé</button>
+                    </div>
+                    
+                    <!-- Toggle SRS Mode -->
+                    <button id="toggle-srs" class="toggle-btn" title="Cambiar a modo SRS avanzado">Modo SRS</button>
                 </div>
             </div>
 
@@ -261,14 +276,14 @@
             <div class="dev-signature">
                 <img src="dev_logo.png" alt="Developer Logo" class="footer-logo">
                 <div class="signature-text">
-                    <p>Desarrollado con ❤️ por <strong>skillparty</strong></p>
+                    <p>Desarrollado por <strong>skillparty</strong></p>
                     <p class="version">v2.0.0 | Confuc10 ++ Platform</p>
                 </div>
             </div>
             <div class="footer-links">
-                <a href="https://github.com/skillparty/proyecto_HSK" target="_blank" rel="noopener">📂 GitHub</a>
+                <a href="https://github.com/skillparty/proyecto_HSK" target="_blank" rel="noopener">GitHub</a>
                 <span class="separator">•</span>
-                <span>🀄 Instituto Confucio inspired</span>
+                <span>Instituto Confucio inspired</span>
             </div>
         </div>
     </footer>

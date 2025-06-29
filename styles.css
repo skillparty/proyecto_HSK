@@ -140,24 +140,10 @@ body::before {
     75% { transform: scale(1.01) rotate(0.3deg); }
 }
 
-/* Partículas flotantes tradicionales chinas */
+/* Clean background without floating particles */
 body::after {
-    content: '🀄 🎋 🏮 🎎 🐲 ⛩️ 🌸 🎍';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 1.5rem;
-    opacity: 0.1;
-    z-index: -1;
-    pointer-events: none;
-    animation: particleFloat 25s linear infinite;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: space-around;
-    line-height: 2;
+    content: '';
+    display: none;
 }
 
 @keyframes particleFloat {
@@ -552,14 +538,8 @@ body::after {
 }
 
 .flashcard::before {
-    content: '✨';
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 1.5rem;
-    z-index: 10;
-    animation: sparkle 2s ease-in-out infinite;
-    opacity: 0.7;
+    content: '';
+    display: none;
 }
 
 @keyframes sparkle {
@@ -636,13 +616,8 @@ body::after {
 }
 
 .flashcard-front::after {
-    content: '🎎';
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    font-size: 1.5rem;
-    opacity: 0.6;
-    animation: rotate 10s linear infinite;
+    content: '';
+    display: none;
 }
 
 @keyframes rotate {
@@ -659,13 +634,8 @@ body::after {
 }
 
 .flashcard-back::after {
-    content: '🐲';
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.5rem;
-    opacity: 0.6;
-    animation: bounce 2s ease-in-out infinite;
+    content: '';
+    display: none;
 }
 
 @keyframes bounce {
@@ -699,7 +669,16 @@ body::after {
 /* Controls */
 .flashcard-controls {
     display: flex;
+    flex-direction: column;
     gap: 15px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* SRS Button Groups */
+.srs-buttons, .simple-buttons {
+    display: flex;
+    gap: 12px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -722,19 +701,18 @@ body::after {
 .flashcard-controls button::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255,255,255,0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    transition: all 0.3s ease;
 }
 
 .flashcard-controls button:hover::before {
-    width: 300px;
-    height: 300px;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .flashcard-controls button:hover:not(:disabled) {
@@ -821,6 +799,115 @@ body::after {
     0%, 100% { transform: translateY(-50%) rotate(0deg); }
     25% { transform: translateY(-50%) rotate(3deg); }
     75% { transform: translateY(-50%) rotate(-3deg); }
+}
+
+/* SRS Specific Button Styles */
+.srs-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-light);
+    min-width: 100px;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.srs-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+}
+
+.srs-btn:hover::before {
+    left: 100%;
+}
+
+.srs-btn.error {
+    background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+    color: white;
+    border: 2px solid #C0392B;
+}
+
+.srs-btn.warning {
+    background: linear-gradient(135deg, var(--lantern-orange) 0%, #E67E22 100%);
+    color: white;
+    border: 2px solid #E67E22;
+}
+
+.srs-btn.success {
+    background: var(--gradient-success);
+    color: white;
+    border: 2px solid var(--jade-green);
+}
+
+.srs-btn.easy {
+    background: linear-gradient(135deg, var(--dynasty-purple) 0%, #9B59B6 100%);
+    color: white;
+    border: 2px solid #9B59B6;
+}
+
+.srs-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.srs-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-light);
+}
+
+.toggle-btn {
+    padding: 8px 16px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.toggle-btn:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-light);
+}
+
+/* Notification Styles */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 }
 
 /* Progress bar */

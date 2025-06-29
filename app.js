@@ -1,4 +1,127 @@
 // HSK Chinese Learning App
+
+// Spaced Repetition System (SRS) Class
+class SpacedRepetitionSystem {
+    constructor() {
+        this.intervals = [1, 3, 7, 14, 30, 90]; // days
+        this.easeFactor = {
+            again: 1.2,    // Very difficult
+            hard: 1.3,     // Difficult
+            good: 2.5,     // Normal
+            easy: 2.8      // Easy
+        };
+    }
+
+    // Calculate next review date based on performance
+    calculateNextReview(word, performance) {
+        const now = new Date();
+        const wordData = this.getWordData(word);
+        
+        let interval = wordData.interval || 1;
+        let easeFactor = wordData.easeFactor || 2.5;
+        let repetitions = wordData.repetitions || 0;
+        
+        switch(performance) {
+            case 'again':
+                repetitions = 0;
+                interval = 1;
+                easeFactor = Math.max(1.3, easeFactor - 0.2);
+                break;
+            case 'hard':
+                repetitions++;
+                interval = Math.max(1, Math.round(interval * 1.2));
+                easeFactor = Math.max(1.3, easeFactor - 0.15);
+                break;
+            case 'good':
+                repetitions++;
+                if (repetitions === 1) interval = 1;
+                else if (repetitions === 2) interval = 6;
+                else interval = Math.round(interval * easeFactor);
+                break;
+            case 'easy':
+                repetitions++;
+                if (repetitions === 1) interval = 4;
+                else interval = Math.round(interval * easeFactor * 1.3);
+                easeFactor += 0.15;
+                break;
+        }
+        
+        const nextReview = new Date(now.getTime() + (interval * 24 * 60 * 60 * 1000));
+        
+        return {
+            nextReview: nextReview.getTime(),
+            interval,
+            easeFactor,
+            repetitions,
+            lastReviewed: now.getTime(),
+            performance
+        };
+    }
+    
+    getWordData(word) {
+        const srsData = JSON.parse(localStorage.getItem('srsData') || '{}');
+        const wordKey = `${word.character}_${word.pinyin}`;
+        return srsData[wordKey] || {};
+    }
+    
+    saveWordData(word, data) {
+        const srsData = JSON.parse(localStorage.getItem('srsData') || '{}');
+        const wordKey = `${word.character}_${word.pinyin}`;
+        srsData[wordKey] = { ...srsData[wordKey], ...data };
+        localStorage.setItem('srsData', JSON.stringify(srsData));
+    }
+    
+    // Get words due for review
+    getDueWords(vocabulary) {
+        const now = Date.now();
+        return vocabulary.filter(word => {
+            const wordData = this.getWordData(word);
+            if (!wordData.nextReview) return true; // New words
+            return wordData.nextReview <= now;
+        });
+    }
+    
+    // Sort words by priority (overdue first, then by difficulty)
+    prioritizeWords(words) {
+        const now = Date.now();
+        return words.sort((a, b) => {
+            const aData = this.getWordData(a);
+            const bData = this.getWordData(b);
+            
+            // New words first
+            if (!aData.nextReview && bData.nextReview) return -1;
+            if (aData.nextReview && !bData.nextReview) return 1;
+            if (!aData.nextReview && !bData.nextReview) return 0;
+            
+            // Then by how overdue they are
+            const aOverdue = now - aData.nextReview;
+            const bOverdue = now - bData.nextReview;
+            
+            if (aOverdue !== bOverdue) return bOverdue - aOverdue;
+            
+            // Finally by difficulty (lower ease factor = more difficult)
+            return (aData.easeFactor || 2.5) - (bData.easeFactor || 2.5);
+        });
+    }
+    
+    getWordStats(word) {
+        const data = this.getWordData(word);
+        const now = Date.now();
+        const isNew = !data.lastReviewed;
+        const isDue = !data.nextReview || data.nextReview <= now;
+        const daysUntilDue = data.nextReview ? Math.ceil((data.nextReview - now) / (24 * 60 * 60 * 1000)) : 0;
+        
+        return {
+            isNew,
+            isDue,
+            daysUntilDue,
+            repetitions: data.repetitions || 0,
+            easeFactor: data.easeFactor || 2.5,
+            lastPerformance: data.performance || 'none'
+        };
+    }
+}
+
 class HSKApp {
     constructor() {
         this.vocabulary = [];
@@ -10,6 +133,10 @@ class HSKApp {
         this.currentSession = [];
         this.sessionIndex = 0;
         this.stats = this.loadStats();
+        
+        // Initialize Spaced Repetition System
+        this.srs = new SpacedRepetitionSystem();
+        this.srsMode = this.loadSRSMode();
         this.quiz = {
             questions: [],
             currentQuestion: 0,
@@ -41,6 +168,7 @@ class HSKApp {
             this.languageManager.updateInterface();
             this.renderBrowseTab();
             this.updateStatsDisplay();
+            this.updateSRSInterface(); // Initialize SRS interface
             this.setupPracticeSession();
         } catch (error) {
             console.error('Error initializing app:', error);
@@ -95,6 +223,28 @@ class HSKApp {
 
         document.getElementById('dont-know-btn').addEventListener('click', () => {
             this.markAsKnown(false);
+        });
+        
+        // SRS performance buttons
+        document.getElementById('srs-again').addEventListener('click', () => {
+            this.markAsKnown(false, 'again');
+        });
+        
+        document.getElementById('srs-hard').addEventListener('click', () => {
+            this.markAsKnown(false, 'hard');
+        });
+        
+        document.getElementById('srs-good').addEventListener('click', () => {
+            this.markAsKnown(true, 'good');
+        });
+        
+        document.getElementById('srs-easy').addEventListener('click', () => {
+            this.markAsKnown(true, 'easy');
+        });
+        
+        // Toggle SRS mode
+        document.getElementById('toggle-srs').addEventListener('click', () => {
+            this.toggleSRSMode();
         });
 
         // Browse controls
@@ -200,7 +350,21 @@ class HSKApp {
 
     setupPracticeSession() {
         const filtered = this.getFilteredVocabulary();
-        this.currentSession = this.shuffleArray([...filtered]);
+        
+        // Use SRS to get due words first, then prioritize them
+        const dueWords = this.srs.getDueWords(filtered);
+        const prioritizedWords = this.srs.prioritizeWords(dueWords);
+        
+        // If we have enough due words, use them. Otherwise, add some random ones
+        if (prioritizedWords.length >= 20) {
+            this.currentSession = prioritizedWords.slice(0, 20);
+        } else {
+            // Mix due words with random ones
+            const remainingWords = filtered.filter(word => !dueWords.includes(word));
+            const randomWords = this.shuffleArray(remainingWords).slice(0, 20 - prioritizedWords.length);
+            this.currentSession = [...prioritizedWords, ...randomWords];
+        }
+        
         this.sessionIndex = 0;
         this.updateProgressBar();
         this.nextCard();
@@ -305,14 +469,24 @@ class HSKApp {
         }
     }
 
-    markAsKnown(known) {
+    markAsKnown(known, performance = null) {
         if (!this.currentWord) return;
+
+        // Determine SRS performance if not explicitly provided
+        if (performance === null) {
+            performance = known ? 'good' : 'again';
+        }
+
+        // Update SRS data
+        const srsUpdate = this.srs.calculateNextReview(this.currentWord, performance);
+        this.srs.saveWordData(this.currentWord, srsUpdate);
 
         this.practiceHistory.push({
             word: this.currentWord,
             known: known,
             mode: this.practiceMode,
-            timestamp: Date.now()
+            timestamp: Date.now(),
+            srsPerformance: performance
         });
 
         this.updateStats(known);
@@ -791,43 +965,87 @@ class HSKApp {
         const setVoice = () => {
             const voices = this.speechSynthesis.getVoices();
             
-            // Filter Chinese voices
-            const chineseVoices = voices.filter(voice => 
-                voice.lang.includes('zh') || 
-                voice.name.toLowerCase().includes('chinese') ||
-                voice.name.toLowerCase().includes('mandarin') ||
-                voice.lang.includes('zh-CN')
-            );
+            // Filter Chinese voices with more comprehensive detection
+            const chineseVoices = voices.filter(voice => {
+                const name = voice.name.toLowerCase();
+                const lang = voice.lang.toLowerCase();
+                return (
+                    lang.includes('zh') || 
+                    lang.includes('zh-cn') ||
+                    lang.includes('zh-tw') ||
+                    lang.includes('cmn') ||
+                    name.includes('chinese') ||
+                    name.includes('mandarin') ||
+                    name.includes('台灣') ||
+                    name.includes('中文') ||
+                    name.includes('普通话')
+                );
+            });
             
             let selectedVoice = null;
             
+            console.log('Available Chinese voices:', chineseVoices.map(v => `${v.name} (${v.lang})`));
+            
             if (this.voicePreference === 'male') {
-                // Try to find male voice
-                selectedVoice = chineseVoices.find(voice =>
-                    voice.name.toLowerCase().includes('male') ||
-                    voice.name.toLowerCase().includes('masculino') ||
-                    voice.name.toLowerCase().includes('hombre') ||
-                    voice.name.toLowerCase().includes('man')
-                );
+                // Try to find male voice with better patterns
+                selectedVoice = chineseVoices.find(voice => {
+                    const name = voice.name.toLowerCase();
+                    return (
+                        name.includes('male') ||
+                        name.includes('man') ||
+                        name.includes('masculino') ||
+                        name.includes('hombre') ||
+                        name.includes('男') ||
+                        (name.includes('xiaoyun') && name.includes('male')) ||
+                        name.includes('yunxi')
+                    );
+                });
             } else if (this.voicePreference === 'female') {
-                // Try to find female voice
-                selectedVoice = chineseVoices.find(voice =>
-                    voice.name.toLowerCase().includes('female') ||
-                    voice.name.toLowerCase().includes('femenina') ||
-                    voice.name.toLowerCase().includes('mujer') ||
-                    voice.name.toLowerCase().includes('woman')
-                );
+                // Try to find female voice with better patterns
+                selectedVoice = chineseVoices.find(voice => {
+                    const name = voice.name.toLowerCase();
+                    return (
+                        name.includes('female') ||
+                        name.includes('woman') ||
+                        name.includes('femenina') ||
+                        name.includes('mujer') ||
+                        name.includes('女') ||
+                        name.includes('xiaoxiao') ||
+                        name.includes('xiaoyi') ||
+                        name.includes('hanhan') ||
+                        name.includes('yaoyao')
+                    );
+                });
             }
             
-            // If no specific preference match or auto mode, use any Chinese voice
+            // If no specific preference match, try alternative approaches
+            if (!selectedVoice && this.voicePreference !== 'auto') {
+                // For female, try voices that typically are female
+                if (this.voicePreference === 'female') {
+                    selectedVoice = chineseVoices.find(voice => 
+                        !voice.name.toLowerCase().includes('male') &&
+                        !voice.name.toLowerCase().includes('man')
+                    );
+                }
+                // For male, try remaining voices
+                else if (this.voicePreference === 'male') {
+                    selectedVoice = chineseVoices.find(voice => 
+                        !voice.name.toLowerCase().includes('female') &&
+                        !voice.name.toLowerCase().includes('woman')
+                    );
+                }
+            }
+            
+            // Fallback to any Chinese voice
             if (!selectedVoice && chineseVoices.length > 0) {
                 selectedVoice = chineseVoices[0];
             }
             
-            // Fallback to any available voice
+            // Final fallback to any available voice
             this.chineseVoice = selectedVoice || voices[0];
             
             console.log('Selected voice:', this.chineseVoice?.name || 'Default', 
+                       'Language:', this.chineseVoice?.lang || 'Unknown',
                        'Preference:', this.voicePreference);
                        
             // Update voice selector UI
@@ -856,11 +1074,11 @@ class HSKApp {
         
         if (this.isAudioEnabled) {
             audioBtn.classList.remove('muted');
-            audioIcon.textContent = '🔊';
+            audioIcon.textContent = 'Audio';
             audioBtn.title = 'Desactivar audio';
         } else {
             audioBtn.classList.add('muted');
-            audioIcon.textContent = '🔇';
+            audioIcon.textContent = 'Mute';
             audioBtn.title = 'Activar audio';
         }
     }
@@ -882,6 +1100,81 @@ class HSKApp {
 
     saveVoicePreference() {
         localStorage.setItem('hsk-voice-preference', this.voicePreference);
+    }
+
+    // SRS mode management
+    loadSRSMode() {
+        const saved = localStorage.getItem('hsk-srs-mode');
+        return saved === 'true';
+    }
+
+    saveSRSMode() {
+        localStorage.setItem('hsk-srs-mode', this.srsMode.toString());
+    }
+
+    toggleSRSMode() {
+        this.srsMode = !this.srsMode;
+        this.saveSRSMode();
+        this.updateSRSInterface();
+        
+        // Show notification
+        const mode = this.srsMode ? 'SRS Avanzado' : 'Simple';
+        this.showNotification(`Modo ${mode} activado`, 'info');
+    }
+
+    updateSRSInterface() {
+        const srsButtons = document.querySelector('.srs-buttons');
+        const simpleButtons = document.querySelector('.simple-buttons');
+        const toggleButton = document.getElementById('toggle-srs');
+        
+        if (this.srsMode) {
+            srsButtons.style.display = 'flex';
+            simpleButtons.style.display = 'none';
+            toggleButton.textContent = 'Modo Simple';
+            toggleButton.title = 'Cambiar a modo simple';
+        } else {
+            srsButtons.style.display = 'none';
+            simpleButtons.style.display = 'flex';
+            toggleButton.textContent = 'Modo SRS';
+            toggleButton.title = 'Cambiar a modo SRS avanzado';
+        }
+        
+        // Update button states
+        this.updateControlButtons();
+    }
+
+    showNotification(message, type = 'info') {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.textContent = message;
+        
+        // Style the notification
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-medium);
+            z-index: 1000;
+            animation: slideInRight 0.3s ease;
+            font-weight: 500;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-remove after 3 seconds
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 300);
+        }, 3000);
     }
 
     // Pronunciation function
@@ -969,7 +1262,7 @@ class HSKApp {
         if (!element.querySelector('.pronunciation-icon')) {
             const icon = document.createElement('span');
             icon.className = 'pronunciation-icon';
-            icon.innerHTML = ' 🔊';
+            icon.innerHTML = ' ♪';
             icon.style.fontSize = '0.6em';
             icon.style.opacity = '0.7';
             element.appendChild(icon);
