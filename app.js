@@ -405,22 +405,22 @@ class HSKApp {
         switch (this.practiceMode) {
             case 'char-to-pinyin':
                 questionText.textContent = this.currentWord.character;
-                hintText.textContent = `Nivel HSK ${this.currentWord.level}`;
+                hintText.textContent = `${this.languageManager.t('level')} ${this.currentWord.level}`;
                 answerText.textContent = this.currentWord.pinyin;
                 break;
             case 'char-to-english':
                 questionText.textContent = this.currentWord.character;
-                hintText.textContent = `Nivel HSK ${this.currentWord.level}`;
+                hintText.textContent = `${this.languageManager.t('level')} ${this.currentWord.level}`;
                 answerText.textContent = this.currentWord.translation;
                 break;
             case 'pinyin-to-char':
                 questionText.textContent = this.currentWord.pinyin;
-                hintText.textContent = `Nivel HSK ${this.currentWord.level}`;
+                hintText.textContent = `${this.languageManager.t('level')} ${this.currentWord.level}`;
                 answerText.textContent = this.currentWord.character;
                 break;
             case 'english-to-char':
                 questionText.textContent = this.currentWord.translation;
-                hintText.textContent = `Nivel HSK ${this.currentWord.level}`;
+                hintText.textContent = `${this.languageManager.t('level')} ${this.currentWord.level}`;
                 answerText.textContent = this.currentWord.character;
                 break;
         }
@@ -896,11 +896,6 @@ class HSKApp {
         this.updateAppLogo();
         
         console.log('Theme toggled to:', theme);
-        
-        // Forzar re-renderizado de estilos
-        document.body.style.display = 'none';
-        document.body.offsetHeight; // Trigger reflow
-        document.body.style.display = '';
     }
 
     updateThemeButton() {
@@ -965,7 +960,7 @@ class HSKApp {
         const setVoice = () => {
             const voices = this.speechSynthesis.getVoices();
             
-            // Filter Chinese voices with more comprehensive detection
+            // Filter Chinese voices with comprehensive detection
             const chineseVoices = voices.filter(voice => {
                 const name = voice.name.toLowerCase();
                 const lang = voice.lang.toLowerCase();
@@ -982,26 +977,14 @@ class HSKApp {
                 );
             });
             
+            console.log('ALL Available voices:', voices.map(v => `${v.name} (${v.lang}) - Local: ${v.localService}`));
+            console.log('Chinese voices found:', chineseVoices.map(v => `${v.name} (${v.lang})`));
+            console.log('Voice preference:', this.voicePreference);
+            
             let selectedVoice = null;
             
-            console.log('Available Chinese voices:', chineseVoices.map(v => `${v.name} (${v.lang})`));
-            
-            if (this.voicePreference === 'male') {
-                // Try to find male voice with better patterns
-                selectedVoice = chineseVoices.find(voice => {
-                    const name = voice.name.toLowerCase();
-                    return (
-                        name.includes('male') ||
-                        name.includes('man') ||
-                        name.includes('masculino') ||
-                        name.includes('hombre') ||
-                        name.includes('男') ||
-                        (name.includes('xiaoyun') && name.includes('male')) ||
-                        name.includes('yunxi')
-                    );
-                });
-            } else if (this.voicePreference === 'female') {
-                // Try to find female voice with better patterns
+            if (this.voicePreference === 'female') {
+                // More aggressive female voice detection
                 selectedVoice = chineseVoices.find(voice => {
                     const name = voice.name.toLowerCase();
                     return (
@@ -1013,30 +996,47 @@ class HSKApp {
                         name.includes('xiaoxiao') ||
                         name.includes('xiaoyi') ||
                         name.includes('hanhan') ||
-                        name.includes('yaoyao')
+                        name.includes('yaoyao') ||
+                        name.includes('tingting') ||
+                        name.includes('huihui')
                     );
                 });
+                
+                // If still no female voice, try to find any Chinese voice that's not explicitly male
+                if (!selectedVoice) {
+                    selectedVoice = chineseVoices.find(voice => {
+                        const name = voice.name.toLowerCase();
+                        return !name.includes('male') && !name.includes('man') && !name.includes('masculino');
+                    });
+                }
+                
+                // Last resort: use the last Chinese voice (often female)
+                if (!selectedVoice && chineseVoices.length > 1) {
+                    selectedVoice = chineseVoices[chineseVoices.length - 1];
+                }
+                
+            } else if (this.voicePreference === 'male') {
+                // Male voice detection
+                selectedVoice = chineseVoices.find(voice => {
+                    const name = voice.name.toLowerCase();
+                    return (
+                        name.includes('male') ||
+                        name.includes('man') ||
+                        name.includes('masculino') ||
+                        name.includes('hombre') ||
+                        name.includes('男') ||
+                        name.includes('yunxi') ||
+                        name.includes('kangkang')
+                    );
+                });
+                
+                // If no explicit male, use first Chinese voice
+                if (!selectedVoice && chineseVoices.length > 0) {
+                    selectedVoice = chineseVoices[0];
+                }
             }
             
-            // If no specific preference match, try alternative approaches
-            if (!selectedVoice && this.voicePreference !== 'auto') {
-                // For female, try voices that typically are female
-                if (this.voicePreference === 'female') {
-                    selectedVoice = chineseVoices.find(voice => 
-                        !voice.name.toLowerCase().includes('male') &&
-                        !voice.name.toLowerCase().includes('man')
-                    );
-                }
-                // For male, try remaining voices
-                else if (this.voicePreference === 'male') {
-                    selectedVoice = chineseVoices.find(voice => 
-                        !voice.name.toLowerCase().includes('female') &&
-                        !voice.name.toLowerCase().includes('woman')
-                    );
-                }
-            }
-            
-            // Fallback to any Chinese voice
+            // Auto mode or fallback
             if (!selectedVoice && chineseVoices.length > 0) {
                 selectedVoice = chineseVoices[0];
             }
@@ -1044,9 +1044,12 @@ class HSKApp {
             // Final fallback to any available voice
             this.chineseVoice = selectedVoice || voices[0];
             
-            console.log('Selected voice:', this.chineseVoice?.name || 'Default', 
-                       'Language:', this.chineseVoice?.lang || 'Unknown',
-                       'Preference:', this.voicePreference);
+            console.log('SELECTED VOICE:', {
+                name: this.chineseVoice?.name,
+                lang: this.chineseVoice?.lang,
+                localService: this.chineseVoice?.localService,
+                preference: this.voicePreference
+            });
                        
             // Update voice selector UI
             const voiceSelect = document.getElementById('voice-select');
