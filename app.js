@@ -149,7 +149,18 @@ class HSKApp {
         this.isDarkMode = this.loadTheme();
         this.isAudioEnabled = this.loadAudioSetting();
         this.voicePreference = this.loadVoicePreference();
-        this.languageManager = new LanguageManager();
+        
+        // Initialize LanguageManager with safety check
+        if (typeof LanguageManager !== 'undefined') {
+            this.languageManager = new LanguageManager();
+        } else {
+            console.warn('LanguageManager not available, creating fallback');
+            this.languageManager = {
+                t: (key) => key,
+                setLanguage: (lang) => console.warn('Language manager not available'),
+                updateInterface: () => console.warn('Language manager not available')
+            };
+        }
         
         // PWA features
         this.deferredPrompt = null;
@@ -168,7 +179,12 @@ class HSKApp {
             this.languageManager.updateInterface();
             this.renderBrowseTab();
             this.updateStatsDisplay();
-            this.updateSRSInterface(); // Initialize SRS interface
+            
+            // Inicializar SRS interface después de DOM completo
+            setTimeout(() => {
+                this.updateSRSInterface();
+            }, 100);
+            
             this.setupPracticeSession();
         } catch (error) {
             console.error('Error initializing app:', error);
@@ -179,28 +195,53 @@ class HSKApp {
 
     async loadVocabulary() {
         try {
+            console.log('Loading vocabulary...');
             const response = await fetch('hsk_vocabulary.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             this.vocabulary = await response.json();
-            console.log(`Loaded ${this.vocabulary.length} vocabulary items`);
+            console.log(`Successfully loaded ${this.vocabulary.length} vocabulary items`);
+            
+            // Validate vocabulary structure
+            if (this.vocabulary.length > 0) {
+                const sample = this.vocabulary[0];
+                console.log('Sample vocabulary item:', sample);
+                const requiredFields = ['character', 'pinyin', 'level'];
+                const missingFields = requiredFields.filter(field => !sample[field]);
+                if (missingFields.length > 0) {
+                    console.warn('Missing fields in vocabulary:', missingFields);
+                }
+            }
+            
         } catch (error) {
             console.error('Error loading vocabulary:', error);
-            throw error;
+            // Create fallback vocabulary for testing
+            this.vocabulary = [
+                { character: '你', pinyin: 'nǐ', english: 'you', translation: 'tú', level: 1 },
+                { character: '好', pinyin: 'hǎo', english: 'good', translation: 'bueno', level: 1 },
+                { character: '我', pinyin: 'wǒ', english: 'I', translation: 'yo', level: 1 }
+            ];
+            console.log('Using fallback vocabulary for testing');
         }
     }
 
     setupEventListeners() {
         // Tab navigation
-        document.querySelectorAll('.tab-btn').forEach(btn => {
+        document.querySelectorAll('.nav-tab').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 this.switchTab(e.target.dataset.tab);
             });
         });
 
         // Practice controls
-        document.getElementById('level-select').addEventListener('change', (e) => {
-            this.selectedLevel = e.target.value;
-            this.setupPracticeSession();
-        });
+        const levelSelect = document.getElementById('level-select');
+        if (levelSelect) {
+            levelSelect.addEventListener('change', (e) => {
+                this.selectedLevel = e.target.value;
+                this.setupPracticeSession();
+            });
+        }
 
         document.querySelectorAll('input[name="practice-mode"]').forEach(radio => {
             radio.addEventListener('change', (e) => {
@@ -209,106 +250,167 @@ class HSKApp {
             });
         });
 
-        document.getElementById('next-btn').addEventListener('click', () => {
-            this.nextCard();
-        });
+        const nextBtn = document.getElementById('next-btn');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                this.nextCard();
+            });
+        }
 
-        document.getElementById('flip-btn').addEventListener('click', () => {
-            this.flipCard();
-        });
-
-        document.getElementById('know-btn').addEventListener('click', () => {
-            this.markAsKnown(true);
-        });
-
-        document.getElementById('dont-know-btn').addEventListener('click', () => {
-            this.markAsKnown(false);
-        });
-        
-        // SRS performance buttons
-        document.getElementById('srs-again').addEventListener('click', () => {
-            this.markAsKnown(false, 'again');
-        });
-        
-        document.getElementById('srs-hard').addEventListener('click', () => {
-            this.markAsKnown(false, 'hard');
-        });
-        
-        document.getElementById('srs-good').addEventListener('click', () => {
-            this.markAsKnown(true, 'good');
-        });
-        
-        document.getElementById('srs-easy').addEventListener('click', () => {
-            this.markAsKnown(true, 'easy');
-        });
-        
-        // Toggle SRS mode
-        document.getElementById('toggle-srs').addEventListener('click', () => {
-            this.toggleSRSMode();
-        });
-
-        // Browse controls
-        document.getElementById('search-input').addEventListener('input', (e) => {
-            this.filterVocabulary(e.target.value);
-        });
-
-        document.getElementById('browse-level-filter').addEventListener('change', (e) => {
-            this.filterByLevel(e.target.value);
-        });
-
-        // Quiz controls
-        document.getElementById('start-quiz').addEventListener('click', () => {
-            this.startQuiz();
-        });
-
-        document.getElementById('quiz-submit').addEventListener('click', () => {
-            this.submitQuizAnswer();
-        });
-
-        document.getElementById('quiz-next').addEventListener('click', () => {
-            this.nextQuizQuestion();
-        });
-
-        document.getElementById('restart-quiz').addEventListener('click', () => {
-            this.restartQuiz();
-        });
-
-        // Stats controls
-        document.getElementById('reset-stats').addEventListener('click', () => {
-            if (confirm('¿Estás seguro de que quieres resetear todas las estadísticas?')) {
-                this.resetStats();
-            }
-        });
+        const flipBtn = document.getElementById('flip-btn');
+        if (flipBtn) {
+            flipBtn.addEventListener('click', () => {
+                this.flipCard();
+            });
+        }
 
         // Flashcard click to flip
-        document.querySelector('.flashcard').addEventListener('click', () => {
-            if (this.currentWord && !this.isFlipped) {
+        const flashcard = document.getElementById('flashcard');
+        if (flashcard) {
+            flashcard.addEventListener('click', () => {
                 this.flipCard();
-            }
-        });
+            });
+        }
+
+        const knowBtn = document.getElementById('know-btn');
+        if (knowBtn) {
+            knowBtn.addEventListener('click', () => {
+                this.markAsKnown(true);
+            });
+        }
+
+        const dontKnowBtn = document.getElementById('dont-know-btn');
+        if (dontKnowBtn) {
+            dontKnowBtn.addEventListener('click', () => {
+                this.markAsKnown(false);
+            });
+        }
+        
+        // SRS performance buttons
+        const srsAgainBtn = document.getElementById('srs-again');
+        if (srsAgainBtn) {
+            srsAgainBtn.addEventListener('click', () => {
+                this.markAsKnown(false, 'again');
+            });
+        }
+        
+        const srsHardBtn = document.getElementById('srs-hard');
+        if (srsHardBtn) {
+            srsHardBtn.addEventListener('click', () => {
+                this.markAsKnown(false, 'hard');
+            });
+        }
+        
+        const srsGoodBtn = document.getElementById('srs-good');
+        if (srsGoodBtn) {
+            srsGoodBtn.addEventListener('click', () => {
+                this.markAsKnown(true, 'good');
+            });
+        }
+        
+        const srsEasyBtn = document.getElementById('srs-easy');
+        if (srsEasyBtn) {
+            srsEasyBtn.addEventListener('click', () => {
+                this.markAsKnown(true, 'easy');
+            });
+        }
+        
+        // Toggle SRS mode
+        const toggleSrsBtn = document.getElementById('toggle-srs');
+        if (toggleSrsBtn) {
+            toggleSrsBtn.addEventListener('click', () => {
+                this.toggleSRSMode();
+            });
+        }
+
+        // Browse controls
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                this.filterVocabulary(e.target.value);
+            });
+        }
+
+        const browseLevelFilter = document.getElementById('browse-level-filter');
+        if (browseLevelFilter) {
+            browseLevelFilter.addEventListener('change', (e) => {
+                this.filterByLevel(e.target.value);
+            });
+        }
+
+        // Quiz controls
+        const startQuizBtn = document.getElementById('start-quiz');
+        if (startQuizBtn) {
+            startQuizBtn.addEventListener('click', () => {
+                this.startQuiz();
+            });
+        }
+
+        const quizSubmitBtn = document.getElementById('quiz-submit');
+        if (quizSubmitBtn) {
+            quizSubmitBtn.addEventListener('click', () => {
+                this.submitQuizAnswer();
+            });
+        }
+
+        const quizNextBtn = document.getElementById('quiz-next');
+        if (quizNextBtn) {
+            quizNextBtn.addEventListener('click', () => {
+                this.nextQuizQuestion();
+            });
+        }
+
+        const restartQuizBtn = document.getElementById('restart-quiz');
+        if (restartQuizBtn) {
+            restartQuizBtn.addEventListener('click', () => {
+                this.restartQuiz();
+            });
+        }
+
+        // Stats controls
+        const resetStatsBtn = document.getElementById('reset-stats');
+        if (resetStatsBtn) {
+            resetStatsBtn.addEventListener('click', () => {
+                if (confirm('¿Estás seguro de que quieres resetear todas las estadísticas?')) {
+                    this.resetStats();
+                }
+            });
+        }
 
         // Theme toggle
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            this.toggleTheme();
-        });
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                this.toggleTheme();
+            });
+        }
 
         // Audio toggle
-        document.getElementById('audio-toggle').addEventListener('click', () => {
-            this.toggleAudio();
-        });
+        const audioToggle = document.getElementById('audio-toggle');
+        if (audioToggle) {
+            audioToggle.addEventListener('click', () => {
+                this.toggleAudio();
+            });
+        }
 
         // Language selector
-        document.getElementById('language-select').addEventListener('change', (e) => {
-            this.languageManager.setLanguage(e.target.value);
-        });
+        const languageSelect = document.getElementById('language-select');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (e) => {
+                this.languageManager.setLanguage(e.target.value);
+            });
+        }
 
         // Voice selector
-        document.getElementById('voice-select').addEventListener('change', (e) => {
-            this.voicePreference = e.target.value;
-            this.saveVoicePreference();
-            this.setupChineseVoice();
-            console.log('Voice preference changed to:', this.voicePreference);
-        });
+        const voiceSelect = document.getElementById('voice-select');
+        if (voiceSelect) {
+            voiceSelect.addEventListener('change', (e) => {
+                this.voicePreference = e.target.value;
+                this.saveVoicePreference();
+                this.setupChineseVoice();
+                console.log('Voice preference changed to:', this.voicePreference);
+            });
+        }
 
         // Listen for language changes to update dynamic content
         window.addEventListener('languageChanged', (e) => {
@@ -322,16 +424,22 @@ class HSKApp {
 
     switchTab(tabName) {
         // Update tab buttons
-        document.querySelectorAll('.tab-btn').forEach(btn => {
+        document.querySelectorAll('.nav-tab').forEach(btn => {
             btn.classList.remove('active');
         });
-        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+        const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
 
         // Update tab content
-        document.querySelectorAll('.tab-content').forEach(content => {
+        document.querySelectorAll('.tab-panel').forEach(content => {
             content.classList.remove('active');
         });
-        document.getElementById(tabName).classList.add('active');
+        const tabPanel = document.getElementById(tabName);
+        if (tabPanel) {
+            tabPanel.classList.add('active');
+        }
 
         // Load specific tab content
         if (tabName === 'browse') {
@@ -349,7 +457,17 @@ class HSKApp {
     }
 
     setupPracticeSession() {
+        console.log('Setting up practice session...');
         const filtered = this.getFilteredVocabulary();
+        console.log(`Filtered vocabulary: ${filtered.length} words`);
+        
+        if (filtered.length === 0) {
+            console.warn('No vocabulary words available');
+            this.currentSession = [];
+            this.currentWord = null;
+            this.updateCard();
+            return;
+        }
         
         // Use SRS to get due words first, then prioritize them
         const dueWords = this.srs.getDueWords(filtered);
@@ -365,18 +483,33 @@ class HSKApp {
             this.currentSession = [...prioritizedWords, ...randomWords];
         }
         
+        console.log(`Practice session created with ${this.currentSession.length} words`);
         this.sessionIndex = 0;
         this.updateProgressBar();
         this.nextCard();
     }
 
     nextCard() {
+        console.log(`Next card called. Session index: ${this.sessionIndex}, Session length: ${this.currentSession.length}`);
+        
+        // Prevent infinite loop if no words available
+        if (!this.currentSession || this.currentSession.length === 0) {
+            console.warn('No words available in current session');
+            this.currentWord = null;
+            this.updateCard();
+            this.updateProgressBar();
+            this.updateControlButtons();
+            return;
+        }
+        
         if (this.sessionIndex >= this.currentSession.length) {
+            console.log('End of session, setting up new session');
             this.setupPracticeSession();
             return;
         }
 
         this.currentWord = this.currentSession[this.sessionIndex];
+        console.log('Current word:', this.currentWord);
         this.isFlipped = false;
         this.sessionIndex++;
         
@@ -392,12 +525,18 @@ class HSKApp {
         const fullInfo = document.getElementById('full-info');
         const flashcard = document.querySelector('.flashcard');
 
-        // Remove flipped class
+        if (!questionText || !answerText || !flashcard) {
+            console.error('Required DOM elements not found for flashcard');
+            return;
+        }
+
+        // Remove flipped class and reset state
         flashcard.classList.remove('flipped');
+        this.isFlipped = false;
 
         if (!this.currentWord) {
-            questionText.textContent = this.languageManager.t('noWordsAvailable');
-            hintText.textContent = '';
+            questionText.textContent = this.languageManager.t('noWordsAvailable') || 'No words available';
+            if (hintText) hintText.textContent = '';
             return;
         }
 
@@ -405,52 +544,66 @@ class HSKApp {
         switch (this.practiceMode) {
             case 'char-to-pinyin':
                 questionText.textContent = this.currentWord.character;
-                hintText.textContent = `${this.languageManager.t('level')} ${this.currentWord.level}`;
+                if (hintText) hintText.textContent = `${this.languageManager.t('level') || 'Level'} ${this.currentWord.level}`;
                 answerText.textContent = this.currentWord.pinyin;
                 break;
             case 'char-to-english':
                 questionText.textContent = this.currentWord.character;
-                hintText.textContent = `${this.languageManager.t('level')} ${this.currentWord.level}`;
-                answerText.textContent = this.currentWord.translation;
+                if (hintText) hintText.textContent = `${this.languageManager.t('level') || 'Level'} ${this.currentWord.level}`;
+                answerText.textContent = this.currentWord.english || this.currentWord.translation;
                 break;
             case 'pinyin-to-char':
                 questionText.textContent = this.currentWord.pinyin;
-                hintText.textContent = `${this.languageManager.t('level')} ${this.currentWord.level}`;
+                if (hintText) hintText.textContent = `${this.languageManager.t('level') || 'Level'} ${this.currentWord.level}`;
                 answerText.textContent = this.currentWord.character;
                 break;
             case 'english-to-char':
-                questionText.textContent = this.currentWord.translation;
-                hintText.textContent = `${this.languageManager.t('level')} ${this.currentWord.level}`;
+                questionText.textContent = this.currentWord.english || this.currentWord.translation;
+                if (hintText) hintText.textContent = `${this.languageManager.t('level') || 'Level'} ${this.currentWord.level}`;
                 answerText.textContent = this.currentWord.character;
                 break;
         }
 
         // Set full info for back of card
-        fullInfo.innerHTML = `
-            <div><strong>${this.languageManager.t('character')}</strong> <span class="clickable-character">${this.currentWord.character}</span></div>
-            <div><strong>${this.languageManager.t('pinyin')}</strong> ${this.currentWord.pinyin}</div>
-            <div><strong>${this.languageManager.t('translation')}</strong> ${this.currentWord.translation}</div>
-            <div><strong>${this.languageManager.t('level')}</strong> ${this.currentWord.level}</div>
-        `;
+        if (fullInfo) {
+            fullInfo.innerHTML = `
+                <div><strong>${this.languageManager.t('character') || 'Character'}</strong> <span class="clickable-character">${this.currentWord.character}</span></div>
+                <div><strong>${this.languageManager.t('pinyin') || 'Pinyin'}</strong> ${this.currentWord.pinyin}</div>
+                <div><strong>${this.languageManager.t('translation') || 'Translation'}</strong> ${this.currentWord.english || this.currentWord.translation}</div>
+                <div><strong>${this.languageManager.t('level') || 'Level'}</strong> ${this.currentWord.level}</div>
+            `;
+        }
         
-        // Add pronunciation to characters
-        setTimeout(() => {
-            const characterElements = document.querySelectorAll('#question-text, #answer-text, .clickable-character');
-            characterElements.forEach(el => {
-                if (el.textContent.match(/[\u4e00-\u9fff]/)) {
-                    this.addPronunciationToCharacter(el, this.currentWord.character);
-                }
-            });
-        }, 100);
+        // Update control buttons
+        this.updateControlButtons();
+        
+        // Add pronunciation to characters (optional)
+        if (typeof this.addPronunciationToCharacter === 'function') {
+            setTimeout(() => {
+                const characterElements = document.querySelectorAll('#question-text, #answer-text, .clickable-character');
+                characterElements.forEach(el => {
+                    if (el.textContent.match(/[\u4e00-\u9fff]/)) {
+                        this.addPronunciationToCharacter(el, this.currentWord.character);
+                    }
+                });
+            }, 100);
+        }
     }
 
     flipCard() {
         if (!this.currentWord) return;
         
         const flashcard = document.querySelector('.flashcard');
-        flashcard.classList.add('flipped');
-        this.isFlipped = true;
-        this.updateControlButtons();
+        if (flashcard) {
+            flashcard.classList.toggle('flipped');
+            this.isFlipped = !this.isFlipped;
+            this.updateControlButtons();
+            
+            // Play audio if enabled and showing answer
+            if (this.isFlipped && this.isAudioEnabled && this.currentWord) {
+                this.playAudio(this.currentWord.character);
+            }
+        }
     }
 
     updateControlButtons() {
@@ -459,13 +612,13 @@ class HSKApp {
         const dontKnowBtn = document.getElementById('dont-know-btn');
 
         if (this.currentWord) {
-            flipBtn.disabled = this.isFlipped;
-            knowBtn.disabled = !this.isFlipped;
-            dontKnowBtn.disabled = !this.isFlipped;
+            if (flipBtn) flipBtn.disabled = this.isFlipped;
+            if (knowBtn) knowBtn.disabled = !this.isFlipped;
+            if (dontKnowBtn) dontKnowBtn.disabled = !this.isFlipped;
         } else {
-            flipBtn.disabled = true;
-            knowBtn.disabled = true;
-            dontKnowBtn.disabled = true;
+            if (flipBtn) flipBtn.disabled = true;
+            if (knowBtn) knowBtn.disabled = true;
+            if (dontKnowBtn) dontKnowBtn.disabled = true;
         }
     }
 
@@ -497,6 +650,14 @@ class HSKApp {
     updateProgressBar() {
         const progressFill = document.getElementById('progress-fill');
         const progressText = document.getElementById('progress-text');
+        
+        if (!progressFill || !progressText) return;
+        
+        if (!this.currentSession || this.currentSession.length === 0) {
+            progressFill.style.width = '0%';
+            progressText.textContent = '0/0';
+            return;
+        }
         
         const progress = this.sessionIndex / this.currentSession.length * 100;
         progressFill.style.width = `${progress}%`;
@@ -1127,26 +1288,43 @@ class HSKApp {
     }
 
     updateSRSInterface() {
-        const srsButtons = document.querySelector('.srs-buttons');
-        const simpleButtons = document.querySelector('.simple-buttons');
-        const toggleButton = document.getElementById('toggle-srs');
-        
-        if (this.srsMode) {
-            srsButtons.style.display = 'flex';
-            simpleButtons.style.display = 'none';
-            toggleButton.textContent = this.languageManager.t('simpleMode');
-            toggleButton.title = this.languageManager.t('switchToSimpleMode');
-        } else {
-            srsButtons.style.display = 'none';
-            simpleButtons.style.display = 'flex';
-            toggleButton.textContent = this.languageManager.t('srsMode');
-            toggleButton.title = this.languageManager.t('switchToSRSMode');
+        if (document.readyState !== 'complete') {
+            console.warn('DOM not ready, deferring SRS interface update.');
+            document.addEventListener('DOMContentLoaded', () => this.updateSRSInterface());
+            return;
         }
-        
-        // Update button states
-        this.updateControlButtons();
-    }
 
+        console.log('🔧 updateSRSInterface called');
+        
+        try {
+            const srsButtons = document.getElementById('srs-buttons');
+            const simpleButtons = document.getElementById('simple-buttons');
+            const toggleButton = document.getElementById('toggle-srs');
+
+            if (!srsButtons || !simpleButtons || !toggleButton) {
+                console.warn('❌ SRS elements not found. App will function without SRS UI changes.');
+                return;
+            }
+
+            if (this.srsMode) {
+                srsButtons.style.display = 'flex';
+                simpleButtons.style.display = 'none';
+                toggleButton.textContent = 'Simple Mode';
+                toggleButton.title = 'Switch to Simple Mode';
+            } else {
+                srsButtons.style.display = 'none';
+                simpleButtons.style.display = 'flex';
+                toggleButton.textContent = 'SRS Mode';
+                toggleButton.title = 'Switch to SRS Mode';
+            }
+
+            console.log('✅ SRS Interface updated successfully');
+
+        } catch (error) {
+            console.error('❌ Critical error in updateSRSInterface:', error);
+        }
+    }
+    
     showNotification(message, type = 'info') {
         // Create notification element
         const notification = document.createElement('div');
@@ -1419,5 +1597,63 @@ class HSKApp {
 
 // Initialize the app when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new HSKApp();
+    try {
+        // Check if required dependencies are available
+        if (typeof translations === 'undefined') {
+            console.warn('Translations not loaded, using English fallback');
+            window.translations = { es: {}, en: {} };
+        }
+        
+        // Initialize the app
+        const app = new HSKApp();
+        
+        // Make app globally available for debugging
+        window.app = app;
+        
+        // Simple welcome message (optional)
+        setTimeout(() => {
+            if (!localStorage.getItem('hsk-app-welcomed')) {
+                console.log('¡Bienvenido a HSK Learning! - Desarrollado por Jose Alejandro Rollano Revollo');
+                localStorage.setItem('hsk-app-welcomed', 'true');
+            }
+        }, 1000);
+        
+        console.log('✅ HSK Learning App initialized successfully');
+        
+    } catch (error) {
+        console.error('❌ Critical error initializing HSK Learning App:', error);
+        
+        // Show user-friendly error message
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #f44336;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10000;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            max-width: 90%;
+        `;
+        errorDiv.innerHTML = `
+            <h3>⚠️ Application Error</h3>
+            <p>The HSK Learning app encountered an error during initialization.</p>
+            <p>Please refresh the page or check your browser console for details.</p>
+            <button onclick="window.location.reload()" style="
+                background: white;
+                color: #f44336;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                margin-top: 10px;
+            ">Refresh Page</button>
+        `;
+        document.body.appendChild(errorDiv);
+    }
 });

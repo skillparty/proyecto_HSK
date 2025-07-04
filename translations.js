@@ -66,7 +66,7 @@ const translations = {
         
         // Footer
         developedBy: "Desarrollado con ❤️ por",
-        version: "v2.0.0 | Confuc10 ++ Platform",
+        version: "v2.1.0 | Advanced Chinese Learning Platform",
         githubLink: "📂 GitHub",
         confuciusInspired: "🀄 Instituto Confucio inspired",
         
@@ -170,7 +170,7 @@ const translations = {
         
         // Footer
         developedBy: "Developed with ❤️ by",
-        version: "v2.0.0 | Confuc10 ++ Platform",
+        version: "v2.1.0 | Advanced Chinese Learning Platform",
         githubLink: "📂 GitHub",
         confuciusInspired: "🀄 Confucius Institute inspired",
         

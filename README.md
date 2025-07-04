@@ -1,6 +1,8 @@
-# 🀄 HSK Chinese Learning App
+# 🀄 HSK Learning - Advanced Chinese Learning Platform
 
-Una aplicación web interactiva para aprender vocabulario chino basado en los niveles HSK (Hanyu Shuiping Kaoshi). La aplicación incluye práctica con flashcards, exploración de vocabulario, quizzes y seguimiento de estadísticas.
+Una aplicación web interactiva para aprender vocabulario chino basado en los niveles HSK (Hanyu Shuiping Kaoshi). La aplicación incluye práctica con flashcards, exploración de vocabulario, quizzes, seguimiento de estadísticas y un diseño moderno con UX/UI mejorada.
+
+**Desarrollado por Jose Alejandro Rollano Revollo**
 
 ## ✨ Características
 
@@ -179,9 +181,13 @@ Las contribuciones son bienvenidas. Por favor:
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
-## 👨‍💻 Autor
+## 👨‍💻 Desarrollador
+
+**Jose Alejandro Rollano Revollo**
 
 Desarrollado con ❤️ para estudiantes de chino mandarín.
+
+*Versión 2.1.0 | Advanced Chinese Learning Platform*
 
 ---
 

@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>HSK Learning - Learn Chinese Characters</title>
     
     <!-- PWA Meta Tags -->
@@ -17,11 +20,11 @@
     <link rel="apple-touch-icon" href="logo_appLM.png">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="styles-v2.css">
+    <link rel="stylesheet" href="styles-v2.css?v=3">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <!-- Scripts -->
-    <script src="translations.js"></script>
+    <script src="translations.js?v=3"></script>
 </head>
 <body>
     <div class="app-container">
@@ -114,13 +117,15 @@
                 <div class="flashcard-section">
                     <div class="flashcard-container">
                         <div class="flashcard" id="flashcard">
-                            <div class="card-face card-front">
-                                <div class="card-character" id="question-text" data-i18n="clickToStart">Click "Next" to begin</div>
-                                <div class="card-hint" id="hint-text"></div>
-                            </div>
-                            <div class="card-face card-back">
-                                <div class="card-character" id="answer-text"></div>
-                                <div class="card-info" id="full-info"></div>
+                            <div class="flashcard-inner">
+                                <div class="card-face card-front">
+                                    <div class="card-character" id="question-text" data-i18n="clickToStart">Click "Next" to begin</div>
+                                    <div class="card-hint" id="hint-text"></div>
+                                </div>
+                                <div class="card-face card-back">
+                                    <div class="card-character" id="answer-text"></div>
+                                    <div class="card-info" id="full-info"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -283,11 +288,26 @@
 
         <!-- Footer -->
         <footer class="app-footer">
-            <p data-i18n="footer">Made with ❤️ for Chinese learners</p>
+            <div class="footer-content">
+                <div class="footer-main">
+                    <p data-i18n="footer">Made with ❤️ for Chinese learners</p>
+                </div>
+                <div class="dev-signature">
+                    <img src="dev_logo.png" alt="Developer Logo" class="footer-logo">
+                    <div class="signature-text">
+                        <p><span data-i18n="developedBy">Desarrollado con ❤️ por</span> <strong>Jose Alejandro Rollano Revollo</strong></p>
+                        <p class="version" data-i18n="version">v2.1.0 | Advanced Chinese Learning Platform</p>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 
-    <script src="compatibility.js"></script>
-    <script src="app.js"></script>
+    <script src="compatibility.js?v=5&force=true"></script>
+    <script src="app.js?v=5&force=true"></script>
+    <script>
+        console.log('🚀 HSK App - Build: MAIN');
+        console.log('📦 Cargando app.js');
+    </script>
 </body>
 </html>
