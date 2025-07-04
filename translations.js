@@ -78,7 +78,30 @@ const translations = {
         // Language
         language: "Idioma:",
         spanish: "Español",
-        english: "English"
+        english: "English",
+        
+        // SRS Mode
+        simpleMode: "Modo Simple",
+        srsMode: "Modo SRS",
+        switchToSimpleMode: "Cambiar a modo simple",
+        switchToSRSMode: "Cambiar a modo SRS avanzado",
+        srsAdvanced: "SRS Avanzado",
+        simple: "Simple",
+        modeActivated: "Modo {mode} activado",
+        
+        // Installation
+        installApp: "Instalar App",
+        installAppDescription: "Instalar HSK Learning en tu dispositivo",
+        
+        // SRS Buttons
+        srsAgain: "Repetir",
+        srsHard: "Difícil",
+        srsGood: "Bien",
+        srsEasy: "Fácil",
+        srsAgainTooltip: "Muy difícil - Repetir mañana",
+        srsHardTooltip: "Difícil - Revisión en pocos días",
+        srsGoodTooltip: "Bien - Revisión normal",
+        srsEasyTooltip: "Fácil - Revisión en más tiempo"
     },
     
     en: {
@@ -159,7 +182,30 @@ const translations = {
         // Language
         language: "Language:",
         spanish: "Español",
-        english: "English"
+        english: "English",
+        
+        // SRS Mode
+        simpleMode: "Simple Mode",
+        srsMode: "SRS Mode",
+        switchToSimpleMode: "Switch to simple mode",
+        switchToSRSMode: "Switch to advanced SRS mode",
+        srsAdvanced: "Advanced SRS",
+        simple: "Simple",
+        modeActivated: "{mode} mode activated",
+        
+        // Installation
+        installApp: "Install App",
+        installAppDescription: "Install HSK Learning on your device",
+        
+        // SRS Buttons
+        srsAgain: "Again",
+        srsHard: "Hard",
+        srsGood: "Good",
+        srsEasy: "Easy",
+        srsAgainTooltip: "Very difficult - Repeat tomorrow",
+        srsHardTooltip: "Difficult - Review in a few days",
+        srsGoodTooltip: "Good - Normal review",
+        srsEasyTooltip: "Easy - Review in more time"
     }
 };
 
@@ -199,33 +245,51 @@ class LanguageManager {
     }
     
     updateInterface() {
-        // Update all elements with data-i18n attribute
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            const text = this.t(key);
+        // Use requestAnimationFrame for better performance
+        requestAnimationFrame(() => {
+            // Batch DOM updates
+            const updates = [];
             
-            if (element.tagName === 'INPUT' && (element.type === 'text' || element.type === 'search')) {
-                element.placeholder = text;
-            } else if (element.hasAttribute('title')) {
-                element.title = text;
-            } else {
-                element.textContent = text;
+            // Collect all elements to update
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const text = this.t(key);
+                updates.push({ element, text, type: 'content' });
+            });
+            
+            document.querySelectorAll('[data-i18n-title]').forEach(element => {
+                const key = element.getAttribute('data-i18n-title');
+                const text = this.t(key);
+                updates.push({ element, text, type: 'title' });
+            });
+            
+            // Apply all updates at once
+            updates.forEach(({ element, text, type }) => {
+                if (type === 'content') {
+                    if (element.tagName === 'INPUT' && (element.type === 'text' || element.type === 'search')) {
+                        element.placeholder = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                } else if (type === 'title') {
+                    element.title = text;
+                }
+            });
+            
+            // Update language selector
+            const languageSelect = document.getElementById('language-select');
+            if (languageSelect) {
+                languageSelect.value = this.currentLanguage;
             }
+            
+            // Update document language attribute
+            document.documentElement.lang = this.currentLanguage;
+            
+            // Trigger custom event for components that need manual update
+            window.dispatchEvent(new CustomEvent('languageChanged', { 
+                detail: { language: this.currentLanguage }
+            }));
         });
-        
-        // Update language selector
-        const languageSelect = document.getElementById('language-select');
-        if (languageSelect) {
-            languageSelect.value = this.currentLanguage;
-        }
-        
-        // Update document language attribute
-        document.documentElement.lang = this.currentLanguage;
-        
-        // Trigger custom event for components that need manual update
-        window.dispatchEvent(new CustomEvent('languageChanged', { 
-            detail: { language: this.currentLanguage }
-        }));
     }
 }
 
