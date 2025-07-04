@@ -601,7 +601,7 @@ class HSKApp {
             
             // Play audio if enabled and showing answer
             if (this.isFlipped && this.isAudioEnabled && this.currentWord) {
-                this.playAudio(this.currentWord.character);
+                this.pronounceText(this.currentWord.character);
             }
         }
     }
