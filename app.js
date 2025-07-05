@@ -203,6 +203,15 @@ class HSKApp {
             this.vocabulary = await response.json();
             console.log(`Successfully loaded ${this.vocabulary.length} vocabulary items`);
             
+            // Cache the vocabulary for better performance
+            this.vocabularyByLevel = {};
+            this.vocabulary.forEach(word => {
+                if (!this.vocabularyByLevel[word.level]) {
+                    this.vocabularyByLevel[word.level] = [];
+                }
+                this.vocabularyByLevel[word.level].push(word);
+            });
+            
             // Validate vocabulary structure
             if (this.vocabulary.length > 0) {
                 const sample = this.vocabulary[0];
@@ -260,29 +269,54 @@ class HSKApp {
         const flipBtn = document.getElementById('flip-btn');
         if (flipBtn) {
             flipBtn.addEventListener('click', () => {
-                this.flipCard();
+                this.doFlip();
             });
         }
 
-        // Flashcard click to flip
+        // Flashcard click to flip - Mejorado para permitir volteo en ambas direcciones
         const flashcard = document.getElementById('flashcard');
         if (flashcard) {
-            flashcard.addEventListener('click', () => {
-                this.flipCard();
+            flashcard.addEventListener('click', (e) => {
+                // Permitir volteo si no es un botón
+                if (e.target.tagName !== 'BUTTON') {
+                    this.doFlip();
+                }
             });
         }
 
         const knowBtn = document.getElementById('know-btn');
         if (knowBtn) {
-            knowBtn.addEventListener('click', () => {
+            knowBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (!this.isFlipped) {
+                    console.log('Botón I Know presionado pero tarjeta no está volteada');
+                    return;
+                }
+                console.log('Marcando como conocida y avanzando...');
                 this.markAsKnown(true);
+                // Avanzar automáticamente a la siguiente tarjeta
+                setTimeout(() => {
+                    this.nextCard();
+                }, 500);
             });
         }
 
         const dontKnowBtn = document.getElementById('dont-know-btn');
         if (dontKnowBtn) {
-            dontKnowBtn.addEventListener('click', () => {
+            dontKnowBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (!this.isFlipped) {
+                    console.log('Botón I Don\'t Know presionado pero tarjeta no está volteada');
+                    return;
+                }
+                console.log('Marcando como no conocida y avanzando...');
                 this.markAsKnown(false);
+                // Avanzar automáticamente a la siguiente tarjeta
+                setTimeout(() => {
+                    this.nextCard();
+                }, 500);
             });
         }
         
@@ -450,10 +484,17 @@ class HSKApp {
     }
 
     getFilteredVocabulary() {
-        return this.vocabulary.filter(word => {
-            if (this.selectedLevel === 'all') return true;
-            return word.level.toString() === this.selectedLevel;
-        });
+        if (this.selectedLevel === 'all') {
+            return [...this.vocabulary];
+        }
+        
+        // Use cached vocabulary by level for better performance
+        if (this.vocabularyByLevel && this.vocabularyByLevel[this.selectedLevel]) {
+            return [...this.vocabularyByLevel[this.selectedLevel]];
+        }
+        
+        // Fallback to filtering
+        return this.vocabulary.filter(word => word.level.toString() === this.selectedLevel);
     }
 
     setupPracticeSession() {
@@ -469,19 +510,8 @@ class HSKApp {
             return;
         }
         
-        // Use SRS to get due words first, then prioritize them
-        const dueWords = this.srs.getDueWords(filtered);
-        const prioritizedWords = this.srs.prioritizeWords(dueWords);
-        
-        // If we have enough due words, use them. Otherwise, add some random ones
-        if (prioritizedWords.length >= 20) {
-            this.currentSession = prioritizedWords.slice(0, 20);
-        } else {
-            // Mix due words with random ones
-            const remainingWords = filtered.filter(word => !dueWords.includes(word));
-            const randomWords = this.shuffleArray(remainingWords).slice(0, 20 - prioritizedWords.length);
-            this.currentSession = [...prioritizedWords, ...randomWords];
-        }
+        // Load ALL words from the selected level, shuffled
+        this.currentSession = this.shuffleArray([...filtered]);
         
         console.log(`Practice session created with ${this.currentSession.length} words`);
         this.sessionIndex = 0;
@@ -503,9 +533,9 @@ class HSKApp {
         }
         
         if (this.sessionIndex >= this.currentSession.length) {
-            console.log('End of session, setting up new session');
-            this.setupPracticeSession();
-            return;
+            console.log('End of session, restarting from beginning');
+            this.sessionIndex = 0;
+            this.updateProgressBar();
         }
 
         this.currentWord = this.currentSession[this.sessionIndex];
@@ -533,6 +563,7 @@ class HSKApp {
         // Remove flipped class and reset state
         flashcard.classList.remove('flipped');
         this.isFlipped = false;
+        this.originalCardContent = null; // Reset original content
 
         if (!this.currentWord) {
             questionText.textContent = this.languageManager.t('noWordsAvailable') || 'No words available';
@@ -574,52 +605,181 @@ class HSKApp {
             `;
         }
         
-        // Update control buttons
-        this.updateControlButtons();
-        
-        // Add pronunciation to characters (optional)
-        if (typeof this.addPronunciationToCharacter === 'function') {
-            setTimeout(() => {
-                const characterElements = document.querySelectorAll('#question-text, #answer-text, .clickable-character');
-                characterElements.forEach(el => {
-                    if (el.textContent.match(/[\u4e00-\u9fff]/)) {
-                        this.addPronunciationToCharacter(el, this.currentWord.character);
-                    }
-                });
-            }, 100);
+        // Update control buttons solo si no está volteada
+        if (!this.isFlipped) {
+            this.updateControlButtons();
         }
+        
+        // Add pronunciation to characters (only if not already added)
+        requestAnimationFrame(() => {
+            const characterElements = document.querySelectorAll('#question-text, #answer-text, .clickable-character');
+            characterElements.forEach(el => {
+                if (el.textContent.match(/[\u4e00-\u9fff]/) && !el.hasAttribute('data-pronunciation-added')) {
+                    this.addPronunciationToCharacter(el, this.currentWord.character);
+                    el.setAttribute('data-pronunciation-added', 'true');
+                }
+            });
+        });
     }
 
-    flipCard() {
-        if (!this.currentWord) return;
-        
-        const flashcard = document.querySelector('.flashcard');
-        if (flashcard) {
-            flashcard.classList.toggle('flipped');
-            this.isFlipped = !this.isFlipped;
-            this.updateControlButtons();
-            
-            // Play audio if enabled and showing answer
-            if (this.isFlipped && this.isAudioEnabled && this.currentWord) {
-                this.pronounceText(this.currentWord.character);
-            }
+    // Método de volteo integrado mejorado
+    doFlip() {
+        if (!this.currentWord) {
+            console.warn('No hay palabra para voltear');
+            return;
         }
+        
+        const flashcard = document.getElementById('flashcard');
+        if (!flashcard) return;
+        
+        // Si ya está volteada, volver al estado original
+        if (this.isFlipped) {
+            this.resetToQuestion();
+            return;
+        }
+        
+        // Efecto visual de volteo elegante
+        flashcard.style.transition = 'transform 0.3s ease-in-out';
+        flashcard.style.transform = 'scaleX(0)';
+        
+        setTimeout(() => {
+            // Guardar contenido original si no existe
+            const cardFront = flashcard.querySelector('.card-front');
+            if (cardFront && !this.originalCardContent) {
+                this.originalCardContent = cardFront.innerHTML;
+            }
+            
+            if (cardFront) {
+                // Mostrar respuesta con estilo
+                cardFront.innerHTML = `
+                    <div style="
+                        background: linear-gradient(135deg, #e11d48, #be123c);
+                        color: white;
+                        padding: 2rem;
+                        border-radius: 12px;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        position: relative;
+                        font-family: 'Ubuntu Mono', monospace;
+                        cursor: pointer;
+                    ">
+                        <div style="font-size: 3.5rem; margin-bottom: 1.5rem; font-weight: 600; font-family: 'Noto Sans SC', sans-serif;">
+                            ${this.currentWord.character}
+                        </div>
+                        <div style="font-size: 1.8rem; margin-bottom: 1rem; color: #fbbf24; font-weight: 500;">
+                            ${this.currentWord.pinyin}
+                        </div>
+                        <div style="font-size: 1.3rem; text-align: center; line-height: 1.6; background: rgba(255,255,255,0.1); padding: 0.8rem 1.2rem; border-radius: 8px;">
+                            ${this.currentWord.english || this.currentWord.translation || 'Sin traducción'}
+                        </div>
+                        <div style="font-size: 1rem; margin-top: 1rem; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px;">
+                            HSK Nivel ${this.currentWord.level}
+                        </div>
+                        <div style="font-size: 0.9rem; margin-top: 1.5rem; opacity: 0.8; font-style: italic;">
+                            Haz click para volver a la pregunta
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Expandir tarjeta y marcar como volteada
+            flashcard.style.transform = 'scaleX(1)';
+            flashcard.classList.add('flipped');
+            this.isFlipped = true;
+            
+            // Actualizar botones
+            setTimeout(() => {
+                this.updateControlButtons();
+                console.log('✅ Tarjeta volteada exitosamente');
+                
+                // Audio si está habilitado
+                if (this.isAudioEnabled && this.currentWord) {
+                    this.pronounceText(this.currentWord.character);
+                }
+            }, 300);
+            
+        }, 150);
+    }
+    
+    // Método para resetear a la pregunta
+    resetToQuestion() {
+        const flashcard = document.getElementById('flashcard');
+        if (!flashcard) return;
+        
+        flashcard.style.transition = 'transform 0.3s ease-in-out';
+        flashcard.style.transform = 'scaleX(0)';
+        
+        setTimeout(() => {
+            const cardFront = flashcard.querySelector('.card-front');
+            if (cardFront && this.originalCardContent) {
+                cardFront.innerHTML = this.originalCardContent;
+            }
+            
+            flashcard.style.transform = 'scaleX(1)';
+            flashcard.classList.remove('flipped');
+            this.isFlipped = false;
+            this.updateControlButtons();
+            console.log('✅ Tarjeta regresada a pregunta');
+        }, 150);
+    }
+    
+    // Método principal de volteo
+    flipCard() {
+        this.doFlip();
     }
 
     updateControlButtons() {
         const flipBtn = document.getElementById('flip-btn');
         const knowBtn = document.getElementById('know-btn');
         const dontKnowBtn = document.getElementById('dont-know-btn');
+        const flashcard = document.getElementById('flashcard');
+
+        // Verificar si la tarjeta realmente está volteada
+        const isFlipped = this.isFlipped && flashcard && flashcard.classList.contains('flipped');
 
         if (this.currentWord) {
-            if (flipBtn) flipBtn.disabled = this.isFlipped;
-            if (knowBtn) knowBtn.disabled = !this.isFlipped;
-            if (dontKnowBtn) dontKnowBtn.disabled = !this.isFlipped;
+            if (flipBtn) {
+                flipBtn.disabled = false;
+                flipBtn.style.opacity = '1';
+                flipBtn.textContent = isFlipped ? 'Volver' : 'Voltear';
+            }
+            if (knowBtn) {
+                knowBtn.disabled = !isFlipped;
+                knowBtn.style.opacity = isFlipped ? '1' : '0.5';
+                knowBtn.style.cursor = isFlipped ? 'pointer' : 'not-allowed';
+                knowBtn.style.pointerEvents = isFlipped ? 'auto' : 'none';
+            }
+            if (dontKnowBtn) {
+                dontKnowBtn.disabled = !isFlipped;
+                dontKnowBtn.style.opacity = isFlipped ? '1' : '0.5';
+                dontKnowBtn.style.cursor = isFlipped ? 'pointer' : 'not-allowed';
+                dontKnowBtn.style.pointerEvents = isFlipped ? 'auto' : 'none';
+            }
         } else {
-            if (flipBtn) flipBtn.disabled = true;
-            if (knowBtn) knowBtn.disabled = true;
-            if (dontKnowBtn) dontKnowBtn.disabled = true;
+            if (flipBtn) {
+                flipBtn.disabled = true;
+                flipBtn.style.opacity = '0.5';
+            }
+            if (knowBtn) {
+                knowBtn.disabled = true;
+                knowBtn.style.opacity = '0.5';
+                knowBtn.style.pointerEvents = 'none';
+            }
+            if (dontKnowBtn) {
+                dontKnowBtn.disabled = true;
+                dontKnowBtn.style.opacity = '0.5';
+                dontKnowBtn.style.pointerEvents = 'none';
+            }
         }
+        
+        console.log('Botones actualizados:', {
+            isFlipped: isFlipped,
+            knowBtnDisabled: knowBtn ? knowBtn.disabled : 'N/A',
+            dontKnowBtnDisabled: dontKnowBtn ? dontKnowBtn.disabled : 'N/A'
+        });
     }
 
     markAsKnown(known, performance = null) {
@@ -1129,12 +1289,14 @@ class HSKApp {
                     lang.includes('zh') || 
                     lang.includes('zh-cn') ||
                     lang.includes('zh-tw') ||
+                    lang.includes('zh-hk') ||
                     lang.includes('cmn') ||
                     name.includes('chinese') ||
                     name.includes('mandarin') ||
                     name.includes('台灣') ||
                     name.includes('中文') ||
-                    name.includes('普通话')
+                    name.includes('普通话') ||
+                    name.includes('国语')
                 );
             });
             
@@ -1145,9 +1307,10 @@ class HSKApp {
             let selectedVoice = null;
             
             if (this.voicePreference === 'female') {
-                // More aggressive female voice detection
+                // More comprehensive female voice detection
                 selectedVoice = chineseVoices.find(voice => {
                     const name = voice.name.toLowerCase();
+                    // Common female voice names across platforms
                     return (
                         name.includes('female') ||
                         name.includes('woman') ||
@@ -1156,24 +1319,51 @@ class HSKApp {
                         name.includes('女') ||
                         name.includes('xiaoxiao') ||
                         name.includes('xiaoyi') ||
+                        name.includes('xiaochen') ||
+                        name.includes('xiaomei') ||
+                        name.includes('xiaolin') ||
                         name.includes('hanhan') ||
                         name.includes('yaoyao') ||
                         name.includes('tingting') ||
-                        name.includes('huihui')
+                        name.includes('huihui') ||
+                        name.includes('siqi') ||
+                        name.includes('siri') && lang.includes('zh') ||
+                        name.includes('ava') && lang.includes('zh') ||
+                        name.includes('karen') && lang.includes('zh') ||
+                        name.includes('moira') && lang.includes('zh') ||
+                        name.includes('samantha') && lang.includes('zh') ||
+                        name.includes('tessa') && lang.includes('zh')
                     );
                 });
                 
-                // If still no female voice, try to find any Chinese voice that's not explicitly male
+                // macOS specific: Try to find Siri female voices
                 if (!selectedVoice) {
                     selectedVoice = chineseVoices.find(voice => {
                         const name = voice.name.toLowerCase();
-                        return !name.includes('male') && !name.includes('man') && !name.includes('masculino');
+                        return name.includes('siri') && (name.includes('female') || !name.includes('male'));
                     });
                 }
                 
-                // Last resort: use the last Chinese voice (often female)
-                if (!selectedVoice && chineseVoices.length > 1) {
-                    selectedVoice = chineseVoices[chineseVoices.length - 1];
+                // If still no female voice, try voices that end with common female indicators
+                if (!selectedVoice) {
+                    selectedVoice = chineseVoices.find(voice => {
+                        const name = voice.name.toLowerCase();
+                        return name.endsWith('female') || name.endsWith('f') || 
+                               name.match(/\s+f$/i) || name.match(/_f$/i);
+                    });
+                }
+                
+                // Try to exclude explicitly male voices
+                if (!selectedVoice) {
+                    const nonMaleVoices = chineseVoices.filter(voice => {
+                        const name = voice.name.toLowerCase();
+                        return !name.includes('male') && !name.includes('man') && 
+                               !name.includes('masculino') && !name.includes('男');
+                    });
+                    if (nonMaleVoices.length > 0) {
+                        // Prefer the last one as it's often female
+                        selectedVoice = nonMaleVoices[nonMaleVoices.length - 1];
+                    }
                 }
                 
             } else if (this.voicePreference === 'male') {
@@ -1181,15 +1371,26 @@ class HSKApp {
                 selectedVoice = chineseVoices.find(voice => {
                     const name = voice.name.toLowerCase();
                     return (
-                        name.includes('male') ||
-                        name.includes('man') ||
+                        name.includes('male') && !name.includes('female') ||
+                        name.includes('man') && !name.includes('woman') ||
                         name.includes('masculino') ||
                         name.includes('hombre') ||
                         name.includes('男') ||
                         name.includes('yunxi') ||
-                        name.includes('kangkang')
+                        name.includes('kangkang') ||
+                        name.includes('daniel') && lang.includes('zh') ||
+                        name.includes('thomas') && lang.includes('zh') ||
+                        name.includes('alex') && lang.includes('zh')
                     );
                 });
+                
+                // macOS specific: Try to find Siri male voices
+                if (!selectedVoice) {
+                    selectedVoice = chineseVoices.find(voice => {
+                        const name = voice.name.toLowerCase();
+                        return name.includes('siri') && name.includes('male');
+                    });
+                }
                 
                 // If no explicit male, use first Chinese voice
                 if (!selectedVoice && chineseVoices.length > 0) {

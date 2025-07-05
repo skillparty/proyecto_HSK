@@ -1,13 +1,13 @@
 // HSK Chinese Learning PWA - Service Worker
-const CACHE_NAME = 'hsk-learning-v2.0.0';
-const STATIC_CACHE = 'hsk-static-v2.0.0';
-const DYNAMIC_CACHE = 'hsk-dynamic-v2.0.0';
+const CACHE_NAME = 'hsk-learning-v2.2.0';
+const STATIC_CACHE = 'hsk-static-v2.2.0';
+const DYNAMIC_CACHE = 'hsk-dynamic-v2.2.0';
 
 // Files to cache
 const STATIC_FILES = [
     './',
     './index.html',
-    './styles.css',
+    './styles-v2.css',
     './app.js',
     './translations.js',
     './manifest.json',

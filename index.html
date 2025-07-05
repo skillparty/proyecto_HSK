@@ -20,11 +20,11 @@
     <link rel="apple-touch-icon" href="logo_appLM.png">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="styles-v2.css?v=6">
+    <link rel="stylesheet" href="styles-v2.css?v=7">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <!-- Scripts -->
-    <script src="translations.js?v=3"></script>
+    <script src="translations.js?v=7"></script>
 </head>
 <body>
     <div class="app-container">
@@ -303,11 +303,59 @@
         </footer>
     </div>
 
-    <script src="compatibility.js?v=6"></script>
-    <script src="app.js?v=6"></script>
+    <script src="compatibility.js?v=7"></script>
+    <script src="app.js?v=7"></script>
+    <style>
+        /* CSS crítico para flashcards - asegurar que funcione el volteo */
+        .flashcard-container {
+            perspective: 1000px !important;
+            -webkit-perspective: 1000px !important;
+        }
+        
+        .flashcard {
+            width: 100% !important;
+            height: 100% !important;
+            position: relative !important;
+            cursor: pointer !important;
+        }
+        
+        .flashcard-inner {
+            width: 100% !important;
+            height: 100% !important;
+            position: relative !important;
+            transform-style: preserve-3d !important;
+            -webkit-transform-style: preserve-3d !important;
+            transition: transform 0.6s !important;
+            -webkit-transition: -webkit-transform 0.6s !important;
+        }
+        
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg) !important;
+            -webkit-transform: rotateY(180deg) !important;
+        }
+        
+        .card-face {
+            position: absolute !important;
+            width: 100% !important;
+            height: 100% !important;
+            -webkit-backface-visibility: hidden !important;
+            backface-visibility: hidden !important;
+        }
+        
+        .card-front {
+            transform: rotateY(0deg) !important;
+            -webkit-transform: rotateY(0deg) !important;
+        }
+        
+        .card-back {
+            transform: rotateY(180deg) !important;
+            -webkit-transform: rotateY(180deg) !important;
+        }
+    </style>
     <script>
         console.log('🚀 HSK App - Build: MAIN');
         console.log('📦 Cargando app.js');
+        console.log('🎴 CSS de flashcards inyectado');
     </script>
 </body>
 </html>
