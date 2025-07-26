@@ -168,71 +168,331 @@ class HSKApp {
         
         this.init();
     }
+    
+    showInitializationSuccess() {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: var(--font-family-primary);
+            font-size: 14px;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        `;
+        notification.innerHTML = `
+            ✅ HSK Learning cargado correctamente<br>
+            <small>¡Listo para aprender chino!</small>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Animate in
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Remove notification after 3 seconds
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
+    
+    handleInitializationError(error) {
+        console.error('🚨 Critical initialization error:', error);
+        
+        // Try to show user-friendly error message
+        const errorContainer = document.createElement('div');
+        errorContainer.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ef4444;
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            font-family: var(--font-family-primary);
+            text-align: center;
+            z-index: 10000;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            max-width: 400px;
+        `;
+        
+        errorContainer.innerHTML = `
+            <h3 style="margin: 0 0 12px 0; font-size: 18px;">❌ Error de Inicialización</h3>
+            <p style="margin: 0 0 16px 0; font-size: 14px; opacity: 0.9;">
+                La aplicación HSK Learning no pudo inicializarse correctamente.
+            </p>
+            <button onclick="location.reload()" style="
+                background: white;
+                color: #ef4444;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                font-size: 14px;
+            ">
+                🔄 Recargar Página
+            </button>
+        `;
+        
+        document.body.appendChild(errorContainer);
+        
+        // Also try to provide fallback functionality
+        this.initializeMinimalFunctionality();
+    }
+    
+    initializeMinimalFunctionality() {
+        console.log('🔄 Attempting to initialize minimal functionality...');
+        
+        try {
+            // Ensure basic vocabulary exists
+            if (!this.vocabulary || this.vocabulary.length === 0) {
+                this.createFallbackVocabulary();
+            }
+            
+            // Try to setup basic event listeners
+            const nextBtn = document.getElementById('next-btn');
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    console.log('Next button clicked - minimal mode');
+                    this.nextWord();
+                });
+            }
+            
+            const flipBtn = document.getElementById('flip-btn');
+            if (flipBtn) {
+                flipBtn.addEventListener('click', () => {
+                    console.log('Flip button clicked - minimal mode');
+                    this.flipCard();
+                });
+            }
+            
+            // Try to show first word
+            if (this.vocabulary && this.vocabulary.length > 0) {
+                this.currentWord = this.vocabulary[0];
+                this.displayCurrentWord();
+            }
+            
+            console.log('✅ Minimal functionality initialized');
+            
+        } catch (minimalError) {
+            console.error('❌ Even minimal functionality failed:', minimalError);
+        }
+    }
 
     async init() {
         try {
-            await this.loadVocabulary();
-            this.setupEventListeners();
-            this.initializeTabs();
-            this.initializeTheme();
-            this.initializeAudio();
-            this.languageManager.updateInterface();
-            this.renderBrowseTab();
-            this.updateStatsDisplay();
+            console.log('🚀 Initializing HSK Learning App...');
             
-            // Inicializar SRS interface después de DOM completo
+            // Step 1: Load vocabulary with retry mechanism
+            await this.loadVocabulary();
+            console.log('✅ Vocabulary loaded successfully');
+            
+            // Step 2: Setup event listeners with error handling
+            this.setupEventListeners();
+            console.log('✅ Event listeners setup complete');
+            
+            // Step 3: Initialize UI components
+            this.initializeTabs();
+            console.log('✅ Tabs initialized');
+            
+            this.initializeTheme();
+            console.log('✅ Theme initialized');
+            
+            this.initializeAudio();
+            console.log('✅ Audio initialized');
+            
+            // Step 4: Update interface language
+            try {
+                this.languageManager.updateInterface();
+                console.log('✅ Interface language updated');
+            } catch (langError) {
+                console.warn('⚠️ Language update failed, continuing with defaults:', langError.message);
+            }
+            
+            // Step 5: Initialize content areas
+            try {
+                this.renderBrowseTab();
+                console.log('✅ Browse tab rendered');
+            } catch (browseError) {
+                console.warn('⚠️ Browse tab rendering failed:', browseError.message);
+            }
+            
+            try {
+                this.updateStatsDisplay();
+                console.log('✅ Stats display updated');
+            } catch (statsError) {
+                console.warn('⚠️ Stats display update failed:', statsError.message);
+            }
+            
+            // Step 6: Initialize SRS interface with delay
             setTimeout(() => {
-                this.updateSRSInterface();
+                try {
+                    this.updateSRSInterface();
+                    console.log('✅ SRS interface initialized');
+                } catch (srsError) {
+                    console.warn('⚠️ SRS interface initialization failed:', srsError.message);
+                }
             }, 100);
             
-            this.setupPracticeSession();
+            // Step 7: Setup practice session
+            try {
+                this.setupPracticeSession();
+                console.log('✅ Practice session setup complete');
+            } catch (practiceError) {
+                console.warn('⚠️ Practice session setup failed:', practiceError.message);
+            }
+            
+            console.log('🎉 HSK Learning App initialized successfully!');
+            
+            // Show success indicator
+            this.showInitializationSuccess();
+            
         } catch (error) {
-            console.error('Error initializing app:', error);
-            const errorMsg = this.languageManager.t('loadingError');
-            alert(errorMsg);
+            console.error('❌ Critical error initializing app:', error);
+            this.handleInitializationError(error);
         }
     }
 
     async loadVocabulary() {
-        try {
-            console.log('Loading vocabulary...');
-            const response = await fetch('hsk_vocabulary.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            this.vocabulary = await response.json();
-            console.log(`Successfully loaded ${this.vocabulary.length} vocabulary items`);
-            
-            // Cache the vocabulary for better performance
-            this.vocabularyByLevel = {};
-            this.vocabulary.forEach(word => {
-                if (!this.vocabularyByLevel[word.level]) {
-                    this.vocabularyByLevel[word.level] = [];
+        const maxRetries = 3;
+        let retryCount = 0;
+        
+        while (retryCount < maxRetries) {
+            try {
+                console.log(`📚 Loading vocabulary... (attempt ${retryCount + 1}/${maxRetries})`);
+                
+                const response = await fetch('hsk_vocabulary.json', {
+                    cache: 'no-cache',
+                    headers: {
+                        'Cache-Control': 'no-cache'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
                 }
-                this.vocabularyByLevel[word.level].push(word);
-            });
-            
-            // Validate vocabulary structure
-            if (this.vocabulary.length > 0) {
-                const sample = this.vocabulary[0];
-                console.log('Sample vocabulary item:', sample);
-                const requiredFields = ['character', 'pinyin', 'level'];
-                const missingFields = requiredFields.filter(field => !sample[field]);
-                if (missingFields.length > 0) {
-                    console.warn('Missing fields in vocabulary:', missingFields);
+                
+                const vocabularyData = await response.json();
+                
+                // Validate vocabulary data
+                if (!Array.isArray(vocabularyData) || vocabularyData.length === 0) {
+                    throw new Error('Invalid vocabulary data: not an array or empty');
+                }
+                
+                this.vocabulary = vocabularyData;
+                console.log(`✅ Successfully loaded ${this.vocabulary.length} vocabulary items`);
+                
+                // Cache the vocabulary for better performance
+                this.vocabularyByLevel = {};
+                this.vocabulary.forEach(word => {
+                    if (!this.vocabularyByLevel[word.level]) {
+                        this.vocabularyByLevel[word.level] = [];
+                    }
+                    this.vocabularyByLevel[word.level].push(word);
+                });
+                
+                // Validate vocabulary structure
+                if (this.vocabulary.length > 0) {
+                    const sample = this.vocabulary[0];
+                    const requiredFields = ['character', 'pinyin', 'level'];
+                    const missingFields = requiredFields.filter(field => !sample[field]);
+                    
+                    if (missingFields.length > 0) {
+                        console.warn('⚠️ Missing fields in vocabulary:', missingFields);
+                    } else {
+                        console.log('✅ Vocabulary structure validation passed');
+                    }
+                }
+                
+                // Success - break out of retry loop
+                return;
+                
+            } catch (error) {
+                retryCount++;
+                console.error(`❌ Error loading vocabulary (attempt ${retryCount}):`, error.message);
+                
+                if (retryCount < maxRetries) {
+                    console.log(`🔄 Retrying in ${retryCount * 1000}ms...`);
+                    await new Promise(resolve => setTimeout(resolve, retryCount * 1000));
+                } else {
+                    console.error('❌ All vocabulary loading attempts failed, using fallback');
+                    this.createFallbackVocabulary();
                 }
             }
-            
-        } catch (error) {
-            console.error('Error loading vocabulary:', error);
-            // Create fallback vocabulary for testing
-            this.vocabulary = [
-                { character: '你', pinyin: 'nǐ', english: 'you', translation: 'tú', level: 1 },
-                { character: '好', pinyin: 'hǎo', english: 'good', translation: 'bueno', level: 1 },
-                { character: '我', pinyin: 'wǒ', english: 'I', translation: 'yo', level: 1 }
-            ];
-            console.log('Using fallback vocabulary for testing');
         }
+    }
+    
+    createFallbackVocabulary() {
+        console.log('🔄 Creating fallback vocabulary for basic functionality...');
+        
+        this.vocabulary = [
+            { character: '你', pinyin: 'nǐ', english: 'you', translation: 'tú', level: 1 },
+            { character: '好', pinyin: 'hǎo', english: 'good', translation: 'bueno', level: 1 },
+            { character: '我', pinyin: 'wǒ', english: 'I', translation: 'yo', level: 1 },
+            { character: '是', pinyin: 'shì', english: 'to be', translation: 'ser/estar', level: 1 },
+            { character: '的', pinyin: 'de', english: 'possessive particle', translation: 'de (partícula)', level: 1 },
+            { character: '不', pinyin: 'bù', english: 'not', translation: 'no', level: 1 },
+            { character: '在', pinyin: 'zài', english: 'at/in', translation: 'en/estar', level: 1 },
+            { character: '有', pinyin: 'yǒu', english: 'to have', translation: 'tener', level: 1 },
+            { character: '人', pinyin: 'rén', english: 'person', translation: 'persona', level: 1 },
+            { character: '这', pinyin: 'zhè', english: 'this', translation: 'este/esta', level: 1 }
+        ];
+        
+        // Cache the fallback vocabulary
+        this.vocabularyByLevel = { 1: this.vocabulary };
+        
+        console.log(`✅ Fallback vocabulary created with ${this.vocabulary.length} basic words`);
+        
+        // Show user notification about fallback mode
+        this.showFallbackNotification();
+    }
+    
+    showFallbackNotification() {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #f59e0b;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: var(--font-family-primary);
+            font-size: 14px;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+        notification.innerHTML = `
+            ⚠️ Modo de vocabulario limitado<br>
+            <small>Usando vocabulario básico de respaldo</small>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Remove notification after 5 seconds
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 5000);
     }
 
     setupEventListeners() {
@@ -246,9 +506,14 @@ class HSKApp {
         // Practice controls
         const levelSelect = document.getElementById('level-select');
         if (levelSelect) {
+            let debounceTimer;
             levelSelect.addEventListener('change', (e) => {
                 this.selectedLevel = e.target.value;
-                this.setupPracticeSession();
+                // Usar debounce para evitar múltiples ejecuciones
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    this.setupPracticeSession();
+                }, 100);
             });
         }
 

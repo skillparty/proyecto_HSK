@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSK Learning - Diagnostic Runner</title>
+    <style>
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 20px;
+            margin: 0;
+        }
+        .console {
+            background: #000;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00ff00;
+        }
+        .status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .loading {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 HSK Learning Diagnostic Runner</h1>
+        <p>Ejecutando diagnóstico completo de la aplicación...</p>
+    </div>
+    
+    <div id="status" class="status loading">🔄 Ejecutando diagnóstico...</div>
+    
+    <div id="console" class="console">
+Iniciando diagnóstico de HSK Learning...
+Cargando aplicación principal...
+    </div>
+    
+    <!-- Cargar la aplicación principal en un iframe oculto -->
+    <iframe id="app-frame" src="index.html" style="display: none;" onload="startDiagnostic()"></iframe>
+    
+    <script>
+        const consoleEl = document.getElementById('console');
+        const statusEl = document.getElementById('status');
+        
+        // Capturar logs de consola
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        
+        function logToConsole(message, type = 'log') {
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = type === 'error' ? '❌' : type === 'warn' ? '⚠️' : '📝';
+            consoleEl.textContent += `[${timestamp}] ${prefix} ${message}\n`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            logToConsole(args.join(' '), 'log');
+            originalLog.apply(console, args);
+        };
+        
+        console.error = function(...args) {
+            logToConsole(args.join(' '), 'error');
+            originalError.apply(console, args);
+        };
+        
+        console.warn = function(...args) {
+            logToConsole(args.join(' '), 'warn');
+            originalWarn.apply(console, args);
+        };
+        
+        async function startDiagnostic() {
+            try {
+                logToConsole('✅ Aplicación principal cargada');
+                logToConsole('🔄 Esperando inicialización completa...');
+                
+                // Esperar a que la aplicación se inicialice
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                
+                // Acceder al contexto de la aplicación
+                const appFrame = document.getElementById('app-frame');
+                const appWindow = appFrame.contentWindow;
+                const appDocument = appFrame.contentDocument;
+                
+                if (!appWindow.HSKDiagnosticSystem) {
+                    logToConsole('❌ Sistema de diagnóstico no encontrado en la aplicación');
+                    statusEl.textContent = '❌ Error: Sistema de diagnóstico no disponible';
+                    statusEl.classList.remove('loading');
+                    return;
+                }
+                
+                logToConsole('🚀 Iniciando sistema de diagnóstico...');
+                
+                // Crear instancia del sistema de diagnóstico en el contexto de la app
+                const diagnostic = new appWindow.HSKDiagnosticSystem();
+                
+                logToConsole('🔍 Ejecutando diagnóstico completo...');
+                statusEl.textContent = '🔍 Ejecutando pruebas...';
+                
+                // Ejecutar diagnóstico
+                const report = await diagnostic.runFullDiagnostic();
+                
+                logToConsole('📊 Diagnóstico completado');
+                logToConsole('='.repeat(60));
+                
+                // Mostrar resumen
+                logToConsole(`Estado General: ${report.overallStatus.toUpperCase()}`);
+                logToConsole(`Total de Problemas: ${report.summary.totalIssues}`);
+                logToConsole(`- Críticos: ${report.summary.criticalIssues}`);
+                logToConsole(`- Advertencias: ${report.summary.warningIssues}`);
+                logToConsole(`- Informativos: ${report.summary.infoIssues}`);
+                
+                logToConsole('='.repeat(60));
+                
+                // Mostrar problemas críticos
+                const criticalIssues = diagnostic.issues.filter(issue => issue.severity === 'critical');
+                if (criticalIssues.length > 0) {
+                    logToConsole('🚨 PROBLEMAS CRÍTICOS:');
+                    criticalIssues.forEach((issue, index) => {
+                        logToConsole(`${index + 1}. [${issue.component}] ${issue.description}`);
+                    });
+                } else {
+                    logToConsole('✅ No se encontraron problemas críticos');
+                }
+                
+                logToConsole('='.repeat(60));
+                
+                // Mostrar advertencias
+                const warningIssues = diagnostic.issues.filter(issue => issue.severity === 'warning');
+                if (warningIssues.length > 0) {
+                    logToConsole('⚠️ ADVERTENCIAS:');
+                    warningIssues.forEach((issue, index) => {
+                        logToConsole(`${index + 1}. [${issue.component}] ${issue.description}`);
+                    });
+                } else {
+                    logToConsole('✅ No se encontraron advertencias');
+                }
+                
+                logToConsole('='.repeat(60));
+                
+                // Mostrar recomendaciones
+                logToConsole('💡 RECOMENDACIONES:');
+                report.recommendations.forEach((rec, index) => {
+                    logToConsole(`${index + 1}. ${rec}`);
+                });
+                
+                // Actualizar estado
+                const statusIcon = report.overallStatus === 'critical' ? '🔴' : 
+                                 report.overallStatus === 'warning' ? '🟡' : '🟢';
+                statusEl.textContent = `${statusIcon} Diagnóstico completado - ${report.overallStatus.toUpperCase()}`;
+                statusEl.classList.remove('loading');
+                
+                // Guardar reporte para análisis posterior
+                window.diagnosticReport = report;
+                window.diagnosticSystem = diagnostic;
+                
+                logToConsole('💾 Reporte guardado en window.diagnosticReport');
+                logToConsole('🔧 Sistema disponible en window.diagnosticSystem');
+                logToConsole('✅ Diagnóstico completado exitosamente');
+                
+            } catch (error) {
+                logToConsole(`❌ Error ejecutando diagnóstico: ${error.message}`);
+                statusEl.textContent = '❌ Error en diagnóstico';
+                statusEl.classList.remove('loading');
+                console.error('Diagnostic error:', error);
+            }
+        }
+        
+        // Función para exportar reporte
+        window.exportReport = function() {
+            if (window.diagnosticReport) {
+                const reportText = generateReportText(window.diagnosticReport, window.diagnosticSystem);
+                const blob = new Blob([reportText], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `hsk-diagnostic-report-${new Date().toISOString().split('T')[0]}.md`;
+                a.click();
+                URL.revokeObjectURL(url);
+                logToConsole('📄 Reporte exportado como archivo Markdown');
+            } else {
+                logToConsole('❌ No hay reporte disponible para exportar');
+            }
+        };
+        
+        function generateReportText(report, diagnostic) {
+            const timestamp = new Date().toISOString();
+            
+            return `# HSK Learning - Reporte de Diagnóstico
+
+**Fecha:** ${new Date(report.timestamp).toLocaleString()}
+**Estado General:** ${report.overallStatus.toUpperCase()}
+**Total de Problemas:** ${report.summary.totalIssues}
+
+## Resumen
+
+- 🔴 Críticos: ${report.summary.criticalIssues}
+- 🟡 Advertencias: ${report.summary.warningIssues}
+- 🔵 Informativos: ${report.summary.infoIssues}
+
+## Problemas Detectados
+
+${diagnostic.issues.length === 0 ? '✅ No se detectaron problemas' : 
+  diagnostic.issues.map((issue, index) => 
+    `### ${index + 1}. ${issue.component}
+- **Severidad:** ${issue.severity.toUpperCase()}
+- **Descripción:** ${issue.description}
+- **Ubicación:** ${issue.location || 'N/A'}
+- **Timestamp:** ${issue.timestamp}`
+  ).join('\n\n')}
+
+## Recomendaciones
+
+${report.recommendations.map((rec, index) => `${index + 1}. ${rec}`).join('\n')}
+
+---
+*Generado automáticamente el ${timestamp}*
+`;
+        }
+        
+        logToConsole('🔧 Diagnostic Runner inicializado');
+        logToConsole('⏳ Esperando carga de la aplicación...');
+    </script>
+</body>
+</html>

@@ -20,11 +20,72 @@
     <link rel="apple-touch-icon" href="logo_appLM.png">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="styles-v2.css?v=7">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-v2.css?v=9&t=1737900000" id="main-stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" id="fonts-stylesheet">
+    
+    <!-- Resource Validation Script -->
+    <script>
+        // Validate critical resources on load
+        window.addEventListener('load', function() {
+            console.log('🔍 Validating critical resources...');
+            
+            // Check if main stylesheet loaded
+            const mainStylesheet = document.getElementById('main-stylesheet');
+            if (mainStylesheet) {
+                try {
+                    const computedStyle = getComputedStyle(document.body);
+                    const primaryColor = computedStyle.getPropertyValue('--color-primary');
+                    if (primaryColor && primaryColor.trim()) {
+                        console.log('✅ Main stylesheet loaded successfully');
+                    } else {
+                        console.warn('⚠️ Main stylesheet may not have loaded properly');
+                        showResourceError('CSS styles may not be working correctly');
+                    }
+                } catch (e) {
+                    console.error('❌ Error checking stylesheet:', e);
+                }
+            }
+            
+            // Check if fonts loaded
+            const fontsStylesheet = document.getElementById('fonts-stylesheet');
+            if (fontsStylesheet) {
+                document.fonts.ready.then(() => {
+                    console.log('✅ Fonts loaded successfully');
+                }).catch(e => {
+                    console.warn('⚠️ Font loading issue:', e);
+                });
+            }
+        });
+        
+        function showResourceError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                position: fixed;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #f59e0b;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-size: 12px;
+                z-index: 10000;
+                font-family: monospace;
+            `;
+            errorDiv.textContent = '⚠️ ' + message;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.parentNode.removeChild(errorDiv);
+                }
+            }, 5000);
+        }
+    </script>
     
     <!-- Scripts -->
-    <script src="translations.js?v=7"></script>
+    <script src="translations.js?v=9"></script>
+    <script src="diagnostic-system.js?v=1"></script>
 </head>
 <body>
     <div class="app-container">
@@ -303,8 +364,125 @@
         </footer>
     </div>
 
-    <script src="compatibility.js?v=7"></script>
-    <script src="app.js?v=7"></script>
+    <script src="compatibility.js?v=9"></script>
+    <script src="app.js?v=9"></script>
+    
+    <!-- Enhanced Initialization Script -->
+    <script>
+        // Enhanced app initialization with error handling
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 DOM loaded, initializing HSK Learning App...');
+            
+            // Add loading indicator
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.id = 'loading-indicator';
+            loadingIndicator.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0,0,0,0.8);
+                color: white;
+                padding: 20px;
+                border-radius: 8px;
+                font-family: var(--font-family-primary, monospace);
+                text-align: center;
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            `;
+            loadingIndicator.innerHTML = `
+                <div style="
+                    width: 20px;
+                    height: 20px;
+                    border: 2px solid #ffffff40;
+                    border-top: 2px solid #ffffff;
+                    border-radius: 50%;
+                    animation: spin 1s linear infinite;
+                "></div>
+                <span>Cargando HSK Learning...</span>
+                <style>
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                </style>
+            `;
+            document.body.appendChild(loadingIndicator);
+            
+            // Initialize app with timeout protection
+            const initTimeout = setTimeout(() => {
+                console.error('❌ App initialization timeout');
+                if (loadingIndicator.parentNode) {
+                    loadingIndicator.innerHTML = `
+                        <span style="color: #ef4444;">❌ Error de carga - 
+                        <button onclick="location.reload()" style="
+                            background: #ef4444;
+                            color: white;
+                            border: none;
+                            padding: 4px 8px;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            font-size: 12px;
+                        ">Recargar</button></span>
+                    `;
+                }
+            }, 10000); // 10 second timeout
+            
+            try {
+                // Check if HSKApp class is available
+                if (typeof HSKApp === 'undefined') {
+                    throw new Error('HSKApp class not found');
+                }
+                
+                // Initialize the app
+                window.app = new HSKApp();
+                
+                // Clear timeout and loading indicator on successful init
+                setTimeout(() => {
+                    clearTimeout(initTimeout);
+                    if (loadingIndicator.parentNode) {
+                        loadingIndicator.style.opacity = '0';
+                        loadingIndicator.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                        setTimeout(() => {
+                            if (loadingIndicator.parentNode) {
+                                loadingIndicator.parentNode.removeChild(loadingIndicator);
+                            }
+                        }, 300);
+                    }
+                    console.log('🎉 HSK Learning App fully initialized!');
+                }, 2000); // Give app time to initialize
+                
+            } catch (error) {
+                clearTimeout(initTimeout);
+                console.error('❌ Critical error during app initialization:', error);
+                if (loadingIndicator.parentNode) {
+                    loadingIndicator.innerHTML = `
+                        <span style="color: #ef4444;">❌ Error crítico - 
+                        <button onclick="location.reload()" style="
+                            background: #ef4444;
+                            color: white;
+                            border: none;
+                            padding: 4px 8px;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            font-size: 12px;
+                        ">Recargar</button></span>
+                    `;
+                }
+            }
+        });
+        
+        // Global error handler
+        window.addEventListener('error', function(event) {
+            console.error('🚨 Global error caught:', event.error);
+        });
+        
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('🚨 Unhandled promise rejection:', event.reason);
+        });
+    </script>
     <style>
         /* CSS crítico para flashcards - asegurar que funcione el volteo */
         .flashcard-container {
