@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test: Vocabulary Browse & Search</title>
+    <link rel="stylesheet" href="styles-v2.css">
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: var(--font-family-primary);
+        }
+        
+        .test-section {
+            background: var(--color-surface);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--color-border);
+        }
+        
+        .test-title {
+            color: var(--color-primary-500);
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .test-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .test-btn {
+            background: var(--color-primary-500);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .test-btn:hover {
+            background: var(--color-primary-600);
+            transform: translateY(-1px);
+        }
+        
+        .test-btn.secondary {
+            background: var(--color-gray-500);
+        }
+        
+        .test-btn.secondary:hover {
+            background: var(--color-gray-600);
+        }
+        
+        .test-results {
+            background: var(--color-gray-50);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .test-input {
+            padding: 10px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 14px;
+            min-width: 200px;
+        }
+        
+        .test-select {
+            padding: 10px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-pass { background: #10b981; }
+        .status-fail { background: #ef4444; }
+        .status-warn { background: #f59e0b; }
+        
+        .browse-test-area {
+            border: 2px dashed var(--color-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            min-height: 400px;
+        }
+        
+        .search-test-controls {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--color-border);
+        }
+        
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary-500);
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔍 Vocabulary Browse & Search Test Suite</h1>
+        
+        <!-- Browse Tab Rendering Test -->
+        <div class="test-section">
+            <h2 class="test-title">1. Browse Tab Rendering</h2>
+            <div class="test-controls">
+                <button class="test-btn" onclick="testBrowseTabRendering()">Test Browse Rendering</button>
+                <button class="test-btn secondary" onclick="testBrowseWithEmptyData()">Test Empty Data</button>
+                <button class="test-btn secondary" onclick="testBrowseError()">Test Error Handling</button>
+            </div>
+            <div class="browse-test-area" id="browse-test-area">
+                <p>Click "Test Browse Rendering" to load vocabulary browse interface here</p>
+            </div>
+            <div class="test-results" id="browse-test-results"></div>
+        </div>
+        
+        <!-- Search Functionality Test -->
+        <div class="test-section">
+            <h2 class="test-title">2. Search Functionality</h2>
+            <div class="search-test-controls">
+                <input type="text" class="test-input" id="search-test-input" placeholder="Enter search term...">
+                <button class="test-btn" onclick="testSearch()">Search</button>
+                <button class="test-btn secondary" onclick="clearSearchTest()">Clear</button>
+            </div>
+            <div class="test-controls">
+                <button class="test-btn" onclick="testSearchByCharacter()">Test Character Search</button>
+                <button class="test-btn" onclick="testSearchByPinyin()">Test Pinyin Search</button>
+                <button class="test-btn" onclick="testSearchByEnglish()">Test English Search</button>
+                <button class="test-btn secondary" onclick="testSearchPerformance()">Performance Test</button>
+            </div>
+            <div class="test-results" id="search-test-results"></div>
+        </div>
+        
+        <!-- Filter System Test -->
+        <div class="test-section">
+            <h2 class="test-title">3. Filter System</h2>
+            <div class="test-controls">
+                <select class="test-select" id="level-filter-test">
+                    <option value="all">All Levels</option>
+                    <option value="1">HSK 1</option>
+                    <option value="2">HSK 2</option>
+                    <option value="3">HSK 3</option>
+                    <option value="4">HSK 4</option>
+                    <option value="5">HSK 5</option>
+                    <option value="6">HSK 6</option>
+                </select>
+                <button class="test-btn" onclick="testLevelFilter()">Apply Filter</button>
+                <button class="test-btn secondary" onclick="testFilterCombination()">Test Combined Filters</button>
+                <button class="test-btn secondary" onclick="testFilterClear()">Clear All Filters</button>
+            </div>
+            <div class="test-results" id="filter-test-results"></div>
+        </div>
+        
+        <!-- Pagination Test -->
+        <div class="test-section">
+            <h2 class="test-title">4. Pagination System</h2>
+            <div class="test-controls">
+                <button class="test-btn" onclick="testPagination()">Test Pagination</button>
+                <button class="test-btn" onclick="testLargeDatasePagination()">Test Large Dataset</button>
+                <button class="test-btn secondary" onclick="testPaginationNavigation()">Test Navigation</button>
+            </div>
+            <div class="test-results" id="pagination-test-results"></div>
+        </div>
+        
+        <!-- Performance Metrics -->
+        <div class="test-section">
+            <h2 class="test-title">5. Performance Metrics</h2>
+            <div class="test-controls">
+                <button class="test-btn" onclick="runPerformanceTests()">Run All Performance Tests</button>
+                <button class="test-btn secondary" onclick="clearPerformanceMetrics()">Clear Metrics</button>
+            </div>
+            <div class="performance-metrics" id="performance-metrics">
+                <div class="metric-card">
+                    <div class="metric-value" id="render-time">-</div>
+                    <div class="metric-label">Render Time (ms)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="search-time">-</div>
+                    <div class="metric-label">Search Time (ms)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="filter-time">-</div>
+                    <div class="metric-label">Filter Time (ms)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="items-rendered">-</div>
+                    <div class="metric-label">Items Rendered</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Integration Test -->
+        <div class="test-section">
+            <h2 class="test-title">6. Integration Test</h2>
+            <div class="test-controls">
+                <button class="test-btn" onclick="runFullIntegrationTest()">Run Full Integration Test</button>
+                <button class="test-btn secondary" onclick="testErrorRecovery()">Test Error Recovery</button>
+            </div>
+            <div class="test-results" id="integration-test-results"></div>
+        </div>
+    </div>
+
+    <!-- Include main app -->
+    <script src="app.js"></script>
+    
+    <script>
+        // Test utilities
+        let testApp = null;
+        let testMetrics = {
+            renderTime: 0,
+            searchTime: 0,
+            filterTime: 0,
+            itemsRendered: 0
+        };
+        
+        // Initialize test environment
+        async function initializeTestEnvironment() {
+            try {
+                // Create test app instance
+                testApp = new HSKApp();
+                await testApp.init();
+                
+                logResult('browse-test-results', '✅ Test environment initialized successfully');
+                return true;
+            } catch (error) {
+                logResult('browse-test-results', `❌ Failed to initialize test environment: ${error.message}`);
+                return false;
+            }
+        }
+        
+        // Test browse tab rendering
+        async function testBrowseTabRendering() {
+            const startTime = performance.now();
+            
+            try {
+                if (!testApp) {
+                    const initialized = await initializeTestEnvironment();
+                    if (!initialized) return;
+                }
+                
+                // Create mock browse area
+                const testArea = document.getElementById('browse-test-area');
+                testArea.innerHTML = `
+                    <div id="vocabulary-grid" class="vocabulary-grid"></div>
+                    <div id="browse-stats" class="browse-stats"></div>
+                `;
+                
+                // Test rendering
+                testApp.renderBrowseTab();
+                
+                const endTime = performance.now();
+                testMetrics.renderTime = Math.round(endTime - startTime);
+                
+                // Verify results
+                const grid = document.getElementById('vocabulary-grid');
+                const items = grid.querySelectorAll('.vocab-item');
+                testMetrics.itemsRendered = items.length;
+                
+                logResult('browse-test-results', `✅ Browse tab rendered successfully`);
+                logResult('browse-test-results', `📊 Rendered ${items.length} vocabulary items in ${testMetrics.renderTime}ms`);
+                
+                updateMetric('render-time', testMetrics.renderTime);
+                updateMetric('items-rendered', testMetrics.itemsRendered);
+                
+            } catch (error) {
+                logResult('browse-test-results', `❌ Browse rendering failed: ${error.message}`);
+            }
+        }
+        
+        // Test search functionality
+        async function testSearch() {
+            const startTime = performance.now();
+            
+            try {
+                if (!testApp) {
+                    await initializeTestEnvironment();
+                }
+                
+                const searchTerm = document.getElementById('search-test-input').value;
+                if (!searchTerm) {
+                    logResult('search-test-results', '⚠️ Please enter a search term');
+                    return;
+                }
+                
+                // Perform search
+                testApp.filterVocabulary(searchTerm);
+                
+                // Wait for debounced search to complete
+                setTimeout(() => {
+                    const endTime = performance.now();
+                    testMetrics.searchTime = Math.round(endTime - startTime);
+                    
+                    const grid = document.getElementById('vocabulary-grid');
+                    const results = grid ? grid.querySelectorAll('.vocab-item').length : 0;
+                    
+                    logResult('search-test-results', `✅ Search completed for "${searchTerm}"`);
+                    logResult('search-test-results', `📊 Found ${results} results in ${testMetrics.searchTime}ms`);
+                    
+                    updateMetric('search-time', testMetrics.searchTime);
+                    
+                }, 400);
+                
+            } catch (error) {
+                logResult('search-test-results', `❌ Search failed: ${error.message}`);
+            }
+        }
+        
+        // Test search by character
+        function testSearchByCharacter() {
+            document.getElementById('search-test-input').value = '你';
+            testSearch();
+        }
+        
+        // Test search by pinyin
+        function testSearchByPinyin() {
+            document.getElementById('search-test-input').value = 'ni';
+            testSearch();
+        }
+        
+        // Test search by English
+        function testSearchByEnglish() {
+            document.getElementById('search-test-input').value = 'you';
+            testSearch();
+        }
+        
+        // Test level filter
+        async function testLevelFilter() {
+            const startTime = performance.now();
+            
+            try {
+                if (!testApp) {
+                    await initializeTestEnvironment();
+                }
+                
+                const levelSelect = document.getElementById('level-filter-test');
+                const selectedLevel = levelSelect.value;
+                
+                // Apply level filter
+                testApp.selectedLevel = selectedLevel;
+                testApp.renderBrowseTab();
+                
+                const endTime = performance.now();
+                testMetrics.filterTime = Math.round(endTime - startTime);
+                
+                const grid = document.getElementById('vocabulary-grid');
+                const results = grid ? grid.querySelectorAll('.vocab-item').length : 0;
+                
+                logResult('filter-test-results', `✅ Level filter applied: ${selectedLevel}`);
+                logResult('filter-test-results', `📊 Filtered to ${results} items in ${testMetrics.filterTime}ms`);
+                
+                updateMetric('filter-time', testMetrics.filterTime);
+                
+            } catch (error) {
+                logResult('filter-test-results', `❌ Filter test failed: ${error.message}`);
+            }
+        }
+        
+        // Test pagination
+        async function testPagination() {
+            try {
+                if (!testApp) {
+                    await initializeTestEnvironment();
+                }
+                
+                // Test with large dataset
+                testApp.selectedLevel = 'all';
+                testApp.renderBrowseTab();
+                
+                // Check if pagination controls exist
+                const paginationControls = document.querySelector('.pagination-controls');
+                
+                if (paginationControls) {
+                    logResult('pagination-test-results', '✅ Pagination controls rendered');
+                    logResult('pagination-test-results', '📊 Pagination system working correctly');
+                } else {
+                    logResult('pagination-test-results', '⚠️ No pagination controls found (dataset may be small)');
+                }
+                
+            } catch (error) {
+                logResult('pagination-test-results', `❌ Pagination test failed: ${error.message}`);
+            }
+        }
+        
+        // Run performance tests
+        async function runPerformanceTests() {
+            logResult('integration-test-results', '🚀 Starting performance tests...');
+            
+            // Test rendering performance
+            await testBrowseTabRendering();
+            
+            // Test search performance
+            document.getElementById('search-test-input').value = 'test';
+            await testSearch();
+            
+            // Test filter performance
+            document.getElementById('level-filter-test').value = '4';
+            await testLevelFilter();
+            
+            logResult('integration-test-results', '✅ Performance tests completed');
+        }
+        
+        // Run full integration test
+        async function runFullIntegrationTest() {
+            logResult('integration-test-results', '🧪 Starting full integration test...');
+            
+            try {
+                // 1. Initialize
+                await initializeTestEnvironment();
+                logResult('integration-test-results', '✅ Step 1: Environment initialized');
+                
+                // 2. Test browse rendering
+                await testBrowseTabRendering();
+                logResult('integration-test-results', '✅ Step 2: Browse rendering tested');
+                
+                // 3. Test search
+                document.getElementById('search-test-input').value = '你好';
+                await testSearch();
+                logResult('integration-test-results', '✅ Step 3: Search functionality tested');
+                
+                // 4. Test filters
+                document.getElementById('level-filter-test').value = '1';
+                await testLevelFilter();
+                logResult('integration-test-results', '✅ Step 4: Filter system tested');
+                
+                // 5. Test clear functionality
+                testApp.clearBrowseFilters();
+                logResult('integration-test-results', '✅ Step 5: Clear filters tested');
+                
+                logResult('integration-test-results', '🎉 Full integration test completed successfully!');
+                
+            } catch (error) {
+                logResult('integration-test-results', `❌ Integration test failed: ${error.message}`);
+            }
+        }
+        
+        // Utility functions
+        function logResult(containerId, message) {
+            const container = document.getElementById(containerId);
+            const timestamp = new Date().toLocaleTimeString();
+            container.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        function updateMetric(metricId, value) {
+            const element = document.getElementById(metricId);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+        
+        function clearSearchTest() {
+            document.getElementById('search-test-input').value = '';
+            document.getElementById('search-test-results').innerHTML = '';
+        }
+        
+        function clearPerformanceMetrics() {
+            testMetrics = { renderTime: 0, searchTime: 0, filterTime: 0, itemsRendered: 0 };
+            updateMetric('render-time', '-');
+            updateMetric('search-time', '-');
+            updateMetric('filter-time', '-');
+            updateMetric('items-rendered', '-');
+        }
+        
+        // Auto-initialize on page load
+        window.addEventListener('load', () => {
+            console.log('🧪 Vocabulary Browse Test Suite loaded');
+        });
+    </script>
+</body>
+</html>

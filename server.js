@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Puerto configurable - puedes cambiarlo aquí
-const PORT = process.env.PORT || 8005;
+const PORT = process.env.PORT || 8070;
 
 const mimeTypes = {
     '.html': 'text/html',

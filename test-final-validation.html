@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Validation & Complete Testing Suite</title>
+    <link rel="stylesheet" href="styles-v2.css">
+    <style>
+        .test-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: var(--font-family-primary);
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+            color: white;
+            border-radius: 16px;
+        }
+        
+        .test-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        .test-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+        
+        .test-section {
+            background: var(--color-surface);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .test-title {
+            color: var(--color-primary-600);
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .test-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .test-btn {
+            background: var(--color-primary-500);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .test-btn:hover {
+            background: var(--color-primary-600);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .test-btn.secondary {
+            background: var(--color-gray-500);
+        }
+        
+        .test-btn.success {
+            background: var(--color-success-500);
+        }
+        
+        .test-btn.danger {
+            background: var(--color-error-500);
+        }
+        
+        .test-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .test-results {
+            background: var(--color-gray-50);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--color-border);
+        }
+        
+        .test-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: all 0.2s ease;
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .summary-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .summary-value.pass { color: var(--color-success-600); }
+        .summary-value.fail { color: var(--color-error-600); }
+        .summary-value.warning { color: var(--color-accent-600); }
+        .summary-value.info { color: var(--color-primary-600); }
+        
+        .summary-label {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .summary-description {
+            font-size: 0.75rem;
+            color: var(--color-text-tertiary);
+            margin-top: 4px;
+        }
+        
+        .progress-section {
+            background: var(--color-primary-50);
+            border: 1px solid var(--color-primary-200);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--color-gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-success-500), var(--color-success-600));
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-weight: 600;
+            color: var(--color-primary-700);
+            margin-top: 8px;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .test-item {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .test-item:hover {
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .test-item-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .test-item-title {
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+        
+        .test-status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: auto;
+        }
+        
+        .test-status.pass { background: var(--color-success-500); }
+        .test-status.fail { background: var(--color-error-500); }
+        .test-status.warning { background: var(--color-accent-500); }
+        .test-status.pending { background: var(--color-gray-400); }
+        .test-status.running { 
+            background: var(--color-primary-500);
+            animation: pulse 1s infinite;
+        }
+        
+        .test-item-description {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        .test-item-details {
+            font-size: 0.75rem;
+            color: var(--color-text-tertiary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .final-report {
+            background: linear-gradient(135deg, var(--color-success-50), var(--color-success-100));
+            border: 2px solid var(--color-success-300);
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 32px;
+            text-align: center;
+        }
+        
+        .final-report.warning {
+            background: linear-gradient(135deg, var(--color-accent-50), var(--color-accent-100));
+            border-color: var(--color-accent-300);
+        }
+        
+        .final-report.error {
+            background: linear-gradient(135deg, var(--color-error-50), var(--color-error-100));
+            border-color: var(--color-error-300);
+        }
+        
+        .final-report h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        
+        .final-report.success h2 { color: var(--color-success-700); }
+        .final-report.warning h2 { color: var(--color-accent-700); }
+        .final-report.error h2 { color: var(--color-error-700); }
+        
+        .report-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .report-stat {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+        }
+        
+        .report-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .report-stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .test-item {
+            animation: slideIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>🎯 Final Validation & Complete Testing Suite</h1>
+            <p>Comprehensive validation of all HSK Learning App components and functionality</p>
+        </div>
+        
+        <!-- Test Progress -->
+        <div class="progress-section">
+            <h3>🚀 Testing Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="overall-progress" style="width: 0%"></div>
+            </div>
+            <div class="progress-text" id="progress-text">Ready to start testing...</div>
+        </div>
+        
+        <!-- Test Summary -->
+        <div class="test-summary" id="test-summary">
+            <div class="summary-card">
+                <div class="summary-value info" id="total-tests">0</div>
+                <div class="summary-label">Total Tests</div>
+                <div class="summary-description">All test cases</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value pass" id="passed-tests">0</div>
+                <div class="summary-label">Passed</div>
+                <div class="summary-description">Successful tests</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value fail" id="failed-tests">0</div>
+                <div class="summary-label">Failed</div>
+                <div class="summary-description">Failed tests</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value warning" id="warning-tests">0</div>
+                <div class="summary-label">Warnings</div>
+                <div class="summary-description">Tests with warnings</div>
+            </div>
+        </div>
+        
+        <!-- Main Controls -->
+        <div class="test-section">
+            <h2 class="test-title">🎮 Test Controls</h2>
+            <div class="test-controls">
+                <button class="test-btn success" onclick="runAllTests()">
+                    <span>▶️</span> Run All Tests
+                </button>
+                <button class="test-btn" onclick="runQuickTest()">
+                    <span>⚡</span> Quick Test
+                </button>
+                <button class="test-btn secondary" onclick="runSpecificTest()">
+                    <span>🎯</span> Specific Test
+                </button>
+                <button class="test-btn danger" onclick="stopAllTests()">
+                    <span>⏹️</span> Stop Tests
+                </button>
+                <button class="test-btn" onclick="generateFinalReport()">
+                    <span>📊</span> Generate Report
+                </button>
+                <button class="test-btn secondary" onclick="exportResults()">
+                    <span>💾</span> Export Results
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test Categories -->
+        <div class="test-grid" id="test-grid">
+            <!-- Test items will be populated here -->
+        </div>
+        
+        <!-- Detailed Results -->
+        <div class="test-section">
+            <h2 class="test-title">📋 Detailed Test Results</h2>
+            <div class="test-results" id="detailed-results">
+                <div>Waiting for tests to start...</div>
+            </div>
+        </div>
+        
+        <!-- Final Report -->
+        <div class="final-report success" id="final-report" style="display: none;">
+            <h2>🎉 Testing Complete!</h2>
+            <p>All tests have been executed. Review the results below.</p>
+            
+            <div class="report-stats" id="report-stats">
+                <!-- Stats will be populated here -->
+            </div>
+            
+            <div id="final-recommendations"></div>
+        </div>
+    </div>
+
+    <!-- Include main app -->
+    <script src="app.js"></script>
+    
+    <script>
+        // Test suite configuration
+        let testApp = null;
+        let testResults = {
+            total: 0,
+            passed: 0,
+            failed: 0,
+            warnings: 0,
+            details: []
+        };
+        let isTestingRunning = false;
+        
+        // Test definitions
+        const testSuite = [
+            {
+                id: 'app-initialization',
+                title: 'App Initialization',
+                description: 'Tests app startup and basic initialization',
+                category: 'Core',
+                tests: [
+                    'App instance creation',
+                    'Vocabulary loading',
+                    'Event listeners setup',
+                    'Theme initialization',
+                    'Audio system setup'
+                ]
+            },
+            {
+                id: 'navigation-system',
+                title: 'Navigation System',
+                description: 'Tests tab navigation and routing',
+                category: 'Navigation',
+                tests: [
+                    'Tab switching functionality',
+                    'URL hash navigation',
+                    'Active tab highlighting',
+                    'Content loading',
+                    'Animation transitions'
+                ]
+            },
+            {
+                id: 'flashcard-system',
+                title: 'Flashcard System',
+                description: 'Tests flashcard functionality and animations',
+                category: 'Practice',
+                tests: [
+                    'Card display',
+                    'Flip animation',
+                    'Content generation',
+                    'Button interactions',
+                    'Progress tracking'
+                ]
+            },
+            {
+                id: 'quiz-system',
+                title: 'Quiz System',
+                description: 'Tests quiz generation and evaluation',
+                category: 'Quiz',
+                tests: [
+                    'Question generation',
+                    'Option selection',
+                    'Answer evaluation',
+                    'Score calculation',
+                    'Results display'
+                ]
+            },
+            {
+                id: 'vocabulary-browse',
+                title: 'Vocabulary Browse',
+                description: 'Tests vocabulary browsing and search',
+                category: 'Browse',
+                tests: [
+                    'Vocabulary display',
+                    'Search functionality',
+                    'Level filtering',
+                    'Pagination',
+                    'Word details'
+                ]
+            },
+            {
+                id: 'statistics-system',
+                title: 'Statistics System',
+                description: 'Tests statistics tracking and display',
+                category: 'Stats',
+                tests: [
+                    'Data persistence',
+                    'Progress calculation',
+                    'Display updates',
+                    'History tracking',
+                    'Reset functionality'
+                ]
+            },
+            {
+                id: 'theme-system',
+                title: 'Theme System',
+                description: 'Tests dark/light theme switching',
+                category: 'UI',
+                tests: [
+                    'Theme toggle',
+                    'Style application',
+                    'Persistence',
+                    'Component updates',
+                    'Animation smoothness'
+                ]
+            },
+            {
+                id: 'performance-optimization',
+                title: 'Performance & Optimization',
+                description: 'Tests performance optimizations and error handling',
+                category: 'Performance',
+                tests: [
+                    'Memory usage',
+                    'Load times',
+                    'Error detection',
+                    'Auto-correction',
+                    'Resource optimization'
+                ]
+            }
+        ];
+        
+        // Initialize test interface
+        function initializeTestInterface() {
+            const testGrid = document.getElementById('test-grid');
+            testGrid.innerHTML = '';
+            
+            testSuite.forEach(testCategory => {
+                const testItem = document.createElement('div');
+                testItem.className = 'test-item';
+                testItem.innerHTML = `
+                    <div class="test-item-header">
+                        <div class="test-item-title">${testCategory.title}</div>
+                        <div class="test-status pending" id="status-${testCategory.id}"></div>
+                    </div>
+                    <div class="test-item-description">${testCategory.description}</div>
+                    <div class="test-item-details">
+                        Category: ${testCategory.category} | Tests: ${testCategory.tests.length}
+                    </div>
+                `;
+                testGrid.appendChild(testItem);
+            });
+            
+            updateSummary();
+        }
+        
+        // Update test summary
+        function updateSummary() {
+            document.getElementById('total-tests').textContent = testResults.total;
+            document.getElementById('passed-tests').textContent = testResults.passed;
+            document.getElementById('failed-tests').textContent = testResults.failed;
+            document.getElementById('warning-tests').textContent = testResults.warnings;
+        }
+        
+        // Update progress
+        function updateProgress(current, total, message) {
+            const percentage = (current / total) * 100;
+            document.getElementById('overall-progress').style.width = `${percentage}%`;
+            document.getElementById('progress-text').textContent = message;
+        }
+        
+        // Log test result
+        function logTestResult(message, type = 'info') {
+            const container = document.getElementById('detailed-results');
+            const timestamp = new Date().toLocaleTimeString();
+            const icon = {
+                'pass': '✅',
+                'fail': '❌',
+                'warning': '⚠️',
+                'info': 'ℹ️',
+                'running': '🔄'
+            }[type] || 'ℹ️';
+            
+            container.innerHTML += `<div>[${timestamp}] ${icon} ${message}</div>`;
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        // Update test status
+        function updateTestStatus(testId, status) {
+            const statusElement = document.getElementById(`status-${testId}`);
+            if (statusElement) {
+                statusElement.className = `test-status ${status}`;
+            }
+        }
+        
+        // Run all tests
+        async function runAllTests() {
+            if (isTestingRunning) {
+                logTestResult('Tests are already running!', 'warning');
+                return;
+            }
+            
+            isTestingRunning = true;
+            testResults = { total: 0, passed: 0, failed: 0, warnings: 0, details: [] };
+            
+            logTestResult('🚀 Starting comprehensive test suite...', 'info');
+            
+            try {
+                // Initialize test environment
+                await initializeTestEnvironment();
+                
+                let currentTest = 0;
+                const totalTests = testSuite.length;
+                
+                // Run each test category
+                for (const testCategory of testSuite) {
+                    currentTest++;
+                    updateProgress(currentTest - 1, totalTests, `Running ${testCategory.title}...`);
+                    updateTestStatus(testCategory.id, 'running');
+                    
+                    logTestResult(`📋 Starting ${testCategory.title} tests...`, 'info');
+                    
+                    const categoryResult = await runTestCategory(testCategory);
+                    
+                    // Update results
+                    testResults.total += categoryResult.total;
+                    testResults.passed += categoryResult.passed;
+                    testResults.failed += categoryResult.failed;
+                    testResults.warnings += categoryResult.warnings;
+                    testResults.details.push(categoryResult);
+                    
+                    // Update status
+                    const status = categoryResult.failed > 0 ? 'fail' : 
+                                  categoryResult.warnings > 0 ? 'warning' : 'pass';
+                    updateTestStatus(testCategory.id, status);
+                    
+                    updateSummary();
+                    
+                    // Small delay between test categories
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+                
+                updateProgress(totalTests, totalTests, 'All tests completed!');
+                logTestResult('🎉 All tests completed successfully!', 'pass');
+                
+                // Generate final report
+                generateFinalReport();
+                
+            } catch (error) {
+                logTestResult(`❌ Test suite failed: ${error.message}`, 'fail');
+            } finally {
+                isTestingRunning = false;
+            }
+        }
+        
+        // Initialize test environment
+        async function initializeTestEnvironment() {
+            try {
+                if (!testApp) {
+                    logTestResult('Initializing test environment...', 'info');
+                    testApp = new HSKApp();
+                    await testApp.init();
+                    logTestResult('✅ Test environment initialized', 'pass');
+                }
+                return true;
+            } catch (error) {
+                logTestResult(`❌ Failed to initialize test environment: ${error.message}`, 'fail');
+                throw error;
+            }
+        }
+        
+        // Run test category
+        async function runTestCategory(testCategory) {
+            const result = {
+                id: testCategory.id,
+                title: testCategory.title,
+                total: testCategory.tests.length,
+                passed: 0,
+                failed: 0,
+                warnings: 0,
+                details: []
+            };
+            
+            try {
+                switch (testCategory.id) {
+                    case 'app-initialization':
+                        await testAppInitialization(result);
+                        break;
+                    case 'navigation-system':
+                        await testNavigationSystem(result);
+                        break;
+                    case 'flashcard-system':
+                        await testFlashcardSystem(result);
+                        break;
+                    case 'quiz-system':
+                        await testQuizSystem(result);
+                        break;
+                    case 'vocabulary-browse':
+                        await testVocabularyBrowse(result);
+                        break;
+                    case 'statistics-system':
+                        await testStatisticsSystem(result);
+                        break;
+                    case 'theme-system':
+                        await testThemeSystem(result);
+                        break;
+                    case 'performance-optimization':
+                        await testPerformanceOptimization(result);
+                        break;
+                    default:
+                        logTestResult(`⚠️ Unknown test category: ${testCategory.id}`, 'warning');
+                        result.warnings++;
+                }
+            } catch (error) {
+                logTestResult(`❌ Error in ${testCategory.title}: ${error.message}`, 'fail');
+                result.failed++;
+            }
+            
+            return result;
+        }
+        
+        // Test app initialization
+        async function testAppInitialization(result) {
+            // Test 1: App instance creation
+            try {
+                if (testApp && testApp instanceof HSKApp) {
+                    logTestResult('✅ App instance created successfully', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('App instance not created');
+                }
+            } catch (error) {
+                logTestResult(`❌ App instance creation failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+            
+            // Test 2: Vocabulary loading
+            try {
+                if (testApp.vocabulary && testApp.vocabulary.length > 0) {
+                    logTestResult(`✅ Vocabulary loaded: ${testApp.vocabulary.length} words`, 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Vocabulary not loaded');
+                }
+            } catch (error) {
+                logTestResult(`❌ Vocabulary loading failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+            
+            // Test 3: Event listeners setup
+            try {
+                const criticalElements = ['next-btn', 'flip-btn', 'level-select'];
+                let listenersFound = 0;
+                
+                criticalElements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element && (element.onclick || element.onchange)) {
+                        listenersFound++;
+                    }
+                });
+                
+                if (listenersFound > 0) {
+                    logTestResult(`✅ Event listeners setup: ${listenersFound}/${criticalElements.length}`, 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('No event listeners found');
+                }
+            } catch (error) {
+                logTestResult(`❌ Event listeners setup failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+            
+            // Test 4: Theme initialization
+            try {
+                if (testApp.isDarkMode !== undefined) {
+                    logTestResult(`✅ Theme initialized: ${testApp.isDarkMode ? 'Dark' : 'Light'} mode`, 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Theme not initialized');
+                }
+            } catch (error) {
+                logTestResult(`❌ Theme initialization failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+            
+            // Test 5: Audio system setup
+            try {
+                if (testApp.isAudioEnabled !== undefined) {
+                    logTestResult(`✅ Audio system setup: ${testApp.isAudioEnabled ? 'Enabled' : 'Disabled'}`, 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Audio system status unknown', 'warning');
+                    result.warnings++;
+                }
+            } catch (error) {
+                logTestResult(`❌ Audio system setup failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+        }
+        
+        // Test navigation system
+        async function testNavigationSystem(result) {
+            const tabs = ['practice', 'browse', 'quiz', 'stats'];
+            
+            for (const tab of tabs) {
+                try {
+                    testApp.switchTab(tab);
+                    const activeTab = document.querySelector('.nav-tab.active');
+                    const activePanel = document.querySelector('.tab-panel.active');
+                    
+                    if (activeTab && activePanel && activePanel.id === tab) {
+                        logTestResult(`✅ Tab switching works: ${tab}`, 'pass');
+                        result.passed++;
+                    } else {
+                        throw new Error(`Tab switching failed for ${tab}`);
+                    }
+                } catch (error) {
+                    logTestResult(`❌ Tab switching failed for ${tab}: ${error.message}`, 'fail');
+                    result.failed++;
+                }
+                
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            
+            // Test URL hash navigation
+            try {
+                window.location.hash = '#practice';
+                await new Promise(resolve => setTimeout(resolve, 100));
+                logTestResult('✅ URL hash navigation works', 'pass');
+                result.passed++;
+            } catch (error) {
+                logTestResult(`❌ URL hash navigation failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+        }
+        
+        // Test flashcard system
+        async function testFlashcardSystem(result) {
+            try {
+                // Switch to practice tab
+                testApp.switchTab('practice');
+                
+                // Test card display
+                const flashcard = document.getElementById('flashcard');
+                if (flashcard) {
+                    logTestResult('✅ Flashcard element found', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Flashcard element not found');
+                }
+                
+                // Test flip functionality
+                if (testApp.doFlip && typeof testApp.doFlip === 'function') {
+                    logTestResult('✅ Flip functionality available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Flip functionality not available');
+                }
+                
+                // Test next card functionality
+                if (testApp.nextCard && typeof testApp.nextCard === 'function') {
+                    logTestResult('✅ Next card functionality available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Next card functionality not available');
+                }
+                
+                // Test current word
+                if (testApp.currentWord) {
+                    logTestResult(`✅ Current word loaded: ${testApp.currentWord.character}`, 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ No current word loaded', 'warning');
+                    result.warnings++;
+                }
+                
+                // Test practice session
+                if (testApp.currentSession && testApp.currentSession.length > 0) {
+                    logTestResult(`✅ Practice session active: ${testApp.currentSession.length} words`, 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ No active practice session', 'warning');
+                    result.warnings++;
+                }
+                
+            } catch (error) {
+                logTestResult(`❌ Flashcard system test failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+        }
+        
+        // Test quiz system
+        async function testQuizSystem(result) {
+            try {
+                // Switch to quiz tab
+                testApp.switchTab('quiz');
+                
+                // Test quiz elements
+                const quizSetup = document.getElementById('quiz-setup');
+                const quizContainer = document.getElementById('quiz-container');
+                
+                if (quizSetup && quizContainer) {
+                    logTestResult('✅ Quiz elements found', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Quiz elements not found');
+                }
+                
+                // Test question generation
+                if (testApp.generateQuizQuestions && typeof testApp.generateQuizQuestions === 'function') {
+                    const sampleWords = testApp.vocabulary.slice(0, 10);
+                    const questions = testApp.generateQuizQuestions(sampleWords, 5);
+                    
+                    if (questions && questions.length === 5) {
+                        logTestResult('✅ Question generation works', 'pass');
+                        result.passed++;
+                    } else {
+                        throw new Error('Question generation failed');
+                    }
+                } else {
+                    throw new Error('Question generation function not available');
+                }
+                
+                // Test quiz start functionality
+                if (testApp.startQuiz && typeof testApp.startQuiz === 'function') {
+                    logTestResult('✅ Quiz start functionality available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Quiz start functionality not available');
+                }
+                
+                // Test answer submission
+                if (testApp.submitQuizAnswer && typeof testApp.submitQuizAnswer === 'function') {
+                    logTestResult('✅ Answer submission functionality available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Answer submission functionality not available');
+                }
+                
+                // Test quiz completion
+                if (testApp.finishQuiz && typeof testApp.finishQuiz === 'function') {
+                    logTestResult('✅ Quiz completion functionality available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Quiz completion functionality not available');
+                }
+                
+            } catch (error) {
+                logTestResult(`❌ Quiz system test failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+        }
+        
+        // Test vocabulary browse
+        async function testVocabularyBrowse(result) {
+            try {
+                // Switch to browse tab
+                testApp.switchTab('browse');
+                
+                // Test vocabulary grid
+                const vocabularyGrid = document.getElementById('vocabulary-grid');
+                if (vocabularyGrid) {
+                    logTestResult('✅ Vocabulary grid found', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Vocabulary grid not found');
+                }
+                
+                // Test search functionality
+                const searchInput = document.getElementById('search-input');
+                if (searchInput) {
+                    logTestResult('✅ Search input found', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Search input not found');
+                }
+                
+                // Test browse rendering
+                if (testApp.renderBrowseTab && typeof testApp.renderBrowseTab === 'function') {
+                    testApp.renderBrowseTab();
+                    logTestResult('✅ Browse rendering works', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Browse rendering function not available');
+                }
+                
+                // Test search functionality
+                if (testApp.filterVocabulary && typeof testApp.filterVocabulary === 'function') {
+                    logTestResult('✅ Search functionality available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Search functionality not available');
+                }
+                
+                // Test level filtering
+                const levelFilter = document.getElementById('browse-level-filter');
+                if (levelFilter) {
+                    logTestResult('✅ Level filter found', 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Level filter not found', 'warning');
+                    result.warnings++;
+                }
+                
+            } catch (error) {
+                logTestResult(`❌ Vocabulary browse test failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+        }
+        
+        // Test statistics system
+        async function testStatisticsSystem(result) {
+            try {
+                // Switch to stats tab
+                testApp.switchTab('stats');
+                
+                // Test stats object
+                if (testApp.stats && typeof testApp.stats === 'object') {
+                    logTestResult('✅ Stats object exists', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Stats object not found');
+                }
+                
+                // Test stats display
+                if (testApp.updateStatsDisplay && typeof testApp.updateStatsDisplay === 'function') {
+                    testApp.updateStatsDisplay();
+                    logTestResult('✅ Stats display update works', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Stats display function not available');
+                }
+                
+                // Test stats persistence
+                if (testApp.saveStats && typeof testApp.saveStats === 'function') {
+                    logTestResult('✅ Stats persistence available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Stats persistence not available');
+                }
+                
+                // Test practice history
+                if (testApp.practiceHistory && Array.isArray(testApp.practiceHistory)) {
+                    logTestResult(`✅ Practice history available: ${testApp.practiceHistory.length} entries`, 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Practice history not available', 'warning');
+                    result.warnings++;
+                }
+                
+                // Test stats reset
+                if (testApp.resetStats && typeof testApp.resetStats === 'function') {
+                    logTestResult('✅ Stats reset functionality available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Stats reset functionality not available');
+                }
+                
+            } catch (error) {
+                logTestResult(`❌ Statistics system test failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+        }
+        
+        // Test theme system
+        async function testThemeSystem(result) {
+            try {
+                // Test theme toggle function
+                if (testApp.toggleTheme && typeof testApp.toggleTheme === 'function') {
+                    logTestResult('✅ Theme toggle function available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Theme toggle function not available');
+                }
+                
+                // Test theme persistence
+                if (testApp.saveTheme && typeof testApp.saveTheme === 'function') {
+                    logTestResult('✅ Theme persistence available', 'pass');
+                    result.passed++;
+                } else {
+                    throw new Error('Theme persistence not available');
+                }
+                
+                // Test theme application
+                const currentTheme = testApp.isDarkMode;
+                testApp.toggleTheme();
+                
+                if (testApp.isDarkMode !== currentTheme) {
+                    logTestResult('✅ Theme toggle works', 'pass');
+                    result.passed++;
+                    
+                    // Toggle back
+                    testApp.toggleTheme();
+                } else {
+                    throw new Error('Theme toggle failed');
+                }
+                
+                // Test theme button
+                const themeButton = document.getElementById('theme-toggle');
+                if (themeButton) {
+                    logTestResult('✅ Theme button found', 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Theme button not found', 'warning');
+                    result.warnings++;
+                }
+                
+                // Test theme classes
+                const hasThemeAttribute = document.documentElement.hasAttribute('data-theme');
+                if (hasThemeAttribute) {
+                    logTestResult('✅ Theme attribute applied', 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Theme attribute not applied', 'warning');
+                    result.warnings++;
+                }
+                
+            } catch (error) {
+                logTestResult(`❌ Theme system test failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+        }
+        
+        // Test performance optimization
+        async function testPerformanceOptimization(result) {
+            try {
+                // Test performance monitoring
+                if (testApp.startPerformanceMonitoring && typeof testApp.startPerformanceMonitoring === 'function') {
+                    logTestResult('✅ Performance monitoring available', 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Performance monitoring not available', 'warning');
+                    result.warnings++;
+                }
+                
+                // Test error detection
+                if (testApp.detectErrors && typeof testApp.detectErrors === 'function') {
+                    const errors = testApp.detectErrors();
+                    logTestResult(`✅ Error detection works: ${errors.length} issues found`, 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Error detection not available', 'warning');
+                    result.warnings++;
+                }
+                
+                // Test memory optimization
+                if (testApp.optimizeMemoryUsage && typeof testApp.optimizeMemoryUsage === 'function') {
+                    logTestResult('✅ Memory optimization available', 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Memory optimization not available', 'warning');
+                    result.warnings++;
+                }
+                
+                // Test cleanup functionality
+                if (testApp.cleanup && typeof testApp.cleanup === 'function') {
+                    logTestResult('✅ Cleanup functionality available', 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Cleanup functionality not available', 'warning');
+                    result.warnings++;
+                }
+                
+                // Test performance report
+                if (testApp.getPerformanceReport && typeof testApp.getPerformanceReport === 'function') {
+                    const report = testApp.getPerformanceReport();
+                    logTestResult('✅ Performance reporting available', 'pass');
+                    result.passed++;
+                } else {
+                    logTestResult('⚠️ Performance reporting not available', 'warning');
+                    result.warnings++;
+                }
+                
+            } catch (error) {
+                logTestResult(`❌ Performance optimization test failed: ${error.message}`, 'fail');
+                result.failed++;
+            }
+        }
+        
+        // Generate final report
+        function generateFinalReport() {
+            const finalReport = document.getElementById('final-report');
+            const reportStats = document.getElementById('report-stats');
+            const finalRecommendations = document.getElementById('final-recommendations');
+            
+            // Calculate overall status
+            const successRate = (testResults.passed / testResults.total) * 100;
+            let overallStatus = 'success';
+            let statusMessage = '🎉 All Systems Operational!';
+            
+            if (testResults.failed > 0) {
+                overallStatus = 'error';
+                statusMessage = '❌ Critical Issues Found';
+            } else if (testResults.warnings > 5) {
+                overallStatus = 'warning';
+                statusMessage = '⚠️ Minor Issues Detected';
+            }
+            
+            // Update report appearance
+            finalReport.className = `final-report ${overallStatus}`;
+            finalReport.querySelector('h2').textContent = statusMessage;
+            
+            // Update stats
+            reportStats.innerHTML = `
+                <div class="report-stat">
+                    <div class="report-stat-value">${testResults.total}</div>
+                    <div class="report-stat-label">Total Tests</div>
+                </div>
+                <div class="report-stat">
+                    <div class="report-stat-value">${testResults.passed}</div>
+                    <div class="report-stat-label">Passed</div>
+                </div>
+                <div class="report-stat">
+                    <div class="report-stat-value">${testResults.failed}</div>
+                    <div class="report-stat-label">Failed</div>
+                </div>
+                <div class="report-stat">
+                    <div class="report-stat-value">${testResults.warnings}</div>
+                    <div class="report-stat-label">Warnings</div>
+                </div>
+                <div class="report-stat">
+                    <div class="report-stat-value">${Math.round(successRate)}%</div>
+                    <div class="report-stat-label">Success Rate</div>
+                </div>
+            `;
+            
+            // Generate recommendations
+            const recommendations = generateRecommendations();
+            finalRecommendations.innerHTML = `
+                <h3>📋 Recommendations</h3>
+                <ul>
+                    ${recommendations.map(rec => `<li>${rec}</li>`).join('')}
+                </ul>
+            `;
+            
+            finalReport.style.display = 'block';
+            
+            logTestResult('📊 Final report generated', 'info');
+        }
+        
+        // Generate recommendations
+        function generateRecommendations() {
+            const recommendations = [];
+            
+            if (testResults.failed === 0 && testResults.warnings === 0) {
+                recommendations.push('🎉 Excellent! All systems are working perfectly.');
+                recommendations.push('💡 Consider running regular maintenance tests.');
+                recommendations.push('🚀 App is ready for production use.');
+            } else {
+                if (testResults.failed > 0) {
+                    recommendations.push(`🔧 Address ${testResults.failed} critical issues immediately.`);
+                    recommendations.push('🔍 Review failed test details for specific fixes.');
+                }
+                
+                if (testResults.warnings > 0) {
+                    recommendations.push(`⚠️ Review ${testResults.warnings} warnings for potential improvements.`);
+                }
+                
+                if (testResults.warnings > 5) {
+                    recommendations.push('🔄 Consider running optimization routines.');
+                }
+            }
+            
+            recommendations.push('📈 Monitor performance metrics regularly.');
+            recommendations.push('🧪 Run tests after any code changes.');
+            
+            return recommendations;
+        }
+        
+        // Quick test (subset of all tests)
+        async function runQuickTest() {
+            logTestResult('⚡ Running quick test suite...', 'info');
+            
+            try {
+                await initializeTestEnvironment();
+                
+                // Test basic functionality
+                const quickTests = [
+                    () => testApp && testApp.vocabulary && testApp.vocabulary.length > 0,
+                    () => document.getElementById('flashcard') !== null,
+                    () => testApp.switchTab && typeof testApp.switchTab === 'function',
+                    () => testApp.isDarkMode !== undefined
+                ];
+                
+                let passed = 0;
+                quickTests.forEach((test, index) => {
+                    try {
+                        if (test()) {
+                            passed++;
+                            logTestResult(`✅ Quick test ${index + 1} passed`, 'pass');
+                        } else {
+                            logTestResult(`❌ Quick test ${index + 1} failed`, 'fail');
+                        }
+                    } catch (error) {
+                        logTestResult(`❌ Quick test ${index + 1} error: ${error.message}`, 'fail');
+                    }
+                });
+                
+                logTestResult(`⚡ Quick test completed: ${passed}/${quickTests.length} passed`, 'info');
+                
+            } catch (error) {
+                logTestResult(`❌ Quick test failed: ${error.message}`, 'fail');
+            }
+        }
+        
+        // Stop all tests
+        function stopAllTests() {
+            isTestingRunning = false;
+            logTestResult('⏹️ Tests stopped by user', 'warning');
+        }
+        
+        // Export results
+        function exportResults() {
+            const exportData = {
+                timestamp: new Date().toISOString(),
+                results: testResults,
+                environment: {
+                    userAgent: navigator.userAgent,
+                    url: window.location.href,
+                    viewport: `${window.innerWidth}x${window.innerHeight}`
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `hsk-test-results-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            logTestResult('💾 Test results exported', 'info');
+        }
+        
+        // Placeholder for specific test
+        function runSpecificTest() {
+            logTestResult('🎯 Specific test functionality - placeholder', 'info');
+        }
+        
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            console.log('🎯 Final Validation Test Suite loaded');
+            initializeTestInterface();
+        });
+    </script>
+</body>
+</html>

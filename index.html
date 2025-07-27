@@ -92,34 +92,58 @@
         <!-- Header -->
         <header class="app-header">
             <div class="header-content">
-                <div class="brand">
-                    <img src="logo_appLM.png" alt="HSK Learning Logo" class="logo" id="app-logo">
-                    <div class="brand-text">
-                        <h1 data-i18n="appTitle">HSK Learning</h1>
-                        <p data-i18n="appSubtitle">Learn Chinese characters, pinyin and translations</p>
+                <div class="header-left">
+                    <a href="#" class="app-logo">
+                        <img src="logo_appLM.png" alt="HSK Learning Logo" id="app-logo-img">
+                        <div class="app-title">
+                            <h1 data-i18n="appTitle">HSK Learning</h1>
+                            <p class="app-subtitle" data-i18n="appSubtitle">Master Chinese Characters</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="header-center">
+                    <div class="header-search">
+                        <span class="header-search-icon">🔍</span>
+                        <input 
+                            type="text" 
+                            class="header-search-input" 
+                            id="header-search"
+                            placeholder="Search characters, pinyin, or meaning..."
+                            data-i18n-placeholder="headerSearchPlaceholder"
+                        >
                     </div>
                 </div>
-                
-                <div class="header-controls">
-                    <select id="language-select" class="select-control" data-i18n-title="language">
-                        <option value="es">Español</option>
-                        <option value="en">English</option>
-                    </select>
-                    
-                    <button id="theme-toggle" class="btn-icon" data-i18n-title="themeToggle">
-                        <span class="theme-icon light-icon">☀️</span>
-                        <span class="theme-icon dark-icon">🌙</span>
-                    </button>
-                    
-                    <button id="audio-toggle" class="btn-icon" data-i18n-title="audioToggle">
-                        <span class="audio-icon">🔊</span>
-                    </button>
-                    
-                    <select id="voice-select" class="select-control" data-i18n-title="voiceSelect">
-                        <option value="auto" data-i18n="voiceAuto">Auto</option>
-                        <option value="male" data-i18n="voiceMale">Male</option>
-                        <option value="female" data-i18n="voiceFemale">Female</option>
-                    </select>
+                <div class="header-right">
+                    <div class="header-stats">
+                        <div class="header-stat">
+                            <div class="header-stat-value" id="header-studied">0</div>
+                            <div class="header-stat-label">Studied</div>
+                        </div>
+                        <div class="header-stat">
+                            <div class="header-stat-value" id="header-streak">0</div>
+                            <div class="header-stat-label">Streak</div>
+                        </div>
+                        <div class="header-stat">
+                            <div class="header-progress">
+                                <div class="header-progress-fill" id="header-progress" style="width: 0%"></div>
+                            </div>
+                            <div class="header-stat-label">Progress</div>
+                        </div>
+                    </div>
+                    <div class="header-controls">
+                        <select id="language-select" class="header-control" aria-label="Select Language">
+                            <option value="es">🇪🇸 ES</option>
+                            <option value="en">🇺🇸 EN</option>
+                        </select>
+                        <button id="theme-toggle" class="header-control" aria-label="Toggle theme" title="Toggle dark/light theme">
+                            <span class="light-icon">🌙</span>
+                            <span class="dark-icon">☀️</span>
+                        </button>
+                        <button id="audio-toggle" class="header-control" aria-label="Toggle audio" title="Toggle audio pronunciation">
+                            <span class="audio-on-icon">🔊</span>
+                            <span class="audio-off-icon">🔇</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
@@ -134,8 +158,34 @@
             </div>
         </nav>
 
-        <!-- Content Area -->
-        <main class="content-area">
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <div class="content-wrapper">
+                <!-- Welcome Message -->
+                <div class="welcome-message" id="welcome-message" style="display: none;">
+                    <div class="welcome-content">
+                        <h2>¡Bienvenido a HSK Learning!</h2>
+                        <p>Tu plataforma completa para aprender caracteres chinos</p>
+                        <div class="welcome-stats">
+                            <div class="welcome-stat">
+                                <span class="stat-number">5000+</span>
+                                <span class="stat-label">Caracteres</span>
+                            </div>
+                            <div class="welcome-stat">
+                                <span class="stat-number">6</span>
+                                <span class="stat-label">Niveles HSK</span>
+                            </div>
+                            <div class="welcome-stat">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">Modos de Práctica</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="document.getElementById('welcome-message').style.display='none'">
+                            Comenzar Aprendizaje
+                        </button>
+                    </div>
+                </div>
+                
             <!-- Practice Tab -->
             <div id="practice" class="tab-panel active">
                 <div class="practice-controls">
@@ -239,6 +289,8 @@
                         </select>
                     </div>
                 </div>
+                
+                <div class="browse-stats" id="browse-stats"></div>
                 
                 <div class="vocabulary-grid" id="vocabulary-grid">
                     <!-- Vocabulary cards will be populated here -->
@@ -345,6 +397,7 @@
                 
                 <button id="reset-stats" class="btn btn-error" data-i18n="resetStats">Reset Statistics</button>
             </div>
+            </div>
         </main>
 
         <!-- Footer -->
@@ -370,8 +423,8 @@
     <!-- Enhanced Initialization Script -->
     <script>
         // Enhanced app initialization with error handling
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 DOM loaded, initializing HSK Learning App...');
+        function initializeApp() {
+            console.log('🚀 Initializing HSK Learning App...');
             
             // Add loading indicator
             const loadingIndicator = document.createElement('div');
@@ -472,7 +525,15 @@
                     `;
                 }
             }
-        });
+        }
+        
+        // Wait for DOM and then initialize
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            // DOM is already loaded
+            initializeApp();
+        }
         
         // Global error handler
         window.addEventListener('error', function(event) {
