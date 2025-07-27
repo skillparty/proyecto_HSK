@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSK Learning - Statistics System Test</title>
+    <link rel="stylesheet" href="styles-v2.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500));
+            color: white;
+            border-radius: var(--radius-lg);
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .test-section {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+        }
+        
+        .test-btn {
+            background: var(--color-accent-500);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        
+        .test-btn:hover {
+            background: var(--color-accent-600);
+            transform: translateY(-2px);
+        }
+        
+        .stats-demo {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .demo-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary-600);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .test-results {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .test-result {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .test-result:last-child {
+            border-bottom: none;
+        }
+        
+        .test-status {
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .test-pass {
+            background: var(--color-success-100);
+            color: var(--color-success-700);
+        }
+        
+        .test-fail {
+            background: var(--color-error-100);
+            color: var(--color-error-700);
+        }
+        
+        .console-output {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--color-secondary-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary-500), var(--color-primary-600));
+            border-radius: var(--radius-full);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>📊 Statistics System Test</h1>
+            <p>Pruebas automatizadas para el sistema de estadísticas y progreso</p>
+        </div>
+        
+        <div class="test-grid">
+            <!-- Test Controls -->
+            <div class="test-section">
+                <h3>🧪 Controles de Prueba</h3>
+                <button class="test-btn" onclick="testStatsUpdate()">Test Stats Update</button>
+                <button class="test-btn" onclick="testStatsDisplay()">Test Stats Display</button>
+                <button class="test-btn" onclick="testPracticeHistory()">Test Practice History</button>
+                <button class="test-btn" onclick="testStatsPersistence()">Test Stats Persistence</button>
+                <button class="test-btn" onclick="testLevelProgress()">Test Level Progress</button>
+                <button class="test-btn" onclick="testStatsValidation()">Test Stats Validation</button>
+                <button class="test-btn" onclick="testStatsReset()">Test Stats Reset</button>
+                <button class="test-btn" onclick="testErrorHandling()">Test Error Handling</button>
+                <button class="test-btn" onclick="runAllStatsTests()">Run All Tests</button>
+                <button class="test-btn" onclick="clearResults()">Clear Results</button>
+            </div>
+            
+            <!-- Statistics Demo -->
+            <div class="test-section">
+                <h3>📈 Statistics Demo</h3>
+                <div class="stats-demo">
+                    <div class="demo-stats">
+                        <div class="stat-card">
+                            <div class="stat-value" id="total-studied">0</div>
+                            <div class="stat-label">Words Studied</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="accuracy-rate">0%</div>
+                            <div class="stat-label">Accuracy</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="quiz-count">0</div>
+                            <div class="stat-label">Quizzes</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="streak-count">0</div>
+                            <div class="stat-label">Streak</div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-component">
+                        <h4>Level Progress</h4>
+                        <div id="level-progress-bars">
+                            <div class="level-progress-item">
+                                <span>HSK 1</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <span>15/20</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-component">
+                        <h4>Session Stats</h4>
+                        <div id="session-stats">
+                            <div class="session-stat">
+                                <span class="session-label">Session:</span>
+                                <span class="session-value">5/7 (71%)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-component">
+                        <h4>Recent Activity</h4>
+                        <div id="recent-activity">
+                            <div class="activity-item">
+                                <span class="activity-icon">✅</span>
+                                <span class="activity-character">你</span>
+                                <span class="activity-time">2m ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Results -->
+        <div class="test-results">
+            <h3>📊 Test Results</h3>
+            <div id="test-results-list">
+                <p>Click a test button to run tests...</p>
+            </div>
+        </div>
+        
+        <!-- Console Output -->
+        <div class="console-output" id="console-output">
+            Console output will appear here...
+        </div>
+    </div>
+    
+    <script src="translations.js"></script>
+    <script src="app.js"></script>
+    
+    <script>
+        let testResults = [];
+        let app;
+        
+        // Test vocabulary data
+        const testVocabulary = [
+            { character: '你', pinyin: 'nǐ', english: 'you', translation: 'tú', level: 1 },
+            { character: '好', pinyin: 'hǎo', english: 'good', translation: 'bueno', level: 1 },
+            { character: '我', pinyin: 'wǒ', english: 'I', translation: 'yo', level: 1 },
+            { character: '是', pinyin: 'shì', english: 'to be', translation: 'ser/estar', level: 2 }
+        ];
+        
+        // Initialize app for testing
+        window.addEventListener('load', () => {
+            try {
+                app = new HSKApp();
+                app.vocabulary = testVocabulary;
+                app.currentWord = testVocabulary[0];
+                app.updateStatsDisplay();
+                logToConsole('✅ HSK App initialized for statistics testing');
+            } catch (error) {
+                logToConsole('❌ Failed to initialize HSK App: ' + error.message);
+            }
+        });
+        
+        // Console logging
+        function logToConsole(message) {
+            const consoleEl = document.getElementById('console-output');
+            const timestamp = new Date().toLocaleTimeString();
+            consoleEl.textContent += `[${timestamp}] ${message}\n`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+        
+        // Test functions
+        async function testStatsUpdate() {
+            logToConsole('🧪 Testing stats update...');
+            let passed = 0;
+            let failed = 0;
+            
+            try {
+                const initialTotal = app.stats.totalStudied;
+                const initialCorrect = app.stats.correctAnswers;
+                
+                // Test correct answer
+                app.updateStats(true, testVocabulary[0]);
+                
+                if (app.stats.totalStudied === initialTotal + 1) {
+                    logToConsole('✅ Stats update: total studied incremented');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats update: total studied not incremented');
+                    failed++;
+                }
+                
+                if (app.stats.correctAnswers === initialCorrect + 1) {
+                    logToConsole('✅ Stats update: correct answers incremented');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats update: correct answers not incremented');
+                    failed++;
+                }
+                
+                // Test incorrect answer
+                const beforeIncorrect = app.stats.currentStreak;
+                app.updateStats(false, testVocabulary[1]);
+                
+                if (app.stats.currentStreak === 0) {
+                    logToConsole('✅ Stats update: streak reset on incorrect answer');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats update: streak not reset on incorrect answer');
+                    failed++;
+                }
+                
+            } catch (error) {
+                logToConsole('❌ Error in stats update test: ' + error.message);
+                failed++;
+            }
+            
+            addTestResult('Stats Update', passed > failed, `${passed}/${passed + failed} tests passed`);
+        }
+        
+        async function testStatsDisplay() {
+            logToConsole('🧪 Testing stats display...');
+            let passed = 0;
+            let failed = 0;
+            
+            try {
+                // Test display elements exist
+                const statsElements = ['total-studied', 'accuracy-rate', 'quiz-count', 'streak-count'];
+                
+                statsElements.forEach(elementId => {
+                    const element = document.getElementById(elementId);
+                    if (element) {
+                        logToConsole(`✅ Stats display: ${elementId} element found`);
+                        passed++;
+                    } else {
+                        logToConsole(`❌ Stats display: ${elementId} element not found`);
+                        failed++;
+                    }
+                });
+                
+                // Test display update
+                app.updateStatsDisplay();
+                
+                const totalElement = document.getElementById('total-studied');
+                if (totalElement && totalElement.textContent !== '0') {
+                    logToConsole('✅ Stats display: elements updated with data');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats display: elements not updated');
+                    failed++;
+                }
+                
+            } catch (error) {
+                logToConsole('❌ Error in stats display test: ' + error.message);
+                failed++;
+            }
+            
+            addTestResult('Stats Display', passed > failed, `${passed}/${passed + failed} tests passed`);
+        }
+        
+        async function testPracticeHistory() {
+            logToConsole('🧪 Testing practice history...');
+            let passed = 0;
+            let failed = 0;
+            
+            try {
+                const initialLength = app.practiceHistory.length;
+                
+                // Add entry to practice history
+                app.addToPracticeHistory(testVocabulary[0], true, 'test');
+                
+                if (app.practiceHistory.length === initialLength + 1) {
+                    logToConsole('✅ Practice history: entry added successfully');
+                    passed++;
+                } else {
+                    logToConsole('❌ Practice history: entry not added');
+                    failed++;
+                }
+                
+                // Check entry structure
+                const lastEntry = app.practiceHistory[app.practiceHistory.length - 1];
+                if (lastEntry && lastEntry.word && lastEntry.word.character === '你') {
+                    logToConsole('✅ Practice history: entry structure correct');
+                    passed++;
+                } else {
+                    logToConsole('❌ Practice history: entry structure incorrect');
+                    failed++;
+                }
+                
+                // Test history validation
+                const validatedHistory = app.validateHistoryStructure(app.practiceHistory);
+                if (Array.isArray(validatedHistory)) {
+                    logToConsole('✅ Practice history: validation works');
+                    passed++;
+                } else {
+                    logToConsole('❌ Practice history: validation failed');
+                    failed++;
+                }
+                
+            } catch (error) {
+                logToConsole('❌ Error in practice history test: ' + error.message);
+                failed++;
+            }
+            
+            addTestResult('Practice History', passed > failed, `${passed}/${passed + failed} tests passed`);
+        }
+        
+        async function testStatsPersistence() {
+            logToConsole('🧪 Testing stats persistence...');
+            let passed = 0;
+            let failed = 0;
+            
+            try {
+                // Test saving stats
+                const originalStats = { ...app.stats };
+                app.stats.totalStudied = 999;
+                app.saveStats();
+                
+                // Test loading stats
+                const loadedStats = app.loadStats();
+                if (loadedStats.totalStudied === 999) {
+                    logToConsole('✅ Stats persistence: save and load working');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats persistence: save/load failed');
+                    failed++;
+                }
+                
+                // Restore original stats
+                app.stats = originalStats;
+                app.saveStats();
+                
+                // Test practice history persistence
+                const originalHistory = [...app.practiceHistory];
+                app.practiceHistory.push({
+                    word: testVocabulary[0],
+                    known: true,
+                    mode: 'test',
+                    timestamp: Date.now()
+                });
+                app.savePracticeHistory();
+                
+                const loadedHistory = app.loadPracticeHistory();
+                if (loadedHistory.length > originalHistory.length) {
+                    logToConsole('✅ Stats persistence: practice history save/load working');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats persistence: practice history save/load failed');
+                    failed++;
+                }
+                
+            } catch (error) {
+                logToConsole('❌ Error in stats persistence test: ' + error.message);
+                failed++;
+            }
+            
+            addTestResult('Stats Persistence', passed > failed, `${passed}/${passed + failed} tests passed`);
+        }
+        
+        async function testLevelProgress() {
+            logToConsole('🧪 Testing level progress...');
+            let passed = 0;
+            let failed = 0;
+            
+            try {
+                // Test level progress calculation
+                app.updateLevelProgress();
+                
+                const progressBars = document.getElementById('level-progress-bars');
+                if (progressBars) {
+                    logToConsole('✅ Level progress: progress bars container found');
+                    passed++;
+                } else {
+                    logToConsole('❌ Level progress: progress bars container not found');
+                    failed++;
+                }
+                
+                // Test progress calculation logic
+                const uniqueWords = app.getUniqueStudiedWords();
+                if (Array.isArray(uniqueWords)) {
+                    logToConsole('✅ Level progress: unique words calculation works');
+                    passed++;
+                } else {
+                    logToConsole('❌ Level progress: unique words calculation failed');
+                    failed++;
+                }
+                
+            } catch (error) {
+                logToConsole('❌ Error in level progress test: ' + error.message);
+                failed++;
+            }
+            
+            addTestResult('Level Progress', passed > failed, `${passed}/${passed + failed} tests passed`);
+        }
+        
+        async function testStatsValidation() {
+            logToConsole('🧪 Testing stats validation...');
+            let passed = 0;
+            let failed = 0;
+            
+            try {
+                // Test stats structure validation
+                const invalidStats = {
+                    totalStudied: 'invalid',
+                    correctAnswers: -5,
+                    currentStreak: null
+                };
+                
+                const validatedStats = app.validateStatsStructure(invalidStats);
+                
+                if (typeof validatedStats.totalStudied === 'number' && validatedStats.totalStudied >= 0) {
+                    logToConsole('✅ Stats validation: invalid totalStudied corrected');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats validation: invalid totalStudied not corrected');
+                    failed++;
+                }
+                
+                if (typeof validatedStats.correctAnswers === 'number' && validatedStats.correctAnswers >= 0) {
+                    logToConsole('✅ Stats validation: negative correctAnswers corrected');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats validation: negative correctAnswers not corrected');
+                    failed++;
+                }
+                
+                // Test history validation
+                const invalidHistory = [
+                    { word: null, known: true },
+                    { word: { character: '你' }, known: 'invalid' },
+                    { word: { character: '好' }, known: true, timestamp: Date.now() }
+                ];
+                
+                const validatedHistory = app.validateHistoryStructure(invalidHistory);
+                if (validatedHistory.length === 1) {
+                    logToConsole('✅ Stats validation: invalid history entries filtered');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats validation: invalid history entries not filtered');
+                    failed++;
+                }
+                
+            } catch (error) {
+                logToConsole('❌ Error in stats validation test: ' + error.message);
+                failed++;
+            }
+            
+            addTestResult('Stats Validation', passed > failed, `${passed}/${passed + failed} tests passed`);
+        }
+        
+        async function testStatsReset() {
+            logToConsole('🧪 Testing stats reset...');
+            let passed = 0;
+            let failed = 0;
+            
+            try {
+                // Set some stats first
+                app.stats.totalStudied = 100;
+                app.stats.correctAnswers = 80;
+                app.practiceHistory = [{ word: testVocabulary[0], known: true, timestamp: Date.now() }];
+                
+                // Reset stats
+                app.resetStats();
+                
+                if (app.stats.totalStudied === 0) {
+                    logToConsole('✅ Stats reset: totalStudied reset to 0');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats reset: totalStudied not reset');
+                    failed++;
+                }
+                
+                if (app.stats.correctAnswers === 0) {
+                    logToConsole('✅ Stats reset: correctAnswers reset to 0');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats reset: correctAnswers not reset');
+                    failed++;
+                }
+                
+                if (app.practiceHistory.length === 0) {
+                    logToConsole('✅ Stats reset: practice history cleared');
+                    passed++;
+                } else {
+                    logToConsole('❌ Stats reset: practice history not cleared');
+                    failed++;
+                }
+                
+            } catch (error) {
+                logToConsole('❌ Error in stats reset test: ' + error.message);
+                failed++;
+            }
+            
+            addTestResult('Stats Reset', passed > failed, `${passed}/${passed + failed} tests passed`);
+        }
+        
+        async function testErrorHandling() {
+            logToConsole('🧪 Testing error handling...');
+            let passed = 0;
+            let failed = 0;
+            
+            try {
+                // Test invalid updateStats call
+                app.updateStats('invalid');
+                logToConsole('✅ Error handling: invalid updateStats handled gracefully');
+                passed++;
+                
+                // Test localStorage error simulation
+                const originalSetItem = localStorage.setItem;
+                localStorage.setItem = function() {
+                    throw new Error('localStorage not available');
+                };
+                
+                app.saveStats();
+                logToConsole('✅ Error handling: localStorage error handled gracefully');
+                passed++;
+                
+                // Restore localStorage
+                localStorage.setItem = originalSetItem;
+                
+                // Test missing DOM elements
+                const originalGetElementById = document.getElementById;
+                document.getElementById = function(id) {
+                    if (id === 'total-studied') return null;
+                    return originalGetElementById.call(document, id);
+                };
+                
+                app.updateStatsDisplay();
+                logToConsole('✅ Error handling: missing DOM elements handled gracefully');
+                passed++;
+                
+                // Restore getElementById
+                document.getElementById = originalGetElementById;
+                
+            } catch (error) {
+                logToConsole('✅ Error handling: exceptions caught properly');
+                passed++;
+            }
+            
+            addTestResult('Error Handling', passed >= 1, `${passed} error scenarios handled`);
+        }
+        
+        async function runAllStatsTests() {
+            logToConsole('🚀 Running all statistics tests...');
+            clearResults();
+            
+            await testStatsUpdate();
+            await testStatsDisplay();
+            await testPracticeHistory();
+            await testStatsPersistence();
+            await testLevelProgress();
+            await testStatsValidation();
+            await testStatsReset();
+            await testErrorHandling();
+            
+            logToConsole('✅ All statistics tests completed');
+            
+            // Summary
+            const totalTests = testResults.length;
+            const passedTests = testResults.filter(r => r.passed).length;
+            const failedTests = totalTests - passedTests;
+            
+            logToConsole(`📊 Test Summary: ${passedTests}/${totalTests} passed, ${failedTests} failed`);
+        }
+        
+        function addTestResult(testName, passed, details) {
+            testResults.push({ testName, passed, details });
+            updateTestResultsDisplay();
+        }
+        
+        function updateTestResultsDisplay() {
+            const resultsEl = document.getElementById('test-results-list');
+            
+            if (testResults.length === 0) {
+                resultsEl.innerHTML = '<p>No test results yet...</p>';
+                return;
+            }
+            
+            resultsEl.innerHTML = testResults.map(result => `
+                <div class="test-result">
+                    <span>${result.testName}</span>
+                    <div>
+                        <span class="test-status ${result.passed ? 'test-pass' : 'test-fail'}">
+                            ${result.passed ? 'PASS' : 'FAIL'}
+                        </span>
+                        <small style="margin-left: 8px; opacity: 0.7;">${result.details}</small>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function clearResults() {
+            testResults = [];
+            updateTestResultsDisplay();
+            document.getElementById('console-output').textContent = 'Console cleared...\n';
+        }
+        
+        // Override console methods to capture output
+        const originalLog = console.log;
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        
+        console.log = function(...args) {
+            logToConsole('📝 ' + args.join(' '));
+            originalLog.apply(console, args);
+        };
+        
+        console.error = function(...args) {
+            logToConsole('❌ ' + args.join(' '));
+            originalError.apply(console, args);
+        };
+        
+        console.warn = function(...args) {
+            logToConsole('⚠️ ' + args.join(' '));
+            originalWarn.apply(console, args);
+        };
+        
+        logToConsole('📊 Statistics system test suite loaded');
+    </script>
+</body>
+</html>

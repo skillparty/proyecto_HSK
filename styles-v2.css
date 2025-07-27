@@ -860,6 +860,74 @@ Content panels with smooth transitions.
     animation: tabPanelReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Enhanced tab panel transitions */
+.tab-panel {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(10px);
+}
+
+.tab-panel.active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Theme transition system */
+.theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.theme-transition * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.theme-changing {
+    pointer-events: none;
+}
+
+.theme-changing * {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Enhanced theme toggle button */
+#theme-toggle {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+#theme-toggle:hover::before {
+    left: 100%;
+}
+
+.theme-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+/* Dark theme improvements */
+[data-theme="dark"] {
+    --current-bg-primary: #0f172a;
+    --current-text-primary: #f8fafc;
+    --current-border-color: #475569;
+}
+
+[data-theme="light"] {
+    --current-bg-primary: #ffffff;
+    --current-text-primary: #1e293b;
+    --current-border-color: #e2e8f0;
+}
+
 /* Tab content staggered animation */
 .tab-panel.active > * {
     animation: contentStagger 0.8s ease-out forwards;
@@ -870,7 +938,48 @@ Content panels with smooth transitions.
 .tab-panel.active > *:nth-child(1) { animation-delay: 0.1s; }
 .tab-panel.active > *:nth-child(2) { animation-delay: 0.2s; }
 .tab-panel.active > *:nth-child(3) { animation-delay: 0.3s; }
-.tab-panel.active > *:nth-child(4) { animation-delay: 0.4s; }/* 
+.tab-panel.active > *:nth-child(4) { animation-delay: 0.4s; }
+
+/* Improved tab button transitions */
+.nav-tab {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-tab:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.nav-tab.active {
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* Loading state for tab buttons */
+.nav-tab:disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Tab switch loading indicator */
+.nav-tab.switching::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    animation: tabSwitchLoading 1s ease-in-out infinite;
+}
+
+@keyframes tabSwitchLoading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}/* 
 Butt
 on System
 ============================================================================ */
@@ -1771,6 +1880,178 @@ Custom scrollbar styling for dark theme.
 
 [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
     background: var(--color-secondary-500);
+}
+
+/* Enhanced dark theme flashcards */
+[data-theme="dark"] .flashcard {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+[data-theme="dark"] .flashcard:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba(71, 85, 105, 0.5);
+}
+
+[data-theme="dark"] .card-front {
+    background: linear-gradient(145deg, 
+        var(--color-primary-600), 
+        var(--color-primary-700));
+    color: white;
+}
+
+[data-theme="dark"] .card-back {
+    background: linear-gradient(145deg, 
+        var(--color-secondary-800), 
+        var(--color-secondary-900));
+    color: white;
+}
+
+/* Enhanced dark theme buttons */
+[data-theme="dark"] .btn-primary {
+    background: linear-gradient(135deg, 
+        var(--color-primary-600), 
+        var(--color-primary-700));
+    border-color: var(--color-primary-500);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background: linear-gradient(135deg, 
+        var(--color-primary-500), 
+        var(--color-primary-600));
+    box-shadow: 0 4px 20px rgba(225, 29, 72, 0.3);
+}
+
+[data-theme="dark"] .btn-success {
+    background: linear-gradient(135deg, 
+        var(--color-success-600), 
+        var(--color-success-700));
+}
+
+[data-theme="dark"] .btn-success:hover {
+    background: linear-gradient(135deg, 
+        var(--color-success-500), 
+        var(--color-success-600));
+}
+
+[data-theme="dark"] .btn-error {
+    background: linear-gradient(135deg, 
+        var(--color-error-600), 
+        var(--color-error-700));
+}
+
+[data-theme="dark"] .btn-error:hover {
+    background: linear-gradient(135deg, 
+        var(--color-error-500), 
+        var(--color-error-600));
+}
+
+[data-theme="dark"] .btn-warning {
+    background: linear-gradient(135deg, 
+        var(--color-warning-600), 
+        var(--color-warning-700));
+}
+
+[data-theme="dark"] .btn-warning:hover {
+    background: linear-gradient(135deg, 
+        var(--color-warning-500), 
+        var(--color-warning-600));
+}
+
+/* Enhanced dark theme navigation */
+[data-theme="dark"] .nav-tab {
+    background: linear-gradient(135deg, 
+        var(--color-secondary-800), 
+        var(--color-secondary-700));
+    color: var(--color-secondary-200);
+    border-color: var(--color-secondary-600);
+}
+
+[data-theme="dark"] .nav-tab:hover {
+    background: linear-gradient(135deg, 
+        var(--color-secondary-700), 
+        var(--color-secondary-600));
+    color: white;
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .nav-tab.active {
+    background: linear-gradient(135deg, 
+        var(--color-primary-600), 
+        var(--color-primary-700));
+    color: white;
+    box-shadow: 0 4px 20px rgba(225, 29, 72, 0.3);
+}
+
+/* Enhanced dark theme statistics */
+[data-theme="dark"] .stat-card {
+    background: linear-gradient(145deg, 
+        var(--color-secondary-800), 
+        var(--color-secondary-900));
+    border-color: var(--color-secondary-600);
+}
+
+[data-theme="dark"] .stat-card:hover {
+    background: linear-gradient(145deg, 
+        var(--color-secondary-700), 
+        var(--color-secondary-800));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced dark theme vocabulary cards */
+[data-theme="dark"] .vocab-card {
+    background: linear-gradient(145deg, 
+        var(--color-secondary-800), 
+        var(--color-secondary-900));
+    border-color: var(--color-secondary-600);
+    color: var(--color-secondary-100);
+}
+
+[data-theme="dark"] .vocab-card:hover {
+    background: linear-gradient(145deg, 
+        var(--color-secondary-700), 
+        var(--color-secondary-800));
+    border-color: var(--color-primary-500);
+    transform: translateY(-2px);
+}
+
+/* Enhanced dark theme quiz interface */
+[data-theme="dark"] .quiz-option {
+    background: linear-gradient(145deg, 
+        var(--color-secondary-800), 
+        var(--color-secondary-900));
+    border-color: var(--color-secondary-600);
+    color: var(--color-secondary-100);
+}
+
+[data-theme="dark"] .quiz-option:hover {
+    background: linear-gradient(145deg, 
+        var(--color-secondary-700), 
+        var(--color-secondary-800));
+    border-color: var(--color-primary-500);
+}
+
+[data-theme="dark"] .quiz-option.selected {
+    background: linear-gradient(135deg, 
+        var(--color-primary-600), 
+        var(--color-primary-700));
+    border-color: var(--color-primary-400);
+    color: white;
+}
+
+[data-theme="dark"] .quiz-option.correct {
+    background: linear-gradient(135deg, 
+        var(--color-success-600), 
+        var(--color-success-700));
+    border-color: var(--color-success-400);
+}
+
+[data-theme="dark"] .quiz-option.incorrect {
+    background: linear-gradient(135deg, 
+        var(--color-error-600), 
+        var(--color-error-700));
+    border-color: var(--color-error-400);
 }
 
 /* ============================================================================

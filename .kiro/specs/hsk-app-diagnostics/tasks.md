@@ -20,35 +20,35 @@
   - Validar que la aplicación se inicie correctamente en todos los navegadores
   - _Requirements: 5.1, 5.3, 1.1_
 
-- [ ] 4. Reparar sistema de navegación entre tabs
+- [x] 4. Reparar sistema de navegación entre tabs
   - Corregir funcionalidad de cambio entre tabs (Practice, Browse, Quiz, Statistics)
   - Solucionar problemas de estado activo en navegación
   - Reparar transiciones y animaciones entre secciones
   - Validar que el contenido se muestre correctamente en cada tab
   - _Requirements: 3.1, 3.2, 3.3, 3.4_
 
-- [ ] 5. Corregir funcionalidad del sistema de flashcards
+- [x] 5. Corregir funcionalidad del sistema de flashcards
   - Reparar animación de volteo de flashcards
   - Solucionar problemas con botones "Show Answer" y "Next"
   - Corregir cambio entre modos de práctica
   - Validar que las flashcards muestren contenido correcto
   - _Requirements: 2.1, 2.2, 2.3, 2.4_
 
-- [ ] 6. Reparar controles interactivos y selectores
+- [x] 6. Reparar controles interactivos y selectores
   - Corregir funcionamiento del selector de nivel HSK
   - Solucionar problemas con radio buttons de modo de práctica
   - Reparar botones del sistema SRS (Again, Hard, Good, Easy)
   - Validar controles de audio y configuración
   - _Requirements: 4.1, 4.2, 4.3, 4.4_
 
-- [ ] 7. Corregir inconsistencias visuales y de tema
+- [x] 7. Corregir inconsistencias visuales y de tema
   - Solucionar problemas de aplicación de estilos CSS
   - Reparar inconsistencias entre tema claro y oscuro
   - Corregir elementos mal posicionados o con estilos incorrectos
   - Validar que todos los componentes se vean correctamente
   - _Requirements: 1.1, 1.2, 1.3, 1.4_
 
-- [ ] 8. Reparar sistema de estadísticas y progreso
+- [x] 8. Reparar sistema de estadísticas y progreso
   - Corregir funcionalidad de guardado en localStorage
   - Solucionar problemas de actualización de estadísticas
   - Reparar visualización de progreso y datos
