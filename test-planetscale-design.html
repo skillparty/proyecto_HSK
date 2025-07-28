@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test PlanetScale Design - Confuc10 ++</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+        }
+        .test-title {
+            color: #6366f1;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .test-result {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        .info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #3b82f6;
+        }
+        .warning {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #f59e0b;
+        }
+        .test-button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #4f46e5;
+        }
+        iframe {
+            width: 100%;
+            height: 700px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .design-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .design-item {
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .original {
+            background: #fef2f2;
+            border-color: #fca5a5;
+        }
+        .planetscale {
+            background: #f0f9ff;
+            border-color: #7dd3fc;
+        }
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .color-item {
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .color-primary { background: #6366f1; color: white; }
+        .color-accent { background: #f59e0b; color: white; }
+        .color-success { background: #10b981; color: white; }
+        .color-error { background: #ef4444; color: white; }
+        .color-bg { background: #0f0f23; color: white; }
+        .color-surface { background: #1e1e3f; color: white; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎨 Test PlanetScale Design - Confuc10 ++</h1>
+        
+        <div class="test-section">
+            <div class="test-title">🎯 Design Transformation Summary</div>
+            <div class="design-comparison">
+                <div class="design-item original">
+                    <h3>❌ Original HSK Learning</h3>
+                    <ul>
+                        <li>Basic color scheme</li>
+                        <li>Standard typography</li>
+                        <li>Simple gradients</li>
+                        <li>Light theme focused</li>
+                        <li>Generic branding</li>
+                    </ul>
+                </div>
+                <div class="design-item planetscale">
+                    <h3>✅ New Confuc10 ++ (PlanetScale Style)</h3>
+                    <ul>
+                        <li>Dark professional theme</li>
+                        <li>Modern Inter typography</li>
+                        <li>Sophisticated color palette</li>
+                        <li>Advanced visual hierarchy</li>
+                        <li>Tech-focused branding</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🎨 New Color Palette (PlanetScale Inspired)</div>
+            <div class="color-palette">
+                <div class="color-item color-primary">#6366f1<br>Primary</div>
+                <div class="color-item color-accent">#f59e0b<br>Accent</div>
+                <div class="color-item color-success">#10b981<br>Success</div>
+                <div class="color-item color-error">#ef4444<br>Error</div>
+                <div class="color-item color-bg">#0f0f23<br>Background</div>
+                <div class="color-item color-surface">#1e1e3f<br>Surface</div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">📝 Typography System Test</div>
+            <div id="typography-test">Testing typography implementation...</div>
+            <button class="test-button" onclick="testTypography()">Test Typography</button>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🎨 Color System Test</div>
+            <div id="color-test">Testing color system implementation...</div>
+            <button class="test-button" onclick="testColors()">Test Colors</button>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">📱 Component Styling Test</div>
+            <div id="component-test">Testing component styling...</div>
+            <button class="test-button" onclick="testComponents()">Test Components</button>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🌙 Dark Theme Test</div>
+            <div id="theme-test">Testing dark theme implementation...</div>
+            <button class="test-button" onclick="testTheme()">Test Theme</button>
+        </div>
+        
+        <div class="test-section">
+            <div class="test-title">🖥️ Live Application - Confuc10 ++</div>
+            <iframe src="http://localhost:8070" id="app-preview"></iframe>
+            <div style="margin-top: 10px; text-align: center;">
+                <button class="test-button" onclick="reloadPreview()">Reload App</button>
+                <button class="test-button" onclick="testBranding()">Test New Branding</button>
+                <button class="test-button" onclick="testDarkMode()">Test Dark Mode</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test typography implementation
+        async function testTypography() {
+            const testDiv = document.getElementById('typography-test');
+            testDiv.innerHTML = '<div class="info">Testing typography system...</div>';
+            
+            try {
+                const response = await fetch('http://localhost:8070/styles-planetscale.css');
+                const css = await response.text();
+                
+                const tests = [
+                    { name: 'Inter font family', test: css.includes("'Inter'") },
+                    { name: 'Chinese font support', test: css.includes("'Noto Sans SC'") },
+                    { name: 'Monospace fonts', test: css.includes("'JetBrains Mono'") },
+                    { name: 'Fluid typography', test: css.includes('clamp(') },
+                    { name: 'Font weight variables', test: css.includes('--font-weight-') },
+                    { name: 'Line height system', test: css.includes('--line-height-') },
+                    { name: 'Font size scale', test: css.includes('--font-size-') }
+                ];
+                
+                let results = '<div class="success">Typography Tests:</div>';
+                let passedTests = 0;
+                
+                tests.forEach(test => {
+                    const status = test.test ? '✅' : '❌';
+                    const className = test.test ? 'success' : 'error';
+                    results += `<div class="${className}">${status} ${test.name}</div>`;
+                    if (test.test) passedTests++;
+                });
+                
+                const percentage = Math.round((passedTests / tests.length) * 100);
+                results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
+                
+                if (percentage >= 85) {
+                    results += '<div class="success">🎉 Typography system implemented correctly!</div>';
+                } else {
+                    results += '<div class="warning">⚠️ Some typography issues may remain.</div>';
+                }
+                
+                testDiv.innerHTML = results;
+                
+            } catch (error) {
+                testDiv.innerHTML = '<div class="error">❌ Error testing typography: ' + error.message + '</div>';
+            }
+        }
+        
+        // Test color system
+        async function testColors() {
+            const testDiv = document.getElementById('color-test');
+            testDiv.innerHTML = '<div class="info">Testing color system...</div>';
+            
+            try {
+                const response = await fetch('http://localhost:8070/styles-planetscale.css');
+                const css = await response.text();
+                
+                const tests = [
+                    { name: 'Primary color (#6366f1)', test: css.includes('#6366f1') },
+                    { name: 'Accent color (#f59e0b)', test: css.includes('#f59e0b') },
+                    { name: 'Dark background (#0f0f23)', test: css.includes('#0f0f23') },
+                    { name: 'Surface colors', test: css.includes('#1e1e3f') },
+                    { name: 'Text color variables', test: css.includes('--text-primary') },
+                    { name: 'Border color system', test: css.includes('--color-border') },
+                    { name: 'Success colors', test: css.includes('#10b981') },
+                    { name: 'Error colors', test: css.includes('#ef4444') }
+                ];
+                
+                let results = '<div class="success">Color System Tests:</div>';
+                let passedTests = 0;
+                
+                tests.forEach(test => {
+                    const status = test.test ? '✅' : '❌';
+                    const className = test.test ? 'success' : 'error';
+                    results += `<div class="${className}">${status} ${test.name}</div>`;
+                    if (test.test) passedTests++;
+                });
+                
+                const percentage = Math.round((passedTests / tests.length) * 100);
+                results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
+                
+                if (percentage >= 85) {
+                    results += '<div class="success">🎉 Color system implemented correctly!</div>';
+                } else {
+                    results += '<div class="warning">⚠️ Some color issues may remain.</div>';
+                }
+                
+                testDiv.innerHTML = results;
+                
+            } catch (error) {
+                testDiv.innerHTML = '<div class="error">❌ Error testing colors: ' + error.message + '</div>';
+            }
+        }
+        
+        // Test components
+        async function testComponents() {
+            const testDiv = document.getElementById('component-test');
+            testDiv.innerHTML = '<div class="info">Testing component styling...</div>';
+            
+            try {
+                const response = await fetch('http://localhost:8070/styles-planetscale.css');
+                const css = await response.text();
+                
+                const tests = [
+                    { name: 'Header component', test: css.includes('.app-header') },
+                    { name: 'Navigation tabs', test: css.includes('.nav-tab') },
+                    { name: 'Flashcard styling', test: css.includes('.flashcard') },
+                    { name: 'Button system', test: css.includes('.btn-primary') },
+                    { name: 'Card components', test: css.includes('.vocab-card') },
+                    { name: 'Form controls', test: css.includes('.select-input') },
+                    { name: 'Progress bars', test: css.includes('.progress-bar') },
+                    { name: 'Statistics cards', test: css.includes('.stat-card') }
+                ];
+                
+                let results = '<div class="success">Component Tests:</div>';
+                let passedTests = 0;
+                
+                tests.forEach(test => {
+                    const status = test.test ? '✅' : '❌';
+                    const className = test.test ? 'success' : 'error';
+                    results += `<div class="${className}">${status} ${test.name}</div>`;
+                    if (test.test) passedTests++;
+                });
+                
+                const percentage = Math.round((passedTests / tests.length) * 100);
+                results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
+                
+                if (percentage >= 85) {
+                    results += '<div class="success">🎉 Components styled correctly!</div>';
+                } else {
+                    results += '<div class="warning">⚠️ Some component issues may remain.</div>';
+                }
+                
+                testDiv.innerHTML = results;
+                
+            } catch (error) {
+                testDiv.innerHTML = '<div class="error">❌ Error testing components: ' + error.message + '</div>';
+            }
+        }
+        
+        // Test theme
+        async function testTheme() {
+            const testDiv = document.getElementById('theme-test');
+            testDiv.innerHTML = '<div class="info">Testing dark theme...</div>';
+            
+            try {
+                const response = await fetch('http://localhost:8070/styles-planetscale.css');
+                const css = await response.text();
+                
+                const tests = [
+                    { name: 'Dark background variables', test: css.includes('--color-background: #0f0f23') },
+                    { name: 'Surface colors', test: css.includes('--color-surface: #1e1e3f') },
+                    { name: 'Text color hierarchy', test: css.includes('--text-primary: #ffffff') },
+                    { name: 'Border colors', test: css.includes('--color-border: #374151') },
+                    { name: 'Gradient backgrounds', test: css.includes('linear-gradient') },
+                    { name: 'Shadow system', test: css.includes('--shadow-') },
+                    { name: 'Professional appearance', test: css.includes('backdrop-filter') }
+                ];
+                
+                let results = '<div class="success">Dark Theme Tests:</div>';
+                let passedTests = 0;
+                
+                tests.forEach(test => {
+                    const status = test.test ? '✅' : '❌';
+                    const className = test.test ? 'success' : 'error';
+                    results += `<div class="${className}">${status} ${test.name}</div>`;
+                    if (test.test) passedTests++;
+                });
+                
+                const percentage = Math.round((passedTests / tests.length) * 100);
+                results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
+                
+                if (percentage >= 85) {
+                    results += '<div class="success">🎉 Dark theme implemented correctly!</div>';
+                } else {
+                    results += '<div class="warning">⚠️ Some theme issues may remain.</div>';
+                }
+                
+                testDiv.innerHTML = results;
+                
+            } catch (error) {
+                testDiv.innerHTML = '<div class="error">❌ Error testing theme: ' + error.message + '</div>';
+            }
+        }
+        
+        // Utility functions
+        function reloadPreview() {
+            const iframe = document.getElementById('app-preview');
+            iframe.src = iframe.src;
+        }
+        
+        function testBranding() {
+            const iframe = document.getElementById('app-preview');
+            iframe.contentWindow.postMessage({action: 'testBranding'}, '*');
+        }
+        
+        function testDarkMode() {
+            const iframe = document.getElementById('app-preview');
+            iframe.contentWindow.postMessage({action: 'testDarkMode'}, '*');
+        }
+        
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testTypography();
+                setTimeout(() => testColors(), 1000);
+                setTimeout(() => testComponents(), 2000);
+                setTimeout(() => testTheme(), 3000);
+            }, 500);
+        });
+    </script>
+</body>
+</html>

@@ -17,10 +17,22 @@ HSKApp
 │   ├── InfiniteScroll
 │   ├── VocabularyRenderer
 │   └── AudioPlayer
-└── QuizManager
-    ├── QuestionGenerator
-    ├── AnswerValidator
-    └── ScoreTracker
+├── QuizManager
+│   ├── QuestionGenerator
+│   ├── AnswerValidator
+│   └── ScoreTracker
+├── LanguageManager
+│   ├── changeLanguage()
+│   ├── getTranslation()
+│   └── updateUI()
+├── ThemeManager
+│   ├── toggleTheme()
+│   ├── applyTheme()
+│   └── savePreference()
+└── AudioManager
+    ├── VoiceSelector
+    ├── playWithVoice()
+    └── getAvailableVoices()
 ```
 
 ## Components and Interfaces
@@ -148,6 +160,143 @@ class ScoreTracker {
 }
 ```
 
+### 4. Language System Implementation
+
+#### LanguageManager Class
+```javascript
+class LanguageManager {
+    constructor() {
+        this.currentLanguage = 'es'; // Default Spanish
+        this.translations = {
+            es: {
+                appTitle: 'Confuc10 ++',
+                appSubtitle: 'Plataforma Avanzada de Aprendizaje de Chino',
+                practiceTab: 'Práctica',
+                browseTab: 'Explorar',
+                quizTab: 'Quiz',
+                statsTab: 'Estadísticas'
+            },
+            en: {
+                appTitle: 'Confuc10 ++',
+                appSubtitle: 'Advanced Chinese Learning Platform',
+                practiceTab: 'Practice',
+                browseTab: 'Browse',
+                quizTab: 'Quiz',
+                statsTab: 'Statistics'
+            }
+        };
+    }
+    
+    changeLanguage(lang) {
+        // Update current language
+        // Save to localStorage
+        // Update all UI elements
+        // Show notification
+    }
+    
+    getTranslation(key) {
+        // Return translation for current language
+        // Fallback to English if not found
+    }
+    
+    updateUI() {
+        // Update all elements with data-i18n attributes
+        // Update placeholders
+        // Update vocabulary meanings
+    }
+}
+```
+
+### 5. Theme System Implementation
+
+#### ThemeManager Class
+```javascript
+class ThemeManager {
+    constructor() {
+        this.isDarkMode = true; // Default dark theme
+        this.themes = {
+            dark: {
+                background: '#0f0f23',
+                surface: '#1e1e3f',
+                text: '#ffffff',
+                primary: '#6366f1'
+            },
+            light: {
+                background: '#ffffff',
+                surface: '#f8fafc',
+                text: '#1e293b',
+                primary: '#6366f1'
+            }
+        };
+    }
+    
+    toggleTheme() {
+        // Switch between light/dark
+        // Apply theme changes
+        // Update button icons
+        // Save preference
+        // Show notification
+    }
+    
+    applyTheme() {
+        // Set CSS custom properties
+        // Update data-theme attribute
+        // Change logo source
+        // Apply smooth transitions
+    }
+    
+    updateThemeButton() {
+        // Show/hide appropriate icons
+        // Update button state
+        // Add active class
+    }
+}
+```
+
+### 6. Audio Voice Selection System
+
+#### AudioManager Class
+```javascript
+class AudioManager {
+    constructor() {
+        this.isEnabled = true;
+        this.selectedVoice = 'auto'; // 'male', 'female', 'auto'
+        this.availableVoices = [];
+        this.chineseVoices = {
+            male: null,
+            female: null
+        };
+    }
+    
+    initializeVoices() {
+        // Get available speech synthesis voices
+        // Filter Chinese voices
+        // Categorize by gender if possible
+        // Set default preferences
+    }
+    
+    playWithVoice(text, voiceType = null) {
+        // Use specified voice type or user preference
+        // Create speech synthesis utterance
+        // Apply voice settings
+        // Handle errors gracefully
+        // Show visual feedback
+    }
+    
+    getAvailableVoices() {
+        // Return categorized Chinese voices
+        // Include fallback options
+    }
+    
+    setVoicePreference(voiceType) {
+        // Update voice preference
+        // Save to localStorage
+        // Update UI indicators
+        // Test voice with sample
+    }
+}
+```
+
 ## Data Models
 
 ### Flashcard State
@@ -205,6 +354,38 @@ class ScoreTracker {
     options: Array<string>,
     correctAnswer: string,
     type: string // 'meaning', 'character', 'pinyin'
+}
+```
+
+### Language State
+```javascript
+{
+    currentLanguage: string, // 'es' or 'en'
+    translations: Object,
+    isLoading: boolean
+}
+```
+
+### Theme State
+```javascript
+{
+    isDarkMode: boolean,
+    currentTheme: Object,
+    transitionDuration: number
+}
+```
+
+### Audio State
+```javascript
+{
+    isEnabled: boolean,
+    selectedVoice: string, // 'male', 'female', 'auto'
+    availableVoices: Array<Voice>,
+    chineseVoices: {
+        male: Voice,
+        female: Voice
+    },
+    isPlaying: boolean
 }
 ```
 
@@ -281,7 +462,25 @@ class ScoreTracker {
 3. Improve UI feedback
 4. Test quiz accuracy
 
-### Phase 4: Integration & Polish
+### Phase 4: Language System Implementation
+1. Implement LanguageManager class
+2. Add translation system
+3. Update UI elements with data-i18n
+4. Test language switching
+
+### Phase 5: Theme System Implementation
+1. Implement ThemeManager class
+2. Add light theme CSS
+3. Create smooth transitions
+4. Test theme persistence
+
+### Phase 6: Audio Voice Selection
+1. Implement AudioManager class
+2. Add voice detection and categorization
+3. Create voice selection UI
+4. Test male/female voice switching
+
+### Phase 7: Integration & Polish
 1. Integrate all fixes
 2. Cross-component testing
 3. Performance optimization

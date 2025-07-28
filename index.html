@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>HSK Learning - Learn Chinese Characters</title>
+    <title>Confuc10 ++ - Advanced Chinese Learning Platform</title>
     
     <!-- PWA Meta Tags -->
     <meta name="description" content="Modern HSK Chinese learning app with flashcards, quizzes, and progress tracking">
@@ -20,7 +20,7 @@
     <link rel="apple-touch-icon" href="logo_appLM.png">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="styles-v2.css?v=9&t=1737900000" id="main-stylesheet">
+    <link rel="stylesheet" href="styles-planetscale.css?v=10&t=1737900000" id="main-stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" id="fonts-stylesheet">
     
     <!-- Resource Validation Script -->
@@ -96,8 +96,8 @@
                     <a href="#" class="app-logo">
                         <img src="logo_appLM.png" alt="HSK Learning Logo" id="app-logo-img">
                         <div class="app-title">
-                            <h1 data-i18n="appTitle">HSK Learning</h1>
-                            <p class="app-subtitle" data-i18n="appSubtitle">Master Chinese Characters</p>
+                            <h1 data-i18n="appTitle">Confuc10 ++</h1>
+                            <p class="app-subtitle" data-i18n="appSubtitle">Advanced Chinese Learning Platform</p>
                         </div>
                     </a>
                 </div>
@@ -117,23 +117,28 @@
                     <div class="header-stats">
                         <div class="header-stat">
                             <div class="header-stat-value" id="header-studied">0</div>
-                            <div class="header-stat-label">Studied</div>
+                            <div class="header-stat-label" data-i18n="totalStudied">Studied</div>
                         </div>
                         <div class="header-stat">
                             <div class="header-stat-value" id="header-streak">0</div>
-                            <div class="header-stat-label">Streak</div>
+                            <div class="header-stat-label" data-i18n="currentStreak">Streak</div>
                         </div>
                         <div class="header-stat">
                             <div class="header-progress">
                                 <div class="header-progress-fill" id="header-progress" style="width: 0%"></div>
                             </div>
-                            <div class="header-stat-label">Progress</div>
+                            <div class="header-stat-label" data-i18n="progress">Progress</div>
                         </div>
                     </div>
                     <div class="header-controls">
                         <select id="language-select" class="header-control" aria-label="Select Language">
                             <option value="es">🇪🇸 ES</option>
                             <option value="en">🇺🇸 EN</option>
+                        </select>
+                        <select id="voice-select" class="header-control" aria-label="Select Voice" title="Select Chinese voice type">
+                            <option value="auto">🎤 Auto</option>
+                            <option value="male">👨 Male</option>
+                            <option value="female">👩 Female</option>
                         </select>
                         <button id="theme-toggle" class="header-control" aria-label="Toggle theme" title="Toggle dark/light theme">
                             <span class="light-icon">🌙</span>
@@ -164,8 +169,8 @@
                 <!-- Welcome Message -->
                 <div class="welcome-message" id="welcome-message" style="display: none;">
                     <div class="welcome-content">
-                        <h2>¡Bienvenido a HSK Learning!</h2>
-                        <p>Tu plataforma completa para aprender caracteres chinos</p>
+                        <h2>¡Bienvenido a Confuc10 ++!</h2>
+                        <p>La plataforma avanzada para dominar el chino mandarín</p>
                         <div class="welcome-stats">
                             <div class="welcome-stat">
                                 <span class="stat-number">5000+</span>

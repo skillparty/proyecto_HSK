@@ -1,701 +1,803 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HSK Learning - Theme System Test</title>
-    <link rel="stylesheet" href="styles-v2.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-v2.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        .test-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .test-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500));
-            color: white;
-            border-radius: var(--radius-lg);
-        }
-        
-        .test-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .test-section {
-            background: var(--bg-primary);
-            border: 2px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-        }
-        
-        .test-btn {
-            background: var(--color-accent-500);
-            color: white;
-            border: none;
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-bottom: 0.5rem;
-        }
-        
-        .test-btn:hover {
-            background: var(--color-accent-600);
-            transform: translateY(-2px);
-        }
-        
-        .theme-demo {
-            display: grid;
-            gap: 1rem;
-        }
-        
-        .demo-component {
-            padding: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            background: var(--bg-secondary);
-        }
-        
-        .theme-toggle-demo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            padding: 2rem;
-            background: var(--bg-secondary);
-            border-radius: var(--radius-lg);
-        }
-        
-        .test-results {
-            background: var(--bg-primary);
-            border: 2px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .test-result {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .test-result:last-child {
-            border-bottom: none;
-        }
-        
-        .test-status {
-            padding: 0.25rem 0.5rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .test-pass {
-            background: var(--color-success-100);
-            color: var(--color-success-700);
-        }
-        
-        .test-fail {
-            background: var(--color-error-100);
-            color: var(--color-error-700);
-        }
-        
-        .console-output {
-            background: #1a1a1a;
-            color: #00ff00;
-            padding: 1rem;
-            border-radius: var(--radius-md);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            max-height: 300px;
-            overflow-y: auto;
-            margin-top: 1rem;
-        }
-        
-        .color-swatch {
-            width: 30px;
-            height: 30px;
-            border-radius: var(--radius-sm);
-            border: 2px solid var(--border-color);
-            display: inline-block;
-            margin-right: 0.5rem;
-        }
+      .test-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .test-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-500),
+          var(--color-secondary-500)
+        );
+        color: white;
+        border-radius: var(--radius-lg);
+      }
+
+      .test-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .test-section {
+        background: var(--bg-primary);
+        border: 2px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+      }
+
+      .test-btn {
+        background: var(--color-accent-500);
+        color: white;
+        border: none;
+        padding: 0.75rem 1rem;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+
+      .test-btn:hover {
+        background: var(--color-accent-600);
+        transform: translateY(-2px);
+      }
+
+      .theme-demo {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .demo-component {
+        padding: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        background: var(--bg-secondary);
+      }
+
+      .theme-toggle-demo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 2rem;
+        background: var(--bg-secondary);
+        border-radius: var(--radius-lg);
+      }
+
+      .test-results {
+        background: var(--bg-primary);
+        border: 2px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .test-result {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .test-result:last-child {
+        border-bottom: none;
+      }
+
+      .test-status {
+        padding: 0.25rem 0.5rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .test-pass {
+        background: var(--color-success-100);
+        color: var(--color-success-700);
+      }
+
+      .test-fail {
+        background: var(--color-error-100);
+        color: var(--color-error-700);
+      }
+
+      .console-output {
+        background: #1a1a1a;
+        color: #00ff00;
+        padding: 1rem;
+        border-radius: var(--radius-md);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 1rem;
+      }
+
+      .color-swatch {
+        width: 30px;
+        height: 30px;
+        border-radius: var(--radius-sm);
+        border: 2px solid var(--border-color);
+        display: inline-block;
+        margin-right: 0.5rem;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="test-container">
-        <div class="test-header">
-            <h1>🌓 Theme System Test</h1>
-            <p>Pruebas automatizadas para el sistema de temas claro/oscuro</p>
+      <div class="test-header">
+        <h1>🌓 Theme System Test</h1>
+        <p>Pruebas automatizadas para el sistema de temas claro/oscuro</p>
+      </div>
+
+      <div class="test-grid">
+        <!-- Test Controls -->
+        <div class="test-section">
+          <h3>🧪 Controles de Prueba</h3>
+          <button class="test-btn" onclick="testThemeToggle()">
+            Test Theme Toggle
+          </button>
+          <button class="test-btn" onclick="testThemeConsistency()">
+            Test Theme Consistency
+          </button>
+          <button class="test-btn" onclick="testThemePersistence()">
+            Test Theme Persistence
+          </button>
+          <button class="test-btn" onclick="testThemeTransitions()">
+            Test Theme Transitions
+          </button>
+          <button class="test-btn" onclick="testComponentTheming()">
+            Test Component Theming
+          </button>
+          <button class="test-btn" onclick="testAccessibility()">
+            Test Accessibility
+          </button>
+          <button class="test-btn" onclick="testErrorHandling()">
+            Test Error Handling
+          </button>
+          <button class="test-btn" onclick="runAllThemeTests()">
+            Run All Tests
+          </button>
+          <button class="test-btn" onclick="clearResults()">
+            Clear Results
+          </button>
         </div>
-        
-        <div class="test-grid">
-            <!-- Test Controls -->
-            <div class="test-section">
-                <h3>🧪 Controles de Prueba</h3>
-                <button class="test-btn" onclick="testThemeToggle()">Test Theme Toggle</button>
-                <button class="test-btn" onclick="testThemeConsistency()">Test Theme Consistency</button>
-                <button class="test-btn" onclick="testThemePersistence()">Test Theme Persistence</button>
-                <button class="test-btn" onclick="testThemeTransitions()">Test Theme Transitions</button>
-                <button class="test-btn" onclick="testComponentTheming()">Test Component Theming</button>
-                <button class="test-btn" onclick="testAccessibility()">Test Accessibility</button>
-                <button class="test-btn" onclick="testErrorHandling()">Test Error Handling</button>
-                <button class="test-btn" onclick="runAllThemeTests()">Run All Tests</button>
-                <button class="test-btn" onclick="clearResults()">Clear Results</button>
+
+        <!-- Theme Demo -->
+        <div class="test-section">
+          <h3>🎨 Theme Demo</h3>
+          <div class="theme-demo">
+            <div class="theme-toggle-demo">
+              <span>Current Theme:</span>
+              <button id="theme-toggle" class="btn-icon">
+                <span class="theme-icon light-icon">☀️</span>
+                <span class="theme-icon dark-icon">🌙</span>
+              </button>
+              <span id="theme-status">Light</span>
             </div>
-            
-            <!-- Theme Demo -->
-            <div class="test-section">
-                <h3>🎨 Theme Demo</h3>
-                <div class="theme-demo">
-                    <div class="theme-toggle-demo">
-                        <span>Current Theme:</span>
-                        <button id="theme-toggle" class="btn-icon">
-                            <span class="theme-icon light-icon">☀️</span>
-                            <span class="theme-icon dark-icon">🌙</span>
-                        </button>
-                        <span id="theme-status">Light</span>
+
+            <div class="demo-component">
+              <h4>Navigation Demo</h4>
+              <div class="nav-tabs">
+                <button class="nav-tab active">Practice</button>
+                <button class="nav-tab">Browse</button>
+                <button class="nav-tab">Quiz</button>
+              </div>
+            </div>
+
+            <div class="demo-component">
+              <h4>Buttons Demo</h4>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-success">Success</button>
+                <button class="btn btn-warning">Warning</button>
+                <button class="btn btn-error">Error</button>
+              </div>
+            </div>
+
+            <div class="demo-component">
+              <h4>Form Elements Demo</h4>
+              <select class="select-input">
+                <option>HSK Level 1</option>
+                <option>HSK Level 2</option>
+              </select>
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Search..."
+                style="margin-top: 0.5rem"
+              />
+            </div>
+
+            <div class="demo-component">
+              <h4>Flashcard Demo</h4>
+              <div class="flashcard-container" style="height: 150px">
+                <div class="flashcard">
+                  <div class="flashcard-inner">
+                    <div class="card-face card-front">
+                      <div class="card-character">你</div>
+                      <div class="card-hint">HSK Level 1</div>
                     </div>
-                    
-                    <div class="demo-component">
-                        <h4>Navigation Demo</h4>
-                        <div class="nav-tabs">
-                            <button class="nav-tab active">Practice</button>
-                            <button class="nav-tab">Browse</button>
-                            <button class="nav-tab">Quiz</button>
-                        </div>
-                    </div>
-                    
-                    <div class="demo-component">
-                        <h4>Buttons Demo</h4>
-                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                            <button class="btn btn-primary">Primary</button>
-                            <button class="btn btn-secondary">Secondary</button>
-                            <button class="btn btn-success">Success</button>
-                            <button class="btn btn-warning">Warning</button>
-                            <button class="btn btn-error">Error</button>
-                        </div>
-                    </div>
-                    
-                    <div class="demo-component">
-                        <h4>Form Elements Demo</h4>
-                        <select class="select-input">
-                            <option>HSK Level 1</option>
-                            <option>HSK Level 2</option>
-                        </select>
-                        <input type="text" class="search-input" placeholder="Search..." style="margin-top: 0.5rem;">
-                    </div>
-                    
-                    <div class="demo-component">
-                        <h4>Flashcard Demo</h4>
-                        <div class="flashcard-container" style="height: 150px;">
-                            <div class="flashcard">
-                                <div class="flashcard-inner">
-                                    <div class="card-face card-front">
-                                        <div class="card-character">你</div>
-                                        <div class="card-hint">HSK Level 1</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-        
-        <!-- Test Results -->
-        <div class="test-results">
-            <h3>📊 Test Results</h3>
-            <div id="test-results-list">
-                <p>Click a test button to run tests...</p>
-            </div>
+      </div>
+
+      <!-- Test Results -->
+      <div class="test-results">
+        <h3>📊 Test Results</h3>
+        <div id="test-results-list">
+          <p>Click a test button to run tests...</p>
         </div>
-        
-        <!-- Console Output -->
-        <div class="console-output" id="console-output">
-            Console output will appear here...
-        </div>
+      </div>
+
+      <!-- Console Output -->
+      <div class="console-output" id="console-output">
+        Console output will appear here...
+      </div>
     </div>
-    
+
     <script src="translations.js"></script>
     <script src="app.js"></script>
-    
+
     <script>
-        let testResults = [];
-        let app;
-        
-        // Initialize app for testing
-        window.addEventListener('load', () => {
-            try {
-                app = new HSKApp();
-                updateThemeStatus();
-                logToConsole('✅ HSK App initialized for theme testing');
-            } catch (error) {
-                logToConsole('❌ Failed to initialize HSK App: ' + error.message);
-            }
-        });
-        
-        // Console logging
-        function logToConsole(message) {
-            const consoleEl = document.getElementById('console-output');
-            const timestamp = new Date().toLocaleTimeString();
-            consoleEl.textContent += `[${timestamp}] ${message}\n`;
-            consoleEl.scrollTop = consoleEl.scrollHeight;
+      let testResults = [];
+      let app;
+
+      // Initialize app for testing
+      window.addEventListener("load", () => {
+        try {
+          app = new HSKApp();
+          updateThemeStatus();
+          logToConsole("✅ HSK App initialized for theme testing");
+        } catch (error) {
+          logToConsole("❌ Failed to initialize HSK App: " + error.message);
         }
-        
-        function updateThemeStatus() {
-            const themeStatus = document.getElementById('theme-status');
-            const currentTheme = document.body.getAttribute('data-theme') || 'light';
-            themeStatus.textContent = currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1);
+      });
+
+      // Console logging
+      function logToConsole(message) {
+        const consoleEl = document.getElementById("console-output");
+        const timestamp = new Date().toLocaleTimeString();
+        consoleEl.textContent += `[${timestamp}] ${message}\n`;
+        consoleEl.scrollTop = consoleEl.scrollHeight;
+      }
+
+      function updateThemeStatus() {
+        const themeStatus = document.getElementById("theme-status");
+        const currentTheme =
+          document.body.getAttribute("data-theme") || "light";
+        themeStatus.textContent =
+          currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1);
+      }
+
+      // Test functions
+      async function testThemeToggle() {
+        logToConsole("🧪 Testing theme toggle...");
+        let passed = 0;
+        let failed = 0;
+
+        try {
+          const themeToggle = document.getElementById("theme-toggle");
+
+          if (!themeToggle) {
+            logToConsole("❌ Theme toggle button not found");
+            failed++;
+          } else {
+            logToConsole("✅ Theme toggle button found");
+            passed++;
+          }
+
+          // Test theme toggle functionality
+          const initialTheme =
+            document.body.getAttribute("data-theme") || "light";
+          themeToggle.click();
+
+          await new Promise((resolve) => setTimeout(resolve, 500));
+
+          const newTheme = document.body.getAttribute("data-theme") || "light";
+          if (newTheme !== initialTheme) {
+            logToConsole(`✅ Theme toggle: ${initialTheme} → ${newTheme}`);
+            passed++;
+            updateThemeStatus();
+          } else {
+            logToConsole("❌ Theme toggle: no change detected");
+            failed++;
+          }
+
+          // Test toggle back
+          themeToggle.click();
+          await new Promise((resolve) => setTimeout(resolve, 500));
+
+          const finalTheme =
+            document.body.getAttribute("data-theme") || "light";
+          if (finalTheme === initialTheme) {
+            logToConsole(`✅ Theme toggle back: ${newTheme} → ${finalTheme}`);
+            passed++;
+            updateThemeStatus();
+          } else {
+            logToConsole("❌ Theme toggle back: failed");
+            failed++;
+          }
+        } catch (error) {
+          logToConsole("❌ Error in theme toggle test: " + error.message);
+          failed++;
         }
-        
-        // Test functions
-        async function testThemeToggle() {
-            logToConsole('🧪 Testing theme toggle...');
-            let passed = 0;
-            let failed = 0;
-            
-            try {
-                const themeToggle = document.getElementById('theme-toggle');
-                
-                if (!themeToggle) {
-                    logToConsole('❌ Theme toggle button not found');
-                    failed++;
-                } else {
-                    logToConsole('✅ Theme toggle button found');
-                    passed++;
-                }
-                
-                // Test theme toggle functionality
-                const initialTheme = document.body.getAttribute('data-theme') || 'light';
-                themeToggle.click();
-                
-                await new Promise(resolve => setTimeout(resolve, 500));
-                
-                const newTheme = document.body.getAttribute('data-theme') || 'light';
-                if (newTheme !== initialTheme) {
-                    logToConsole(`✅ Theme toggle: ${initialTheme} → ${newTheme}`);
-                    passed++;
-                    updateThemeStatus();
-                } else {
-                    logToConsole('❌ Theme toggle: no change detected');
-                    failed++;
-                }
-                
-                // Test toggle back
-                themeToggle.click();
-                await new Promise(resolve => setTimeout(resolve, 500));
-                
-                const finalTheme = document.body.getAttribute('data-theme') || 'light';
-                if (finalTheme === initialTheme) {
-                    logToConsole(`✅ Theme toggle back: ${newTheme} → ${finalTheme}`);
-                    passed++;
-                    updateThemeStatus();
-                } else {
-                    logToConsole('❌ Theme toggle back: failed');
-                    failed++;
-                }
-                
-            } catch (error) {
-                logToConsole('❌ Error in theme toggle test: ' + error.message);
-                failed++;
-            }
-            
-            addTestResult('Theme Toggle', passed > failed, `${passed}/${passed + failed} tests passed`);
-        }
-        
-        async function testThemeConsistency() {
-            logToConsole('🧪 Testing theme consistency...');
-            let passed = 0;
-            let failed = 0;
-            
-            try {
-                const elementsToCheck = [
-                    'html',
-                    'body',
-                    '.app-header',
-                    '.nav-container',
-                    '.content-area'
-                ];
-                
-                const currentTheme = document.body.getAttribute('data-theme') || 'light';
-                
-                elementsToCheck.forEach(selector => {
-                    const element = document.querySelector(selector);
-                    if (element) {
-                        const elementTheme = element.getAttribute('data-theme');
-                        if (elementTheme === currentTheme || selector === 'html' || selector === 'body') {
-                            logToConsole(`✅ Theme consistency: ${selector} has correct theme`);
-                            passed++;
-                        } else {
-                            logToConsole(`❌ Theme consistency: ${selector} theme mismatch`);
-                            failed++;
-                        }
-                    }
-                });
-                
-                // Check CSS custom properties
-                const computedStyle = getComputedStyle(document.documentElement);
-                const bgPrimary = computedStyle.getPropertyValue('--current-bg-primary').trim();
-                const textPrimary = computedStyle.getPropertyValue('--current-text-primary').trim();
-                
-                if (bgPrimary && textPrimary) {
-                    logToConsole('✅ Theme consistency: CSS custom properties set');
-                    passed++;
-                } else {
-                    logToConsole('❌ Theme consistency: CSS custom properties missing');
-                    failed++;
-                }
-                
-            } catch (error) {
-                logToConsole('❌ Error in theme consistency test: ' + error.message);
-                failed++;
-            }
-            
-            addTestResult('Theme Consistency', passed > failed, `${passed}/${passed + failed} tests passed`);
-        }
-        
-        async function testThemePersistence() {
-            logToConsole('🧪 Testing theme persistence...');
-            let passed = 0;
-            let failed = 0;
-            
-            try {
-                // Test localStorage saving
-                const originalTheme = app.isDarkMode;
-                
-                // Toggle theme
-                app.toggleTheme();
-                await new Promise(resolve => setTimeout(resolve, 200));
-                
-                // Check if saved in localStorage
-                const savedTheme = localStorage.getItem('hsk-dark-mode');
-                if (savedTheme !== null) {
-                    logToConsole('✅ Theme persistence: saved to localStorage');
-                    passed++;
-                } else {
-                    logToConsole('❌ Theme persistence: not saved to localStorage');
-                    failed++;
-                }
-                
-                // Test loading from localStorage
-                const loadedTheme = app.loadTheme();
-                if (loadedTheme === app.isDarkMode) {
-                    logToConsole('✅ Theme persistence: loaded correctly from localStorage');
-                    passed++;
-                } else {
-                    logToConsole('❌ Theme persistence: loading failed');
-                    failed++;
-                }
-                
-                // Restore original theme
-                if (originalTheme !== app.isDarkMode) {
-                    app.toggleTheme();
-                }
-                
-            } catch (error) {
-                logToConsole('❌ Error in theme persistence test: ' + error.message);
-                failed++;
-            }
-            
-            addTestResult('Theme Persistence', passed > failed, `${passed}/${passed + failed} tests passed`);
-        }
-        
-        async function testThemeTransitions() {
-            logToConsole('🧪 Testing theme transitions...');
-            let passed = 0;
-            let failed = 0;
-            
-            try {
-                // Check if transition classes exist
-                const body = document.body;
-                
-                // Test theme transition class
-                if (body.classList.contains('theme-transition')) {
-                    logToConsole('✅ Theme transitions: transition class applied');
-                    passed++;
-                } else {
-                    logToConsole('❌ Theme transitions: transition class missing');
-                    failed++;
-                }
-                
-                // Test theme change animation
-                const themeToggle = document.getElementById('theme-toggle');
-                themeToggle.click();
-                
-                // Check if changing class is applied
-                setTimeout(() => {
-                    if (body.classList.contains('theme-changing')) {
-                        logToConsole('✅ Theme transitions: changing animation applied');
-                        passed++;
-                    } else {
-                        logToConsole('⚠️ Theme transitions: changing animation not detected (may be too fast)');
-                        passed++; // Not critical
-                    }
-                }, 50);
-                
-                await new Promise(resolve => setTimeout(resolve, 400));
-                
-                // Check if changing class is removed
-                if (!body.classList.contains('theme-changing')) {
-                    logToConsole('✅ Theme transitions: changing animation cleaned up');
-                    passed++;
-                } else {
-                    logToConsole('❌ Theme transitions: changing animation not cleaned up');
-                    failed++;
-                }
-                
-            } catch (error) {
-                logToConsole('❌ Error in theme transitions test: ' + error.message);
-                failed++;
-            }
-            
-            setTimeout(() => {
-                addTestResult('Theme Transitions', passed > failed, `${passed}/${passed + failed} tests passed`);
-            }, 500);
-        }
-        
-        async function testComponentTheming() {
-            logToConsole('🧪 Testing component theming...');
-            let passed = 0;
-            let failed = 0;
-            
-            try {
-                const componentsToTest = [
-                    '.btn',
-                    '.nav-tab',
-                    '.select-input',
-                    '.flashcard'
-                ];
-                
-                componentsToTest.forEach(selector => {
-                    const elements = document.querySelectorAll(selector);
-                    if (elements.length > 0) {
-                        logToConsole(`✅ Component theming: ${selector} elements found (${elements.length})`);
-                        passed++;
-                        
-                        // Check if elements have theme-related styles
-                        const element = elements[0];
-                        const computedStyle = getComputedStyle(element);
-                        const backgroundColor = computedStyle.backgroundColor;
-                        const color = computedStyle.color;
-                        
-                        if (backgroundColor !== 'rgba(0, 0, 0, 0)' || color !== 'rgba(0, 0, 0, 0)') {
-                            logToConsole(`✅ Component theming: ${selector} has themed styles`);
-                            passed++;
-                        } else {
-                            logToConsole(`⚠️ Component theming: ${selector} may not have themed styles`);
-                            // Not critical, count as passed
-                            passed++;
-                        }
-                    } else {
-                        logToConsole(`⚠️ Component theming: ${selector} elements not found`);
-                        // Not critical for this test
-                        passed++;
-                    }
-                });
-                
-            } catch (error) {
-                logToConsole('❌ Error in component theming test: ' + error.message);
-                failed++;
-            }
-            
-            addTestResult('Component Theming', passed > failed, `${passed}/${passed + failed} tests passed`);
-        }
-        
-        async function testAccessibility() {
-            logToConsole('🧪 Testing theme accessibility...');
-            let passed = 0;
-            let failed = 0;
-            
-            try {
-                const themeToggle = document.getElementById('theme-toggle');
-                
-                // Check ARIA attributes
-                const ariaLabel = themeToggle.getAttribute('aria-label');
-                const title = themeToggle.getAttribute('title');
-                
-                if (ariaLabel) {
-                    logToConsole('✅ Accessibility: theme toggle has aria-label');
-                    passed++;
-                } else {
-                    logToConsole('❌ Accessibility: theme toggle missing aria-label');
-                    failed++;
-                }
-                
-                if (title) {
-                    logToConsole('✅ Accessibility: theme toggle has title');
-                    passed++;
-                } else {
-                    logToConsole('❌ Accessibility: theme toggle missing title');
-                    failed++;
-                }
-                
-                // Check keyboard navigation
-                themeToggle.focus();
-                const focusedElement = document.activeElement;
-                if (focusedElement === themeToggle) {
-                    logToConsole('✅ Accessibility: theme toggle is focusable');
-                    passed++;
-                } else {
-                    logToConsole('❌ Accessibility: theme toggle not focusable');
-                    failed++;
-                }
-                
-                // Test keyboard activation
-                const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-                themeToggle.dispatchEvent(enterEvent);
-                
-                await new Promise(resolve => setTimeout(resolve, 200));
-                
-                logToConsole('✅ Accessibility: keyboard activation tested');
+
+        addTestResult(
+          "Theme Toggle",
+          passed > failed,
+          `${passed}/${passed + failed} tests passed`
+        );
+      }
+
+      async function testThemeConsistency() {
+        logToConsole("🧪 Testing theme consistency...");
+        let passed = 0;
+        let failed = 0;
+
+        try {
+          const elementsToCheck = [
+            "html",
+            "body",
+            ".app-header",
+            ".nav-container",
+            ".content-area",
+          ];
+
+          const currentTheme =
+            document.body.getAttribute("data-theme") || "light";
+
+          elementsToCheck.forEach((selector) => {
+            const element = document.querySelector(selector);
+            if (element) {
+              const elementTheme = element.getAttribute("data-theme");
+              if (
+                elementTheme === currentTheme ||
+                selector === "html" ||
+                selector === "body"
+              ) {
+                logToConsole(
+                  `✅ Theme consistency: ${selector} has correct theme`
+                );
                 passed++;
-                
-            } catch (error) {
-                logToConsole('❌ Error in accessibility test: ' + error.message);
+              } else {
+                logToConsole(
+                  `❌ Theme consistency: ${selector} theme mismatch`
+                );
                 failed++;
+              }
             }
-            
-            addTestResult('Accessibility', passed > failed, `${passed}/${passed + failed} tests passed`);
+          });
+
+          // Check CSS custom properties
+          const computedStyle = getComputedStyle(document.documentElement);
+          const bgPrimary = computedStyle
+            .getPropertyValue("--current-bg-primary")
+            .trim();
+          const textPrimary = computedStyle
+            .getPropertyValue("--current-text-primary")
+            .trim();
+
+          if (bgPrimary && textPrimary) {
+            logToConsole("✅ Theme consistency: CSS custom properties set");
+            passed++;
+          } else {
+            logToConsole("❌ Theme consistency: CSS custom properties missing");
+            failed++;
+          }
+        } catch (error) {
+          logToConsole("❌ Error in theme consistency test: " + error.message);
+          failed++;
         }
-        
-        async function testErrorHandling() {
-            logToConsole('🧪 Testing theme error handling...');
-            let passed = 0;
-            let failed = 0;
-            
-            try {
-                // Test with missing theme toggle
-                const originalToggle = document.getElementById('theme-toggle');
-                const originalId = originalToggle.id;
-                originalToggle.id = 'theme-toggle-temp';
-                
-                // Try to update theme button (should handle gracefully)
-                app.updateThemeButton();
-                
-                logToConsole('✅ Error handling: missing theme toggle handled gracefully');
-                passed++;
-                
-                // Restore toggle
-                originalToggle.id = originalId;
-                
-                // Test localStorage error handling
-                const originalSetItem = localStorage.setItem;
-                localStorage.setItem = function() {
-                    throw new Error('localStorage not available');
-                };
-                
-                // Try to save theme (should handle gracefully)
-                app.saveTheme();
-                
-                logToConsole('✅ Error handling: localStorage error handled gracefully');
-                passed++;
-                
-                // Restore localStorage
-                localStorage.setItem = originalSetItem;
-                
-            } catch (error) {
-                logToConsole('✅ Error handling: exceptions caught properly');
-                passed++;
+
+        addTestResult(
+          "Theme Consistency",
+          passed > failed,
+          `${passed}/${passed + failed} tests passed`
+        );
+      }
+
+      async function testThemePersistence() {
+        logToConsole("🧪 Testing theme persistence...");
+        let passed = 0;
+        let failed = 0;
+
+        try {
+          // Test localStorage saving
+          const originalTheme = app.isDarkMode;
+
+          // Toggle theme
+          app.toggleTheme();
+          await new Promise((resolve) => setTimeout(resolve, 200));
+
+          // Check if saved in localStorage
+          const savedTheme = localStorage.getItem("hsk-dark-mode");
+          if (savedTheme !== null) {
+            logToConsole("✅ Theme persistence: saved to localStorage");
+            passed++;
+          } else {
+            logToConsole("❌ Theme persistence: not saved to localStorage");
+            failed++;
+          }
+
+          // Test loading from localStorage
+          const loadedTheme = app.loadTheme();
+          if (loadedTheme === app.isDarkMode) {
+            logToConsole(
+              "✅ Theme persistence: loaded correctly from localStorage"
+            );
+            passed++;
+          } else {
+            logToConsole("❌ Theme persistence: loading failed");
+            failed++;
+          }
+
+          // Restore original theme
+          if (originalTheme !== app.isDarkMode) {
+            app.toggleTheme();
+          }
+        } catch (error) {
+          logToConsole("❌ Error in theme persistence test: " + error.message);
+          failed++;
+        }
+
+        addTestResult(
+          "Theme Persistence",
+          passed > failed,
+          `${passed}/${passed + failed} tests passed`
+        );
+      }
+
+      async function testThemeTransitions() {
+        logToConsole("🧪 Testing theme transitions...");
+        let passed = 0;
+        let failed = 0;
+
+        try {
+          // Check if transition classes exist
+          const body = document.body;
+
+          // Test theme transition class
+          if (body.classList.contains("theme-transition")) {
+            logToConsole("✅ Theme transitions: transition class applied");
+            passed++;
+          } else {
+            logToConsole("❌ Theme transitions: transition class missing");
+            failed++;
+          }
+
+          // Test theme change animation
+          const themeToggle = document.getElementById("theme-toggle");
+          themeToggle.click();
+
+          // Check if changing class is applied
+          setTimeout(() => {
+            if (body.classList.contains("theme-changing")) {
+              logToConsole("✅ Theme transitions: changing animation applied");
+              passed++;
+            } else {
+              logToConsole(
+                "⚠️ Theme transitions: changing animation not detected (may be too fast)"
+              );
+              passed++; // Not critical
             }
-            
-            addTestResult('Error Handling', passed >= 1, `${passed} error scenarios handled`);
+          }, 50);
+
+          await new Promise((resolve) => setTimeout(resolve, 400));
+
+          // Check if changing class is removed
+          if (!body.classList.contains("theme-changing")) {
+            logToConsole("✅ Theme transitions: changing animation cleaned up");
+            passed++;
+          } else {
+            logToConsole(
+              "❌ Theme transitions: changing animation not cleaned up"
+            );
+            failed++;
+          }
+        } catch (error) {
+          logToConsole("❌ Error in theme transitions test: " + error.message);
+          failed++;
         }
-        
-        async function runAllThemeTests() {
-            logToConsole('🚀 Running all theme tests...');
-            clearResults();
-            
-            await testThemeToggle();
-            await testThemeConsistency();
-            await testThemePersistence();
-            await testThemeTransitions();
-            await testComponentTheming();
-            await testAccessibility();
-            await testErrorHandling();
-            
-            logToConsole('✅ All theme tests completed');
-            
-            // Summary
-            const totalTests = testResults.length;
-            const passedTests = testResults.filter(r => r.passed).length;
-            const failedTests = totalTests - passedTests;
-            
-            logToConsole(`📊 Test Summary: ${passedTests}/${totalTests} passed, ${failedTests} failed`);
-        }
-        
-        function addTestResult(testName, passed, details) {
-            testResults.push({ testName, passed, details });
-            updateTestResultsDisplay();
-        }
-        
-        function updateTestResultsDisplay() {
-            const resultsEl = document.getElementById('test-results-list');
-            
-            if (testResults.length === 0) {
-                resultsEl.innerHTML = '<p>No test results yet...</p>';
-                return;
+
+        setTimeout(() => {
+          addTestResult(
+            "Theme Transitions",
+            passed > failed,
+            `${passed}/${passed + failed} tests passed`
+          );
+        }, 500);
+      }
+
+      async function testComponentTheming() {
+        logToConsole("🧪 Testing component theming...");
+        let passed = 0;
+        let failed = 0;
+
+        try {
+          const componentsToTest = [
+            ".btn",
+            ".nav-tab",
+            ".select-input",
+            ".flashcard",
+          ];
+
+          componentsToTest.forEach((selector) => {
+            const elements = document.querySelectorAll(selector);
+            if (elements.length > 0) {
+              logToConsole(
+                `✅ Component theming: ${selector} elements found (${elements.length})`
+              );
+              passed++;
+
+              // Check if elements have theme-related styles
+              const element = elements[0];
+              const computedStyle = getComputedStyle(element);
+              const backgroundColor = computedStyle.backgroundColor;
+              const color = computedStyle.color;
+
+              if (
+                backgroundColor !== "rgba(0, 0, 0, 0)" ||
+                color !== "rgba(0, 0, 0, 0)"
+              ) {
+                logToConsole(
+                  `✅ Component theming: ${selector} has themed styles`
+                );
+                passed++;
+              } else {
+                logToConsole(
+                  `⚠️ Component theming: ${selector} may not have themed styles`
+                );
+                // Not critical, count as passed
+                passed++;
+              }
+            } else {
+              logToConsole(
+                `⚠️ Component theming: ${selector} elements not found`
+              );
+              // Not critical for this test
+              passed++;
             }
-            
-            resultsEl.innerHTML = testResults.map(result => `
+          });
+        } catch (error) {
+          logToConsole("❌ Error in component theming test: " + error.message);
+          failed++;
+        }
+
+        addTestResult(
+          "Component Theming",
+          passed > failed,
+          `${passed}/${passed + failed} tests passed`
+        );
+      }
+
+      async function testAccessibility() {
+        logToConsole("🧪 Testing theme accessibility...");
+        let passed = 0;
+        let failed = 0;
+
+        try {
+          const themeToggle = document.getElementById("theme-toggle");
+
+          // Check ARIA attributes
+          const ariaLabel = themeToggle.getAttribute("aria-label");
+          const title = themeToggle.getAttribute("title");
+
+          if (ariaLabel) {
+            logToConsole("✅ Accessibility: theme toggle has aria-label");
+            passed++;
+          } else {
+            logToConsole("❌ Accessibility: theme toggle missing aria-label");
+            failed++;
+          }
+
+          if (title) {
+            logToConsole("✅ Accessibility: theme toggle has title");
+            passed++;
+          } else {
+            logToConsole("❌ Accessibility: theme toggle missing title");
+            failed++;
+          }
+
+          // Check keyboard navigation
+          themeToggle.focus();
+          const focusedElement = document.activeElement;
+          if (focusedElement === themeToggle) {
+            logToConsole("✅ Accessibility: theme toggle is focusable");
+            passed++;
+          } else {
+            logToConsole("❌ Accessibility: theme toggle not focusable");
+            failed++;
+          }
+
+          // Test keyboard activation
+          const enterEvent = new KeyboardEvent("keydown", { key: "Enter" });
+          themeToggle.dispatchEvent(enterEvent);
+
+          await new Promise((resolve) => setTimeout(resolve, 200));
+
+          logToConsole("✅ Accessibility: keyboard activation tested");
+          passed++;
+        } catch (error) {
+          logToConsole("❌ Error in accessibility test: " + error.message);
+          failed++;
+        }
+
+        addTestResult(
+          "Accessibility",
+          passed > failed,
+          `${passed}/${passed + failed} tests passed`
+        );
+      }
+
+      async function testErrorHandling() {
+        logToConsole("🧪 Testing theme error handling...");
+        let passed = 0;
+        let failed = 0;
+
+        try {
+          // Test with missing theme toggle
+          const originalToggle = document.getElementById("theme-toggle");
+          const originalId = originalToggle.id;
+          originalToggle.id = "theme-toggle-temp";
+
+          // Try to update theme button (should handle gracefully)
+          app.updateThemeButton();
+
+          logToConsole(
+            "✅ Error handling: missing theme toggle handled gracefully"
+          );
+          passed++;
+
+          // Restore toggle
+          originalToggle.id = originalId;
+
+          // Test localStorage error handling
+          const originalSetItem = localStorage.setItem;
+          localStorage.setItem = function () {
+            throw new Error("localStorage not available");
+          };
+
+          // Try to save theme (should handle gracefully)
+          app.saveTheme();
+
+          logToConsole(
+            "✅ Error handling: localStorage error handled gracefully"
+          );
+          passed++;
+
+          // Restore localStorage
+          localStorage.setItem = originalSetItem;
+        } catch (error) {
+          logToConsole("✅ Error handling: exceptions caught properly");
+          passed++;
+        }
+
+        addTestResult(
+          "Error Handling",
+          passed >= 1,
+          `${passed} error scenarios handled`
+        );
+      }
+
+      async function runAllThemeTests() {
+        logToConsole("🚀 Running all theme tests...");
+        clearResults();
+
+        await testThemeToggle();
+        await testThemeConsistency();
+        await testThemePersistence();
+        await testThemeTransitions();
+        await testComponentTheming();
+        await testAccessibility();
+        await testErrorHandling();
+
+        logToConsole("✅ All theme tests completed");
+
+        // Summary
+        const totalTests = testResults.length;
+        const passedTests = testResults.filter((r) => r.passed).length;
+        const failedTests = totalTests - passedTests;
+
+        logToConsole(
+          `📊 Test Summary: ${passedTests}/${totalTests} passed, ${failedTests} failed`
+        );
+      }
+
+      function addTestResult(testName, passed, details) {
+        testResults.push({ testName, passed, details });
+        updateTestResultsDisplay();
+      }
+
+      function updateTestResultsDisplay() {
+        const resultsEl = document.getElementById("test-results-list");
+
+        if (testResults.length === 0) {
+          resultsEl.innerHTML = "<p>No test results yet...</p>";
+          return;
+        }
+
+        resultsEl.innerHTML = testResults
+          .map(
+            (result) => `
                 <div class="test-result">
                     <span>${result.testName}</span>
                     <div>
-                        <span class="test-status ${result.passed ? 'test-pass' : 'test-fail'}">
-                            ${result.passed ? 'PASS' : 'FAIL'}
+                        <span class="test-status ${
+                          result.passed ? "test-pass" : "test-fail"
+                        }">
+                            ${result.passed ? "PASS" : "FAIL"}
                         </span>
-                        <small style="margin-left: 8px; opacity: 0.7;">${result.details}</small>
+                        <small style="margin-left: 8px; opacity: 0.7;">${
+                          result.details
+                        }</small>
                     </div>
                 </div>
-            `).join('');
-        }
-        
-        function clearResults() {
-            testResults = [];
-            updateTestResultsDisplay();
-            document.getElementById('console-output').textContent = 'Console cleared...\n';
-        }
-        
-        // Listen for theme changes
-        window.addEventListener('themeChanged', (e) => {
-            logToConsole(`🌓 Theme changed: ${e.detail.previousTheme} → ${e.detail.newTheme}`);
-            updateThemeStatus();
-        });
-        
-        // Override console methods to capture output
-        const originalLog = console.log;
-        const originalError = console.error;
-        const originalWarn = console.warn;
-        
-        console.log = function(...args) {
-            logToConsole('📝 ' + args.join(' '));
-            originalLog.apply(console, args);
-        };
-        
-        console.error = function(...args) {
-            logToConsole('❌ ' + args.join(' '));
-            originalError.apply(console, args);
-        };
-        
-        console.warn = function(...args) {
-            logToConsole('⚠️ ' + args.join(' '));
-            originalWarn.apply(console, args);
-        };
-        
-        logToConsole('🌓 Theme system test suite loaded');
+            `
+          )
+          .join("");
+      }
+
+      function clearResults() {
+        testResults = [];
+        updateTestResultsDisplay();
+        document.getElementById("console-output").textContent =
+          "Console cleared...\n";
+      }
+
+      // Listen for theme changes
+      window.addEventListener("themeChanged", (e) => {
+        logToConsole(
+          `🌓 Theme changed: ${e.detail.previousTheme} → ${e.detail.newTheme}`
+        );
+        updateThemeStatus();
+      });
+
+      // Override console methods to capture output
+      const originalLog = console.log;
+      const originalError = console.error;
+      const originalWarn = console.warn;
+
+      console.log = function (...args) {
+        logToConsole("📝 " + args.join(" "));
+        originalLog.apply(console, args);
+      };
+
+      console.error = function (...args) {
+        logToConsole("❌ " + args.join(" "));
+        originalError.apply(console, args);
+      };
+
+      console.warn = function (...args) {
+        logToConsole("⚠️ " + args.join(" "));
+        originalWarn.apply(console, args);
+      };
+
+      logToConsole("🌓 Theme system test suite loaded");
     </script>
-</body>
+  </body>
 </html>

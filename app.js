@@ -8,8 +8,12 @@ class HSKApp {
         this.isFlipped = false;
         this.selectedLevel = '1';
         this.practiceMode = 'char-to-pinyin';
-        this.isDarkMode = false;
+        this.isDarkMode = true; // Default to dark theme (PlanetScale style)
         this.isAudioEnabled = true;
+        this.selectedVoice = 'auto'; // 'male', 'female', 'auto'
+        this.availableVoices = [];
+        this.chineseVoices = { male: null, female: null };
+        this.currentLanguage = 'es'; // Default to Spanish
         this.headerSearchTimeout = null;
         
         // Initialize stats
@@ -53,12 +57,24 @@ class HSKApp {
             // Initialize theme
             this.initializeTheme();
             
+            // Initialize language display
+            this.updateLanguageDisplay();
+            
             // Setup practice session
             this.setupPracticeSession();
             
             // Update header
             this.updateHeaderStats();
             this.updateAudioButton();
+            
+            // Initialize voices for audio (wait for them to be available)
+            if ('speechSynthesis' in window) {
+                this.initializeVoices();
+                speechSynthesis.onvoiceschanged = () => {
+                    this.initializeVoices();
+                    console.log('🎤 Voices reloaded:', speechSynthesis.getVoices().length);
+                };
+            }
             
             console.log('✅ HSK Learning App initialized successfully!');
             
@@ -154,6 +170,14 @@ class HSKApp {
         if (languageSelect) {
             languageSelect.addEventListener('change', (e) => {
                 this.changeLanguage(e.target.value);
+            });
+        }
+        
+        // Voice selector
+        const voiceSelect = document.getElementById('voice-select');
+        if (voiceSelect) {
+            voiceSelect.addEventListener('change', (e) => {
+                this.setVoicePreference(e.target.value);
             });
         }
         
@@ -285,24 +309,27 @@ class HSKApp {
         let answer = '';
         let hint = '';
         
+        // Get meaning based on selected language
+        const meaning = this.getMeaningForLanguage(this.currentWord);
+        
         switch(this.practiceMode) {
             case 'char-to-pinyin':
                 question = this.currentWord.character;
                 answer = this.currentWord.pinyin;
-                hint = this.currentWord.english || this.currentWord.translation;
+                hint = meaning;
                 break;
             case 'char-to-english':
                 question = this.currentWord.character;
-                answer = this.currentWord.english || this.currentWord.translation;
+                answer = meaning;
                 hint = this.currentWord.pinyin;
                 break;
             case 'pinyin-to-char':
                 question = this.currentWord.pinyin;
                 answer = this.currentWord.character;
-                hint = this.currentWord.english || this.currentWord.translation;
+                hint = meaning;
                 break;
             case 'english-to-char':
-                question = this.currentWord.english || this.currentWord.translation;
+                question = meaning;
                 answer = this.currentWord.character;
                 hint = this.currentWord.pinyin;
                 break;
@@ -315,7 +342,7 @@ class HSKApp {
             <div class="word-info">
                 <div class="character">${this.currentWord.character}</div>
                 <div class="pinyin">${this.currentWord.pinyin}</div>
-                <div class="meaning">${this.currentWord.english || this.currentWord.translation}</div>
+                <div class="meaning">${meaning}</div>
                 <div class="level">HSK ${this.currentWord.level}</div>
             </div>
         `;
@@ -621,29 +648,402 @@ class HSKApp {
             // Cancel any ongoing speech
             speechSynthesis.cancel();
             
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'zh-CN';
-            utterance.rate = 0.7;
-            utterance.pitch = 1.0;
-            utterance.volume = 0.8;
-            
-            // Add event listeners for better feedback
-            utterance.onstart = () => {
-                console.log('🔊 Playing audio:', text);
-            };
-            
-            utterance.onerror = (event) => {
-                console.warn('⚠️ Audio error:', event.error);
-            };
-            
-            utterance.onend = () => {
-                console.log('✅ Audio playback completed');
-            };
-            
-            speechSynthesis.speak(utterance);
+            // Wait a bit for cancellation to complete
+            setTimeout(() => {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 0.7;
+                utterance.pitch = 1.0;
+                utterance.volume = 0.9;
+                
+                // Try to get preferred Chinese voice
+                const selectedVoice = this.getPreferredVoice();
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                    console.log('🎤 Using voice:', selectedVoice.name);
+                }
+                
+                // Add event listeners for better feedback
+                utterance.onstart = () => {
+                    console.log('🔊 Playing audio:', text);
+                    this.showAudioFeedback(true);
+                };
+                
+                utterance.onerror = (event) => {
+                    console.warn('⚠️ Audio error:', event.error);
+                    this.showAudioFeedback(false);
+                };
+                
+                utterance.onend = () => {
+                    console.log('✅ Audio playback completed');
+                    this.showAudioFeedback(false);
+                };
+                
+                speechSynthesis.speak(utterance);
+            }, 100);
         } catch (error) {
             console.warn('⚠️ Audio playback failed:', error);
+            this.showAudioFeedback(false);
         }
+    }
+    
+    // Audio Management System
+    initializeVoices() {
+        if (!('speechSynthesis' in window)) return;
+        
+        const voices = speechSynthesis.getVoices();
+        this.availableVoices = voices;
+        
+        // Filter Chinese voices
+        const chineseVoices = voices.filter(voice => 
+            voice.lang.includes('zh') || 
+            voice.name.toLowerCase().includes('chinese') ||
+            voice.name.toLowerCase().includes('mandarin')
+        );
+        
+        // Try to categorize by gender (this is approximate)
+        chineseVoices.forEach(voice => {
+            const name = voice.name.toLowerCase();
+            if (name.includes('female') || name.includes('woman') || name.includes('mei')) {
+                this.chineseVoices.female = voice;
+            } else if (name.includes('male') || name.includes('man') || name.includes('wang')) {
+                this.chineseVoices.male = voice;
+            } else if (!this.chineseVoices.male) {
+                // Use first available as male fallback
+                this.chineseVoices.male = voice;
+            } else if (!this.chineseVoices.female) {
+                // Use second available as female fallback
+                this.chineseVoices.female = voice;
+            }
+        });
+        
+        console.log('🎤 Available Chinese voices:', {
+            male: this.chineseVoices.male?.name || 'None',
+            female: this.chineseVoices.female?.name || 'None',
+            total: chineseVoices.length
+        });
+    }
+    
+    getPreferredVoice() {
+        switch (this.selectedVoice) {
+            case 'male':
+                return this.chineseVoices.male || this.chineseVoices.female;
+            case 'female':
+                return this.chineseVoices.female || this.chineseVoices.male;
+            case 'auto':
+            default:
+                return this.chineseVoices.male || this.chineseVoices.female;
+        }
+    }
+    
+    setVoicePreference(voiceType) {
+        this.selectedVoice = voiceType;
+        localStorage.setItem('hsk-voice-preference', voiceType);
+        
+        // Test voice with sample
+        this.playAudio('你好');
+        
+        // Show notification
+        const voiceNames = {
+            male: this.currentLanguage === 'es' ? 'Voz masculina' : 'Male voice',
+            female: this.currentLanguage === 'es' ? 'Voz femenina' : 'Female voice',
+            auto: this.currentLanguage === 'es' ? 'Voz automática' : 'Auto voice'
+        };
+        
+        const message = `${voiceNames[voiceType]} ${this.currentLanguage === 'es' ? 'seleccionada' : 'selected'}`;
+        this.showHeaderNotification(message);
+        
+        console.log(`🎤 Voice preference set to: ${voiceType}`);
+    }
+    
+    showAudioFeedback(isPlaying) {
+        const audioButtons = document.querySelectorAll('.vocab-audio-btn, #audio-toggle');
+        audioButtons.forEach(button => {
+            if (isPlaying) {
+                button.style.animation = 'pulse 1s ease-in-out infinite';
+                button.style.color = '#f59e0b';
+            } else {
+                button.style.animation = '';
+                button.style.color = '';
+            }
+        });
+    }
+    
+    // Language Management System
+    changeLanguage(lang) {
+        this.currentLanguage = lang;
+        localStorage.setItem('hsk-language', lang);
+        this.updateLanguageDisplay();
+        
+        // Show notification
+        const message = lang === 'es' ? 'Idioma cambiado a Español' : 'Language changed to English';
+        this.showHeaderNotification(message);
+        
+        console.log(`🌐 Language changed to: ${lang}`);
+    }
+    
+    updateLanguageDisplay() {
+        // Update all text elements based on current language
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = this.getTranslation(key);
+            if (translation) {
+                element.textContent = translation;
+            }
+        });
+        
+        // Update placeholders
+        const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+        placeholderElements.forEach(element => {
+            const key = element.getAttribute('data-i18n-placeholder');
+            const translation = this.getTranslation(key);
+            if (translation) {
+                element.placeholder = translation;
+            }
+        });
+        
+        // Update language selector to show current selection
+        const languageSelect = document.getElementById('language-select');
+        if (languageSelect) {
+            languageSelect.value = this.currentLanguage;
+        }
+        
+        // Update voice selector to show current selection
+        const voiceSelect = document.getElementById('voice-select');
+        if (voiceSelect) {
+            voiceSelect.value = this.selectedVoice;
+        }
+        
+        // Update current flashcard if exists
+        if (this.currentWord) {
+            this.updateCard();
+        }
+        
+        // Update vocabulary cards in browse section
+        this.updateVocabularyCards();
+    }
+    
+    getTranslation(key) {
+        const translations = {
+            es: {
+                // Header and navigation
+                appTitle: 'Confuc10 ++',
+                appSubtitle: 'Plataforma Avanzada de Aprendizaje de Chino',
+                practiceTab: 'Práctica',
+                browseTab: 'Explorar',
+                quizTab: 'Quiz',
+                statsTab: 'Estadísticas',
+                
+                // Search and controls
+                headerSearchPlaceholder: 'Buscar caracteres, pinyin o significado...',
+                searchPlaceholder: 'Buscar vocabulario...',
+                levelFilter: 'Filtrar por nivel',
+                allLevels: 'Todos los niveles',
+                
+                // Practice section
+                practiceTitle: 'Práctica de Vocabulario',
+                practiceSubtitle: 'Selecciona el modo de práctica y nivel HSK',
+                practiceMode: 'Modo de Práctica',
+                charToPinyin: 'Carácter → Pinyin',
+                charToEnglish: 'Carácter → Español',
+                pinyinToChar: 'Pinyin → Carácter',
+                englishToChar: 'Español → Carácter',
+                hskLevel: 'Nivel HSK',
+                showAnswer: 'Mostrar Respuesta',
+                nextCard: 'Siguiente',
+                
+                // Browse section
+                browseTitle: 'Explorar Vocabulario',
+                browseSubtitle: 'Navega por todo el vocabulario HSK',
+                noResults: 'No se encontraron resultados',
+                loadingMore: 'Cargando más...',
+                
+                // Quiz section
+                quizTitle: 'Quiz de Vocabulario',
+                quizSubtitle: 'Pon a prueba tus conocimientos',
+                startQuiz: 'Iniciar Quiz',
+                questionCount: 'Número de Preguntas',
+                quizMode: 'Modo de Quiz',
+                score: 'Puntuación',
+                question: 'Pregunta',
+                of: 'de',
+                submitAnswer: 'Enviar Respuesta',
+                nextQuestion: 'Siguiente Pregunta',
+                quizComplete: 'Quiz Completado',
+                finalScore: 'Puntuación Final',
+                restartQuiz: 'Reiniciar Quiz',
+                
+                // Statistics section
+                statsTitle: 'Estadísticas de Progreso',
+                statsSubtitle: 'Revisa tu progreso de aprendizaje',
+                totalStudied: 'Total Estudiado',
+                correctAnswers: 'Respuestas Correctas',
+                currentStreak: 'Racha Actual',
+                bestStreak: 'Mejor Racha',
+                quizzesCompleted: 'Quizzes Completados',
+                resetStats: 'Reiniciar Estadísticas',
+                
+                // Notifications
+                audioEnabled: 'Audio activado',
+                audioDisabled: 'Audio desactivado',
+                statsReset: 'Estadísticas reiniciadas',
+                darkModeActivated: 'Tema oscuro activado',
+                lightModeActivated: 'Tema claro activado',
+                
+                // Common
+                level: 'Nivel',
+                character: 'Carácter',
+                pinyin: 'Pinyin',
+                meaning: 'Significado',
+                loading: 'Cargando...',
+                error: 'Error',
+                progress: 'Progreso',
+                
+                // Additional translations
+                levelLabel: 'Nivel HSK',
+                clickToStart: 'Haz clic en "Siguiente" para comenzar',
+                next: 'Siguiente',
+                srsAgain: 'Otra vez',
+                srsHard: 'Difícil',
+                srsGood: 'Bien',
+                srsEasy: 'Fácil',
+                iKnow: 'Lo sé',
+                iDontKnow: 'No lo sé',
+                toggleSRS: 'Alternar modo SRS',
+                configureQuiz: 'Configurar Quiz',
+                numberOfQuestions: 'Número de Preguntas',
+                confirm: 'Confirmar',
+                quizCompleted: 'Quiz Completado!',
+                percentage: 'Porcentaje',
+                newQuiz: 'Nuevo Quiz',
+                learningStats: 'Estadísticas de Aprendizaje',
+                wordsStudied: 'Palabras Estudiadas',
+                accuracy: 'Precisión',
+                progressByLevel: 'Progreso por Nivel HSK'
+            },
+            en: {
+                // Header and navigation
+                appTitle: 'Confuc10 ++',
+                appSubtitle: 'Advanced Chinese Learning Platform',
+                practiceTab: 'Practice',
+                browseTab: 'Browse',
+                quizTab: 'Quiz',
+                statsTab: 'Statistics',
+                
+                // Search and controls
+                headerSearchPlaceholder: 'Search characters, pinyin, or meaning...',
+                searchPlaceholder: 'Search vocabulary...',
+                levelFilter: 'Filter by level',
+                allLevels: 'All levels',
+                
+                // Practice section
+                practiceTitle: 'Vocabulary Practice',
+                practiceSubtitle: 'Select practice mode and HSK level',
+                practiceMode: 'Practice Mode',
+                charToPinyin: 'Character → Pinyin',
+                charToEnglish: 'Character → English',
+                pinyinToChar: 'Pinyin → Character',
+                englishToChar: 'English → Character',
+                hskLevel: 'HSK Level',
+                showAnswer: 'Show Answer',
+                nextCard: 'Next Card',
+                
+                // Browse section
+                browseTitle: 'Browse Vocabulary',
+                browseSubtitle: 'Explore all HSK vocabulary',
+                noResults: 'No results found',
+                loadingMore: 'Loading more...',
+                
+                // Quiz section
+                quizTitle: 'Vocabulary Quiz',
+                quizSubtitle: 'Test your knowledge',
+                startQuiz: 'Start Quiz',
+                questionCount: 'Number of Questions',
+                quizMode: 'Quiz Mode',
+                score: 'Score',
+                question: 'Question',
+                of: 'of',
+                submitAnswer: 'Submit Answer',
+                nextQuestion: 'Next Question',
+                quizComplete: 'Quiz Complete',
+                finalScore: 'Final Score',
+                restartQuiz: 'Restart Quiz',
+                
+                // Statistics section
+                statsTitle: 'Progress Statistics',
+                statsSubtitle: 'Review your learning progress',
+                totalStudied: 'Total Studied',
+                correctAnswers: 'Correct Answers',
+                currentStreak: 'Current Streak',
+                bestStreak: 'Best Streak',
+                quizzesCompleted: 'Quizzes Completed',
+                resetStats: 'Reset Statistics',
+                
+                // Notifications
+                audioEnabled: 'Audio enabled',
+                audioDisabled: 'Audio disabled',
+                statsReset: 'Statistics reset',
+                darkModeActivated: 'Dark mode activated',
+                lightModeActivated: 'Light mode activated',
+                
+                // Common
+                level: 'Level',
+                character: 'Character',
+                pinyin: 'Pinyin',
+                meaning: 'Meaning',
+                loading: 'Loading...',
+                error: 'Error',
+                progress: 'Progress',
+                
+                // Additional translations
+                levelLabel: 'HSK Level',
+                clickToStart: 'Click "Next" to begin',
+                next: 'Next',
+                srsAgain: 'Again',
+                srsHard: 'Hard',
+                srsGood: 'Good',
+                srsEasy: 'Easy',
+                iKnow: 'I Know',
+                iDontKnow: 'I Don\'t Know',
+                toggleSRS: 'Toggle SRS Mode',
+                configureQuiz: 'Configure Quiz',
+                numberOfQuestions: 'Number of Questions',
+                confirm: 'Confirm',
+                quizCompleted: 'Quiz Completed!',
+                percentage: 'Percentage',
+                newQuiz: 'New Quiz',
+                learningStats: 'Learning Statistics',
+                wordsStudied: 'Words Studied',
+                accuracy: 'Accuracy',
+                progressByLevel: 'Progress by HSK Level'
+            }
+        };
+        
+        return translations[this.currentLanguage] && translations[this.currentLanguage][key];
+    }
+    
+    getMeaningForLanguage(word) {
+        // Return meaning based on current language
+        if (this.currentLanguage === 'es') {
+            return word.translation || word.spanish || word.english;
+        } else {
+            return word.english || word.translation;
+        }
+    }
+    
+    updateVocabularyCards() {
+        // Update all vocabulary cards in browse section
+        const vocabCards = document.querySelectorAll('.vocab-card');
+        vocabCards.forEach((card, index) => {
+            if (this.browseState && this.browseState.displayedItems[index]) {
+                const word = this.browseState.displayedItems[index];
+                const meaningElement = card.querySelector('.vocab-meaning');
+                if (meaningElement) {
+                    meaningElement.textContent = this.getMeaningForLanguage(word);
+                }
+            }
+        });
     }
     
     // Browse functionality
@@ -781,10 +1181,11 @@ class HSKApp {
     createVocabularyCard(word) {
         const card = document.createElement('div');
         card.className = 'vocab-card';
+        const meaning = this.getMeaningForLanguage(word);
         card.innerHTML = `
             <div class="vocab-character">${word.character}</div>
             <div class="vocab-pinyin">${word.pinyin}</div>
-            <div class="vocab-meaning">${word.english || word.translation}</div>
+            <div class="vocab-meaning">${meaning}</div>
             <div class="vocab-level">HSK ${word.level}</div>
             <button class="vocab-audio-btn" title="Play pronunciation">🔊</button>
         `;
@@ -1212,26 +1613,69 @@ class HSKApp {
         }
     }
     
-    // Theme functionality
+    // Theme Management System
     initializeTheme() {
-        const savedTheme = localStorage.getItem('hsk-theme') || 'light';
+        const savedTheme = localStorage.getItem('hsk-theme') || 'dark'; // Default to dark theme
         this.isDarkMode = savedTheme === 'dark';
         this.applyTheme();
+        this.updateThemeButton();
     }
     
     toggleTheme() {
         this.isDarkMode = !this.isDarkMode;
         this.applyTheme();
+        this.updateThemeButton();
         localStorage.setItem('hsk-theme', this.isDarkMode ? 'dark' : 'light');
+        
+        // Show notification
+        const message = this.isDarkMode ? 
+            this.getTranslation('darkModeActivated') || 'Tema oscuro activado' : 
+            this.getTranslation('lightModeActivated') || 'Tema claro activado';
+        this.showHeaderNotification(message);
+        
+        console.log(`🌙 Theme toggled: ${this.isDarkMode ? 'dark' : 'light'}`);
     }
     
     applyTheme() {
         document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
+        document.body.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
         
         // Update logo
         const logo = document.getElementById('app-logo-img');
         if (logo) {
             logo.src = this.isDarkMode ? 'logo_appDM.png' : 'logo_appLM.png';
+        }
+        
+        // Update CSS variables for theme
+        const root = document.documentElement;
+        if (this.isDarkMode) {
+            root.style.setProperty('--theme-bg', '#0f0f23');
+            root.style.setProperty('--theme-surface', '#1e1e3f');
+            root.style.setProperty('--theme-text', '#ffffff');
+        } else {
+            root.style.setProperty('--theme-bg', '#ffffff');
+            root.style.setProperty('--theme-surface', '#f8fafc');
+            root.style.setProperty('--theme-text', '#1e293b');
+        }
+    }
+    
+    updateThemeButton() {
+        const themeToggle = document.getElementById('theme-toggle');
+        if (!themeToggle) return;
+        
+        const lightIcon = themeToggle.querySelector('.light-icon');
+        const darkIcon = themeToggle.querySelector('.dark-icon');
+        
+        if (lightIcon && darkIcon) {
+            if (this.isDarkMode) {
+                lightIcon.style.display = 'none';
+                darkIcon.style.display = 'inline';
+                themeToggle.classList.add('active');
+            } else {
+                lightIcon.style.display = 'inline';
+                darkIcon.style.display = 'none';
+                themeToggle.classList.remove('active');
+            }
         }
     }
     
@@ -1264,9 +1708,22 @@ class HSKApp {
     
     loadSettings() {
         try {
+            // Load audio setting
             const audioEnabled = localStorage.getItem('hsk-audio-enabled');
             if (audioEnabled !== null) {
                 this.isAudioEnabled = audioEnabled === 'true';
+            }
+            
+            // Load language setting
+            const savedLanguage = localStorage.getItem('hsk-language');
+            if (savedLanguage) {
+                this.currentLanguage = savedLanguage;
+            }
+            
+            // Load voice preference
+            const savedVoice = localStorage.getItem('hsk-voice-preference');
+            if (savedVoice) {
+                this.selectedVoice = savedVoice;
             }
         } catch (error) {
             console.warn('⚠️ Error loading settings:', error);
