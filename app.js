@@ -1738,5 +1738,30 @@ class HSKApp {
 
 // Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    window.app = new HSKApp();
+    console.log('🚀 DOMContentLoaded event fired, initializing HSKApp...');
+    try {
+        window.app = new HSKApp();
+        console.log('✅ HSKApp initialized successfully');
+    } catch (error) {
+        console.error('❌ Error initializing HSKApp:', error);
+        console.error('Stack trace:', error.stack);
+    }
 });
+
+// Backup initialization if DOMContentLoaded already fired
+if (document.readyState === 'loading') {
+    console.log('📄 Document still loading, waiting for DOMContentLoaded');
+} else {
+    console.log('📄 Document already loaded, initializing immediately');
+    setTimeout(() => {
+        if (!window.app) {
+            console.log('🔧 Backup initialization triggered');
+            try {
+                window.app = new HSKApp();
+                console.log('✅ HSKApp backup initialized successfully');
+            } catch (error) {
+                console.error('❌ Error in backup initialization:', error);
+            }
+        }
+    }, 100);
+}

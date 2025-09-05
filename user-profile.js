@@ -474,6 +474,28 @@ class UserProfile {
         return this.profile.preferences[key];
     }
     
+    // Get all user preferences
+    getPreferences() {
+        return this.profile.preferences;
+    }
+    
+    // Check if user is authenticated
+    isAuthenticated() {
+        return this.auth && this.auth.isAuthenticated();
+    }
+    
+    // Get user statistics
+    getStatistics() {
+        return {
+            totalStudied: this.profile.progress.totalStudied,
+            currentStreak: this.profile.progress.currentStreak,
+            accuracyRate: this.profile.statistics.accuracyRate,
+            correctAnswers: this.profile.progress.correctAnswers,
+            incorrectAnswers: this.profile.progress.incorrectAnswers,
+            bestStreak: this.profile.progress.bestStreak
+        };
+    }
+    
     // Export profile data
     exportProfile() {
         return JSON.stringify(this.profile, null, 2);

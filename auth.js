@@ -34,7 +34,8 @@ class GitHubAuth {
         }
         
         // Try to load saved user or show login
-        if (this.loadSavedUser()) {
+        this.loadUserFromStorage();
+        if (this.currentUser) {
             this.updateUI();
         } else {
             // Show guest mode by default instead of setup instructions

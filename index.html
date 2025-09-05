@@ -76,12 +76,7 @@
         }
     </script>
     
-    <!-- Scripts -->
-    <script src="translations.js?v=9"></script>
-    <script src="auth.js?v=1"></script>
-    <script src="user-profile.js?v=1"></script>
-    <script src="diagnostic-system.js?v=1"></script>
-    <script src="app.js?v=10"></script>
+    <!-- Scripts moved to end of body for proper loading order -->
 </head>
 <body>
     <div class="app-container">
@@ -393,6 +388,12 @@
         </footer>
     </div>
 
+    <!-- Core Scripts -->
+    <script src="translations.js?v=2"></script>
+    <script src="auth.js?v=2"></script>
+    <script src="user-profile.js?v=2"></script>
+    <script src="diagnostic-system.js?v=2"></script>
+    <script src="app.js?v=2"></script>
     <script src="compatibility.js?v=9"></script>
     
     <!-- Flashcard CSS Enhancement -->
@@ -438,6 +439,30 @@
         console.log('🚀 HSK App - Build: MAIN');
         console.log('📦 All scripts loaded');
         console.log('🎴 CSS enhancements applied');
+        
+        // Debug script execution
+        setTimeout(function() {
+            console.log('🔍 Checking app status...');
+            console.log('HSKApp exists:', typeof HSKApp !== 'undefined');
+            console.log('window.app exists:', !!window.app);
+            console.log('DOM ready state:', document.readyState);
+            
+            // Check if DOM elements exist
+            console.log('nav-tab elements:', document.querySelectorAll('.nav-tab').length);
+            console.log('next-btn exists:', !!document.getElementById('next-btn'));
+            console.log('level-select exists:', !!document.getElementById('level-select'));
+            
+            // Force app initialization if needed
+            if (typeof HSKApp !== 'undefined' && !window.app) {
+                console.log('🔧 Force initializing app...');
+                try {
+                    window.app = new HSKApp();
+                    console.log('✅ App force initialized successfully');
+                } catch (error) {
+                    console.error('❌ Error force initializing app:', error);
+                }
+            }
+        }, 1000);
     </script>
 </body>
 </html>
