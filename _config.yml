@@ -1,20 +1,15 @@
-# GitHub Pages Configuration
+# GitHub Pages Configuration for Static Site
 title: "HSK Learning - Confuc10++"
 description: "Modern Chinese learning platform with flashcards, quizzes, and progress tracking"
-baseurl: "/proyecto_HSK" # the subpath of your site, e.g. /blog
-url: "https://skillparty.github.io" # the base hostname & protocol for your site
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
-theme: minima
+# No Jekyll processing - serve as static files
+plugins: []
 
-# Exclude files from processing
+# Exclude unnecessary files from GitHub Pages
 exclude:
-  - node_modules/
   - server.js
   - package*.json
-  - README*.md
+  - README.md
   - "*.backup"
   - "*.js.backup"
   - test-*.html
@@ -26,16 +21,5 @@ exclude:
   - compatibility*.js
   - debug.html
   - dev_logo.png
-
-# Include important files
-include:
-  - .nojekyll
-
-# GitHub Pages specific settings
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-
-# SEO settings
-lang: en_US
-author: "Confuc10++ Team"
+  - .github/
+  - node_modules/
