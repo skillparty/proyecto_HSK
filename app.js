@@ -13,7 +13,7 @@ class HSKApp {
         this.selectedVoice = 'auto'; // 'male', 'female', 'auto'
         this.availableVoices = [];
         this.chineseVoices = { male: null, female: null };
-        this.currentLanguage = 'es'; // Default to Spanish
+        this.currentLanguage = localStorage.getItem('hsk-language') || 'es';
         this.headerSearchTimeout = null;
         
         // Initialize stats
@@ -48,6 +48,25 @@ class HSKApp {
         try {
             console.log('🚀 Initializing HSK Learning App...');
             
+            // Initialize LanguageManager first
+            if (!window.languageManager && window.LanguageManager) {
+                window.languageManager = new window.LanguageManager();
+                this.currentLanguage = window.languageManager.currentLanguage;
+                
+                // Listen for language changes
+                window.addEventListener('languageChanged', (e) => {
+                    this.currentLanguage = e.detail.language;
+                    if (this.currentWord) {
+                        this.updateCard();
+                    }
+                    if (this.browseState) {
+                        this.updateVocabularyCards();
+                    }
+                });
+                
+                console.log('✅ LanguageManager initialized');
+            }
+            
             // Load vocabulary
             await this.loadVocabulary();
             
@@ -58,7 +77,9 @@ class HSKApp {
             this.initializeTheme();
             
             // Initialize language display
-            this.updateLanguageDisplay();
+            if (window.languageManager) {
+                window.languageManager.updateInterface();
+            }
             
             // Setup practice session
             this.setupPracticeSession();
@@ -165,11 +186,21 @@ class HSKApp {
             themeToggle.addEventListener('click', () => this.toggleTheme());
         }
         
-        // Language selector
+        // Language selector - use LanguageManager
         const languageSelect = document.getElementById('language-select');
         if (languageSelect) {
             languageSelect.addEventListener('change', (e) => {
-                this.changeLanguage(e.target.value);
+                if (window.languageManager) {
+                    window.languageManager.setLanguage(e.target.value);
+                    this.currentLanguage = e.target.value;
+                    // Update cards after language change
+                    if (this.currentWord) {
+                        this.updateCard();
+                    }
+                    if (this.browseState) {
+                        this.updateVocabularyCards();
+                    }
+                }
             });
         }
         
@@ -243,6 +274,17 @@ class HSKApp {
         const resetStatsBtn = document.getElementById('reset-stats');
         if (resetStatsBtn) {
             resetStatsBtn.addEventListener('click', () => this.resetStats());
+        }
+        
+        // Knowledge assessment buttons
+        const knowBtn = document.getElementById('know-btn');
+        if (knowBtn) {
+            knowBtn.addEventListener('click', () => this.markAsKnown(true));
+        }
+        
+        const dontKnowBtn = document.getElementById('dont-know-btn');
+        if (dontKnowBtn) {
+            dontKnowBtn.addEventListener('click', () => this.markAsKnown(false));
         }
         
         console.log('✅ Event listeners setup');
@@ -369,6 +411,9 @@ class HSKApp {
             flipBtn.style.opacity = '1';
         }
         
+        // Disable knowledge assessment buttons
+        this.disableKnowledgeButtons();
+        
         console.log('🔄 Card reset to front side');
     }
     
@@ -386,6 +431,9 @@ class HSKApp {
                 flipBtn.textContent = 'Answer Shown';
                 flipBtn.style.opacity = '0.6';
             }
+            
+            // Enable knowledge assessment buttons
+            this.enableKnowledgeButtons();
             
             // Play audio if enabled and we have a current word
             if (this.isAudioEnabled && this.currentWord) {
@@ -411,6 +459,120 @@ class HSKApp {
         // Update stats
         this.stats.totalStudied++;
         this.saveStats();
+        this.updateHeaderStats();
+    }
+    
+    // Knowledge assessment functionality
+    enableKnowledgeButtons() {
+        const knowBtn = document.getElementById('know-btn');
+        const dontKnowBtn = document.getElementById('dont-know-btn');
+        
+        if (knowBtn) {
+            knowBtn.disabled = false;
+            knowBtn.style.opacity = '1';
+        }
+        if (dontKnowBtn) {
+            dontKnowBtn.disabled = false;
+            dontKnowBtn.style.opacity = '1';
+        }
+        
+        console.log('✅ Knowledge buttons enabled');
+    }
+    
+    disableKnowledgeButtons() {
+        const knowBtn = document.getElementById('know-btn');
+        const dontKnowBtn = document.getElementById('dont-know-btn');
+        
+        if (knowBtn) {
+            knowBtn.disabled = true;
+            knowBtn.style.opacity = '0.6';
+        }
+        if (dontKnowBtn) {
+            dontKnowBtn.disabled = true;
+            dontKnowBtn.style.opacity = '0.6';
+        }
+        
+        console.log('🔒 Knowledge buttons disabled');
+    }
+    
+    markAsKnown(isKnown) {
+        if (!this.currentWord || !this.isFlipped) return;
+        
+        // Update stats based on knowledge assessment
+        if (isKnown) {
+            this.stats.correctAnswers++;
+            this.stats.currentStreak++;
+            if (this.stats.currentStreak > this.stats.bestStreak) {
+                this.stats.bestStreak = this.stats.currentStreak;
+            }
+            console.log(`✅ Marked "${this.currentWord.character}" as KNOWN`);
+        } else {
+            this.stats.currentStreak = 0;
+            console.log(`❌ Marked "${this.currentWord.character}" as NOT KNOWN`);
+        }
+        
+        // Save progress
+        this.saveStats();
+        this.updateHeaderStats();
+        
+        // Show feedback
+        this.showKnowledgeFeedback(isKnown);
+        
+        // Automatically advance to next card after a short delay
+        setTimeout(() => {
+            this.nextCard();
+        }, 800);
+    }
+    
+    showKnowledgeFeedback(isKnown) {
+        const flashcard = document.getElementById('flashcard');
+        if (!flashcard) return;
+        
+        // Create feedback overlay
+        const feedback = document.createElement('div');
+        feedback.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: ${isKnown ? 'rgba(16, 185, 129, 0.9)' : 'rgba(239, 68, 68, 0.9)'};
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            border-radius: 12px;
+            z-index: 10;
+            animation: feedbackPulse 0.8s ease-out;
+        `;
+        
+        feedback.innerHTML = isKnown ? '✅ ¡Correcto!' : '❌ Sigue practicando';
+        
+        // Add animation style
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes feedbackPulse {
+                0% { opacity: 0; transform: scale(0.8); }
+                50% { opacity: 1; transform: scale(1.1); }
+                100% { opacity: 1; transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        flashcard.style.position = 'relative';
+        flashcard.appendChild(feedback);
+        
+        // Remove feedback after animation
+        setTimeout(() => {
+            if (feedback.parentNode) {
+                feedback.parentNode.removeChild(feedback);
+            }
+            if (style.parentNode) {
+                style.parentNode.removeChild(style);
+            }
+        }, 800);
     }
     
     updateProgress() {
@@ -769,52 +931,8 @@ class HSKApp {
         });
     }
     
-    // Language Management System
-    changeLanguage(lang) {
-        this.currentLanguage = lang;
-        localStorage.setItem('hsk-language', lang);
-        this.updateLanguageDisplay();
-        
-        // Show notification
-        const message = lang === 'es' ? 'Idioma cambiado a Español' : 'Language changed to English';
-        this.showHeaderNotification(message);
-        
-        console.log(`🌐 Language changed to: ${lang}`);
-    }
-    
+    // Language Management System - Use LanguageManager from translations.js
     updateLanguageDisplay() {
-        // Update all text elements based on current language
-        const elements = document.querySelectorAll('[data-i18n]');
-        elements.forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            const translation = this.getTranslation(key);
-            if (translation) {
-                element.textContent = translation;
-            }
-        });
-        
-        // Update placeholders
-        const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
-        placeholderElements.forEach(element => {
-            const key = element.getAttribute('data-i18n-placeholder');
-            const translation = this.getTranslation(key);
-            if (translation) {
-                element.placeholder = translation;
-            }
-        });
-        
-        // Update language selector to show current selection
-        const languageSelect = document.getElementById('language-select');
-        if (languageSelect) {
-            languageSelect.value = this.currentLanguage;
-        }
-        
-        // Update voice selector to show current selection
-        const voiceSelect = document.getElementById('voice-select');
-        if (voiceSelect) {
-            voiceSelect.value = this.selectedVoice;
-        }
-        
         // Update current flashcard if exists
         if (this.currentWord) {
             this.updateCard();
@@ -825,202 +943,11 @@ class HSKApp {
     }
     
     getTranslation(key) {
-        const translations = {
-            es: {
-                // Header and navigation
-                appTitle: 'Confuc10 ++',
-                appSubtitle: 'Plataforma Avanzada de Aprendizaje de Chino',
-                practiceTab: 'Práctica',
-                browseTab: 'Explorar',
-                quizTab: 'Quiz',
-                statsTab: 'Estadísticas',
-                
-                // Search and controls
-                headerSearchPlaceholder: 'Buscar caracteres, pinyin o significado...',
-                searchPlaceholder: 'Buscar vocabulario...',
-                levelFilter: 'Filtrar por nivel',
-                allLevels: 'Todos los niveles',
-                
-                // Practice section
-                practiceTitle: 'Práctica de Vocabulario',
-                practiceSubtitle: 'Selecciona el modo de práctica y nivel HSK',
-                practiceMode: 'Modo de Práctica',
-                charToPinyin: 'Carácter → Pinyin',
-                charToEnglish: 'Carácter → Español',
-                pinyinToChar: 'Pinyin → Carácter',
-                englishToChar: 'Español → Carácter',
-                hskLevel: 'Nivel HSK',
-                showAnswer: 'Mostrar Respuesta',
-                nextCard: 'Siguiente',
-                
-                // Browse section
-                browseTitle: 'Explorar Vocabulario',
-                browseSubtitle: 'Navega por todo el vocabulario HSK',
-                noResults: 'No se encontraron resultados',
-                loadingMore: 'Cargando más...',
-                
-                // Quiz section
-                quizTitle: 'Quiz de Vocabulario',
-                quizSubtitle: 'Pon a prueba tus conocimientos',
-                startQuiz: 'Iniciar Quiz',
-                questionCount: 'Número de Preguntas',
-                quizMode: 'Modo de Quiz',
-                score: 'Puntuación',
-                question: 'Pregunta',
-                of: 'de',
-                submitAnswer: 'Enviar Respuesta',
-                nextQuestion: 'Siguiente Pregunta',
-                quizComplete: 'Quiz Completado',
-                finalScore: 'Puntuación Final',
-                restartQuiz: 'Reiniciar Quiz',
-                
-                // Statistics section
-                statsTitle: 'Estadísticas de Progreso',
-                statsSubtitle: 'Revisa tu progreso de aprendizaje',
-                totalStudied: 'Total Estudiado',
-                correctAnswers: 'Respuestas Correctas',
-                currentStreak: 'Racha Actual',
-                bestStreak: 'Mejor Racha',
-                quizzesCompleted: 'Quizzes Completados',
-                resetStats: 'Reiniciar Estadísticas',
-                
-                // Notifications
-                audioEnabled: 'Audio activado',
-                audioDisabled: 'Audio desactivado',
-                statsReset: 'Estadísticas reiniciadas',
-                darkModeActivated: 'Tema oscuro activado',
-                lightModeActivated: 'Tema claro activado',
-                
-                // Common
-                level: 'Nivel',
-                character: 'Carácter',
-                pinyin: 'Pinyin',
-                meaning: 'Significado',
-                loading: 'Cargando...',
-                error: 'Error',
-                progress: 'Progreso',
-                
-                // Additional translations
-                levelLabel: 'Nivel HSK',
-                clickToStart: 'Haz clic en "Siguiente" para comenzar',
-                next: 'Siguiente',
-                srsAgain: 'Otra vez',
-                srsHard: 'Difícil',
-                srsGood: 'Bien',
-                srsEasy: 'Fácil',
-                iKnow: 'Lo sé',
-                iDontKnow: 'No lo sé',
-                toggleSRS: 'Alternar modo SRS',
-                configureQuiz: 'Configurar Quiz',
-                numberOfQuestions: 'Número de Preguntas',
-                confirm: 'Confirmar',
-                quizCompleted: 'Quiz Completado!',
-                percentage: 'Porcentaje',
-                newQuiz: 'Nuevo Quiz',
-                learningStats: 'Estadísticas de Aprendizaje',
-                wordsStudied: 'Palabras Estudiadas',
-                accuracy: 'Precisión',
-                progressByLevel: 'Progreso por Nivel HSK'
-            },
-            en: {
-                // Header and navigation
-                appTitle: 'Confuc10 ++',
-                appSubtitle: 'Advanced Chinese Learning Platform',
-                practiceTab: 'Practice',
-                browseTab: 'Browse',
-                quizTab: 'Quiz',
-                statsTab: 'Statistics',
-                
-                // Search and controls
-                headerSearchPlaceholder: 'Search characters, pinyin, or meaning...',
-                searchPlaceholder: 'Search vocabulary...',
-                levelFilter: 'Filter by level',
-                allLevels: 'All levels',
-                
-                // Practice section
-                practiceTitle: 'Vocabulary Practice',
-                practiceSubtitle: 'Select practice mode and HSK level',
-                practiceMode: 'Practice Mode',
-                charToPinyin: 'Character → Pinyin',
-                charToEnglish: 'Character → English',
-                pinyinToChar: 'Pinyin → Character',
-                englishToChar: 'English → Character',
-                hskLevel: 'HSK Level',
-                showAnswer: 'Show Answer',
-                nextCard: 'Next Card',
-                
-                // Browse section
-                browseTitle: 'Browse Vocabulary',
-                browseSubtitle: 'Explore all HSK vocabulary',
-                noResults: 'No results found',
-                loadingMore: 'Loading more...',
-                
-                // Quiz section
-                quizTitle: 'Vocabulary Quiz',
-                quizSubtitle: 'Test your knowledge',
-                startQuiz: 'Start Quiz',
-                questionCount: 'Number of Questions',
-                quizMode: 'Quiz Mode',
-                score: 'Score',
-                question: 'Question',
-                of: 'of',
-                submitAnswer: 'Submit Answer',
-                nextQuestion: 'Next Question',
-                quizComplete: 'Quiz Complete',
-                finalScore: 'Final Score',
-                restartQuiz: 'Restart Quiz',
-                
-                // Statistics section
-                statsTitle: 'Progress Statistics',
-                statsSubtitle: 'Review your learning progress',
-                totalStudied: 'Total Studied',
-                correctAnswers: 'Correct Answers',
-                currentStreak: 'Current Streak',
-                bestStreak: 'Best Streak',
-                quizzesCompleted: 'Quizzes Completed',
-                resetStats: 'Reset Statistics',
-                
-                // Notifications
-                audioEnabled: 'Audio enabled',
-                audioDisabled: 'Audio disabled',
-                statsReset: 'Statistics reset',
-                darkModeActivated: 'Dark mode activated',
-                lightModeActivated: 'Light mode activated',
-                
-                // Common
-                level: 'Level',
-                character: 'Character',
-                pinyin: 'Pinyin',
-                meaning: 'Meaning',
-                loading: 'Loading...',
-                error: 'Error',
-                progress: 'Progress',
-                
-                // Additional translations
-                levelLabel: 'HSK Level',
-                clickToStart: 'Click "Next" to begin',
-                next: 'Next',
-                srsAgain: 'Again',
-                srsHard: 'Hard',
-                srsGood: 'Good',
-                srsEasy: 'Easy',
-                iKnow: 'I Know',
-                iDontKnow: 'I Don\'t Know',
-                toggleSRS: 'Toggle SRS Mode',
-                configureQuiz: 'Configure Quiz',
-                numberOfQuestions: 'Number of Questions',
-                confirm: 'Confirm',
-                quizCompleted: 'Quiz Completed!',
-                percentage: 'Percentage',
-                newQuiz: 'New Quiz',
-                learningStats: 'Learning Statistics',
-                wordsStudied: 'Words Studied',
-                accuracy: 'Accuracy',
-                progressByLevel: 'Progress by HSK Level'
-            }
-        };
-        
-        return translations[this.currentLanguage] && translations[this.currentLanguage][key];
+        // Use LanguageManager's translation system
+        if (window.languageManager) {
+            return window.languageManager.t(key);
+        }
+        return key; // Fallback to key if no translation found
     }
     
     getMeaningForLanguage(word) {

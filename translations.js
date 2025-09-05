@@ -69,6 +69,7 @@ const translations = {
         version: "v2.1.0 | Advanced Chinese Learning Platform",
         githubLink: "📂 GitHub",
         confuciusInspired: "🀄 Instituto Confucio inspired",
+        footer: "Hecho con ❤️ para estudiantes de chino",
         
         // Messages
         noWordsAvailable: "No hay más palabras disponibles",
@@ -79,6 +80,13 @@ const translations = {
         language: "Idioma:",
         spanish: "Español",
         english: "English",
+        
+        // Header stats
+        totalStudied: "Estudiado",
+        progress: "Progreso",
+        
+        // Placeholder texts
+        headerSearchPlaceholder: "Buscar caracteres, pinyin o significado...",
         
         // SRS Mode
         simpleMode: "Modo Simple",
@@ -101,7 +109,8 @@ const translations = {
         srsAgainTooltip: "Muy difícil - Repetir mañana",
         srsHardTooltip: "Difícil - Revisión en pocos días",
         srsGoodTooltip: "Bien - Revisión normal",
-        srsEasyTooltip: "Fácil - Revisión en más tiempo"
+        srsEasyTooltip: "Fácil - Revisión en más tiempo",
+        toggleSRS: "Alternar modo SRS"
     },
     
     en: {
@@ -173,6 +182,7 @@ const translations = {
         version: "v2.1.0 | Advanced Chinese Learning Platform",
         githubLink: "📂 GitHub",
         confuciusInspired: "🀄 Confucius Institute inspired",
+        footer: "Made with ❤️ for Chinese learners",
         
         // Messages
         noWordsAvailable: "No more words available",
@@ -183,6 +193,13 @@ const translations = {
         language: "Language:",
         spanish: "Español",
         english: "English",
+        
+        // Header stats
+        totalStudied: "Studied",
+        progress: "Progress",
+        
+        // Placeholder texts
+        headerSearchPlaceholder: "Search characters, pinyin, or meaning...",
         
         // SRS Mode
         simpleMode: "Simple Mode",
@@ -205,7 +222,8 @@ const translations = {
         srsAgainTooltip: "Very difficult - Repeat tomorrow",
         srsHardTooltip: "Difficult - Review in a few days",
         srsGoodTooltip: "Good - Normal review",
-        srsEasyTooltip: "Easy - Review in more time"
+        srsEasyTooltip: "Easy - Review in more time",
+        toggleSRS: "Toggle SRS Mode"
     }
 };
 
