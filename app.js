@@ -16,6 +16,10 @@ class HSKApp {
         this.currentLanguage = localStorage.getItem('hsk-language') || 'es';
         this.headerSearchTimeout = null;
         
+        // User authentication and profile
+        this.githubAuth = null;
+        this.userProfile = null;
+        
         // Initialize stats
         this.stats = {
             totalStudied: 0,
@@ -62,9 +66,29 @@ class HSKApp {
                     if (this.browseState) {
                         this.updateVocabularyCards();
                     }
+                    // Update user preference
+                    if (this.userProfile) {
+                        this.userProfile.updatePreference('language', e.detail.language);
+                    }
                 });
                 
                 console.log('✅ LanguageManager initialized');
+            }
+            
+            // Initialize GitHub Authentication
+            if (window.GitHubAuth) {
+                this.githubAuth = new window.GitHubAuth();
+                console.log('✅ GitHub Auth initialized');
+            }
+            
+            // Initialize User Profile
+            if (window.UserProfile && this.githubAuth) {
+                this.userProfile = new window.UserProfile(this.githubAuth);
+                
+                // Load user preferences
+                this.loadUserPreferences();
+                
+                console.log('✅ User Profile initialized');
             }
             
             // Load vocabulary
@@ -112,8 +136,8 @@ class HSKApp {
             this.vocabulary = vocabularyData;
             console.log(`✅ Loaded ${this.vocabulary.length} vocabulary items`);
         } catch (error) {
-            console.error('❌ Error loading vocabulary:', error);
-            this.createFallbackVocabulary();
+            console.error('🚨 Error loading vocabulary:', error);
+            this.showError('Error loading vocabulary files. Please try refreshing the page.');
         }
     }
     
@@ -131,6 +155,40 @@ class HSKApp {
             { character: '这', pinyin: 'zhè', english: 'this', translation: 'este/esta', level: 1 }
         ];
         console.log('✅ Fallback vocabulary created');
+    }
+
+    // Load user preferences from profile
+    loadUserPreferences() {
+        if (!this.userProfile) return;
+        
+        const preferences = this.userProfile.getPreferences();
+        
+        // Apply language preference
+        if (preferences.language && preferences.language !== this.currentLanguage) {
+            if (window.languageManager) {
+                window.languageManager.setLanguage(preferences.language);
+                this.currentLanguage = preferences.language;
+            }
+        }
+        
+        // Apply other preferences
+        if (preferences.practiceMode) {
+            this.practiceMode = preferences.practiceMode;
+        }
+        
+        if (preferences.selectedLevel) {
+            this.selectedLevel = preferences.selectedLevel;
+        }
+        
+        if (preferences.isDarkMode !== undefined) {
+            this.isDarkMode = preferences.isDarkMode;
+        }
+        
+        if (preferences.isAudioEnabled !== undefined) {
+            this.isAudioEnabled = preferences.isAudioEnabled;
+        }
+        
+        console.log('✅ User preferences loaded:', preferences);
     }
     
     setupEventListeners() {
@@ -498,7 +556,7 @@ class HSKApp {
     markAsKnown(isKnown) {
         if (!this.currentWord || !this.isFlipped) return;
         
-        // Update stats based on knowledge assessment
+        // Update local stats for backward compatibility
         if (isKnown) {
             this.stats.correctAnswers++;
             this.stats.currentStreak++;
@@ -509,6 +567,11 @@ class HSKApp {
         } else {
             this.stats.currentStreak = 0;
             console.log(`❌ Marked "${this.currentWord.character}" as NOT KNOWN`);
+        }
+        
+        // Record in user profile if available
+        if (this.userProfile) {
+            this.userProfile.recordWordStudy(this.currentWord, isKnown, this.practiceMode);
         }
         
         // Save progress
@@ -588,19 +651,34 @@ class HSKApp {
     
     // Header functionality
     updateHeaderStats() {
-        try {
-            const studiedEl = document.getElementById('header-studied');
-            const streakEl = document.getElementById('header-streak');
-            const progressEl = document.getElementById('header-progress');
+        const studiedEl = document.getElementById('header-studied');
+        const streakEl = document.getElementById('header-streak');
+        const progressEl = document.getElementById('header-progress');
+
+        // Use user profile stats if available, otherwise use local stats
+        let stats = this.stats;
+        if (this.userProfile && this.userProfile.isAuthenticated()) {
+            const profileStats = this.userProfile.getStatistics();
+            stats = {
+                totalStudied: profileStats.totalStudied,
+                currentStreak: profileStats.currentStreak,
+                correctAnswers: profileStats.correctAnswers
+            };
             
-            if (studiedEl) studiedEl.textContent = this.stats.totalStudied;
-            if (streakEl) streakEl.textContent = this.stats.currentStreak;
-            if (progressEl && this.vocabulary.length > 0) {
-                const progress = Math.min((this.stats.totalStudied / this.vocabulary.length) * 100, 100);
-                progressEl.style.width = `${progress}%`;
+            // Add cloud sync indicator for authenticated users
+            const headerStatsEl = document.querySelector('.header-stats');
+            if (headerStatsEl && !headerStatsEl.classList.contains('authenticated')) {
+                headerStatsEl.classList.add('authenticated');
             }
-        } catch (error) {
-            console.warn('⚠️ Error updating header stats:', error.message);
+        }
+
+        if (studiedEl) studiedEl.textContent = stats.totalStudied;
+        if (streakEl) streakEl.textContent = stats.currentStreak;
+        
+        if (progressEl) {
+            const progress = stats.totalStudied > 0 ? 
+                Math.min((stats.correctAnswers / stats.totalStudied) * 100, 100) : 0;
+            progressEl.style.width = `${progress}%`;
         }
     }
     

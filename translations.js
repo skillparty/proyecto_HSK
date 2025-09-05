@@ -109,8 +109,16 @@ const translations = {
         srsAgainTooltip: "Muy difícil - Repetir mañana",
         srsHardTooltip: "Difícil - Revisión en pocos días",
         srsGoodTooltip: "Bien - Revisión normal",
-        srsEasyTooltip: "Fácil - Revisión en más tiempo",
-        toggleSRS: "Alternar modo SRS"
+        srsEasyTooltip: "Fácil - Revisar en más tiempo",
+        toggleSRS: "Cambiar modo SRS",
+        
+        // Authentication
+        signInWithGitHub: 'Iniciar sesión con GitHub',
+        signOut: 'Cerrar sesión',
+        authDescription: 'Inicia sesión para guardar tu progreso y sincronizar en todos tus dispositivos',
+        welcome: 'Bienvenido',
+        guestMode: 'Modo invitado',
+        cloudSync: 'Sincronización en la nube activada'
     },
     
     en: {
@@ -130,10 +138,12 @@ const translations = {
         levelLabel: "HSK Level:",
         allLevels: "All levels",
         practiceMode: "Practice mode:",
-        charToPinyin: "Character → Pinyin",
-        charToEnglish: "Character → English",
-        pinyinToChar: "Pinyin → Character",
-        englishToChar: "English → Character",
+        'char-to-pinyin': "Character → Pinyin",
+        'char-to-english': "Character → English",
+        'char-to-spanish': "Character → Spanish",
+        'pinyin-to-char': "Pinyin → Character",
+        'english-to-char': "English → Character",
+        'spanish-to-char': "Spanish → Character",
         
         // Flashcard Controls
         showAnswer: "Show answer",
@@ -223,7 +233,15 @@ const translations = {
         srsHardTooltip: "Difficult - Review in a few days",
         srsGoodTooltip: "Good - Normal review",
         srsEasyTooltip: "Easy - Review in more time",
-        toggleSRS: "Toggle SRS Mode"
+        toggleSRS: "Toggle SRS Mode",
+        
+        // Authentication
+        signInWithGitHub: 'Sign in with GitHub',
+        signOut: 'Sign out',
+        authDescription: 'Sign in to save your progress and sync across devices',
+        welcome: 'Welcome',
+        guestMode: 'Guest mode',
+        cloudSync: 'Cloud sync enabled'
     }
 };
 

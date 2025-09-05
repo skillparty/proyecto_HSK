@@ -1,0 +1,41 @@
+# GitHub Pages Configuration
+title: "HSK Learning - Confuc10++"
+description: "Modern Chinese learning platform with flashcards, quizzes, and progress tracking"
+baseurl: "/proyecto_HSK" # the subpath of your site, e.g. /blog
+url: "https://skillparty.github.io" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Exclude files from processing
+exclude:
+  - node_modules/
+  - server.js
+  - package*.json
+  - README*.md
+  - "*.backup"
+  - "*.js.backup"
+  - test-*.html
+  - diagnostic-*.js
+  - diagnostic-*.html
+  - fix-*.js
+  - diagnose-*.js
+  - clear-cache-fix.js
+  - compatibility*.js
+  - debug.html
+  - dev_logo.png
+
+# Include important files
+include:
+  - .nojekyll
+
+# GitHub Pages specific settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# SEO settings
+lang: en_US
+author: "Confuc10++ Team"

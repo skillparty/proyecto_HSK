@@ -1,0 +1,130 @@
+/* Authentication UI Styles */
+.auth-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 1rem;
+}
+
+.auth-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.auth-user-info:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.auth-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.auth-username {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ffffff;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.auth-login-btn {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.auth-login-btn:hover {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.auth-logout-btn {
+    background: rgba(239, 68, 68, 0.8);
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.auth-logout-btn:hover {
+    background: rgba(239, 68, 68, 1);
+    opacity: 1;
+}
+
+.github-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+/* User stats enhancement for authenticated users */
+.header-stats.authenticated {
+    border-left: 2px solid rgba(99, 102, 241, 0.5);
+    padding-left: 1rem;
+    margin-left: 1rem;
+}
+
+.header-stat.synced::after {
+    content: "☁️";
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.header-stat {
+    position: relative;
+}
+
+/* Loading state for auth */
+.auth-loading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.auth-loading::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,467 +1,642 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test Critical Fixes - HSK Learning</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background: #f5f5f5;
-        }
-        .test-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .test-section {
-            margin-bottom: 30px;
-            padding: 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-        }
-        .test-title {
-            color: #e11d48;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .test-result {
-            padding: 10px;
-            border-radius: 4px;
-            margin: 10px 0;
-        }
-        .success {
-            background: #d1fae5;
-            color: #065f46;
-            border: 1px solid #10b981;
-        }
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #ef4444;
-        }
-        .info {
-            background: #dbeafe;
-            color: #1e40af;
-            border: 1px solid #3b82f6;
-        }
-        .warning {
-            background: #fef3c7;
-            color: #92400e;
-            border: 1px solid #f59e0b;
-        }
-        .test-button {
-            background: #e11d48;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .test-button:hover {
-            background: #be123c;
-        }
-        iframe {
-            width: 100%;
-            height: 600px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-        .fix-summary {
-            background: #f0fdf4;
-            border: 1px solid #86efac;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        .fix-item {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
-            padding: 10px;
-            background: white;
-            border-radius: 6px;
-            border-left: 4px solid #10b981;
-        }
-        .fix-icon {
-            font-size: 1.5rem;
-            margin-right: 15px;
-        }
-        .fix-text {
-            flex: 1;
-        }
-        .fix-title {
-            font-weight: bold;
-            color: #065f46;
-        }
-        .fix-description {
-            font-size: 0.9rem;
-            color: #047857;
-            margin-top: 5px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f5f5f5;
+      }
+      .test-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .test-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+      }
+      .test-title {
+        color: #e11d48;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .test-result {
+        padding: 10px;
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+      .success {
+        background: #d1fae5;
+        color: #065f46;
+        border: 1px solid #10b981;
+      }
+      .error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #ef4444;
+      }
+      .info {
+        background: #dbeafe;
+        color: #1e40af;
+        border: 1px solid #3b82f6;
+      }
+      .warning {
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #f59e0b;
+      }
+      .test-button {
+        background: #e11d48;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      .test-button:hover {
+        background: #be123c;
+      }
+      iframe {
+        width: 100%;
+        height: 600px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+      .fix-summary {
+        background: #f0fdf4;
+        border: 1px solid #86efac;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      .fix-item {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        padding: 10px;
+        background: white;
+        border-radius: 6px;
+        border-left: 4px solid #10b981;
+      }
+      .fix-icon {
+        font-size: 1.5rem;
+        margin-right: 15px;
+      }
+      .fix-text {
+        flex: 1;
+      }
+      .fix-title {
+        font-weight: bold;
+        color: #065f46;
+      }
+      .fix-description {
+        font-size: 0.9rem;
+        color: #047857;
+        margin-top: 5px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="test-container">
-        <h1>🔧 Test Critical Fixes - HSK Learning App</h1>
-        
-        <div class="fix-summary">
-            <h2>✅ Fixes Implemented</h2>
-            
-            <div class="fix-item">
-                <div class="fix-icon">🎴</div>
-                <div class="fix-text">
-                    <div class="fix-title">Flashcard Flip Functionality</div>
-                    <div class="fix-description">Cards now flip properly when clicking "Show Answer" or the card itself. Audio plays on flip.</div>
-                </div>
+      <h1>🔧 Test Critical Fixes - HSK Learning App</h1>
+
+      <div class="fix-summary">
+        <h2>✅ Fixes Implemented</h2>
+
+        <div class="fix-item">
+          <div class="fix-icon">🎴</div>
+          <div class="fix-text">
+            <div class="fix-title">Flashcard Flip Functionality</div>
+            <div class="fix-description">
+              Cards now flip properly when clicking "Show Answer" or the card
+              itself. Audio plays on flip.
             </div>
-            
-            <div class="fix-item">
-                <div class="fix-icon">📚</div>
-                <div class="fix-text">
-                    <div class="fix-title">Browse Section with Infinite Scroll</div>
-                    <div class="fix-description">All vocabulary loads progressively with scroll. Audio buttons added to each card.</div>
-                </div>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-icon">📚</div>
+          <div class="fix-text">
+            <div class="fix-title">Browse Section with Infinite Scroll</div>
+            <div class="fix-description">
+              All vocabulary loads progressively with scroll. Audio buttons
+              added to each card.
             </div>
-            
-            <div class="fix-item">
-                <div class="fix-icon">🧠</div>
-                <div class="fix-text">
-                    <div class="fix-title">Quiz System Corrections</div>
-                    <div class="fix-description">Scoring works correctly, correct answer always included in options, improved UI feedback.</div>
-                </div>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-icon">🧠</div>
+          <div class="fix-text">
+            <div class="fix-title">Quiz System Corrections</div>
+            <div class="fix-description">
+              Scoring works correctly, correct answer always included in
+              options, improved UI feedback.
             </div>
-            
-            <div class="fix-item">
-                <div class="fix-icon">🎨</div>
-                <div class="fix-text">
-                    <div class="fix-title">UI/UX Improvements</div>
-                    <div class="fix-description">Consistent styling, better feedback, mobile optimization, accessibility improvements.</div>
-                </div>
+          </div>
+        </div>
+
+        <div class="fix-item">
+          <div class="fix-icon">🎨</div>
+          <div class="fix-text">
+            <div class="fix-title">UI/UX Improvements</div>
+            <div class="fix-description">
+              Consistent styling, better feedback, mobile optimization,
+              accessibility improvements.
             </div>
+          </div>
         </div>
-        
-        <div class="test-section">
-            <div class="test-title">🎴 Flashcard Functionality Test</div>
-            <div id="flashcard-test">Testing flashcard flip functionality...</div>
-            <button class="test-button" onclick="testFlashcards()">Test Flashcards</button>
+      </div>
+
+      <div class="test-section">
+        <div class="test-title">🎴 Flashcard Functionality Test</div>
+        <div id="flashcard-test">Testing flashcard flip functionality...</div>
+        <button class="test-button" onclick="testFlashcards()">
+          Test Flashcards
+        </button>
+      </div>
+
+      <div class="test-section">
+        <div class="test-title">📚 Browse Section Test</div>
+        <div id="browse-test">
+          Testing browse section with infinite scroll...
         </div>
-        
-        <div class="test-section">
-            <div class="test-title">📚 Browse Section Test</div>
-            <div id="browse-test">Testing browse section with infinite scroll...</div>
-            <button class="test-button" onclick="testBrowse()">Test Browse</button>
+        <button class="test-button" onclick="testBrowse()">Test Browse</button>
+      </div>
+
+      <div class="test-section">
+        <div class="test-title">🧠 Quiz System Test</div>
+        <div id="quiz-test">Testing quiz scoring and options...</div>
+        <button class="test-button" onclick="testQuiz()">Test Quiz</button>
+      </div>
+
+      <div class="test-section">
+        <div class="test-title">🎨 UI/UX Test</div>
+        <div id="ui-test">Testing UI improvements...</div>
+        <button class="test-button" onclick="testUI()">Test UI</button>
+      </div>
+
+      <div class="test-section">
+        <div class="test-title">📱 Mobile Responsiveness Test</div>
+        <div id="mobile-test">Testing mobile optimizations...</div>
+        <button class="test-button" onclick="testMobile()">Test Mobile</button>
+      </div>
+
+      <div class="test-section">
+        <div class="test-title">🖥️ Live Application</div>
+        <iframe src="http://localhost:8070" id="app-preview"></iframe>
+        <div style="margin-top: 10px; text-align: center">
+          <button class="test-button" onclick="reloadPreview()">
+            Reload App
+          </button>
+          <button class="test-button" onclick="testFlashcardFlip()">
+            Test Card Flip
+          </button>
+          <button class="test-button" onclick="testBrowseScroll()">
+            Test Browse Scroll
+          </button>
+          <button class="test-button" onclick="testQuizFlow()">
+            Test Quiz Flow
+          </button>
         </div>
-        
-        <div class="test-section">
-            <div class="test-title">🧠 Quiz System Test</div>
-            <div id="quiz-test">Testing quiz scoring and options...</div>
-            <button class="test-button" onclick="testQuiz()">Test Quiz</button>
-        </div>
-        
-        <div class="test-section">
-            <div class="test-title">🎨 UI/UX Test</div>
-            <div id="ui-test">Testing UI improvements...</div>
-            <button class="test-button" onclick="testUI()">Test UI</button>
-        </div>
-        
-        <div class="test-section">
-            <div class="test-title">📱 Mobile Responsiveness Test</div>
-            <div id="mobile-test">Testing mobile optimizations...</div>
-            <button class="test-button" onclick="testMobile()">Test Mobile</button>
-        </div>
-        
-        <div class="test-section">
-            <div class="test-title">🖥️ Live Application</div>
-            <iframe src="http://localhost:8070" id="app-preview"></iframe>
-            <div style="margin-top: 10px; text-align: center;">
-                <button class="test-button" onclick="reloadPreview()">Reload App</button>
-                <button class="test-button" onclick="testFlashcardFlip()">Test Card Flip</button>
-                <button class="test-button" onclick="testBrowseScroll()">Test Browse Scroll</button>
-                <button class="test-button" onclick="testQuizFlow()">Test Quiz Flow</button>
-            </div>
-        </div>
+      </div>
     </div>
 
     <script>
-        // Test flashcard functionality
-        async function testFlashcards() {
-            const testDiv = document.getElementById('flashcard-test');
-            testDiv.innerHTML = '<div class="info">Testing flashcard functionality...</div>';
-            
-            try {
-                const response = await fetch('http://localhost:8070');
-                const html = await response.text();
-                const jsResponse = await fetch('http://localhost:8070/app.js');
-                const js = await jsResponse.text();
-                
-                const tests = [
-                    { name: 'Flashcard HTML structure', test: html.includes('flashcard-container') && html.includes('flashcard-inner') },
-                    { name: 'Card faces (front/back)', test: html.includes('card-front') && html.includes('card-back') },
-                    { name: 'Flip button present', test: html.includes('flip-btn') },
-                    { name: 'Flip functionality in JS', test: js.includes('flipCard()') },
-                    { name: 'Card reset functionality', test: js.includes('resetCardState()') },
-                    { name: 'Audio integration', test: js.includes('playAudio') && js.includes('speechSynthesis') },
-                    { name: 'Click handlers', test: js.includes('addEventListener') && js.includes('click') }
-                ];
-                
-                let results = '<div class="success">Flashcard Tests:</div>';
-                let passedTests = 0;
-                
-                tests.forEach(test => {
-                    const status = test.test ? '✅' : '❌';
-                    const className = test.test ? 'success' : 'error';
-                    results += `<div class="${className}">${status} ${test.name}</div>`;
-                    if (test.test) passedTests++;
-                });
-                
-                const percentage = Math.round((passedTests / tests.length) * 100);
-                results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
-                
-                if (percentage >= 85) {
-                    results += '<div class="success">🎉 Flashcards are working correctly!</div>';
-                } else {
-                    results += '<div class="warning">⚠️ Some flashcard issues may remain.</div>';
-                }
-                
-                testDiv.innerHTML = results;
-                
-            } catch (error) {
-                testDiv.innerHTML = '<div class="error">❌ Error testing flashcards: ' + error.message + '</div>';
-            }
+      // Test flashcard functionality
+      async function testFlashcards() {
+        const testDiv = document.getElementById("flashcard-test");
+        testDiv.innerHTML =
+          '<div class="info">Testing flashcard functionality...</div>';
+
+        try {
+          const response = await fetch("http://localhost:8070");
+          const html = await response.text();
+          const jsResponse = await fetch("http://localhost:8070/app.js");
+          const js = await jsResponse.text();
+
+          const tests = [
+            {
+              name: "Flashcard HTML structure",
+              test:
+                html.includes("flashcard-container") &&
+                html.includes("flashcard-inner"),
+            },
+            {
+              name: "Card faces (front/back)",
+              test: html.includes("card-front") && html.includes("card-back"),
+            },
+            { name: "Flip button present", test: html.includes("flip-btn") },
+            {
+              name: "Flip functionality in JS",
+              test: js.includes("flipCard()"),
+            },
+            {
+              name: "Card reset functionality",
+              test: js.includes("resetCardState()"),
+            },
+            {
+              name: "Audio integration",
+              test: js.includes("playAudio") && js.includes("speechSynthesis"),
+            },
+            {
+              name: "Click handlers",
+              test: js.includes("addEventListener") && js.includes("click"),
+            },
+          ];
+
+          let results = '<div class="success">Flashcard Tests:</div>';
+          let passedTests = 0;
+
+          tests.forEach((test) => {
+            const status = test.test ? "✅" : "❌";
+            const className = test.test ? "success" : "error";
+            results += `<div class="${className}">${status} ${test.name}</div>`;
+            if (test.test) passedTests++;
+          });
+
+          const percentage = Math.round((passedTests / tests.length) * 100);
+          results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
+
+          if (percentage >= 85) {
+            results +=
+              '<div class="success">🎉 Flashcards are working correctly!</div>';
+          } else {
+            results +=
+              '<div class="warning">⚠️ Some flashcard issues may remain.</div>';
+          }
+
+          testDiv.innerHTML = results;
+        } catch (error) {
+          testDiv.innerHTML =
+            '<div class="error">❌ Error testing flashcards: ' +
+            error.message +
+            "</div>";
         }
-        
-        // Test browse section
-        async function testBrowse() {
-            const testDiv = document.getElementById('browse-test');
-            testDiv.innerHTML = '<div class="info">Testing browse section...</div>';
-            
-            try {
-                const response = await fetch('http://localhost:8070');
-                const html = await response.text();
-                const jsResponse = await fetch('http://localhost:8070/app.js');
-                const js = await jsResponse.text();
-                const cssResponse = await fetch('http://localhost:8070/styles-v2.css');
-                const css = await cssResponse.text();
-                
-                const tests = [
-                    { name: 'Browse tab structure', test: html.includes('id="browse"') && html.includes('vocabulary-grid') },
-                    { name: 'Search functionality', test: html.includes('search-input') },
-                    { name: 'Level filter', test: html.includes('browse-level-filter') },
-                    { name: 'Infinite scroll JS', test: js.includes('setupInfiniteScroll') && js.includes('loadMoreVocabulary') },
-                    { name: 'Audio buttons', test: js.includes('vocab-audio-btn') },
-                    { name: 'Vocabulary card creation', test: js.includes('createVocabularyCard') },
-                    { name: 'Loading indicators', test: js.includes('showLoadingIndicator') },
-                    { name: 'Browse CSS styles', test: css.includes('vocab-audio-btn') && css.includes('browse-loading') }
-                ];
-                
-                let results = '<div class="success">Browse Section Tests:</div>';
-                let passedTests = 0;
-                
-                tests.forEach(test => {
-                    const status = test.test ? '✅' : '❌';
-                    const className = test.test ? 'success' : 'error';
-                    results += `<div class="${className}">${status} ${test.name}</div>`;
-                    if (test.test) passedTests++;
-                });
-                
-                const percentage = Math.round((passedTests / tests.length) * 100);
-                results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
-                
-                if (percentage >= 85) {
-                    results += '<div class="success">🎉 Browse section is working correctly!</div>';
-                } else {
-                    results += '<div class="warning">⚠️ Some browse issues may remain.</div>';
-                }
-                
-                testDiv.innerHTML = results;
-                
-            } catch (error) {
-                testDiv.innerHTML = '<div class="error">❌ Error testing browse: ' + error.message + '</div>';
-            }
+      }
+
+      // Test browse section
+      async function testBrowse() {
+        const testDiv = document.getElementById("browse-test");
+        testDiv.innerHTML = '<div class="info">Testing browse section...</div>';
+
+        try {
+          const response = await fetch("http://localhost:8070");
+          const html = await response.text();
+          const jsResponse = await fetch("http://localhost:8070/app.js");
+          const js = await jsResponse.text();
+          const cssResponse = await fetch(
+            "http://localhost:8070/styles-v2.css"
+          );
+          const css = await cssResponse.text();
+
+          const tests = [
+            {
+              name: "Browse tab structure",
+              test:
+                html.includes('id="browse"') &&
+                html.includes("vocabulary-grid"),
+            },
+            {
+              name: "Search functionality",
+              test: html.includes("search-input"),
+            },
+            {
+              name: "Level filter",
+              test: html.includes("browse-level-filter"),
+            },
+            {
+              name: "Infinite scroll JS",
+              test:
+                js.includes("setupInfiniteScroll") &&
+                js.includes("loadMoreVocabulary"),
+            },
+            { name: "Audio buttons", test: js.includes("vocab-audio-btn") },
+            {
+              name: "Vocabulary card creation",
+              test: js.includes("createVocabularyCard"),
+            },
+            {
+              name: "Loading indicators",
+              test: js.includes("showLoadingIndicator"),
+            },
+            {
+              name: "Browse CSS styles",
+              test:
+                css.includes("vocab-audio-btn") &&
+                css.includes("browse-loading"),
+            },
+          ];
+
+          let results = '<div class="success">Browse Section Tests:</div>';
+          let passedTests = 0;
+
+          tests.forEach((test) => {
+            const status = test.test ? "✅" : "❌";
+            const className = test.test ? "success" : "error";
+            results += `<div class="${className}">${status} ${test.name}</div>`;
+            if (test.test) passedTests++;
+          });
+
+          const percentage = Math.round((passedTests / tests.length) * 100);
+          results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
+
+          if (percentage >= 85) {
+            results +=
+              '<div class="success">🎉 Browse section is working correctly!</div>';
+          } else {
+            results +=
+              '<div class="warning">⚠️ Some browse issues may remain.</div>';
+          }
+
+          testDiv.innerHTML = results;
+        } catch (error) {
+          testDiv.innerHTML =
+            '<div class="error">❌ Error testing browse: ' +
+            error.message +
+            "</div>";
         }
-        
-        // Test quiz system
-        async function testQuiz() {
-            const testDiv = document.getElementById('quiz-test');
-            testDiv.innerHTML = '<div class="info">Testing quiz system...</div>';
-            
-            try {
-                const response = await fetch('http://localhost:8070');
-                const html = await response.text();
-                const jsResponse = await fetch('http://localhost:8070/app.js');
-                const js = await jsResponse.text();
-                const cssResponse = await fetch('http://localhost:8070/styles-v2.css');
-                const css = await cssResponse.text();
-                
-                const tests = [
-                    { name: 'Quiz HTML structure', test: html.includes('quiz-container') && html.includes('quiz-options') },
-                    { name: 'Quiz scoring system', test: js.includes('this.quiz.score++') },
-                    { name: 'Option generation', test: js.includes('generateQuizOptions') },
-                    { name: 'Answer validation', test: js.includes('submitQuizAnswer') },
-                    { name: 'Correct answer inclusion', test: js.includes('correctAnswer') && js.includes('shuffledOptions.includes') },
-                    { name: 'UI feedback', test: js.includes('showQuizFeedback') },
-                    { name: 'Score display update', test: js.includes('quiz-score') && js.includes('textContent') },
-                    { name: 'Quiz CSS styling', test: css.includes('quiz-feedback') && css.includes('quiz-option.selected') }
-                ];
-                
-                let results = '<div class="success">Quiz System Tests:</div>';
-                let passedTests = 0;
-                
-                tests.forEach(test => {
-                    const status = test.test ? '✅' : '❌';
-                    const className = test.test ? 'success' : 'error';
-                    results += `<div class="${className}">${status} ${test.name}</div>`;
-                    if (test.test) passedTests++;
-                });
-                
-                const percentage = Math.round((passedTests / tests.length) * 100);
-                results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
-                
-                if (percentage >= 85) {
-                    results += '<div class="success">🎉 Quiz system is working correctly!</div>';
-                } else {
-                    results += '<div class="warning">⚠️ Some quiz issues may remain.</div>';
-                }
-                
-                testDiv.innerHTML = results;
-                
-            } catch (error) {
-                testDiv.innerHTML = '<div class="error">❌ Error testing quiz: ' + error.message + '</div>';
-            }
+      }
+
+      // Test quiz system
+      async function testQuiz() {
+        const testDiv = document.getElementById("quiz-test");
+        testDiv.innerHTML = '<div class="info">Testing quiz system...</div>';
+
+        try {
+          const response = await fetch("http://localhost:8070");
+          const html = await response.text();
+          const jsResponse = await fetch("http://localhost:8070/app.js");
+          const js = await jsResponse.text();
+          const cssResponse = await fetch(
+            "http://localhost:8070/styles-v2.css"
+          );
+          const css = await cssResponse.text();
+
+          const tests = [
+            {
+              name: "Quiz HTML structure",
+              test:
+                html.includes("quiz-container") &&
+                html.includes("quiz-options"),
+            },
+            {
+              name: "Quiz scoring system",
+              test: js.includes("this.quiz.score++"),
+            },
+            {
+              name: "Option generation",
+              test: js.includes("generateQuizOptions"),
+            },
+            {
+              name: "Answer validation",
+              test: js.includes("submitQuizAnswer"),
+            },
+            {
+              name: "Correct answer inclusion",
+              test:
+                js.includes("correctAnswer") &&
+                js.includes("shuffledOptions.includes"),
+            },
+            { name: "UI feedback", test: js.includes("showQuizFeedback") },
+            {
+              name: "Score display update",
+              test: js.includes("quiz-score") && js.includes("textContent"),
+            },
+            {
+              name: "Quiz CSS styling",
+              test:
+                css.includes("quiz-feedback") &&
+                css.includes("quiz-option.selected"),
+            },
+          ];
+
+          let results = '<div class="success">Quiz System Tests:</div>';
+          let passedTests = 0;
+
+          tests.forEach((test) => {
+            const status = test.test ? "✅" : "❌";
+            const className = test.test ? "success" : "error";
+            results += `<div class="${className}">${status} ${test.name}</div>`;
+            if (test.test) passedTests++;
+          });
+
+          const percentage = Math.round((passedTests / tests.length) * 100);
+          results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
+
+          if (percentage >= 85) {
+            results +=
+              '<div class="success">🎉 Quiz system is working correctly!</div>';
+          } else {
+            results +=
+              '<div class="warning">⚠️ Some quiz issues may remain.</div>';
+          }
+
+          testDiv.innerHTML = results;
+        } catch (error) {
+          testDiv.innerHTML =
+            '<div class="error">❌ Error testing quiz: ' +
+            error.message +
+            "</div>";
         }
-        
-        // Test UI improvements
-        async function testUI() {
-            const testDiv = document.getElementById('ui-test');
-            testDiv.innerHTML = '<div class="info">Testing UI improvements...</div>';
-            
-            try {
-                const cssResponse = await fetch('http://localhost:8070/styles-v2.css');
-                const css = await cssResponse.text();
-                
-                const tests = [
-                    { name: 'Consistent focus states', test: css.includes('button:focus') && css.includes('outline:') },
-                    { name: 'Hover effects', test: css.includes('button:hover') && css.includes('transform:') },
-                    { name: 'Loading states', test: css.includes('.btn.loading') },
-                    { name: 'Form styling', test: css.includes('input[type="text"]') && css.includes('border:') },
-                    { name: 'Error states', test: css.includes('.form-group.error') },
-                    { name: 'Success states', test: css.includes('.form-group.success') },
-                    { name: 'Dark theme support', test: css.includes('[data-theme="dark"]') },
-                    { name: 'Mobile optimizations', test: css.includes('@media (max-width: 768px)') },
-                    { name: 'Accessibility features', test: css.includes('prefers-reduced-motion') },
-                    { name: 'Animation consistency', test: css.includes('@keyframes') && css.includes('fadeIn') }
-                ];
-                
-                let results = '<div class="success">UI/UX Tests:</div>';
-                let passedTests = 0;
-                
-                tests.forEach(test => {
-                    const status = test.test ? '✅' : '❌';
-                    const className = test.test ? 'success' : 'error';
-                    results += `<div class="${className}">${status} ${test.name}</div>`;
-                    if (test.test) passedTests++;
-                });
-                
-                const percentage = Math.round((passedTests / tests.length) * 100);
-                results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
-                
-                if (percentage >= 85) {
-                    results += '<div class="success">🎉 UI improvements are working correctly!</div>';
-                } else {
-                    results += '<div class="warning">⚠️ Some UI issues may remain.</div>';
-                }
-                
-                testDiv.innerHTML = results;
-                
-            } catch (error) {
-                testDiv.innerHTML = '<div class="error">❌ Error testing UI: ' + error.message + '</div>';
-            }
+      }
+
+      // Test UI improvements
+      async function testUI() {
+        const testDiv = document.getElementById("ui-test");
+        testDiv.innerHTML =
+          '<div class="info">Testing UI improvements...</div>';
+
+        try {
+          const cssResponse = await fetch(
+            "http://localhost:8070/styles-v2.css"
+          );
+          const css = await cssResponse.text();
+
+          const tests = [
+            {
+              name: "Consistent focus states",
+              test: css.includes("button:focus") && css.includes("outline:"),
+            },
+            {
+              name: "Hover effects",
+              test: css.includes("button:hover") && css.includes("transform:"),
+            },
+            { name: "Loading states", test: css.includes(".btn.loading") },
+            {
+              name: "Form styling",
+              test:
+                css.includes('input[type="text"]') && css.includes("border:"),
+            },
+            { name: "Error states", test: css.includes(".form-group.error") },
+            {
+              name: "Success states",
+              test: css.includes(".form-group.success"),
+            },
+            {
+              name: "Dark theme support",
+              test: css.includes('[data-theme="dark"]'),
+            },
+            {
+              name: "Mobile optimizations",
+              test: css.includes("@media (max-width: 768px)"),
+            },
+            {
+              name: "Accessibility features",
+              test: css.includes("prefers-reduced-motion"),
+            },
+            {
+              name: "Animation consistency",
+              test: css.includes("@keyframes") && css.includes("fadeIn"),
+            },
+          ];
+
+          let results = '<div class="success">UI/UX Tests:</div>';
+          let passedTests = 0;
+
+          tests.forEach((test) => {
+            const status = test.test ? "✅" : "❌";
+            const className = test.test ? "success" : "error";
+            results += `<div class="${className}">${status} ${test.name}</div>`;
+            if (test.test) passedTests++;
+          });
+
+          const percentage = Math.round((passedTests / tests.length) * 100);
+          results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
+
+          if (percentage >= 85) {
+            results +=
+              '<div class="success">🎉 UI improvements are working correctly!</div>';
+          } else {
+            results +=
+              '<div class="warning">⚠️ Some UI issues may remain.</div>';
+          }
+
+          testDiv.innerHTML = results;
+        } catch (error) {
+          testDiv.innerHTML =
+            '<div class="error">❌ Error testing UI: ' +
+            error.message +
+            "</div>";
         }
-        
-        // Test mobile responsiveness
-        async function testMobile() {
-            const testDiv = document.getElementById('mobile-test');
-            testDiv.innerHTML = '<div class="info">Testing mobile optimizations...</div>';
-            
-            try {
-                const cssResponse = await fetch('http://localhost:8070/styles-v2.css');
-                const css = await cssResponse.text();
-                
-                const tests = [
-                    { name: 'Mobile breakpoints', test: css.includes('@media (max-width: 768px)') && css.includes('@media (max-width: 480px)') },
-                    { name: 'Touch-friendly buttons', test: css.includes('min-height: 48px') },
-                    { name: 'Responsive typography', test: css.includes('clamp(') },
-                    { name: 'Flexible layouts', test: css.includes('flex-wrap: wrap') },
-                    { name: 'Mobile hover disabled', test: css.includes('transform: none') },
-                    { name: 'iOS zoom prevention', test: css.includes('font-size: 16px') },
-                    { name: 'Responsive grid', test: css.includes('grid-template-columns: repeat(auto-fit') },
-                    { name: 'Mobile navigation', test: css.includes('flex-direction: column') }
-                ];
-                
-                let results = '<div class="success">Mobile Responsiveness Tests:</div>';
-                let passedTests = 0;
-                
-                tests.forEach(test => {
-                    const status = test.test ? '✅' : '❌';
-                    const className = test.test ? 'success' : 'error';
-                    results += `<div class="${className}">${status} ${test.name}</div>`;
-                    if (test.test) passedTests++;
-                });
-                
-                const percentage = Math.round((passedTests / tests.length) * 100);
-                results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
-                
-                if (percentage >= 85) {
-                    results += '<div class="success">🎉 Mobile optimizations are working correctly!</div>';
-                } else {
-                    results += '<div class="warning">⚠️ Some mobile issues may remain.</div>';
-                }
-                
-                testDiv.innerHTML = results;
-                
-            } catch (error) {
-                testDiv.innerHTML = '<div class="error">❌ Error testing mobile: ' + error.message + '</div>';
-            }
+      }
+
+      // Test mobile responsiveness
+      async function testMobile() {
+        const testDiv = document.getElementById("mobile-test");
+        testDiv.innerHTML =
+          '<div class="info">Testing mobile optimizations...</div>';
+
+        try {
+          const cssResponse = await fetch(
+            "http://localhost:8070/styles-v2.css"
+          );
+          const css = await cssResponse.text();
+
+          const tests = [
+            {
+              name: "Mobile breakpoints",
+              test:
+                css.includes("@media (max-width: 768px)") &&
+                css.includes("@media (max-width: 480px)"),
+            },
+            {
+              name: "Touch-friendly buttons",
+              test: css.includes("min-height: 48px"),
+            },
+            { name: "Responsive typography", test: css.includes("clamp(") },
+            { name: "Flexible layouts", test: css.includes("flex-wrap: wrap") },
+            {
+              name: "Mobile hover disabled",
+              test: css.includes("transform: none"),
+            },
+            {
+              name: "iOS zoom prevention",
+              test: css.includes("font-size: 16px"),
+            },
+            {
+              name: "Responsive grid",
+              test: css.includes("grid-template-columns: repeat(auto-fit"),
+            },
+            {
+              name: "Mobile navigation",
+              test: css.includes("flex-direction: column"),
+            },
+          ];
+
+          let results =
+            '<div class="success">Mobile Responsiveness Tests:</div>';
+          let passedTests = 0;
+
+          tests.forEach((test) => {
+            const status = test.test ? "✅" : "❌";
+            const className = test.test ? "success" : "error";
+            results += `<div class="${className}">${status} ${test.name}</div>`;
+            if (test.test) passedTests++;
+          });
+
+          const percentage = Math.round((passedTests / tests.length) * 100);
+          results += `<div class="info">📊 Score: ${passedTests}/${tests.length} (${percentage}%)</div>`;
+
+          if (percentage >= 85) {
+            results +=
+              '<div class="success">🎉 Mobile optimizations are working correctly!</div>';
+          } else {
+            results +=
+              '<div class="warning">⚠️ Some mobile issues may remain.</div>';
+          }
+
+          testDiv.innerHTML = results;
+        } catch (error) {
+          testDiv.innerHTML =
+            '<div class="error">❌ Error testing mobile: ' +
+            error.message +
+            "</div>";
         }
-        
-        // Utility functions
-        function reloadPreview() {
-            const iframe = document.getElementById('app-preview');
-            iframe.src = iframe.src;
-        }
-        
-        function testFlashcardFlip() {
-            const iframe = document.getElementById('app-preview');
-            iframe.contentWindow.postMessage({action: 'testFlip'}, '*');
-        }
-        
-        function testBrowseScroll() {
-            const iframe = document.getElementById('app-preview');
-            iframe.contentWindow.postMessage({action: 'testBrowse'}, '*');
-        }
-        
-        function testQuizFlow() {
-            const iframe = document.getElementById('app-preview');
-            iframe.contentWindow.postMessage({action: 'testQuiz'}, '*');
-        }
-        
-        // Auto-run tests on page load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                testFlashcards();
-                setTimeout(() => testBrowse(), 1000);
-                setTimeout(() => testQuiz(), 2000);
-                setTimeout(() => testUI(), 3000);
-                setTimeout(() => testMobile(), 4000);
-            }, 500);
-        });
+      }
+
+      // Utility functions
+      function reloadPreview() {
+        const iframe = document.getElementById("app-preview");
+        iframe.src = iframe.src;
+      }
+
+      function testFlashcardFlip() {
+        const iframe = document.getElementById("app-preview");
+        iframe.contentWindow.postMessage({ action: "testFlip" }, "*");
+      }
+
+      function testBrowseScroll() {
+        const iframe = document.getElementById("app-preview");
+        iframe.contentWindow.postMessage({ action: "testBrowse" }, "*");
+      }
+
+      function testQuizFlow() {
+        const iframe = document.getElementById("app-preview");
+        iframe.contentWindow.postMessage({ action: "testQuiz" }, "*");
+      }
+
+      // Auto-run tests on page load
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          testFlashcards();
+          setTimeout(() => testBrowse(), 1000);
+          setTimeout(() => testQuiz(), 2000);
+          setTimeout(() => testUI(), 3000);
+          setTimeout(() => testMobile(), 4000);
+        }, 500);
+      });
     </script>
-</body>
+  </body>
 </html>
