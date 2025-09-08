@@ -7,27 +7,18 @@ class HSKApp {
         this.sessionIndex = 0;
         this.isFlipped = false;
         this.selectedLevel = '1';
-        this.practiceMode = 'char-to-pinyin';
+        this.currentLevel = '1';
+        this.practiceMode = 'char-to-english';
         this.isDarkMode = true; // Default to dark theme (PlanetScale style)
         this.isAudioEnabled = true;
         this.selectedVoice = 'auto'; // 'male', 'female', 'auto'
         this.availableVoices = [];
         this.chineseVoices = { male: null, female: null };
         this.currentLanguage = localStorage.getItem('hsk-language') || 'es';
-        this.headerSearchTimeout = null;
         
         // User authentication and profile
         this.githubAuth = null;
         this.userProfile = null;
-        
-        // Initialize stats
-        this.stats = {
-            totalStudied: 0,
-            correctAnswers: 0,
-            currentStreak: 0,
-            bestStreak: 0,
-            quizzesCompleted: 0
-        };
         
         // Initialize quiz
         this.quiz = {
@@ -38,9 +29,23 @@ class HSKApp {
             isActive: false
         };
         
+        // Statistics
+        this.stats = {
+            totalCards: 0,
+            correctAnswers: 0,
+            currentStreak: 0,
+            bestStreak: 0,
+            studyTime: 0,
+            dailyGoal: 20,
+            todayCards: 0
+        };
+        
+        // Daily progress tracking
+        this.dailyProgress = this.loadDailyProgress();
+        
         // Load saved data
-        this.loadStats();
         this.loadSettings();
+        this.loadStats();
         
         // Initialize the app
         this.init();
@@ -176,8 +181,8 @@ class HSKApp {
             this.practiceMode = preferences.practiceMode;
         }
         
-        if (preferences.selectedLevel) {
-            this.selectedLevel = preferences.selectedLevel;
+        if (preferences.currentLevel) {
+            this.currentLevel = preferences.currentLevel;
         }
         
         if (preferences.isDarkMode !== undefined) {
@@ -191,7 +196,168 @@ class HSKApp {
         console.log('✅ User preferences loaded:', preferences);
     }
     
+    initializeKeyboardShortcuts() {
+        document.addEventListener('keydown', (e) => {
+            // Skip if user is typing in input
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            
+            // Tab navigation shortcuts (Alt + number)
+            if (e.altKey) {
+                switch(e.key) {
+                    case '1':
+                        this.switchTab('practice');
+                        e.preventDefault();
+                        break;
+                    case '2':
+                        this.switchTab('browse');
+                        e.preventDefault();
+                        break;
+                    case '3':
+                        this.switchTab('quiz');
+                        e.preventDefault();
+                        break;
+                    case '4':
+                        this.switchTab('stats');
+                        e.preventDefault();
+                        break;
+                }
+            }
+            
+            // Flashcard controls
+            if (this.currentTab === 'practice' && this.currentCard) {
+                switch(e.key) {
+                    case ' ': // Spacebar to flip
+                        this.flipCard();
+                        e.preventDefault();
+                        break;
+                    case '1': // Easy
+                        this.handleDifficulty('easy');
+                        e.preventDefault();
+                        break;
+                    case '2': // Good
+                        this.handleDifficulty('good');
+                        e.preventDefault();
+                        break;
+                    case '3': // Hard
+                        this.handleDifficulty('hard');
+                        e.preventDefault();
+                        break;
+                    case '4': // Again
+                        this.handleDifficulty('again');
+                        e.preventDefault();
+                        break;
+                    case 'ArrowRight': // Next card
+                        this.nextCard();
+                        e.preventDefault();
+                        break;
+                    case 'ArrowLeft': // Previous card
+                        if (this.cardHistory.length > 0) {
+                            this.previousCard();
+                            e.preventDefault();
+                        }
+                        break;
+                }
+            }
+            
+            // Quiz controls
+            if (this.currentTab === 'quiz' && this.quiz.isActive) {
+                if (e.key >= '1' && e.key <= '4') {
+                    const optionIndex = parseInt(e.key) - 1;
+                    const options = document.querySelectorAll('.quiz-option');
+                    if (options[optionIndex]) {
+                        options[optionIndex].click();
+                        e.preventDefault();
+                    }
+                }
+                if (e.key === 'Enter') {
+                    const submitBtn = document.getElementById('quiz-submit');
+                    const nextBtn = document.getElementById('quiz-next');
+                    if (submitBtn && !submitBtn.disabled) {
+                        submitBtn.click();
+                    } else if (nextBtn && nextBtn.style.display !== 'none') {
+                        nextBtn.click();
+                    }
+                    e.preventDefault();
+                }
+            }
+            
+            // Theme toggle (T key)
+            if (e.key === 't' && !e.altKey && !e.ctrlKey) {
+                const themeToggle = document.getElementById('theme-toggle');
+                if (themeToggle) {
+                    themeToggle.click();
+                    e.preventDefault();
+                }
+            }
+            
+            // Language toggle (L key)
+            if (e.key === 'l' && !e.altKey && !e.ctrlKey) {
+                const langToggle = document.getElementById('language-toggle');
+                if (langToggle) {
+                    langToggle.click();
+                    e.preventDefault();
+                }
+            }
+            
+            // Help dialog (? or h key)
+            if (e.key === '?' || e.key === 'h') {
+                this.showKeyboardShortcuts();
+                e.preventDefault();
+            }
+        });
+    }
+    
+    showKeyboardShortcuts() {
+        const shortcuts = [
+            { key: 'Alt + 1-4', action: 'Switch tabs' },
+            { key: 'Space', action: 'Flip flashcard' },
+            { key: '1-4', action: 'Rate difficulty (Easy/Good/Hard/Again)' },
+            { key: '←/→', action: 'Previous/Next card' },
+            { key: 'T', action: 'Toggle theme' },
+            { key: 'L', action: 'Toggle language' },
+            { key: 'H or ?', action: 'Show this help' }
+        ];
+        
+        const modal = document.createElement('div');
+        modal.className = 'keyboard-shortcuts-modal';
+        modal.innerHTML = `
+            <div class="shortcuts-content">
+                <h3>⌨️ Keyboard Shortcuts</h3>
+                <div class="shortcuts-list">
+                    ${shortcuts.map(s => `
+                        <div class="shortcut-item">
+                            <kbd>${s.key}</kbd>
+                            <span>${s.action}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="btn btn-primary" onclick="this.parentElement.parentElement.remove()">Close</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        // Remove on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+    }
+
     setupEventListeners() {
+        // Keyboard shortcuts
+        this.initializeKeyboardShortcuts();
+        
+        // Language toggle
+        const langToggle = document.getElementById('language-toggle');
+        if (langToggle) {
+            langToggle.addEventListener('click', () => {
+                const newLang = this.languageManager.currentLanguage === 'en' ? 'es' : 'en';
+                this.languageManager.setLanguage(newLang);
+                this.updateUI();
+            });
+        }
+        
         // Tab navigation
         document.querySelectorAll('.nav-tab').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -225,7 +391,7 @@ class HSKApp {
         const levelSelect = document.getElementById('level-select');
         if (levelSelect) {
             levelSelect.addEventListener('change', (e) => {
-                this.selectedLevel = e.target.value;
+                this.currentLevel = e.target.value;
                 this.setupPracticeSession();
             });
         }
@@ -348,6 +514,91 @@ class HSKApp {
         console.log('✅ Event listeners setup');
     }
     
+    // Daily progress management
+    updateDailyProgress() {
+        const today = new Date().toDateString();
+        
+        // Reset daily count if it's a new day
+        if (this.dailyProgress.lastStudyDate !== today) {
+            this.stats.todayCards = 0;
+            this.dailyProgress.lastStudyDate = today;
+        }
+        
+        // Increment today's card count
+        this.stats.todayCards++;
+        
+        // Mark today as active in streak
+        this.dailyProgress.activeDays.add(today);
+        
+        console.log(`📊 Daily progress updated: ${this.stats.todayCards} cards today`);
+    }
+    
+    loadDailyProgress() {
+        try {
+            const saved = localStorage.getItem('hsk-daily-progress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                return {
+                    lastStudyDate: data.lastStudyDate || null,
+                    activeDays: new Set(data.activeDays || [])
+                };
+            }
+        } catch (error) {
+            console.warn('⚠️ Error loading daily progress:', error);
+        }
+        
+        return {
+            lastStudyDate: null,
+            activeDays: new Set()
+        };
+    }
+    
+    saveDailyProgress() {
+        try {
+            const data = {
+                lastStudyDate: this.dailyProgress.lastStudyDate,
+                activeDays: Array.from(this.dailyProgress.activeDays)
+            };
+            localStorage.setItem('hsk-daily-progress', JSON.stringify(data));
+        } catch (error) {
+            console.warn('⚠️ Error saving daily progress:', error);
+        }
+    }
+    
+    updateStreakDisplay() {
+        const streakDays = document.querySelectorAll('.streak-day');
+        if (!streakDays.length) return;
+        
+        const today = new Date();
+        const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        
+        streakDays.forEach((dayElement, index) => {
+            // Calculate the date for this day (going backwards from today)
+            const dayDate = new Date(today);
+            dayDate.setDate(today.getDate() - (6 - index));
+            const dateString = dayDate.toDateString();
+            
+            // Update day letter
+            const dayOfWeek = dayDate.getDay();
+            dayElement.textContent = dayNames[dayOfWeek];
+            
+            // Remove existing classes
+            dayElement.classList.remove('active', 'today');
+            
+            // Check if this day has activity
+            if (this.dailyProgress.activeDays.has(dateString)) {
+                dayElement.classList.add('active');
+            }
+            
+            // Mark today
+            if (dateString === today.toDateString()) {
+                dayElement.classList.add('today');
+            }
+        });
+        
+        console.log('📅 Streak display updated');
+    }
+    
     switchTab(tabName) {
         // Update nav tabs
         document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -378,9 +629,16 @@ class HSKApp {
     }
     
     setupPracticeSession() {
-        const levelFilter = this.selectedLevel === 'all' ? 
+        // Wait for vocabulary to load
+        if (!this.vocabulary || this.vocabulary.length === 0) {
+            console.log('⏳ Waiting for vocabulary to load...');
+            setTimeout(() => this.setupPracticeSession(), 500);
+            return;
+        }
+        
+        const levelFilter = this.currentLevel === 'all' ? 
             this.vocabulary : 
-            this.vocabulary.filter(word => word.level == this.selectedLevel);
+            this.vocabulary.filter(word => word.level == this.currentLevel);
         
         this.currentSession = [...levelFilter];
         this.sessionIndex = 0;
@@ -390,20 +648,28 @@ class HSKApp {
             this.isFlipped = false;
             this.updateCard();
             this.updateProgress();
+            console.log(`📚 Practice session setup: ${this.currentSession.length} words for level ${this.currentLevel}`);
+        } else {
+            console.warn('⚠️ No vocabulary found for current level');
+            this.showError(`No vocabulary found for HSK level ${this.currentLevel}`);
         }
-        
-        console.log(`📚 Practice session setup: ${this.currentSession.length} words`);
     }
     
     updateCard() {
-        if (!this.currentWord) return;
+        if (!this.currentWord) {
+            console.warn('⚠️ No current word to display');
+            return;
+        }
         
         const questionText = document.getElementById('question-text');
         const answerText = document.getElementById('answer-text');
         const fullInfo = document.getElementById('full-info');
         const hintText = document.getElementById('hint-text');
         
-        if (!questionText || !answerText || !fullInfo) return;
+        if (!questionText || !answerText || !fullInfo) {
+            console.warn('⚠️ Card elements not found in DOM');
+            return;
+        }
         
         let question = '';
         let answer = '';
@@ -412,13 +678,17 @@ class HSKApp {
         // Get meaning based on selected language
         const meaning = this.getMeaningForLanguage(this.currentWord);
         
-        switch(this.practiceMode) {
+        // Default to char-to-english if practiceMode is undefined
+        const mode = this.practiceMode || 'char-to-english';
+        
+        switch(mode) {
             case 'char-to-pinyin':
                 question = this.currentWord.character;
                 answer = this.currentWord.pinyin;
                 hint = meaning;
                 break;
             case 'char-to-english':
+            default:
                 question = this.currentWord.character;
                 answer = meaning;
                 hint = this.currentWord.pinyin;
@@ -435,20 +705,24 @@ class HSKApp {
                 break;
         }
         
-        questionText.textContent = question;
-        answerText.textContent = answer;
-        hintText.textContent = hint;
+        // Update card content
+        questionText.textContent = question || '?';
+        answerText.textContent = answer || '?';
+        if (hintText) hintText.textContent = hint || '';
+        
         fullInfo.innerHTML = `
             <div class="word-info">
-                <div class="character">${this.currentWord.character}</div>
-                <div class="pinyin">${this.currentWord.pinyin}</div>
-                <div class="meaning">${meaning}</div>
-                <div class="level">HSK ${this.currentWord.level}</div>
+                <div class="character">${this.currentWord.character || '?'}</div>
+                <div class="pinyin">${this.currentWord.pinyin || '?'}</div>
+                <div class="meaning">${meaning || '?'}</div>
+                <div class="level">HSK ${this.currentWord.level || '?'}</div>
             </div>
         `;
         
         // Reset card to front side
         this.resetCardState();
+        
+        console.log(`🃏 Card updated: ${this.currentWord.character} (${mode})`);
     }
     
     resetCardState() {
@@ -515,7 +789,7 @@ class HSKApp {
         this.updateProgress();
         
         // Update stats
-        this.stats.totalStudied++;
+        this.stats.totalCards++;
         this.saveStats();
         this.updateHeaderStats();
     }
@@ -569,6 +843,9 @@ class HSKApp {
             console.log(`❌ Marked "${this.currentWord.character}" as NOT KNOWN`);
         }
         
+        // Update daily progress - count any interaction (known or not known)
+        this.updateDailyProgress();
+        
         // Record in user profile if available
         if (this.userProfile) {
             this.userProfile.recordWordStudy(this.currentWord, isKnown, this.practiceMode);
@@ -577,6 +854,8 @@ class HSKApp {
         // Save progress
         this.saveStats();
         this.updateHeaderStats();
+        this.updateProgress();
+        this.updateStreakDisplay();
         
         // Show feedback
         this.showKnowledgeFeedback(isKnown);
@@ -640,12 +919,26 @@ class HSKApp {
     
     updateProgress() {
         const progressFill = document.getElementById('progress-fill');
-        const progressText = document.getElementById('progress-text');
+        const todayText = document.getElementById('today-progress');
+        const legacyText = document.getElementById('progress-text');
         
-        if (progressFill && progressText && this.currentSession.length > 0) {
-            const progress = ((this.sessionIndex + 1) / this.currentSession.length) * 100;
+        // New daily progress UI
+        if (progressFill && todayText) {
+            const goal = this.stats.dailyGoal || 20;
+            const done = this.stats.todayCards || 0;
+            const progress = goal > 0 ? Math.min((done / goal) * 100, 100) : 0;
             progressFill.style.width = `${progress}%`;
-            progressText.textContent = `${this.sessionIndex + 1}/${this.currentSession.length}`;
+            todayText.textContent = `${done} / ${goal}`;
+            return;
+        }
+        
+        // Legacy session-based progress UI
+        if (progressFill && legacyText && this.currentSession && this.currentSession.length > 0) {
+            const total = this.currentSession.length;
+            const index = (typeof this.sessionIndex === 'number') ? this.sessionIndex : 0;
+            const progress = ((index + 1) / total) * 100;
+            progressFill.style.width = `${progress}%`;
+            legacyText.textContent = `${index + 1}/${total}`;
         }
     }
     
@@ -1276,25 +1569,6 @@ class HSKApp {
         `;
     }
     
-    selectVocabWord(word) {
-        this.switchTab('practice');
-        this.currentWord = word;
-        this.isFlipped = false;
-        this.updateCard();
-    }
-    
-    // Quiz functionality
-    initializeQuiz() {
-        // Reset quiz state
-        this.quiz = {
-            questions: [],
-            currentQuestion: 0,
-            score: 0,
-            selectedAnswer: null,
-            isActive: false
-        };
-    }
-    
     startQuiz() {
         const levelSelect = document.getElementById('quiz-level');
         const questionsSelect = document.getElementById('quiz-questions');
@@ -1705,6 +1979,7 @@ class HSKApp {
     saveStats() {
         try {
             localStorage.setItem('hsk-stats', JSON.stringify(this.stats));
+            this.saveDailyProgress();
             this.updateHeaderStats();
         } catch (error) {
             console.warn('⚠️ Error saving stats:', error);

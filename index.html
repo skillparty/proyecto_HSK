@@ -79,37 +79,28 @@
     <!-- Scripts moved to end of body for proper loading order -->
 </head>
 <body>
+    <!-- Elementos laterales verticales -->
+    <div class="vertical-text-left">孔子学院</div>
+    <div class="vertical-text-right">何宸朗</div>
+    
     <div class="app-container">
-        <!-- Header -->
         <header class="app-header">
-            <div class="header-content">
-                <div class="header-left">
-                    <a href="#" class="app-logo">
-                        <img src="logo_appLM.png" alt="HSK Learning Logo" id="app-logo-img">
-                        <div class="app-title">
-                            <h1 data-i18n="appTitle">Confuc10 ++</h1>
-                            <p class="app-subtitle" data-i18n="appSubtitle">Advanced Chinese Learning Platform</p>
+            <div class="header-container">
+                <div class="header-content">
+                    <!-- Logo Section -->
+                    <div class="header-brand">
+                        <img src="logo_appDM.png" alt="Confuc10 ++" class="logo">
+                        <div class="logo-text">
+                            <h1 class="app-title">Confuc10 ++</h1>
+                            <p class="app-subtitle">HSK Chinese Learning Platform</p>
                         </div>
-                    </a>
-                </div>
-                <div class="header-center">
-                    <div class="header-search">
-                        <span class="header-search-icon">🔍</span>
-                        <input 
-                            type="text" 
-                            id="header-search-input"
-                            class="header-search-input"
-                            placeholder="Search characters, pinyin, or meaning..."
-                            data-i18n-placeholder="headerSearchPlaceholder"
-                        >
-                        <div class="header-search-dropdown" id="header-search-dropdown"></div>
                     </div>
-                </div>
-                <div class="header-right">
+                    
+                    <!-- Stats Section -->
                     <div class="header-stats">
                         <div class="header-stat">
                             <div class="header-stat-value" id="header-studied">0</div>
-                            <div class="header-stat-label" data-i18n="totalStudied">Studied</div>
+                            <div class="header-stat-label">Studied</div>
                         </div>
                         <div class="header-stat">
                             <div class="header-stat-value" id="header-streak">0</div>
@@ -122,27 +113,30 @@
                             <div class="header-stat-label" data-i18n="progress">Progress</div>
                         </div>
                     </div>
-                    <div id="auth-container" class="auth-container">
-                        <!-- Authentication UI will be inserted here -->
-                    </div>
-                    <div class="header-controls">
-                        <select id="language-select" class="header-control" aria-label="Select Language">
-                            <option value="es">🇪🇸 ES</option>
-                            <option value="en">🇺🇸 EN</option>
+                    
+                    <!-- Controls Section -->
+                    <div class="header-actions">
+                        <div id="auth-container" class="auth-container">
+                            <!-- Authentication UI will be inserted here -->
+                        </div>
+                        
+                        <input type="text" id="header-search" placeholder="Search vocabulary..." data-i18n-placeholder="searchPlaceholder">
+                        
+                        <select id="language-select" class="header-control" title="Language" data-tooltip="Change interface language">
+                            <option value="en">EN</option>
+                            <option value="es">ES</option>
                         </select>
-                        <select id="voice-select" class="header-control" aria-label="Select Voice" title="Select Chinese voice type">
-                            <option value="auto">🎤 Auto</option>
-                            <option value="male">👨 Male</option>
-                            <option value="female">👩 Female</option>
+                        
+                        <button id="theme-toggle" class="header-control" title="Toggle Theme" data-tooltip="Switch between dark and light mode">
+                            🌙
+                        </button>
+                        
+                        <select id="voice-select" class="header-control" title="Voice" data-tooltip="Select voice for pronunciation">
+                            <option value="auto">🗣️ Auto</option>
                         </select>
-                        <button id="theme-toggle" class="header-control" title="Toggle theme" data-i18n-title="themeToggleTitle">
-                            <span class="theme-icon">🌙</span>
-                        </button>
-                        <button id="audio-toggle" class="header-control" title="Enable/Disable audio" data-i18n-title="audioToggleTitle">
-                            <span class="audio-icon">🔊</span>
-                        </button>
-                        <button id="install-app" class="header-control install-button" style="display: none;" title="Install HSK Learning App" data-i18n-title="installAppDescription">
-                            <span data-i18n="installApp">📱 Install</span>
+                        
+                        <button id="audio-toggle" class="header-control" title="Toggle Audio" data-tooltip="Toggle pronunciation audio">
+                            🔊
                         </button>
                     </div>
                 </div>
@@ -152,6 +146,7 @@
         <!-- Navigation -->
         <nav class="nav-container">
             <div class="nav-tabs">
+                <button class="nav-tab" data-tab="home" data-i18n="homeTab">Home</button>
                 <button class="nav-tab active" data-tab="practice" data-i18n="practiceTab">Practice</button>
                 <button class="nav-tab" data-tab="browse" data-i18n="browseTab">Browse</button>
                 <button class="nav-tab" data-tab="quiz" data-i18n="quizTab">Quiz</button>
@@ -162,9 +157,9 @@
         <!-- Main Content -->
         <main class="main-content" id="main-content">
             <div class="content-wrapper">
-                <!-- Welcome Message -->
-                <div class="welcome-message" id="welcome-message" style="display: none;">
-                    <div class="welcome-content">
+                <!-- Home Tab -->
+                <div id="home" class="tab-panel">
+                    <div class="home-hero">
                         <h2>¡Bienvenido a Confuc10 ++!</h2>
                         <p>La plataforma avanzada para dominar el chino mandarín</p>
                         <div class="welcome-stats">
@@ -181,160 +176,196 @@
                                 <span class="stat-label">Modos de Práctica</span>
                             </div>
                         </div>
-                        <button class="btn btn-primary" onclick="document.getElementById('welcome-message').style.display='none'">
-                            Comenzar Aprendizaje
-                        </button>
+                    </div>
+                    <div class="home-cards">
+                        <div class="home-card" onclick="window.app && window.app.switchTab('practice')">
+                            <div class="home-card-icon">🎴</div>
+                            <div class="home-card-title">Practice</div>
+                            <div class="home-card-desc">Flashcards y práctica guiada</div>
+                        </div>
+                        <div class="home-card" onclick="window.app && window.app.switchTab('browse')">
+                            <div class="home-card-icon">📚</div>
+                            <div class="home-card-title">Browse</div>
+                            <div class="home-card-desc">Explora vocabulario por nivel</div>
+                        </div>
+                        <div class="home-card" onclick="window.app && window.app.switchTab('quiz')">
+                            <div class="home-card-icon">🧠</div>
+                            <div class="home-card-title">Quiz</div>
+                            <div class="home-card-desc">Pon a prueba tus conocimientos</div>
+                        </div>
+                        <div class="home-card" onclick="window.app && window.app.switchTab('stats')">
+                            <div class="home-card-icon">📈</div>
+                            <div class="home-card-title">Statistics</div>
+                            <div class="home-card-desc">Mira tu progreso y rachas</div>
+                        </div>
                     </div>
                 </div>
                 
-            <!-- Practice Tab -->
-            <div id="practice" class="tab-panel active">
-                <div class="practice-controls">
-                    <div class="control-group">
-                        <label for="level-select" class="control-label" data-i18n="levelLabel">HSK Level</label>
-                        <select id="level-select" class="select-input">
-                            <option value="all" data-i18n="allLevels">All levels</option>
-                            <option value="1">HSK 1</option>
-                            <option value="2">HSK 2</option>
-                            <option value="3">HSK 3</option>
-                            <option value="4">HSK 4</option>
-                            <option value="5">HSK 5</option>
-                            <option value="6">HSK 6</option>
-                        </select>
-                    </div>
-                    <div class="control-group">
-                        <label for="practice-mode-select" class="control-label" data-i18n="practiceMode">Practice mode</label>
-                        <select id="practice-mode-select" class="select-input">
-                            <option value="char-to-pinyin" data-i18n="char-to-pinyin">Character → Pinyin</option>
-                            <option value="char-to-english" data-i18n="char-to-english">Character → English</option>
-                            <option value="char-to-spanish" data-i18n="char-to-spanish">Character → Spanish</option>
-                            <option value="pinyin-to-char" data-i18n="pinyin-to-char">Pinyin → Character</option>
-                            <option value="english-to-char" data-i18n="english-to-char">English → Character</option>
-                            <option value="spanish-to-char" data-i18n="spanish-to-char">Spanish → Character</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="flashcard-section">
-                    <div class="flashcard-container">
-                        <div class="flashcard" id="flashcard">
-                            <div class="flashcard-inner">
-                                <div class="card-face card-front">
-                                    <div class="card-character" id="question-text" data-i18n="clickToStart">Click "Next" to begin</div>
-                                    <div class="card-hint" id="hint-text"></div>
-                                </div>
-                                <div class="card-face card-back">
-                                    <div class="card-character" id="answer-text"></div>
-                                    <div class="card-info" id="full-info"></div>
+                <!-- Practice Tab -->
+                <div id="practice" class="tab-panel active">
+                    <div class="practice-container">
+                        <div class="study-progress">
+                            <div class="study-progress-header">
+                                <span class="study-progress-title" data-i18n="todayProgress">Today's Progress</span>
+                                <span class="study-progress-value" id="today-progress">0 / 20</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="study-streak">
+                                <div class="streak-day" data-day="M">M</div>
+                                <div class="streak-day" data-day="T">T</div>
+                                <div class="streak-day" data-day="W">W</div>
+                                <div class="streak-day active" data-day="T">T</div>
+                                <div class="streak-day active" data-day="F">F</div>
+                                <div class="streak-day active" data-day="S">S</div>
+                                <div class="streak-day today" data-day="S">S</div>
+                            </div>
+                        </div>
+                        
+                        <div class="level-selector">
+                            <label for="level-select" data-i18n="levelLabel">HSK Level</label>
+                            <select id="level-select" class="select-input" data-tooltip="Choose your HSK level to start practicing">
+                                <option value="" data-i18n="selectLevel">Select level...</option>
+                                <option value="1" selected>HSK 1</option>
+                                <option value="2">HSK 2</option>
+                                <option value="3">HSK 3</option>
+                                <option value="4">HSK 4</option>
+                                <option value="5">HSK 5</option>
+                                <option value="6">HSK 6</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Flashcard Display -->
+                        <div class="flashcard-area">
+                            <div id="flashcard" class="flashcard">
+                                <div class="flashcard-inner">
+                                    <div class="card-face card-front">
+                                        <div class="card-character" id="question-text"></div>
+                                        <div class="card-hint" id="hint-text"></div>
+                                    </div>
+                                    <div class="card-face card-back">
+                                        <div class="card-answer" id="answer-text"></div>
+                                        <div class="card-details" id="full-info"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        
+                        <div class="flashcard-controls">
+                            <button id="flip-btn" class="btn btn-secondary" data-i18n="flip" data-tooltip="Press Space to flip">Flip Card</button>
+                            <button id="next-btn" class="btn btn-primary" data-i18n="next" data-tooltip="Press →">Next Card</button>
+                        </div>
 
-                    <div class="action-buttons">
-                        <button id="flip-btn" class="btn btn-secondary" disabled data-i18n="showAnswer">Show Answer</button>
-                        <button id="next-btn" class="btn btn-primary" data-i18n="next">Next</button>
-                    </div>
+                        <div class="difficulty-buttons">
+                            <button class="difficulty-button" data-difficulty="easy" data-i18n="easy" data-tooltip="Press 1">Easy</button>
+                            <button class="difficulty-button" data-difficulty="good" data-i18n="good" data-tooltip="Press 2">Good</button>
+                            <button class="difficulty-button" data-difficulty="hard" data-i18n="hard" data-tooltip="Press 3">Hard</button>
+                            <button class="difficulty-button" data-difficulty="again" data-i18n="again" data-tooltip="Press 4">Again</button>
+                        </div>
 
-                    <div class="action-buttons" id="srs-buttons" style="display: none;">
-                        <button id="srs-again" class="btn btn-error" data-i18n="srsAgain">Again</button>
-                        <button id="srs-hard" class="btn btn-warning" data-i18n="srsHard">Hard</button>
-                        <button id="srs-good" class="btn btn-success" data-i18n="srsGood">Good</button>
-                        <button id="srs-easy" class="btn btn-primary" data-i18n="srsEasy">Easy</button>
-                    </div>
-
-                    <div class="action-buttons" id="simple-buttons">
-                        <button id="know-btn" class="btn btn-success" disabled data-i18n="iKnow">I Know</button>
-                        <button id="dont-know-btn" class="btn btn-error" disabled data-i18n="iDontKnow">I Don't Know</button>
-                    </div>
-
-                    <button id="toggle-srs" class="btn btn-secondary" data-i18n="toggleSRS">Toggle SRS Mode</button>
-                </div>
-
-                <div class="progress-section">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill"></div>
-                    </div>
-                    <div class="progress-text" id="progress-text">0/0</div>
-                </div>
-            </div>
-
-            <!-- Browse Tab -->
-            <div id="browse" class="tab-panel">
-                <div class="search-section">
-                    <div class="search-container">
-                        <input type="text" 
-                               id="search-input" 
-                               class="search-input" 
-                               placeholder="Search by character, pinyin or translation..."
-                               data-i18n-placeholder="searchPlaceholder">
-                        <select id="browse-level-filter" class="select-input">
-                            <option value="all" data-i18n="allLevels">All levels</option>
-                            <option value="1">HSK 1</option>
-                            <option value="2">HSK 2</option>
-                            <option value="3">HSK 3</option>
-                            <option value="4">HSK 4</option>
-                            <option value="5">HSK 5</option>
-                            <option value="6">HSK 6</option>
-                        </select>
+                        <div class="action-buttons" id="simple-buttons">
+                            <button id="know-btn" class="btn btn-success" disabled data-i18n="iKnow">I Know</button>
+                            <button id="dont-know-btn" class="btn btn-error" disabled data-i18n="iDontKnow">I Don't Know</button>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="browse-stats" id="browse-stats"></div>
-                
-                <div class="vocabulary-grid" id="vocabulary-grid">
-                    <!-- Vocabulary cards will be populated here -->
-                </div>
-            </div>
 
-            <!-- Quiz Tab -->
-            <div id="quiz" class="tab-panel">
-                <div class="quiz-setup" id="quiz-setup">
-                    <h3 data-i18n="configureQuiz">Configure Quiz</h3>
-                    <div class="quiz-options">
-                        <div class="control-group">
-                            <label for="quiz-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
-                            <select id="quiz-level" class="select-input">
+                <!-- Browse Tab -->
+                <div id="browse" class="tab-panel">
+                    <div class="search-section">
+                        <div class="search-container">
+                            <input type="text" 
+                                   id="search-input" 
+                                   class="search-input" 
+                                   placeholder="Search by character, pinyin or translation..."
+                                   data-i18n-placeholder="searchPlaceholder">
+                            <select id="browse-level-filter" class="select-input">
+                                <option value="all" data-i18n="allLevels">All levels</option>
                                 <option value="1">HSK 1</option>
                                 <option value="2">HSK 2</option>
                                 <option value="3">HSK 3</option>
                                 <option value="4">HSK 4</option>
                                 <option value="5">HSK 5</option>
                                 <option value="6">HSK 6</option>
-                                <option value="all" data-i18n="allLevels">All levels</option>
-                            </select>
-                        </div>
-                        <div class="control-group">
-                            <label for="quiz-questions" class="control-label" data-i18n="numberOfQuestions">Number of Questions</label>
-                            <select id="quiz-questions" class="select-input">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
                             </select>
                         </div>
                     </div>
-                    <button id="start-quiz" class="btn btn-primary" data-i18n="startQuiz">Start Quiz</button>
+                    
+                    <div class="browse-stats" id="browse-stats"></div>
+                    
+                    <div class="vocabulary-grid" id="vocabulary-grid">
+                        <!-- Vocabulary cards will be populated here -->
+                    </div>
                 </div>
 
-                <div class="quiz-area" id="quiz-area" style="display: none;">
-                    <div class="quiz-question" id="quiz-question-area">
-                        <div class="question-counter" id="question-counter">Question 1 of 10</div>
-                        <div class="question-text" id="quiz-question"></div>
-                        <div class="quiz-options" id="quiz-options">
-                            <!-- Quiz options will be populated here -->
+                <!-- Quiz Tab -->
+                <div id="quiz" class="tab-panel">
+                    <div class="quiz-setup" id="quiz-setup">
+                        <h3 data-i18n="configureQuiz">Configure Quiz</h3>
+                        <div class="quiz-options">
+                            <div class="control-group">
+                                <label for="quiz-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
+                                <select id="quiz-level" class="select-input">
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                    <option value="all" data-i18n="allLevels">All levels</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="quiz-questions" class="control-label" data-i18n="numberOfQuestions">Number of Questions</label>
+                                <select id="quiz-questions" class="select-input">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                </select>
+                            </div>
                         </div>
-                        <button id="quiz-next" class="btn btn-primary" disabled data-i18n="next">Next</button>
+                        <button id="start-quiz" class="btn btn-primary" data-i18n="startQuiz">Start Quiz</button>
                     </div>
-                </div>
 
-                <div class="quiz-results" id="quiz-results" style="display: none;">
-                    <h3 data-i18n="quizComplete">Quiz Complete!</h3>
-                    <div class="results-summary" id="results-summary">
-                        <!-- Results will be populated here -->
+                    <div class="quiz-container" id="quiz-container" style="display: none;">
+                        <div class="quiz-header">
+                            <div class="quiz-progress">
+                                <span data-i18n="question">Question</span>
+                                <span id="quiz-current">1</span>
+                                <span data-i18n="of">of</span>
+                                <span id="quiz-total">10</span>
+                            </div>
+                            <div class="quiz-score-display">
+                                <span data-i18n="score">Score</span>:
+                                <span id="quiz-score">0</span>
+                            </div>
+                        </div>
+                        <div class="quiz-content" id="quiz-content">
+                            <div class="question-text" id="quiz-question"></div>
+                            <div class="quiz-options" id="quiz-options">
+                                <!-- Quiz options will be populated here -->
+                            </div>
+                            <div class="quiz-actions">
+                                <button id="quiz-submit" class="btn btn-primary" disabled data-i18n="submit">Submit</button>
+                                <button id="quiz-next" class="btn btn-primary" style="display: none;" data-i18n="next">Next</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="results-actions">
-                        <button id="restart-quiz" class="btn btn-primary" data-i18n="retakeQuiz">Retake Quiz</button>
-                        <button id="new-quiz" class="btn btn-secondary" data-i18n="newQuiz">New Quiz</button>
+
+                    <div class="quiz-results" id="quiz-results" style="display: none;">
+                        <h3 data-i18n="quizComplete">Quiz Complete!</h3>
+                        <div class="results-summary" id="results-summary">
+                            <div>
+                                <span data-i18n="finalScore">Final Score</span>:
+                                <strong id="final-score">0/0</strong>
+                                (<span id="final-percentage">0%</span>)
+                            </div>
+                        </div>
+                        <div class="results-actions">
+                            <button id="restart-quiz" class="btn btn-primary" data-i18n="retakeQuiz">Retake Quiz</button>
+                            <button id="new-quiz" class="btn btn-secondary" data-i18n="newQuiz">New Quiz</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -381,7 +412,7 @@
                     <img src="dev_logo.png" alt="Developer Logo" class="footer-logo">
                     <div class="signature-text">
                         <p><span data-i18n="developedBy">Desarrollado con ❤️ por</span> <strong>Jose Alejandro Rollano Revollo</strong></p>
-                        <p class="version" data-i18n="version">v2.1.0 | Advanced Chinese Learning Platform</p>
+                        <p class="version" data-i18n="version">v2.2.0 | Advanced Chinese Learning Platform</p>
                     </div>
                 </div>
             </div>
