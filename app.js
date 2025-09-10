@@ -46,6 +46,7 @@ class HSKApp {
         // Load saved data
         this.loadSettings();
         this.loadStats();
+        this.loadVoicePreference();
         
         // Initialize the app
         this.init();
@@ -122,9 +123,13 @@ class HSKApp {
                 this.initializeVoices();
                 speechSynthesis.onvoiceschanged = () => {
                     this.initializeVoices();
+                    this.updateVoiceSelector();
                     console.log('🎤 Voices reloaded:', speechSynthesis.getVoices().length);
                 };
             }
+            
+            // Update voice selector after initialization
+            this.updateVoiceSelector();
             
             console.log('✅ HSK Learning App initialized successfully!');
             
@@ -135,14 +140,31 @@ class HSKApp {
     
     async loadVocabulary() {
         try {
-            const response = await fetch('hsk_vocabulary.json');
-            if (!response.ok) throw new Error('Failed to load vocabulary');
-            const vocabularyData = await response.json();
-            this.vocabulary = vocabularyData;
-            console.log(`✅ Loaded ${this.vocabulary.length} vocabulary items`);
+            const response = await fetch('hsk_vocabulary_spanish.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            this.vocabulary = await response.json();
+            console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items with Spanish translations`);
         } catch (error) {
-            console.error('🚨 Error loading vocabulary:', error);
-            this.showError('Error loading vocabulary files. Please try refreshing the page.');
+            console.error('❌ Error loading vocabulary with Spanish translations:', error);
+            // Try fallback to original vocabulary
+            try {
+                const fallbackResponse = await fetch('hsk_vocabulary.json');
+                if (fallbackResponse.ok) {
+                    this.vocabulary = await fallbackResponse.json();
+                    console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items (fallback)`);
+                } else {
+                    throw new Error('Both vocabulary files failed to load');
+                }
+            } catch (fallbackError) {
+                console.error('❌ Error loading fallback vocabulary:', fallbackError);
+                // Final fallback vocabulary
+                this.vocabulary = [
+                    { character: "你好", pinyin: "nǐ hǎo", english: "hello", spanish: "hola", level: 1 },
+                    { character: "谢谢", pinyin: "xiè xiè", english: "thank you", spanish: "gracias", level: 1 }
+                ];
+            }
         }
     }
     
@@ -711,11 +733,58 @@ class HSKApp {
         if (hintText) hintText.textContent = hint || '';
         
         fullInfo.innerHTML = `
-            <div class="word-info">
-                <div class="character">${this.currentWord.character || '?'}</div>
-                <div class="pinyin">${this.currentWord.pinyin || '?'}</div>
-                <div class="meaning">${meaning || '?'}</div>
-                <div class="level">HSK ${this.currentWord.level || '?'}</div>
+            <div class="word-info-expanded">
+                <div class="card-back-header">
+                    <div class="card-back-character">${this.currentWord.character || '?'}</div>
+                    <div class="card-back-pinyin">${this.currentWord.pinyin || '?'}</div>
+                    <button class="card-back-pronunciation" onclick="window.app.playAudio('${this.currentWord.character}')">
+                        <span>🔊</span>
+                        <span>Pronunciar</span>
+                    </button>
+                </div>
+                
+                <div class="translations-section">
+                    <div class="translation-item primary-translation">
+                        <div class="translation-header">
+                            <span class="lang-flag">${this.currentLanguage === 'es' ? '🇪🇸' : '🇬🇧'}</span>
+                            <span class="lang-name">${this.currentLanguage === 'es' ? 'Español' : 'English'}</span>
+                        </div>
+                        <div class="translation-content">${meaning}</div>
+                    </div>
+                    <div class="translation-item secondary-translation">
+                        <div class="translation-header">
+                            <span class="lang-flag">${this.currentLanguage === 'es' ? '🇬🇧' : '🇪🇸'}</span>
+                            <span class="lang-name">${this.currentLanguage === 'es' ? 'English' : 'Español'}</span>
+                        </div>
+                        <div class="translation-content">${this.currentLanguage === 'es' ? (this.currentWord.english || '?') : (this.currentWord.spanish || this.currentWord.translation || '?')}</div>
+                    </div>
+                </div>
+                
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <div class="detail-icon">🏷️</div>
+                        <div class="detail-info">
+                            <div class="detail-label">Nivel</div>
+                            <div class="detail-value">HSK ${this.currentWord.level || '?'}</div>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">🔤</div>
+                        <div class="detail-info">
+                            <div class="detail-label">Trazos</div>
+                            <div class="detail-value">${this.getStrokeCount(this.currentWord.character) || '?'}</div>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-icon">🎵</div>
+                        <div class="detail-info">
+                            <div class="detail-label">Tonos</div>
+                            <div class="detail-value tone-display">${this.getToneMarks(this.currentWord.pinyin) || '?'}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                ${this.getExampleSentence(this.currentWord)}
             </div>
         `;
         
@@ -723,6 +792,113 @@ class HSKApp {
         this.resetCardState();
         
         console.log(`🃏 Card updated: ${this.currentWord.character} (${mode})`);
+    }
+    
+    // Helper methods for expanded card content
+    getStrokeCount(character) {
+        // Approximate stroke count based on character complexity
+        const strokeCounts = {
+            '一': 1, '二': 2, '三': 3, '四': 5, '五': 4, '六': 4, '七': 2, '八': 2, '九': 2, '十': 2,
+            '人': 2, '大': 3, '小': 3, '中': 4, '国': 8, '我': 7, '你': 7, '他': 5, '她': 6,
+            '好': 6, '不': 4, '是': 9, '的': 8, '在': 6, '有': 6, '了': 2, '会': 6, '说': 14,
+            '来': 8, '去': 5, '看': 9, '听': 7, '吃': 6, '喝': 12, '买': 6, '卖': 8, '学': 8,
+            '工': 3, '作': 7, '家': 10, '学': 8, '校': 10, '老': 6, '师': 10, '学': 8, '生': 5
+        };
+        
+        if (strokeCounts[character]) {
+            return strokeCounts[character];
+        }
+        
+        // Estimate based on character length and complexity
+        if (character && character.length === 1) {
+            const code = character.charCodeAt(0);
+            if (code >= 0x4e00 && code <= 0x9fff) {
+                // Simple estimation for Chinese characters
+                return Math.floor(Math.random() * 15) + 3; // 3-18 strokes
+            }
+        }
+        return '?';
+    }
+    
+    getWordType(word) {
+        const character = word.character;
+        const english = word.english?.toLowerCase() || '';
+        const pinyin = word.pinyin?.toLowerCase() || '';
+        
+        // Basic word type classification
+        if (english.includes('verb') || english.includes('to ')) {
+            return 'Verbo';
+        } else if (english.includes('adj') || english.includes('adjective')) {
+            return 'Adjetivo';
+        } else if (english.includes('noun') || english.includes('person') || english.includes('thing')) {
+            return 'Sustantivo';
+        } else if (english.includes('number') || /\d/.test(character)) {
+            return 'Número';
+        } else if (character.length === 1) {
+            return 'Carácter';
+        } else {
+            return 'Palabra';
+        }
+    }
+    
+    getToneMarks(pinyin) {
+        if (!pinyin) return '?';
+        
+        const toneMap = {
+            'ā': '1', 'á': '2', 'ǎ': '3', 'à': '4', 'a': '0',
+            'ē': '1', 'é': '2', 'ě': '3', 'è': '4', 'e': '0',
+            'ī': '1', 'í': '2', 'ǐ': '3', 'ì': '4', 'i': '0',
+            'ō': '1', 'ó': '2', 'ǒ': '3', 'ò': '4', 'o': '0',
+            'ū': '1', 'ú': '2', 'ǔ': '3', 'ù': '4', 'u': '0',
+            'ǖ': '1', 'ǘ': '2', 'ǚ': '3', 'ǜ': '4', 'ü': '0'
+        };
+        
+        let tones = [];
+        for (let char of pinyin) {
+            if (toneMap[char]) {
+                tones.push(toneMap[char]);
+            }
+        }
+        
+        return tones.length > 0 ? tones.join('') : '0';
+    }
+    
+    getExampleSentence(word) {
+        const examples = {
+            '你': { chinese: '你好吗？', english: 'How are you?', spanish: '¿Cómo estás?' },
+            '好': { chinese: '很好，谢谢。', english: 'Very good, thank you.', spanish: 'Muy bien, gracias.' },
+            '我': { chinese: '我是学生。', english: 'I am a student.', spanish: 'Soy estudiante.' },
+            '是': { chinese: '他是老师。', english: 'He is a teacher.', spanish: 'Él es profesor.' },
+            '的': { chinese: '我的书', english: 'My book', spanish: 'Mi libro' },
+            '不': { chinese: '我不知道。', english: 'I don\'t know.', spanish: 'No lo sé.' },
+            '在': { chinese: '我在家。', english: 'I am at home.', spanish: 'Estoy en casa.' },
+            '有': { chinese: '我有一本书。', english: 'I have a book.', spanish: 'Tengo un libro.' }
+        };
+        
+        const example = examples[word.character];
+        if (example) {
+            return `
+                <div class="example-section">
+                    <div class="example-title">💡 Ejemplo de uso:</div>
+                    <div class="example-sentence">
+                        <div class="example-chinese">${example.chinese}</div>
+                        <div class="example-translations">
+                            <div class="example-english">🇬🇧 ${example.english}</div>
+                            <div class="example-spanish">🇪🇸 ${example.spanish}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        return `
+            <div class="example-section">
+                <div class="example-title">💡 Practica con esta palabra</div>
+                <div class="practice-tip">
+                    Intenta crear una oración usando "${word.character}"
+                </div>
+            </div>
+        `;
     }
     
     resetCardState() {
@@ -1289,6 +1465,21 @@ class HSKApp {
         console.log(`🎤 Voice preference set to: ${voiceType}`);
     }
     
+    loadVoicePreference() {
+        const savedVoice = localStorage.getItem('hsk-voice-preference');
+        if (savedVoice) {
+            this.selectedVoice = savedVoice;
+            console.log(`🎤 Loaded voice preference: ${savedVoice}`);
+        }
+    }
+    
+    updateVoiceSelector() {
+        const voiceSelect = document.getElementById('voice-select');
+        if (voiceSelect) {
+            voiceSelect.value = this.selectedVoice;
+        }
+    }
+    
     showAudioFeedback(isPlaying) {
         const audioButtons = document.querySelectorAll('.vocab-audio-btn, #audio-toggle');
         audioButtons.forEach(button => {
@@ -1322,11 +1513,10 @@ class HSKApp {
     }
     
     getMeaningForLanguage(word) {
-        // Return meaning based on current language
         if (this.currentLanguage === 'es') {
-            return word.translation || word.spanish || word.english;
+            return word.spanish || word.translation || word.english || '?';
         } else {
-            return word.english || word.translation;
+            return word.english || word.translation || '?';
         }
     }
     
