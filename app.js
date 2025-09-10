@@ -140,30 +140,64 @@ class HSKApp {
     
     async loadVocabulary() {
         try {
-            const response = await fetch('hsk_vocabulary_spanish.json');
+            // Try to load complete vocabulary first
+            const response = await fetch('hsk_vocabulary_complete.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            this.vocabulary = await response.json();
-            console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items with Spanish translations`);
+            const completeData = await response.json();
+            
+            // Convert complete vocabulary format to app format
+            this.vocabulary = [];
+            Object.keys(completeData.vocabulary).forEach(level => {
+                completeData.vocabulary[level].forEach(word => {
+                    this.vocabulary.push({
+                        character: word.character,
+                        pinyin: word.pinyin,
+                        english: word.translations.english,
+                        spanish: word.translations.spanish,
+                        level: parseInt(level),
+                        type: word.type,
+                        strokes: word.strokes,
+                        tones: word.tones,
+                        examples: word.examples
+                    });
+                });
+            });
+            
+            console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items from complete HSK database`);
+            console.log(`📊 Distribution: Level 1-6 with ${completeData.metadata.totalWords} total words`);
+            
         } catch (error) {
-            console.error('❌ Error loading vocabulary with Spanish translations:', error);
-            // Try fallback to original vocabulary
+            console.error('❌ Error loading complete vocabulary:', error);
+            // Try fallback to Spanish vocabulary
             try {
-                const fallbackResponse = await fetch('hsk_vocabulary.json');
-                if (fallbackResponse.ok) {
-                    this.vocabulary = await fallbackResponse.json();
-                    console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items (fallback)`);
+                const spanishResponse = await fetch('hsk_vocabulary_spanish.json');
+                if (spanishResponse.ok) {
+                    this.vocabulary = await spanishResponse.json();
+                    console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items (Spanish fallback)`);
                 } else {
-                    throw new Error('Both vocabulary files failed to load');
+                    throw new Error('Spanish vocabulary file not found');
                 }
-            } catch (fallbackError) {
-                console.error('❌ Error loading fallback vocabulary:', fallbackError);
-                // Final fallback vocabulary
-                this.vocabulary = [
-                    { character: "你好", pinyin: "nǐ hǎo", english: "hello", spanish: "hola", level: 1 },
-                    { character: "谢谢", pinyin: "xiè xiè", english: "thank you", spanish: "gracias", level: 1 }
-                ];
+            } catch (spanishError) {
+                console.error('❌ Error loading Spanish vocabulary:', spanishError);
+                // Try original vocabulary
+                try {
+                    const originalResponse = await fetch('hsk_vocabulary.json');
+                    if (originalResponse.ok) {
+                        this.vocabulary = await originalResponse.json();
+                        console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items (original fallback)`);
+                    } else {
+                        throw new Error('All vocabulary files failed to load');
+                    }
+                } catch (originalError) {
+                    console.error('❌ Error loading original vocabulary:', originalError);
+                    // Final fallback vocabulary
+                    this.vocabulary = [
+                        { character: "你好", pinyin: "nǐ hǎo", english: "hello", spanish: "hola", level: 1 },
+                        { character: "谢谢", pinyin: "xiè xiè", english: "thank you", spanish: "gracias", level: 1 }
+                    ];
+                }
             }
         }
     }
