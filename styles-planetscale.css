@@ -567,30 +567,7 @@ body::before {
     animation: cardEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Decoración lateral china - Instituto Confucio */
-.app-container::before,
-.app-container::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    width: 50px;
-    height: 100vh;
-    background: linear-gradient(180deg, 
-        rgba(196, 30, 58, 0.1), 
-        rgba(255, 215, 0, 0.05));
-    pointer-events: none;
-    z-index: 100;
-}
-
-.app-container::before {
-    left: 0;
-    border-right: 1px solid rgba(255, 215, 0, 0.2);
-}
-
-.app-container::after {
-    right: 0;
-    border-left: 1px solid rgba(255, 215, 0, 0.2);
-}
+/* Decoración lateral china eliminada - usando solo pilares nuevos */
 
 .btn {
     display: inline-flex;
@@ -621,6 +598,17 @@ body::before {
 }
 
 /* FLASHCARD FORCED FIXES */
+.footer-content {
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 16px 24px !important;
+    gap: 24px !important;
+}
+
 .flashcard-area {
     width: 100% !important;
     max-width: 700px !important;
@@ -634,11 +622,15 @@ body::before {
     width: 100% !important;
     height: 400px !important;
     position: relative !important;
-    border-radius: 20px !important;
+    transform-style: preserve-3d !important;
+    transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1) !important;
     cursor: pointer !important;
-    animation: cardEntrance 0.8s ease-out !important;
-    transform-origin: center !important;
+    margin: 0 auto !important;
     background: transparent !important;
+    border-radius: var(--radius-xl) !important;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(255, 215, 0, 0.1) !important;
 }
 
 .flashcard:hover {
@@ -1555,12 +1547,274 @@ body::before {
     background: white;
 }
 
+/* ============================================================================
+   STATISTICS MODULE - CHINESE TRADITIONAL DESIGN
+   ============================================================================ */
+
+.stats-overview {
+    margin-bottom: var(--space-8);
+}
+
+.stats-overview h3 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+.stat-card {
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 215, 0, 0.02) 10px,
+            rgba(255, 215, 0, 0.02) 20px
+        ),
+        linear-gradient(
+            135deg,
+            rgba(139, 69, 19, 0.1) 0%,
+            var(--color-surface) 50%,
+            rgba(196, 30, 58, 0.1) 100%
+        );
+    border: 3px solid transparent;
+    border-image: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 0.4),
+        rgba(196, 30, 58, 0.3),
+        rgba(255, 215, 0, 0.4)
+    ) 1;
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 3px rgba(255, 215, 0, 0.1);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 215, 0, 0.8) 0%,
+        rgba(196, 30, 58, 0.6) 50%,
+        rgba(255, 215, 0, 0.8) 100%
+    );
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(255, 215, 0, 0.2),
+        inset 0 1px 5px rgba(255, 215, 0, 0.15);
+    border-image: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 0.6),
+        rgba(196, 30, 58, 0.5),
+        rgba(255, 215, 0, 0.6)
+    ) 1;
+}
+
+.stat-value {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 1) 0%,
+        rgba(196, 30, 58, 0.9) 50%,
+        rgba(139, 69, 19, 0.8) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
+}
+
+.stat-label {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: var(--space-2);
+}
+
+/* Level Progress Section */
+.level-progress {
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(255, 215, 0, 0.08) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(196, 30, 58, 0.08) 100%
+        );
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.1),
+        inset 0 1px 2px rgba(255, 215, 0, 0.1);
+}
+
+.level-progress h4 {
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+    text-align: center;
+}
+
+#level-progress-bars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.level-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.level-label {
+    min-width: 80px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--text-sm);
+}
+
+.progress-bar {
+    flex: 1;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 215, 0, 0.9) 0%,
+        rgba(196, 30, 58, 0.8) 50%,
+        rgba(139, 69, 19, 0.7) 100%
+    );
+    border-radius: 6px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: progressShine 2s ease-in-out infinite;
+}
+
+.progress-text {
+    min-width: 60px;
+    text-align: right;
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Reset Stats Button */
+#reset-stats {
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(239, 68, 68, 0.9) 0%,
+            rgba(220, 38, 38, 0.8) 100%
+        );
+    border: 2px solid rgba(239, 68, 68, 0.5);
+    color: white;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 12px rgba(239, 68, 68, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+#reset-stats:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 20px rgba(239, 68, 68, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    border-color: rgba(239, 68, 68, 0.7);
+}
+
+#reset-stats:active {
+    transform: translateY(0);
+}
+
+/* Animations */
+@keyframes shimmer {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+}
+
+@keyframes progressShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
 /* Light Theme Stats and Progress */
 [data-theme="light"] .stat-card {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--color-border);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(10px);
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 215, 0, 0.03) 10px,
+            rgba(255, 215, 0, 0.03) 20px
+        ),
+        rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.08),
+        inset 0 1px 2px rgba(255, 215, 0, 0.1);
 }
 
 [data-theme="light"] .progress-bar {
@@ -1671,13 +1925,30 @@ body::before {
    ============================================================================ */
 
 .app-header {
-    background: var(--color-background-secondary) !important;
-    border-bottom: 2px solid rgba(255, 215, 0, 0.2) !important;
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(139, 69, 19, 0.1) 0%,
+            rgba(196, 30, 58, 0.08) 50%,
+            rgba(139, 69, 19, 0.1) 100%
+        ),
+        var(--color-background-secondary) !important;
+    border-bottom: 2px solid transparent !important;
+    border-image: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 215, 0, 0.5),
+        rgba(196, 30, 58, 0.3),
+        rgba(255, 215, 0, 0.5),
+        transparent
+    ) 1 !important;
     padding: 16px 0 !important;
-    position: relative !important;
-    z-index: 100 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 40 !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
 .header-container {
@@ -2270,14 +2541,26 @@ body::before {
    ============================================================================ */
 
 .app-footer {
-    background: var(--color-background-secondary) !important;
-    border-top: 2px solid rgba(255, 215, 0, 0.2) !important;
+    background: 
+        linear-gradient(
+            180deg,
+            rgba(139, 69, 19, 0.1) 0%,
+            rgba(196, 30, 58, 0.08) 50%,
+            rgba(139, 69, 19, 0.1) 100%
+        ),
+        var(--color-background-secondary) !important;
+    border-top: 2px solid transparent !important;
+    border-image: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 215, 0, 0.5),
+        rgba(196, 30, 58, 0.3),
+        rgba(255, 215, 0, 0.5),
+        transparent
+    ) 1 !important;
     padding: 16px 0 !important;
-    position: relative !important;
-    z-index: 100 !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
     margin-top: auto !important;
+    box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
 .footer-content {
@@ -2374,39 +2657,418 @@ body::before {
     }
 }
 
-/* Elementos laterales verticales con mayor tamaño */
+/* ============================================================================
+   PILARES LATERALES CHINOS - DISEÑO MEJORADO
+   ============================================================================ */
+
+/* Pilares decorativos de fondo - Diseño tradicional chino mejorado */
+.vertical-pillar-left,
+.vertical-pillar-right {
+    position: fixed;
+    top: 0;
+    width: 90px;
+    height: 100vh;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            rgba(196, 30, 58, 0.1) 0px,
+            rgba(255, 215, 0, 0.05) 10px,
+            rgba(196, 30, 58, 0.1) 20px,
+            transparent 20px,
+            transparent 40px
+        ),
+        linear-gradient(
+            180deg,
+            rgba(139, 69, 19, 0.15) 0%,
+            rgba(255, 215, 0, 0.08) 20%,
+            rgba(196, 30, 58, 0.12) 50%,
+            rgba(255, 215, 0, 0.08) 80%,
+            rgba(139, 69, 19, 0.15) 100%
+        );
+    border: 2px solid transparent;
+    border-image: linear-gradient(
+        180deg,
+        rgba(255, 215, 0, 0.6),
+        rgba(196, 30, 58, 0.4),
+        rgba(255, 215, 0, 0.6)
+    ) 1;
+    box-shadow: 
+        inset 0 0 20px rgba(255, 215, 0, 0.1),
+        inset 0 0 40px rgba(196, 30, 58, 0.05),
+        0 0 30px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Patrón decorativo tradicional chino */
+.vertical-pillar-left::before,
+.vertical-pillar-right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 215, 0, 0.03) 10px,
+            rgba(255, 215, 0, 0.03) 20px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 215, 0, 0.03) 10px,
+            rgba(255, 215, 0, 0.03) 20px
+        );
+    opacity: 0.5;
+    animation: patternShift 20s linear infinite;
+}
+
+@keyframes patternShift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(40px); }
+}
+
+.vertical-pillar-left {
+    left: 0;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+}
+
+.vertical-pillar-right {
+    right: 0;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+}
+
+/* Linternas chinas tradicionales mejoradas */
+.lantern-top {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 60px;
+    height: 70px;
+    transform: translateX(-50%);
+    background: 
+        radial-gradient(ellipse at center, 
+            rgba(255, 69, 0, 0.9) 0%, 
+            rgba(196, 30, 58, 0.8) 40%, 
+            rgba(139, 0, 0, 0.6) 100%
+        );
+    border: 3px solid rgba(255, 215, 0, 0.7);
+    border-radius: 50% 50% 60% 60% / 60% 60% 40% 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: lanternGlow 4s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 30px rgba(255, 69, 0, 0.6),
+        inset 0 -10px 20px rgba(255, 215, 0, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.4);
+    z-index: 20;
+}
+
+.lantern-top::before {
+    content: '福';
+    font-family: 'Noto Serif SC', serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgba(255, 215, 0, 0.9);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.lantern-top::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 15px;
+    background: rgba(139, 69, 19, 0.8);
+    border-radius: 50% 50% 0 0;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+}
+
+/* Monedas chinas antiguas con agujero cuadrado */
+.coin-bottom {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 55px;
+    height: 55px;
+    transform: translateX(-50%);
+    background: 
+        radial-gradient(circle at center, 
+            rgba(255, 215, 0, 1) 0%, 
+            rgba(218, 165, 32, 0.9) 35%, 
+            rgba(184, 134, 11, 0.8) 70%,
+            rgba(139, 69, 19, 0.7) 100%
+        );
+    border: 4px solid rgba(139, 69, 19, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: ancientCoinFloat 8s ease-in-out infinite;
+    box-shadow: 
+        0 0 25px rgba(255, 215, 0, 0.5),
+        inset 0 0 20px rgba(255, 223, 0, 0.4),
+        0 8px 15px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 10px rgba(139, 69, 19, 0.15);
+    z-index: 20;
+}
+
+.coin-bottom::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(139, 69, 19, 0.8);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.coin-bottom::after {
+    content: '通寶';
+    position: absolute;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgba(139, 69, 19, 0.9);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    letter-spacing: 18px;
+    padding-left: 18px;
+}
+
+/* Dragones ASCII decorativos mejorados */
+.dragon-top,
+.dragon-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Courier New', 'Monaco', monospace;
+    font-size: 9px;
+    line-height: 1.1;
+    color: rgba(255, 215, 0, 0.95);
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(196, 30, 58, 0.4);
+    white-space: pre;
+    text-align: left;
+    z-index: 10;
+    animation: dragonFloat 8s ease-in-out infinite;
+    width: 70px;
+    height: auto;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 6px;
+    padding: 4px;
+    box-shadow: 
+        0 0 15px rgba(255, 215, 0, 0.2),
+        inset 0 0 10px rgba(196, 30, 58, 0.1);
+}
+
+.vertical-pillar-left .dragon-top,
+.vertical-pillar-right .dragon-top {
+    top: 8%;
+}
+
+.vertical-pillar-left .dragon-bottom,
+.vertical-pillar-right .dragon-bottom {
+    bottom: 8%;
+}
+
+/* Animaciones temáticas chinas */
+@keyframes lanternGlow {
+    0% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(0.9);
+        box-shadow: 
+            0 0 15px rgba(255, 215, 0, 0.3),
+            inset 0 0 10px rgba(255, 69, 0, 0.2);
+    }
+    50% {
+        opacity: 0.9;
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 
+            0 0 25px rgba(255, 215, 0, 0.6),
+            inset 0 0 20px rgba(255, 69, 0, 0.4);
+    }
+    100% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(0.95);
+        box-shadow: 
+            0 0 20px rgba(255, 215, 0, 0.4),
+            inset 0 0 15px rgba(255, 69, 0, 0.3);
+    }
+}
+
+@keyframes ancientCoinFloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0px) rotate(0deg);
+        box-shadow: 
+            0 0 15px rgba(255, 215, 0, 0.3),
+            inset 0 0 10px rgba(255, 223, 0, 0.2),
+            0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    25% {
+        transform: translateX(-50%) translateY(-4px) rotate(5deg);
+        box-shadow: 
+            0 0 20px rgba(255, 215, 0, 0.5),
+            inset 0 0 15px rgba(255, 223, 0, 0.4),
+            0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-6px) rotate(0deg);
+        box-shadow: 
+            0 0 25px rgba(255, 215, 0, 0.6),
+            inset 0 0 20px rgba(255, 223, 0, 0.5),
+            0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+    75% {
+        transform: translateX(-50%) translateY(-3px) rotate(-5deg);
+        box-shadow: 
+            0 0 20px rgba(255, 215, 0, 0.4),
+            inset 0 0 15px rgba(255, 223, 0, 0.3),
+            0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+}
+
+@keyframes dragonFloat {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateX(-50%) translateY(0px);
+    }
+    25% {
+        opacity: 0.7;
+        transform: translateX(-50%) translateY(-3px);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateX(-50%) translateY(-5px);
+    }
+    75% {
+        opacity: 0.6;
+        transform: translateX(-50%) translateY(-2px);
+    }
+}
+
+/* Texto vertical mejorado */
 .vertical-text-left {
     position: fixed !important;
-    left: 16px !important;
+    left: 40px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    font-family: 'Noto Sans SC', serif !important;
-    font-size: 20px !important;
-    font-weight: 800 !important;
-    color: rgba(255, 215, 0, 0.9) !important;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5) !important;
+    font-family: 'Noto Serif SC', 'SimSun', serif !important;
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    color: #ffd700 !important;
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.8) !important;
     z-index: 1000 !important;
     pointer-events: none !important;
-    letter-spacing: 4px !important;
+    letter-spacing: 8px !important;
     writing-mode: vertical-rl !important;
     text-orientation: upright !important;
+    background: linear-gradient(
+        180deg,
+        #ffd700 0%,
+        #ffed4a 50%,
+        #ffd700 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
 }
 
 .vertical-text-right {
     position: fixed !important;
-    right: 16px !important;
+    right: 40px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    font-family: 'Noto Sans SC', serif !important;
-    font-size: 20px !important;
-    font-weight: 800 !important;
-    color: rgba(255, 215, 0, 0.9) !important;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5) !important;
+    font-family: 'Noto Serif SC', 'SimSun', serif !important;
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    color: #ffd700 !important;
+    text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.8),
+        0 0 20px rgba(255, 215, 0, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.8) !important;
     z-index: 1000 !important;
     pointer-events: none !important;
-    letter-spacing: 4px !important;
+    letter-spacing: 8px !important;
     writing-mode: vertical-rl !important;
     text-orientation: upright !important;
+    background: linear-gradient(
+        180deg,
+        #ffd700 0%,
+        #ffed4a 50%,
+        #ffd700 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+}
+
+/* Responsive design para pilares */
+@media (max-width: 1200px) {
+    .vertical-pillar-left,
+    .vertical-pillar-right {
+        width: 60px;
+    }
+    
+    .vertical-text-left {
+        left: 30px !important;
+        font-size: 24px !important;
+        letter-spacing: 6px !important;
+    }
+    
+    .vertical-text-right {
+        right: 30px !important;
+        font-size: 24px !important;
+        letter-spacing: 6px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .vertical-pillar-left,
+    .vertical-pillar-right {
+        width: 40px;
+    }
+    
+    .vertical-text-left {
+        left: 20px !important;
+        font-size: 18px !important;
+        letter-spacing: 4px !important;
+    }
+    
+    .vertical-text-right {
+        right: 20px !important;
+        font-size: 18px !important;
+        letter-spacing: 4px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .vertical-pillar-left,
+    .vertical-pillar-right {
+        display: none;
+    }
+    
+    .vertical-text-left,
+    .vertical-text-right {
+        display: none;
+    }
 }
 
 
@@ -2429,15 +3091,23 @@ body::before {
 
 .nav-tab {
     padding: var(--space-3) var(--space-5);
-    background: transparent;
-    border: none;
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(255, 215, 0, 0.05) 0%,
+            transparent 50%,
+            rgba(196, 30, 58, 0.05) 100%
+        );
+    border: 1px solid rgba(255, 215, 0, 0.2);
     color: var(--text-secondary);
-    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
     cursor: pointer;
+    transition: all 0.2s ease;
     position: relative;
-    transition: all 0.25s ease;
     border-radius: var(--radius-md);
+    box-shadow: 
+        inset 0 1px 2px rgba(255, 215, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .nav-tab:hover {
@@ -2447,8 +3117,18 @@ body::before {
 
 .nav-tab.active {
     color: var(--text-primary);
-    background: var(--color-surface);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(255, 215, 0, 0.2) 0%,
+            var(--color-primary) 50%,
+            rgba(139, 69, 19, 0.3) 100%
+        );
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    box-shadow: 
+        0 4px 12px rgba(196, 30, 58, 0.4),
+        inset 0 1px 4px rgba(255, 215, 0, 0.3),
+        0 0 20px rgba(255, 215, 0, 0.2);
 }
 
 .nav-tab.active::after {
@@ -2515,13 +3195,35 @@ body::before {
 }
 
 .home-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 215, 0, 0.02) 10px,
+            rgba(255, 215, 0, 0.02) 20px
+        ),
+        linear-gradient(
+            135deg,
+            rgba(139, 69, 19, 0.1) 0%,
+            var(--color-surface) 50%,
+            rgba(196, 30, 58, 0.1) 100%
+        );
+    border: 2px solid transparent;
+    border-image: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 0.3),
+        rgba(196, 30, 58, 0.2),
+        rgba(255, 215, 0, 0.3)
+    ) 1;
     border-radius: var(--radius-xl);
     padding: var(--space-6);
     text-align: center;
     cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.2),
+        inset 0 1px 3px rgba(255, 215, 0, 0.1);
 }
 
 .home-card:hover {

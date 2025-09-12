@@ -51,12 +51,12 @@ class HSKApp {
         // Initialize the app
         this.init();
         
-        console.log('✅ HSKApp constructor completed');
+        console.log('[✓] HSKApp constructor completed');
     }
     
     async init() {
         try {
-            console.log('🚀 Initializing HSK Learning App...');
+            console.log('[▶] Initializing HSK Learning App...');
             
             // Initialize LanguageManager first
             if (!window.languageManager && window.LanguageManager) {
@@ -78,13 +78,13 @@ class HSKApp {
                     }
                 });
                 
-                console.log('✅ LanguageManager initialized');
+                console.log('[✓] LanguageManager initialized');
             }
             
             // Initialize GitHub Authentication
             if (window.GitHubAuth) {
                 this.githubAuth = new window.GitHubAuth();
-                console.log('✅ GitHub Auth initialized');
+                console.log('[✓] GitHub Auth initialized');
             }
             
             // Initialize User Profile
@@ -94,7 +94,7 @@ class HSKApp {
                 // Load user preferences
                 this.loadUserPreferences();
                 
-                console.log('✅ User Profile initialized');
+                console.log('[✓] User Profile initialized');
             }
             
             // Load vocabulary
@@ -131,10 +131,10 @@ class HSKApp {
             // Update voice selector after initialization
             this.updateVoiceSelector();
             
-            console.log('✅ HSK Learning App initialized successfully!');
+            console.log('[✓] HSK Learning App initialized successfully!');
             
         } catch (error) {
-            console.error('❌ Error initializing app:', error);
+            console.error('[✗] Error initializing app:', error);
         }
     }
     
@@ -165,33 +165,33 @@ class HSKApp {
                 });
             });
             
-            console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items from complete HSK database`);
-            console.log(`📊 Distribution: Level 1-6 with ${completeData.metadata.totalWords} total words`);
+            console.log(`[書] Loaded ${this.vocabulary.length} vocabulary items from complete HSK database`);
+            console.log(`[^] Distribution: Level 1-6 with ${completeData.metadata.totalWords} total words`);
             
         } catch (error) {
-            console.error('❌ Error loading complete vocabulary:', error);
+            console.error('[✗] Error loading complete vocabulary:', error);
             // Try fallback to Spanish vocabulary
             try {
                 const spanishResponse = await fetch('hsk_vocabulary_spanish.json');
                 if (spanishResponse.ok) {
                     this.vocabulary = await spanishResponse.json();
-                    console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items (Spanish fallback)`);
+                    console.log(`[書] Loaded ${this.vocabulary.length} vocabulary items (Spanish fallback)`);
                 } else {
                     throw new Error('Spanish vocabulary file not found');
                 }
             } catch (spanishError) {
-                console.error('❌ Error loading Spanish vocabulary:', spanishError);
+                console.error('[✗] Error loading Spanish vocabulary:', spanishError);
                 // Try original vocabulary
                 try {
                     const originalResponse = await fetch('hsk_vocabulary.json');
                     if (originalResponse.ok) {
                         this.vocabulary = await originalResponse.json();
-                        console.log(`📚 Loaded ${this.vocabulary.length} vocabulary items (original fallback)`);
+                        console.log(`[書] Loaded ${this.vocabulary.length} vocabulary items (original fallback)`);
                     } else {
                         throw new Error('All vocabulary files failed to load');
                     }
                 } catch (originalError) {
-                    console.error('❌ Error loading original vocabulary:', originalError);
+                    console.error('[✗] Error loading original vocabulary:', originalError);
                     // Final fallback vocabulary
                     this.vocabulary = [
                         { character: "你好", pinyin: "nǐ hǎo", english: "hello", spanish: "hola", level: 1 },
@@ -215,7 +215,7 @@ class HSKApp {
             { character: '人', pinyin: 'rén', english: 'person', translation: 'persona', level: 1 },
             { character: '这', pinyin: 'zhè', english: 'this', translation: 'este/esta', level: 1 }
         ];
-        console.log('✅ Fallback vocabulary created');
+        console.log('[✓] Fallback vocabulary created');
     }
 
     // Load user preferences from profile
@@ -249,7 +249,7 @@ class HSKApp {
             this.isAudioEnabled = preferences.isAudioEnabled;
         }
         
-        console.log('✅ User preferences loaded:', preferences);
+        console.log('[✓] User preferences loaded:', preferences);
     }
     
     initializeKeyboardShortcuts() {
@@ -567,7 +567,7 @@ class HSKApp {
             dontKnowBtn.addEventListener('click', () => this.markAsKnown(false));
         }
         
-        console.log('✅ Event listeners setup');
+        console.log('[✓] Event listeners setup');
     }
     
     // Daily progress management
@@ -707,9 +707,9 @@ class HSKApp {
             this.isFlipped = false;
             this.updateCard();
             this.updateProgress();
-            console.log(`📚 Practice session setup: ${this.currentSession.length} words for level ${this.currentLevel}`);
+            console.log(`[書] Practice session setup: ${this.currentSession.length} words for level ${this.currentLevel}`);
         } else {
-            console.warn('⚠️ No vocabulary found for current level');
+            console.warn('[!] No vocabulary found for current level');
             this.showError(`No vocabulary found for HSK level ${this.currentLevel}`);
         }
     }
@@ -801,17 +801,6 @@ class HSKApp {
                     <div class="detail-card">
                         <div class="detail-icon">🏷️</div>
                         <div class="detail-info">
-                            <div class="detail-label">Nivel</div>
-                            <div class="detail-value">HSK ${this.currentWord.level || '?'}</div>
-                        </div>
-                    </div>
-                    <div class="detail-card">
-                        <div class="detail-icon">🔤</div>
-                        <div class="detail-info">
-                            <div class="detail-label">Trazos</div>
-                            <div class="detail-value">${this.getStrokeCount(this.currentWord.character) || '?'}</div>
-                        </div>
-                    </div>
                     <div class="detail-card">
                         <div class="detail-icon">🎵</div>
                         <div class="detail-info">
@@ -987,7 +976,7 @@ class HSKApp {
                 }, 300); // Delay to sync with flip animation
             }
             
-            console.log('🎴 Card flipped to show answer');
+            console.log('[卡] Card flipped to show answer');
         }
     }
     
@@ -1021,7 +1010,7 @@ class HSKApp {
             dontKnowBtn.style.opacity = '1';
         }
         
-        console.log('✅ Knowledge buttons enabled');
+        console.log('[✓] Knowledge buttons enabled');
     }
     
     disableKnowledgeButtons() {
@@ -1050,10 +1039,10 @@ class HSKApp {
             if (this.stats.currentStreak > this.stats.bestStreak) {
                 this.stats.bestStreak = this.stats.currentStreak;
             }
-            console.log(`✅ Marked "${this.currentWord.character}" as KNOWN`);
+            console.log(`[✓] Marked "${this.currentWord.character}" as KNOWN`);
         } else {
             this.stats.currentStreak = 0;
-            console.log(`❌ Marked "${this.currentWord.character}" as NOT KNOWN`);
+            console.log(`[✗] Marked "${this.currentWord.character}" as NOT KNOWN`);
         }
         
         // Update daily progress - count any interaction (known or not known)
@@ -1103,7 +1092,7 @@ class HSKApp {
             animation: feedbackPulse 0.8s ease-out;
         `;
         
-        feedback.innerHTML = isKnown ? '✅ ¡Correcto!' : '❌ Sigue practicando';
+        feedback.innerHTML = isKnown ? '[✓] ¡Correcto!' : '[✗] Sigue practicando';
         
         // Add animation style
         const style = document.createElement('style');
@@ -1310,7 +1299,7 @@ class HSKApp {
             headerSearch.value = '';
         }
         
-        console.log(`🎯 Selected word from header search: ${word.character}`);
+        console.log(`[#] Selected word from header search: ${word.character}`);
     }
     
     toggleAudio() {
@@ -1421,7 +1410,7 @@ class HSKApp {
                 };
                 
                 utterance.onend = () => {
-                    console.log('✅ Audio playback completed');
+                    console.log('[✓] Audio playback completed');
                     this.showAudioFeedback(false);
                 };
                 
@@ -1555,9 +1544,9 @@ class HSKApp {
             // Pasar el vocabulario actual al juego
             window.matrixGame.vocabulary = this.vocabulary;
             window.matrixGame.showGame();
-            console.log('🎮 Matrix game initialized');
+            console.log('[#] Matrix game initialized');
         } else {
-            console.error('❌ Matrix game not loaded');
+            console.error('[✗] Matrix game not loaded');
         }
     }
     
@@ -1781,7 +1770,7 @@ class HSKApp {
             noMoreIndicator.id = 'browse-no-more';
             noMoreIndicator.className = 'browse-no-more';
             noMoreIndicator.innerHTML = `
-                <div class="no-more-text">✅ All vocabulary loaded!</div>
+                <div class="no-more-text">[✓] All vocabulary loaded!</div>
             `;
             vocabularyGrid.parentNode.appendChild(noMoreIndicator);
         }
@@ -1917,12 +1906,12 @@ class HSKApp {
         
         // Verify correct answer is included
         if (!shuffledOptions.includes(correctAnswer)) {
-            console.error('❌ Correct answer not in options! Adding it back.');
+            console.error('[✗] Correct answer not in options! Adding it back.');
             shuffledOptions[0] = correctAnswer; // Replace first option with correct answer
             shuffledOptions.sort(() => Math.random() - 0.5); // Shuffle again
         }
         
-        console.log(`🎯 Generated options: [${shuffledOptions.join(', ')}] - Correct: ${correctAnswer}`);
+        console.log(`[#] Generated options: [${shuffledOptions.join(', ')}] - Correct: ${correctAnswer}`);
         
         return shuffledOptions;
     }
@@ -1963,9 +1952,9 @@ class HSKApp {
         // Update score immediately if correct
         if (isCorrect) {
             this.quiz.score++;
-            console.log(`✅ Correct answer! Score: ${this.quiz.score}/${this.quiz.questions.length}`);
+            console.log(`[✓] Correct answer! Score: ${this.quiz.score}/${this.quiz.questions.length}`);
         } else {
-            console.log(`❌ Incorrect answer. Score remains: ${this.quiz.score}/${this.quiz.questions.length}`);
+            console.log(`[✗] Incorrect answer. Score remains: ${this.quiz.score}/${this.quiz.questions.length}`);
         }
         
         // Update score display immediately

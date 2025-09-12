@@ -65,11 +65,11 @@ const translations = {
         clickToPronounce: "Hacer clic para escuchar pronunciación",
         
         // Footer
-        developedBy: "Desarrollado con ❤️ por",
+        developedBy: "Desarrollado con ♡ por",
         version: "v3.0.1 | Advanced Chinese Learning Platform",
-        githubLink: "📂 GitHub",
-        confuciusInspired: "🀄 Instituto Confucio inspired",
-        footer: "Hecho con ❤️ para estudiantes de chino",
+        githubLink: "[>] GitHub",
+        confuciusInspired: "[中] Instituto Confucio inspired",
+        footer: "Hecho con ♡ para estudiantes de chino",
         
         // Messages
         noWordsAvailable: "No hay más palabras disponibles",
@@ -188,11 +188,11 @@ const translations = {
         clickToPronounce: "Click to hear pronunciation",
         
         // Footer
-        developedBy: "Developed with ❤️ by",
+        developedBy: "Developed with ♡ by",
         version: "v3.0.1 | Advanced Chinese Learning Platform",
-        githubLink: "📂 GitHub",
-        confuciusInspired: "🀄 Confucius Institute inspired",
-        footer: "Made with ❤️ for Chinese learners",
+        githubLink: "[>] GitHub",
+        confuciusInspired: "[中] Confucius Institute inspired",
+        footer: "Made with ♡ for Chinese learners",
         
         // Messages
         noWordsAvailable: "No more words available",

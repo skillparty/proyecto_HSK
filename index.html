@@ -51,12 +51,12 @@
                 document.head.appendChild(fallbackCSS);
             }
             
-            console.log('✅ Resource validation complete');
+            console.log('[✓] Resource validation complete');
         });
         
         // Error handler for missing resources
         function showResourceError(resource) {
-            console.error(`❌ Failed to load: ${resource}`);
+            console.error(`[✗] Failed to load: ${resource}`);
             
             // Create error notification
             const errorDiv = document.createElement('div');
@@ -80,6 +80,16 @@
     <!-- Scripts moved to end of body for proper loading order -->
 </head>
 <body>
+    <!-- Pilares laterales chinos mejorados -->
+    <div class="vertical-pillar-left">
+        <div class="lantern-top"></div>
+        <div class="coin-bottom"></div>
+    </div>
+    <div class="vertical-pillar-right">
+        <div class="lantern-top"></div>
+        <div class="coin-bottom"></div>
+    </div>
+    
     <!-- Elementos laterales verticales -->
     <div class="vertical-text-left">孔子学院</div>
     <div class="vertical-text-right">何宸朗</div>
@@ -153,7 +163,7 @@
                 <button class="nav-tab active" data-tab="practice" data-i18n="practiceTab">Practice</button>
                 <button class="nav-tab" data-tab="browse" data-i18n="browseTab">Browse</button>
                 <button class="nav-tab" data-tab="quiz" data-i18n="quizTab">Quiz</button>
-                <button class="nav-tab" data-tab="matrix" data-i18n="matrixTab">🎯 Matrix</button>
+                <button class="nav-tab" data-tab="matrix" data-i18n="matrixTab"><span class="ascii-art">[#]</span> Matrix</button>
                 <button class="nav-tab" data-tab="stats" data-i18n="statsTab">Statistics</button>
             </div>
         </nav>
@@ -183,27 +193,27 @@
                     </div>
                     <div class="home-cards">
                         <div class="home-card" onclick="window.app && window.app.switchTab('practice')">
-                            <div class="home-card-icon">🎴</div>
+                            <div class="home-card-icon ascii-art">[卡]</div>
                             <div class="home-card-title">Practice</div>
                             <div class="home-card-desc">Flashcards y práctica guiada</div>
                         </div>
                         <div class="home-card" onclick="window.app && window.app.switchTab('browse')">
-                            <div class="home-card-icon">📚</div>
+                            <div class="home-card-icon ascii-art">[書]</div>
                             <div class="home-card-title">Browse</div>
                             <div class="home-card-desc">Explora vocabulario por nivel</div>
                         </div>
                         <div class="home-card" onclick="window.app && window.app.switchTab('quiz')">
-                            <div class="home-card-icon">🧠</div>
+                            <div class="home-card-icon ascii-art">[?]</div>
                             <div class="home-card-title">Quiz</div>
                             <div class="home-card-desc">Pon a prueba tus conocimientos</div>
                         </div>
                         <div class="home-card" onclick="window.app && window.app.switchTab('matrix')">
-                            <div class="home-card-icon">🎯</div>
+                            <div class="home-card-icon ascii-art">[#]</div>
                             <div class="home-card-title">Matrix Game</div>
                             <div class="home-card-desc">Encuentra caracteres en tiempo récord</div>
                         </div>
                         <div class="home-card" onclick="window.app && window.app.switchTab('stats')">
-                            <div class="home-card-icon">📈</div>
+                            <div class="home-card-icon ascii-art">[^]</div>
                             <div class="home-card-title">Statistics</div>
                             <div class="home-card-desc">Mira tu progreso y rachas</div>
                         </div>
@@ -421,13 +431,10 @@
         <!-- Footer -->
         <footer class="app-footer">
             <div class="footer-content">
-                <div class="footer-main">
-                    <p data-i18n="footer">Made with ❤️ for Chinese learners</p>
-                </div>
                 <div class="dev-signature">
                     <img src="dev_logo.png" alt="Developer Logo" class="footer-logo">
                     <div class="signature-text">
-                        <p><span data-i18n="developedBy">Desarrollado con ❤️ por</span> <strong>Jose Alejandro Rollano Revollo</strong></p>
+                        <p><span data-i18n="developedBy">Desarrollado con <span class="ascii-art">♡</span> por</span> <strong>Jose Alejandro Rollano Revollo</strong></p>
                         <p class="version" data-i18n="version">v3.0.1 | Advanced Chinese Learning Platform</p>
                     </div>
                 </div>
@@ -444,6 +451,7 @@
     <script src="compatibility.js?v=9"></script>
     <script src="matrix-game-ui.js?v=1"></script>
     <script src="matrix-game.js?v=1"></script>
+    <script src="ascii-art.js?v=1"></script>
     
     <!-- Background Image Integration -->
     <style>
@@ -465,6 +473,47 @@
             background: rgba(10, 10, 15, 0.15) !important;
             z-index: -1 !important;
             pointer-events: none !important;
+        }
+        
+        /* ASCII Art Styling */
+        .ascii-art {
+            font-family: 'Courier New', 'Monaco', 'Menlo', monospace !important;
+            font-size: 1rem !important;
+            line-height: 1.2 !important;
+            white-space: pre !important;
+            text-align: center !important;
+            color: inherit !important;
+            letter-spacing: 0 !important;
+            font-weight: bold !important;
+        }
+        
+        .home-card-icon.ascii-art {
+            font-size: 1.5rem !important;
+            padding: 8px !important;
+            color: #c41e3a !important;
+        }
+        
+        .nav-tab .ascii-art {
+            font-size: 0.9rem !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
+            margin-right: 4px !important;
+        }
+        
+        .result-icon.ascii-art {
+            font-size: 1.2rem !important;
+            color: #ffd700 !important;
+        }
+        
+        .diff-icon.ascii-art {
+            font-size: 1.1rem !important;
+            font-weight: bold !important;
+        }
+        
+        /* Console-style ASCII for feedback */
+        .feedback-overlay .ascii-art {
+            font-size: 2rem !important;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
         }
     </style>
     
@@ -508,13 +557,13 @@
         }
     </style>
     <script>
-        console.log('🚀 HSK App - Build: MAIN');
-        console.log('📦 All scripts loaded');
-        console.log('🎴 CSS enhancements applied');
+        console.log('[▶] HSK App - Build: MAIN');
+        console.log('[#] All scripts loaded');
+        console.log('[卡] CSS enhancements applied');
         
         // Debug script execution
         setTimeout(function() {
-            console.log('🔍 Checking app status...');
+            console.log('[?] Checking app status...');
             console.log('HSKApp exists:', typeof HSKApp !== 'undefined');
             console.log('window.app exists:', !!window.app);
             console.log('DOM ready state:', document.readyState);
@@ -526,12 +575,12 @@
             
             // Force app initialization if needed
             if (typeof HSKApp !== 'undefined' && !window.app) {
-                console.log('🔧 Force initializing app...');
+                console.log('[⚙] Force initializing app...');
                 try {
                     window.app = new HSKApp();
-                    console.log('✅ App force initialized successfully');
+                    console.log('[✓] App force initialized successfully');
                 } catch (error) {
-                    console.error('❌ Error force initializing app:', error);
+                    console.error('[✗] Error force initializing app:', error);
                 }
             }
         }, 1000);

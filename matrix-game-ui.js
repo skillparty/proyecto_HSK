@@ -25,17 +25,17 @@ function renderMatrixGameInterface() {
                     <label class="setting-label">Dificultad</label>
                     <div class="difficulty-selector">
                         <button class="diff-btn" data-difficulty="easy">
-                            <span class="diff-icon">😊</span>
+                            <span class="diff-icon ascii-art">☺</span>
                             <span class="diff-name">Fácil</span>
                             <span class="diff-desc">4x4 • 90s</span>
                         </button>
                         <button class="diff-btn active" data-difficulty="normal">
-                            <span class="diff-icon">😎</span>
+                            <span class="diff-icon ascii-art">◉</span>
                             <span class="diff-name">Normal</span>
                             <span class="diff-desc">6x6 • 60s</span>
                         </button>
                         <button class="diff-btn" data-difficulty="hard">
-                            <span class="diff-icon">🔥</span>
+                            <span class="diff-icon ascii-art">▲</span>
                             <span class="diff-name">Difícil</span>
                             <span class="diff-desc">6x6 • 45s</span>
                         </button>
@@ -43,13 +43,13 @@ function renderMatrixGameInterface() {
                 </div>
                 
                 <button id="matrix-start-btn" class="matrix-start-btn">
-                    <span>🚀 Comenzar Juego</span>
+                    <span class="ascii-art">[▶]</span> Comenzar Juego
                 </button>
             </div>
             
             <!-- Tabla de mejores puntuaciones -->
             <div class="high-scores-section">
-                <h3>🏆 Mejores Puntuaciones</h3>
+                <h3><span class="ascii-art">[★]</span> Mejores Puntuaciones</h3>
                 <div id="high-scores-list" class="high-scores-list">
                     <!-- Se llenará dinámicamente -->
                 </div>
@@ -83,8 +83,8 @@ function renderMatrixGameInterface() {
                 </div>
                 
                 <div class="game-controls">
-                    <button id="pause-btn" class="control-btn" title="Pausar">⏸️</button>
-                    <button id="quit-btn" class="control-btn" title="Salir">❌</button>
+                    <button id="pause-btn" class="control-btn" title="Pausar"><span class="ascii-art">||</span></button>
+                    <button id="quit-btn" class="control-btn" title="Salir"><span class="ascii-art">X</span></button>
                 </div>
             </div>
             
@@ -106,59 +106,59 @@ function renderMatrixGameInterface() {
         
         <!-- Pantalla de resultados -->
         <div id="matrix-results" class="matrix-results-screen" style="display: none;">
-            <h2 class="results-title">🎉 ¡Juego Terminado!</h2>
+            <h2 class="results-title"><span class="ascii-art">[!]</span> ¡Juego Terminado!</h2>
             
             <div class="results-stats">
                 <div class="result-card highlight">
-                    <span class="result-icon">🏆</span>
+                    <span class="result-icon ascii-art">[★]</span>
                     <span class="result-label">Puntuación Final</span>
                     <span id="final-score" class="result-value">0</span>
                 </div>
                 
                 <div class="result-card">
-                    <span class="result-icon">✅</span>
+                    <span class="result-icon ascii-art">[✓]</span>
                     <span class="result-label">Respuestas Correctas</span>
                     <span id="correct-count" class="result-value">0</span>
                 </div>
                 
                 <div class="result-card">
-                    <span class="result-icon">❌</span>
+                    <span class="result-icon ascii-art">[✗]</span>
                     <span class="result-label">Respuestas Incorrectas</span>
                     <span id="wrong-count" class="result-value">0</span>
                 </div>
                 
                 <div class="result-card">
-                    <span class="result-icon">🔥</span>
+                    <span class="result-icon ascii-art">[▲]</span>
                     <span class="result-label">Mejor Racha</span>
                     <span id="best-streak" class="result-value">0</span>
                 </div>
                 
                 <div class="result-card">
-                    <span class="result-icon">⚡</span>
+                    <span class="result-icon ascii-art">[~]</span>
                     <span class="result-label">Tiempo Promedio</span>
                     <span id="avg-time" class="result-value">0s</span>
                 </div>
                 
                 <div class="result-card">
-                    <span class="result-icon">📊</span>
+                    <span class="result-icon ascii-art">[%]</span>
                     <span class="result-label">Precisión</span>
                     <span id="accuracy" class="result-value">0%</span>
                 </div>
             </div>
             
             <div id="new-record" class="new-record" style="display: none;">
-                🌟 ¡Nuevo Récord Personal! 🌟
+                <span class="ascii-art">[★]</span> ¡Nuevo Récord Personal! <span class="ascii-art">[★]</span>
             </div>
             
             <div class="results-actions">
                 <button id="play-again-btn" class="action-btn primary">
-                    <span>🔄 Jugar de Nuevo</span>
+                    <span class="ascii-art">[↻]</span> Jugar de Nuevo
                 </button>
                 <button id="change-settings-btn" class="action-btn secondary">
-                    <span>⚙️ Cambiar Configuración</span>
+                    <span class="ascii-art">[⚙]</span> Cambiar Configuración
                 </button>
                 <button id="back-to-app-btn" class="action-btn secondary">
-                    <span>🏠 Volver al Inicio</span>
+                    <span class="ascii-art">[←]</span> Volver al Inicio
                 </button>
             </div>
         </div>
