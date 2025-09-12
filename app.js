@@ -679,6 +679,9 @@ class HSKApp {
             case 'stats':
                 this.updateStats();
                 break;
+            case 'matrix':
+                this.initializeMatrixGame();
+                break;
         }
         
         console.log(`🔄 Switched to ${tabName} tab`);
@@ -1544,6 +1547,18 @@ class HSKApp {
             return window.languageManager.t(key);
         }
         return key; // Fallback to key if no translation found
+    }
+    
+    initializeMatrixGame() {
+        // Inicializar el juego de matriz si existe
+        if (window.matrixGame) {
+            // Pasar el vocabulario actual al juego
+            window.matrixGame.vocabulary = this.vocabulary;
+            window.matrixGame.showGame();
+            console.log('🎮 Matrix game initialized');
+        } else {
+            console.error('❌ Matrix game not loaded');
+        }
     }
     
     getMeaningForLanguage(word) {

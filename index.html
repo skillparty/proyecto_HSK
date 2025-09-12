@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="styles-v2.css?v=10">
     <link rel="stylesheet" href="styles-final.css?v=1">
     <link rel="stylesheet" href="styles-planetscale.css?v=10&t=1737900000" id="main-stylesheet">
+    <link rel="stylesheet" href="matrix-game-styles.css?v=1">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" id="fonts-stylesheet">
     
     <!-- PWA Manifest -->
@@ -152,6 +153,7 @@
                 <button class="nav-tab active" data-tab="practice" data-i18n="practiceTab">Practice</button>
                 <button class="nav-tab" data-tab="browse" data-i18n="browseTab">Browse</button>
                 <button class="nav-tab" data-tab="quiz" data-i18n="quizTab">Quiz</button>
+                <button class="nav-tab" data-tab="matrix" data-i18n="matrixTab">🎯 Matrix</button>
                 <button class="nav-tab" data-tab="stats" data-i18n="statsTab">Statistics</button>
             </div>
         </nav>
@@ -194,6 +196,11 @@
                             <div class="home-card-icon">🧠</div>
                             <div class="home-card-title">Quiz</div>
                             <div class="home-card-desc">Pon a prueba tus conocimientos</div>
+                        </div>
+                        <div class="home-card" onclick="window.app && window.app.switchTab('matrix')">
+                            <div class="home-card-icon">🎯</div>
+                            <div class="home-card-title">Matrix Game</div>
+                            <div class="home-card-desc">Encuentra caracteres en tiempo récord</div>
                         </div>
                         <div class="home-card" onclick="window.app && window.app.switchTab('stats')">
                             <div class="home-card-icon">📈</div>
@@ -401,6 +408,13 @@
                 
                 <button id="reset-stats" class="btn btn-error" data-i18n="resetStats">Reset Statistics</button>
             </div>
+            
+            <!-- Matrix Game Tab -->
+            <div id="matrix" class="tab-panel">
+                <div id="matrix-game-container" class="matrix-game-container">
+                    <!-- El contenido del juego se cargará dinámicamente aquí -->
+                </div>
+            </div>
             </div>
         </main>
 
@@ -414,7 +428,7 @@
                     <img src="dev_logo.png" alt="Developer Logo" class="footer-logo">
                     <div class="signature-text">
                         <p><span data-i18n="developedBy">Desarrollado con ❤️ por</span> <strong>Jose Alejandro Rollano Revollo</strong></p>
-                        <p class="version" data-i18n="version">v2.2.0 | Advanced Chinese Learning Platform</p>
+                        <p class="version" data-i18n="version">v3.0.1 | Advanced Chinese Learning Platform</p>
                     </div>
                 </div>
             </div>
@@ -428,6 +442,31 @@
     <script src="diagnostic-system.js?v=2"></script>
     <script src="app.js?v=2"></script>
     <script src="compatibility.js?v=9"></script>
+    <script src="matrix-game-ui.js?v=1"></script>
+    <script src="matrix-game.js?v=1"></script>
+    
+    <!-- Background Image Integration -->
+    <style>
+        body {
+            background-image: url('logoBACKGROUND.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-attachment: fixed !important;
+        }
+        
+        body::before {
+            content: '' !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: rgba(10, 10, 15, 0.15) !important;
+            z-index: -1 !important;
+            pointer-events: none !important;
+        }
+    </style>
     
     <!-- Flashcard CSS Enhancement -->
     <style>
