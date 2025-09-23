@@ -98,6 +98,12 @@ class BackendAuth {
                         }
                     }
                     
+                    // Force UI update after successful authentication
+                    console.log('🔄 Forcing UI update after successful auth...');
+                    setTimeout(() => {
+                        this.updateUI();
+                    }, 100);
+                    
                     return true;
                 } else {
                     console.log('❌ No user data in response');
@@ -152,7 +158,14 @@ class BackendAuth {
     
     // Check if user is authenticated
     isAuthenticated() {
-        return !!(this.currentUser && this.accessToken);
+        const authenticated = !!(this.currentUser && (this.accessToken || this.currentUser.id));
+        console.log('🔍 Authentication check:', {
+            hasUser: !!this.currentUser,
+            hasToken: !!this.accessToken,
+            hasUserId: !!(this.currentUser && this.currentUser.id),
+            result: authenticated
+        });
+        return authenticated;
     }
     
     // Get current user
@@ -197,11 +210,23 @@ class BackendAuth {
     // Update UI based on authentication state
     updateUI() {
         const authContainer = document.getElementById('auth-container');
-        if (!authContainer) return;
+        if (!authContainer) {
+            console.warn('⚠️ Auth container not found');
+            return;
+        }
+        
+        console.log('🔄 Updating UI - Auth state:', {
+            isAuthenticated: this.isAuthenticated(),
+            hasUser: !!this.currentUser,
+            hasToken: !!this.accessToken,
+            user: this.currentUser ? this.currentUser.username : 'none'
+        });
         
         if (this.isAuthenticated()) {
+            console.log('✅ Showing user profile');
             this.showUserProfile();
         } else {
+            console.log('👤 Showing guest mode');
             this.showGuestMode();
         }
     }
@@ -344,6 +369,17 @@ class BackendAuth {
         this.showMessage(message, 'error');
     }
     
+    // Debug method to check auth state
+    debugAuthState() {
+        console.log('🔍 Auth Debug State:', {
+            currentUser: this.currentUser,
+            accessToken: this.accessToken ? 'SET' : 'NOT SET',
+            isAuthenticated: this.isAuthenticated(),
+            authContainer: !!document.getElementById('auth-container'),
+            authContainerHTML: document.getElementById('auth-container')?.innerHTML.substring(0, 100) + '...'
+        });
+    }
+    
     // Setup online/offline status monitoring
     setupStatusMonitoring() {
         const updateStatus = () => {
@@ -400,3 +436,12 @@ class BackendAuth {
 
 // Export for use in main app
 window.BackendAuth = BackendAuth;
+
+// Global debug function
+window.debugAuth = function() {
+    if (window.backendAuth) {
+        window.backendAuth.debugAuthState();
+    } else {
+        console.log('❌ BackendAuth instance not found');
+    }
+};
