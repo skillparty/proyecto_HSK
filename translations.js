@@ -66,7 +66,7 @@ const translations = {
         
         // Footer
         developedBy: "Desarrollado con ♡ por",
-        version: "v3.0.1 | Advanced Chinese Learning Platform",
+        version: "v3.0.1 | Plataforma Avanzada de Aprendizaje de Chino",
         githubLink: "[>] GitHub",
         confuciusInspired: "[中] Instituto Confucio inspired",
         footer: "Hecho con ♡ para estudiantes de chino",
@@ -118,7 +118,36 @@ const translations = {
         authDescription: 'Inicia sesión para guardar tu progreso y sincronizar en todos tus dispositivos',
         welcome: 'Bienvenido',
         guestMode: 'Modo invitado',
-        cloudSync: 'Sincronización en la nube activada'
+        cloudSync: 'Sincronización en la nube activada',
+        
+        // Leaderboard
+        leaderboard: "Tabla de Clasificación",
+        leaderboardSubtitle: "Compite con otros estudiantes de chino",
+        rankingType: "Tipo de ranking:",
+        timePeriod: "Período:",
+        hskLevelFilter: "Filtrar por nivel HSK:",
+        allTime: "Todo el tiempo",
+        thisWeek: "Esta semana",
+        thisMonth: "Este mes",
+        bestStreak: "Mejor racha",
+        studyStreak: "Racha de estudio",
+        timeSpent: "Tiempo dedicado",
+        achievements: "Logros",
+        yourRank: "Tu posición",
+        totalUsers: "usuarios totales",
+        weeklyActiveUsers: "Activos semanales",
+        monthlyActiveUsers: "Activos mensuales",
+        avgWordsPerUser: "Promedio palabras/usuario",
+        maxStreak: "Racha máxima",
+        totalWordsStudied: "Total palabras estudiadas",
+        noRankingData: "No hay datos de ranking disponibles",
+        startStudyingToAppear: "¡Comienza a estudiar para aparecer en la tabla!",
+        startStudyingToRank: "¡Comienza a estudiar para obtener una clasificación!",
+        you: "Tú",
+        activeDays: "Días activos",
+        correct: "Correctas",
+        tryAgain: "Intentar de nuevo",
+        refresh: "Actualizar"
     },
     
     en: {
@@ -241,7 +270,37 @@ const translations = {
         authDescription: 'Sign in to save your progress and sync across devices',
         welcome: 'Welcome',
         guestMode: 'Guest mode',
-        cloudSync: 'Cloud sync enabled'
+        cloudSync: 'Cloud sync enabled',
+        
+        // Leaderboard
+        leaderboard: "Leaderboard",
+        leaderboardSubtitle: "Compete with other Chinese learners",
+        rankingType: "Ranking type:",
+        timePeriod: "Time period:",
+        hskLevelFilter: "Filter by HSK level:",
+        allTime: "All time",
+        thisWeek: "This week",
+        thisMonth: "This month",
+        totalStudied: "Total studied",
+        bestStreak: "Best streak",
+        studyStreak: "Study streak",
+        timeSpent: "Time spent",
+        achievements: "Achievements",
+        yourRank: "Your rank",
+        totalUsers: "total users",
+        weeklyActiveUsers: "Weekly active",
+        monthlyActiveUsers: "Monthly active",
+        avgWordsPerUser: "Avg words/user",
+        maxStreak: "Max streak",
+        totalWordsStudied: "Total words studied",
+        noRankingData: "No ranking data available",
+        startStudyingToAppear: "Start studying to appear on the leaderboard!",
+        startStudyingToRank: "Start studying to get ranked!",
+        you: "You",
+        activeDays: "Active days",
+        correct: "Correct",
+        tryAgain: "Try again",
+        refresh: "Refresh"
     }
 };
 

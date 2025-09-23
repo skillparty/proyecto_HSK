@@ -42,3 +42,12 @@ temp/
 .cache/
 dist/
 build/
+
+# Database files
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+
+# Backup files
+*.backup
+*.bak

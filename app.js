@@ -16,9 +16,10 @@ class HSKApp {
         this.chineseVoices = { male: null, female: null };
         this.currentLanguage = localStorage.getItem('hsk-language') || 'es';
         
-        // User authentication and profile
-        this.githubAuth = null;
-        this.userProfile = null;
+        // User authentication and profile (Backend-integrated)
+        this.backendAuth = null;
+        this.userProgress = null;
+        this.leaderboardManager = null;
         
         // Initialize quiz
         this.quiz = {
@@ -84,8 +85,8 @@ class HSKApp {
                     }
                     
                     // Update user preference
-                    if (this.userProfile) {
-                        this.userProfile.updatePreference('language', e.detail.language);
+                    if (this.userProgress) {
+                        this.userProgress.updatePreference('language', e.detail.language);
                     }
                     
                     console.log(`[✓] Language change completed: ${e.detail.language}`);
@@ -94,20 +95,26 @@ class HSKApp {
                 console.log('[✓] LanguageManager initialized');
             }
             
-            // Initialize GitHub Authentication
-            if (window.GitHubAuth) {
-                this.githubAuth = new window.GitHubAuth();
-                console.log('[✓] GitHub Auth initialized');
+            // Initialize Backend Authentication
+            if (window.BackendAuth) {
+                this.backendAuth = new window.BackendAuth();
+                console.log('[✓] Backend Auth initialized');
             }
             
-            // Initialize User Profile
-            if (window.UserProfile && this.githubAuth) {
-                this.userProfile = new window.UserProfile(this.githubAuth);
+            // Initialize User Progress with Backend
+            if (window.BackendUserProgress && this.backendAuth) {
+                this.userProgress = new window.BackendUserProgress(this.backendAuth);
                 
                 // Load user preferences
                 this.loadUserPreferences();
                 
-                console.log('[✓] User Profile initialized');
+                console.log('[✓] Backend User Progress initialized');
+            }
+            
+            // Initialize Leaderboard Manager
+            if (window.LeaderboardManager && this.backendAuth) {
+                this.leaderboardManager = new window.LeaderboardManager(this.backendAuth);
+                console.log('[✓] Leaderboard Manager initialized');
             }
             
             // Load vocabulary
@@ -246,9 +253,9 @@ class HSKApp {
 
     // Load user preferences from profile
     loadUserPreferences() {
-        if (!this.userProfile) return;
+        if (!this.userProgress) return;
         
-        const preferences = this.userProfile.getPreferences();
+        const preferences = this.userProgress.getPreferences();
         
         // Apply language preference
         if (preferences.language && preferences.language !== this.currentLanguage) {
@@ -708,6 +715,9 @@ class HSKApp {
             case 'matrix':
                 this.initializeMatrixGame();
                 break;
+            case 'leaderboard':
+                this.initializeLeaderboard();
+                break;
         }
         
         console.log(`🔄 Switched to ${tabName} tab`);
@@ -1075,8 +1085,8 @@ class HSKApp {
         this.updateDailyProgress();
         
         // Record in user profile if available
-        if (this.userProfile) {
-            this.userProfile.recordWordStudy(this.currentWord, isKnown, this.practiceMode);
+        if (this.userProgress) {
+            this.userProgress.recordWordStudy(this.currentWord, isKnown, this.practiceMode);
         }
         
         // Save progress
@@ -1178,8 +1188,8 @@ class HSKApp {
 
         // Use user profile stats if available, otherwise use local stats
         let stats = this.stats;
-        if (this.userProfile && this.userProfile.isAuthenticated()) {
-            const profileStats = this.userProfile.getStatistics();
+        if (this.userProgress && this.userProgress.isAuthenticated()) {
+            const profileStats = this.userProgress.getStatistics();
             stats = {
                 totalStudied: profileStats.totalStudied,
                 currentStreak: profileStats.currentStreak,
@@ -1570,9 +1580,19 @@ class HSKApp {
             // Pasar el vocabulario actual al juego
             window.matrixGame.vocabulary = this.vocabulary;
             window.matrixGame.showGame();
-            console.log('[#] Matrix game initialized');
+            console.log('[✓] Matrix game initialized');
         } else {
             console.error('[✗] Matrix game not loaded');
+        }
+    }
+    
+    // Initialize leaderboard
+    initializeLeaderboard() {
+        if (this.leaderboardManager) {
+            this.leaderboardManager.loadLeaderboard();
+            console.log('[✓] Leaderboard initialized');
+        } else {
+            console.warn('[⚠] Leaderboard manager not available');
         }
     }
     
