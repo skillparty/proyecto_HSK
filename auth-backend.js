@@ -11,31 +11,29 @@ class BackendAuth {
     
     async init() {
         try {
+            console.log('🔍 Initializing BackendAuth...');
+            
             // Check URL parameters for auth callback
             const urlParams = new URLSearchParams(window.location.search);
-            const token = urlParams.get('token');
             const authStatus = urlParams.get('auth');
-            const errorMessage = urlParams.get('message');
+            const errorMessage = urlParams.get('error');
             
-            if (authStatus === 'success' && token) {
-                // Store token and get user info
-                this.accessToken = token;
-                localStorage.setItem('auth-token', token);
+            console.log('🔍 URL params:', { authStatus, errorMessage });
+            
+            if (authStatus === 'success') {
+                console.log('✅ Auth success detected, fetching user...');
                 await this.fetchCurrentUser();
                 this.showWelcomeMessage();
                 
                 // Clean URL
                 window.history.replaceState({}, document.title, window.location.pathname);
-            } else if (authStatus === 'error') {
+            } else if (authStatus === 'error' || errorMessage) {
                 this.showError(`Authentication failed: ${decodeURIComponent(errorMessage || 'Unknown error')}`);
                 window.history.replaceState({}, document.title, window.location.pathname);
             } else {
-                // Try to load existing token
-                const savedToken = localStorage.getItem('auth-token');
-                if (savedToken) {
-                    this.accessToken = savedToken;
-                    await this.fetchCurrentUser();
-                }
+                // Try to check if user is already authenticated
+                console.log('🔍 Checking existing session...');
+                await this.fetchCurrentUser();
             }
             
             // Update UI based on auth state
@@ -50,6 +48,7 @@ class BackendAuth {
     // Fetch current user from backend
     async fetchCurrentUser() {
         try {
+            console.log('🔍 Fetching current user...');
             const response = await fetch(`${this.apiBaseUrl}/auth/user`, {
                 method: 'GET',
                 credentials: 'include', // Include cookies for session
@@ -58,20 +57,34 @@ class BackendAuth {
                 }
             });
             
+            console.log('🔍 User fetch response:', {
+                status: response.status,
+                ok: response.ok,
+                statusText: response.statusText
+            });
+            
             if (response.ok) {
                 const data = await response.json();
+                console.log('🔍 User data received:', data);
+                
                 if (data.success && data.user) {
                     this.currentUser = data.user;
                     console.log('✅ User authenticated:', this.currentUser.username);
+                    return true;
                 } else {
-                    throw new Error('No user data received');
+                    console.log('❌ No user data in response');
+                    return false;
                 }
+            } else if (response.status === 401) {
+                console.log('❌ User not authenticated (401)');
+                return false;
             } else {
-                throw new Error('Failed to fetch user info');
+                console.log('❌ Failed to fetch user info:', response.status);
+                return false;
             }
         } catch (error) {
-            console.error('Failed to fetch current user:', error);
-            this.logout();
+            console.error('❌ Failed to fetch current user:', error);
+            return false;
         }
     }
     
