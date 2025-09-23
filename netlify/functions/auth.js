@@ -48,11 +48,22 @@ app.get('/auth/github', (req, res) => {
         const clientId = process.env.GITHUB_CLIENT_ID;
         const callbackUrl = process.env.GITHUB_CALLBACK_URL;
         
+        // Debug logging
+        console.log('🔍 Environment variables check:');
+        console.log('CLIENT_ID:', clientId ? 'SET' : 'MISSING');
+        console.log('CALLBACK_URL:', callbackUrl ? 'SET' : 'MISSING');
+        console.log('All env vars:', Object.keys(process.env).filter(key => key.startsWith('GITHUB')));
+        
         if (!clientId) {
             console.error('❌ GITHUB_CLIENT_ID not configured');
             return res.status(500).json({ 
                 success: false, 
-                error: 'OAuth not configured - missing CLIENT_ID' 
+                error: 'OAuth not configured - missing CLIENT_ID',
+                debug: {
+                    clientId: !!clientId,
+                    callbackUrl: !!callbackUrl,
+                    envKeys: Object.keys(process.env).filter(key => key.startsWith('GITHUB'))
+                }
             });
         }
         
@@ -60,7 +71,12 @@ app.get('/auth/github', (req, res) => {
             console.error('❌ GITHUB_CALLBACK_URL not configured');
             return res.status(500).json({ 
                 success: false, 
-                error: 'OAuth not configured - missing CALLBACK_URL' 
+                error: 'OAuth not configured - missing CALLBACK_URL',
+                debug: {
+                    clientId: !!clientId,
+                    callbackUrl: !!callbackUrl,
+                    envKeys: Object.keys(process.env).filter(key => key.startsWith('GITHUB'))
+                }
             });
         }
         
