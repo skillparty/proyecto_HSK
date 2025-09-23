@@ -61,14 +61,32 @@ class SupabaseProgressSync {
             
             if (!response.ok) {
                 const errorText = await response.text();
+                console.error('❌ Supabase HTTP error:', {
+                    status: response.status,
+                    statusText: response.statusText,
+                    error: errorText,
+                    url: url
+                });
                 throw new Error(`Supabase error: ${response.status} - ${errorText}`);
+            }
+
+            // Check if response has content
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text();
+                console.warn('⚠️ Non-JSON response:', text);
+                return { success: true, data: [] };
             }
 
             const data = await response.json();
             return { success: true, data };
 
         } catch (error) {
-            console.error('❌ Supabase request failed:', error);
+            console.error('❌ Supabase request failed:', {
+                error: error.message,
+                url: url,
+                config: config
+            });
             return { success: false, error: error.message };
         }
     }
