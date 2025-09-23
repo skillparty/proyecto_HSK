@@ -168,7 +168,8 @@ function renderMatrixGameInterface() {
 }
 
 // Actualizar el método renderGameInterface en MatrixGame
-MatrixGame.prototype.renderGameInterface = function() {
+if (typeof MatrixGame !== 'undefined') {
+    MatrixGame.prototype.renderGameInterface = function() {
     const gameContainer = document.createElement('div');
     gameContainer.id = 'matrix-game-container';
     gameContainer.className = 'matrix-game-container';
@@ -183,4 +184,5 @@ MatrixGame.prototype.renderGameInterface = function() {
     
     // Actualizar la lista de puntuaciones altas
     this.updateHighScoresList();
-};
+    };
+}
