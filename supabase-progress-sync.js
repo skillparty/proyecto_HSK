@@ -188,13 +188,20 @@ class SupabaseProgressSync {
                 updated_at: new Date().toISOString()
             };
 
-            const result = await this.makeSupabaseRequest('user_progress', {
-                method: 'POST',
-                body: JSON.stringify(syncData),
-                headers: {
-                    'Prefer': 'resolution=merge-duplicates'
-                }
+            // Try to update existing progress first, then insert if not exists
+            let result = await this.makeSupabaseRequest(`user_progress?user_id=eq.${this.currentUser.id}`, {
+                method: 'PATCH',
+                body: JSON.stringify(syncData)
             });
+
+            // If no rows were updated, create new record
+            if (result.success && (!result.data || result.data.length === 0)) {
+                console.log('📊 No existing progress found, creating new record...');
+                result = await this.makeSupabaseRequest('user_progress', {
+                    method: 'POST',
+                    body: JSON.stringify(syncData)
+                });
+            }
 
             if (result.success) {
                 console.log('✅ Progress synced to Supabase');
@@ -234,13 +241,20 @@ class SupabaseProgressSync {
                 updated_at: new Date().toISOString()
             };
 
-            const result = await this.makeSupabaseRequest('hsk_level_progress', {
-                method: 'POST',
-                body: JSON.stringify(syncData),
-                headers: {
-                    'Prefer': 'resolution=merge-duplicates'
-                }
+            // Try to update existing HSK progress first, then insert if not exists
+            let result = await this.makeSupabaseRequest(`hsk_level_progress?user_id=eq.${this.currentUser.id}&hsk_level=eq.${hskLevel}`, {
+                method: 'PATCH',
+                body: JSON.stringify(syncData)
             });
+
+            // If no rows were updated, create new record
+            if (result.success && (!result.data || result.data.length === 0)) {
+                console.log(`📊 No existing HSK ${hskLevel} progress found, creating new record...`);
+                result = await this.makeSupabaseRequest('hsk_level_progress', {
+                    method: 'POST',
+                    body: JSON.stringify(syncData)
+                });
+            }
 
             if (result.success) {
                 console.log(`✅ HSK ${hskLevel} progress synced`);
@@ -322,13 +336,25 @@ class SupabaseProgressSync {
                 updated_at: new Date().toISOString()
             };
 
-            const result = await this.makeSupabaseRequest('study_heatmap', {
-                method: 'POST',
-                body: JSON.stringify(syncData),
-                headers: {
-                    'Prefer': 'resolution=merge-duplicates'
-                }
+            // Try to update existing heatmap entry first, then insert if not exists
+            let result = await this.makeSupabaseRequest(`study_heatmap?user_id=eq.${this.currentUser.id}&study_date=eq.${date}`, {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    words_studied: syncData.words_studied + (syncData.words_studied || 0),
+                    minutes_studied: syncData.minutes_studied + (syncData.minutes_studied || 0),
+                    sessions_count: syncData.sessions_count + (syncData.sessions_count || 0),
+                    updated_at: syncData.updated_at
+                })
             });
+
+            // If no rows were updated, create new record
+            if (result.success && (!result.data || result.data.length === 0)) {
+                console.log(`📊 No existing heatmap for ${date}, creating new record...`);
+                result = await this.makeSupabaseRequest('study_heatmap', {
+                    method: 'POST',
+                    body: JSON.stringify(syncData)
+                });
+            }
 
             if (result.success) {
                 console.log('✅ Heatmap updated');
