@@ -78,15 +78,24 @@ class BackendAuth {
                     
                     // Initialize Supabase sync with user data
                     if (window.supabaseSync) {
-                        await window.supabaseSync.syncUser(this.currentUser);
-                        window.supabaseSync.setCurrentUser(this.currentUser);
-                        console.log('🔄 Supabase sync initialized for user');
-                    }
-                    
-                    // Initialize progress integration
-                    if (window.progressIntegrator) {
-                        await window.progressIntegrator.initializeForUser(this.currentUser);
-                        console.log('🔗 Progress integration initialized');
+                        console.log('🔄 Syncing user to Supabase...');
+                        const syncResult = await window.supabaseSync.syncUser(this.currentUser);
+                        
+                        if (syncResult.success) {
+                            // Use the Supabase user data (with UUID) for further operations
+                            const supabaseUser = syncResult.data;
+                            window.supabaseSync.setCurrentUser(supabaseUser);
+                            console.log('✅ Supabase sync initialized with UUID:', supabaseUser.id);
+                            
+                            // Initialize progress integration with Supabase user
+                            if (window.progressIntegrator) {
+                                await window.progressIntegrator.initializeForUser(supabaseUser);
+                                console.log('🔗 Progress integration initialized');
+                            }
+                        } else {
+                            console.warn('⚠️ Supabase sync failed, using local user data');
+                            window.supabaseSync.setCurrentUser(this.currentUser);
+                        }
                     }
                     
                     return true;

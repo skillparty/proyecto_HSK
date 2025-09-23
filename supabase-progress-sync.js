@@ -30,7 +30,11 @@ class SupabaseProgressSync {
     // Set current user for sync operations
     setCurrentUser(user) {
         this.currentUser = user;
-        console.log('👤 User set for sync:', user.username);
+        console.log('👤 User set for sync:', {
+            username: user.username || user.login,
+            id: user.id,
+            github_id: user.github_id || user.id
+        });
     }
 
     // Make authenticated request to Supabase
@@ -77,32 +81,60 @@ class SupabaseProgressSync {
         }
 
         try {
-            const userData = {
-                github_id: githubUser.id,
-                username: githubUser.login,
-                email: githubUser.email,
-                avatar_url: githubUser.avatar_url,
-                display_name: githubUser.name,
-                last_login: new Date().toISOString(),
-                updated_at: new Date().toISOString()
-            };
+            // First, try to find existing user by github_id
+            const existingResult = await this.makeSupabaseRequest(`users?github_id=eq.${githubUser.id}`);
+            
+            if (existingResult.success && existingResult.data.length > 0) {
+                // User exists, update it
+                console.log('👤 Existing user found, updating...');
+                this.currentUser = existingResult.data[0];
+                
+                const updateData = {
+                    username: githubUser.login || githubUser.username,
+                    email: githubUser.email,
+                    avatar_url: githubUser.avatar_url,
+                    display_name: githubUser.name || githubUser.display_name,
+                    last_login: new Date().toISOString(),
+                    updated_at: new Date().toISOString()
+                };
 
-            const result = await this.makeSupabaseRequest('users', {
-                method: 'POST',
-                body: JSON.stringify(userData),
-                headers: {
-                    'Prefer': 'resolution=merge-duplicates'
+                const updateResult = await this.makeSupabaseRequest(`users?id=eq.${this.currentUser.id}`, {
+                    method: 'PATCH',
+                    body: JSON.stringify(updateData)
+                });
+
+                if (updateResult.success) {
+                    console.log('✅ User updated in Supabase');
+                    return { success: true, data: this.currentUser };
                 }
-            });
-
-            if (result.success) {
-                console.log('✅ User synced to Supabase');
-                this.currentUser = result.data[0];
-                return result;
+                
             } else {
-                this.pendingUpdates.push({ type: 'user', data: githubUser });
-                return result;
+                // User doesn't exist, create new one
+                console.log('👤 New user, creating...');
+                const userData = {
+                    github_id: githubUser.id,
+                    username: githubUser.login || githubUser.username,
+                    email: githubUser.email,
+                    avatar_url: githubUser.avatar_url,
+                    display_name: githubUser.name || githubUser.display_name,
+                    last_login: new Date().toISOString(),
+                    updated_at: new Date().toISOString()
+                };
+
+                const createResult = await this.makeSupabaseRequest('users', {
+                    method: 'POST',
+                    body: JSON.stringify(userData)
+                });
+
+                if (createResult.success && createResult.data.length > 0) {
+                    console.log('✅ User created in Supabase');
+                    this.currentUser = createResult.data[0];
+                    return createResult;
+                }
             }
+
+            this.pendingUpdates.push({ type: 'user', data: githubUser });
+            return { success: false, error: 'Failed to sync user' };
 
         } catch (error) {
             console.error('❌ Failed to sync user:', error);
@@ -297,15 +329,17 @@ class SupabaseProgressSync {
 
     // Get user progress from Supabase
     async getUserProgress() {
-        if (!this.currentUser) {
-            return { success: false, error: 'No user set' };
+        if (!this.currentUser || !this.currentUser.id) {
+            return { success: false, error: 'No user set or missing user ID' };
         }
 
         try {
+            console.log('🔍 Getting progress for user ID:', this.currentUser.id);
             const result = await this.makeSupabaseRequest(`user_progress?user_id=eq.${this.currentUser.id}`);
             
             if (result.success) {
                 const data = result.data.length > 0 ? result.data[0] : null;
+                console.log('📊 User progress retrieved:', data ? 'Found' : 'Not found');
                 return { success: true, data };
             }
 
