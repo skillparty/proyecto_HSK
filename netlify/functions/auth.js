@@ -3,7 +3,8 @@ const express = require('express');
 const serverless = require('serverless-http');
 const cors = require('cors');
 const helmet = require('helmet');
-const session = require('express-session');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const fetch = require('node-fetch');
 
 const app = express();
@@ -22,19 +23,21 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Session configuration
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'fallback-secret-key',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        secure: process.env.NODE_ENV === 'production',
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
-    }
-}));
+// JWT Helper functions
+const createToken = (user) => {
+    return jwt.sign(user, process.env.JWT_SECRET || 'fallback-jwt-secret', { expiresIn: '7d' });
+};
 
-// Body parsing
+const verifyToken = (token) => {
+    try {
+        return jwt.verify(token, process.env.JWT_SECRET || 'fallback-jwt-secret');
+    } catch (error) {
+        return null;
+    }
+};
+
+// Body parsing and cookies
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -143,11 +146,8 @@ app.get('/auth/github/callback', async (req, res) => {
             return res.redirect(`${process.env.CLIENT_URL}?error=user_data_failed`);
         }
         
-        // Store user info (database creation will be handled later)
-        console.log('✅ User authenticated:', userData.login);
-        
-        // Store user in session
-        req.session.user = {
+        // Create user object
+        const user = {
             id: userData.id,
             username: userData.login,
             email: userData.email,
@@ -155,7 +155,19 @@ app.get('/auth/github/callback', async (req, res) => {
             name: userData.name || userData.login
         };
         
+        // Create JWT token
+        const token = createToken(user);
+        
         console.log('✅ User authenticated successfully:', userData.login);
+        
+        // Set token as HTTP-only cookie
+        res.cookie('auth-token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+            sameSite: 'lax'
+        });
+        
         res.redirect(`${process.env.CLIENT_URL}?auth=success`);
         
     } catch (error) {
@@ -166,22 +178,31 @@ app.get('/auth/github/callback', async (req, res) => {
 
 // Get current user
 app.get('/auth/user', (req, res) => {
-    if (req.session.user) {
-        res.json({ success: true, user: req.session.user });
+    const token = req.cookies['auth-token'];
+    
+    if (!token) {
+        return res.status(401).json({ success: false, error: 'No token provided' });
+    }
+    
+    const user = verifyToken(token);
+    
+    if (user) {
+        res.json({ success: true, user });
     } else {
-        res.status(401).json({ success: false, error: 'Not authenticated' });
+        res.status(401).json({ success: false, error: 'Invalid token' });
     }
 });
 
 // Logout
 app.post('/auth/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            console.error('❌ Logout error:', err);
-            return res.status(500).json({ success: false, error: 'Logout failed' });
-        }
-        res.json({ success: true, message: 'Logged out successfully' });
+    // Clear the auth token cookie
+    res.clearCookie('auth-token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax'
     });
+    
+    res.json({ success: true, message: 'Logged out successfully' });
 });
 
 // Error handling middleware
