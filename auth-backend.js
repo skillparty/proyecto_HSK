@@ -75,6 +75,20 @@ class BackendAuth {
                 if (data.success && data.user) {
                     this.currentUser = data.user;
                     console.log('✅ User authenticated:', this.currentUser.username);
+                    
+                    // Initialize Supabase sync with user data
+                    if (window.supabaseSync) {
+                        await window.supabaseSync.syncUser(this.currentUser);
+                        window.supabaseSync.setCurrentUser(this.currentUser);
+                        console.log('🔄 Supabase sync initialized for user');
+                    }
+                    
+                    // Initialize progress integration
+                    if (window.progressIntegrator) {
+                        await window.progressIntegrator.initializeForUser(this.currentUser);
+                        console.log('🔗 Progress integration initialized');
+                    }
+                    
                     return true;
                 } else {
                     console.log('❌ No user data in response');

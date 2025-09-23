@@ -32,7 +32,8 @@
     "express-rate-limit": "^6.10.0",
     "compression": "^1.7.4",
     "helmet": "^7.0.0",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "@supabase/supabase-js": "^2.39.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
