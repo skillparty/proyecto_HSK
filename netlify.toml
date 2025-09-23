@@ -1,0 +1,42 @@
+[build]
+  command = "npm install"
+  publish = "."
+
+[dev]
+  command = "npm start"
+  port = 5089
+  targetPort = 5089
+
+# Redirect API calls to the server
+[[redirects]]
+  from = "/api/*"
+  to = "http://localhost:5089/api/:splat"
+  status = 200
+  force = true
+
+# Redirect auth calls to the server
+[[redirects]]
+  from = "/auth/*"
+  to = "http://localhost:5089/auth/:splat"
+  status = 200
+  force = true
+
+# SPA fallback - serve index.html for all other routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables for production
+[context.production.environment]
+  NODE_ENV = "production"
+  PORT = "8888"
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
