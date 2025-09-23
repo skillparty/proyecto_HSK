@@ -393,12 +393,18 @@ class LeaderboardManager {
     }
     
     formatNumber(num) {
-        if (num >= 1000000) {
-            return (num / 1000000).toFixed(1) + 'M';
-        } else if (num >= 1000) {
-            return (num / 1000).toFixed(1) + 'K';
+        // Safety check for undefined/null values
+        if (num === undefined || num === null || isNaN(num)) {
+            return '0';
         }
-        return num.toString();
+        
+        const number = Number(num);
+        if (number >= 1000000) {
+            return (number / 1000000).toFixed(1) + 'M';
+        } else if (number >= 1000) {
+            return (number / 1000).toFixed(1) + 'K';
+        }
+        return number.toString();
     }
     
     showLoading(show) {
