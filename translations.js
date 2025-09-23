@@ -147,7 +147,20 @@ const translations = {
         activeDays: "Días activos",
         correct: "Correctas",
         tryAgain: "Intentar de nuevo",
-        refresh: "Actualizar"
+        refresh: "Actualizar",
+        
+        // User Profile
+        online: "En línea",
+        offline: "Desconectado",
+        synced: "Sincronizado",
+        localOnly: "Solo local",
+        logout: "Cerrar sesión",
+        guestMode: "Modo invitado",
+        signIn: "Iniciar sesión",
+        welcomeBack: "¡Bienvenido de vuelta",
+        loggedOut: "Sesión cerrada exitosamente",
+        progressSynced: "Progreso sincronizado en la nube",
+        progressLocal: "Sin conexión - progreso guardado localmente"
     },
     
     en: {
@@ -300,7 +313,20 @@ const translations = {
         activeDays: "Active days",
         correct: "Correct",
         tryAgain: "Try again",
-        refresh: "Refresh"
+        refresh: "Refresh",
+        
+        // User Profile
+        online: "Online",
+        offline: "Offline",
+        synced: "Synced",
+        localOnly: "Local only",
+        logout: "Logout",
+        guestMode: "Guest mode",
+        signIn: "Sign in",
+        welcomeBack: "Welcome back",
+        loggedOut: "Successfully logged out",
+        progressSynced: "Progress synced to cloud",
+        progressLocal: "Offline - progress saved locally"
     }
 };
 

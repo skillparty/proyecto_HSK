@@ -50,17 +50,22 @@ class BackendAuth {
     // Fetch current user from backend
     async fetchCurrentUser() {
         try {
-            const response = await fetch(`${this.apiBaseUrl}/api/auth/user`, {
+            const response = await fetch(`${this.apiBaseUrl}/auth/user`, {
+                method: 'GET',
+                credentials: 'include', // Include cookies for session
                 headers: {
-                    'Authorization': `Bearer ${this.accessToken}`,
                     'Content-Type': 'application/json'
                 }
             });
             
             if (response.ok) {
                 const data = await response.json();
-                this.currentUser = data.user;
-                console.log('✅ User authenticated:', this.currentUser.username);
+                if (data.success && data.user) {
+                    this.currentUser = data.user;
+                    console.log('✅ User authenticated:', this.currentUser.username);
+                } else {
+                    throw new Error('No user data received');
+                }
             } else {
                 throw new Error('Failed to fetch user info');
             }
@@ -79,10 +84,10 @@ class BackendAuth {
     async logout() {
         try {
             // Call backend logout endpoint
-            await fetch(`${this.apiBaseUrl}/api/auth/logout`, {
+            await fetch(`${this.apiBaseUrl}/auth/logout`, {
                 method: 'POST',
+                credentials: 'include', // Include cookies for session
                 headers: {
-                    'Authorization': `Bearer ${this.accessToken}`,
                     'Content-Type': 'application/json'
                 }
             });
@@ -97,7 +102,9 @@ class BackendAuth {
         
         // Update UI
         this.updateUI();
-        this.showMessage('Successfully logged out');
+        const logoutText = window.languageManager ? 
+            window.languageManager.getText('loggedOut') : 'Successfully logged out';
+        this.showMessage(logoutText);
         
         console.log('👋 User logged out');
     }
@@ -163,27 +170,46 @@ class BackendAuth {
         const authContainer = document.getElementById('auth-container');
         if (!authContainer || !this.currentUser) return;
         
+        // Determine online status
+        const isOnline = navigator.onLine;
+        const statusIcon = isOnline ? '🟢' : '🔴';
+        const statusText = isOnline ? 'Online' : 'Offline';
+        const statusClass = isOnline ? 'status-online' : 'status-offline';
+        
         authContainer.innerHTML = `
             <div class="user-profile">
-                <img src="${this.currentUser.avatar_url}" alt="Avatar" class="user-avatar">
-                <div class="user-info">
-                    <div class="user-name">${this.currentUser.display_name || this.currentUser.username}</div>
-                    <div class="user-login">@${this.currentUser.username}</div>
-                    <div class="sync-status">
-                        <span class="sync-indicator synced" title="Progress synced to cloud">☁️</span>
+                <div class="user-avatar-container">
+                    <img src="${this.currentUser.avatar_url}" alt="Avatar" class="user-avatar">
+                    <div class="user-status ${statusClass}" title="${statusText}">
+                        ${statusIcon}
                     </div>
                 </div>
-                <button id="logout-btn" class="btn btn-secondary" title="Logout">
+                <div class="user-info">
+                    <div class="user-name">${this.currentUser.name || this.currentUser.username}</div>
+                    <div class="user-login">@${this.currentUser.username}</div>
+                    <div class="user-status-text">
+                        <span class="status-indicator ${statusClass}">${statusIcon}</span>
+                        <span class="status-text">${statusText}</span>
+                    </div>
+                    <div class="sync-status">
+                        <span class="sync-indicator synced" title="Progress synced to cloud">☁️ Synced</span>
+                    </div>
+                </div>
+                <button id="logout-btn" class="btn btn-logout" title="Cerrar sesión">
                     <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M6 12.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h9A1.5 1.5 0 0 1 17 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-                        <path d="M.5 8a.5.5 0 0 1 .5-.5h5.793L4.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L6.793 8.5H1a.5.5 0 0 1-.5-.5z"/>
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                     </svg>
+                    <span>Logout</span>
                 </button>
             </div>
         `;
         
         // Add logout event listener
         document.getElementById('logout-btn').addEventListener('click', () => this.logout());
+        
+        // Monitor online/offline status
+        this.setupStatusMonitoring();
     }
     
     // Show guest mode UI
@@ -221,7 +247,9 @@ class BackendAuth {
     // Show welcome message
     showWelcomeMessage() {
         if (this.currentUser) {
-            this.showMessage(`Welcome back, ${this.currentUser.display_name || this.currentUser.username}!`);
+            const welcomeText = window.languageManager ? 
+                window.languageManager.getText('welcomeBack') : 'Welcome back';
+            this.showMessage(`${welcomeText}, ${this.currentUser.name || this.currentUser.username}!`);
         }
     }
     
@@ -273,6 +301,59 @@ class BackendAuth {
     // Show error message
     showError(message) {
         this.showMessage(message, 'error');
+    }
+    
+    // Setup online/offline status monitoring
+    setupStatusMonitoring() {
+        const updateStatus = () => {
+            const statusIndicators = document.querySelectorAll('.status-indicator');
+            const statusTexts = document.querySelectorAll('.status-text');
+            const userStatuses = document.querySelectorAll('.user-status');
+            
+            const isOnline = navigator.onLine;
+            const statusIcon = isOnline ? '🟢' : '🔴';
+            const statusText = isOnline ? 'Online' : 'Offline';
+            const statusClass = isOnline ? 'status-online' : 'status-offline';
+            
+            statusIndicators.forEach(indicator => {
+                indicator.textContent = statusIcon;
+                indicator.className = `status-indicator ${statusClass}`;
+            });
+            
+            statusTexts.forEach(text => {
+                text.textContent = statusText;
+            });
+            
+            userStatuses.forEach(status => {
+                status.textContent = statusIcon;
+                status.className = `user-status ${statusClass}`;
+                status.title = statusText;
+            });
+            
+            // Update sync status based on connection
+            const syncIndicators = document.querySelectorAll('.sync-indicator');
+            syncIndicators.forEach(sync => {
+                if (isOnline) {
+                    sync.className = 'sync-indicator synced';
+                    sync.textContent = '☁️ Synced';
+                    sync.title = 'Progress synced to cloud';
+                } else {
+                    sync.className = 'sync-indicator offline';
+                    sync.textContent = '💾 Local';
+                    sync.title = 'Offline - progress saved locally';
+                }
+            });
+        };
+        
+        // Initial status update
+        updateStatus();
+        
+        // Listen for online/offline events
+        window.addEventListener('online', updateStatus);
+        window.addEventListener('offline', updateStatus);
+        
+        // Periodic status check (every 30 seconds)
+        setInterval(updateStatus, 30000);
     }
 }
 
