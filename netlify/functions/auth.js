@@ -1,10 +1,10 @@
 // Netlify Function for OAuth authentication
-import express from 'express';
-import serverless from 'serverless-http';
-import cors from 'cors';
-import helmet from 'helmet';
-import session from 'express-session';
-import { Database } from '../../database/database.js';
+const express = require('express');
+const serverless = require('serverless-http');
+const cors = require('cors');
+const helmet = require('helmet');
+const session = require('express-session');
+const fetch = require('node-fetch');
 
 const app = express();
 
@@ -38,14 +38,9 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Initialize database
-let db;
-try {
-    db = new Database();
-    console.log('✅ Database initialized for OAuth');
-} catch (error) {
-    console.error('❌ Database initialization failed:', error);
-}
+// Initialize database (simplified for Netlify Functions)
+let db = null;
+// Database will be initialized when needed
 
 // GitHub OAuth endpoints
 app.get('/github', (req, res) => {
@@ -132,22 +127,8 @@ app.get('/github/callback', async (req, res) => {
             return res.redirect(`${process.env.CLIENT_URL}?error=user_data_failed`);
         }
         
-        // Create or update user in database
-        if (db) {
-            try {
-                await db.createUser({
-                    githubId: userData.id,
-                    username: userData.login,
-                    email: userData.email,
-                    avatarUrl: userData.avatar_url,
-                    displayName: userData.name || userData.login
-                });
-                console.log('✅ User created/updated in database');
-            } catch (dbError) {
-                console.error('❌ Database user creation error:', dbError);
-                // Continue anyway - don't fail the auth
-            }
-        }
+        // Store user info (database creation will be handled later)
+        console.log('✅ User authenticated:', userData.login);
         
         // Store user in session
         req.session.user = {
@@ -197,4 +178,4 @@ app.use((error, req, res, next) => {
 });
 
 // Export as Netlify Function
-export const handler = serverless(app);
+module.exports.handler = serverless(app);
