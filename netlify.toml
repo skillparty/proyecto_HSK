@@ -15,13 +15,13 @@
 # Redirect API calls to Netlify Functions
 [[redirects]]
   from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
+  to = "/.netlify/functions/api"
   status = 200
 
 # Redirect auth calls to Netlify Functions  
 [[redirects]]
   from = "/auth/*"
-  to = "/.netlify/functions/auth/:splat"
+  to = "/.netlify/functions/auth"
   status = 200
 
 # SPA fallback - serve index.html for all other routes

@@ -44,7 +44,7 @@ let db = null;
 // Database will be initialized when needed
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/api/health', (req, res) => {
     res.json({
         status: 'OK',
         timestamp: new Date().toISOString(),
@@ -54,7 +54,7 @@ app.get('/health', (req, res) => {
 });
 
 // Leaderboard endpoints (simplified for now)
-app.get('/leaderboard', async (req, res) => {
+app.get('/api/leaderboard', async (req, res) => {
     try {
         // Temporary mock data until database is properly configured
         const mockLeaderboard = [
@@ -69,7 +69,7 @@ app.get('/leaderboard', async (req, res) => {
     }
 });
 
-app.get('/leaderboard/stats', async (req, res) => {
+app.get('/api/leaderboard/stats', async (req, res) => {
     try {
         // Temporary mock stats
         const mockStats = {

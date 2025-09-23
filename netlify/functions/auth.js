@@ -43,7 +43,7 @@ let db = null;
 // Database will be initialized when needed
 
 // GitHub OAuth endpoints
-app.get('/github', (req, res) => {
+app.get('/auth/github', (req, res) => {
     try {
         const clientId = process.env.GITHUB_CLIENT_ID;
         const callbackUrl = process.env.GITHUB_CALLBACK_URL;
@@ -77,7 +77,7 @@ app.get('/github', (req, res) => {
     }
 });
 
-app.get('/github/callback', async (req, res) => {
+app.get('/auth/github/callback', async (req, res) => {
     try {
         const { code, error } = req.query;
         
@@ -149,7 +149,7 @@ app.get('/github/callback', async (req, res) => {
 });
 
 // Get current user
-app.get('/user', (req, res) => {
+app.get('/auth/user', (req, res) => {
     if (req.session.user) {
         res.json({ success: true, user: req.session.user });
     } else {
@@ -158,7 +158,7 @@ app.get('/user', (req, res) => {
 });
 
 // Logout
-app.post('/logout', (req, res) => {
+app.post('/auth/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             console.error('❌ Logout error:', err);
