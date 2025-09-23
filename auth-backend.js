@@ -5,8 +5,13 @@ class BackendAuth {
         this.accessToken = null;
         this.apiBaseUrl = window.location.origin;
         
-        // Initialize auth system
-        this.init();
+        // Initialize auth system after DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.init());
+        } else {
+            // DOM is already ready
+            setTimeout(() => this.init(), 100);
+        }
     }
     
     async init() {
@@ -115,7 +120,7 @@ class BackendAuth {
         
         // Update UI
         this.updateUI();
-        const logoutText = window.languageManager ? 
+        const logoutText = (window.languageManager && typeof window.languageManager.getText === 'function') ? 
             window.languageManager.getText('loggedOut') : 'Successfully logged out';
         this.showMessage(logoutText);
         
@@ -252,7 +257,7 @@ class BackendAuth {
         document.getElementById('github-login-btn').addEventListener('click', () => this.login());
         
         // Update translations if available
-        if (window.languageManager) {
+        if (window.languageManager && typeof window.languageManager.updateInterface === 'function') {
             window.languageManager.updateInterface();
         }
     }
@@ -260,7 +265,7 @@ class BackendAuth {
     // Show welcome message
     showWelcomeMessage() {
         if (this.currentUser) {
-            const welcomeText = window.languageManager ? 
+            const welcomeText = (window.languageManager && typeof window.languageManager.getText === 'function') ? 
                 window.languageManager.getText('welcomeBack') : 'Welcome back';
             this.showMessage(`${welcomeText}, ${this.currentUser.name || this.currentUser.username}!`);
         }
