@@ -78,11 +78,18 @@ class LeaderboardManager {
             params.append('limit', '50');
             const url = `${endpoint}?${params.toString()}`;
             
+            console.log('🔍 Loading leaderboard from:', url);
             const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
             const data = await response.json();
+            console.log('📊 Leaderboard response:', data);
             
             if (data.success) {
-                this.currentLeaderboard = data.leaderboard;
+                this.currentLeaderboard = data.leaderboard || [];
                 this.renderLeaderboard();
                 
                 // Load user position if authenticated
@@ -98,6 +105,11 @@ class LeaderboardManager {
             
         } catch (error) {
             console.error('Error loading leaderboard:', error);
+            // Ensure we always have a valid array
+            if (!this.currentLeaderboard || !Array.isArray(this.currentLeaderboard)) {
+                this.currentLeaderboard = [];
+            }
+            this.renderLeaderboard(); // Show empty state
             this.showError('Failed to load leaderboard. Please try again.');
         } finally {
             this.showLoading(false);
@@ -145,6 +157,12 @@ class LeaderboardManager {
     renderLeaderboard() {
         const container = document.getElementById('leaderboard-list');
         if (!container) return;
+        
+        // Safety check: ensure currentLeaderboard is an array
+        if (!this.currentLeaderboard || !Array.isArray(this.currentLeaderboard)) {
+            console.warn('⚠️ currentLeaderboard is not an array:', this.currentLeaderboard);
+            this.currentLeaderboard = [];
+        }
         
         if (this.currentLeaderboard.length === 0) {
             container.innerHTML = `

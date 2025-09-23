@@ -58,11 +58,63 @@ app.get('/api/leaderboard', async (req, res) => {
     try {
         // Temporary mock data until database is properly configured
         const mockLeaderboard = [
-            { rank: 1, username: 'user1', total_studied: 1250, accuracy: 95 },
-            { rank: 2, username: 'user2', total_studied: 1180, accuracy: 92 },
-            { rank: 3, username: 'user3', total_studied: 1050, accuracy: 88 }
+            { 
+                rank: 1, 
+                username: 'chinese_master', 
+                display_name: 'Chinese Master',
+                avatar_url: 'https://github.com/chinese_master.png',
+                total_studied: 1250, 
+                accuracy_rate: 95,
+                best_streak: 45,
+                current_streak: 12,
+                study_streak: 30
+            },
+            { 
+                rank: 2, 
+                username: 'hsk_warrior', 
+                display_name: 'HSK Warrior',
+                avatar_url: 'https://github.com/hsk_warrior.png',
+                total_studied: 1180, 
+                accuracy_rate: 92,
+                best_streak: 38,
+                current_streak: 8,
+                study_streak: 25
+            },
+            { 
+                rank: 3, 
+                username: 'mandarin_pro', 
+                display_name: 'Mandarin Pro',
+                avatar_url: 'https://github.com/mandarin_pro.png',
+                total_studied: 1050, 
+                accuracy_rate: 88,
+                best_streak: 32,
+                current_streak: 15,
+                study_streak: 20
+            },
+            { 
+                rank: 4, 
+                username: 'study_buddy', 
+                display_name: 'Study Buddy',
+                avatar_url: 'https://github.com/study_buddy.png',
+                total_studied: 950, 
+                accuracy_rate: 85,
+                best_streak: 28,
+                current_streak: 5,
+                study_streak: 18
+            },
+            { 
+                rank: 5, 
+                username: 'language_lover', 
+                display_name: 'Language Lover',
+                avatar_url: 'https://github.com/language_lover.png',
+                total_studied: 820, 
+                accuracy_rate: 82,
+                best_streak: 25,
+                current_streak: 3,
+                study_streak: 15
+            }
         ];
-        res.json({ success: true, data: mockLeaderboard });
+        res.json({ success: true, leaderboard: mockLeaderboard });
     } catch (error) {
         console.error('Leaderboard error:', error);
         res.status(500).json({ success: false, error: 'Failed to fetch leaderboard' });
@@ -78,7 +130,7 @@ app.get('/api/leaderboard/stats', async (req, res) => {
             monthlyActive: 120,
             totalWordsStudied: 125000
         };
-        res.json({ success: true, data: mockStats });
+        res.json({ success: true, stats: mockStats });
     } catch (error) {
         console.error('Leaderboard stats error:', error);
         res.status(500).json({ success: false, error: 'Failed to fetch leaderboard stats' });
