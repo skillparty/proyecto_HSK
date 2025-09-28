@@ -1,0 +1,11 @@
+# Netlify redirects file
+# Ensure assets are served correctly
+/assets/*  /assets/:splat  200
+/config/*  /config/:splat  200
+
+# API redirects (if functions are available)
+/api/*  /.netlify/functions/api  200
+/auth/*  /.netlify/functions/auth  200
+
+# SPA fallback - serve index.html for all other routes
+/*  /index.html  200
