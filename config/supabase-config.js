@@ -8,12 +8,12 @@ const isProduction = window.location.hostname !== 'localhost' && window.location
 const SUPABASE_CONFIG = {
     // These will be public environment variables
     url: isProduction 
-        ? 'https://your-project.supabase.co' // Replace with actual Supabase URL
-        : 'https://your-project.supabase.co', // Same for development
+        ? 'https://trcrssdqtwtxfhmpysbi.supabase.co' // Replace with actual Supabase URL
+        : 'https://trcrssdqtwtxfhmpysbi.supabase.co', // Same for development
     
     anonKey: isProduction
-        ? 'your-anon-key-here' // Replace with actual anon key
-        : 'your-anon-key-here', // Same for development
+        ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRyY3Jzc2RxdHd0eGZobXB5c2JpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkwNzc4NjEsImV4cCI6MjA3NDY1Mzg2MX0.hb52BDj5NYi237u1i5q6foev9BMN_Xlyw0F1_5_TcAo' // Replace with actual anon key
+        : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRyY3Jzc2RxdHd0eGZobXB5c2JpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkwNzc4NjEsImV4cCI6MjA3NDY1Mzg2MX0.hb52BDj5NYi237u1i5q6foev9BMN_Xlyw0F1_5_TcAo', // Same for development
     
     // Auth configuration
     auth: {
