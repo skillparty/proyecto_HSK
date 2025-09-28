@@ -4,6 +4,11 @@
 // Environment detection
 const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
 
+// Debug environment detection
+console.log('🌍 Current hostname:', window.location.hostname);
+console.log('🌍 Is production:', isProduction);
+console.log('🌍 Full URL:', window.location.href);
+
 // Supabase configuration
 const SUPABASE_CONFIG = {
     // These will be public environment variables
