@@ -2216,21 +2216,38 @@ class HSKApp {
     
     updateThemeButton() {
         const themeToggle = document.getElementById('theme-toggle');
-        if (!themeToggle) return;
+        if (!themeToggle) {
+            console.warn('⚠️ Theme toggle button not found');
+            return;
+        }
         
         const lightIcon = themeToggle.querySelector('.light-icon');
         const darkIcon = themeToggle.querySelector('.dark-icon');
         
-        if (lightIcon && darkIcon) {
+        // If icons don't exist, create them or update button text
+        if (!lightIcon || !darkIcon) {
+            // Fallback: update button text or create simple icons
             if (this.isDarkMode) {
-                lightIcon.style.display = 'none';
-                darkIcon.style.display = 'inline';
+                themeToggle.innerHTML = '☀️'; // Light mode icon when in dark mode
+                themeToggle.title = 'Switch to light mode';
                 themeToggle.classList.add('active');
             } else {
-                lightIcon.style.display = 'inline';
-                darkIcon.style.display = 'none';
+                themeToggle.innerHTML = '🌙'; // Dark mode icon when in light mode
+                themeToggle.title = 'Switch to dark mode';
                 themeToggle.classList.remove('active');
             }
+            return;
+        }
+        
+        // Original logic if icons exist
+        if (this.isDarkMode) {
+            lightIcon.style.display = 'none';
+            darkIcon.style.display = 'inline';
+            themeToggle.classList.add('active');
+        } else {
+            lightIcon.style.display = 'inline';
+            darkIcon.style.display = 'none';
+            themeToggle.classList.remove('active');
         }
     }
     
