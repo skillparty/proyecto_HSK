@@ -123,21 +123,35 @@ class BackendAuth {
     }
     
     // Initiate GitHub OAuth login
-    login() {
-        window.location.href = `${this.apiBaseUrl}/auth/github`;
+    async login() {
+        try {
+            console.log('🔐 Initiating GitHub login via Supabase...');
+            
+            // Check if Supabase client is available
+            if (!window.supabaseClient || !window.supabaseClient.supabase) {
+                console.error('❌ Supabase client not available');
+                this.showMessage('Error: Authentication system not ready');
+                return;
+            }
+            
+            // Use Supabase Auth for GitHub login
+            await window.supabaseClient.signInWithGitHub();
+            
+        } catch (error) {
+            console.error('❌ GitHub login failed:', error);
+            this.showMessage('Login failed. Please try again.');
+        }
     }
     
     // Logout user
     async logout() {
         try {
-            // Call backend logout endpoint
-            await fetch(`${this.apiBaseUrl}/auth/logout`, {
-                method: 'POST',
-                credentials: 'include', // Include cookies for session
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            console.log('🔐 Logging out via Supabase...');
+            
+            // Use Supabase Auth for logout
+            if (window.supabaseClient && window.supabaseClient.supabase) {
+                await window.supabaseClient.signOut();
+            }
         } catch (error) {
             console.error('Logout error:', error);
         }
