@@ -2340,13 +2340,20 @@ class HSKApp {
     
     // Stats functionality
     updateStats() {
-        document.getElementById('total-studied').textContent = this.stats.totalStudied;
-        document.getElementById('quiz-count').textContent = this.stats.quizzesCompleted;
-        document.getElementById('streak-count').textContent = this.stats.currentStreak;
+        // Safely update stats elements with null checks
+        const totalStudiedEl = document.getElementById('total-studied');
+        if (totalStudiedEl) totalStudiedEl.textContent = this.stats.totalStudied;
+        
+        const quizCountEl = document.getElementById('quiz-count');
+        if (quizCountEl) quizCountEl.textContent = this.stats.quizzesCompleted;
+        
+        const streakCountEl = document.getElementById('streak-count');
+        if (streakCountEl) streakCountEl.textContent = this.stats.currentStreak;
         
         const accuracy = this.stats.totalStudied > 0 ? 
             Math.round((this.stats.correctAnswers / this.stats.totalStudied) * 100) : 0;
-        document.getElementById('accuracy-rate').textContent = `${accuracy}%`;
+        const accuracyRateEl = document.getElementById('accuracy-rate');
+        if (accuracyRateEl) accuracyRateEl.textContent = `${accuracy}%`;
         
         // Update level progress
         this.updateLevelProgress();
