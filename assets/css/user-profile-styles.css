@@ -1,5 +1,13 @@
 /* User Profile Styles for HSK Learning App */
 
+/* Auth Container */
+#auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 8px;
+}
+
 .user-profile {
     display: flex;
     align-items: center;
@@ -314,4 +322,111 @@
     white-space: nowrap;
     z-index: 1000;
     margin-bottom: 4px;
+}
+
+/* Logout Button */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    border-radius: 8px;
+    color: #dc2626;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 8px;
+}
+
+.logout-btn:hover {
+    background: rgba(220, 38, 38, 0.2);
+    border-color: rgba(220, 38, 38, 0.5);
+    transform: translateY(-1px);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+}
+
+.logout-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* GitHub Login Button */
+.github-login-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.github-login-btn:hover {
+    background: linear-gradient(135deg, #2c3237 0%, #1f2428 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.github-login-btn:active {
+    transform: translateY(0);
+}
+
+.github-login-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.auth-guest {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-profile {
+        gap: 8px;
+        padding: 6px 10px;
+    }
+    
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .user-info {
+        font-size: 12px;
+    }
+    
+    .user-name {
+        font-size: 13px;
+    }
+    
+    .logout-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+    
+    .logout-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .github-login-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
 }
