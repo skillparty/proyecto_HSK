@@ -293,9 +293,6 @@ class SupabaseClient {
             <div class="user-profile">
                 <div class="user-avatar-container">
                     <img src="${avatarUrl}" alt="Avatar" class="user-avatar" onerror="this.src='https://github.com/github.png'">
-                    <div class="user-status ${statusClass}" title="${statusText}">
-                        ${statusIcon}
-                    </div>
                 </div>
                 <div class="user-info">
                     <div class="user-name">${name}</div>
