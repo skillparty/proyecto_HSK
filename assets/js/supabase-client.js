@@ -176,6 +176,57 @@ class SupabaseClient {
         }
     }
 
+    async getUserStatistics() {
+        if (!this.user) return null;
+
+        try {
+            const { data, error } = await this.supabase
+                .from('user_progress')
+                .select('*')
+                .eq('user_id', this.user.id);
+
+            if (error) throw error;
+            
+            // Aggregate statistics across all HSK levels
+            const stats = {
+                totalStudied: data?.reduce((sum, level) => sum + (level.total_words_studied || 0), 0) || 0,
+                correctAnswers: data?.reduce((sum, level) => sum + (level.correct_answers || 0), 0) || 0,
+                incorrectAnswers: data?.reduce((sum, level) => sum + (level.incorrect_answers || 0), 0) || 0,
+                currentStreak: Math.max(...(data?.map(level => level.current_streak || 0) || [0])),
+                bestStreak: Math.max(...(data?.map(level => level.best_streak || 0) || [0])),
+                totalTimeSpent: data?.reduce((sum, level) => sum + (level.total_time_spent || 0), 0) || 0,
+                levelProgress: data || []
+            };
+            
+            return stats;
+            
+        } catch (error) {
+            console.error('❌ Error fetching user statistics:', error);
+            return null;
+        }
+    }
+
+    async updateProgress(hskLevel, isCorrect, timeSpent = 0) {
+        if (!this.user) return;
+
+        try {
+            const { error } = await this.supabase.rpc('update_user_progress', {
+                p_user_id: this.user.id,
+                p_hsk_level: hskLevel,
+                p_correct: isCorrect,
+                p_time_spent: timeSpent
+            });
+
+            if (error) throw error;
+            
+            console.log('✅ Progress updated for HSK', hskLevel);
+            
+        } catch (error) {
+            console.error('❌ Error updating progress:', error);
+            throw error;
+        }
+    }
+
     async saveWordProgress(wordData) {
         if (!this.user) return;
 
@@ -202,19 +253,111 @@ class SupabaseClient {
     // Leaderboard methods
     async getLeaderboard(type = 'total_words', limit = 50) {
         try {
+            console.log('📊 Fetching leaderboard:', { type, limit });
+            
             const { data, error } = await this.supabase
-                .from('leaderboard_view') // We'll create this view
+                .from('leaderboard_view')
                 .select('*')
                 .order(type, { ascending: false })
                 .limit(limit);
 
-            if (error) throw error;
+            if (error) {
+                console.error('❌ Leaderboard query error:', error);
+                throw error;
+            }
             
-            return data || [];
+            // Format data for leaderboard display
+            const formattedData = (data || []).map((user, index) => ({
+                rank: index + 1,
+                user_id: user.user_id,
+                username: user.username || 'Anonymous',
+                display_name: user.display_name || user.username || 'Anonymous',
+                avatar_url: user.avatar_url || `https://ui-avatars.com/api/?name=${user.username || 'A'}&background=random`,
+                total_studied: user.total_words || 0,
+                accuracy_rate: Math.round(user.accuracy_rate || 0),
+                best_streak: user.best_streak || 0,
+                current_streak: user.best_streak || 0, // Using best_streak as current for now
+                total_time_spent: user.total_time || 0,
+                total_achievements: 0, // Will be added later
+                study_streak: 0, // Will be added later
+                levels_studied: user.levels_studied || 0,
+                last_activity: user.last_activity
+            }));
+            
+            console.log('✅ Leaderboard data:', formattedData.length, 'users');
+            return formattedData;
             
         } catch (error) {
             console.error('❌ Error fetching leaderboard:', error);
             return [];
+        }
+    }
+
+    async getLeaderboardStats() {
+        try {
+            const { data, error } = await this.supabase
+                .from('leaderboard_view')
+                .select('*');
+
+            if (error) throw error;
+            
+            const stats = {
+                total_active_users: data?.length || 0,
+                total_words_studied: data?.reduce((sum, user) => sum + (user.total_words || 0), 0) || 0,
+                avg_words_per_user: data?.length > 0 ? Math.round(data.reduce((sum, user) => sum + (user.total_words || 0), 0) / data.length) : 0,
+                max_streak: Math.max(...(data?.map(user => user.best_streak || 0) || [0])),
+                weekly_active_users: data?.filter(user => {
+                    const lastActivity = new Date(user.last_activity);
+                    const weekAgo = new Date();
+                    weekAgo.setDate(weekAgo.getDate() - 7);
+                    return lastActivity >= weekAgo;
+                }).length || 0,
+                monthly_active_users: data?.filter(user => {
+                    const lastActivity = new Date(user.last_activity);
+                    const monthAgo = new Date();
+                    monthAgo.setDate(monthAgo.getDate() - 30);
+                    return lastActivity >= monthAgo;
+                }).length || 0
+            };
+            
+            return stats;
+            
+        } catch (error) {
+            console.error('❌ Error fetching leaderboard stats:', error);
+            return {
+                total_active_users: 0,
+                total_words_studied: 0,
+                avg_words_per_user: 0,
+                max_streak: 0,
+                weekly_active_users: 0,
+                monthly_active_users: 0
+            };
+        }
+    }
+
+    async getUserRank() {
+        if (!this.user) return null;
+
+        try {
+            const { data, error } = await this.supabase
+                .from('leaderboard_view')
+                .select('*')
+                .order('total_words', { ascending: false });
+
+            if (error) throw error;
+            
+            const userIndex = data?.findIndex(u => u.user_id === this.user.id);
+            if (userIndex === -1) return null;
+            
+            return {
+                rank: userIndex + 1,
+                total_words: data[userIndex].total_words || 0,
+                accuracy_rate: Math.round(data[userIndex].accuracy_rate || 0)
+            };
+            
+        } catch (error) {
+            console.error('❌ Error fetching user rank:', error);
+            return null;
         }
     }
 

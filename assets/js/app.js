@@ -112,8 +112,8 @@ class HSKApp {
             }
             
             // Initialize Leaderboard Manager
-            if (window.LeaderboardManager && this.backendAuth) {
-                this.leaderboardManager = new window.LeaderboardManager(this.backendAuth);
+            if (window.LeaderboardManager) {
+                this.leaderboardManager = new window.LeaderboardManager();
                 console.log('[✓] Leaderboard Manager initialized');
             }
             
@@ -1071,7 +1071,7 @@ class HSKApp {
         console.log('🔒 Knowledge buttons disabled');
     }
     
-    markAsKnown(isKnown) {
+    async markAsKnown(isKnown) {
         if (!this.currentWord || !this.isFlipped) return;
         
         // Update local stats for backward compatibility
@@ -1089,6 +1089,17 @@ class HSKApp {
         
         // Update daily progress - count any interaction (known or not known)
         this.updateDailyProgress();
+        
+        // Sync with Supabase if user is authenticated
+        if (window.supabaseClient && window.supabaseClient.isAuthenticated()) {
+            try {
+                const hskLevel = this.currentWord.level || this.currentLevel;
+                await window.supabaseClient.updateProgress(hskLevel, isKnown, 0);
+                console.log('✅ Progress synced with Supabase');
+            } catch (error) {
+                console.error('❌ Error syncing progress with Supabase:', error);
+            }
+        }
         
         // Record in user profile if available
         if (this.userProgress) {
@@ -2339,36 +2350,79 @@ class HSKApp {
     }
     
     // Stats functionality
-    updateStats() {
+    async updateStats() {
+        // Load stats from Supabase if user is authenticated
+        let stats = this.stats;
+        
+        if (window.supabaseClient && window.supabaseClient.isAuthenticated()) {
+            try {
+                const supabaseStats = await window.supabaseClient.getUserStatistics();
+                if (supabaseStats) {
+                    stats = {
+                        totalStudied: supabaseStats.totalStudied || 0,
+                        correctAnswers: supabaseStats.correctAnswers || 0,
+                        incorrectAnswers: supabaseStats.incorrectAnswers || 0,
+                        currentStreak: supabaseStats.currentStreak || 0,
+                        bestStreak: supabaseStats.bestStreak || 0,
+                        quizzesCompleted: this.stats.quizzesCompleted // Keep local quiz count for now
+                    };
+                    console.log('✅ Loaded stats from Supabase:', stats);
+                }
+            } catch (error) {
+                console.error('❌ Error loading stats from Supabase:', error);
+            }
+        }
+        
         // Safely update stats elements with null checks
         const totalStudiedEl = document.getElementById('total-studied');
-        if (totalStudiedEl) totalStudiedEl.textContent = this.stats.totalStudied;
+        if (totalStudiedEl) totalStudiedEl.textContent = stats.totalStudied;
         
         const quizCountEl = document.getElementById('quiz-count');
-        if (quizCountEl) quizCountEl.textContent = this.stats.quizzesCompleted;
+        if (quizCountEl) quizCountEl.textContent = stats.quizzesCompleted || 0;
         
-        const streakCountEl = document.getElementById('streak-count');
-        if (streakCountEl) streakCountEl.textContent = this.stats.currentStreak;
+        const streakCountEl = document.getElementById('current-streak');
+        if (streakCountEl) streakCountEl.textContent = stats.currentStreak;
         
-        const accuracy = this.stats.totalStudied > 0 ? 
-            Math.round((this.stats.correctAnswers / this.stats.totalStudied) * 100) : 0;
+        const accuracy = stats.totalStudied > 0 ? 
+            Math.round((stats.correctAnswers / stats.totalStudied) * 100) : 0;
         const accuracyRateEl = document.getElementById('accuracy-rate');
         if (accuracyRateEl) accuracyRateEl.textContent = `${accuracy}%`;
         
         // Update level progress
-        this.updateLevelProgress();
+        await this.updateLevelProgress();
     }
     
-    updateLevelProgress() {
+    async updateLevelProgress() {
         const container = document.getElementById('level-progress-bars');
         if (!container) return;
         
         container.innerHTML = '';
         
+        // Get level progress from Supabase if authenticated
+        let levelProgressData = [];
+        if (window.supabaseClient && window.supabaseClient.isAuthenticated()) {
+            try {
+                const userStats = await window.supabaseClient.getUserStatistics();
+                if (userStats && userStats.levelProgress) {
+                    levelProgressData = userStats.levelProgress;
+                }
+            } catch (error) {
+                console.error('❌ Error loading level progress:', error);
+            }
+        }
+        
         for (let level = 1; level <= 6; level++) {
             const levelWords = this.vocabulary.filter(word => word.level === level);
-            const studiedWords = levelWords.length; // Simplified for now
-            const progress = levelWords.length > 0 ? (studiedWords / levelWords.length) * 100 : 0;
+            const totalWords = levelWords.length;
+            
+            // Get studied words from Supabase data or use local fallback
+            const levelData = levelProgressData.find(lp => lp.hsk_level === level);
+            const studiedWords = levelData ? levelData.total_words_studied : 0;
+            const accuracy = levelData && (levelData.correct_answers + levelData.incorrect_answers) > 0 
+                ? Math.round((levelData.correct_answers / (levelData.correct_answers + levelData.incorrect_answers)) * 100)
+                : 0;
+            
+            const progress = totalWords > 0 ? Math.min((studiedWords / totalWords) * 100, 100) : 0;
             
             const progressBar = document.createElement('div');
             progressBar.className = 'level-progress-item';
@@ -2377,7 +2431,10 @@ class HSKApp {
                 <div class="progress-bar">
                     <div class="progress-fill" style="width: ${progress}%"></div>
                 </div>
-                <div class="progress-text">${studiedWords}/${levelWords.length}</div>
+                <div class="progress-text">
+                    ${studiedWords}/${totalWords}
+                    ${accuracy > 0 ? ` (${accuracy}% accuracy)` : ''}
+                </div>
             `;
             container.appendChild(progressBar);
         }

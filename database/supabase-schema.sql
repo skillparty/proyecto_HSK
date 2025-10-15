@@ -263,4 +263,6 @@ CREATE POLICY "Users can view own achievements" ON user_achievements FOR SELECT 
 CREATE POLICY "Users can insert own achievements" ON user_achievements FOR INSERT WITH CHECK (auth.uid() = user_id);
 
 -- Leaderboard view is public (no sensitive data)
--- Users can view leaderboard but not modify it
+-- Allow everyone to read the leaderboard view
+CREATE POLICY "Anyone can view leaderboard" ON user_progress FOR SELECT USING (true);
+CREATE POLICY "Anyone can view profiles for leaderboard" ON user_profiles FOR SELECT USING (true);

@@ -1,7 +1,6 @@
 // HSK Learning App - Leaderboard System
 class LeaderboardManager {
-    constructor(auth) {
-        this.auth = auth;
+    constructor() {
         this.currentLeaderboard = [];
         this.currentType = 'total_studied';
         this.currentPeriod = 'all_time';
@@ -55,17 +54,29 @@ class LeaderboardManager {
         this.showLoading(true);
         
         try {
-            console.log('🔍 Loading leaderboard from Supabase...');
+            console.log('🔍 Loading leaderboard from Supabase...', { type: this.currentType });
             
             // Check if Supabase client is available
             if (!window.supabaseClient || !window.supabaseClient.supabase) {
                 throw new Error('Supabase client not available');
             }
             
-            // Get leaderboard data from Supabase
-            const leaderboardData = await window.supabaseClient.getLeaderboard(this.currentType, 50);
+            // Map currentType to database column name
+            const typeMapping = {
+                'total_studied': 'total_words',
+                'accuracy': 'accuracy_rate',
+                'streak': 'best_streak',
+                'time_spent': 'total_time',
+                'achievements': 'total_words', // Fallback to total_words
+                'study_streak': 'best_streak' // Fallback to best_streak
+            };
             
-            console.log('📊 Leaderboard response:', leaderboardData);
+            const dbType = typeMapping[this.currentType] || 'total_words';
+            
+            // Get leaderboard data from Supabase
+            const leaderboardData = await window.supabaseClient.getLeaderboard(dbType, 50);
+            
+            console.log('📊 Leaderboard response:', leaderboardData.length, 'users');
             
             this.currentLeaderboard = leaderboardData || [];
             this.renderLeaderboard();
@@ -75,7 +86,7 @@ class LeaderboardManager {
                 await this.loadUserPosition();
             }
             
-            // Load statistics (mock data for now)
+            // Load statistics from Supabase
             await this.loadStats();
             
         } catch (error) {
@@ -85,7 +96,12 @@ class LeaderboardManager {
                 this.currentLeaderboard = [];
             }
             this.renderLeaderboard(); // Show empty state
-            this.showError('Leaderboard will be available once users start studying. Be the first!');
+            
+            // More user-friendly error message
+            const errorMsg = error.message?.includes('leaderboard_view') 
+                ? 'Leaderboard data is being set up. Please check back soon!'
+                : 'Leaderboard will be available once users start studying. Be the first!';
+            this.showError(errorMsg);
         } finally {
             this.showLoading(false);
         }
@@ -94,13 +110,20 @@ class LeaderboardManager {
         if (!window.supabaseClient || !window.supabaseClient.isAuthenticated()) return;
         
         try {
-            // For now, set a mock position since we don't have real leaderboard data yet
-            this.userPosition = {
-                rank: 1,
-                total_words: 0,
-                accuracy_rate: 0
-            };
-            this.renderUserPosition();
+            const rankData = await window.supabaseClient.getUserRank();
+            
+            if (rankData) {
+                this.userPosition = {
+                    position: rankData.rank,
+                    total_users: this.currentLeaderboard.length,
+                    user_stats: {
+                        total_studied: rankData.total_words,
+                        accuracy_rate: rankData.accuracy_rate,
+                        best_streak: 0 // Will be added from user stats
+                    }
+                };
+                this.renderUserPosition();
+            }
         } catch (error) {
             console.error('Error loading user position:', error);
         }
@@ -108,16 +131,21 @@ class LeaderboardManager {
     
     async loadStats() {
         try {
-            // Mock stats data for now
-            this.stats = {
-                total_users: 1,
-                total_words_studied: 0,
-                average_accuracy: 0,
-                active_today: 1
-            };
+            const stats = await window.supabaseClient.getLeaderboardStats();
+            this.stats = stats;
             this.renderStats();
         } catch (error) {
             console.error('Error loading leaderboard stats:', error);
+            // Fallback stats
+            this.stats = {
+                total_active_users: 0,
+                total_words_studied: 0,
+                avg_words_per_user: 0,
+                max_streak: 0,
+                weekly_active_users: 0,
+                monthly_active_users: 0
+            };
+            this.renderStats();
         }
     }
     
@@ -152,8 +180,8 @@ class LeaderboardManager {
     }
     
     renderUserCard(user) {
-        const isCurrentUser = this.auth && this.auth.isAuthenticated() && 
-                             this.auth.getUser() && this.auth.getUser().username === user.username;
+        const isCurrentUser = window.supabaseClient && window.supabaseClient.isAuthenticated() && 
+                             window.supabaseClient.user && window.supabaseClient.user.id === user.user_id;
         
         const rankClass = user.rank <= 3 ? `rank-${user.rank}` : '';
         const currentUserClass = isCurrentUser ? 'current-user' : '';
