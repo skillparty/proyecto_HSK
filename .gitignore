@@ -51,3 +51,16 @@ database/*.sqlite3
 # Backup files
 *.backup
 *.bak
+
+# Debug and test files
+debug-*.js
+test-*.js
+*-debug.js
+*-test.js
+
+# Legacy/deprecated files
+*.old
+*.deprecated
+
+# Script outputs
+cleanup-script.sh
