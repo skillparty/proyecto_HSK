@@ -56,6 +56,9 @@ class HSKApp {
             lastErrorAt: 0
         };
 
+        this.errorDigestStorageKey = 'hsk-error-digest-v1';
+        this.maxErrorDigestEntries = 10;
+
         this.quizSessionStorageKey = 'hsk-quiz-session-v1';
         this.quizSessionMaxAgeMs = 30 * 60 * 1000;
         this.lastTabStorageKey = 'hsk-last-tab-v1';
@@ -130,6 +133,8 @@ class HSKApp {
 
                 console.log('[✓] LanguageManager initialized');
             }
+
+            this.setupErrorDigestMonitoring();
 
             // Initialize Backend Authentication
             if (window.BackendAuth) {
@@ -288,6 +293,10 @@ class HSKApp {
 
             const authUser = window.supabaseClient?.getCurrentUser?.();
             const swVersion = await this.getServiceWorkerVersion();
+            const digest = this.getErrorDigest();
+            const latestError = digest[0]
+                ? `${digest[0].source}: ${digest[0].message}`
+                : 'none';
 
             const rows = [
                 ['Online', navigator.onLine ? 'yes' : 'no'],
@@ -296,7 +305,9 @@ class HSKApp {
                 ['Supabase config', window.SUPABASE_CONFIG?.url ? 'loaded' : 'missing'],
                 ['SW control', navigator.serviceWorker?.controller ? 'active' : 'none'],
                 ['SW version', swVersion || 'unknown'],
-                ['Legacy API', window.HSK_ENABLE_LEGACY_BACKEND_API === true ? 'enabled' : 'disabled']
+                ['Legacy API', window.HSK_ENABLE_LEGACY_BACKEND_API === true ? 'enabled' : 'disabled'],
+                ['Errors (max 10)', String(digest.length)],
+                ['Last error', latestError]
             ];
 
             content.innerHTML = rows
@@ -337,6 +348,86 @@ class HSKApp {
                 resolve(null);
             }
         });
+    }
+
+    setupErrorDigestMonitoring() {
+        if (window.__hskErrorDigestMonitoringEnabled) {
+            return;
+        }
+
+        window.__hskErrorDigestMonitoringEnabled = true;
+
+        window.addEventListener('error', (event) => {
+            const target = event.target;
+
+            if (target && target !== window) {
+                const resourceUrl = target.currentSrc || target.src || target.href || 'unknown resource';
+                this.logRuntimeIssue('resource', `Failed to load: ${resourceUrl}`);
+                return;
+            }
+
+            const message = event.message || event.error?.message || 'Unknown runtime error';
+            this.logRuntimeIssue('error', message);
+        }, true);
+
+        window.addEventListener('unhandledrejection', (event) => {
+            const reason = event.reason;
+            let message = 'Unhandled promise rejection';
+
+            if (typeof reason === 'string') {
+                message = reason;
+            } else if (reason?.message) {
+                message = reason.message;
+            } else {
+                try {
+                    message = JSON.stringify(reason);
+                } catch (error) {
+                    message = String(reason);
+                }
+            }
+
+            this.logRuntimeIssue('promise', message);
+        });
+    }
+
+    getErrorDigest() {
+        try {
+            const raw = localStorage.getItem(this.errorDigestStorageKey);
+            const parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    saveErrorDigest(entries) {
+        try {
+            localStorage.setItem(this.errorDigestStorageKey, JSON.stringify(entries));
+        } catch (error) {
+            console.warn('⚠️ Could not save error digest:', error);
+        }
+    }
+
+    logRuntimeIssue(source, message) {
+        const normalizedMessage = String(message || 'unknown error').slice(0, 220);
+        const digest = this.getErrorDigest();
+        const now = Date.now();
+        const latest = digest[0];
+
+        if (latest && latest.source === source && latest.message === normalizedMessage) {
+            const latestTs = new Date(latest.timestamp || 0).getTime();
+            if (now - latestTs < 2000) {
+                return;
+            }
+        }
+
+        const nextDigest = [{
+            source,
+            message: normalizedMessage,
+            timestamp: new Date(now).toISOString()
+        }, ...digest].slice(0, this.maxErrorDigestEntries);
+
+        this.saveErrorDigest(nextDigest);
     }
 
     async loadVocabulary(forceLanguage = null) {
