@@ -280,7 +280,11 @@ class HSKApp {
         panel.innerHTML = `
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
                 <strong style="font-size:12px;letter-spacing:.02em;">Health Check</strong>
-                <button id="health-check-refresh" type="button" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px;">Refresh</button>
+                <div style="display:flex;gap:6px;">
+                    <button id="health-check-copy" type="button" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px;">Copy</button>
+                    <button id="health-check-clear" type="button" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px;">Clear</button>
+                    <button id="health-check-refresh" type="button" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px;">Refresh</button>
+                </div>
             </div>
             <div id="health-check-content">Loading...</div>
         `;
@@ -317,6 +321,15 @@ class HSKApp {
 
         panel.querySelector('#health-check-refresh')?.addEventListener('click', () => {
             render();
+        });
+
+        panel.querySelector('#health-check-clear')?.addEventListener('click', () => {
+            this.clearErrorDigest();
+            render();
+        });
+
+        panel.querySelector('#health-check-copy')?.addEventListener('click', async () => {
+            await this.copyHealthSummaryToClipboard();
         });
 
         await render();
@@ -406,6 +419,50 @@ class HSKApp {
         } catch (error) {
             console.warn('⚠️ Could not save error digest:', error);
         }
+    }
+
+    clearErrorDigest() {
+        try {
+            localStorage.removeItem(this.errorDigestStorageKey);
+        } catch (error) {
+            console.warn('⚠️ Could not clear error digest:', error);
+        }
+    }
+
+    buildHealthSummary() {
+        const digest = this.getErrorDigest();
+        const authUser = window.supabaseClient?.getCurrentUser?.();
+
+        const lines = [
+            `time=${new Date().toISOString()}`,
+            `online=${navigator.onLine}`,
+            `language=${this.currentLanguage || 'unknown'}`,
+            `authUser=${authUser?.email || authUser?.id || 'guest'}`,
+            `supabaseConfig=${window.SUPABASE_CONFIG?.url ? 'loaded' : 'missing'}`,
+            `legacyApi=${window.HSK_ENABLE_LEGACY_BACKEND_API === true ? 'enabled' : 'disabled'}`,
+            `errors=${digest.length}`
+        ];
+
+        digest.forEach((entry, index) => {
+            lines.push(`error[${index + 1}]=${entry.timestamp} | ${entry.source} | ${entry.message}`);
+        });
+
+        return lines.join('\n');
+    }
+
+    async copyHealthSummaryToClipboard() {
+        const text = this.buildHealthSummary();
+        try {
+            if (navigator.clipboard?.writeText) {
+                await navigator.clipboard.writeText(text);
+                this.showToast('Health summary copied', 'success', 1500);
+                return;
+            }
+        } catch (error) {
+            console.warn('⚠️ Clipboard API unavailable:', error);
+        }
+
+        this.showToast('Could not copy summary automatically', 'error', 1800);
     }
 
     logRuntimeIssue(source, message) {
