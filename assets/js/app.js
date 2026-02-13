@@ -298,6 +298,7 @@ class HSKApp {
 
             const authUser = window.supabaseClient?.getCurrentUser?.();
             const swVersion = await this.getServiceWorkerVersion();
+            const buildMeta = this.getBuildMetadata();
             const digest = this.getErrorDigest();
             const latestError = digest[0]
                 ? `${digest[0].source}: ${digest[0].message}`
@@ -310,6 +311,8 @@ class HSKApp {
                 ['Supabase config', window.SUPABASE_CONFIG?.url ? 'loaded' : 'missing'],
                 ['SW control', navigator.serviceWorker?.controller ? 'active' : 'none'],
                 ['SW version', swVersion || 'unknown'],
+                ['App version', buildMeta.appVersion],
+                ['Build hash', buildMeta.buildHash],
                 ['Legacy API', window.HSK_ENABLE_LEGACY_BACKEND_API === true ? 'enabled' : 'disabled'],
                 ['Errors (max 10)', String(digest.length)],
                 ['Last error', latestError]
@@ -366,6 +369,22 @@ class HSKApp {
                 resolve(null);
             }
         });
+    }
+
+    getBuildMetadata() {
+        const configured = window.HSK_BUILD_META || {};
+        const versionLabel = document.querySelector('.version')?.textContent || '';
+        const appVersion = configured.appVersion || versionLabel.split('|')[0]?.trim() || 'unknown';
+
+        let buildHash = configured.buildHash || 'unknown';
+        const appScript = document.querySelector('script[src*="assets/js/app.js"]');
+        const appScriptSrc = appScript?.getAttribute('src') || '';
+        const match = appScriptSrc.match(/[?&]v=([^&]+)/);
+        if (match?.[1]) {
+            buildHash = `v${match[1]}`;
+        }
+
+        return { appVersion, buildHash };
     }
 
     setupErrorDigestMonitoring() {
@@ -439,6 +458,7 @@ class HSKApp {
         const authUser = window.supabaseClient?.getCurrentUser?.();
         const swVersion = await this.getServiceWorkerVersion();
         const swControl = navigator.serviceWorker?.controller ? 'active' : 'none';
+        const buildMeta = this.getBuildMetadata();
 
         const lines = [
             `time=${new Date().toISOString()}`,
@@ -448,6 +468,8 @@ class HSKApp {
             `supabaseConfig=${window.SUPABASE_CONFIG?.url ? 'loaded' : 'missing'}`,
             `swControl=${swControl}`,
             `swVersion=${swVersion || 'unknown'}`,
+            `appVersion=${buildMeta.appVersion}`,
+            `buildHash=${buildMeta.buildHash}`,
             `legacyApi=${window.HSK_ENABLE_LEGACY_BACKEND_API === true ? 'enabled' : 'disabled'}`,
             `errors=${digest.length}`
         ];
