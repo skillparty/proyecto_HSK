@@ -303,6 +303,12 @@ class HSKApp {
             const latestError = digest[0]
                 ? `${digest[0].source}: ${digest[0].message}`
                 : 'none';
+            const checklist = this.getHealthChecklist({
+                swVersion,
+                digest,
+                authUser,
+                hasSupabaseConfig: !!window.SUPABASE_CONFIG?.url
+            });
 
             const rows = [
                 ['Online', navigator.onLine ? 'yes' : 'no'],
@@ -318,9 +324,19 @@ class HSKApp {
                 ['Last error', latestError]
             ];
 
+            const statusColor = {
+                ok: '#22c55e',
+                warn: '#f59e0b',
+                error: '#ef4444'
+            };
+
+            const checklistHtml = checklist
+                .map((item) => `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0;"><span style="color:#94a3b8;">${item.label}</span><span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${statusColor[item.status] || '#64748b'};"></span><span>${item.value}</span></span></div>`)
+                .join('');
+
             content.innerHTML = rows
                 .map(([label, value]) => `<div style="display:flex;justify-content:space-between;gap:8px;margin:2px 0;"><span style="color:#94a3b8;">${label}</span><span style="text-align:right;word-break:break-word;">${value}</span></div>`)
-                .join('');
+                .join('') + `<div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(148,163,184,0.25);">${checklistHtml}</div>`;
         };
 
         panel.querySelector('#health-check-refresh')?.addEventListener('click', () => {
@@ -385,6 +401,40 @@ class HSKApp {
         }
 
         return { appVersion, buildHash };
+    }
+
+    getHealthChecklist({ swVersion, digest, authUser, hasSupabaseConfig }) {
+        const isOnline = navigator.onLine;
+        const hasErrors = digest.length > 0;
+        const hasAuthUser = !!authUser;
+
+        return [
+            {
+                label: 'Connectivity',
+                status: isOnline ? 'ok' : 'warn',
+                value: isOnline ? 'OK' : 'Offline'
+            },
+            {
+                label: 'Supabase Config',
+                status: hasSupabaseConfig ? 'ok' : 'error',
+                value: hasSupabaseConfig ? 'OK' : 'Missing'
+            },
+            {
+                label: 'Service Worker',
+                status: swVersion ? 'ok' : 'warn',
+                value: swVersion ? 'Active' : 'Unknown'
+            },
+            {
+                label: 'Auth Session',
+                status: hasAuthUser ? 'ok' : 'warn',
+                value: hasAuthUser ? 'Signed-in' : 'Guest'
+            },
+            {
+                label: 'Runtime Errors',
+                status: hasErrors ? 'warn' : 'ok',
+                value: hasErrors ? `${digest.length} detected` : 'None'
+            }
+        ];
     }
 
     setupErrorDigestMonitoring() {
