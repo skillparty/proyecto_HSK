@@ -192,6 +192,7 @@ class HSKApp {
             this.updateVoiceSelector();
             this.updateHeaderControlMicrocopy();
             this.restoreLastVisitedTab();
+            await this.initHealthCheckPanelIfRequested();
 
             console.log('[✓] HSK Learning App initialized successfully!');
 
@@ -236,6 +237,106 @@ class HSKApp {
                 }
             });
         }
+    }
+
+    isHealthCheckEnabled() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('health') === 'true';
+    }
+
+    async initHealthCheckPanelIfRequested() {
+        if (!this.isHealthCheckEnabled()) {
+            return;
+        }
+
+        const panelId = 'health-check-panel';
+        if (document.getElementById(panelId)) {
+            return;
+        }
+
+        const panel = document.createElement('div');
+        panel.id = panelId;
+        panel.style.cssText = [
+            'position:fixed',
+            'bottom:16px',
+            'right:16px',
+            'z-index:10050',
+            'width:320px',
+            'max-width:calc(100vw - 24px)',
+            'padding:12px',
+            'border-radius:10px',
+            'background:#0f172a',
+            'border:1px solid rgba(148,163,184,0.35)',
+            'color:#e2e8f0',
+            'font:12px/1.4 Inter, system-ui, sans-serif',
+            'box-shadow:0 8px 24px rgba(2,6,23,0.45)'
+        ].join(';');
+
+        panel.innerHTML = `
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                <strong style="font-size:12px;letter-spacing:.02em;">Health Check</strong>
+                <button id="health-check-refresh" type="button" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px;">Refresh</button>
+            </div>
+            <div id="health-check-content">Loading...</div>
+        `;
+
+        document.body.appendChild(panel);
+
+        const render = async () => {
+            const content = panel.querySelector('#health-check-content');
+            if (!content) return;
+
+            const authUser = window.supabaseClient?.getCurrentUser?.();
+            const swVersion = await this.getServiceWorkerVersion();
+
+            const rows = [
+                ['Online', navigator.onLine ? 'yes' : 'no'],
+                ['Language', this.currentLanguage || 'unknown'],
+                ['Auth user', authUser?.email || authUser?.id || 'guest'],
+                ['Supabase config', window.SUPABASE_CONFIG?.url ? 'loaded' : 'missing'],
+                ['SW control', navigator.serviceWorker?.controller ? 'active' : 'none'],
+                ['SW version', swVersion || 'unknown'],
+                ['Legacy API', window.HSK_ENABLE_LEGACY_BACKEND_API === true ? 'enabled' : 'disabled']
+            ];
+
+            content.innerHTML = rows
+                .map(([label, value]) => `<div style="display:flex;justify-content:space-between;gap:8px;margin:2px 0;"><span style="color:#94a3b8;">${label}</span><span style="text-align:right;word-break:break-word;">${value}</span></div>`)
+                .join('');
+        };
+
+        panel.querySelector('#health-check-refresh')?.addEventListener('click', () => {
+            render();
+        });
+
+        await render();
+    }
+
+    async getServiceWorkerVersion() {
+        if (!('serviceWorker' in navigator)) {
+            return null;
+        }
+
+        const controller = navigator.serviceWorker.controller;
+        if (!controller) {
+            return null;
+        }
+
+        return new Promise((resolve) => {
+            const channel = new MessageChannel();
+            const timeoutId = setTimeout(() => resolve(null), 1200);
+
+            channel.port1.onmessage = (event) => {
+                clearTimeout(timeoutId);
+                resolve(event.data?.version || null);
+            };
+
+            try {
+                controller.postMessage({ type: 'GET_VERSION' }, [channel.port2]);
+            } catch (error) {
+                clearTimeout(timeoutId);
+                resolve(null);
+            }
+        });
     }
 
     async loadVocabulary(forceLanguage = null) {
