@@ -4,6 +4,7 @@ class BackendAuth {
         this.currentUser = null;
         this.accessToken = null;
         this.apiBaseUrl = window.location.origin;
+        this.backendApiDisabledLogged = false;
 
         // Initialize auth system after DOM is ready
         if (document.readyState === 'loading') {
@@ -12,6 +13,11 @@ class BackendAuth {
             // DOM is already ready
             setTimeout(() => this.init(), 100);
         }
+    }
+
+    isStaticHosting() {
+        const hostname = window.location.hostname;
+        return hostname.includes('github.io') || window.location.protocol === 'file:';
     }
 
     t(key, replacements = {}) {
@@ -181,6 +187,19 @@ class BackendAuth {
 
     // Make authenticated API call
     async apiCall(endpoint, options = {}) {
+        if (endpoint.startsWith('/api/') && this.isStaticHosting()) {
+            if (!this.backendApiDisabledLogged) {
+                console.info('ℹ️ Backend API disabled on static hosting; using local/Supabase flow.');
+                this.backendApiDisabledLogged = true;
+            }
+
+            return {
+                ok: false,
+                status: 204,
+                json: async () => ({ skipped: true, reason: 'static-hosting-no-backend' })
+            };
+        }
+
         const defaultOptions = {
             headers: {
                 'Content-Type': 'application/json',
