@@ -652,6 +652,25 @@
                 }
             }
         }, 1000);
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    const appBasePath = window.location.pathname.replace(/\/[^/]*$/, '/');
+                    const swUrl = `${appBasePath}config/sw.js?v=3`;
+
+                    const registration = await navigator.serviceWorker.register(swUrl, {
+                        scope: appBasePath
+                    });
+
+                    if (registration.waiting) {
+                        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                    }
+                } catch (error) {
+                    console.warn('Service Worker registration skipped:', error);
+                }
+            });
+        }
     </script>
 </body>
 
