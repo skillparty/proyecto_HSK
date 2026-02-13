@@ -125,20 +125,8 @@ class SupabaseProgressSync {
             return this.userEndpoint;
         }
 
-        const usersResult = await this.makeSupabaseRequest('users?select=id&limit=1', {}, { silentStatuses: [401, 403, 404] });
-        if (usersResult.success || usersResult.status !== 404) {
-            this.userEndpoint = 'users';
-            return this.userEndpoint;
-        }
-
-        const profilesResult = await this.makeSupabaseRequest('user_profiles?select=id&limit=1', {}, { silentStatuses: [401, 403, 404] });
-        if (profilesResult.success || profilesResult.status !== 404) {
-            this.userEndpoint = 'user_profiles';
-            return this.userEndpoint;
-        }
-
-        console.warn('⚠️ No compatible user endpoint found (users/user_profiles). Using local-only sync.');
-        return null;
+        this.userEndpoint = 'user_profiles';
+        return this.userEndpoint;
     }
 
     // Create or update user in Supabase
@@ -155,9 +143,9 @@ class SupabaseProgressSync {
             }
 
             const isProfilesEndpoint = userEndpoint === 'user_profiles';
-            const lookupField = isProfilesEndpoint ? 'user_id' : 'github_id';
+            const lookupField = 'user_id';
 
-            // First, try to find existing user by github_id
+            // First, try to find existing user by auth user id
             const existingResult = await this.makeSupabaseRequest(`${userEndpoint}?${lookupField}=eq.${githubUser.id}`);
 
             if (existingResult.success && existingResult.data.length > 0) {
@@ -182,9 +170,7 @@ class SupabaseProgressSync {
                         updated_at: new Date().toISOString()
                     };
 
-                const updateFilter = isProfilesEndpoint
-                    ? `user_id=eq.${githubUser.id}`
-                    : `id=eq.${this.currentUser.id}`;
+                const updateFilter = `user_id=eq.${githubUser.id}`;
 
                 const updateResult = await this.makeSupabaseRequest(`${userEndpoint}?${updateFilter}`, {
                     method: 'PATCH',
@@ -206,24 +192,14 @@ class SupabaseProgressSync {
             } else {
                 // User doesn't exist, create new one
                 console.log('👤 New user, creating...');
-                const userData = isProfilesEndpoint
-                    ? {
-                        user_id: githubUser.id,
-                        username: githubUser.login || githubUser.username,
-                        display_name: githubUser.name || githubUser.display_name,
-                        avatar_url: githubUser.avatar_url,
-                        github_username: githubUser.login || githubUser.username,
-                        updated_at: new Date().toISOString()
-                    }
-                    : {
-                        github_id: githubUser.id,
-                        username: githubUser.login || githubUser.username,
-                        email: githubUser.email,
-                        avatar_url: githubUser.avatar_url,
-                        display_name: githubUser.name || githubUser.display_name,
-                        last_login: new Date().toISOString(),
-                        updated_at: new Date().toISOString()
-                    };
+                const userData = {
+                    user_id: githubUser.id,
+                    username: githubUser.login || githubUser.username,
+                    display_name: githubUser.name || githubUser.display_name,
+                    avatar_url: githubUser.avatar_url,
+                    github_username: githubUser.login || githubUser.username,
+                    updated_at: new Date().toISOString()
+                };
 
                 const createResult = await this.makeSupabaseRequest(userEndpoint, {
                     method: 'POST',
@@ -267,22 +243,22 @@ class SupabaseProgressSync {
         }
 
         try {
+            const hskLevel = progressData.hskLevel || 1;
             const syncData = {
                 user_id: this.currentUser.id,
-                total_studied: progressData.totalStudied || 0,
+                hsk_level: hskLevel,
+                total_words_studied: progressData.totalStudied || 0,
                 correct_answers: progressData.correctAnswers || 0,
                 incorrect_answers: progressData.incorrectAnswers || 0,
                 current_streak: progressData.currentStreak || 0,
                 best_streak: progressData.bestStreak || 0,
-                quizzes_completed: progressData.quizzesCompleted || 0,
                 total_time_spent: progressData.totalTimeSpent || 0,
-                study_streak: progressData.studyStreak || 0,
                 last_study_date: progressData.lastStudyDate || new Date().toISOString(),
                 updated_at: new Date().toISOString()
             };
 
             // Try to update existing progress first, then insert if not exists
-            let result = await this.makeSupabaseRequest(`user_progress?user_id=eq.${this.currentUser.id}`, {
+            let result = await this.makeSupabaseRequest(`user_progress?user_id=eq.${this.currentUser.id}&hsk_level=eq.${hskLevel}`, {
                 method: 'PATCH',
                 body: JSON.stringify(syncData)
             });
@@ -326,16 +302,18 @@ class SupabaseProgressSync {
             const syncData = {
                 user_id: this.currentUser.id,
                 hsk_level: hskLevel,
-                words_studied: progressData.wordsStudied || 0,
-                words_correct: progressData.wordsCorrect || 0,
-                words_incorrect: progressData.wordsIncorrect || 0,
-                level_completed: progressData.levelCompleted || false,
-                completion_date: progressData.completionDate || null,
+                total_words_studied: progressData.wordsStudied || 0,
+                correct_answers: progressData.wordsCorrect || 0,
+                incorrect_answers: progressData.wordsIncorrect || 0,
+                current_streak: progressData.currentStreak || 0,
+                best_streak: progressData.bestStreak || 0,
+                total_time_spent: progressData.totalTimeSpent || 0,
+                last_study_date: progressData.lastStudyDate || new Date().toISOString(),
                 updated_at: new Date().toISOString()
             };
 
             // Try to update existing HSK progress first, then insert if not exists
-            let result = await this.makeSupabaseRequest(`hsk_level_progress?user_id=eq.${this.currentUser.id}&hsk_level=eq.${hskLevel}`, {
+            let result = await this.makeSupabaseRequest(`user_progress?user_id=eq.${this.currentUser.id}&hsk_level=eq.${hskLevel}`, {
                 method: 'PATCH',
                 body: JSON.stringify(syncData)
             });
@@ -343,7 +321,7 @@ class SupabaseProgressSync {
             // If no rows were updated, create new record
             if (result.success && (!result.data || result.data.length === 0)) {
                 console.log(`📊 No existing HSK ${hskLevel} progress found, creating new record...`);
-                result = await this.makeSupabaseRequest('hsk_level_progress', {
+                result = await this.makeSupabaseRequest('user_progress', {
                     method: 'POST',
                     body: JSON.stringify(syncData)
                 });
@@ -475,7 +453,24 @@ class SupabaseProgressSync {
             const result = await this.makeSupabaseRequest(`user_progress?user_id=eq.${this.currentUser.id}`);
 
             if (result.success) {
-                const data = result.data.length > 0 ? result.data[0] : null;
+                const rows = result.data || [];
+                const data = rows.length > 0
+                    ? rows.reduce((acc, row) => ({
+                        totalStudied: acc.totalStudied + (row.total_words_studied || 0),
+                        correctAnswers: acc.correctAnswers + (row.correct_answers || 0),
+                        incorrectAnswers: acc.incorrectAnswers + (row.incorrect_answers || 0),
+                        currentStreak: Math.max(acc.currentStreak, row.current_streak || 0),
+                        bestStreak: Math.max(acc.bestStreak, row.best_streak || 0),
+                        totalTimeSpent: acc.totalTimeSpent + (row.total_time_spent || 0)
+                    }), {
+                        totalStudied: 0,
+                        correctAnswers: 0,
+                        incorrectAnswers: 0,
+                        currentStreak: 0,
+                        bestStreak: 0,
+                        totalTimeSpent: 0
+                    })
+                    : null;
                 console.log('📊 User progress retrieved:', data ? 'Found' : 'Not found');
                 return { success: true, data };
             }
@@ -489,10 +484,11 @@ class SupabaseProgressSync {
     }
 
     // Get leaderboard data
-    async getLeaderboard(type = 'total_studied', limit = 50) {
+    async getLeaderboard(type = 'total_words', limit = 50) {
         try {
+            const mappedType = type === 'total_studied' ? 'total_words' : type;
             const result = await this.makeSupabaseRequest(
-                `user_progress?select=*,users!inner(username,avatar_url,display_name)&order=${type}.desc&limit=${limit}`
+                `leaderboard_view?select=*&order=${mappedType}.desc&limit=${limit}`
             );
 
             if (result.success) {
