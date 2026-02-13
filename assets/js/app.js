@@ -434,9 +434,11 @@ class HSKApp {
         }
     }
 
-    buildHealthSummary() {
+    async buildHealthSummary() {
         const digest = this.getErrorDigest();
         const authUser = window.supabaseClient?.getCurrentUser?.();
+        const swVersion = await this.getServiceWorkerVersion();
+        const swControl = navigator.serviceWorker?.controller ? 'active' : 'none';
 
         const lines = [
             `time=${new Date().toISOString()}`,
@@ -444,6 +446,8 @@ class HSKApp {
             `language=${this.currentLanguage || 'unknown'}`,
             `authUser=${authUser?.email || authUser?.id || 'guest'}`,
             `supabaseConfig=${window.SUPABASE_CONFIG?.url ? 'loaded' : 'missing'}`,
+            `swControl=${swControl}`,
+            `swVersion=${swVersion || 'unknown'}`,
             `legacyApi=${window.HSK_ENABLE_LEGACY_BACKEND_API === true ? 'enabled' : 'disabled'}`,
             `errors=${digest.length}`
         ];
@@ -456,7 +460,7 @@ class HSKApp {
     }
 
     async copyHealthSummaryToClipboard() {
-        const text = this.buildHealthSummary();
+        const text = await this.buildHealthSummary();
         try {
             if (navigator.clipboard?.writeText) {
                 await navigator.clipboard.writeText(text);
@@ -471,25 +475,29 @@ class HSKApp {
     }
 
     downloadHealthSummaryFile() {
-        const text = this.buildHealthSummary();
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        const fileName = `hsk-health-${timestamp}.txt`;
+        this.buildHealthSummary().then((text) => {
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const fileName = `hsk-health-${timestamp}.txt`;
 
-        try {
-            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const anchor = document.createElement('a');
-            anchor.href = url;
-            anchor.download = fileName;
-            document.body.appendChild(anchor);
-            anchor.click();
-            anchor.remove();
-            URL.revokeObjectURL(url);
-            this.showToast('Health summary downloaded', 'success', 1500);
-        } catch (error) {
-            console.warn('⚠️ Could not download summary:', error);
+            try {
+                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const anchor = document.createElement('a');
+                anchor.href = url;
+                anchor.download = fileName;
+                document.body.appendChild(anchor);
+                anchor.click();
+                anchor.remove();
+                URL.revokeObjectURL(url);
+                this.showToast('Health summary downloaded', 'success', 1500);
+            } catch (error) {
+                console.warn('⚠️ Could not download summary:', error);
+                this.showToast('Could not download summary', 'error', 1800);
+            }
+        }).catch((error) => {
+            console.warn('⚠️ Could not build health summary:', error);
             this.showToast('Could not download summary', 'error', 1800);
-        }
+        });
     }
 
     logRuntimeIssue(source, message) {
