@@ -10,6 +10,7 @@ class SupabaseProgressSync {
         this.isOnline = navigator.onLine;
         this.pendingUpdates = [];
         this.currentUser = null;
+        this.userEndpoint = null;
 
         if (!this.supabaseUrl || !this.supabaseKey) {
             console.warn('⚠️ Supabase Progress Sync: Missing config. Ensure supabase-config.js loads first.');
@@ -44,8 +45,9 @@ class SupabaseProgressSync {
     }
 
     // Make authenticated request to Supabase
-    async makeSupabaseRequest(endpoint, options = {}) {
+    async makeSupabaseRequest(endpoint, options = {}, requestOptions = {}) {
         const url = `${this.supabaseUrl}/rest/v1/${endpoint}`;
+        const silentStatuses = requestOptions.silentStatuses || [];
 
         const defaultHeaders = {
             'apikey': this.supabaseKey,
@@ -67,6 +69,9 @@ class SupabaseProgressSync {
 
             if (!response.ok) {
                 const errorText = await response.text();
+                if (silentStatuses.includes(response.status)) {
+                    return { success: false, status: response.status, error: errorText, data: [] };
+                }
                 console.error('❌ Supabase HTTP error:', {
                     status: response.status,
                     statusText: response.statusText,
@@ -97,6 +102,27 @@ class SupabaseProgressSync {
         }
     }
 
+    async resolveUserEndpoint() {
+        if (this.userEndpoint) {
+            return this.userEndpoint;
+        }
+
+        const usersResult = await this.makeSupabaseRequest('users?select=id&limit=1', {}, { silentStatuses: [404] });
+        if (usersResult.success || usersResult.status !== 404) {
+            this.userEndpoint = 'users';
+            return this.userEndpoint;
+        }
+
+        const profilesResult = await this.makeSupabaseRequest('user_profiles?select=id&limit=1', {}, { silentStatuses: [404] });
+        if (profilesResult.success || profilesResult.status !== 404) {
+            this.userEndpoint = 'user_profiles';
+            return this.userEndpoint;
+        }
+
+        console.warn('⚠️ No compatible user endpoint found (users/user_profiles). Using local-only sync.');
+        return null;
+    }
+
     // Create or update user in Supabase
     async syncUser(githubUser) {
         if (!this.isOnline) {
@@ -105,47 +131,83 @@ class SupabaseProgressSync {
         }
 
         try {
+            const userEndpoint = await this.resolveUserEndpoint();
+            if (!userEndpoint) {
+                return { success: false, error: 'No compatible user endpoint found' };
+            }
+
+            const isProfilesEndpoint = userEndpoint === 'user_profiles';
+            const lookupField = isProfilesEndpoint ? 'user_id' : 'github_id';
+
             // First, try to find existing user by github_id
-            const existingResult = await this.makeSupabaseRequest(`users?github_id=eq.${githubUser.id}`);
+            const existingResult = await this.makeSupabaseRequest(`${userEndpoint}?${lookupField}=eq.${githubUser.id}`);
 
             if (existingResult.success && existingResult.data.length > 0) {
                 // User exists, update it
                 console.log('👤 Existing user found, updating...');
                 this.currentUser = existingResult.data[0];
 
-                const updateData = {
-                    username: githubUser.login || githubUser.username,
-                    email: githubUser.email,
-                    avatar_url: githubUser.avatar_url,
-                    display_name: githubUser.name || githubUser.display_name,
-                    last_login: new Date().toISOString(),
-                    updated_at: new Date().toISOString()
-                };
+                const updateData = isProfilesEndpoint
+                    ? {
+                        username: githubUser.login || githubUser.username,
+                        display_name: githubUser.name || githubUser.display_name,
+                        avatar_url: githubUser.avatar_url,
+                        github_username: githubUser.login || githubUser.username,
+                        updated_at: new Date().toISOString()
+                    }
+                    : {
+                        username: githubUser.login || githubUser.username,
+                        email: githubUser.email,
+                        avatar_url: githubUser.avatar_url,
+                        display_name: githubUser.name || githubUser.display_name,
+                        last_login: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    };
 
-                const updateResult = await this.makeSupabaseRequest(`users?id=eq.${this.currentUser.id}`, {
+                const updateFilter = isProfilesEndpoint
+                    ? `user_id=eq.${githubUser.id}`
+                    : `id=eq.${this.currentUser.id}`;
+
+                const updateResult = await this.makeSupabaseRequest(`${userEndpoint}?${updateFilter}`, {
                     method: 'PATCH',
                     body: JSON.stringify(updateData)
                 });
 
                 if (updateResult.success) {
                     console.log('✅ User updated in Supabase');
-                    return { success: true, data: this.currentUser };
+                    return {
+                        success: true,
+                        data: {
+                            ...githubUser,
+                            user_id: githubUser.id,
+                            profile_id: isProfilesEndpoint ? this.currentUser.id : null
+                        }
+                    };
                 }
 
             } else {
                 // User doesn't exist, create new one
                 console.log('👤 New user, creating...');
-                const userData = {
-                    github_id: githubUser.id,
-                    username: githubUser.login || githubUser.username,
-                    email: githubUser.email,
-                    avatar_url: githubUser.avatar_url,
-                    display_name: githubUser.name || githubUser.display_name,
-                    last_login: new Date().toISOString(),
-                    updated_at: new Date().toISOString()
-                };
+                const userData = isProfilesEndpoint
+                    ? {
+                        user_id: githubUser.id,
+                        username: githubUser.login || githubUser.username,
+                        display_name: githubUser.name || githubUser.display_name,
+                        avatar_url: githubUser.avatar_url,
+                        github_username: githubUser.login || githubUser.username,
+                        updated_at: new Date().toISOString()
+                    }
+                    : {
+                        github_id: githubUser.id,
+                        username: githubUser.login || githubUser.username,
+                        email: githubUser.email,
+                        avatar_url: githubUser.avatar_url,
+                        display_name: githubUser.name || githubUser.display_name,
+                        last_login: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    };
 
-                const createResult = await this.makeSupabaseRequest('users', {
+                const createResult = await this.makeSupabaseRequest(userEndpoint, {
                     method: 'POST',
                     body: JSON.stringify(userData)
                 });
@@ -153,7 +215,14 @@ class SupabaseProgressSync {
                 if (createResult.success && createResult.data.length > 0) {
                     console.log('✅ User created in Supabase');
                     this.currentUser = createResult.data[0];
-                    return createResult;
+                    return {
+                        success: true,
+                        data: {
+                            ...githubUser,
+                            user_id: githubUser.id,
+                            profile_id: isProfilesEndpoint ? this.currentUser.id : null
+                        }
+                    };
                 }
             }
 

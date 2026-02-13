@@ -3293,7 +3293,7 @@ class HSKApp {
 
         // Force background image (Visual Redesign Fix)
         // Use Base64 data if available to bypass all loading issues
-        let bgSource = "url('/assets/images/bg-fusion.png')";
+        let bgSource = "url('assets/images/bg-fusion.png')";
 
         if (window.bgFusionBase64) {
             console.log('🖼️ Using Base64 background image');
