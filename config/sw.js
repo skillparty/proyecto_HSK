@@ -7,14 +7,20 @@ const DYNAMIC_CACHE = 'hsk-dynamic-v2.2.0';
 const STATIC_FILES = [
     './',
     './index.html',
-    './styles-v2.css',
-    './app.js',
-    './translations.js',
-    './manifest.json',
+    './assets/css/styles-v2.css',
+    './assets/css/styles-final.css',
+    './assets/css/styles-planetscale.css',
+    './assets/css/matrix-game-styles.css',
+    './assets/css/leaderboard-styles.css',
+    './assets/css/user-profile-styles.css',
+    './assets/js/app.js',
+    './assets/js/translations.js',
+    './config/manifest.json',
     './dev_logo.png',
-    './hsk_vocabulary.json',
+    './assets/data/hsk_vocabulary_spanish.json',
+    './assets/data/hsk_vocabulary.json',
     // Google Fonts
-    'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap'
+    'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap'
 ];
 
 // Install event
@@ -94,12 +100,12 @@ self.addEventListener('fetch', event => {
                     })
                     .catch(error => {
                         console.log('SW: Fetch failed, serving offline page:', error);
-                        
+
                         // Return offline fallback for HTML pages
                         if (event.request.destination === 'document') {
                             return caches.match('./index.html');
                         }
-                        
+
                         // Return a generic offline response for other resources
                         return new Response('Offline content not available', {
                             status: 503,
@@ -161,7 +167,7 @@ self.addEventListener('notificationclick', event => {
     event.notification.close();
 
     let url = './index.html';
-    
+
     if (event.action === 'practice') {
         url = './index.html?tab=practice';
     } else if (event.action === 'quiz') {
@@ -180,7 +186,7 @@ self.addEventListener('message', event => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
     }
-    
+
     if (event.data && event.data.type === 'GET_VERSION') {
         event.ports[0].postMessage({
             version: CACHE_NAME
@@ -192,9 +198,9 @@ self.addEventListener('message', event => {
 async function updateCache() {
     try {
         const cache = await caches.open(STATIC_CACHE);
-        const response = await fetch('./hsk_vocabulary.json');
+        const response = await fetch('./assets/data/hsk_vocabulary.json');
         if (response.ok) {
-            await cache.put('./hsk_vocabulary.json', response);
+            await cache.put('./assets/data/hsk_vocabulary.json', response);
             console.log('SW: Updated vocabulary cache');
         }
     } catch (error) {

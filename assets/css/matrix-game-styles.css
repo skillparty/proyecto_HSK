@@ -875,3 +875,201 @@
         font-size: 1.2rem;
     }
 }
+
+/* ============================================================
+   MATRIX CONSISTENCY PASS (UX-012 visual alignment)
+   ============================================================ */
+.matrix-game-container {
+    padding: 16px;
+}
+
+.matrix-config-screen,
+.matrix-game-screen,
+.matrix-results-screen {
+    background: var(--bg-panel, rgba(15, 23, 42, 0.78));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg, 24px);
+    box-shadow: var(--shadow-lg, 0 10px 24px rgba(0, 0, 0, 0.22));
+    backdrop-filter: var(--backdrop-blur, blur(16px));
+}
+
+.matrix-title,
+.results-title,
+.diff-name,
+.stat-value,
+.result-value {
+    color: var(--text-main, #f8fafc);
+}
+
+.matrix-subtitle,
+.target-label,
+.result-label,
+.stat-label,
+.diff-desc,
+.score-date,
+.no-scores {
+    color: var(--text-muted, #94a3b8);
+}
+
+.matrix-settings,
+.high-scores-section,
+.target-word,
+.result-card {
+    background: var(--bg-card, rgba(30, 41, 59, 0.78));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md, 12px);
+    box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.06));
+}
+
+.result-card.highlight {
+    transform: none;
+    border-color: rgba(217, 78, 59, 0.45);
+    box-shadow: 0 0 0 1px rgba(217, 78, 59, 0.35), 0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+.matrix-select,
+.control-btn,
+.diff-btn,
+.action-btn.secondary {
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-main, #f8fafc);
+}
+
+.matrix-select:hover,
+.control-btn:hover,
+.diff-btn:hover,
+.action-btn.secondary:hover {
+    border-color: rgba(217, 78, 59, 0.45);
+    background: rgba(15, 23, 42, 0.72);
+}
+
+.diff-btn.active {
+    background: rgba(217, 78, 59, 0.22);
+    border-color: rgba(217, 78, 59, 0.6);
+    box-shadow: 0 0 0 1px rgba(217, 78, 59, 0.35);
+    transform: none;
+}
+
+.matrix-start-btn,
+.action-btn.primary {
+    background: var(--primary, #D94E3B);
+    border: 1px solid transparent;
+    color: #fff;
+    border-radius: var(--radius-md, 12px);
+    box-shadow: 0 4px 12px rgba(217, 78, 59, 0.28);
+}
+
+.matrix-start-btn:hover,
+.action-btn.primary:hover {
+    background: var(--primary-hover, #B93D2B);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(217, 78, 59, 0.33);
+}
+
+.matrix-char {
+    background: rgba(15, 23, 42, 0.6);
+    color: var(--text-main, #f8fafc);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+}
+
+.matrix-char:hover {
+    transform: translateY(-1px);
+    border-color: rgba(217, 78, 59, 0.55);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(30, 41, 59, 0.9);
+}
+
+.matrix-char.correct {
+    background: rgba(16, 185, 129, 0.22);
+    border-color: rgba(16, 185, 129, 0.65);
+}
+
+.matrix-char.wrong {
+    background: rgba(239, 68, 68, 0.22);
+    border-color: rgba(239, 68, 68, 0.65);
+}
+
+.matrix-char.highlight-correct {
+    background: rgba(234, 179, 8, 0.2);
+    border-color: rgba(234, 179, 8, 0.7);
+    box-shadow: none;
+}
+
+.feedback-overlay {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: var(--shadow-lg, 0 10px 24px rgba(0, 0, 0, 0.25));
+}
+
+.feedback-overlay.correct {
+    background: var(--success, #10b981);
+}
+
+.feedback-overlay.wrong {
+    background: var(--error, #ef4444);
+}
+
+.new-record {
+    background: rgba(234, 179, 8, 0.22);
+    border: 1px solid rgba(234, 179, 8, 0.55);
+    color: var(--text-main, #f8fafc);
+    animation: none;
+}
+
+.score-item {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.score-rank {
+    color: var(--accent, #EAB308);
+}
+
+.score-accuracy {
+    color: var(--success, #10b981);
+}
+
+@media (max-width: 768px) {
+    .matrix-select,
+    .control-btn,
+    .diff-btn,
+    .matrix-start-btn,
+    .action-btn {
+        min-height: 44px;
+    }
+
+    .diff-btn {
+        padding: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .matrix-game-container {
+        padding: 12px;
+    }
+
+    .score-item {
+        grid-template-columns: 40px 1fr;
+        grid-template-areas:
+            "rank value"
+            "rank meta";
+        gap: 6px 10px;
+        align-items: center;
+    }
+
+    .score-rank {
+        grid-area: rank;
+    }
+
+    .score-value {
+        grid-area: value;
+    }
+
+    .score-accuracy,
+    .score-date {
+        grid-area: meta;
+        text-align: left;
+        font-size: 0.85rem;
+    }
+}

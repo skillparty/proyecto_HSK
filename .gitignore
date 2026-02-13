@@ -61,6 +61,3 @@ test-*.js
 # Legacy/deprecated files
 *.old
 *.deprecated
-
-# Script outputs
-cleanup-script.sh

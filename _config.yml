@@ -7,19 +7,12 @@ plugins: []
 
 # Exclude unnecessary files from GitHub Pages
 exclude:
-  - server.js
   - package*.json
   - README.md
   - "*.backup"
-  - "*.js.backup"
-  - test-*.html
-  - diagnostic-*.js
-  - diagnostic-*.html
-  - fix-*.js
-  - diagnose-*.js
-  - clear-cache-fix.js
-  - compatibility*.js
-  - debug.html
-  - dev_logo.png
   - .github/
   - node_modules/
+  - .env
+  - .env.example
+  - database/
+  - docs/

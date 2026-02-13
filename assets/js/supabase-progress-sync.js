@@ -3,12 +3,18 @@
 
 class SupabaseProgressSync {
     constructor() {
-        this.supabaseUrl = 'https://zywcwdxfsgatuotqibsx.supabase.co';
-        this.supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5d2N3ZHhmc2dhdHVvdHFpYnN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2MzU4NTYsImV4cCI6MjA3NDIxMTg1Nn0.uV7ZBoDkq_rI9u4BevhyxETHlA_a4d1pTWaoCsGlApo';
+        // Read credentials from centralized config
+        const config = window.SUPABASE_CONFIG || {};
+        this.supabaseUrl = config.url || '';
+        this.supabaseKey = config.anonKey || '';
         this.isOnline = navigator.onLine;
         this.pendingUpdates = [];
         this.currentUser = null;
-        
+
+        if (!this.supabaseUrl || !this.supabaseKey) {
+            console.warn('⚠️ Supabase Progress Sync: Missing config. Ensure supabase-config.js loads first.');
+        }
+
         this.setupEventListeners();
         console.log('🔄 Supabase Progress Sync initialized');
     }
@@ -40,7 +46,7 @@ class SupabaseProgressSync {
     // Make authenticated request to Supabase
     async makeSupabaseRequest(endpoint, options = {}) {
         const url = `${this.supabaseUrl}/rest/v1/${endpoint}`;
-        
+
         const defaultHeaders = {
             'apikey': this.supabaseKey,
             'Authorization': `Bearer ${this.supabaseKey}`,
@@ -58,7 +64,7 @@ class SupabaseProgressSync {
 
         try {
             const response = await fetch(url, config);
-            
+
             if (!response.ok) {
                 const errorText = await response.text();
                 console.error('❌ Supabase HTTP error:', {
@@ -101,12 +107,12 @@ class SupabaseProgressSync {
         try {
             // First, try to find existing user by github_id
             const existingResult = await this.makeSupabaseRequest(`users?github_id=eq.${githubUser.id}`);
-            
+
             if (existingResult.success && existingResult.data.length > 0) {
                 // User exists, update it
                 console.log('👤 Existing user found, updating...');
                 this.currentUser = existingResult.data[0];
-                
+
                 const updateData = {
                     username: githubUser.login || githubUser.username,
                     email: githubUser.email,
@@ -125,7 +131,7 @@ class SupabaseProgressSync {
                     console.log('✅ User updated in Supabase');
                     return { success: true, data: this.currentUser };
                 }
-                
+
             } else {
                 // User doesn't exist, create new one
                 console.log('👤 New user, creating...');
@@ -340,9 +346,9 @@ class SupabaseProgressSync {
             let result = await this.makeSupabaseRequest(`study_heatmap?user_id=eq.${this.currentUser.id}&study_date=eq.${date}`, {
                 method: 'PATCH',
                 body: JSON.stringify({
-                    words_studied: syncData.words_studied + (syncData.words_studied || 0),
-                    minutes_studied: syncData.minutes_studied + (syncData.minutes_studied || 0),
-                    sessions_count: syncData.sessions_count + (syncData.sessions_count || 0),
+                    words_studied: syncData.words_studied,
+                    minutes_studied: syncData.minutes_studied,
+                    sessions_count: syncData.sessions_count,
                     updated_at: syncData.updated_at
                 })
             });
@@ -380,7 +386,7 @@ class SupabaseProgressSync {
         try {
             console.log('🔍 Getting progress for user ID:', this.currentUser.id);
             const result = await this.makeSupabaseRequest(`user_progress?user_id=eq.${this.currentUser.id}`);
-            
+
             if (result.success) {
                 const data = result.data.length > 0 ? result.data[0] : null;
                 console.log('📊 User progress retrieved:', data ? 'Found' : 'Not found');
@@ -442,10 +448,10 @@ class SupabaseProgressSync {
                         await this.updateStudyHeatmap(update.date, update.data);
                         break;
                 }
-                
+
                 // Small delay between requests to avoid rate limiting
                 await new Promise(resolve => setTimeout(resolve, 100));
-                
+
             } catch (error) {
                 console.error('❌ Failed to sync update:', error);
                 // Re-add to pending if failed

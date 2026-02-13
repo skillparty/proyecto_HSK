@@ -1,45 +1,23 @@
 {
   "name": "hsk-learning-app",
   "version": "3.1.0",
-  "description": "HSK Chinese Learning Application with GitHub OAuth Authentication",
-  "main": "server.js",
-  "type": "module",
+  "description": "HSK Chinese Learning Application - Static site with GitHub Pages and Supabase",
   "scripts": {
-    "start": "node server.js",
-    "build": "echo 'Build completed'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx serve . -p 3369",
+    "test": "echo \"No tests configured\" && exit 0"
   },
   "keywords": [
     "hsk",
     "chinese",
     "learning",
     "flashcards",
-    "oauth",
-    "github"
+    "github-pages",
+    "supabase"
   ],
   "author": "Alejandro Rollano",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "axios": "^1.5.0",
-    "sqlite3": "^5.1.6",
-    "bcrypt": "^5.1.1",
-    "jsonwebtoken": "^9.0.2",
-    "serverless-http": "^3.2.0",
-    "express-rate-limit": "^6.10.0",
-    "compression": "^1.7.4",
-    "helmet": "^7.0.0",
-    "node-fetch": "^2.6.7",
-    "@supabase/supabase-js": "^2.39.0",
-    "cookie-parser": "^1.4.6"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  },
-  "engines": {
-    "node": ">=16.0.0"
+    "@playwright/test": "^1.58.2",
+    "@supabase/supabase-js": "^2.39.0"
   }
 }

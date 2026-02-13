@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,41 +8,45 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Confuc10 ++ - Advanced Chinese Learning Platform</title>
-    
+
     <!-- PWA Meta Tags -->
     <meta name="description" content="Modern HSK Chinese learning app with flashcards, quizzes, and progress tracking">
     <meta name="theme-color" content="#e11d48">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="HSK Learning">
-    
+
     <!-- Icons -->
     <link rel="icon" type="image/png" href="assets/images/logo_appDM.png">
     <link rel="apple-touch-icon" href="assets/images/logo_appLM.png">
-    
+
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/styles-v2.css?v=10">
-    <link rel="stylesheet" href="assets/css/styles-final.css?v=1">
-    <link rel="stylesheet" href="assets/css/styles-planetscale.css?v=10&t=1737900000" id="main-stylesheet">
-    <link rel="stylesheet" href="assets/css/matrix-game-styles.css?v=1">
-    <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=1">
-    <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=1">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" id="fonts-stylesheet">
-    
+    <!-- <link rel="stylesheet" href="assets/css/styles-v2.css?v=10"> -->
+    <!-- <link rel="stylesheet" href="assets/css/styles-final.css?v=1"> -->
+    <!-- <link rel="stylesheet" href="assets/css/styles-planetscale-v17.css" id="main-stylesheet-old"> -->
+    <link rel="stylesheet" href="assets/css/styles-professional.css?v=8" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/matrix-game-styles.css?v=2">
+    <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=2">
+    <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=2">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet" id="fonts-stylesheet">
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="config/manifest.json">
-    
+
     <!-- Resource Validation Script -->
     <script>
         // Validate critical resources on load
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             console.log('🔍 Validating critical resources...');
-            
+
             // Check if main stylesheet loaded
             const mainStylesheet = document.getElementById('main-stylesheet');
             if (mainStylesheet && !mainStylesheet.sheet) {
                 console.warn('⚠️ Main stylesheet failed to load, applying fallback styles');
-                
+
                 // Create fallback styles
                 const fallbackCSS = document.createElement('style');
                 fallbackCSS.textContent = `
@@ -52,14 +57,14 @@
                 `;
                 document.head.appendChild(fallbackCSS);
             }
-            
+
             console.log('[✓] Resource validation complete');
         });
-        
+
         // Error handler for missing resources
         function showResourceError(resource) {
             console.error(`[✗] Failed to load: ${resource}`);
-            
+
             // Create error notification
             const errorDiv = document.createElement('div');
             errorDiv.style.cssText = `
@@ -69,7 +74,7 @@
             `;
             errorDiv.textContent = `Error loading ${resource}. Some features may not work correctly.`;
             document.body.appendChild(errorDiv);
-            
+
             // Auto-remove after 5 seconds
             setTimeout(() => {
                 if (errorDiv.parentNode) {
@@ -78,9 +83,10 @@
             }, 5000);
         }
     </script>
-    
+
     <!-- Scripts moved to end of body for proper loading order -->
 </head>
+
 <body>
     <!-- Pilares laterales chinos mejorados -->
     <div class="vertical-pillar-left">
@@ -91,11 +97,11 @@
         <div class="lantern-top"></div>
         <div class="coin-bottom"></div>
     </div>
-    
+
     <!-- Elementos laterales verticales -->
     <div class="vertical-text-left">孔子学院</div>
     <div class="vertical-text-right">何宸朗</div>
-    
+
     <div class="app-container">
         <header class="app-header">
             <div class="header-container">
@@ -108,12 +114,12 @@
                             <p class="app-subtitle">HSK Chinese Learning Platform</p>
                         </div>
                     </div>
-                    
+
                     <!-- Stats Section -->
                     <div class="header-stats">
                         <div class="header-stat">
                             <div class="header-stat-value" id="header-studied">0</div>
-                            <div class="header-stat-label">Studied</div>
+                            <div class="header-stat-label" data-i18n="totalStudied">Studied</div>
                         </div>
                         <div class="header-stat">
                             <div class="header-stat-value" id="header-streak">0</div>
@@ -126,32 +132,45 @@
                             <div class="header-stat-label" data-i18n="progress">Progress</div>
                         </div>
                     </div>
-                    
+
                     <!-- Controls Section -->
                     <div class="header-actions">
                         <div id="auth-container" class="auth-container">
                             <!-- Authentication UI will be inserted here -->
                         </div>
-                        
-                        <input type="text" id="header-search" placeholder="Search vocabulary..." data-i18n-placeholder="searchPlaceholder">
-                        
-                        <select id="language-select" class="header-control" title="Language" data-tooltip="Change interface language">
+
+                        <input type="text" id="header-search" placeholder="Search vocabulary..."
+                            data-i18n-placeholder="searchPlaceholder">
+
+                        <select id="language-select" class="header-control" title="Language"
+                            data-i18n-title="languageSelectorTitle" data-tooltip="Change interface language" data-i18n-tooltip="languageSelectorTooltip">
                             <option value="en">EN</option>
                             <option value="es">ES</option>
                         </select>
-                        
-                        <button id="theme-toggle" class="header-control" title="Toggle Theme" data-tooltip="Switch between dark and light mode">
-                            🌙
+
+                        <!-- Theme Toggle -->
+                        <button id="theme-toggle" class="header-control" title="Toggle Theme"
+                            data-i18n-title="themeToggleTitle" data-tooltip="Switch between dark and light mode">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
                         </button>
-                        
-                        <select id="voice-select" class="header-control" title="Voice" data-tooltip="Select voice for pronunciation">
-                            <option value="auto">🗣️ Auto</option>
-                            <option value="male">👨 Masculino</option>
-                            <option value="female">👩 Femenino</option>
+
+                        <select id="voice-select" class="header-control" title="Voice"
+                            data-i18n-title="voiceSelectorTitle" data-tooltip="Select voice for pronunciation" data-i18n-tooltip="voiceSelectorTooltip">
+                            <option value="auto">Auto</option>
+                            <option value="male">Masculino</option>
+                            <option value="female">Femenino</option>
                         </select>
-                        
-                        <button id="audio-toggle" class="header-control" title="Toggle Audio" data-tooltip="Toggle pronunciation audio">
-                            🔊
+
+                        <button id="audio-toggle" class="header-control" title="Toggle Audio"
+                            data-i18n-title="audioToggleTitle" data-tooltip="Toggle pronunciation audio">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -161,13 +180,34 @@
         <!-- Navigation -->
         <nav class="nav-container">
             <div class="nav-tabs">
-                <button class="nav-tab" data-tab="home" data-i18n="homeTab">Home</button>
-                <button class="nav-tab active" data-tab="practice" data-i18n="practiceTab">Practice</button>
-                <button class="nav-tab" data-tab="browse" data-i18n="browseTab">Browse</button>
-                <button class="nav-tab" data-tab="quiz" data-i18n="quizTab">Quiz</button>
-                <button class="nav-tab" data-tab="matrix" data-i18n="matrixTab"><span class="ascii-art">[#]</span> Matrix</button>
-                <button class="nav-tab" data-tab="leaderboard" data-i18n="leaderboard">🏆 Leaderboard</button>
-                <button class="nav-tab" data-tab="stats" data-i18n="statsTab">Statistics</button>
+                <button class="nav-tab" data-tab="home"><span data-i18n="homeTab">Home</span></button>
+                <button class="nav-tab active" data-tab="practice"><span
+                        data-i18n="practiceTab">Practice</span></button>
+                <button class="nav-tab" data-tab="browse"><span data-i18n="browseTab">Browse</span></button>
+                <button class="nav-tab" data-tab="quiz"><span data-i18n="quizTab">Quiz</span></button>
+                <button class="nav-tab" data-tab="matrix">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span data-i18n="matrixTab">Matrix</span>
+                </button>
+                <button class="nav-tab" data-tab="leaderboard">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                        <path d="M4 22h16"></path>
+                        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                    </svg>
+                    <span data-i18n="leaderboard">Leaderboard</span>
+                </button>
+                <button class="nav-tab" data-tab="stats"><span data-i18n="statsTab">Statistics</span></button>
             </div>
         </nav>
 
@@ -177,52 +217,52 @@
                 <!-- Home Tab -->
                 <div id="home" class="tab-panel">
                     <div class="home-hero">
-                        <h2>¡Bienvenido a Confuc10 ++!</h2>
-                        <p>La plataforma avanzada para dominar el chino mandarín</p>
+                        <h2 data-i18n="homeWelcomeTitle">Welcome to Confuc10 ++!</h2>
+                        <p data-i18n="homeWelcomeSubtitle">The advanced platform to master Mandarin Chinese</p>
                         <div class="welcome-stats">
                             <div class="welcome-stat">
                                 <span class="stat-number">5000+</span>
-                                <span class="stat-label">Caracteres</span>
+                                <span class="stat-label" data-i18n="homeStatCharacters">Characters</span>
                             </div>
                             <div class="welcome-stat">
                                 <span class="stat-number">6</span>
-                                <span class="stat-label">Niveles HSK</span>
+                                <span class="stat-label" data-i18n="homeStatHskLevels">HSK Levels</span>
                             </div>
                             <div class="welcome-stat">
                                 <span class="stat-number">4</span>
-                                <span class="stat-label">Modos de Práctica</span>
+                                <span class="stat-label" data-i18n="homeStatPracticeModes">Practice Modes</span>
                             </div>
                         </div>
                     </div>
                     <div class="home-cards">
-                        <div class="home-card" onclick="window.app && window.app.switchTab('practice')">
-                            <div class="home-card-icon ascii-art">[卡]</div>
-                            <div class="home-card-title">Practice</div>
-                            <div class="home-card-desc">Flashcards y práctica guiada</div>
+                        <div class="home-card" data-tab-target="practice" role="button" tabindex="0" onclick="window.app && window.app.switchTab('practice')">
+                            <div class="home-card-icon chinese-char">练习</div>
+                            <div class="home-card-title" data-i18n="homeCardPracticeTitle">Practice</div>
+                            <div class="home-card-desc" data-i18n="homeCardPracticeDesc">Flashcards and guided practice</div>
                         </div>
-                        <div class="home-card" onclick="window.app && window.app.switchTab('browse')">
-                            <div class="home-card-icon ascii-art">[書]</div>
-                            <div class="home-card-title">Browse</div>
-                            <div class="home-card-desc">Explora vocabulario por nivel</div>
+                        <div class="home-card" data-tab-target="browse" role="button" tabindex="0" onclick="window.app && window.app.switchTab('browse')">
+                            <div class="home-card-icon chinese-char">词汇</div>
+                            <div class="home-card-title" data-i18n="homeCardBrowseTitle">Browse</div>
+                            <div class="home-card-desc" data-i18n="homeCardBrowseDesc">Explore vocabulary by level</div>
                         </div>
-                        <div class="home-card" onclick="window.app && window.app.switchTab('quiz')">
-                            <div class="home-card-icon ascii-art">[?]</div>
-                            <div class="home-card-title">Quiz</div>
-                            <div class="home-card-desc">Pon a prueba tus conocimientos</div>
+                        <div class="home-card" data-tab-target="quiz" role="button" tabindex="0" onclick="window.app && window.app.switchTab('quiz')">
+                            <div class="home-card-icon chinese-char">测验</div>
+                            <div class="home-card-title" data-i18n="homeCardQuizTitle">Quiz</div>
+                            <div class="home-card-desc" data-i18n="homeCardQuizDesc">Test your knowledge</div>
                         </div>
-                        <div class="home-card" onclick="window.app && window.app.switchTab('matrix')">
-                            <div class="home-card-icon ascii-art">[#]</div>
-                            <div class="home-card-title">Matrix Game</div>
-                            <div class="home-card-desc">Encuentra caracteres en tiempo récord</div>
+                        <div class="home-card" data-tab-target="matrix" role="button" tabindex="0" onclick="window.app && window.app.switchTab('matrix')">
+                            <div class="home-card-icon chinese-char">矩阵</div>
+                            <div class="home-card-title" data-i18n="homeCardMatrixTitle">Matrix</div>
+                            <div class="home-card-desc" data-i18n="homeCardMatrixDesc">Find characters against the clock</div>
                         </div>
-                        <div class="home-card" onclick="window.app && window.app.switchTab('stats')">
-                            <div class="home-card-icon ascii-art">[^]</div>
-                            <div class="home-card-title">Statistics</div>
-                            <div class="home-card-desc">Mira tu progreso y rachas</div>
+                        <div class="home-card" data-tab-target="stats" role="button" tabindex="0" onclick="window.app && window.app.switchTab('stats')">
+                            <div class="home-card-icon chinese-char">统计</div>
+                            <div class="home-card-title" data-i18n="homeCardStatsTitle">Statistics</div>
+                            <div class="home-card-desc" data-i18n="homeCardStatsDesc">Track your progress and streaks</div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Practice Tab -->
                 <div id="practice" class="tab-panel active">
                     <div class="practice-container">
@@ -244,10 +284,11 @@
                                 <div class="streak-day today" data-day="S">S</div>
                             </div>
                         </div>
-                        
+
                         <div class="level-selector">
                             <label for="level-select" data-i18n="levelLabel">HSK Level</label>
-                            <select id="level-select" class="select-input" data-tooltip="Choose your HSK level to start practicing">
+                            <select id="level-select" class="select-input"
+                                data-tooltip="Choose your HSK level to start practicing">
                                 <option value="" data-i18n="selectLevel">Select level...</option>
                                 <option value="1" selected>HSK 1</option>
                                 <option value="2">HSK 2</option>
@@ -257,7 +298,7 @@
                                 <option value="6">HSK 6</option>
                             </select>
                         </div>
-                        
+
                         <!-- Flashcard Display -->
                         <div class="flashcard-area">
                             <div id="flashcard" class="flashcard">
@@ -273,23 +314,22 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="flashcard-controls">
-                            <button id="flip-btn" class="btn btn-secondary" data-i18n="flip" data-tooltip="Press Space to flip">Flip Card</button>
-                            <button id="next-btn" class="btn btn-primary" data-i18n="next" data-tooltip="Press →">Next Card</button>
+
+                        <!-- Flashcard Controls Removed (replaced by Pinyin Input) -->
+
+                        <!-- Pinyin Input Section -->
+                        <div class="pinyin-input-container">
+                            <input type="text" id="pinyin-input" class="pinyin-input" data-i18n-placeholder="typePinyin" placeholder="Type Pinyin..."
+                                autocomplete="off" autocapitalize="off" spellcheck="false">
+                            <div id="feedback-message" class="feedback-message"></div>
+                            <button id="check-btn" class="action-btn" style="display: none;" data-i18n="submit">Submit</button>
+                            <button id="next-card-next-btn" class="action-btn next-btn-hidden"
+                                style="display: none;" data-i18n="next">Next</button>
                         </div>
 
-                        <div class="difficulty-buttons">
-                            <button class="difficulty-button" data-difficulty="easy" data-i18n="easy" data-tooltip="Press 1">Easy</button>
-                            <button class="difficulty-button" data-difficulty="good" data-i18n="good" data-tooltip="Press 2">Good</button>
-                            <button class="difficulty-button" data-difficulty="hard" data-i18n="hard" data-tooltip="Press 3">Hard</button>
-                            <button class="difficulty-button" data-difficulty="again" data-i18n="again" data-tooltip="Press 4">Again</button>
-                        </div>
-
-                        <div class="action-buttons" id="simple-buttons">
-                            <button id="know-btn" class="btn btn-success" disabled data-i18n="iKnow">I Know</button>
-                            <button id="dont-know-btn" class="btn btn-error" disabled data-i18n="iDontKnow">I Don't Know</button>
-                        </div>
+                        <!-- Hidden legacy buttons (just in case) -->
+                        <div class="difficulty-buttons" style="display: none !important;"></div>
+                        <div id="simple-buttons" style="display: none !important;"></div>
                     </div>
                 </div>
 
@@ -297,11 +337,9 @@
                 <div id="browse" class="tab-panel">
                     <div class="search-section">
                         <div class="search-container">
-                            <input type="text" 
-                                   id="search-input" 
-                                   class="search-input" 
-                                   placeholder="Search by character, pinyin or translation..."
-                                   data-i18n-placeholder="searchPlaceholder">
+                            <input type="text" id="search-input" class="search-input"
+                                placeholder="Search by character, pinyin or translation..."
+                                data-i18n-placeholder="searchPlaceholder">
                             <select id="browse-level-filter" class="select-input">
                                 <option value="all" data-i18n="allLevels">All levels</option>
                                 <option value="1">HSK 1</option>
@@ -313,9 +351,9 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="browse-stats" id="browse-stats"></div>
-                    
+
                     <div class="vocabulary-grid" id="vocabulary-grid">
                         <!-- Vocabulary cards will be populated here -->
                     </div>
@@ -339,7 +377,8 @@
                                 </select>
                             </div>
                             <div class="control-group">
-                                <label for="quiz-questions" class="control-label" data-i18n="numberOfQuestions">Number of Questions</label>
+                                <label for="quiz-questions" class="control-label" data-i18n="numberOfQuestions">Number
+                                    of Questions</label>
                                 <select id="quiz-questions" class="select-input">
                                     <option value="10">10</option>
                                     <option value="20">20</option>
@@ -347,7 +386,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button id="start-quiz" class="btn btn-primary" data-i18n="startQuiz">Start Quiz</button>
+                        <button id="start-quiz" class="btn btn-primary" data-i18n="startQuiz">Start</button>
                     </div>
 
                     <div class="quiz-container" id="quiz-container" style="display: none;">
@@ -369,8 +408,10 @@
                                 <!-- Quiz options will be populated here -->
                             </div>
                             <div class="quiz-actions">
-                                <button id="quiz-submit" class="btn btn-primary" disabled data-i18n="submit">Submit</button>
-                                <button id="quiz-next" class="btn btn-primary" style="display: none;" data-i18n="next">Next</button>
+                                <button id="quiz-submit" class="btn btn-primary" disabled
+                                    data-i18n="submit">Submit</button>
+                                <button id="quiz-next" class="btn btn-primary" style="display: none;"
+                                    data-i18n="next">Next</button>
                             </div>
                         </div>
                     </div>
@@ -385,7 +426,7 @@
                             </div>
                         </div>
                         <div class="results-actions">
-                            <button id="restart-quiz" class="btn btn-primary" data-i18n="retakeQuiz">Retake Quiz</button>
+                            <button id="restart-quiz" class="btn btn-primary" data-i18n="tryAgain">Retry</button>
                             <button id="new-quiz" class="btn btn-secondary" data-i18n="newQuiz">New Quiz</button>
                         </div>
                     </div>
@@ -396,10 +437,21 @@
             <div id="leaderboard" class="tab-panel">
                 <div class="leaderboard-section">
                     <div class="leaderboard-header">
-                        <h2 class="leaderboard-title" data-i18n="leaderboard">🏆 Leaderboard</h2>
-                        <p class="leaderboard-subtitle" data-i18n="leaderboardSubtitle">Compete with other Chinese learners</p>
+                        <h2 class="leaderboard-title" data-i18n="leaderboard">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: -4px;">
+                                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                                <path d="M4 22h16"></path>
+                                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                            </svg>
+                            Leaderboard
+                        </h2>
+                        <p class="leaderboard-subtitle" data-i18n="leaderboardSubtitle">Compete with other Chinese
+                            learners</p>
                     </div>
-                    
+
                     <!-- Leaderboard Controls -->
                     <div class="leaderboard-controls">
                         <div class="control-group">
@@ -413,7 +465,7 @@
                                 <option value="achievements" data-i18n="achievements">Achievements</option>
                             </select>
                         </div>
-                        
+
                         <div class="control-group">
                             <label class="control-label" data-i18n="timePeriod">Time Period:</label>
                             <select id="leaderboard-period" class="control-select">
@@ -422,7 +474,7 @@
                                 <option value="monthly" data-i18n="thisMonth">This Month</option>
                             </select>
                         </div>
-                        
+
                         <div class="control-group">
                             <label class="control-label" data-i18n="hskLevelFilter">HSK Level:</label>
                             <select id="leaderboard-hsk-level" class="control-select">
@@ -435,29 +487,34 @@
                                 <option value="6">HSK 6</option>
                             </select>
                         </div>
-                        
+
                         <button id="leaderboard-refresh" class="refresh-btn">
-                            <span>🔄</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <polyline points="1 20 1 14 7 14"></polyline>
+                                <path d="M3.51 9a9 9 0 0 1 14.13-3.36L23 10"></path>
+                                <path d="M20.49 15a9 9 0 0 1-14.13 3.36L1 14"></path>
+                            </svg>
                             <span data-i18n="refresh">Refresh</span>
                         </button>
                     </div>
-                    
+
                     <!-- User Position -->
                     <div id="user-position" class="user-position">
                         <!-- User position will be displayed here -->
                     </div>
-                    
+
                     <!-- Leaderboard Statistics -->
                     <div id="leaderboard-stats" class="leaderboard-stats">
                         <!-- Statistics will be displayed here -->
                     </div>
-                    
+
                     <!-- Loading Indicator -->
                     <div id="leaderboard-loader" class="leaderboard-loader">
                         <div class="loader-spinner"></div>
-                        <p>Loading leaderboard...</p>
+                        <p data-i18n="loadingLeaderboard">Loading leaderboard...</p>
                     </div>
-                    
+
                     <!-- Leaderboard Content -->
                     <div id="leaderboard-content" class="leaderboard-content">
                         <div id="leaderboard-list" class="leaderboard-list">
@@ -484,182 +541,106 @@
                             <div class="stat-value" id="current-streak">0</div>
                             <div class="stat-label" data-i18n="currentStreak">Current Streak</div>
                         </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="quiz-count">0</div>
+                            <div class="stat-label" data-i18n="quizzesCompleted">Quizzes Completed</div>
+                        </div>
+                    </div>
+
+                    <div id="stats-empty-state" class="stats-empty-state" style="display: none;">
+                        <div class="stats-empty-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="m18 20-6-6-6 6"></path><path d="M12 4v2"></path></svg>
+                        </div>
+                        <h4 data-i18n="noStatsYet">No progress to show yet</h4>
+                        <p data-i18n="startWithPracticeToSeeStats">Start with Practice to see your stats here</p>
+                        <button class="btn btn-primary" onclick="window.app && window.app.switchTab('practice')" data-i18n="goToPractice">Go to Practice</button>
                     </div>
                 </div>
-                
+
                 <div class="level-progress">
                     <h4 data-i18n="progressByLevel">Progress by HSK Level</h4>
                     <div id="level-progress-bars">
                         <!-- Progress bars will be populated here -->
                     </div>
                 </div>
-                
+
                 <button id="reset-stats" class="btn btn-error" data-i18n="resetStats">Reset Statistics</button>
             </div>
-            
+
             <!-- Matrix Game Tab -->
             <div id="matrix" class="tab-panel">
                 <div id="matrix-game-container" class="matrix-game-container">
                     <!-- El contenido del juego se cargará dinámicamente aquí -->
                 </div>
             </div>
-            </div>
-        </main>
+    </div>
+    </main>
 
-        <!-- Footer -->
-        <footer class="app-footer">
-            <div class="footer-content">
-                <div class="dev-signature">
-                    <img src="assets/images/dev_logo.png" alt="Developer Logo" class="footer-logo">
-                    <div class="signature-text">
-                        <p><span data-i18n="developedBy">Desarrollado con <span class="ascii-art">♡</span> por</span> <strong>Jose Alejandro Rollano Revollo</strong></p>
-                        <p class="version" data-i18n="version">v3.0.1 | Advanced Chinese Learning Platform</p>
-                    </div>
+    <!-- Footer -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <div class="dev-signature">
+                <img src="assets/images/dev_logo.png" alt="Developer Logo" class="footer-logo">
+                <div class="signature-text">
+                    <p><span data-i18n="developedBy">Desarrollado con <span class="ascii-art">♡</span> por</span>
+                        <strong>Jose Alejandro Rollano Revollo</strong>
+                    </p>
+                    <p class="version" data-i18n="version">v3.0.1 | Advanced Chinese Learning Platform</p>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
     </div>
 
     <!-- Supabase CDN -->
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    
+
     <!-- Supabase Configuration -->
-    <script src="config/supabase-config.js?v=1"></script>
-    <script src="assets/js/supabase-client.js?v=1"></script>
-    
+    <script src="config/supabase-config.js?v=2"></script>
+    <script src="assets/js/supabase-client.js?v=4"></script>
+
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=2"></script>
-    <script src="assets/js/supabase-progress-sync.js?v=1"></script>
-    <script src="assets/js/progress-integrator.js?v=1"></script>
-    <script src="assets/js/auth-backend.js?v=1"></script>
-    <script src="assets/js/user-progress-backend.js?v=1"></script>
-    <script src="assets/js/diagnostic-system.js?v=2"></script>
-    <script src="assets/js/app.js?v=3"></script>
-    <script src="assets/js/compatibility.js?v=9"></script>
-    <script src="assets/js/matrix-game.js?v=1"></script>
-    <script src="assets/js/matrix-game-ui.js?v=1"></script>
-    <script src="assets/js/leaderboard.js?v=1"></script>
-    
+    <script src="assets/js/translations.js?v=14"></script>
+    <script src="assets/js/supabase-progress-sync.js?v=3"></script>
+    <script src="assets/js/progress-integrator.js?v=2"></script>
+    <script src="assets/js/auth-backend.js?v=6"></script>
+    <script src="assets/js/user-progress-backend.js?v=2"></script>
+    <script>
+        // Load diagnostic system only when requested via ?diagnostic=true
+        if (window.location.search.includes('diagnostic=true')) {
+            const script = document.createElement('script');
+            script.src = 'assets/js/diagnostic-system.js?v=3';
+            document.body.appendChild(script);
+        }
+    </script>
+    <!-- Background Data (Base64 Fallback) -->
+    <script src="assets/js/bg-data.js"></script>
+    <script src="assets/js/app.js?v=19"></script>
+    <script src="assets/js/matrix-game.js?v=5"></script>
+    <script src="assets/js/matrix-game-ui.js?v=5"></script>
+    <script src="assets/js/leaderboard.js?v=4"></script>
+
     <!-- Background Image Integration -->
-    <style>
-        body {
-            background-image: url('assets/images/logoBACKGROUND.png') !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-repeat: no-repeat !important;
-            background-attachment: fixed !important;
-        }
-        
-        body::before {
-            content: '' !important;
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            background: rgba(10, 10, 15, 0.15) !important;
-            z-index: -1 !important;
-            pointer-events: none !important;
-        }
-        
-        /* ASCII Art Styling */
-        .ascii-art {
-            font-family: 'Courier New', 'Monaco', 'Menlo', monospace !important;
-            font-size: 1rem !important;
-            line-height: 1.2 !important;
-            white-space: pre !important;
-            text-align: center !important;
-            color: inherit !important;
-            letter-spacing: 0 !important;
-            font-weight: bold !important;
-        }
-        
-        .home-card-icon.ascii-art {
-            font-size: 1.5rem !important;
-            padding: 8px !important;
-            color: #c41e3a !important;
-        }
-        
-        .nav-tab .ascii-art {
-            font-size: 0.9rem !important;
-            display: inline-block !important;
-            vertical-align: middle !important;
-            margin-right: 4px !important;
-        }
-        
-        .result-icon.ascii-art {
-            font-size: 1.2rem !important;
-            color: #ffd700 !important;
-        }
-        
-        .diff-icon.ascii-art {
-            font-size: 1.1rem !important;
-            font-weight: bold !important;
-        }
-        
-        /* Console-style ASCII for feedback */
-        .feedback-overlay .ascii-art {
-            font-size: 2rem !important;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5) !important;
-        }
-    </style>
-    
-    <!-- Flashcard CSS Enhancement -->
-    <style>
-        .flashcard {
-            perspective: 1000px !important;
-        }
-        
-        .flashcard-inner {
-            position: relative !important;
-            width: 100% !important;
-            height: 100% !important;
-            text-align: center !important;
-            transition: transform 0.6s !important;
-            transform-style: preserve-3d !important;
-            -webkit-transition: -webkit-transform 0.6s !important;
-        }
-        
-        .flashcard.flipped .flashcard-inner {
-            transform: rotateY(180deg) !important;
-            -webkit-transform: rotateY(180deg) !important;
-        }
-        
-        .card-face {
-            position: absolute !important;
-            width: 100% !important;
-            height: 100% !important;
-            -webkit-backface-visibility: hidden !important;
-            backface-visibility: hidden !important;
-        }
-        
-        .card-front {
-            transform: rotateY(0deg) !important;
-            -webkit-transform: rotateY(0deg) !important;
-        }
-        
-        .card-back {
-            transform: rotateY(180deg) !important;
-            -webkit-transform: rotateY(180deg) !important;
-        }
-    </style>
+    <!-- Background Image Integration (Removed hardcoded style) -->
+
+
     <script>
         console.log('[▶] HSK App - Build: MAIN');
         console.log('[#] All scripts loaded');
         console.log('[卡] CSS enhancements applied');
-        
+
         // Debug script execution
-        setTimeout(function() {
+        setTimeout(function () {
             console.log('[?] Checking app status...');
             console.log('HSKApp exists:', typeof HSKApp !== 'undefined');
             console.log('window.app exists:', !!window.app);
             console.log('DOM ready state:', document.readyState);
-            
+
             // Check if DOM elements exist
             console.log('nav-tab elements:', document.querySelectorAll('.nav-tab').length);
             console.log('next-btn exists:', !!document.getElementById('next-btn'));
             console.log('level-select exists:', !!document.getElementById('level-select'));
-            
+
             // Force app initialization if needed
             if (typeof HSKApp !== 'undefined' && !window.app) {
                 console.log('[⚙] Force initializing app...');
@@ -673,4 +654,5 @@
         }, 1000);
     </script>
 </body>
+
 </html>

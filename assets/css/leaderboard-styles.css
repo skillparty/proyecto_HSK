@@ -19,6 +19,9 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .leaderboard-subtitle {
@@ -60,13 +63,18 @@
     color: var(--text-primary);
     font-size: 0.95rem;
     min-width: 150px;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
 }
 
 .control-select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
+}
+
+.control-select:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .refresh-btn {
@@ -77,10 +85,15 @@
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.refresh-btn:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .refresh-btn:hover {
@@ -259,7 +272,7 @@
 /* Current user highlighting */
 .leaderboard-card.current-user {
     border: 2px solid var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
 }
 
 .current-user-badge {
@@ -279,6 +292,9 @@
     font-weight: 800;
     min-width: 60px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-info {
@@ -354,14 +370,34 @@
 }
 
 .empty-icon {
-    font-size: 4rem;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-icon svg {
+    width: 56px;
+    height: 56px;
+}
+
+.stat-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .leaderboard-empty h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
+}
+
+.leaderboard-empty p {
+    margin-bottom: 1rem;
+}
+
+.leaderboard-empty-cta {
+    min-width: 180px;
 }
 
 /* Error State */

@@ -12,37 +12,41 @@
   "scope": "./",
   "lang": "es",
   "dir": "ltr",
-  "categories": ["education", "languages", "productivity"],
+  "categories": [
+    "education",
+    "languages",
+    "productivity"
+  ],
   "icons": [
     {
-      "src": "logo_appLM.png",
+      "src": "/assets/images/logo_appLM.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "logo_appLM.png",
+      "src": "/assets/images/logo_appLM.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "logo_appLM.png",
+      "src": "/assets/images/logo_appLM.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "logo_appLM.png",
+      "src": "/assets/images/logo_appLM.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "logo_appLM.png",
+      "src": "/assets/images/logo_appLM.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "logo_appLM.png",
+      "src": "/assets/images/logo_appLM.png",
       "sizes": "48x48",
       "type": "image/png"
     }
@@ -55,7 +59,7 @@
       "url": "./index.html?tab=practice",
       "icons": [
         {
-          "src": "logo_appLM.png",
+          "src": "/assets/images/logo_appLM.png",
           "sizes": "96x96"
         }
       ]
@@ -67,7 +71,7 @@
       "url": "./index.html?tab=quiz",
       "icons": [
         {
-          "src": "logo_appLM.png",
+          "src": "/assets/images/logo_appLM.png",
           "sizes": "96x96"
         }
       ]
@@ -79,7 +83,7 @@
       "url": "./index.html?tab=browse",
       "icons": [
         {
-          "src": "logo_appLM.png",
+          "src": "/assets/images/logo_appLM.png",
           "sizes": "96x96"
         }
       ]
