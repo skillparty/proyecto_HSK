@@ -5,6 +5,7 @@ class BackendAuth {
         this.accessToken = null;
         this.apiBaseUrl = window.location.origin;
         this.backendApiDisabledLogged = false;
+        this.legacyBackendApiEnabled = window.HSK_ENABLE_LEGACY_BACKEND_API === true;
 
         // Initialize auth system after DOM is ready
         if (document.readyState === 'loading') {
@@ -187,9 +188,9 @@ class BackendAuth {
 
     // Make authenticated API call
     async apiCall(endpoint, options = {}) {
-        if (endpoint.startsWith('/api/') && this.isStaticHosting()) {
+        if (endpoint.startsWith('/api/') && !this.legacyBackendApiEnabled) {
             if (!this.backendApiDisabledLogged) {
-                console.info('ℹ️ Backend API disabled on static hosting; using local/Supabase flow.');
+                console.info('ℹ️ Legacy backend API disabled; using local/Supabase flow.');
                 this.backendApiDisabledLogged = true;
             }
 

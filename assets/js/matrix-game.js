@@ -61,6 +61,7 @@ class MatrixGame {
 
         this.sessionStorageKey = 'hsk-matrix-session-v1';
         this.sessionMaxAgeMs = 30 * 60 * 1000;
+        this.legacyBackendApiEnabled = window.HSK_ENABLE_LEGACY_BACKEND_API === true;
 
         // Inicializar
         this.init();
@@ -632,7 +633,11 @@ class MatrixGame {
         // Actualizar lista de puntuaciones altas
         this.highScores = scores;
 
-        // Intentar guardar en el servidor
+        // Intentar guardar en el servidor solo si backend legacy está habilitado
+        if (!this.legacyBackendApiEnabled) {
+            return isNewRecord;
+        }
+
         try {
             const userId = window.app?.userProfile?.userId || 'anonymous';
             const userName = window.app?.userProfile?.userName || 'Anonymous Player';
@@ -677,6 +682,10 @@ class MatrixGame {
     }
 
     async loadServerLeaderboard() {
+        if (!this.legacyBackendApiEnabled) {
+            return;
+        }
+
         try {
             const response = await fetch(`/api/matrix-game/leaderboard?level=${this.currentLevel}&difficulty=${this.difficulty}&limit=10`);
             const data = await response.json();
