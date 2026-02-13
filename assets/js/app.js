@@ -281,6 +281,7 @@ class HSKApp {
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
                 <strong style="font-size:12px;letter-spacing:.02em;">Health Check</strong>
                 <div style="display:flex;gap:6px;">
+                    <button id="health-check-download" type="button" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px;">Download</button>
                     <button id="health-check-copy" type="button" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px;">Copy</button>
                     <button id="health-check-clear" type="button" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px;">Clear</button>
                     <button id="health-check-refresh" type="button" style="background:#1e293b;border:1px solid #334155;color:#cbd5e1;border-radius:6px;padding:2px 8px;cursor:pointer;font-size:11px;">Refresh</button>
@@ -330,6 +331,10 @@ class HSKApp {
 
         panel.querySelector('#health-check-copy')?.addEventListener('click', async () => {
             await this.copyHealthSummaryToClipboard();
+        });
+
+        panel.querySelector('#health-check-download')?.addEventListener('click', () => {
+            this.downloadHealthSummaryFile();
         });
 
         await render();
@@ -463,6 +468,28 @@ class HSKApp {
         }
 
         this.showToast('Could not copy summary automatically', 'error', 1800);
+    }
+
+    downloadHealthSummaryFile() {
+        const text = this.buildHealthSummary();
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const fileName = `hsk-health-${timestamp}.txt`;
+
+        try {
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const anchor = document.createElement('a');
+            anchor.href = url;
+            anchor.download = fileName;
+            document.body.appendChild(anchor);
+            anchor.click();
+            anchor.remove();
+            URL.revokeObjectURL(url);
+            this.showToast('Health summary downloaded', 'success', 1500);
+        } catch (error) {
+            console.warn('⚠️ Could not download summary:', error);
+            this.showToast('Could not download summary', 'error', 1800);
+        }
     }
 
     logRuntimeIssue(source, message) {
