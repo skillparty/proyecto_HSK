@@ -44,14 +44,32 @@ class SupabaseProgressSync {
         });
     }
 
+    async getAuthAccessToken() {
+        try {
+            if (!window.supabaseClient?.supabase?.auth) {
+                return null;
+            }
+
+            const { data, error } = await window.supabaseClient.supabase.auth.getSession();
+            if (error) {
+                return null;
+            }
+
+            return data?.session?.access_token || null;
+        } catch (error) {
+            return null;
+        }
+    }
+
     // Make authenticated request to Supabase
     async makeSupabaseRequest(endpoint, options = {}, requestOptions = {}) {
         const url = `${this.supabaseUrl}/rest/v1/${endpoint}`;
         const silentStatuses = requestOptions.silentStatuses || [];
+        const accessToken = await this.getAuthAccessToken();
 
         const defaultHeaders = {
             'apikey': this.supabaseKey,
-            'Authorization': `Bearer ${this.supabaseKey}`,
+            'Authorization': `Bearer ${accessToken || this.supabaseKey}`,
             'Content-Type': 'application/json',
             'Prefer': 'return=representation'
         };
@@ -107,13 +125,13 @@ class SupabaseProgressSync {
             return this.userEndpoint;
         }
 
-        const usersResult = await this.makeSupabaseRequest('users?select=id&limit=1', {}, { silentStatuses: [404] });
+        const usersResult = await this.makeSupabaseRequest('users?select=id&limit=1', {}, { silentStatuses: [401, 403, 404] });
         if (usersResult.success || usersResult.status !== 404) {
             this.userEndpoint = 'users';
             return this.userEndpoint;
         }
 
-        const profilesResult = await this.makeSupabaseRequest('user_profiles?select=id&limit=1', {}, { silentStatuses: [404] });
+        const profilesResult = await this.makeSupabaseRequest('user_profiles?select=id&limit=1', {}, { silentStatuses: [401, 403, 404] });
         if (profilesResult.success || profilesResult.status !== 404) {
             this.userEndpoint = 'user_profiles';
             return this.userEndpoint;

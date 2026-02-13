@@ -90,7 +90,7 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     /* Clean, modern background with subtle gradient overlay */
-    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('assets/images/bg-fusion.png') !important;
+    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('../images/bg-fusion.png') !important;
     background-size: cover !important;
     background-position: center !important;
     background-attachment: fixed !important;
