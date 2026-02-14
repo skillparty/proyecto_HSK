@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-02-14T02:41:01.957Z",
+  "generatedAt": "2026-02-14T02:48:34.698Z",
   "totals": {
     "english": 5000,
-    "spanish": 142,
-    "missingTranslations": 4866,
+    "spanish": 221,
+    "missingTranslations": 4784,
     "orphanSpanishEntries": 8,
-    "overallCoverage": 2.68
+    "overallCoverage": 4.32
   },
   "byLevel": [
     {
@@ -17,8 +17,8 @@
     {
       "level": 2,
       "total": 150,
-      "translated": 2,
-      "coverage": 1.33
+      "translated": 82,
+      "coverage": 54.67
     },
     {
       "level": 3,
@@ -29,8 +29,8 @@
     {
       "level": 4,
       "total": 600,
-      "translated": 0,
-      "coverage": 0
+      "translated": 2,
+      "coverage": 0.33
     },
     {
       "level": 5,
@@ -47,9 +47,9 @@
   ],
   "missingByLevel": {
     "1": 18,
-    "2": 148,
+    "2": 68,
     "3": 300,
-    "4": 600,
+    "4": 598,
     "5": 1300,
     "6": 2500
   },
@@ -161,486 +161,6 @@
       "pinyin": "yīdiǎnr",
       "english": "a little",
       "level": 1
-    },
-    {
-      "character": "吧",
-      "pinyin": "ba",
-      "english": "(auxiliary word)",
-      "level": 2
-    },
-    {
-      "character": "白",
-      "pinyin": "bái",
-      "english": "white",
-      "level": 2
-    },
-    {
-      "character": "百",
-      "pinyin": "bǎi",
-      "english": "one hundred",
-      "level": 2
-    },
-    {
-      "character": "帮助",
-      "pinyin": "bāngzhù",
-      "english": "help",
-      "level": 2
-    },
-    {
-      "character": "报纸",
-      "pinyin": "bàozhǐ",
-      "english": "newspaper",
-      "level": 2
-    },
-    {
-      "character": "比",
-      "pinyin": "bǐ",
-      "english": "than",
-      "level": 2
-    },
-    {
-      "character": "别",
-      "pinyin": "bié",
-      "english": "do not",
-      "level": 2
-    },
-    {
-      "character": "宾馆",
-      "pinyin": "bīnguǎn",
-      "english": "hotel",
-      "level": 2
-    },
-    {
-      "character": "长",
-      "pinyin": "cháng",
-      "english": "long (adjective)",
-      "level": 2
-    },
-    {
-      "character": "唱歌",
-      "pinyin": "chànggē",
-      "english": "singing",
-      "level": 2
-    },
-    {
-      "character": "出",
-      "pinyin": "chū",
-      "english": "out",
-      "level": 2
-    },
-    {
-      "character": "穿",
-      "pinyin": "chuān",
-      "english": "wear",
-      "level": 2
-    },
-    {
-      "character": "次",
-      "pinyin": "cì",
-      "english": "times",
-      "level": 2
-    },
-    {
-      "character": "从",
-      "pinyin": "cóng",
-      "english": "from",
-      "level": 2
-    },
-    {
-      "character": "错",
-      "pinyin": "cuò",
-      "english": "wrong",
-      "level": 2
-    },
-    {
-      "character": "打篮球",
-      "pinyin": "dǎ lánqiú",
-      "english": "play basketball",
-      "level": 2
-    },
-    {
-      "character": "大家",
-      "pinyin": "dàjiā",
-      "english": "everyone",
-      "level": 2
-    },
-    {
-      "character": "到",
-      "pinyin": "dào",
-      "english": "to",
-      "level": 2
-    },
-    {
-      "character": "得",
-      "pinyin": "de",
-      "english": "(particle)",
-      "level": 2
-    },
-    {
-      "character": "等",
-      "pinyin": "děng",
-      "english": "wait (verb)",
-      "level": 2
-    },
-    {
-      "character": "弟弟",
-      "pinyin": "dìdi",
-      "english": "little brother",
-      "level": 2
-    },
-    {
-      "character": "第一",
-      "pinyin": "dì yī",
-      "english": "the first",
-      "level": 2
-    },
-    {
-      "character": "懂",
-      "pinyin": "dǒng",
-      "english": "understand",
-      "level": 2
-    },
-    {
-      "character": "对",
-      "pinyin": "duì",
-      "english": "right (adjective)",
-      "level": 2
-    },
-    {
-      "character": "对",
-      "pinyin": "duì",
-      "english": "to (preposition)",
-      "level": 2
-    },
-    {
-      "character": "房间",
-      "pinyin": "fángjiān",
-      "english": "room",
-      "level": 2
-    },
-    {
-      "character": "非常",
-      "pinyin": "fēicháng",
-      "english": "very much",
-      "level": 2
-    },
-    {
-      "character": "服务员",
-      "pinyin": "fúwùyuán",
-      "english": "waiter",
-      "level": 2
-    },
-    {
-      "character": "高",
-      "pinyin": "gāo",
-      "english": "high",
-      "level": 2
-    },
-    {
-      "character": "告诉",
-      "pinyin": "gàosu",
-      "english": "tell",
-      "level": 2
-    },
-    {
-      "character": "哥哥",
-      "pinyin": "gēge",
-      "english": "brother",
-      "level": 2
-    },
-    {
-      "character": "给",
-      "pinyin": "gěi",
-      "english": "give",
-      "level": 2
-    },
-    {
-      "character": "公共汽车",
-      "pinyin": "gōnggòng qìchē",
-      "english": "bus",
-      "level": 2
-    },
-    {
-      "character": "公司",
-      "pinyin": "gōngsī",
-      "english": "the company",
-      "level": 2
-    },
-    {
-      "character": "贵",
-      "pinyin": "guì",
-      "english": "expensive",
-      "level": 2
-    },
-    {
-      "character": "过",
-      "pinyin": "guo",
-      "english": "excuse me",
-      "level": 2
-    },
-    {
-      "character": "还",
-      "pinyin": "hái",
-      "english": "also (adverb)",
-      "level": 2
-    },
-    {
-      "character": "孩子",
-      "pinyin": "háizi",
-      "english": "child",
-      "level": 2
-    },
-    {
-      "character": "好吃",
-      "pinyin": "hǎochī",
-      "english": "good to eat",
-      "level": 2
-    },
-    {
-      "character": "黑",
-      "pinyin": "hēi",
-      "english": "black",
-      "level": 2
-    },
-    {
-      "character": "红",
-      "pinyin": "hóng",
-      "english": "red",
-      "level": 2
-    },
-    {
-      "character": "火车站",
-      "pinyin": "huǒchē zhàn",
-      "english": "train station",
-      "level": 2
-    },
-    {
-      "character": "机场",
-      "pinyin": "jīchǎng",
-      "english": "airport",
-      "level": 2
-    },
-    {
-      "character": "鸡蛋",
-      "pinyin": "jīdàn",
-      "english": "egg",
-      "level": 2
-    },
-    {
-      "character": "件",
-      "pinyin": "jiàn",
-      "english": "piece",
-      "level": 2
-    },
-    {
-      "character": "教室",
-      "pinyin": "jiàoshì",
-      "english": "classroom",
-      "level": 2
-    },
-    {
-      "character": "姐姐",
-      "pinyin": "jiějie",
-      "english": "sister",
-      "level": 2
-    },
-    {
-      "character": "介绍",
-      "pinyin": "jièshào",
-      "english": "introduction",
-      "level": 2
-    },
-    {
-      "character": "进",
-      "pinyin": "jìn",
-      "english": "enter",
-      "level": 2
-    },
-    {
-      "character": "近",
-      "pinyin": "jìn",
-      "english": "nearly",
-      "level": 2
-    },
-    {
-      "character": "就",
-      "pinyin": "jiù",
-      "english": "on",
-      "level": 2
-    },
-    {
-      "character": "觉得",
-      "pinyin": "juéde",
-      "english": "think",
-      "level": 2
-    },
-    {
-      "character": "咖啡",
-      "pinyin": "kāfēi",
-      "english": "coffee",
-      "level": 2
-    },
-    {
-      "character": "开始",
-      "pinyin": "kāishǐ",
-      "english": "start",
-      "level": 2
-    },
-    {
-      "character": "考试",
-      "pinyin": "kǎoshì",
-      "english": "examination",
-      "level": 2
-    },
-    {
-      "character": "可能",
-      "pinyin": "kěnéng",
-      "english": "may",
-      "level": 2
-    },
-    {
-      "character": "可以",
-      "pinyin": "kěyǐ",
-      "english": "can",
-      "level": 2
-    },
-    {
-      "character": "课",
-      "pinyin": "kè",
-      "english": "lesson",
-      "level": 2
-    },
-    {
-      "character": "快",
-      "pinyin": "kuài",
-      "english": "fast",
-      "level": 2
-    },
-    {
-      "character": "快乐",
-      "pinyin": "kuàilè",
-      "english": "happy",
-      "level": 2
-    },
-    {
-      "character": "累",
-      "pinyin": "lèi",
-      "english": "tired",
-      "level": 2
-    },
-    {
-      "character": "离",
-      "pinyin": "lí",
-      "english": "from",
-      "level": 2
-    },
-    {
-      "character": "两",
-      "pinyin": "liǎng",
-      "english": "two",
-      "level": 2
-    },
-    {
-      "character": "零",
-      "pinyin": "líng",
-      "english": "zero",
-      "level": 2
-    },
-    {
-      "character": "路",
-      "pinyin": "lù",
-      "english": "road",
-      "level": 2
-    },
-    {
-      "character": "旅游",
-      "pinyin": "lǚyóu",
-      "english": "travel",
-      "level": 2
-    },
-    {
-      "character": "卖",
-      "pinyin": "mài",
-      "english": "sell",
-      "level": 2
-    },
-    {
-      "character": "慢",
-      "pinyin": "màn",
-      "english": "slow",
-      "level": 2
-    },
-    {
-      "character": "忙",
-      "pinyin": "máng",
-      "english": "busy",
-      "level": 2
-    },
-    {
-      "character": "每",
-      "pinyin": "měi",
-      "english": "each",
-      "level": 2
-    },
-    {
-      "character": "妹妹",
-      "pinyin": "mèimei",
-      "english": "younger sister",
-      "level": 2
-    },
-    {
-      "character": "门",
-      "pinyin": "mén",
-      "english": "door",
-      "level": 2
-    },
-    {
-      "character": "面条",
-      "pinyin": "miàntiáo",
-      "english": "noodles",
-      "level": 2
-    },
-    {
-      "character": "男",
-      "pinyin": "nán",
-      "english": "male",
-      "level": 2
-    },
-    {
-      "character": "您",
-      "pinyin": "nín",
-      "english": "you",
-      "level": 2
-    },
-    {
-      "character": "牛奶",
-      "pinyin": "niúnǎi",
-      "english": "milk",
-      "level": 2
-    },
-    {
-      "character": "女",
-      "pinyin": "nǚ",
-      "english": "female",
-      "level": 2
-    },
-    {
-      "character": "旁边",
-      "pinyin": "pángbiān",
-      "english": "next to",
-      "level": 2
-    },
-    {
-      "character": "跑步",
-      "pinyin": "pǎobù",
-      "english": "run",
-      "level": 2
-    },
-    {
-      "character": "便宜",
-      "pinyin": "piányi",
-      "english": "cheaper",
-      "level": 2
     },
     {
       "character": "票",
@@ -3355,21 +2875,9 @@
       "level": 4
     },
     {
-      "character": "得",
-      "pinyin": "de",
-      "english": "(complement particle)",
-      "level": 4
-    },
-    {
       "character": "登机牌",
       "pinyin": "dēngjīpái",
       "english": "boarding pass",
-      "level": 4
-    },
-    {
-      "character": "等",
-      "pinyin": "děng",
-      "english": "to wait; rank; equal; etc.",
       "level": 4
     },
     {

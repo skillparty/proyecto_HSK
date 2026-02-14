@@ -427,17 +427,17 @@
     "level": 1
   },
   {
-    "character": "明天",
-    "pinyin": "míngtiān",
-    "english": "tomorrow",
-    "spanish": "mañana",
-    "level": 1
-  },
-  {
     "character": "名字",
     "pinyin": "míngzi",
     "english": "name",
     "spanish": "nombre",
+    "level": 1
+  },
+  {
+    "character": "明天",
+    "pinyin": "míngtiān",
+    "english": "tomorrow",
+    "spanish": "mañana",
     "level": 1
   },
   {
@@ -511,17 +511,17 @@
     "level": 1
   },
   {
-    "character": "钱",
-    "pinyin": "qián",
-    "english": "money",
-    "spanish": "dinero",
-    "level": 1
-  },
-  {
     "character": "前面",
     "pinyin": "qiánmiàn",
     "english": "front",
     "spanish": "frente",
+    "level": 1
+  },
+  {
+    "character": "钱",
+    "pinyin": "qián",
+    "english": "money",
+    "spanish": "dinero",
     "level": 1
   },
   {
@@ -889,17 +889,17 @@
     "level": 1
   },
   {
-    "character": "在",
-    "pinyin": "zài",
-    "english": "at",
-    "spanish": "en",
-    "level": 1
-  },
-  {
     "character": "再见",
     "pinyin": "zàijiàn",
     "english": "goodbye",
     "spanish": "adiós",
+    "level": 1
+  },
+  {
+    "character": "在",
+    "pinyin": "zài",
+    "english": "at",
+    "spanish": "en",
     "level": 1
   },
   {
@@ -980,6 +980,13 @@
     "level": 1
   },
   {
+    "character": "坐",
+    "pinyin": "zuò",
+    "english": "sit",
+    "spanish": "sentarse",
+    "level": 1
+  },
+  {
     "character": "做",
     "pinyin": "zuò",
     "english": "do",
@@ -987,10 +994,556 @@
     "level": 1
   },
   {
-    "character": "坐",
-    "pinyin": "zuò",
-    "english": "sit",
-    "spanish": "sentarse",
-    "level": 1
+    "character": "吧",
+    "pinyin": "ba",
+    "english": "(auxiliary word)",
+    "spanish": "partícula modal (sugerencia)",
+    "level": 2
+  },
+  {
+    "character": "白",
+    "pinyin": "bái",
+    "english": "white",
+    "spanish": "blanco",
+    "level": 2
+  },
+  {
+    "character": "百",
+    "pinyin": "bǎi",
+    "english": "one hundred",
+    "spanish": "cien",
+    "level": 2
+  },
+  {
+    "character": "帮助",
+    "pinyin": "bāngzhù",
+    "english": "help",
+    "spanish": "ayudar",
+    "level": 2
+  },
+  {
+    "character": "报纸",
+    "pinyin": "bàozhǐ",
+    "english": "newspaper",
+    "spanish": "periódico",
+    "level": 2
+  },
+  {
+    "character": "比",
+    "pinyin": "bǐ",
+    "english": "than",
+    "spanish": "que (comparación)",
+    "level": 2
+  },
+  {
+    "character": "便宜",
+    "pinyin": "piányi",
+    "english": "cheaper",
+    "spanish": "barato",
+    "level": 2
+  },
+  {
+    "character": "别",
+    "pinyin": "bié",
+    "english": "do not",
+    "spanish": "no (imperativo)",
+    "level": 2
+  },
+  {
+    "character": "宾馆",
+    "pinyin": "bīnguǎn",
+    "english": "hotel",
+    "spanish": "hotel",
+    "level": 2
+  },
+  {
+    "character": "唱歌",
+    "pinyin": "chànggē",
+    "english": "singing",
+    "spanish": "cantar",
+    "level": 2
+  },
+  {
+    "character": "出",
+    "pinyin": "chū",
+    "english": "out",
+    "spanish": "salir",
+    "level": 2
+  },
+  {
+    "character": "穿",
+    "pinyin": "chuān",
+    "english": "wear",
+    "spanish": "llevar puesto",
+    "level": 2
+  },
+  {
+    "character": "次",
+    "pinyin": "cì",
+    "english": "times",
+    "spanish": "vez",
+    "level": 2
+  },
+  {
+    "character": "从",
+    "pinyin": "cóng",
+    "english": "from",
+    "spanish": "desde",
+    "level": 2
+  },
+  {
+    "character": "错",
+    "pinyin": "cuò",
+    "english": "wrong",
+    "spanish": "incorrecto",
+    "level": 2
+  },
+  {
+    "character": "打篮球",
+    "pinyin": "dǎ lánqiú",
+    "english": "play basketball",
+    "spanish": "jugar al baloncesto",
+    "level": 2
+  },
+  {
+    "character": "大家",
+    "pinyin": "dàjiā",
+    "english": "everyone",
+    "spanish": "todos",
+    "level": 2
+  },
+  {
+    "character": "到",
+    "pinyin": "dào",
+    "english": "to",
+    "spanish": "llegar",
+    "level": 2
+  },
+  {
+    "character": "得",
+    "pinyin": "de",
+    "english": "(particle)",
+    "spanish": "partícula estructural",
+    "level": 2
+  },
+  {
+    "character": "等",
+    "pinyin": "děng",
+    "english": "wait (verb)",
+    "spanish": "esperar",
+    "level": 2
+  },
+  {
+    "character": "弟弟",
+    "pinyin": "dìdi",
+    "english": "little brother",
+    "spanish": "hermano menor",
+    "level": 2
+  },
+  {
+    "character": "第一",
+    "pinyin": "dì yī",
+    "english": "the first",
+    "spanish": "primero",
+    "level": 2
+  },
+  {
+    "character": "懂",
+    "pinyin": "dǒng",
+    "english": "understand",
+    "spanish": "entender",
+    "level": 2
+  },
+  {
+    "character": "对",
+    "pinyin": "duì",
+    "english": "right (adjective)",
+    "spanish": "correcto; a/hacia",
+    "level": 2
+  },
+  {
+    "character": "房间",
+    "pinyin": "fángjiān",
+    "english": "room",
+    "spanish": "habitación",
+    "level": 2
+  },
+  {
+    "character": "非常",
+    "pinyin": "fēicháng",
+    "english": "very much",
+    "spanish": "muy",
+    "level": 2
+  },
+  {
+    "character": "服务员",
+    "pinyin": "fúwùyuán",
+    "english": "waiter",
+    "spanish": "camarero",
+    "level": 2
+  },
+  {
+    "character": "高",
+    "pinyin": "gāo",
+    "english": "high",
+    "spanish": "alto",
+    "level": 2
+  },
+  {
+    "character": "告诉",
+    "pinyin": "gàosu",
+    "english": "tell",
+    "spanish": "decir",
+    "level": 2
+  },
+  {
+    "character": "哥哥",
+    "pinyin": "gēge",
+    "english": "brother",
+    "spanish": "hermano mayor",
+    "level": 2
+  },
+  {
+    "character": "给",
+    "pinyin": "gěi",
+    "english": "give",
+    "spanish": "dar",
+    "level": 2
+  },
+  {
+    "character": "公共汽车",
+    "pinyin": "gōnggòng qìchē",
+    "english": "bus",
+    "spanish": "autobús",
+    "level": 2
+  },
+  {
+    "character": "公司",
+    "pinyin": "gōngsī",
+    "english": "the company",
+    "spanish": "empresa",
+    "level": 2
+  },
+  {
+    "character": "贵",
+    "pinyin": "guì",
+    "english": "expensive",
+    "spanish": "caro",
+    "level": 2
+  },
+  {
+    "character": "过",
+    "pinyin": "guo",
+    "english": "excuse me",
+    "spanish": "partícula de experiencia (haber ...)",
+    "level": 2
+  },
+  {
+    "character": "还",
+    "pinyin": "hái",
+    "english": "also (adverb)",
+    "spanish": "también",
+    "level": 2
+  },
+  {
+    "character": "孩子",
+    "pinyin": "háizi",
+    "english": "child",
+    "spanish": "niño",
+    "level": 2
+  },
+  {
+    "character": "好吃",
+    "pinyin": "hǎochī",
+    "english": "good to eat",
+    "spanish": "delicioso",
+    "level": 2
+  },
+  {
+    "character": "黑",
+    "pinyin": "hēi",
+    "english": "black",
+    "spanish": "negro",
+    "level": 2
+  },
+  {
+    "character": "红",
+    "pinyin": "hóng",
+    "english": "red",
+    "spanish": "rojo",
+    "level": 2
+  },
+  {
+    "character": "火车站",
+    "pinyin": "huǒchē zhàn",
+    "english": "train station",
+    "spanish": "estación de tren",
+    "level": 2
+  },
+  {
+    "character": "机场",
+    "pinyin": "jīchǎng",
+    "english": "airport",
+    "spanish": "aeropuerto",
+    "level": 2
+  },
+  {
+    "character": "鸡蛋",
+    "pinyin": "jīdàn",
+    "english": "egg",
+    "spanish": "huevo",
+    "level": 2
+  },
+  {
+    "character": "件",
+    "pinyin": "jiàn",
+    "english": "piece",
+    "spanish": "unidad (contador)",
+    "level": 2
+  },
+  {
+    "character": "教室",
+    "pinyin": "jiàoshì",
+    "english": "classroom",
+    "spanish": "aula",
+    "level": 2
+  },
+  {
+    "character": "姐姐",
+    "pinyin": "jiějie",
+    "english": "sister",
+    "spanish": "hermana mayor",
+    "level": 2
+  },
+  {
+    "character": "介绍",
+    "pinyin": "jièshào",
+    "english": "introduction",
+    "spanish": "presentar",
+    "level": 2
+  },
+  {
+    "character": "近",
+    "pinyin": "jìn",
+    "english": "nearly",
+    "spanish": "cerca",
+    "level": 2
+  },
+  {
+    "character": "进",
+    "pinyin": "jìn",
+    "english": "enter",
+    "spanish": "entrar",
+    "level": 2
+  },
+  {
+    "character": "就",
+    "pinyin": "jiù",
+    "english": "on",
+    "spanish": "entonces",
+    "level": 2
+  },
+  {
+    "character": "觉得",
+    "pinyin": "juéde",
+    "english": "think",
+    "spanish": "creer; sentir",
+    "level": 2
+  },
+  {
+    "character": "咖啡",
+    "pinyin": "kāfēi",
+    "english": "coffee",
+    "spanish": "café",
+    "level": 2
+  },
+  {
+    "character": "开始",
+    "pinyin": "kāishǐ",
+    "english": "start",
+    "spanish": "empezar",
+    "level": 2
+  },
+  {
+    "character": "考试",
+    "pinyin": "kǎoshì",
+    "english": "examination",
+    "spanish": "examen",
+    "level": 2
+  },
+  {
+    "character": "可能",
+    "pinyin": "kěnéng",
+    "english": "may",
+    "spanish": "posiblemente",
+    "level": 2
+  },
+  {
+    "character": "可以",
+    "pinyin": "kěyǐ",
+    "english": "can",
+    "spanish": "poder",
+    "level": 2
+  },
+  {
+    "character": "课",
+    "pinyin": "kè",
+    "english": "lesson",
+    "spanish": "clase",
+    "level": 2
+  },
+  {
+    "character": "快",
+    "pinyin": "kuài",
+    "english": "fast",
+    "spanish": "rápido",
+    "level": 2
+  },
+  {
+    "character": "快乐",
+    "pinyin": "kuàilè",
+    "english": "happy",
+    "spanish": "feliz",
+    "level": 2
+  },
+  {
+    "character": "累",
+    "pinyin": "lèi",
+    "english": "tired",
+    "spanish": "cansado",
+    "level": 2
+  },
+  {
+    "character": "离",
+    "pinyin": "lí",
+    "english": "from",
+    "spanish": "a (distancia de)",
+    "level": 2
+  },
+  {
+    "character": "两",
+    "pinyin": "liǎng",
+    "english": "two",
+    "spanish": "dos",
+    "level": 2
+  },
+  {
+    "character": "零",
+    "pinyin": "líng",
+    "english": "zero",
+    "spanish": "cero",
+    "level": 2
+  },
+  {
+    "character": "路",
+    "pinyin": "lù",
+    "english": "road",
+    "spanish": "camino",
+    "level": 2
+  },
+  {
+    "character": "旅游",
+    "pinyin": "lǚyóu",
+    "english": "travel",
+    "spanish": "viajar",
+    "level": 2
+  },
+  {
+    "character": "卖",
+    "pinyin": "mài",
+    "english": "sell",
+    "spanish": "vender",
+    "level": 2
+  },
+  {
+    "character": "慢",
+    "pinyin": "màn",
+    "english": "slow",
+    "spanish": "lento",
+    "level": 2
+  },
+  {
+    "character": "忙",
+    "pinyin": "máng",
+    "english": "busy",
+    "spanish": "ocupado",
+    "level": 2
+  },
+  {
+    "character": "每",
+    "pinyin": "měi",
+    "english": "each",
+    "spanish": "cada",
+    "level": 2
+  },
+  {
+    "character": "妹妹",
+    "pinyin": "mèimei",
+    "english": "younger sister",
+    "spanish": "hermana menor",
+    "level": 2
+  },
+  {
+    "character": "门",
+    "pinyin": "mén",
+    "english": "door",
+    "spanish": "puerta",
+    "level": 2
+  },
+  {
+    "character": "面条",
+    "pinyin": "miàntiáo",
+    "english": "noodles",
+    "spanish": "fideos",
+    "level": 2
+  },
+  {
+    "character": "男",
+    "pinyin": "nán",
+    "english": "male",
+    "spanish": "masculino",
+    "level": 2
+  },
+  {
+    "character": "您",
+    "pinyin": "nín",
+    "english": "you",
+    "spanish": "usted",
+    "level": 2
+  },
+  {
+    "character": "牛奶",
+    "pinyin": "niúnǎi",
+    "english": "milk",
+    "spanish": "leche",
+    "level": 2
+  },
+  {
+    "character": "女",
+    "pinyin": "nǚ",
+    "english": "female",
+    "spanish": "femenino",
+    "level": 2
+  },
+  {
+    "character": "旁边",
+    "pinyin": "pángbiān",
+    "english": "next to",
+    "spanish": "al lado de",
+    "level": 2
+  },
+  {
+    "character": "跑步",
+    "pinyin": "pǎobù",
+    "english": "run",
+    "spanish": "correr",
+    "level": 2
+  },
+  {
+    "character": "长",
+    "pinyin": "cháng",
+    "english": "long (adjective)",
+    "spanish": "largo",
+    "level": 2
   }
 ]
