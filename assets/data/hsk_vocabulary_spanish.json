@@ -1540,10 +1540,486 @@
     "level": 2
   },
   {
+    "character": "票",
+    "pinyin": "piào",
+    "english": "tickets",
+    "spanish": "billete; entrada",
+    "level": 2
+  },
+  {
+    "character": "妻子",
+    "pinyin": "qīzi",
+    "english": "wife",
+    "spanish": "esposa",
+    "level": 2
+  },
+  {
+    "character": "起床",
+    "pinyin": "qǐchuáng",
+    "english": "get up",
+    "spanish": "levantarse",
+    "level": 2
+  },
+  {
+    "character": "千",
+    "pinyin": "qiān",
+    "english": "thousands",
+    "spanish": "mil",
+    "level": 2
+  },
+  {
+    "character": "铅笔",
+    "pinyin": "qiānbǐ",
+    "english": "pencil",
+    "spanish": "lápiz",
+    "level": 2
+  },
+  {
+    "character": "晴",
+    "pinyin": "qíng",
+    "english": "clear",
+    "spanish": "despejado",
+    "level": 2
+  },
+  {
+    "character": "去年",
+    "pinyin": "qùnián",
+    "english": "last year",
+    "spanish": "el año pasado",
+    "level": 2
+  },
+  {
+    "character": "让",
+    "pinyin": "ràng",
+    "english": "let",
+    "spanish": "dejar; permitir",
+    "level": 2
+  },
+  {
+    "character": "日",
+    "pinyin": "rì",
+    "english": "day",
+    "spanish": "día",
+    "level": 2
+  },
+  {
+    "character": "上班",
+    "pinyin": "shàngbān",
+    "english": "go to work",
+    "spanish": "ir a trabajar",
+    "level": 2
+  },
+  {
+    "character": "身体",
+    "pinyin": "shēntǐ",
+    "english": "body",
+    "spanish": "cuerpo; salud",
+    "level": 2
+  },
+  {
+    "character": "生病",
+    "pinyin": "shēngbìng",
+    "english": "ill",
+    "spanish": "enfermarse",
+    "level": 2
+  },
+  {
+    "character": "生日",
+    "pinyin": "shēngrì",
+    "english": "birthday",
+    "spanish": "cumpleaños",
+    "level": 2
+  },
+  {
+    "character": "时间",
+    "pinyin": "shíjiān",
+    "english": "time",
+    "spanish": "tiempo",
+    "level": 2
+  },
+  {
+    "character": "事情",
+    "pinyin": "shìqing",
+    "english": "things",
+    "spanish": "asunto; cosa",
+    "level": 2
+  },
+  {
+    "character": "手表",
+    "pinyin": "shǒubiǎo",
+    "english": "watch",
+    "spanish": "reloj de pulsera",
+    "level": 2
+  },
+  {
+    "character": "手机",
+    "pinyin": "shǒujī",
+    "english": "cell phone",
+    "spanish": "teléfono móvil",
+    "level": 2
+  },
+  {
+    "character": "说话",
+    "pinyin": "shuōhuà",
+    "english": "speak",
+    "spanish": "hablar",
+    "level": 2
+  },
+  {
+    "character": "送",
+    "pinyin": "sòng",
+    "english": "give away",
+    "spanish": "regalar; llevar",
+    "level": 2
+  },
+  {
+    "character": "虽然......但是......",
+    "pinyin": "suīrán...dànshì...",
+    "english": "however, although......",
+    "spanish": "aunque... pero...",
+    "level": 2
+  },
+  {
+    "character": "它",
+    "pinyin": "tā",
+    "english": "it",
+    "spanish": "ello",
+    "level": 2
+  },
+  {
+    "character": "踢足球",
+    "pinyin": "tī zúqiú",
+    "english": "play football",
+    "spanish": "jugar al fútbol",
+    "level": 2
+  },
+  {
+    "character": "题",
+    "pinyin": "tí",
+    "english": "question",
+    "spanish": "pregunta; ejercicio",
+    "level": 2
+  },
+  {
+    "character": "跳舞",
+    "pinyin": "tiàowǔ",
+    "english": "dancing",
+    "spanish": "bailar",
+    "level": 2
+  },
+  {
+    "character": "外",
+    "pinyin": "wài",
+    "english": "outside",
+    "spanish": "fuera; exterior",
+    "level": 2
+  },
+  {
+    "character": "完",
+    "pinyin": "wán",
+    "english": "finish",
+    "spanish": "terminar",
+    "level": 2
+  },
+  {
+    "character": "玩",
+    "pinyin": "wán",
+    "english": "play",
+    "spanish": "jugar; divertirse",
+    "level": 2
+  },
+  {
+    "character": "晚上",
+    "pinyin": "wǎnshang",
+    "english": "night",
+    "spanish": "noche",
+    "level": 2
+  },
+  {
+    "character": "往",
+    "pinyin": "wǎng",
+    "english": "to",
+    "spanish": "hacia",
+    "level": 2
+  },
+  {
+    "character": "为什么",
+    "pinyin": "wèishénme",
+    "english": "why",
+    "spanish": "por qué",
+    "level": 2
+  },
+  {
+    "character": "问",
+    "pinyin": "wèn",
+    "english": "ask",
+    "spanish": "preguntar",
+    "level": 2
+  },
+  {
+    "character": "问题",
+    "pinyin": "wèntí",
+    "english": "question",
+    "spanish": "pregunta; problema",
+    "level": 2
+  },
+  {
+    "character": "西瓜",
+    "pinyin": "xīguā",
+    "english": "watermelon",
+    "spanish": "sandía",
+    "level": 2
+  },
+  {
+    "character": "希望",
+    "pinyin": "xīwàng",
+    "english": "hope",
+    "spanish": "esperar; desear",
+    "level": 2
+  },
+  {
+    "character": "洗",
+    "pinyin": "xǐ",
+    "english": "wash",
+    "spanish": "lavar",
+    "level": 2
+  },
+  {
+    "character": "小时",
+    "pinyin": "xiǎoshí",
+    "english": "hour",
+    "spanish": "hora",
+    "level": 2
+  },
+  {
+    "character": "笑",
+    "pinyin": "xiào",
+    "english": "laugh",
+    "spanish": "reír",
+    "level": 2
+  },
+  {
+    "character": "新",
+    "pinyin": "xīn",
+    "english": "new",
+    "spanish": "nuevo",
+    "level": 2
+  },
+  {
+    "character": "姓",
+    "pinyin": "xìng",
+    "english": "last name",
+    "spanish": "apellido",
+    "level": 2
+  },
+  {
+    "character": "休息",
+    "pinyin": "xiūxi",
+    "english": "rest",
+    "spanish": "descansar",
+    "level": 2
+  },
+  {
+    "character": "雪",
+    "pinyin": "xuě",
+    "english": "snow",
+    "spanish": "nieve",
+    "level": 2
+  },
+  {
+    "character": "颜色",
+    "pinyin": "yánsè",
+    "english": "colour",
+    "spanish": "color",
+    "level": 2
+  },
+  {
+    "character": "眼睛",
+    "pinyin": "yǎnjing",
+    "english": "eyes",
+    "spanish": "ojos",
+    "level": 2
+  },
+  {
+    "character": "羊肉",
+    "pinyin": "yángròu",
+    "english": "lamb",
+    "spanish": "carne de cordero",
+    "level": 2
+  },
+  {
+    "character": "药",
+    "pinyin": "yào",
+    "english": "medicine",
+    "spanish": "medicina",
+    "level": 2
+  },
+  {
+    "character": "要",
+    "pinyin": "yào",
+    "english": "want",
+    "spanish": "querer; necesitar",
+    "level": 2
+  },
+  {
+    "character": "也",
+    "pinyin": "yě",
+    "english": "also",
+    "spanish": "también",
+    "level": 2
+  },
+  {
+    "character": "一起",
+    "pinyin": "yīqǐ",
+    "english": "together",
+    "spanish": "juntos",
+    "level": 2
+  },
+  {
+    "character": "一下",
+    "pinyin": "yīxià",
+    "english": "one time",
+    "spanish": "un momento; un poco",
+    "level": 2
+  },
+  {
+    "character": "已经",
+    "pinyin": "yǐjīng",
+    "english": "already",
+    "spanish": "ya",
+    "level": 2
+  },
+  {
+    "character": "意思",
+    "pinyin": "yìsi",
+    "english": "meaning",
+    "spanish": "significado",
+    "level": 2
+  },
+  {
+    "character": "因为......所以......",
+    "pinyin": "yīnwèi...suǒyǐ...",
+    "english": "because therefore......",
+    "spanish": "porque... por eso...",
+    "level": 2
+  },
+  {
+    "character": "阴",
+    "pinyin": "yīn",
+    "english": "overcast",
+    "spanish": "nublado",
+    "level": 2
+  },
+  {
+    "character": "游泳",
+    "pinyin": "yóuyǒng",
+    "english": "swim",
+    "spanish": "nadar",
+    "level": 2
+  },
+  {
+    "character": "右边",
+    "pinyin": "yòubiān",
+    "english": "right",
+    "spanish": "lado derecho",
+    "level": 2
+  },
+  {
+    "character": "鱼",
+    "pinyin": "yú",
+    "english": "fish",
+    "spanish": "pescado",
+    "level": 2
+  },
+  {
+    "character": "远",
+    "pinyin": "yuǎn",
+    "english": "far",
+    "spanish": "lejos",
+    "level": 2
+  },
+  {
+    "character": "运动",
+    "pinyin": "yùndòng",
+    "english": "exercise",
+    "spanish": "hacer ejercicio",
+    "level": 2
+  },
+  {
+    "character": "再",
+    "pinyin": "zài",
+    "english": "again",
+    "spanish": "de nuevo",
+    "level": 2
+  },
+  {
+    "character": "早上",
+    "pinyin": "zǎoshang",
+    "english": "morning",
+    "spanish": "por la mañana",
+    "level": 2
+  },
+  {
     "character": "长",
     "pinyin": "cháng",
     "english": "long (adjective)",
     "spanish": "largo",
+    "level": 2
+  },
+  {
+    "character": "丈夫",
+    "pinyin": "zhàngfu",
+    "english": "husband",
+    "spanish": "marido",
+    "level": 2
+  },
+  {
+    "character": "找",
+    "pinyin": "zhǎo",
+    "english": "find",
+    "spanish": "buscar",
+    "level": 2
+  },
+  {
+    "character": "着",
+    "pinyin": "zhe",
+    "english": "with",
+    "spanish": "partícula aspectual (durativa)",
+    "level": 2
+  },
+  {
+    "character": "真",
+    "pinyin": "zhēn",
+    "english": "really",
+    "spanish": "realmente",
+    "level": 2
+  },
+  {
+    "character": "正在",
+    "pinyin": "zhèngzài",
+    "english": "in the process of",
+    "spanish": "estar + gerundio",
+    "level": 2
+  },
+  {
+    "character": "知道",
+    "pinyin": "zhīdào",
+    "english": "know",
+    "spanish": "saber",
+    "level": 2
+  },
+  {
+    "character": "准备",
+    "pinyin": "zhǔnbèi",
+    "english": "ready",
+    "spanish": "preparar; estar listo",
+    "level": 2
+  },
+  {
+    "character": "左边",
+    "pinyin": "zuǒbiān",
+    "english": "left",
+    "spanish": "lado izquierdo",
     "level": 2
   }
 ]
