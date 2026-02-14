@@ -4,7 +4,10 @@
   "description": "HSK Chinese Learning Application - Static site with GitHub Pages and Supabase",
   "scripts": {
     "dev": "npx serve . -p 3369",
-    "test": "echo \"No tests configured\" && exit 0"
+    "test": "echo \"No tests configured\" && exit 0",
+    "translation:report": "node scripts/translation/coverage-report.js --report docs/development/translation/coverage-report.json",
+    "translation:report:strict": "node scripts/translation/coverage-report.js --strict --report docs/development/translation/coverage-report.json",
+    "translation:worklist": "node scripts/translation/generate-worklist.js --output docs/development/translation/hsk_es_worklist.json"
   },
   "keywords": [
     "hsk",
