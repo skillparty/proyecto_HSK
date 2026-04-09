@@ -672,6 +672,7 @@ class HSKApp {
         this.vocabularyPromise = loadTask();
         return this.vocabularyPromise;
     }
+
     createFallbackVocabulary() {
         this.vocabulary = [
             { character: '你', pinyin: 'nǐ', english: 'you', translation: 'tú', level: 1 },
