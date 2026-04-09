@@ -2882,15 +2882,14 @@ class HSKApp {
             const progressBar = document.createElement('div');
             progressBar.className = 'level-progress-item';
             const accuracyText = accuracy > 0 ? ' (' + accuracy + '% accuracy)' : '';
-            progressBar.innerHTML = `
-                <div class="level-label">HSK ${level}</div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: ${progress}%"></div>
-                </div>
-                <div class="progress-text">
-                    ${studiedWords}/${totalWords}${accuracyText}
-                </div>
-            `;
+            progressBar.innerHTML = 
+                '<div class="level-label">HSK ' + level + '</div>' +
+                '<div class="progress-bar">' +
+                    '<div class="progress-fill" style="width: ' + progress + '%"></div>' +
+                '</div>' +
+                '<div class="progress-text">' +
+                    studiedWords + '/' + totalWords + accuracyText +
+                '</div>';
             container.appendChild(progressBar);
         }
     }
