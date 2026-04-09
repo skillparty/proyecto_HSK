@@ -296,7 +296,7 @@ class HSKApp {
             const content = panel.querySelector('#health-check-content');
             if (!content) return;
 
-            const authUser = window.supabaseClient?.getCurrentUser?.();
+            const authUser = window.firebaseClient?.getCurrentUser?.();
             const swVersion = await this.getServiceWorkerVersion();
             const buildMeta = this.getBuildMetadata();
             const digest = this.getErrorDigest();
@@ -307,14 +307,14 @@ class HSKApp {
                 swVersion,
                 digest,
                 authUser,
-                hasSupabaseConfig: !!window.SUPABASE_CONFIG?.url
+                hasFirebaseConfig: !!window.firebaseConfig?.projectId
             });
 
             const rows = [
                 ['Online', navigator.onLine ? 'yes' : 'no'],
                 ['Language', this.currentLanguage || 'unknown'],
-                ['Auth user', authUser?.email || authUser?.id || 'guest'],
-                ['Supabase config', window.SUPABASE_CONFIG?.url ? 'loaded' : 'missing'],
+                ['Auth user', authUser?.email || authUser?.uid || 'guest'],
+                ['Firebase config', window.firebaseConfig?.projectId ? 'loaded' : 'missing'],
                 ['SW control', navigator.serviceWorker?.controller ? 'active' : 'none'],
                 ['SW version', swVersion || 'unknown'],
                 ['App version', buildMeta.appVersion],
@@ -403,7 +403,7 @@ class HSKApp {
         return { appVersion, buildHash };
     }
 
-    getHealthChecklist({ swVersion, digest, authUser, hasSupabaseConfig }) {
+    getHealthChecklist({ swVersion, digest, authUser, hasFirebaseConfig }) {
         const isOnline = navigator.onLine;
         const hasErrors = digest.length > 0;
         const hasAuthUser = !!authUser;
@@ -415,9 +415,9 @@ class HSKApp {
                 value: isOnline ? 'OK' : 'Offline'
             },
             {
-                label: 'Supabase Config',
-                status: hasSupabaseConfig ? 'ok' : 'error',
-                value: hasSupabaseConfig ? 'OK' : 'Missing'
+                label: 'Firebase Config',
+                status: hasFirebaseConfig ? 'ok' : 'error',
+                value: hasFirebaseConfig ? 'OK' : 'Missing'
             },
             {
                 label: 'Service Worker',
@@ -505,7 +505,7 @@ class HSKApp {
 
     async buildHealthSummary() {
         const digest = this.getErrorDigest();
-        const authUser = window.supabaseClient?.getCurrentUser?.();
+        const authUser = window.firebaseClient?.getCurrentUser?.();
         const swVersion = await this.getServiceWorkerVersion();
         const swControl = navigator.serviceWorker?.controller ? 'active' : 'none';
         const buildMeta = this.getBuildMetadata();
@@ -514,8 +514,8 @@ class HSKApp {
             `time=${new Date().toISOString()}`,
             `online=${navigator.onLine}`,
             `language=${this.currentLanguage || 'unknown'}`,
-            `authUser=${authUser?.email || authUser?.id || 'guest'}`,
-            `supabaseConfig=${window.SUPABASE_CONFIG?.url ? 'loaded' : 'missing'}`,
+            `authUser=${authUser?.email || authUser?.uid || 'guest'}`,
+            `firebaseConfig=${window.firebaseConfig?.projectId ? 'loaded' : 'missing'}`,
             `swControl=${swControl}`,
             `swVersion=${swVersion || 'unknown'}`,
             `appVersion=${buildMeta.appVersion}`,
@@ -1911,18 +1911,18 @@ class HSKApp {
         // Update daily progress - count any interaction (known or not known)
         this.updateDailyProgress();
 
-        // Sync with Supabase if user is authenticated
-        if (window.supabaseClient && window.supabaseClient.isAuthenticated()) {
+        // Sync with Firebase if user is authenticated
+        if (window.firebaseProgressSync && window.firebaseClient && window.firebaseClient.isAuthenticated()) {
             try {
                 const hskLevel = this.currentWord.level || this.currentLevel;
-                await window.supabaseClient.updateProgress(hskLevel, isKnown, 0);
-                console.log('✅ Progress synced with Supabase');
+                await window.firebaseProgressSync.saveProgress(hskLevel, isKnown, 0);
+                console.log('✅ Progress synced with Firebase');
                 if (!this.syncToastState.syncedShown) {
                     this.syncToastState.syncedShown = true;
                     this.showToast(this.getTranslation('progressSynced') || 'Progress synced to cloud', 'success', 1800);
                 }
             } catch (error) {
-                console.error('❌ Error syncing progress with Supabase:', error);
+                console.error('❌ Error syncing progress with Firebase:', error);
                 const now = Date.now();
                 if (now - this.syncToastState.lastErrorAt > 15000) {
                     this.syncToastState.lastErrorAt = now;
@@ -3466,25 +3466,25 @@ class HSKApp {
 
         // Show loading state if needed here, or just update silently
 
-        // Load stats from Supabase if user is authenticated
+        // Load stats from Firebase if user is authenticated
         let stats = this.stats;
 
-        if (window.supabaseClient && window.supabaseClient.isAuthenticated()) {
+        if (window.firebaseProgressSync && window.firebaseClient && window.firebaseClient.isAuthenticated()) {
             try {
-                const supabaseStats = await window.supabaseClient.getUserStatistics();
-                if (supabaseStats) {
+                const firebaseStats = await window.firebaseProgressSync.getUserStatistics();
+                if (firebaseStats) {
                     stats = {
-                        totalStudied: supabaseStats.totalStudied || 0,
-                        correctAnswers: supabaseStats.correctAnswers || 0,
-                        incorrectAnswers: supabaseStats.incorrectAnswers || 0,
-                        currentStreak: supabaseStats.currentStreak || 0,
-                        bestStreak: supabaseStats.bestStreak || 0,
+                        totalStudied: firebaseStats.totalStudied || 0,
+                        correctAnswers: firebaseStats.correctAnswers || 0,
+                        incorrectAnswers: firebaseStats.incorrectAnswers || 0,
+                        currentStreak: firebaseStats.currentStreak || 0,
+                        bestStreak: firebaseStats.bestStreak || 0,
                         quizzesCompleted: this.stats.quizzesCompleted // Keep local quiz count for now
                     };
-                    console.log('✅ Loaded stats from Supabase:', stats);
+                    console.log('✅ Loaded stats from Firebase:', stats);
                 }
             } catch (error) {
-                console.error('❌ Error loading stats from Supabase:', error);
+                console.error('❌ Error loading stats from Firebase:', error);
                 // Fallback to local stats is already set
             }
         }
