@@ -2801,7 +2801,7 @@ class HSKApp {
             Math.round((stats.correctAnswers / stats.totalStudied) * 100) : 0;
 
         const accuracyRateEl = document.getElementById('accuracy-rate');
-        if (accuracyRateEl) accuracyRateEl.textContent = `${accuracy}%`;
+        if (accuracyRateEl) accuracyRateEl.textContent = accuracy + '%';
 
         const hasStatsProgress = (stats.totalStudied || 0) > 0 ||
             (stats.quizzesCompleted || 0) > 0 ||
