@@ -548,6 +548,8 @@ class BackendUserProgress {
             accuracyRate: this.profile.statistics.accuracyRate,
             currentStreak: this.profile.progress.currentStreak,
             studyStreak: this.profile.progress.studyStreak,
+            quizzesCompleted: this.profile.progress.quizzesCompleted || 0,
+            matrixRounds: this.profile.progress.matrixRounds || 0,
             achievements: this.profile.achievements.length,
             favoriteLevel: this.profile.statistics.favoriteLevel
         };

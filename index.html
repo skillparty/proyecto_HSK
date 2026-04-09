@@ -594,56 +594,89 @@
     </footer>
     </div>
 
-    <!-- Firebase SDKs (Compat - Fixed Timing Issue) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-
-    <script>
-        // Bridge mapping to maintain compatibility with firebase-client.js
-        window.FirebaseSDK = {
-            initializeApp: (config) => firebase.initializeApp(config),
-            getAuth: (app) => app.auth(),
-            getFirestore: (app) => app.firestore(),
-            GithubAuthProvider: firebase.auth.GithubAuthProvider,
-            signInWithPopup: (auth, provider) => auth.signInWithPopup(provider),
-            signOut: (auth) => auth.signOut(),
-            onAuthStateChanged: (auth, callback) => auth.onAuthStateChanged(callback),
-            
-            // Firestore mappings
-            doc: (db, coll, id) => db.collection(coll).doc(id),
-            setDoc: (docRef, data, options) => docRef.set(data, options),
-            getDoc: (docRef) => docRef.get(),
-            updateDoc: (docRef, data) => docRef.update(data),
-            collection: (db, coll) => db.collection(coll),
-            query: (collRef, ...constraints) => {
-                let q = collRef;
-                constraints.forEach(c => { if(c) q = c(q); });
-                return q;
-            },
-            where: (field, op, value) => (q) => q.where(field, op, value),
-            getDocs: (q) => q.get(),
-            orderBy: (field, dir) => (q) => q.orderBy(field, dir),
-            limit: (n) => (q) => q.limit(n),
-            serverTimestamp: () => firebase.firestore.FieldValue.serverTimestamp()
-        };
+    <!-- Firebase Modular SDK v10 -->
+    <script type="importmap">
+    {
+      "imports": {
+        "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+        "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+        "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"
+      }
+    }
     </script>
 
+    <script type="module">
+        import { initializeApp } from 'firebase/app';
+        import { getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, serverTimestamp } from 'firebase/firestore';
 
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA5IfoQH4pz7yPjVIV9jqUyQK5Hy9L9l-A",
+            authDomain: "confuc10.firebaseapp.com",
+            projectId: "confuc10",
+            storageBucket: "confuc10.firebasestorage.app",
+            messagingSenderId: "541754257691",
+            appId: "1:541754257691:web:cc5e3524f3a92b6c8463be"
+        };
 
-    <!-- Firebase Configuration and Client -->
-    <script src="config/firebase-config.js?v=4"></script>
-    <script src="assets/js/firebase-client.js?v=4"></script>
+        // Initialize Firebase immediately within the module
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Universal bridge to handle modular syntax for legacy scripts
+        window.FirebaseSDK = {
+            initializeApp, getAuth, getFirestore, GithubAuthProvider, signInWithPopup, signOut, 
+            onAuthStateChanged, doc, getDoc, setDoc, updateDoc, collection, query, where, 
+            getDocs, orderBy, limit, serverTimestamp
+        };
+        
+        // Export instances to window for firebase-client.js
+        window.firebaseApp = app;
+        window.firebaseAuth = auth;
+        window.firebaseDb = db;
+
+        console.log('🔥 Firebase Modular Bridge & Instances initialized');
+
+        // Initialize App with a small retry mechanism to handle race conditions in some browsers
+        const initApp = (retries = 3) => {
+            if (window.HSKApp) {
+                console.log('🚀 Initializing HSKApp...');
+                window.app = new HSKApp();
+            } else if (retries > 0) {
+                console.warn(`⏳ HSKApp not found, retrying in 50ms... (${retries} retries left)`);
+                setTimeout(() => initApp(retries - 1), 50);
+            } else {
+                console.error('❌ HSKApp class not found after multiple retries.');
+            }
+        };
+
+        // Trigger initialization when DOM is ready
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', () => initApp());
+        } else {
+            initApp();
+        }
+    </script>
+
+    <!-- Firebase Client (Dependent on bridge) -->
+    <script src="assets/js/firebase-client.js?v=4" defer></script>
 
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=14"></script>
-    <script src="assets/js/firebase-progress-sync.js?v=1"></script>
+    <script src="assets/js/translations.js?v=14" defer></script>
+    <script src="assets/js/firebase-progress-sync.js?v=1" defer></script>
 
-    <script src="assets/js/progress-integrator.js?v=2"></script>
-    <script src="assets/js/auth-backend.js?v=8"></script>
-    <script src="assets/js/user-progress-backend.js?v=2"></script>
+    <!-- Modules -->
+    <script src="assets/js/modules/flashcard-manager.js?v=1" defer></script>
+    <script src="assets/js/modules/quiz-engine.js?v=1" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=1" defer></script>
+    
+    <script src="assets/js/progress-integrator.js?v=2" defer></script>
+    <script src="assets/js/auth-backend.js?v=8" defer></script>
+    <script src="assets/js/user-progress-backend.js?v=2" defer></script>
     <script>
         // Load diagnostic system only when requested via ?diagnostic=true
         if (window.location.search.includes('diagnostic=true')) {
@@ -653,63 +686,66 @@
         }
     </script>
     <!-- Background Data (Base64 Fallback) -->
-    <script src="assets/js/bg-data.js"></script>
-    <script src="assets/js/app.js?v=27"></script>
-    <script src="assets/js/matrix-game.js?v=6"></script>
-    <script src="assets/js/matrix-game-ui.js?v=5"></script>
-    <script src="assets/js/leaderboard.js?v=4"></script>
+    <script src="assets/js/bg-data.js" defer></script>
+    <script src="assets/js/app.js?v=27" defer></script>
+    <script src="assets/js/matrix-game.js?v=6" defer></script>
+    <script src="assets/js/matrix-game-ui.js?v=5" defer></script>
+    <script src="assets/js/leaderboard.js?v=4" defer></script>
 
     <!-- Background Image Integration -->
     <!-- Background Image Integration (Removed hardcoded style) -->
 
 
     <script>
-        console.log('[▶] HSK App - Build: MAIN');
-        console.log('[#] All scripts loaded');
-        console.log('[卡] CSS enhancements applied');
-
-        // Debug script execution
-        setTimeout(function () {
-            console.log('[?] Checking app status...');
-            console.log('HSKApp exists:', typeof HSKApp !== 'undefined');
-            console.log('window.app exists:', !!window.app);
-            console.log('DOM ready state:', document.readyState);
-
-            // Check if DOM elements exist
-            console.log('nav-tab elements:', document.querySelectorAll('.nav-tab').length);
-            console.log('next-btn exists:', !!document.getElementById('next-btn'));
-            console.log('level-select exists:', !!document.getElementById('level-select'));
-
-            // Force app initialization if needed
-            if (typeof HSKApp !== 'undefined' && !window.app) {
-                console.log('[⚙] Force initializing app...');
-                try {
-                    window.app = new HSKApp();
-                    console.log('[✓] App force initialized successfully');
-                } catch (error) {
-                    console.error('[✗] Error force initializing app:', error);
-                }
-            }
-        }, 1000);
-
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', async () => {
                 try {
                     const appBasePath = window.location.pathname.replace(/\/[^/]*$/, '/');
-                    const swUrl = `${appBasePath}config/sw.js?v=3`;
+                    const swUrl = `${appBasePath}sw.js?v=4`;
 
                     const registration = await navigator.serviceWorker.register(swUrl, {
                         scope: appBasePath
                     });
+                    console.log('✅ ServiceWorker registered');
+                    
+                    // Listen for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        console.log('👷 New Service Worker installing');
+                        
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                console.log('🔄 New content available; please refresh.');
+                                if (window.app && window.app.handleUpdate) {
+                                    window.app.handleUpdate(registration);
+                                }
+                            }
+                        });
+                    });
 
-                    if (registration.waiting) {
-                        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                    // Check if there is already a waiting worker on load
+                    if (registration.waiting && navigator.serviceWorker.controller) {
+                        console.log('🔄 A waiting Service Worker was found');
+                        if (window.app && window.app.handleUpdate) {
+                            window.app.handleUpdate(registration);
+                        }
                     }
+
                 } catch (error) {
                     console.warn('Service Worker registration skipped:', error);
                 }
             });
+
+            // Reload when the new service worker takes control
+            let refreshing = false;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (refreshing) return;
+                refreshing = true;
+                console.log('🚀 Controller changed, reloading...');
+                window.location.reload();
+            });
         }
+        console.log('[🚀] HSK Learning App Ready');
     </script>
 </body>
 

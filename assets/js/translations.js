@@ -273,8 +273,9 @@ const translations = {
         signIn: "Iniciar sesión",
         welcomeBack: "¡Bienvenido de vuelta",
         loggedOut: "Sesión cerrada exitosamente",
-        progressSynced: "Progreso sincronizado en la nube",
-        progressLocal: "Sin conexión - progreso guardado localmente"
+        progressLocal: "Sin conexión - progreso guardado localmente",
+        updateAvailable: "Nueva versión disponible",
+        updateAction: "Actualizar"
     },
 
     en: {
@@ -553,8 +554,9 @@ const translations = {
         signIn: "Sign in",
         welcomeBack: "Welcome back",
         loggedOut: "Successfully logged out",
-        progressSynced: "Progress synced to cloud",
-        progressLocal: "Offline - progress saved locally"
+        progressLocal: "Offline - progress saved locally",
+        updateAvailable: "New version available",
+        updateAction: "Update"
     }
 };
 

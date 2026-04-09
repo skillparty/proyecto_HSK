@@ -16,16 +16,11 @@ class HSKApp {
         this.chineseVoices = { male: null, female: null };
         this.currentLanguage = localStorage.getItem('hsk-language') || 'es';
 
-        // Module Initialization Flags
-        this.browseInitialized = false;
-        this.quizInitialized = false;
-        this.leaderboardInitialized = false;
-        this.matrixInitialized = false;
-
-        // User authentication and profile (Backend-integrated)
-        this.backendAuth = null;
-        this.userProgress = null;
-        this.leaderboardManager = null;
+        // Vocabulary State (Lazy Loading)
+        this.vocabulary = [];
+        this.vocabularyLoaded = false;
+        this.vocabularyLoading = false;
+        this.vocabularyPromise = null;
 
         // Initialize quiz
         this.quiz = {
@@ -59,10 +54,12 @@ class HSKApp {
         this.errorDigestStorageKey = 'hsk-error-digest-v1';
         this.maxErrorDigestEntries = 10;
 
-        this.quizSessionStorageKey = 'hsk-quiz-session-v1';
-        this.quizSessionMaxAgeMs = 30 * 60 * 1000;
-        this.lastTabStorageKey = 'hsk-last-tab-v1';
-        this.onboardingSessionStorageKey = 'hsk-onboarding-session-v1';
+        // Core Modules Initialization
+        this.uiController = new UIController(this);
+        this.flashcardManager = new FlashcardManager(this);
+        this.quizEngine = new QuizEngine(this);
+
+        // Load onboarding state
         this.onboardingState = this.loadOnboardingState();
 
         // Daily progress tracking
@@ -158,8 +155,8 @@ class HSKApp {
                 console.log('[✓] Leaderboard Manager initialized');
             }
 
-            // Load vocabulary
-            await this.loadVocabulary();
+            // Load vocabulary (Trigger background load instead of waiting)
+            this.loadVocabulary();
 
             // Setup event listeners
             this.setupEventListeners();
@@ -196,7 +193,7 @@ class HSKApp {
             // Update voice selector after initialization
             this.updateVoiceSelector();
             this.updateHeaderControlMicrocopy();
-            this.restoreLastVisitedTab();
+            this.uiController.restoreLastVisitedTab();
             await this.initHealthCheckPanelIfRequested();
 
             console.log('[✓] HSK Learning App initialized successfully!');
@@ -595,9 +592,13 @@ class HSKApp {
     }
 
     async loadVocabulary(forceLanguage = null) {
-        const targetLanguage = forceLanguage || this.currentLanguage || 'en';
+        if (this.vocabularyLoading && !forceLanguage) return this.vocabularyPromise;
+        if (this.vocabularyLoaded && !forceLanguage) return Promise.resolve(this.vocabulary);
 
-        try {
+        this.vocabularyLoading = true;
+        this.vocabularyPromise = (async () => {
+            const targetLanguage = forceLanguage || this.currentLanguage || 'en';
+            console.log(`[📦] Starting lazy load for ${targetLanguage} vocabulary...`);
             let vocabularyFile;
             let isSpanishStructure = false;
 
@@ -627,10 +628,21 @@ class HSKApp {
                 }));
             }
 
-            console.log(`[HTML] Loaded ${this.vocabulary.length} vocabulary items from ${vocabularyFile}`);
-            console.log(`[SYS] Language: ${targetLanguage === 'es' ? 'Spanish' : 'English'} structure`);
-
-        } catch (error) {
+                console.log(`[✓] Successfully lazy loaded ${this.vocabulary.length} items`);
+                this.vocabularyLoaded = true;
+                this.vocabularyLoading = false;
+                
+                // Notify modules that data is ready if they are waiting
+                window.dispatchEvent(new CustomEvent('hsk:vocabulary-ready'));
+                
+                // Refresh stats if on the stats tab to update denominators
+                if (this.uiController && this.uiController.activeTab === 'stats') {
+                    console.log('🔄 Data ready, refreshing statistics UI');
+                    this.updateStats();
+                }
+                
+                return this.vocabulary;
+            } catch (error) {
             console.error(`[✗] Error loading ${targetLanguage} vocabulary:`, error);
 
             // Fallback logic
@@ -800,22 +812,7 @@ class HSKApp {
         });
     }
 
-    handleDifficulty(difficulty) {
-        if (!this.currentWord || !this.isFlipped) return;
-
-        const isKnown = ['easy', 'good'].includes(difficulty);
-        console.log(`🧠 Rated as: ${difficulty} (Known: ${isKnown})`);
-
-        // Call existing markAsKnown which handles stats and feedback
-        this.markAsKnown(isKnown);
-
-        // Visual feedback for rating
-        const btn = document.querySelector(`[data-difficulty="${difficulty}"]`);
-        if (btn) {
-            btn.classList.add('active-rating');
-            setTimeout(() => btn.classList.remove('active-rating'), 200);
-        }
-    }
+    handleDifficulty(difficulty) { this.flashcardManager.handleDifficulty(difficulty); }
 
     toggleZenMode() {
         document.body.classList.toggle('zen-mode');
@@ -882,7 +879,7 @@ class HSKApp {
                 if (!tabButton) return;
                 const tabName = tabButton.dataset.tab;
                 if (tabName) {
-                    this.switchTab(tabName);
+                    this.uiController.switchTab(tabName);
                 }
             });
         });
@@ -890,7 +887,7 @@ class HSKApp {
         // Practice controls
         const nextBtn = document.getElementById('next-btn');
         if (nextBtn) {
-            nextBtn.addEventListener('click', () => this.nextCard());
+            nextBtn.addEventListener('click', () => this.flashcardManager.nextCard());
         }
 
         // Pinyin Input Handling
@@ -901,21 +898,21 @@ class HSKApp {
         if (pinyinInput) {
             pinyinInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
-                    if (this.waitingForNext) {
-                        this.nextCard();
+                    if (this.flashcardManager.waitingForNext) {
+                        this.flashcardManager.nextCard();
                     } else {
-                        this.checkPinyinAnswer();
+                        this.flashcardManager.checkPinyinAnswer();
                     }
                 }
             });
         }
 
         if (checkBtn) {
-            checkBtn.addEventListener('click', () => this.checkPinyinAnswer());
+            checkBtn.addEventListener('click', () => this.flashcardManager.checkPinyinAnswer());
         }
 
         if (nextCardBtn) {
-            nextCardBtn.addEventListener('click', () => this.nextCard());
+            nextCardBtn.addEventListener('click', () => this.flashcardManager.nextCard());
         }
 
         // Flip button
@@ -945,7 +942,7 @@ class HSKApp {
         document.querySelectorAll('.difficulty-button').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const difficulty = e.target.dataset.difficulty;
-                this.handleDifficulty(difficulty);
+                this.flashcardManager.handleDifficulty(difficulty);
             });
         });
 
@@ -970,10 +967,10 @@ class HSKApp {
 
                 if (endX < startX) {
                     // Swipe Left (Next)
-                    this.nextCard();
+                    this.flashcardManager.nextCard();
                 } else {
                     // Swipe Right (Previous)
-                    this.previousCard();
+                    this.flashcardManager.previousCard();
                 }
             };
         }
@@ -983,7 +980,7 @@ class HSKApp {
         if (levelSelect) {
             levelSelect.addEventListener('change', (e) => {
                 this.currentLevel = e.target.value;
-                this.setupPracticeSession();
+                this.flashcardManager.setupSession();
             });
         }
 
@@ -991,7 +988,7 @@ class HSKApp {
         document.querySelectorAll('input[name="practice-mode"]').forEach(radio => {
             radio.addEventListener('change', (e) => {
                 this.practiceMode = e.target.value;
-                this.updateCard();
+                this.flashcardManager.updateCard();
             });
         });
 
@@ -1059,27 +1056,27 @@ class HSKApp {
         // Quiz functionality
         const startQuizBtn = document.getElementById('start-quiz');
         if (startQuizBtn) {
-            startQuizBtn.addEventListener('click', () => this.startQuiz());
+            startQuizBtn.addEventListener('click', () => this.quizEngine.start());
         }
 
         const quizSubmitBtn = document.getElementById('quiz-submit');
         if (quizSubmitBtn) {
-            quizSubmitBtn.addEventListener('click', () => this.submitQuizAnswer());
+            quizSubmitBtn.addEventListener('click', () => this.quizEngine.submitAnswer());
         }
 
         const quizNextBtn = document.getElementById('quiz-next');
         if (quizNextBtn) {
-            quizNextBtn.addEventListener('click', () => this.nextQuizQuestion());
+            quizNextBtn.addEventListener('click', () => this.quizEngine.nextQuestion());
         }
 
         const restartQuizBtn = document.getElementById('restart-quiz');
         if (restartQuizBtn) {
-            restartQuizBtn.addEventListener('click', () => this.restartQuiz());
+            restartQuizBtn.addEventListener('click', () => this.quizEngine.restart());
         }
 
         const newQuizBtn = document.getElementById('new-quiz');
         if (newQuizBtn) {
-            newQuizBtn.addEventListener('click', () => this.restartQuiz());
+            newQuizBtn.addEventListener('click', () => this.quizEngine.restart());
         }
 
         // Stats functionality
@@ -1214,75 +1211,7 @@ class HSKApp {
     }
 
     switchTab(tabName) {
-        // Update functionality based on tab
-        this.currentTab = tabName;
-
-        try {
-            localStorage.setItem(this.lastTabStorageKey, tabName);
-        } catch (error) {
-            console.warn('⚠️ Error saving last tab:', error);
-        }
-
-        // Hide all tabs
-        document.querySelectorAll('.tab-panel').forEach(panel => {
-            panel.classList.remove('active');
-            panel.style.display = 'none'; // Ensure display is toggled off
-        });
-
-        // Show selected tab
-        const selectedTab = document.getElementById(tabName);
-        if (selectedTab) {
-            selectedTab.classList.add('active');
-            selectedTab.style.display = 'block'; // Ensure display is toggled on
-        }
-
-        // Update navigation state
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            if (tab.dataset.tab === tabName) {
-                tab.classList.add('active');
-            } else {
-                tab.classList.remove('active');
-            }
-        });
-
-        // Initialize specific tab content optimized
-        switch (tabName) {
-            case 'practice':
-                // Always ready
-                break;
-            case 'browse':
-                if (!this.browseInitialized) {
-                    this.initializeBrowse();
-                    this.browseInitialized = true;
-                }
-                break;
-            case 'quiz':
-                if (!this.quizInitialized) {
-                    this.initializeQuiz();
-                    this.quizInitialized = true;
-                }
-                this.renderQuizResumeAction();
-                break;
-            case 'stats':
-                this.updateStats();
-                break;
-            case 'matrix':
-                if (!this.matrixInitialized) {
-                    this.initializeMatrixGame();
-                    this.matrixInitialized = true;
-                }
-                break;
-            case 'leaderboard':
-                if (!this.leaderboardInitialized) {
-                    this.initializeLeaderboard();
-                    this.leaderboardInitialized = true;
-                }
-                break;
-        }
-
-        this.renderOnboardingHintForTab(tabName);
-
-        console.log(`📱 Switched to tab: ${tabName}`);
+        this.uiController.switchTab(tabName);
     }
 
     loadLastVisitedTab() {
@@ -1357,98 +1286,10 @@ class HSKApp {
         }
     }
 
-    renderOnboardingHintForTab(tabName) {
-        const panel = document.getElementById(tabName);
-        if (!panel || !this.onboardingState) return;
-
-        this.removeOnboardingHintFromTab(tabName);
-
-        let hintType = null;
-        let hintMessage = '';
-
-        if (
-            tabName === 'home' &&
-            !this.onboardingState.homeHintShown &&
-            !this.onboardingState.homeHintDismissed
-        ) {
-            hintType = 'home';
-            hintMessage = this.getTranslation('onboardingHomeHint') || 'Welcome! Start in Practice and then try Quiz or Matrix to build streak.';
-            this.onboardingState.homeHintShown = true;
-        } else if (
-            this.isLearningModuleTab(tabName) &&
-            !this.onboardingState.moduleHintShown &&
-            !this.onboardingState.moduleHintDismissed
-        ) {
-            const moduleName = this.getTabDisplayName(tabName);
-            hintType = 'module';
-            hintMessage = this.getTranslation('onboardingModuleHint', { module: moduleName }) || `Tip: In ${moduleName}, complete a quick action to generate progress.`;
-            this.onboardingState.moduleHintShown = true;
-        }
-
-        if (!hintType) {
-            this.saveOnboardingState();
-            return;
-        }
-
-        const hint = document.createElement('div');
-        hint.className = `onboarding-hint onboarding-hint--${hintType}`;
-        hint.innerHTML = `
-            <div class="onboarding-hint-content">
-                <span class="onboarding-hint-icon" aria-hidden="true">💡</span>
-                <span class="onboarding-hint-text">${hintMessage}</span>
-            </div>
-            <button type="button" class="onboarding-hint-close" aria-label="Close onboarding hint">×</button>
-        `;
-
-        const closeButton = hint.querySelector('.onboarding-hint-close');
-        if (closeButton) {
-            closeButton.addEventListener('click', () => {
-                if (hintType === 'home') {
-                    this.onboardingState.homeHintDismissed = true;
-                } else {
-                    this.onboardingState.moduleHintDismissed = true;
-                }
-
-                this.saveOnboardingState();
-                hint.remove();
-            });
-        }
-
-        panel.prepend(hint);
-        this.saveOnboardingState();
-    }
+    renderOnboardingHintForTab(tabName) { this.uiController.renderOnboardingHint(tabName); }
 
     setupPracticeSession() {
-        // Wait for vocabulary to load
-        if (!this.vocabulary || this.vocabulary.length === 0) {
-            console.log('⏳ Waiting for vocabulary to load...');
-            setTimeout(() => this.setupPracticeSession(), 500);
-            return;
-        }
-
-        const levelFilter = this.currentLevel === 'all' ?
-            this.vocabulary :
-            this.vocabulary.filter(word => word.level == this.currentLevel);
-
-        this.currentSession = [...levelFilter];
-        this.sessionIndex = 0;
-
-        if (this.currentSession.length > 0) {
-            this.currentWord = this.currentSession[0];
-            this.isFlipped = false;
-            this.updateCard();
-            this.updateProgress();
-            console.log(`[書] Practice session setup: ${this.currentSession.length} words for level ${this.currentLevel}`);
-        } else {
-                this.showError(this.getTranslation('noVocabularyForLevel', { level: this.currentLevel }) || `No vocabulary found for HSK level ${this.currentLevel}`);
-
-            // Check if we're in Spanish mode and trying to access levels 2-6
-            if (this.currentLanguage === 'es' && this.currentLevel > 1) {
-                this.showSpanishLevelMessage();
-            } else {
-                this.showError(`No vocabulary found for HSK level ${this.currentLevel}`);
-            }
-        }
+        this.flashcardManager.setupSession();
     }
 
     updateCard() {
@@ -1670,60 +1511,7 @@ class HSKApp {
     }
 
     checkPinyinAnswer() {
-        if (this.isFlipped) return; // Already answered
-
-        const pinyinInput = document.getElementById('pinyin-input');
-        const feedbackMsg = document.getElementById('feedback-message');
-        const nextCardBtn = document.getElementById('next-card-next-btn');
-
-        if (!pinyinInput) return;
-
-        const userPinyin = this.normalizePinyin(pinyinInput.value);
-        const correctPinyin = this.normalizePinyin(this.currentWord.pinyin);
-
-        if (userPinyin === correctPinyin) {
-            // Correct
-            pinyinInput.classList.add('correct');
-            if (feedbackMsg) {
-                feedbackMsg.textContent = this.getTranslation('pinyinCorrectFeedback') || 'Correct!';
-                feedbackMsg.className = 'feedback-message visible correct-text';
-            }
-
-            // Play audio
-            if (this.isAudioEnabled) this.playAudio(this.currentWord.character);
-
-            this.markAsKnown(true);
-
-            // Flip and show Next button
-            setTimeout(() => {
-                this.flipCard();
-                this.waitingForNext = true;
-                if (nextCardBtn) {
-                    nextCardBtn.style.display = 'block';
-                    nextCardBtn.focus();
-                }
-            }, 600);
-
-        } else {
-            // Incorrect
-            pinyinInput.classList.add('incorrect');
-            if (feedbackMsg) {
-                feedbackMsg.textContent = this.getTranslation('pinyinIncorrectFeedback', { answer: this.currentWord.pinyin }) || `Incorrect. The answer is ${this.currentWord.pinyin}`;
-                feedbackMsg.className = 'feedback-message visible incorrect-text';
-            }
-
-            // Shake and then flip
-            setTimeout(() => {
-                pinyinInput.classList.remove('incorrect');
-                this.flipCard();
-                this.markAsKnown(false);
-                this.waitingForNext = true;
-                if (nextCardBtn) {
-                    nextCardBtn.style.display = 'block';
-                    nextCardBtn.focus();
-                }
-            }, 1000);
-        }
+        this.flashcardManager.checkPinyinAnswer();
     }
 
     getToneMarks(pinyin) {
@@ -1811,51 +1599,11 @@ class HSKApp {
     }
 
     flipCard() {
-        const flashcard = document.getElementById('flashcard');
-        const pinyinInput = document.getElementById('pinyin-input');
-
-        if (flashcard && !this.isFlipped) {
-            flashcard.classList.add('flipped');
-            this.isFlipped = true;
-
-            // Disable input when flipped
-            if (pinyinInput) {
-                pinyinInput.disabled = true;
-            }
-
-            // Enable knowledge buttons if visible (legacy support)
-            this.enableKnowledgeButtons();
-
-            console.log('[卡] Card flipped');
-        }
+        this.flashcardManager.flipCard();
     }
 
-    previousCard() {
-        if (!this.currentSession || this.currentSession.length === 0) return;
-
-        this.sessionIndex = (this.sessionIndex - 1 + this.currentSession.length) % this.currentSession.length;
-        this.currentWord = this.currentSession[this.sessionIndex];
-        this.isFlipped = false;
-
-        this.updateCard();
-        this.updateProgress();
-    }
-
-    nextCard() {
-        if (this.currentSession.length === 0) return;
-
-        this.sessionIndex = (this.sessionIndex + 1) % this.currentSession.length;
-        this.currentWord = this.currentSession[this.sessionIndex];
-        this.isFlipped = false;
-
-        this.updateCard();
-        this.updateProgress();
-
-        // Update stats
-        this.stats.totalCards++;
-        this.saveStats();
-        this.updateHeaderStats();
-    }
+    nextCard() { this.flashcardManager.nextCard(); }
+    previousCard() { this.flashcardManager.previousCard(); }
 
     // Knowledge assessment functionality
     enableKnowledgeButtons() {
@@ -2234,82 +1982,18 @@ class HSKApp {
         this.showToast(message, 'success');
     }
 
-    showError(message) {
-        console.error('❌ Error:', message);
-        this.showToast(message, 'error', 4000);
-    }
+    showToast(message, type, duration, action) { this.uiController.showToast(message, type, duration, action); }
+    showUpdateToast(callback) { this.uiController.showUpdateToast(callback); }
+    showError(message) { this.uiController.showError(message); }
 
-    ensureToastStyles() {
-        if (document.getElementById('hsk-toast-styles')) return;
-
-        const style = document.createElement('style');
-        style.id = 'hsk-toast-styles';
-        style.textContent = `
-            .hsk-toast-container {
-                position: fixed;
-                top: 84px;
-                right: 20px;
-                z-index: 10050;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                pointer-events: none;
-            }
-            .hsk-toast {
-                min-width: 220px;
-                max-width: 360px;
-                border-radius: 10px;
-                padding: 10px 14px;
-                color: #fff;
-                font-size: 0.875rem;
-                box-shadow: 0 10px 24px rgba(0,0,0,.25);
-                opacity: 0;
-                transform: translateX(16px);
-                transition: opacity .2s ease, transform .2s ease;
-                pointer-events: auto;
-            }
-            .hsk-toast.show {
-                opacity: 1;
-                transform: translateX(0);
-            }
-            .hsk-toast.hide {
-                opacity: 0;
-                transform: translateX(16px);
-            }
-            .hsk-toast-success { background: #16a34a; }
-            .hsk-toast-error { background: #dc2626; }
-            .hsk-toast-info { background: #2563eb; }
-            .hsk-toast-warning { background: #d97706; }
-        `;
-        document.head.appendChild(style);
-    }
-
-    showToast(message, type = 'info', duration = 2200) {
-        if (!message) return;
-
-        this.ensureToastStyles();
-
-        let container = document.getElementById('hsk-toast-container');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'hsk-toast-container';
-            container.className = 'hsk-toast-container';
-            document.body.appendChild(container);
-        }
-
-        const toast = document.createElement('div');
-        toast.className = `hsk-toast hsk-toast-${type}`;
-        toast.textContent = message;
-        container.appendChild(toast);
-
-        requestAnimationFrame(() => toast.classList.add('show'));
-
-        setTimeout(() => {
-            toast.classList.add('hide');
-            setTimeout(() => {
-                if (toast.parentNode) toast.remove();
-            }, 220);
-        }, duration);
+    handleUpdate(registration) {
+        if (!registration || !registration.waiting) return;
+        
+        console.log('🔄 New update available, showing notification');
+        this.showUpdateToast(() => {
+            console.log('🖱️ User clicked update, skipWaiting triggered');
+            registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        });
     }
 
     showSpanishLevelMessage() {
@@ -3002,403 +2686,20 @@ class HSKApp {
                 <div class="no-results-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </div>
-                <div class="no-results-text">${this.getTranslation('noVocabularyFound') || 'No vocabulary found'}</div>
-                <div class="no-results-subtitle">${this.getTranslation('tryAdjustingSearch') || 'Try adjusting your search or filter'}</div>
-            </div>
-        `;
-    }
-
-    startQuiz() {
-        const levelSelect = document.getElementById('quiz-level');
-        const questionsSelect = document.getElementById('quiz-questions');
-
-        const selectedLevel = levelSelect ? levelSelect.value : '1';
-        const numQuestions = questionsSelect ? parseInt(questionsSelect.value) : 10;
-
-        // Filter vocabulary by level
-        let vocabPool = selectedLevel === 'all' ?
-            this.vocabulary :
-            this.vocabulary.filter(word => word.level == selectedLevel);
-
-        // Shuffle and select questions
-        vocabPool = vocabPool.sort(() => Math.random() - 0.5);
-        this.quiz.questions = vocabPool.slice(0, numQuestions);
-        this.quiz.currentQuestion = 0;
-        this.quiz.score = 0;
-        this.quiz.correctAnswer = null;
-        this.quiz.selectedAnswer = null;
-        this.quiz.isActive = true;
-
-        // Show quiz container
-        document.getElementById('quiz-setup').style.display = 'none';
-        document.getElementById('quiz-container').style.display = 'block';
-        document.getElementById('quiz-results').style.display = 'none';
-
-        this.saveQuizSessionState();
-
-        this.showQuizQuestion();
-    }
-
-    showQuizQuestion() {
-        const question = this.quiz.questions[this.quiz.currentQuestion];
-        const questionDisplay = document.getElementById('quiz-question');
-        const optionsContainer = document.getElementById('quiz-options');
-        const currentSpan = document.getElementById('quiz-current');
-        const totalSpan = document.getElementById('quiz-total');
-        const scoreSpan = document.getElementById('quiz-score');
-        const currentQuestionNumber = this.quiz.currentQuestion + 1;
-        const totalQuestions = this.quiz.questions.length;
-
-        if (currentSpan) currentSpan.textContent = currentQuestionNumber;
-        if (totalSpan) totalSpan.textContent = totalQuestions;
-        if (scoreSpan) scoreSpan.textContent = this.quiz.score;
-
-        // Show question
-        if (questionDisplay) {
-            const hskLevelLabel = this.getTranslation('quizHskLevel') || 'HSK Level';
-            const questionLabel = this.getTranslation('quizQuestionCounter') || (this.getTranslation('question') || 'Question');
-            const ofLabel = this.getTranslation('of') || 'of';
-            const hskLevelValue = question?.level ? `HSK ${question.level}` : (this.getTranslation('allLevels') || 'All levels');
-
-            questionDisplay.innerHTML = `
-                <div class="quiz-question-meta">
-                    <span class="quiz-meta-pill">${hskLevelLabel}: ${hskLevelValue}</span>
-                    <span class="quiz-meta-pill">${questionLabel} ${currentQuestionNumber} ${ofLabel} ${totalQuestions}</span>
-                </div>
-                <div class="quiz-question-text">${this.getTranslation('whatDoesThisCharacterMean') || 'What does this character mean?'}</div>
-                <div class="quiz-character">${question.character}</div>
-                <div class="quiz-pinyin">${question.pinyin}</div>
-            `;
-        }
-
-        // Generate options with guaranteed correct answer
-        const correctAnswer = this.getMeaningForLanguage(question);
-        const options = this.generateQuizOptions(question, correctAnswer);
-
-        // Store correct answer for validation
-        this.quiz.correctAnswer = correctAnswer;
-
-        // Render options
-        if (optionsContainer) {
-            optionsContainer.innerHTML = '';
-            options.forEach((option, index) => {
-                const optionBtn = document.createElement('button');
-                optionBtn.className = 'quiz-option';
-                optionBtn.textContent = option;
-                optionBtn.addEventListener('click', () => {
-                    this.selectQuizAnswer(option, correctAnswer);
-                });
-                optionsContainer.appendChild(optionBtn);
-            });
-        }
-
-        // Reset submit button
-        const submitBtn = document.getElementById('quiz-submit');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-        }
-
-        this.quiz.selectedAnswer = null;
-
-        this.saveQuizSessionState();
-
-        console.log(`❓ Quiz question ${this.quiz.currentQuestion + 1}: ${question.character} (${correctAnswer})`);
-    }
-
-    generateQuizOptions(currentWord, correctAnswer) {
-        // Get all possible wrong answers
-        const allWrongAnswers = this.vocabulary
-            .filter(word => word !== currentWord)
-            .map(word => this.getMeaningForLanguage(word))
-            .filter(meaning => meaning && meaning !== correctAnswer)
-            .filter((meaning, index, arr) => arr.indexOf(meaning) === index); // Remove duplicates
-
-        // Ensure we have enough wrong answers
-        if (allWrongAnswers.length < 3) {
-            console.warn('⚠️ Not enough vocabulary for 4 options, using available options');
-            // Add some generic wrong answers if needed
-            const genericWrongAnswers = this.currentLanguage === 'es'
-                ? ['hola', 'adiós', 'gracias', 'por favor', 'lo siento', 'sí', 'no']
-                : ['hello', 'goodbye', 'thank you', 'please', 'sorry', 'yes', 'no'];
-            allWrongAnswers.push(...genericWrongAnswers.filter(answer => answer !== correctAnswer));
-        }
-
-        // Select 3 random wrong answers
-        const wrongAnswers = allWrongAnswers
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 3);
-
-        // Combine correct and wrong answers
-        const allOptions = [correctAnswer, ...wrongAnswers];
-
-        // Shuffle all options
-        const shuffledOptions = allOptions.sort(() => Math.random() - 0.5);
-
-        // Verify correct answer is included
-        if (!shuffledOptions.includes(correctAnswer)) {
-            console.error('[✗] Correct answer not in options! Adding it back.');
-            shuffledOptions[0] = correctAnswer; // Replace first option with correct answer
-            shuffledOptions.sort(() => Math.random() - 0.5); // Shuffle again
-        }
-
-        console.log(`[#] Generated options: [${shuffledOptions.join(', ')}] - Correct: ${correctAnswer}`);
-
-        return shuffledOptions;
-    }
-
-    selectQuizAnswer(selected, correct) {
-        this.quiz.selectedAnswer = selected;
-        this.quiz.correctAnswer = correct;
-
-        // Update UI with clear selection feedback
-        document.querySelectorAll('.quiz-option').forEach(btn => {
-            btn.classList.remove('selected');
-            if (btn.textContent === selected) {
-                btn.classList.add('selected');
-                // Add selection animation
-                btn.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    btn.style.transform = 'scale(1)';
-                }, 150);
-            }
-        });
-
-        // Enable submit button with visual feedback
-        const submitBtn = document.getElementById('quiz-submit');
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.classList.add('ready');
-            submitBtn.textContent = this.getTranslation('submit') || 'Submit';
-        }
-
-        console.log(`👆 Selected answer: ${selected} (Correct: ${correct})`);
-    }
-
-    submitQuizAnswer() {
-        if (!this.quiz.selectedAnswer) {
-            this.showToast(this.getTranslation('selectAnAnswer') || 'Select an answer', 'warning', 1400);
-            return;
-        }
-
-        const isCorrect = this.quiz.selectedAnswer === this.quiz.correctAnswer;
-
-        this.stats.totalStudied = (Number(this.stats.totalStudied) || 0) + 1;
-        this.stats.quizAnswered = (Number(this.stats.quizAnswered) || 0) + 1;
-
-        // Update score immediately if correct
-        if (isCorrect) {
-            this.quiz.score++;
-            this.stats.correctAnswers = (Number(this.stats.correctAnswers) || 0) + 1;
-            console.log(`[✓] Correct answer! Score: ${this.quiz.score}/${this.quiz.questions.length}`);
-        } else {
-            console.log(`[✗] Incorrect answer. Score remains: ${this.quiz.score}/${this.quiz.questions.length}`);
-        }
-
-        this.updateDailyProgress();
-        this.saveStats();
-        this.updateProgress();
-        this.updateHeaderStats();
-
-        this.saveQuizSessionState();
-
-        // Update score display immediately
-        const scoreSpan = document.getElementById('quiz-score');
-        if (scoreSpan) {
-            scoreSpan.textContent = this.quiz.score;
-        }
-
-        // Show correct/incorrect feedback
-        document.querySelectorAll('.quiz-option').forEach(btn => {
-            if (btn.textContent === this.quiz.correctAnswer) {
-                btn.classList.add('correct');
-            } else if (btn.textContent === this.quiz.selectedAnswer && !isCorrect) {
-                btn.classList.add('incorrect');
-            }
-            btn.disabled = true;
-        });
-
-        // Show feedback message
-        this.showQuizFeedback(isCorrect);
-        this.showToast(
-            isCorrect
-                ? (this.getTranslation('answerCorrectToast') || 'Correct answer!')
-                : (this.getTranslation('answerIncorrectToast') || 'Incorrect answer'),
-            isCorrect ? 'success' : 'error',
-            1400
-        );
-
-        // Show next button
-        document.getElementById('quiz-submit').style.display = 'none';
-        document.getElementById('quiz-next').style.display = 'inline-block';
-    }
-
-    showQuizFeedback(isCorrect) {
-        const quizContent = document.getElementById('quiz-content');
-        if (!quizContent) return;
-
-        // Remove existing feedback
-        const existingFeedback = document.getElementById('quiz-feedback');
-        if (existingFeedback) {
-            existingFeedback.remove();
-        }
-
-        const feedback = document.createElement('div');
-        feedback.id = 'quiz-feedback';
-        feedback.className = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
-        feedback.innerHTML = `
-            <div class="feedback-icon">${isCorrect
-                ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
-                : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'}</div>
-            <div class="feedback-text">${isCorrect
-                ? (this.getTranslation('correctQuizFeedback') || 'Correct!')
-                : (this.getTranslation('incorrectQuizFeedback') || 'Incorrect')}</div>
-            ${!isCorrect ? `<div class="feedback-answer">${this.getTranslation('correctAnswerLabel') || 'Correct answer'}: ${this.quiz.correctAnswer}</div>` : ''}
-        `;
-
-        quizContent.appendChild(feedback);
-
-        // Auto-remove feedback after animation
-        setTimeout(() => {
-            if (feedback.parentNode) {
-                feedback.style.opacity = '0';
-                setTimeout(() => {
-                    if (feedback.parentNode) {
-                        feedback.remove();
-                    }
-                }, 300);
-            }
-        }, 2000);
-    }
-
-    nextQuizQuestion() {
-        this.quiz.currentQuestion++;
-
-        if (this.quiz.currentQuestion >= this.quiz.questions.length) {
-            this.showQuizResults();
-        } else {
-            // Reset button states
-            const submitBtn = document.getElementById('quiz-submit');
-            const nextBtn = document.getElementById('quiz-next');
-
-            if (submitBtn) {
-                submitBtn.style.display = 'inline-block';
-                submitBtn.disabled = true;
-                submitBtn.classList.remove('ready');
-                submitBtn.textContent = this.getTranslation('selectAnAnswer') || 'Select an Answer';
-            }
-
-            if (nextBtn) {
-                nextBtn.style.display = 'none';
-            }
-
-            // Clear previous question feedback
-            const existingFeedback = document.getElementById('quiz-feedback');
-            if (existingFeedback) {
-                existingFeedback.remove();
-            }
-
-            this.saveQuizSessionState();
-            this.showQuizQuestion();
-        }
-    }
-
-    showQuizResults() {
-        const percentage = Math.round((this.quiz.score / this.quiz.questions.length) * 100);
-
-        document.getElementById('quiz-container').style.display = 'none';
-        document.getElementById('quiz-results').style.display = 'block';
-
-        document.getElementById('final-score').textContent = `${this.quiz.score}/${this.quiz.questions.length}`;
-        document.getElementById('final-percentage').textContent = `${percentage}%`;
-
-        // Update stats
-        this.stats.quizzesCompleted++;
-        this.saveStats();
-        this.clearQuizSessionState();
-        this.renderQuizResumeAction();
-
-        // Sync quiz completion to backend profile when available
-        if (this.userProgress && typeof this.userProgress.recordQuizCompletion === 'function') {
-            this.userProgress.recordQuizCompletion(
-                this.currentLevel,
-                this.quiz.score,
-                this.quiz.questions.length
-            );
-        }
-    }
-
-    restartQuiz() {
-        document.getElementById('quiz-setup').style.display = 'block';
-        document.getElementById('quiz-container').style.display = 'none';
-        document.getElementById('quiz-results').style.display = 'none';
-        this.quiz.isActive = false;
-        this.clearQuizSessionState();
-        this.renderQuizResumeAction();
-    }
-
-    saveQuizSessionState() {
-        try {
-            if (!this.quiz || !this.quiz.isActive || !Array.isArray(this.quiz.questions) || this.quiz.questions.length === 0) {
-                return;
-            }
-
-            const levelSelect = document.getElementById('quiz-level');
-            const questionsSelect = document.getElementById('quiz-questions');
-
-            const state = {
-                selectedLevel: levelSelect?.value || '1',
-                numQuestions: Number(questionsSelect?.value || this.quiz.questions.length) || this.quiz.questions.length,
-                quiz: {
-                    questions: this.quiz.questions,
-                    currentQuestion: Number(this.quiz.currentQuestion || 0),
-                    score: Number(this.quiz.score || 0),
-                    selectedAnswer: this.quiz.selectedAnswer || null,
-                    correctAnswer: this.quiz.correctAnswer || null,
-                    isActive: true
-                },
-                updatedAt: Date.now()
-            };
-
-            localStorage.setItem(this.quizSessionStorageKey, JSON.stringify(state));
-        } catch (error) {
-            console.warn('⚠️ Error saving quiz session state:', error);
-        }
-    }
-
-    loadQuizSessionState() {
-        try {
-            const raw = localStorage.getItem(this.quizSessionStorageKey);
-            if (!raw) return null;
-            return JSON.parse(raw);
-        } catch (error) {
-            console.warn('⚠️ Error loading quiz session state:', error);
-            return null;
-        }
-    }
-
-    clearQuizSessionState() {
-        try {
-            localStorage.removeItem(this.quizSessionStorageKey);
-        } catch (error) {
-            console.warn('⚠️ Error clearing quiz session state:', error);
-        }
-    }
-
-    hasResumableQuizSession(session = null) {
-        const state = session || this.loadQuizSessionState();
-        if (!state || !state.updatedAt || !state.quiz) return false;
-
-        const age = Date.now() - Number(state.updatedAt);
-        if (age > this.quizSessionMaxAgeMs) {
-            this.clearQuizSessionState();
-            return false;
-        }
-
-        return !!(state.quiz.isActive && Array.isArray(state.quiz.questions) && state.quiz.questions.length > 0);
-    }
+                    showQuizQuestion() { this.quizEngine.showQuestion(); }
+    submitQuizAnswer() { this.quizEngine.submitAnswer(); }
+    nextQuizQuestion() { this.quizEngine.nextQuestion(); }
+    showQuizResults() { this.quizEngine.showResults(); }
+    restartQuiz() { this.quizEngine.restart(); }
+    saveQuizSessionState() { this.quizEngine.saveSession(); }
+    loadQuizSessionState() { return this.quizEngine.loadSession(); }
+    clearQuizSessionState() { this.quizEngine.clearSession(); }
+    renderQuizResumeAction() { this.quizEngine.renderResumeAction(); }
+    resumeQuizSession() { this.quizEngine.resumeSession(); }
+    hasResumableQuizSession(session) { return this.quizEngine.hasResumableSession(session); }
+
+
+    hasResumableQuizSession(session) { return this.quizEngine.hasResumableSession(session); }
 
     renderQuizResumeAction() {
         const quizSetup = document.getElementById('quiz-setup');
@@ -3464,30 +2765,37 @@ class HSKApp {
     async updateStats() {
         console.log('📊 Updating stats...');
 
-        // Show loading state if needed here, or just update silently
-
-        // Load stats from Firebase if user is authenticated
-        let stats = this.stats;
-
+        // If user is authenticated, sync with Firebase/Backend
         if (window.firebaseClient && window.firebaseClient.isAuthenticated()) {
             try {
                 const firebaseStats = await window.firebaseClient.getUserStatistics();
                 if (firebaseStats) {
-                    stats = {
-                        totalStudied: firebaseStats.totalStudied || 0,
-                        correctAnswers: firebaseStats.correctAnswers || 0,
-                        incorrectAnswers: firebaseStats.incorrectAnswers || 0,
-                        currentStreak: firebaseStats.currentStreak || 0,
-                        bestStreak: firebaseStats.bestStreak || 0,
-                        quizzesCompleted: this.stats.quizzesCompleted // Keep local quiz count for now
+                    // Map Firebase fields to internal stats object
+                    this.stats = {
+                        ...this.stats,
+                        totalStudied: Number(firebaseStats.totalStudied) || this.stats.totalStudied,
+                        correctAnswers: Number(firebaseStats.correctAnswers) || this.stats.correctAnswers,
+                        incorrectAnswers: Number(firebaseStats.incorrectAnswers) || this.stats.incorrectAnswers,
+                        currentStreak: Number(firebaseStats.currentStreak) || this.stats.currentStreak,
+                        bestStreak: Number(firebaseStats.bestStreak) || this.stats.bestStreak,
+                        totalTimeSpent: Number(firebaseStats.totalTimeSpent) || this.stats.totalTimeSpent
                     };
-                    console.log('✅ Loaded stats from Firebase:', stats);
+                    
+                    // Also check if UserProgressBackend has more context
+                    if (window.app && window.app.userProgress) {
+                        const summary = window.app.userProgress.getProgressSummary();
+                        this.stats.quizzesCompleted = summary.quizzesCompleted || this.stats.quizzesCompleted;
+                        this.stats.matrixRounds = summary.matrixRounds || this.stats.matrixRounds;
+                    }
+
+                    console.log('✅ Synchronized stats from cloud:', this.stats);
                 }
             } catch (error) {
-                console.error('❌ Error loading stats from Firebase:', error);
-                // Fallback to local stats is already set
+                console.error('❌ Error synchronizing stats:', error);
             }
         }
+
+        const stats = this.stats;
 
         // Safely update stats elements with null checks
         const totalStudiedEl = document.getElementById('total-studied');
@@ -3537,11 +2845,27 @@ class HSKApp {
         const container = document.getElementById('level-progress-bars');
         if (!container) return;
 
+        // Ensure vocabulary is loaded before calculating progress
+        if (!this.vocabularyLoaded && this.vocabularyPromise) {
+            console.log('⏳ Waiting for vocabulary to load for stats...');
+            await this.vocabularyPromise;
+        }
+
         container.innerHTML = '';
 
-        // Get level progress from Firebase if authenticated
+        // Get level progress from Backend system (preferred over direct Firebase if available)
         let levelProgressData = [];
-        if (window.firebaseClient && window.firebaseClient.isAuthenticated()) {
+        
+        if (this.userProgress) {
+            const summary = this.userProgress.getProgressSummary();
+            // Map hskProgress dictionary to array for the loop below
+            levelProgressData = Object.entries(this.userProgress.profile.hskProgress || {}).map(([level, data]) => ({
+                hsk_level: parseInt(level),
+                total_words_studied: data.studied,
+                correct_answers: data.correct,
+                incorrect_answers: data.incorrect
+            }));
+        } else if (window.firebaseClient && window.firebaseClient.isAuthenticated()) {
             try {
                 const userStats = await window.firebaseClient.getUserStatistics();
                 if (userStats && userStats.levelProgress) {
@@ -4174,34 +3498,5 @@ class HSKApp {
             `;
         }
     }
-}
-
-// Initialize app when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 DOMContentLoaded event fired, initializing HSKApp...');
-    try {
-        window.app = new HSKApp();
-        console.log('✅ HSKApp initialized successfully');
-    } catch (error) {
-        console.error('❌ Error initializing HSKApp:', error);
-        console.error('Stack trace:', error.stack);
-    }
-});
-
-// Backup initialization if DOMContentLoaded already fired
-if (document.readyState === 'loading') {
-    console.log('📄 Document still loading, waiting for DOMContentLoaded');
-} else {
-    console.log('📄 Document already loaded, initializing immediately');
-    setTimeout(() => {
-        if (!window.app) {
-            console.log('🔧 Backup initialization triggered');
-            try {
-                window.app = new HSKApp();
-                console.log('✅ HSKApp backup initialized successfully');
-            } catch (error) {
-                console.error('❌ Error in backup initialization:', error);
-            }
-        }
-    }, 100);
-}
+window.HSKApp = HSKApp;
+console.log('📦 HSKApp class loaded - Ready for manual instantiation');
