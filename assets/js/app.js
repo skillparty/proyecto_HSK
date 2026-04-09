@@ -597,7 +597,8 @@ class HSKApp {
 
         this.vocabularyLoading = true;
         this.vocabularyPromise = (async () => {
-            const targetLanguage = forceLanguage || this.currentLanguage || 'en';
+            try {
+                const targetLanguage = forceLanguage || this.currentLanguage || 'en';
             console.log(`[📦] Starting lazy load for ${targetLanguage} vocabulary...`);
             let vocabularyFile;
             let isSpanishStructure = false;
