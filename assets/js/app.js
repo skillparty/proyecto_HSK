@@ -682,8 +682,8 @@ class HSKApp {
                 console.log('[書] Using emergency fallback vocabulary');
             }
         }
-    }
-
+    })();
+}
     createFallbackVocabulary() {
         this.vocabulary = [
             { character: '你', pinyin: 'nǐ', english: 'you', translation: 'tú', level: 1 },
