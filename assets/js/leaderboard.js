@@ -55,11 +55,11 @@ class LeaderboardManager {
         this.showLoading(true);
 
         try {
-            console.log('🔍 Loading leaderboard from Supabase...', { type: this.currentType });
+            console.log('🔍 Loading leaderboard from Firebase...', { type: this.currentType });
 
-            // Check if Supabase client is available
-            if (!window.supabaseClient || !window.supabaseClient.supabase) {
-                throw new Error('Supabase client not available');
+            // Check if Firebase client is available
+            if (!window.firebaseClient || !window.firebaseClient.initialized) {
+                throw new Error('Firebase client not available');
             }
 
             // Map currentType to database column name
@@ -72,10 +72,10 @@ class LeaderboardManager {
                 'study_streak': 'best_streak' // Fallback to best_streak
             };
 
-            const dbType = typeMapping[this.currentType] || 'total_words';
+            const dbType = typeMapping[this.currentType] || 'total_studied';
 
-            // Get leaderboard data from Supabase
-            const leaderboardData = await window.supabaseClient.getLeaderboard(dbType, 50);
+            // Get leaderboard data from Firebase
+            const leaderboardData = await window.firebaseClient.getLeaderboard(dbType, 50);
 
             console.log('📊 Leaderboard response:', leaderboardData.length, 'users');
 
@@ -83,11 +83,11 @@ class LeaderboardManager {
             this.renderLeaderboard();
 
             // Load user position if authenticated
-            if (window.supabaseClient.isAuthenticated()) {
+            if (window.firebaseClient.isAuthenticated()) {
                 await this.loadUserPosition();
             }
 
-            // Load statistics from Supabase
+            // Load statistics from Firebase
             await this.loadStats();
 
         } catch (error) {
@@ -105,10 +105,10 @@ class LeaderboardManager {
         }
     }
     async loadUserPosition() {
-        if (!window.supabaseClient || !window.supabaseClient.isAuthenticated()) return;
+        if (!window.firebaseClient || !window.firebaseClient.isAuthenticated()) return;
 
         try {
-            const rankData = await window.supabaseClient.getUserRank();
+            const rankData = await window.firebaseClient.getUserRank();
 
             if (rankData) {
                 this.userPosition = {
@@ -129,7 +129,7 @@ class LeaderboardManager {
 
     async loadStats() {
         try {
-            const stats = await window.supabaseClient.getLeaderboardStats();
+            const stats = await window.firebaseClient.getLeaderboardStats();
             this.stats = stats;
             this.renderStats();
         } catch (error) {
@@ -199,8 +199,8 @@ class LeaderboardManager {
     }
 
     renderUserCard(user) {
-        const isCurrentUser = window.supabaseClient && window.supabaseClient.isAuthenticated() &&
-            window.supabaseClient.user && window.supabaseClient.user.id === user.user_id;
+        const isCurrentUser = window.firebaseClient && window.firebaseClient.isAuthenticated() &&
+            window.firebaseClient.user && window.firebaseClient.user.uid === user.user_id;
 
         const rankClass = user.rank <= 3 ? `rank-${user.rank}` : '';
         const currentUserClass = isCurrentUser ? 'current-user' : '';

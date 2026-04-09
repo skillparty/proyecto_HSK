@@ -58,50 +58,39 @@ class BackendUserProgress {
         }
     }
     
-    // Load user profile from backend
+    // Load user profile from Firebase
     async loadUserProfile() {
         try {
-            const response = await this.auth.apiCall('/api/profile');
-            if (response.ok) {
-                const data = await response.json();
-                if (data.profile) {
-                    this.mergeProfile({ preferences: data.profile });
-                }
+            if (!window.firebaseClient) return;
+            const profile = await window.firebaseClient.getUserProfile();
+            if (profile) {
+                this.mergeProfile({ preferences: profile });
             }
         } catch (error) {
             console.error('Failed to load user profile:', error);
         }
     }
     
-    // Load user progress from backend
+    // Load user progress from Firebase
     async loadUserProgress() {
         try {
-            const response = await this.auth.apiCall('/api/progress');
-            if (response.ok) {
-                const data = await response.json();
+            if (!window.firebaseClient) return;
+            const hskProgress = await window.firebaseClient.getUserProgress();
+            
+            if (hskProgress && hskProgress.length > 0) {
+                this.profile.hskProgress = {};
+                hskProgress.forEach(level => {
+                    this.profile.hskProgress[level.hsk_level] = {
+                        studied: level.total_words_studied,
+                        correct: level.correct_answers,
+                        incorrect: level.incorrect_answers,
+                        completed: level.level_completed || false
+                    };
+                });
                 
-                if (data.progress) {
-                    this.profile.progress = { ...this.profile.progress, ...data.progress };
-                }
-                
-                if (data.hskProgress) {
-                    this.profile.hskProgress = {};
-                    data.hskProgress.forEach(level => {
-                        this.profile.hskProgress[level.hsk_level] = {
-                            studied: level.words_studied,
-                            correct: level.words_correct,
-                            incorrect: level.words_incorrect,
-                            completed: level.level_completed
-                        };
-                    });
-                }
-                
-                if (data.achievements) {
-                    this.profile.achievements = data.achievements;
-                }
-                
+                // Aggregate global statistics from level data
                 this.updateStatistics();
-                console.log('✅ User progress loaded from backend');
+                console.log('✅ User progress loaded from Firebase');
             }
         } catch (error) {
             console.error('Failed to load user progress:', error);
@@ -196,8 +185,8 @@ class BackendUserProgress {
         
         this.profile.progress.lastStudyDate = new Date().toISOString();
         
-        // Send to backend if authenticated
-        if (this.auth.isAuthenticated()) {
+        // Send to Firebase if authenticated
+        if (this.auth.isAuthenticated() && window.firebaseClient) {
             try {
                 const wordData = {
                     word_character: word.character,
@@ -206,16 +195,14 @@ class BackendUserProgress {
                     hsk_level: level,
                     practice_mode: practiceMode,
                     is_correct: isCorrect,
-                    response_time: timeSpent * 1000,
-                    time_spent: timeSpent
+                    response_time: timeSpent * 1000
                 };
                 
-                await this.auth.apiCall('/api/progress/word-study', {
-                    method: 'POST',
-                    body: JSON.stringify(wordData)
-                });
+                await window.firebaseClient.saveWordProgress(wordData);
+                await window.firebaseClient.updateProgress(level, isCorrect, timeSpent);
+                
             } catch (error) {
-                console.error('Failed to record word study on backend:', error);
+                console.error('Failed to record word study on Firebase:', error);
                 // Add to pending updates for retry
                 this.pendingUpdates.push({
                     type: 'word-study',
@@ -348,15 +335,19 @@ class BackendUserProgress {
         achievement.date = new Date().toISOString();
         this.profile.achievements.push(achievement);
         
-        // Send to backend if authenticated
-        if (this.auth.isAuthenticated()) {
+        // Send to Firebase if authenticated
+        if (this.auth.isAuthenticated() && window.firebaseClient) {
             try {
-                await this.auth.apiCall('/api/achievements', {
-                    method: 'POST',
-                    body: JSON.stringify(achievement)
-                });
+                // In Firebase, we can use a separate collection for achievements
+                const sdk = window.FirebaseSDK;
+                const docRef = sdk.doc(window.firebaseDb, 'achievements', `${window.firebaseClient.user.uid}_${achievement.id}`);
+                await sdk.setDoc(docRef, {
+                    user_id: window.firebaseClient.user.uid,
+                    ...achievement,
+                    unlocked_at: sdk.serverTimestamp()
+                }, { merge: true });
             } catch (error) {
-                console.error('Failed to save achievement to backend:', error);
+                console.error('Failed to save achievement to Firebase:', error);
             }
         }
         
@@ -426,46 +417,27 @@ class BackendUserProgress {
         }
     }
     
-    // Save to backend
+    // Save to Firebase
     async saveToBackend() {
-        if (this.syncInProgress) return;
+        if (this.syncInProgress || !window.firebaseClient) return;
         
         this.syncInProgress = true;
         
         try {
-            // Save profile preferences
-            await this.auth.apiCall('/api/profile', {
-                method: 'PUT',
-                body: JSON.stringify(this.profile.preferences)
-            });
+            // Save profile preferences to user_profiles
+            await window.firebaseClient.updateUserProfile(this.profile.preferences);
             
-            // Save progress data
-            await this.auth.apiCall('/api/progress', {
-                method: 'PUT',
-                body: JSON.stringify(this.profile.progress)
-            });
-            
-            // Save HSK level progress
-            for (const [level, data] of Object.entries(this.profile.hskProgress)) {
-                await this.auth.apiCall(`/api/progress/hsk/${level}`, {
-                    method: 'PUT',
-                    body: JSON.stringify({
-                        words_studied: data.studied,
-                        words_correct: data.correct,
-                        words_incorrect: data.incorrect,
-                        level_completed: data.completed || false
-                    })
-                });
-            }
+            // Note: HSK level progress is updated in real-time during study,
+            // but we can do a bulk sync if needed here for things like quizzes.
             
             // Process pending updates
             await this.processPendingUpdates();
             
-            console.log('💾 Profile synced to backend');
+            console.log('💾 Profile synced to Firebase');
             this.updateSyncIndicator('synced');
             
         } catch (error) {
-            console.error('Failed to sync profile to backend:', error);
+            console.error('Failed to sync profile to Firebase:', error);
             this.updateSyncIndicator('error');
         } finally {
             this.syncInProgress = false;
@@ -488,14 +460,11 @@ class BackendUserProgress {
                         hsk_level: word.level,
                         practice_mode: practiceMode,
                         is_correct: isCorrect,
-                        response_time: timeSpent * 1000,
-                        time_spent: timeSpent
+                        response_time: timeSpent * 1000
                     };
                     
-                    await this.auth.apiCall('/api/progress/word-study', {
-                        method: 'POST',
-                        body: JSON.stringify(wordData)
-                    });
+                    await window.firebaseClient.saveWordProgress(wordData);
+                    await window.firebaseClient.updateProgress(word.level, isCorrect, timeSpent);
                 }
             } catch (error) {
                 console.error('Failed to process pending update:', error);

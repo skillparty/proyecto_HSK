@@ -32,9 +32,9 @@ class BackendAuth {
         try {
             console.log('🔍 Initializing BackendAuth...');
 
-            // Check if Supabase client is ready, retry if not
-            if (!window.supabaseClient || !window.supabaseClient.initialized) {
-                console.log('⏳ Supabase client not ready, retrying in 500ms...');
+            // Check if Firebase client is ready, retry if not
+            if (!window.firebaseClient || !window.firebaseClient.initialized) {
+                console.log('⏳ Firebase client not ready, retrying in 500ms...');
                 setTimeout(() => this.init(), 500);
                 return;
             }
@@ -56,47 +56,35 @@ class BackendAuth {
         }
     }
 
-    // Fetch current user from Supabase auth state
+    // Fetch current user from Firebase auth state
     async fetchCurrentUser() {
         try {
-            console.log('🔍 Fetching current user from Supabase...');
+            console.log('🔍 Fetching current user from Firebase...');
 
-            // Wait for supabaseClient to be initialized
-            if (!window.supabaseClient || !window.supabaseClient.initialized) {
-                console.log('⏳ Waiting for Supabase client...');
+            if (!window.firebaseClient || !window.firebaseClient.initialized) {
+                console.log('⏳ Waiting for Firebase client...');
                 return false;
             }
 
-            const user = window.supabaseClient.getCurrentUser();
+            const user = window.firebaseClient.getCurrentUser();
 
             if (user) {
-                const userData = user.user_metadata || {};
                 this.currentUser = {
-                    id: user.id,
-                    username: userData.preferred_username || userData.user_name || user.email?.split('@')[0],
-                    name: userData.full_name || userData.name || user.email,
+                    id: user.uid,
+                    username: user.displayName?.replace(/\s+/g, '').toLowerCase() || user.email?.split('@')[0],
+                    name: user.displayName || user.email,
                     email: user.email,
-                    avatar_url: userData.avatar_url || `https://github.com/${userData.preferred_username || 'github'}.png`
+                    avatar_url: user.photoURL || `https://github.com/${user.displayName || 'github'}.png`
                 };
                 console.log('✅ User authenticated:', this.currentUser.username);
 
-                // Initialize Supabase sync with user data
-                if (window.supabaseSync) {
-                    console.log('🔄 Syncing user to Supabase...');
-                    const syncResult = await window.supabaseSync.syncUser(this.currentUser);
-
-                    if (syncResult.success) {
-                        const supabaseUser = syncResult.data;
-                        window.supabaseSync.setCurrentUser(supabaseUser);
-                        console.log('✅ Supabase sync initialized');
-
-                        if (window.progressIntegrator) {
-                            await window.progressIntegrator.initializeForUser(supabaseUser);
-                            console.log('🔗 Progress integration initialized');
-                        }
-                    } else {
-                        console.warn('⚠️ Supabase sync failed, using local user data');
-                        window.supabaseSync.setCurrentUser(this.currentUser);
+                // Initialize sync with user data
+                if (window.firebaseSync) {
+                    console.log('🔥 Syncing user to Firebase...');
+                    // In Firebase, the client handles much of the sync prep
+                    if (window.progressIntegrator) {
+                        await window.progressIntegrator.initializeForUser(user);
+                        console.log('🔗 Progress integration initialized');
                     }
                 }
 
@@ -119,17 +107,15 @@ class BackendAuth {
     // Initiate GitHub OAuth login
     async login() {
         try {
-            console.log('🔐 Initiating GitHub login via Supabase...');
+            console.log('🔐 Initiating GitHub login via Firebase...');
 
-            // Check if Supabase client is available
-            if (!window.supabaseClient || !window.supabaseClient.supabase) {
-                console.error('❌ Supabase client not available');
+            if (!window.firebaseClient || !window.firebaseClient.initialized) {
+                console.error('❌ Firebase client not available');
                 this.showMessage('Error: Authentication system not ready');
                 return;
             }
 
-            // Use Supabase Auth for GitHub login
-            await window.supabaseClient.signInWithGitHub();
+            await window.firebaseClient.signInWithGitHub();
 
         } catch (error) {
             console.error('❌ GitHub login failed:', error);
@@ -140,11 +126,10 @@ class BackendAuth {
     // Logout user
     async logout() {
         try {
-            console.log('🔐 Logging out via Supabase...');
+            console.log('🔐 Logging out via Firebase...');
 
-            // Use Supabase Auth for logout
-            if (window.supabaseClient && window.supabaseClient.supabase) {
-                await window.supabaseClient.signOut();
+            if (window.firebaseClient) {
+                await window.firebaseClient.signOut();
             }
         } catch (error) {
             console.error('Logout error:', error);

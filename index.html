@@ -592,16 +592,28 @@
     </footer>
     </div>
 
-    <!-- Supabase CDN -->
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Firebase SDKs (Modulares vía CDN) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChange } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    <!-- Supabase Configuration -->
-    <script src="config/supabase-config.js?v=2"></script>
-    <script src="assets/js/supabase-client.js?v=4"></script>
+        // Exportamos a window para mantener compatibilidad con el resto de scripts no-modulares
+        window.FirebaseSDK = {
+            initializeApp, getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChange,
+            getFirestore, doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, serverTimestamp
+        };
+    </script>
+
+    <!-- Firebase Configuration and Client -->
+    <script src="config/firebase-config.js?v=1"></script>
+    <script src="assets/js/firebase-client.js?v=1"></script>
+
 
     <!-- Core Scripts -->
     <script src="assets/js/translations.js?v=14"></script>
-    <script src="assets/js/supabase-progress-sync.js?v=6"></script>
+    <script src="assets/js/firebase-progress-sync.js?v=1"></script>
+
     <script src="assets/js/progress-integrator.js?v=2"></script>
     <script src="assets/js/auth-backend.js?v=8"></script>
     <script src="assets/js/user-progress-backend.js?v=2"></script>
