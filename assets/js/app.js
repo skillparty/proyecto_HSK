@@ -98,7 +98,7 @@ class HSKApp {
                         this.currentLanguage = nextLanguage;
 
                         // Reload vocabulary for the new language
-                        console.log(`[🌐] Language changed to ${nextLanguage}, reloading vocabulary...`);
+                        console.log('[LANG] Language changed to ' + nextLanguage + ', reloading vocabulary...');
                         await this.loadVocabulary(nextLanguage);
 
                         // Refresh language-dependent UI after vocabulary is ready
@@ -120,7 +120,7 @@ class HSKApp {
                             : (this.getTranslation('english') || 'English');
                         this.showToast(`${this.getTranslation('languageUpdated') || 'Language updated'}: ${langLabel}`, 'success', 1800);
 
-                        console.log(`[✓] Language change completed: ${nextLanguage}`);
+                        console.log('[OK] Language change completed: ' + nextLanguage);
                     } catch (error) {
                         this.currentLanguage = previousLanguage;
                         console.error('❌ Language change failed:', error);
@@ -599,7 +599,7 @@ class HSKApp {
 
         const loadTask = async () => {
             const targetLanguage = forceLanguage || this.currentLanguage || 'en';
-            console.log(`[📦] Starting lazy load for ${targetLanguage} vocabulary...`);
+            console.log('[LOAD] Starting lazy load for ' + targetLanguage + ' vocabulary...');
             
             try {
                 let vocabularyFile;
@@ -625,7 +625,7 @@ class HSKApp {
                     }));
                 }
 
-                console.log(`[✓] Loaded ${this.vocabulary.length} items`);
+                console.log('[OK] Loaded ' + this.vocabulary.length + ' items');
                 this.vocabularyLoaded = true;
                 this.vocabularyLoading = false;
                 
@@ -807,7 +807,7 @@ class HSKApp {
     toggleZenMode() {
         document.body.classList.toggle('zen-mode');
         const isZen = document.body.classList.contains('zen-mode');
-        console.log(`🧘 Zen Mode: ${isZen ? 'ON' : 'OFF'}`);
+        console.log('Zen Mode: ' + (isZen ? 'ON' : 'OFF'));
     }
 
     showKeyboardShortcuts() {
@@ -1109,7 +1109,7 @@ class HSKApp {
         // Mark today as active in streak
         this.dailyProgress.activeDays.add(today);
 
-        console.log(`📊 Daily progress updated: ${this.stats.todayCards} cards today`);
+        console.log('Daily progress updated: ' + this.stats.todayCards + ' cards today');
     }
 
     setupGlobalProgressTracking() {
@@ -1444,7 +1444,7 @@ class HSKApp {
         // Reset card to front side
         this.resetCardState();
 
-        console.log(`🃏 Card updated: ${this.currentWord.character} (${mode})`);
+        console.log('Card updated: ' + this.currentWord.character + ' (' + mode + ')');
     }
 
     // Helper methods for expanded card content
@@ -1640,10 +1640,10 @@ class HSKApp {
             if (this.stats.currentStreak > this.stats.bestStreak) {
                 this.stats.bestStreak = this.stats.currentStreak;
             }
-            console.log(`[✓] Marked "${this.currentWord.character}" as KNOWN`);
+            console.log('[OK] Marked "' + this.currentWord.character + '" as KNOWN');
         } else {
             this.stats.currentStreak = 0;
-            console.log(`[✗] Marked "${this.currentWord.character}" as NOT KNOWN`);
+            console.log('[NO] Marked "' + this.currentWord.character + '" as NOT KNOWN');
         }
 
         // Update daily progress - count any interaction (known or not known)
@@ -1924,7 +1924,7 @@ class HSKApp {
             headerSearch.value = '';
         }
 
-        console.log(`[#] Selected word from header search: ${word.character}`);
+        console.log('[SEARCH] Selected word from header search: ' + word.character);
     }
 
     toggleAudio() {
@@ -1937,7 +1937,7 @@ class HSKApp {
             : (this.getTranslation('audioDisabledMsg') || 'Audio disabled');
         this.showHeaderNotification(message);
 
-        console.log(`🔊 Audio toggled: ${this.isAudioEnabled ? 'enabled' : 'disabled'}`);
+        console.log('Audio toggled: ' + (this.isAudioEnabled ? 'enabled' : 'disabled'));
     }
 
     updateAudioButton() {
@@ -2280,14 +2280,14 @@ class HSKApp {
         const message = `${voiceNames[voiceType]} ${this.currentLanguage === 'es' ? 'seleccionada' : 'selected'}`;
         this.showHeaderNotification(message);
 
-        console.log(`🎤 Voice preference set to: ${voiceType}`);
+        console.log('Voice preference set to: ' + voiceType);
     }
 
     loadVoicePreference() {
         const savedVoice = localStorage.getItem('hsk-voice-preference');
         if (savedVoice) {
             this.selectedVoice = savedVoice;
-            console.log(`🎤 Loaded voice preference: ${savedVoice}`);
+            console.log('Loaded voice preference: ' + savedVoice);
         }
     }
 
@@ -2671,11 +2671,14 @@ class HSKApp {
         const vocabularyGrid = document.getElementById('vocabulary-grid');
         if (!vocabularyGrid) return;
 
-        vocabularyGrid.innerHTML = `
-            <div class="no-results">
-                <div class="no-results-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
+        vocabularyGrid.innerHTML =
+            '<div class="no-results">' +
+            '<div class="no-results-icon">?</div>' +
+            '<h4>No words found</h4>' +
+            '<p>Try adjusting the search or filters.</p>' +
+            '</div>';
+    }
+
                     showQuizQuestion() { this.quizEngine.showQuestion(); }
     submitQuizAnswer() { this.quizEngine.submitAnswer(); }
     nextQuizQuestion() { this.quizEngine.nextQuestion(); }
@@ -2935,7 +2938,7 @@ class HSKApp {
             this.getTranslation('lightModeActivated') || 'Tema claro activado';
         this.showHeaderNotification(message);
 
-        console.log(`🌙 Theme toggled: ${this.isDarkMode ? 'dark' : 'light'}`);
+        console.log('Theme toggled: ' + (this.isDarkMode ? 'dark' : 'light'));
     }
 
     applyTheme() {
@@ -2965,14 +2968,12 @@ class HSKApp {
         let bgSource = "url('assets/images/bg-fusion.png')";
 
         if (window.bgFusionBase64) {
-            console.log('🖼️ Using Base64 background image');
-            bgSource = `url('${window.bgFusionBase64}')`;
+            console.log('Using Base64 background image');
+            bgSource = "url('" + window.bgFusionBase64 + "')";
         }
 
-        document.body.style.background = `
-            linear-gradient(rgba(15, 23, 42, 0.40), rgba(15, 23, 42, 0.60)),
-            ${bgSource}
-        `;
+        document.body.style.background =
+            'linear-gradient(rgba(15, 23, 42, 0.40), rgba(15, 23, 42, 0.60)), ' + bgSource;
         document.body.style.backgroundSize = "cover";
         document.body.style.backgroundPosition = "center";
         document.body.style.backgroundAttachment = "fixed";
@@ -3024,7 +3025,7 @@ class HSKApp {
     // Language functionality
     changeLanguage(lang) {
         // This would implement language switching
-        console.log(`🌐 Language changed to: ${lang}`);
+        console.log('Language changed to: ' + lang);
     }
 
     // Data persistence
@@ -3139,7 +3140,7 @@ class HSKApp {
             this.vocabulary.filter(word => word.level == selectedLevel);
 
         if (vocabPool.length === 0) {
-            this.showError(`No vocabulary available for HSK level ${selectedLevel}`);
+            this.showError('No vocabulary available for HSK level ' + selectedLevel);
             return;
         }
 
@@ -3156,7 +3157,7 @@ class HSKApp {
         document.getElementById('quiz-results').style.display = 'none';
 
         this.showQuizQuestion();
-        console.log(`[🎯] Quiz started: ${this.quiz.questions.length} questions, level ${selectedLevel}`);
+        console.log('[QUIZ] Quiz started: ' + this.quiz.questions.length + ' questions, level ' + selectedLevel);
     }
 
     showQuizQuestionDeprecated() {
@@ -3178,11 +3179,10 @@ class HSKApp {
 
         // Show question
         if (questionDisplay) {
-            questionDisplay.innerHTML = `
-                <div class="quiz-question-text">¿Qué significa este carácter?</div>
-                <div class="quiz-character">${question.character}</div>
-                <div class="quiz-pinyin">${question.pinyin}</div>
-            `;
+            questionDisplay.innerHTML =
+                '<div class="quiz-question-text">Que significa este caracter?</div>' +
+                '<div class="quiz-character">' + question.character + '</div>' +
+                '<div class="quiz-pinyin">' + question.pinyin + '</div>';
         }
 
         // Generate options
@@ -3270,15 +3270,15 @@ class HSKApp {
         const scorePercentage = document.getElementById('score-percentage');
 
         if (finalScore) {
-            finalScore.textContent = `${this.quiz.score} / ${this.quiz.questions.length}`;
+            finalScore.textContent = this.quiz.score + ' / ' + this.quiz.questions.length;
         }
 
         if (scorePercentage) {
             const percentage = Math.round((this.quiz.score / this.quiz.questions.length) * 100);
-            scorePercentage.textContent = `${percentage}%`;
+            scorePercentage.textContent = percentage + '%';
         }
 
-        console.log(`[🎯] Quiz completed: ${this.quiz.score}/${this.quiz.questions.length}`);
+        console.log('[QUIZ] Quiz completed: ' + this.quiz.score + '/' + this.quiz.questions.length);
     }
 
     resetQuizLegacy() {
@@ -3333,7 +3333,7 @@ class HSKApp {
             if (this.vocabulary && this.vocabulary.length > 0) {
                 window.matrixGame.vocabulary = this.vocabulary;
                 window.matrixGame.allVocabulary = [...this.vocabulary];
-                console.log(`[✓] Vocabulary passed to matrix game: ${this.vocabulary.length} words`);
+                console.log('[OK] Vocabulary passed to matrix game: ' + this.vocabulary.length + ' words');
             } else {
                 console.warn('[⚠] No vocabulary available for matrix game');
             }
@@ -3486,6 +3486,8 @@ class HSKApp {
                 </style>
             `;
         }
+    }
+
     }
 window.HSKApp = HSKApp;
 console.log('📦 HSKApp class loaded - Ready for manual instantiation');
