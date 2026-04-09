@@ -2,7 +2,7 @@
   "name": "HSK Learning - Advanced Chinese Learning Platform",
   "short_name": "HSK Learning",
   "description": "Advanced HSK Chinese learning platform with 5000 official vocabulary words, modern UI, dark mode, pronunciation, and multi-language support. Developed by Jose Alejandro Rollano Revollo",
-  "version": "2.1.0",
+  "version": "3.2.0",
   "author": "Jose Alejandro Rollano Revollo",
   "start_url": "./index.html",
   "display": "standalone",

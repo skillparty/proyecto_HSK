@@ -1,7 +1,7 @@
 {
   "name": "hsk-learning-app",
   "version": "3.1.0",
-  "description": "HSK Chinese Learning Application - Static site with GitHub Pages and Supabase",
+  "description": "HSK Chinese Learning Application - Static site with GitHub Pages and Firebase",
   "scripts": {
     "dev": "npx serve . -p 3369",
     "test": "echo \"No tests configured\" && exit 0",
@@ -15,12 +15,11 @@
     "learning",
     "flashcards",
     "github-pages",
-    "supabase"
+    "firebase"
   ],
   "author": "Alejandro Rollano",
   "license": "MIT",
   "dependencies": {
-    "@playwright/test": "^1.58.2",
-    "@supabase/supabase-js": "^2.39.0"
+    "@playwright/test": "^1.58.2"
   }
 }

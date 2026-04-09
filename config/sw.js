@@ -1,4 +1,4 @@
-const SW_VERSION = '3.1.0-20260213';
+const SW_VERSION = '3.2.0-20260409';
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = ['hsk-static-', 'hsk-runtime-', 'hsk-learning-', 'hsk-dynamic-'];
@@ -7,13 +7,15 @@ const PRECACHE_FILES = [
     './',
     './index.html',
     './config/manifest.json',
+    './config/firebase-config.js',
+    './assets/css/design-tokens.css',
     './assets/css/styles-professional.css',
     './assets/css/matrix-game-styles.css',
     './assets/css/leaderboard-styles.css',
     './assets/css/user-profile-styles.css',
     './assets/js/translations.js',
-    './assets/js/supabase-client.js',
-    './assets/js/supabase-progress-sync.js',
+    './assets/js/firebase-client.js',
+    './assets/js/firebase-progress-sync.js',
     './assets/js/progress-integrator.js',
     './assets/js/auth-backend.js',
     './assets/js/user-progress-backend.js',
@@ -35,7 +37,9 @@ function isSameOrigin(url) {
 
 function isApiLikeRequest(request) {
     const url = new URL(request.url);
-    return url.pathname.startsWith('/api/') || url.hostname.includes('supabase.co');
+    return url.pathname.startsWith('/api/') || 
+           url.hostname.includes('firebaseapp.com') || 
+           url.hostname.includes('googleapis.com');
 }
 
 function shouldCacheRuntime(request) {

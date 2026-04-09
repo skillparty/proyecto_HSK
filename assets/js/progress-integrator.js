@@ -1,4 +1,4 @@
-// Progress Integrator - Connects LocalStorage with Supabase
+// Progress Integrator - Connects LocalStorage with Firebase
 class ProgressIntegrator {
     constructor() {
         this.localStorageKey = 'hsk-progress';
@@ -10,19 +10,19 @@ class ProgressIntegrator {
 
     // Initialize integration when user logs in
     async initializeForUser(user) {
-        if (!window.supabaseSync) {
-            console.warn('⚠️ Supabase sync not available');
+        if (!window.firebaseSync) {
+            console.warn('⚠️ Firebase sync not available');
             return;
         }
 
-        console.log('🔄 Initializing progress integration for user:', user.username);
+        console.log('🔄 Initializing progress integration for user:', user.displayName || user.username);
 
         try {
             // Get local progress
             const localProgress = this.getLocalProgress();
             
             // Get cloud progress
-            const cloudResult = await window.supabaseSync.getUserProgress();
+            const cloudResult = await window.firebaseSync.getUserProgress();
             
             if (cloudResult.success && cloudResult.data) {
                 // Cloud data exists - merge with local
@@ -33,19 +33,19 @@ class ProgressIntegrator {
                 this.saveLocalProgress(mergedProgress);
                 
                 // Sync merged progress to cloud
-                await window.supabaseSync.syncUserProgress(mergedProgress);
+                await window.firebaseSync.syncUserProgress(mergedProgress);
                 
             } else if (localProgress && Object.keys(localProgress).length > 0) {
                 // No cloud data but local exists - upload to cloud
                 console.log('📤 Uploading local progress to cloud');
-                await window.supabaseSync.syncUserProgress(localProgress);
+                await window.firebaseSync.syncUserProgress(localProgress);
                 
             } else {
                 // No data anywhere - initialize empty progress
                 console.log('🆕 Initializing new progress tracking');
                 const initialProgress = this.createInitialProgress();
                 this.saveLocalProgress(initialProgress);
-                await window.supabaseSync.syncUserProgress(initialProgress);
+                await window.firebaseSync.syncUserProgress(initialProgress);
             }
 
             // Start periodic sync
@@ -160,8 +160,8 @@ class ProgressIntegrator {
             this.saveLocalProgress(updatedProgress);
 
             // Sync to cloud if online and user is authenticated
-            if (window.supabaseSync && window.supabaseSync.currentUser) {
-                const syncResult = await window.supabaseSync.syncUserProgress(updatedProgress);
+            if (window.firebaseSync && window.firebaseSync.currentUser) {
+                const syncResult = await window.firebaseSync.syncUserProgress(updatedProgress);
                 
                 if (syncResult.success) {
                     console.log('✅ Progress updated and synced');
@@ -221,16 +221,16 @@ class ProgressIntegrator {
             this.saveLocalProgress(currentProgress);
 
             // Sync to cloud
-            if (window.supabaseSync && window.supabaseSync.currentUser) {
+            if (window.firebaseSync && window.firebaseSync.currentUser) {
                 // Record individual word study
-                await window.supabaseSync.recordWordStudy(wordData);
+                await window.firebaseSync.recordWordStudy(wordData);
                 
                 // Update overall progress
-                await window.supabaseSync.syncUserProgress(currentProgress);
+                await window.firebaseSync.syncUserProgress(currentProgress);
                 
                 // Update HSK level progress
                 if (wordData.hskLevel && currentProgress.hskLevels) {
-                    await window.supabaseSync.syncHSKProgress(
+                    await window.firebaseSync.syncHSKProgress(
                         wordData.hskLevel, 
                         currentProgress.hskLevels[wordData.hskLevel]
                     );
@@ -238,7 +238,7 @@ class ProgressIntegrator {
 
                 // Update heatmap
                 const today = new Date().toISOString().split('T')[0];
-                await window.supabaseSync.updateStudyHeatmap(today, {
+                await window.firebaseSync.updateStudyHeatmap(today, {
                     wordsStudied: 1,
                     minutesStudied: Math.ceil((wordData.responseTime || 3000) / 60000),
                     sessionsCount: 1
@@ -261,7 +261,7 @@ class ProgressIntegrator {
         }
 
         this.syncInterval = setInterval(async () => {
-            if (window.supabaseSync && window.supabaseSync.currentUser && navigator.onLine) {
+            if (window.firebaseSync && window.firebaseSync.currentUser && navigator.onLine) {
                 const progress = this.getLocalProgress();
                 if (progress && progress.lastUpdated) {
                     const lastUpdate = new Date(progress.lastUpdated);
@@ -269,7 +269,7 @@ class ProgressIntegrator {
                     
                     if (lastUpdate > fiveMinutesAgo) {
                         console.log('🔄 Periodic sync...');
-                        await window.supabaseSync.syncUserProgress(progress);
+                        await window.firebaseSync.syncUserProgress(progress);
                     }
                 }
             }
@@ -289,13 +289,13 @@ class ProgressIntegrator {
 
     // Get sync status
     getSyncStatus() {
-        const supabaseStatus = window.supabaseSync ? window.supabaseSync.getSyncStatus() : null;
+        const firebaseStatus = window.firebaseSync ? window.firebaseSync.getSyncStatus() : null;
         
         return {
             hasLocalData: !!this.getLocalProgress(),
             periodicSyncActive: !!this.syncInterval,
             lastSyncTime: this.lastSyncTime,
-            supabase: supabaseStatus
+            firebase: firebaseStatus
         };
     }
 }

@@ -39,7 +39,7 @@ class BackendAuth {
                 return;
             }
 
-            // Try to check if user is already authenticated via Supabase
+            // Try to check if user is already authenticated via Firebase
             await this.fetchCurrentUser();
 
             // Update UI based on auth state
@@ -175,7 +175,7 @@ class BackendAuth {
     async apiCall(endpoint, options = {}) {
         if (endpoint.startsWith('/api/') && !this.legacyBackendApiEnabled) {
             if (!this.backendApiDisabledLogged) {
-                console.info('ℹ️ Legacy backend API disabled; using local/Supabase flow.');
+                console.info('ℹ️ Legacy backend API disabled; using local/Firebase flow.');
                 this.backendApiDisabledLogged = true;
             }
 
