@@ -1,18 +1,302 @@
-rules_version='2'
+rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: user_profiles
+    // Document ID: {userId} (Firebase Auth UID)
+    // Fields:
+    //   - user_id: string (required, immutable, must match auth UID)
+    //   - username: string (optional, max 100 chars)
+    //   - display_name: string (optional, max 100 chars)
+    //   - avatar_url: string (optional, max 500 chars, must be https://)
+    //   - email: string (optional, max 254 chars)
+    //   - preferred_language: string (optional, max 10 chars)
+    //   - theme: string (optional, max 20 chars)
+    //   - updated_at: timestamp (optional)
+    //
+    // Collection: user_progress
+    // Document ID: {userId}_hsk{level} (composite key)
+    // Fields:
+    //   - user_id: string (required, immutable, must match auth UID)
+    //   - hsk_level: number (required, 1-9)
+    //   - total_words_studied: number (required, >= 0)
+    //   - correct_answers: number (required, >= 0)
+    //   - incorrect_answers: number (required, >= 0)
+    //   - current_streak: number (required, >= 0)
+    //   - best_streak: number (required, >= 0)
+    //   - total_time_spent: number (required, >= 0)
+    //   - last_studied: timestamp (optional)
+    //   - level_completed: bool (optional)
+    //   - username: string (optional, max 100 chars, denormalized)
+    //   - display_name: string (optional, max 100 chars, denormalized)
+    //   - avatar_url: string (optional, max 500 chars, denormalized)
+    //
+    // Collection: word_progress
+    // Document ID: {userId}_{wordId} (composite key)
+    // Fields:
+    //   - user_id: string (required, immutable, must match auth UID)
+    //   - word_character: string (optional, max 20 chars)
+    //   - word_pinyin: string (optional, max 100 chars)
+    //   - word_translation: string (optional, max 200 chars)
+    //   - hsk_level: number (optional, 1-9)
+    //   - practice_mode: string (optional, max 50 chars)
+    //   - is_correct: bool (optional)
+    //   - response_time: number (optional, >= 0)
+    //   - updated_at: timestamp (optional)
+    //
+    // Collection: achievements
+    // Document ID: {userId}_{achievementId} (composite key)
+    // Fields:
+    //   - user_id: string (required, immutable, must match auth UID)
+    //   - id: string (required, max 100 chars)
+    //   - name: string (optional, max 200 chars)
+    //   - description: string (optional, max 500 chars)
+    //   - date: string (optional, max 30 chars, ISO date)
+    //   - unlocked_at: timestamp (optional)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    // Check if the user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if user owns the resource by userId argument
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Check if the incoming data's user_id matches the authenticated user
+    function incomingUserIdMatches() {
+      return request.resource.data.user_id == request.auth.uid;
+    }
+
+    // Ensure user_id field is not modified on update
+    function userIdNotModified() {
+      return !('user_id' in request.resource.data) ||
+        request.resource.data.user_id == resource.data.user_id;
+    }
+
+    // Validate required fields exist in the incoming data
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    // Validate that the document contains only the allowed fields
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    // Validate string length
+    function validStringLength(field, maxLen) {
+      return request.resource.data[field] is string &&
+        request.resource.data[field].size() <= maxLen;
+    }
+
+    // Validate optional string (if present, must be within length)
+    function isValidOptionalString(field, maxLen) {
+      return !(field in request.resource.data) ||
+        (request.resource.data[field] is string &&
+         request.resource.data[field].size() <= maxLen);
+    }
+
+    // Validate non-negative number
+    function isNonNegativeNumber(field) {
+      return request.resource.data[field] is number &&
+        request.resource.data[field] >= 0;
+    }
+
+    // Validate optional non-negative number
+    function isOptionalNonNegativeNumber(field) {
+      return !(field in request.resource.data) ||
+        (request.resource.data[field] is number &&
+         request.resource.data[field] >= 0);
+    }
+
+    // Validate HSK level range (1-9)
+    function isValidHskLevel(field) {
+      return request.resource.data[field] is number &&
+        request.resource.data[field] >= 1 &&
+        request.resource.data[field] <= 9;
+    }
+
+    // Validate URL format (must start with https://)
+    function isValidOptionalUrl(field) {
+      return !(field in request.resource.data) ||
+        (request.resource.data[field] is string &&
+         request.resource.data[field].size() <= 500 &&
+         request.resource.data[field].matches("^https://.*"));
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    // Validate user_profiles document
+    function isValidUserProfile() {
+      let data = request.resource.data;
+      let allowedFields = ['user_id', 'username', 'display_name', 'avatar_url',
+                           'email', 'preferred_language', 'theme', 'updated_at'];
+      return hasOnlyAllowedFields(allowedFields) &&
+             hasRequiredFields(['user_id']) &&
+             data.user_id is string &&
+             data.user_id.size() <= 128 &&
+             isValidOptionalString('username', 100) &&
+             isValidOptionalString('display_name', 100) &&
+             isValidOptionalUrl('avatar_url') &&
+             isValidOptionalString('email', 254) &&
+             isValidOptionalString('preferred_language', 10) &&
+             isValidOptionalString('theme', 20);
+    }
+
+    // Validate user_progress document
+    function isValidUserProgress() {
+      let data = request.resource.data;
+      let allowedFields = ['user_id', 'hsk_level', 'total_words_studied',
+                           'correct_answers', 'incorrect_answers',
+                           'current_streak', 'best_streak', 'total_time_spent',
+                           'last_studied', 'level_completed',
+                           'username', 'display_name', 'avatar_url'];
+      return hasOnlyAllowedFields(allowedFields) &&
+             hasRequiredFields(['user_id', 'hsk_level']) &&
+             data.user_id is string &&
+             data.user_id.size() <= 128 &&
+             isValidHskLevel('hsk_level') &&
+             isOptionalNonNegativeNumber('total_words_studied') &&
+             isOptionalNonNegativeNumber('correct_answers') &&
+             isOptionalNonNegativeNumber('incorrect_answers') &&
+             isOptionalNonNegativeNumber('current_streak') &&
+             isOptionalNonNegativeNumber('best_streak') &&
+             isOptionalNonNegativeNumber('total_time_spent') &&
+             isValidOptionalString('username', 100) &&
+             isValidOptionalString('display_name', 100) &&
+             isValidOptionalUrl('avatar_url');
+    }
+
+    // Validate word_progress document
+    function isValidWordProgress() {
+      let data = request.resource.data;
+      let allowedFields = ['user_id', 'word_character', 'word_pinyin',
+                           'word_translation', 'hsk_level', 'practice_mode',
+                           'is_correct', 'response_time', 'updated_at',
+                           'word_id', 'id'];
+      return hasOnlyAllowedFields(allowedFields) &&
+             hasRequiredFields(['user_id']) &&
+             data.user_id is string &&
+             data.user_id.size() <= 128 &&
+             isValidOptionalString('word_character', 20) &&
+             isValidOptionalString('word_pinyin', 100) &&
+             isValidOptionalString('word_translation', 200) &&
+             isValidOptionalString('practice_mode', 50) &&
+             isOptionalNonNegativeNumber('response_time');
+    }
+
+    // Validate achievements document
+    function isValidAchievement() {
+      let data = request.resource.data;
+      let allowedFields = ['user_id', 'id', 'name', 'description',
+                           'date', 'unlocked_at'];
+      return hasOnlyAllowedFields(allowedFields) &&
+             hasRequiredFields(['user_id']) &&
+             data.user_id is string &&
+             data.user_id.size() <= 128 &&
+             isValidOptionalString('id', 100) &&
+             isValidOptionalString('name', 200) &&
+             isValidOptionalString('description', 500) &&
+             isValidOptionalString('date', 30);
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    // --- user_profiles ---
+    // Users can only read/write their own profile.
+    // PII (email) is in this collection, so no public reads.
+    match /user_profiles/{userId} {
+      allow read: if isOwner(userId);
+
+      allow create: if isOwner(userId) &&
+                       incomingUserIdMatches() &&
+                       isValidUserProfile();
+
+      allow update: if isOwner(userId) &&
+                       userIdNotModified() &&
+                       incomingUserIdMatches() &&
+                       isValidUserProfile();
+
+      allow delete: if false; // Profiles are not deletable by users
+    }
+
+    // --- user_progress ---
+    // Owners can read/write their own progress.
+    // Authenticated users can READ all progress (needed for leaderboard).
+    match /user_progress/{docId} {
+      allow read: if isAuthenticated();
+
+      allow create: if isAuthenticated() &&
+                       incomingUserIdMatches() &&
+                       isValidUserProgress();
+
+      allow update: if isAuthenticated() &&
+                       resource.data.user_id == request.auth.uid &&
+                       userIdNotModified() &&
+                       incomingUserIdMatches() &&
+                       isValidUserProgress();
+
+      allow delete: if false; // Progress entries are not deletable
+    }
+
+    // --- word_progress ---
+    // Only the owner can read/write word-level progress.
+    match /word_progress/{docId} {
+      allow read: if isAuthenticated() &&
+                     resource.data.user_id == request.auth.uid;
+
+      allow create: if isAuthenticated() &&
+                       incomingUserIdMatches() &&
+                       isValidWordProgress();
+
+      allow update: if isAuthenticated() &&
+                       resource.data.user_id == request.auth.uid &&
+                       userIdNotModified() &&
+                       incomingUserIdMatches() &&
+                       isValidWordProgress();
+
+      allow delete: if false;
+    }
+
+    // --- achievements ---
+    // Only the owner can read/write their achievements.
+    match /achievements/{docId} {
+      allow read: if isAuthenticated() &&
+                     resource.data.user_id == request.auth.uid;
+
+      allow create: if isAuthenticated() &&
+                       incomingUserIdMatches() &&
+                       isValidAchievement();
+
+      allow update: if isAuthenticated() &&
+                       resource.data.user_id == request.auth.uid &&
+                       userIdNotModified() &&
+                       incomingUserIdMatches() &&
+                       isValidAchievement();
+
+      allow delete: if false;
+    }
+
+    // --- Default: deny all other collections ---
     match /{document=**} {
-      // This rule allows anyone with your database reference to view, edit,
-      // and delete all data in your database. It is useful for getting
-      // started, but it is configured to expire after 30 days because it
-      // leaves your app open to attackers. At that time, all client
-      // requests to your database will be denied.
-      //
-      // Make sure to write security rules for your app before that time, or
-      // else all client requests to your database will be denied until you
-      // update your rules.
-      allow read, write: if request.time < timestamp.date(2026, 5, 9);
+      allow read, write: if false;
     }
   }
 }

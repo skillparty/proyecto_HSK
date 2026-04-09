@@ -1,0 +1,201 @@
+/* 
+================================================================================
+CONFUC10 ++ DESIGN TOKENS
+================================================================================
+Version: 1.0.0
+Description: Centralized Design Token system for the HSK Learning Platform.
+             All visual decisions (colors, typography, spacing, effects) are
+             defined HERE and consumed by all component stylesheets via var().
+             
+Architecture: CSS Custom Properties following the css-architecture skill.
+              Organized by category: Colors > Typography > Spacing > Effects.
+================================================================================
+*/
+
+/* ============================================================================
+   GLOBAL DESIGN TOKENS
+   ============================================================================ */
+:root {
+    /* ---- COLOR PALETTE ---- */
+
+    /* Brand - Andes & China Fusion Theme */
+    --color-primary: #D94E3B;         /* Terracotta Red (Andean Textiles / Chinese Lanterns) */
+    --color-primary-hover: #B93D2B;   /* Darker shade for interactions */
+    --color-primary-subtle: rgba(217, 78, 59, 0.12); /* For backgrounds */
+    --color-primary-glow: rgba(217, 78, 59, 0.3);    /* For glows & shadows */
+
+    --color-secondary: #0F2C59;       /* Deep Andean Blue */
+    --color-accent: #EAB308;          /* Imperial Gold (Sun / Emperor) */
+    --color-accent-subtle: rgba(234, 179, 8, 0.12);
+
+    /* Backgrounds (Dark Theme) */
+    --color-bg-app: #0f172a;          /* Deepest layer */
+    --color-bg-panel: rgba(15, 23, 42, 0.7);   /* Cards, modals */
+    --color-bg-card: rgba(30, 41, 59, 0.8);    /* Elevated cards */
+    --color-bg-input: rgba(255, 255, 255, 0.05); /* Form inputs */
+    --color-bg-hover: rgba(255, 255, 255, 0.03);  /* Hover states */
+
+    /* Borders */
+    --color-border: rgba(255, 255, 255, 0.12);
+    --color-border-subtle: rgba(255, 255, 255, 0.05);
+    --color-border-focus: var(--color-primary);
+
+    /* Text */
+    --color-text-main: #f8fafc;       /* Headings, primary content */
+    --color-text-muted: #b2bfd1;      /* Secondary text */
+    --color-text-dim: #8ea0b8;        /* Tertiary / disabled text */
+
+    /* Semantic Status */
+    --color-success: #10b981;
+    --color-success-subtle: rgba(16, 185, 129, 0.12);
+    --color-warning: #f59e0b;
+    --color-warning-subtle: rgba(245, 158, 11, 0.12);
+    --color-error: #ef4444;
+    --color-error-subtle: rgba(239, 68, 68, 0.12);
+
+    /* ---- COMPATIBILITY ALIASES ---- */
+    /* These map new tokens to old variable names used across modules */
+    --primary: var(--color-primary);
+    --primary-hover: var(--color-primary-hover);
+    --secondary: var(--color-secondary);
+    --accent: var(--color-accent);
+    --bg-app: var(--color-bg-app);
+    --bg-panel: var(--color-bg-panel);
+    --bg-card: var(--color-bg-card);
+    --text-main: var(--color-text-main);
+    --text-muted: var(--color-text-muted);
+    --text-dim: var(--color-text-dim);
+    --success: var(--color-success);
+    --warning: var(--color-warning);
+    --error: var(--color-error);
+    --primary-color: var(--color-primary);
+    --card-bg: var(--color-bg-panel);
+    --border-color: var(--color-border);
+    --input-bg: var(--color-bg-input);
+    --text-primary: var(--color-text-main);
+    --text-secondary: var(--color-text-muted);
+
+    /* ---- TYPOGRAPHY ---- */
+    --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-chinese: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Font Sizes - Modular Scale (1.25 ratio) */
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.85rem;    /* 13.6px */
+    --text-base: 1rem;     /* 16px */
+    --text-lg: 1.125rem;   /* 18px */
+    --text-xl: 1.25rem;    /* 20px */
+    --text-2xl: 1.5rem;    /* 24px */
+    --text-3xl: 2rem;      /* 32px */
+    --text-4xl: 2.5rem;    /* 40px */
+
+    /* Font Weights */
+    --weight-normal: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-extrabold: 800;
+
+    /* Line Heights */
+    --leading-tight: 1.2;
+    --leading-normal: 1.6;
+    --leading-relaxed: 1.8;
+
+    /* ---- SPACING ---- */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+
+    /* ---- LAYOUT ---- */
+    --header-height: 70px;
+    --max-width: 1200px;
+
+    /* ---- BORDER RADIUS ---- */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-full: 9999px;
+
+    /* ---- SHADOWS ---- */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 20px var(--color-primary-glow);
+    --shadow-glow-success: 0 0 15px var(--color-success-subtle);
+    --shadow-glow-accent: 0 0 15px var(--color-accent-subtle);
+
+    /* ---- EFFECTS ---- */
+    --backdrop-blur: blur(16px);
+    --backdrop-blur-heavy: blur(24px);
+
+    /* ---- TRANSITIONS ---- */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    --transition-bounce: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    /* ---- Z-INDEX SCALE ---- */
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-sticky: 500;
+    --z-overlay: 900;
+    --z-modal: 1000;
+    --z-toast: 1100;
+}
+
+/* ============================================================================
+   CHINESE CHARACTER SPECIFIC TOKENS
+   ============================================================================
+   Following the chinese-output skill recommendations for optimal
+   Hanzi rendering in web contexts.
+   ============================================================================ */
+:root {
+    /* Character display sizing */
+    --hanzi-sm: 1.5rem;
+    --hanzi-md: 2.2rem;
+    --hanzi-lg: 4rem;
+    --hanzi-xl: 6rem;
+    --hanzi-hero: 8rem;
+
+    /* Pinyin sizing */
+    --pinyin-sm: 0.75rem;
+    --pinyin-md: 1rem;
+    --pinyin-lg: 1.25rem;
+
+    /* Character weight - heavier for legibility at small sizes */
+    --hanzi-weight: 700;
+    --hanzi-weight-light: 400;
+}
+
+/* Optimized Chinese character rendering */
+.hanzi,
+.chinese-char,
+[lang="zh"] {
+    font-family: var(--font-chinese);
+    font-weight: var(--hanzi-weight);
+    line-height: var(--leading-tight);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "liga" 1;
+}
+
+/* Pinyin — always render in Latin font for clarity. */
+.pinyin {
+    font-family: var(--font-main);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.02em;
+}
+
+/* Tone marks need precise rendering */
+.pinyin-tone {
+    font-family: var(--font-main);
+    unicode-range: U+0300-036F, U+00C0-00FF; /* Combining diacritical marks */
+}

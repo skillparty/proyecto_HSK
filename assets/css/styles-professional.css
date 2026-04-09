@@ -11,65 +11,10 @@ Features: Glassmorphism, Deep Dark Theme, Smooth Animations, Mobile Responsive.
 /* ============================================================================
    1. DESIGN TOKENS (VARIABLES)
    ============================================================================ */
-:root {
-    /* --- COLOR PALETTE --- */
+/* Design Tokens are now centralized in design-tokens.css.
+   All variables (--primary, --bg-app, --text-main, etc.) are inherited from there.
+   To customize the theme, edit design-tokens.css — not this file. */
 
-    /* Color Palette - Andes & China Fusion */
-    --primary: #D94E3B;
-    /* Terracotta Red (Andean Textiles / Lanterns) */
-    --primary-hover: #B93D2B;
-    --secondary: #0F2C59;
-    /* Deep Andean Blue */
-    --accent: #EAB308;
-    /* Gold (Sun / Imperial) */
-
-    --bg-app: #0f172a;
-    /* Keep dark base */
-    --bg-panel: rgba(15, 23, 42, 0.7);
-    /* Slightly more transparent for bg visibility */
-    --bg-card: rgba(30, 41, 59, 0.8);
-
-    --text-main: #f8fafc;
-    --text-muted: #b2bfd1;
-    --text-dim: #8ea0b8;
-
-    /* Compatibility aliases for module stylesheets */
-    --primary-color: var(--primary);
-    --card-bg: var(--bg-panel);
-    --border-color: rgba(255, 255, 255, 0.12);
-    --input-bg: rgba(255, 255, 255, 0.05);
-    --text-primary: var(--text-main);
-    --text-secondary: var(--text-muted);
-
-    --success: #10b981;
-    --warning: #f59e0b;
-    --error: #ef4444;
-
-    /* Typography */
-    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-chinese: 'Noto Sans SC', 'PingFang SC', sans-serif;
-
-
-    --font-mono: 'JetBrains Mono', monospace;
-
-    /* --- SPACING & SIZING --- */
-    --header-height: 70px;
-    --max-width: 1200px;
-    --radius-sm: 6px;
-    --radius-md: 12px;
-    --radius-lg: 24px;
-    --radius-xl: 32px;
-
-    /* --- EFFECTS --- */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-glow: 0 0 20px rgba(244, 63, 94, 0.3);
-
-    --backdrop-blur: blur(16px);
-    --transition-fast: 0.15s ease;
-    --transition-normal: 0.3s ease;
-}
 
 /* ============================================================================
    2. RESET & BASE STYLES
@@ -83,7 +28,7 @@ Features: Glassmorphism, Deep Dark Theme, Smooth Animations, Mobile Responsive.
 }
 
 body {
-    font-family: var(--font-sans);
+    font-family: var(--font-main);
     background-color: var(--bg-app);
     color: var(--text-main);
     line-height: 1.6;
