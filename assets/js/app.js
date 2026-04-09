@@ -596,94 +596,82 @@ class HSKApp {
         if (this.vocabularyLoaded && !forceLanguage) return Promise.resolve(this.vocabulary);
 
         this.vocabularyLoading = true;
-        this.vocabularyPromise = (async () => {
-            try {
-                const targetLanguage = forceLanguage || this.currentLanguage || 'en';
+
+        const loadTask = async () => {
+            const targetLanguage = forceLanguage || this.currentLanguage || 'en';
             console.log(`[📦] Starting lazy load for ${targetLanguage} vocabulary...`);
-            let vocabularyFile;
-            let isSpanishStructure = false;
+            
+            try {
+                let vocabularyFile;
+                let isSpanishStructure = false;
 
-            // Determine which file to load based on language
-            if (targetLanguage === 'es') {
-                vocabularyFile = 'assets/data/hsk_vocabulary_spanish.json';
-                isSpanishStructure = true;
-                console.log('[HTML] Loading Spanish vocabulary file...');
-            } else {
-                vocabularyFile = 'assets/data/hsk_vocabulary.json';
-                console.log('[HTML] Loading English vocabulary file...');
-            }
+                if (targetLanguage === 'es') {
+                    vocabularyFile = 'assets/data/hsk_vocabulary_spanish.json';
+                    isSpanishStructure = true;
+                } else {
+                    vocabularyFile = 'assets/data/hsk_vocabulary.json';
+                }
 
-            const response = await fetch(vocabularyFile);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+                const response = await fetch(vocabularyFile);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-            this.vocabulary = await response.json();
+                this.vocabulary = await response.json();
 
-            // If loading English file, ensure proper structure for compatibility
-            if (!isSpanishStructure) {
-                this.vocabulary = this.vocabulary.map(word => ({
-                    ...word,
-                    english: word.translation || word.english,
-                    spanish: word.spanish || null // Keep Spanish null for English-only file
-                }));
-            }
+                if (!isSpanishStructure) {
+                    this.vocabulary = this.vocabulary.map(word => ({
+                        ...word,
+                        english: word.translation || word.english,
+                        spanish: word.spanish || null
+                    }));
+                }
 
-                console.log(`[✓] Successfully lazy loaded ${this.vocabulary.length} items`);
+                console.log(`[✓] Loaded ${this.vocabulary.length} items`);
                 this.vocabularyLoaded = true;
                 this.vocabularyLoading = false;
                 
-                // Notify modules that data is ready if they are waiting
                 window.dispatchEvent(new CustomEvent('hsk:vocabulary-ready'));
                 
-                // Refresh stats if on the stats tab to update denominators
                 if (this.uiController && this.uiController.activeTab === 'stats') {
-                    console.log('🔄 Data ready, refreshing statistics UI');
                     this.updateStats();
                 }
                 
                 return this.vocabulary;
-            } catch (error) {
-            console.error(`[✗] Error loading ${targetLanguage} vocabulary:`, error);
 
-            // Fallback logic
-            try {
-                const fallbackFile = targetLanguage === 'es' ? 'assets/data/hsk_vocabulary.json' : 'assets/data/hsk_vocabulary_spanish.json';
-                const fallbackResponse = await fetch(fallbackFile);
+            } catch (error) {
+                console.error(`[✗] Error loading ${targetLanguage}:`, error);
+                
+                try {
+                    const fallbackFile = targetLanguage === 'es' ? 'assets/data/hsk_vocabulary.json' : 'assets/data/hsk_vocabulary_spanish.json';
+                    const fallbackResponse = await fetch(fallbackFile);
 
                     if (fallbackResponse.ok) {
-                    this.vocabulary = await fallbackResponse.json();
-
-                    // Normalize structure for fallback
-                    if (targetLanguage === 'es' && fallbackFile === 'assets/data/hsk_vocabulary.json') {
-                        // Loading English file as fallback for Spanish
-                        this.vocabulary = this.vocabulary.map(word => ({
-                            ...word,
-                            english: word.translation || word.english,
-                            spanish: word.translation || word.english // Use English as Spanish fallback
-                        }));
-                    } else if (targetLanguage === 'en' && fallbackFile === 'assets/data/hsk_vocabulary_spanish.json') {
-                        // Loading Spanish file as fallback for English - already has proper structure
+                        this.vocabulary = await fallbackResponse.json();
+                        if (targetLanguage === 'es' && fallbackFile === 'assets/data/hsk_vocabulary.json') {
+                            this.vocabulary = this.vocabulary.map(word => ({
+                                ...word,
+                                english: word.translation || word.english,
+                                spanish: word.translation || word.english
+                            }));
+                        }
+                    } else {
+                        throw new Error('No fallback available');
                     }
-
-                    console.log(`[書] Loaded ${this.vocabulary.length} vocabulary items (fallback: ${fallbackFile})`);
-                } else {
-                    throw new Error('Fallback vocabulary file not found');
+                } catch (fallbackError) {
+                    this.vocabulary = [
+                        { character: "你好", pinyin: "nǐ hǎo", english: "hello", spanish: "hola", level: 1 },
+                        { character: "谢谢", pinyin: "xiè xiè", english: "thank you", spanish: "gracias", level: 1 }
+                    ];
                 }
-            } catch (fallbackError) {
-                console.error('[✗] Error loading fallback vocabulary:', fallbackError);
-                // Final emergency fallback
-                this.vocabulary = [
-                    { character: "你好", pinyin: "nǐ hǎo", english: "hello", spanish: "hola", level: 1 },
-                    { character: "谢谢", pinyin: "xiè xiè", english: "thank you", spanish: "gracias", level: 1 },
-                    { character: "我", pinyin: "wǒ", english: "I/me", spanish: "yo", level: 1 },
-                    { character: "你", pinyin: "nǐ", english: "you", spanish: "tú", level: 1 }
-                ];
-                console.log('[書] Using emergency fallback vocabulary');
+                
+                this.vocabularyLoaded = true;
+                this.vocabularyLoading = false;
+                return this.vocabulary;
             }
-        }
-    })();
-}
+        };
+
+        this.vocabularyPromise = loadTask();
+        return this.vocabularyPromise;
+    }
     createFallbackVocabulary() {
         this.vocabulary = [
             { character: '你', pinyin: 'nǐ', english: 'you', translation: 'tú', level: 1 },
