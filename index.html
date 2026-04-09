@@ -595,15 +595,16 @@
     <!-- Firebase SDKs (Modulares vía CDN) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChange } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         // Exportamos a window para mantener compatibilidad con el resto de scripts no-modulares
         window.FirebaseSDK = {
-            initializeApp, getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChange,
+            initializeApp, getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChanged,
             getFirestore, doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, serverTimestamp
         };
     </script>
+
 
     <!-- Firebase Configuration and Client -->
     <script src="config/firebase-config.js?v=1"></script>

@@ -40,7 +40,7 @@ class FirebaseClient {
             const sdk = window.FirebaseSDK;
 
             // Listen for auth changes
-            sdk.onAuthStateChange(this.auth, (user) => {
+            sdk.onAuthStateChanged(this.auth, (user) => {
                 console.log('🔐 Auth state changed:', user ? 'Logged in' : 'Logged out');
                 this.user = user;
                 
