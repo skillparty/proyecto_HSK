@@ -1,4 +1,4 @@
-// Progress Integrator - Connects LocalStorage with Supabase
+// Progress Integrator - Connects LocalStorage with Firebase
 class ProgressIntegrator {
     constructor() {
         this.localStorageKey = 'hsk-progress';
@@ -11,7 +11,7 @@ class ProgressIntegrator {
     // Initialize integration when user logs in
     async initializeForUser(user) {
         if (!window.firebaseProgressSync) {
-            console.warn('⚠️ Supabase sync not available');
+            console.warn('⚠️ Firebase sync not available');
             return;
         }
 
@@ -289,13 +289,13 @@ class ProgressIntegrator {
 
     // Get sync status
     getSyncStatus() {
-        const supabaseStatus = window.firebaseProgressSync ? window.firebaseProgressSync.getSyncStatus() : null;
+        const firebaseStatus = window.firebaseProgressSync ? window.firebaseProgressSync.getSyncStatus() : null;
         
         return {
             hasLocalData: !!this.getLocalProgress(),
             periodicSyncActive: !!this.syncInterval,
             lastSyncTime: this.lastSyncTime,
-            supabase: supabaseStatus
+            firebase: firebaseStatus
         };
     }
 }

@@ -55,14 +55,14 @@ class LeaderboardManager {
         this.showLoading(true);
 
         try {
-            console.log('🔍 Loading leaderboard from Supabase...', { type: this.currentType });
+            console.log('🔍 Loading leaderboard from Firebase...', { type: this.currentType });
 
-            // Check if Supabase client is available
-            if (!window.firebaseClient || !window.firebaseClient.supabase) {
-                throw new Error('Supabase client not available');
+            // Check if Firebase client is available
+            if (!window.firebaseClient) {
+                throw new Error('Firebase client not available');
             }
 
-            // Map currentType to database column name
+            // Map currentType to database field name
             const typeMapping = {
                 'total_studied': 'total_words',
                 'accuracy': 'accuracy_rate',
@@ -74,7 +74,7 @@ class LeaderboardManager {
 
             const dbType = typeMapping[this.currentType] || 'total_words';
 
-            // Get leaderboard data from Supabase
+            // Get leaderboard data from Firebase
             const leaderboardData = await window.firebaseClient.getLeaderboard(dbType, 50);
 
             console.log('📊 Leaderboard response:', leaderboardData.length, 'users');
@@ -87,7 +87,7 @@ class LeaderboardManager {
                 await this.loadUserPosition();
             }
 
-            // Load statistics from Supabase
+            // Load statistics from Firebase
             await this.loadStats();
 
         } catch (error) {
