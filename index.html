@@ -592,23 +592,47 @@
     </footer>
     </div>
 
-    <!-- Firebase SDKs (Modulares vía CDN) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    <!-- Firebase SDKs (Compat - Fixed Timing Issue) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
-        // Exportamos a window para mantener compatibilidad con el resto de scripts no-modulares
+    <script>
+        // Bridge mapping to maintain compatibility with firebase-client.js
         window.FirebaseSDK = {
-            initializeApp, getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChanged,
-            getFirestore, doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, serverTimestamp
+            initializeApp: (config) => firebase.initializeApp(config),
+            getAuth: (app) => app.auth(),
+            getFirestore: (app) => app.firestore(),
+            GithubAuthProvider: firebase.auth.GithubAuthProvider,
+            signInWithPopup: (auth, provider) => auth.signInWithPopup(provider),
+            signOut: (auth) => auth.signOut(),
+            onAuthStateChanged: (auth, callback) => auth.onAuthStateChanged(callback),
+            
+            // Firestore mappings
+            doc: (db, coll, id) => db.collection(coll).doc(id),
+            setDoc: (docRef, data, options) => docRef.set(data, options),
+            getDoc: (docRef) => docRef.get(),
+            updateDoc: (docRef, data) => docRef.update(data),
+            collection: (db, coll) => db.collection(coll),
+            query: (collRef, ...constraints) => {
+                let q = collRef;
+                constraints.forEach(c => { if(c) q = c(q); });
+                return q;
+            },
+            where: (field, op, value) => (q) => q.where(field, op, value),
+            getDocs: (q) => q.get(),
+            orderBy: (field, dir) => (q) => q.orderBy(field, dir),
+            limit: (n) => (q) => q.limit(n),
+            serverTimestamp: () => firebase.firestore.FieldValue.serverTimestamp()
         };
     </script>
 
 
+
     <!-- Firebase Configuration and Client -->
-    <script src="config/firebase-config.js?v=1"></script>
-    <script src="assets/js/firebase-client.js?v=1"></script>
+    <script src="config/firebase-config.js?v=4"></script>
+    <script src="assets/js/firebase-client.js?v=4"></script>
+
 
 
     <!-- Core Scripts -->
