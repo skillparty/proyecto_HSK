@@ -1,63 +1,38 @@
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Logs
-*.log
-npm-debug.log*
-
-# Runtime data
-pids
-*.pid
-*.seed
-
-# Optional npm cache directory
-.npm
-
-# Node modules (if we add Node.js later)
+```
+# Dependencies
 node_modules/
 
-# Temporary files
-.tmp/
-temp/
-
-# Environment variables
+# Environment
 .env
 .env.local
-.env.production
+.env.*
 
-# Local development
-.cache/
+# Logs and temp files
+*.log
+*.tmp
+
+# Editors
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build outputs
 dist/
 build/
+*.min.js
+*.bundle.js
 
-# Database files
-database/*.db
-database/*.sqlite
-database/*.sqlite3
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
-# Backup files
-*.backup
-*.bak
-
-# Debug and test files
-debug-*.js
-test-*.js
-*-debug.js
-*-test.js
-
-# Legacy/deprecated files
-*.old
-*.deprecated
+# System
+.DS_Store
+Thumbs.db
+```

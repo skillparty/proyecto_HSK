@@ -10,7 +10,7 @@ class ProgressIntegrator {
 
     // Initialize integration when user logs in
     async initializeForUser(user) {
-        if (!window.supabaseSync) {
+        if (!window.firebaseProgressSync) {
             console.warn('⚠️ Supabase sync not available');
             return;
         }
@@ -22,7 +22,7 @@ class ProgressIntegrator {
             const localProgress = this.getLocalProgress();
             
             // Get cloud progress
-            const cloudResult = await window.supabaseSync.getUserProgress();
+            const cloudResult = await window.firebaseProgressSync.getUserProgress();
             
             if (cloudResult.success && cloudResult.data) {
                 // Cloud data exists - merge with local
@@ -33,19 +33,19 @@ class ProgressIntegrator {
                 this.saveLocalProgress(mergedProgress);
                 
                 // Sync merged progress to cloud
-                await window.supabaseSync.syncUserProgress(mergedProgress);
+                await window.firebaseProgressSync.syncUserProgress(mergedProgress);
                 
             } else if (localProgress && Object.keys(localProgress).length > 0) {
                 // No cloud data but local exists - upload to cloud
                 console.log('📤 Uploading local progress to cloud');
-                await window.supabaseSync.syncUserProgress(localProgress);
+                await window.firebaseProgressSync.syncUserProgress(localProgress);
                 
             } else {
                 // No data anywhere - initialize empty progress
                 console.log('🆕 Initializing new progress tracking');
                 const initialProgress = this.createInitialProgress();
                 this.saveLocalProgress(initialProgress);
-                await window.supabaseSync.syncUserProgress(initialProgress);
+                await window.firebaseProgressSync.syncUserProgress(initialProgress);
             }
 
             // Start periodic sync
@@ -160,8 +160,8 @@ class ProgressIntegrator {
             this.saveLocalProgress(updatedProgress);
 
             // Sync to cloud if online and user is authenticated
-            if (window.supabaseSync && window.supabaseSync.currentUser) {
-                const syncResult = await window.supabaseSync.syncUserProgress(updatedProgress);
+            if (window.firebaseProgressSync && window.firebaseProgressSync.currentUser) {
+                const syncResult = await window.firebaseProgressSync.syncUserProgress(updatedProgress);
                 
                 if (syncResult.success) {
                     console.log('✅ Progress updated and synced');
@@ -221,16 +221,16 @@ class ProgressIntegrator {
             this.saveLocalProgress(currentProgress);
 
             // Sync to cloud
-            if (window.supabaseSync && window.supabaseSync.currentUser) {
+            if (window.firebaseProgressSync && window.firebaseProgressSync.currentUser) {
                 // Record individual word study
-                await window.supabaseSync.recordWordStudy(wordData);
+                await window.firebaseProgressSync.recordWordStudy(wordData);
                 
                 // Update overall progress
-                await window.supabaseSync.syncUserProgress(currentProgress);
+                await window.firebaseProgressSync.syncUserProgress(currentProgress);
                 
                 // Update HSK level progress
                 if (wordData.hskLevel && currentProgress.hskLevels) {
-                    await window.supabaseSync.syncHSKProgress(
+                    await window.firebaseProgressSync.syncHSKProgress(
                         wordData.hskLevel, 
                         currentProgress.hskLevels[wordData.hskLevel]
                     );
@@ -238,7 +238,7 @@ class ProgressIntegrator {
 
                 // Update heatmap
                 const today = new Date().toISOString().split('T')[0];
-                await window.supabaseSync.updateStudyHeatmap(today, {
+                await window.firebaseProgressSync.updateStudyHeatmap(today, {
                     wordsStudied: 1,
                     minutesStudied: Math.ceil((wordData.responseTime || 3000) / 60000),
                     sessionsCount: 1
@@ -261,7 +261,7 @@ class ProgressIntegrator {
         }
 
         this.syncInterval = setInterval(async () => {
-            if (window.supabaseSync && window.supabaseSync.currentUser && navigator.onLine) {
+            if (window.firebaseProgressSync && window.firebaseProgressSync.currentUser && navigator.onLine) {
                 const progress = this.getLocalProgress();
                 if (progress && progress.lastUpdated) {
                     const lastUpdate = new Date(progress.lastUpdated);
@@ -269,7 +269,7 @@ class ProgressIntegrator {
                     
                     if (lastUpdate > fiveMinutesAgo) {
                         console.log('🔄 Periodic sync...');
-                        await window.supabaseSync.syncUserProgress(progress);
+                        await window.firebaseProgressSync.syncUserProgress(progress);
                     }
                 }
             }
@@ -289,7 +289,7 @@ class ProgressIntegrator {
 
     // Get sync status
     getSyncStatus() {
-        const supabaseStatus = window.supabaseSync ? window.supabaseSync.getSyncStatus() : null;
+        const supabaseStatus = window.firebaseProgressSync ? window.firebaseProgressSync.getSyncStatus() : null;
         
         return {
             hasLocalData: !!this.getLocalProgress(),
