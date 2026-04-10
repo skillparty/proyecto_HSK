@@ -57,18 +57,40 @@ class MatrixGame {
         };
 
         // Historial de puntuaciones
+        this.scoreController = new MatrixScoreController(this);
         this.highScores = this.loadHighScores();
 
         this.sessionStorageKey = 'hsk-matrix-session-v1';
         this.sessionMaxAgeMs = 30 * 60 * 1000;
         this.legacyBackendApiEnabled = window.HSK_ENABLE_LEGACY_BACKEND_API === true;
+        this.sessionController = new MatrixSessionController(this);
 
         // Inicializar
         this.init();
     }
 
+    getLogger() {
+        return window.hskLogger || console;
+    }
+
+    logDebug(...args) {
+        this.getLogger().debug(...args);
+    }
+
+    logInfo(...args) {
+        this.getLogger().info(...args);
+    }
+
+    logWarn(...args) {
+        this.getLogger().warn(...args);
+    }
+
+    logError(...args) {
+        this.getLogger().error(...args);
+    }
+
     init() {
-        console.log('🎮 Initializing Matrix Game...');
+        this.logInfo('🎮 Initializing Matrix Game...');
         this.loadVocabulary();
         this.setupEventListeners();
         this.renderGameInterface();
@@ -80,17 +102,17 @@ class MatrixGame {
             if (window.app && window.app.vocabulary) {
                 this.vocabulary = [...window.app.vocabulary];
                 this.allVocabulary = [...window.app.vocabulary];
-                console.log('✅ Vocabulary loaded from main app:', this.vocabulary.length, 'words');
+                this.logDebug('✅ Vocabulary loaded from main app:', this.vocabulary.length, 'words');
             } else {
                 // Cargar vocabulario de respaldo
                 const response = await fetch('assets/data/hsk_vocabulary_spanish.json');
                 const data = await response.json();
                 this.vocabulary = [...data];
                 this.allVocabulary = [...data];
-                console.log('✅ Vocabulary loaded from file:', this.vocabulary.length, 'words');
+                this.logDebug('✅ Vocabulary loaded from file:', this.vocabulary.length, 'words');
             }
         } catch (error) {
-            console.error('❌ Error loading vocabulary:', error);
+            this.logError('❌ Error loading vocabulary:', error);
             // Usar vocabulario de ejemplo si falla la carga
             this.vocabulary = this.getDefaultVocabulary();
             this.allVocabulary = [...this.vocabulary];
@@ -192,7 +214,7 @@ class MatrixGame {
     }
 
     startGame() {
-        console.log('🎮 Starting Matrix Game...');
+        this.logInfo('🎮 Starting Matrix Game...');
 
         if (!this.allVocabulary || this.allVocabulary.length === 0) {
             this.allVocabulary = this.vocabulary && this.vocabulary.length > 0
@@ -256,7 +278,7 @@ class MatrixGame {
             this.vocabulary = [...sourceVocabulary];
         }
 
-        console.log(`📚 Filtered vocabulary: ${this.vocabulary.length} words for HSK ${this.currentLevel}`);
+        this.logDebug('📚 Filtered vocabulary: ' + this.vocabulary.length + ' words for HSK ' + this.currentLevel);
     }
 
     nextRound() {
@@ -549,7 +571,7 @@ class MatrixGame {
     }
 
     endGame() {
-        console.log('🏁 Game ended');
+        this.logInfo('🏁 Game ended');
 
         this.isPlaying = false;
 
@@ -606,139 +628,23 @@ class MatrixGame {
     }
 
     async checkAndSaveHighScore() {
-        const accuracy = Math.round((this.correctAnswers / (this.correctAnswers + this.wrongAnswers)) * 100);
-        const scoreEntry = {
-            score: this.score,
-            level: this.currentLevel,
-            difficulty: this.difficulty,
-            accuracy: accuracy,
-            date: new Date().toISOString()
-        };
-
-        // Obtener puntuaciones existentes localmente
-        const key = `matrix-highscores-${this.currentLevel}-${this.difficulty}`;
-        let scores = JSON.parse(localStorage.getItem(key) || '[]');
-
-        // Verificar si es un nuevo récord
-        const isNewRecord = scores.length === 0 || scoreEntry.score > scores[0].score;
-
-        // Agregar nueva puntuación localmente
-        scores.push(scoreEntry);
-        scores.sort((a, b) => b.score - a.score);
-        scores = scores.slice(0, 10); // Mantener solo top 10
-
-        // Guardar localmente
-        localStorage.setItem(key, JSON.stringify(scores));
-
-        // Actualizar lista de puntuaciones altas
-        this.highScores = scores;
-
-        // Intentar guardar en el servidor solo si backend legacy está habilitado
-        if (!this.legacyBackendApiEnabled) {
-            return isNewRecord;
-        }
-
-        try {
-            const userId = window.app?.userProfile?.userId || 'anonymous';
-            const userName = window.app?.userProfile?.userName || 'Anonymous Player';
-
-            const response = await fetch('/api/matrix-game/score', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    userId: userId,
-                    userName: userName,
-                    score: this.score,
-                    hskLevel: this.currentLevel,
-                    difficulty: this.difficulty,
-                    correctAnswers: this.correctAnswers,
-                    wrongAnswers: this.wrongAnswers,
-                    accuracy: accuracy,
-                    maxStreak: this.sessionStats.maxStreak,
-                    avgResponseTime: this.sessionStats.averageTime,
-                    totalTime: this.config[this.difficulty].timeLimit - this.timeRemaining
-                })
-            });
-
-            const data = await response.json();
-            if (data.success) {
-                console.log('✅ Score saved to server');
-                // Actualizar leaderboard desde el servidor
-                this.loadServerLeaderboard();
-            }
-        } catch (error) {
-            console.error('❌ Error saving score to server:', error);
-            // El juego continúa funcionando con almacenamiento local
-        }
-
-        return isNewRecord;
+        return this.scoreController.checkAndSaveHighScore();
     }
 
     loadHighScores() {
-        const key = `matrix-highscores-${this.currentLevel}-${this.difficulty}`;
-        return JSON.parse(localStorage.getItem(key) || '[]');
+        return this.scoreController.loadHighScores();
     }
 
     async loadServerLeaderboard() {
-        if (!this.legacyBackendApiEnabled) {
-            return;
-        }
-
-        try {
-            const response = await fetch(`/api/matrix-game/leaderboard?level=${this.currentLevel}&difficulty=${this.difficulty}&limit=10`);
-            const data = await response.json();
-
-            if (data.success && data.leaderboard) {
-                console.log('📊 Leaderboard loaded from server');
-                // Actualizar la visualización del leaderboard si está visible
-                if (document.getElementById('high-scores-list')) {
-                    this.displayServerLeaderboard(data.leaderboard);
-                }
-            }
-        } catch (error) {
-            console.error('❌ Error loading leaderboard from server:', error);
-        }
+        return this.scoreController.loadServerLeaderboard();
     }
 
     displayServerLeaderboard(leaderboard) {
-        const listContainer = document.getElementById('high-scores-list');
-        if (!listContainer) return;
-
-        if (leaderboard.length === 0) {
-            listContainer.innerHTML = '<p class="no-scores">No hay puntuaciones aún</p>';
-            return;
-        }
-
-        listContainer.innerHTML = leaderboard.map((score) => `
-            <div class="score-item">
-                <span class="score-rank">#${score.rank}</span>
-                <span class="score-name">${score.userName}</span>
-                <span class="score-value">${score.score.toLocaleString()}</span>
-                <span class="score-accuracy">${score.accuracy}%</span>
-                <span class="score-date">${new Date(score.date).toLocaleDateString()}</span>
-            </div>
-        `).join('');
+        return this.scoreController.displayServerLeaderboard(leaderboard);
     }
 
     updateHighScoresList() {
-        const listContainer = document.getElementById('high-scores-list');
-        if (!listContainer) return;
-
-        if (this.highScores.length === 0) {
-            listContainer.innerHTML = '<p class="no-scores">No hay puntuaciones aún</p>';
-            return;
-        }
-
-        listContainer.innerHTML = this.highScores.map((score, index) => `
-            <div class="score-item">
-                <span class="score-rank">#${index + 1}</span>
-                <span class="score-value">${score.score.toLocaleString()}</span>
-                <span class="score-accuracy">${score.accuracy}%</span>
-                <span class="score-date">${new Date(score.date).toLocaleDateString()}</span>
-            </div>
-        `).join('');
+        return this.scoreController.updateHighScoresList();
     }
 
     updateGameUI() {
@@ -770,10 +676,10 @@ class MatrixGame {
     }
 
     showGame() {
-        console.log('🎮 Matrix Game showGame() called');
+        this.logInfo('🎮 Matrix Game showGame() called');
 
         // First, render the game interface
-        console.log('🎨 About to call renderGameInterface...');
+        this.logDebug('🎨 About to call renderGameInterface...');
 
         // Get the container first
         let gameContainer = document.getElementById('matrix-game-container');
@@ -782,11 +688,11 @@ class MatrixGame {
         }
 
         if (gameContainer && typeof renderMatrixGameInterface === 'function') {
-            console.log('🎨 Rendering directly with renderMatrixGameInterface...');
+            this.logDebug('🎨 Rendering directly with renderMatrixGameInterface...');
             try {
                 const html = renderMatrixGameInterface();
                 gameContainer.innerHTML = html;
-                console.log('✅ Direct render successful, HTML length:', html.length);
+                this.logDebug('✅ Direct render successful, HTML length:', html.length);
 
                 if (window.languageManager?.updateInterface) {
                     window.languageManager.updateInterface();
@@ -795,27 +701,27 @@ class MatrixGame {
                 // Setup event listeners
                 this.setupGameEventListeners();
             } catch (error) {
-                console.error('❌ Direct render failed:', error);
+                this.logError('❌ Direct render failed:', error);
             }
         } else {
-            console.warn('⚠️ Container or render function not available');
+            this.logWarn('⚠️ Container or render function not available');
             this.renderGameInterface();
         }
 
-        console.log('🎨 renderGameInterface completed');
+        this.logDebug('🎨 renderGameInterface completed');
 
         // After rendering, look for the container again
         let container = document.getElementById('matrix-game-container');
         if (!container) {
             // If still not found, the content was rendered directly in the matrix tab
             container = document.getElementById('matrix');
-            console.log('📦 Using matrix tab as container');
+            this.logDebug('📦 Using matrix tab as container');
         }
 
         if (container) {
             container.style.display = 'block';
-            console.log('✅ Matrix game container shown');
-            console.log('📏 Container innerHTML length:', container.innerHTML.length);
+            this.logDebug('✅ Matrix game container shown');
+            this.logDebug('📏 Container innerHTML length:', container.innerHTML.length);
 
             // Wait for DOM to be ready, then show config screen
             setTimeout(() => {
@@ -823,20 +729,20 @@ class MatrixGame {
                 const gameScreen = document.getElementById('matrix-game');
                 const resultsScreen = document.getElementById('matrix-results');
 
-                console.log('🔍 Looking for screens after render...');
-                console.log('Config screen found:', !!configScreen);
-                console.log('Game screen found:', !!gameScreen);
-                console.log('Results screen found:', !!resultsScreen);
+                this.logDebug('🔍 Looking for screens after render...');
+                this.logDebug('Config screen found:', !!configScreen);
+                this.logDebug('Game screen found:', !!gameScreen);
+                this.logDebug('Results screen found:', !!resultsScreen);
 
                 if (configScreen) {
                     configScreen.style.display = 'block';
-                    console.log('✅ Config screen shown');
+                    this.logDebug('✅ Config screen shown');
                 } else {
-                    console.warn('⚠️ Config screen not found');
+                    this.logWarn('⚠️ Config screen not found');
                     // Try to find it in the entire document
                     const allConfigs = document.querySelectorAll('[id*="config"]');
-                    console.log('All config elements found:', allConfigs.length);
-                    allConfigs.forEach((el, i) => console.log(`Config ${i}:`, el.id));
+                    this.logDebug('All config elements found:', allConfigs.length);
+                    allConfigs.forEach((el, i) => this.logDebug('Config ' + i + ':', el.id));
                 }
 
                 if (gameScreen) gameScreen.style.display = 'none';
@@ -846,12 +752,12 @@ class MatrixGame {
                 this.syncResumeAction();
             }, 100);
         } else {
-            console.error('❌ Matrix game container not found after rendering');
+            this.logError('❌ Matrix game container not found after rendering');
         }
     }
 
     renderGameInterface() {
-        console.log('🎨 Rendering Matrix Game Interface...');
+        this.logDebug('🎨 Rendering Matrix Game Interface...');
 
         // Verificar si el contenedor ya existe
         let gameContainer = document.getElementById('matrix-game-container');
@@ -864,22 +770,22 @@ class MatrixGame {
                 if (!gameContainer) {
                     // Si tampoco existe, usar el tab de matrix directamente
                     gameContainer = matrixTab;
-                    console.log('📦 Using matrix tab as container');
+                    this.logDebug('📦 Using matrix tab as container');
                 }
             }
         }
 
         if (!gameContainer) {
-            console.error('❌ Matrix game container not found');
+            this.logError('❌ Matrix game container not found');
             return;
         }
 
         // Usar la función de matrix-game-ui.js si está disponible
         if (typeof renderMatrixGameInterface === 'function') {
-            console.log('✅ Using renderMatrixGameInterface function');
+            this.logDebug('✅ Using renderMatrixGameInterface function');
             gameContainer.innerHTML = renderMatrixGameInterface();
         } else {
-            console.warn('⚠️ renderMatrixGameInterface not available, using fallback');
+            this.logWarn('⚠️ renderMatrixGameInterface not available, using fallback');
             // Fallback: renderizar interfaz básica
             gameContainer.innerHTML = this.getGameHTML();
         }
@@ -887,11 +793,11 @@ class MatrixGame {
         // Configurar event listeners después de renderizar
         this.setupGameEventListeners();
 
-        console.log('✅ Matrix Game Interface rendered successfully');
+        this.logDebug('✅ Matrix Game Interface rendered successfully');
     }
 
     setupGameEventListeners() {
-        console.log('🎛️ Setting up Matrix Game event listeners...');
+        this.logDebug('🎛️ Setting up Matrix Game event listeners...');
 
         // Botón de inicio
         const startBtn = document.getElementById('matrix-start-btn');
@@ -945,7 +851,7 @@ class MatrixGame {
             backToAppBtn.onclick = () => this.backToApp();
         }
 
-        console.log('✅ Event listeners configured');
+        this.logDebug('✅ Event listeners configured');
     }
 
     getGameHTML() {
@@ -976,150 +882,27 @@ class MatrixGame {
     }
 
     saveSessionState(force = false) {
-        try {
-            if (!force && !this.isPlaying) return;
-
-            const state = {
-                currentLevel: this.currentLevel,
-                difficulty: this.difficulty,
-                score: this.score,
-                timeRemaining: this.timeRemaining,
-                currentRound: this.currentRound,
-                correctAnswers: this.correctAnswers,
-                wrongAnswers: this.wrongAnswers,
-                isPlaying: this.isPlaying,
-                isPaused: this.isPaused,
-                currentWord: this.currentWord,
-                matrixCharacters: this.matrixCharacters,
-                correctPosition: this.correctPosition,
-                sessionStats: this.sessionStats,
-                updatedAt: Date.now()
-            };
-
-            localStorage.setItem(this.sessionStorageKey, JSON.stringify(state));
-        } catch (error) {
-            console.warn('⚠️ Error saving matrix session:', error);
-        }
+        return this.sessionController.saveSessionState(force);
     }
 
     loadSessionState() {
-        try {
-            const raw = localStorage.getItem(this.sessionStorageKey);
-            if (!raw) return null;
-            return JSON.parse(raw);
-        } catch (error) {
-            console.warn('⚠️ Error loading matrix session:', error);
-            return null;
-        }
+        return this.sessionController.loadSessionState();
     }
 
     clearSessionState() {
-        try {
-            localStorage.removeItem(this.sessionStorageKey);
-        } catch (error) {
-            console.warn('⚠️ Error clearing matrix session:', error);
-        }
+        return this.sessionController.clearSessionState();
     }
 
     getResumableSession() {
-        const state = this.loadSessionState();
-        if (!state || !state.updatedAt) return null;
-
-        const age = Date.now() - Number(state.updatedAt);
-        if (age > this.sessionMaxAgeMs) {
-            this.clearSessionState();
-            return null;
-        }
-
-        const hasRound = !!(state.currentWord && Array.isArray(state.matrixCharacters) && state.matrixCharacters.length > 0);
-        if (!state.isPlaying || !hasRound || Number(state.timeRemaining || 0) <= 0) {
-            return null;
-        }
-
-        return state;
+        return this.sessionController.getResumableSession();
     }
 
     syncResumeAction() {
-        const configScreen = document.getElementById('matrix-config');
-        const startBtn = document.getElementById('matrix-start-btn');
-        if (!configScreen || !startBtn) return;
-
-        let resumeBtn = document.getElementById('matrix-resume-btn');
-        const resumable = this.getResumableSession();
-
-        if (!resumable) {
-            if (resumeBtn) resumeBtn.remove();
-            return;
-        }
-
-        if (!resumeBtn) {
-            resumeBtn = document.createElement('button');
-            resumeBtn.id = 'matrix-resume-btn';
-            resumeBtn.className = 'matrix-start-btn';
-            resumeBtn.style.marginTop = '10px';
-            startBtn.parentNode.insertBefore(resumeBtn, startBtn.nextSibling);
-            resumeBtn.addEventListener('click', () => this.resumeSession());
-        }
-
-        const label = window.languageManager?.t
-            ? window.languageManager.t('resumeMatrix')
-            : 'Resume Matrix';
-        resumeBtn.textContent = label || 'Resume Matrix';
+        return this.sessionController.syncResumeAction();
     }
 
     resumeSession() {
-        const state = this.getResumableSession();
-        if (!state) {
-            this.syncResumeAction();
-            return;
-        }
-
-        if (this.timer) {
-            clearInterval(this.timer);
-            this.timer = null;
-        }
-
-        this.currentLevel = Number(state.currentLevel || 1);
-        this.difficulty = state.difficulty || 'normal';
-        this.score = Number(state.score || 0);
-        this.timeRemaining = Number(state.timeRemaining || this.config[this.difficulty].timeLimit);
-        this.currentRound = Number(state.currentRound || 0);
-        this.correctAnswers = Number(state.correctAnswers || 0);
-        this.wrongAnswers = Number(state.wrongAnswers || 0);
-        this.currentWord = state.currentWord || null;
-        this.matrixCharacters = Array.isArray(state.matrixCharacters) ? state.matrixCharacters : [];
-        this.correctPosition = Number(state.correctPosition || 0);
-        this.sessionStats = state.sessionStats || this.sessionStats;
-
-        const levelSelect = document.getElementById('matrix-level-select');
-        if (levelSelect) {
-            levelSelect.value = String(this.currentLevel);
-        }
-
-        document.querySelectorAll('.diff-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.difficulty === this.difficulty);
-        });
-
-        document.getElementById('matrix-config').style.display = 'none';
-        document.getElementById('matrix-results').style.display = 'none';
-        document.getElementById('matrix-game').style.display = 'block';
-
-        this.isPlaying = true;
-        this.isPaused = false;
-        this.startTime = Date.now();
-
-        this.renderMatrix();
-
-        document.getElementById('target-pinyin').textContent = this.currentWord?.pinyin || this.currentWord?.pinyinTones || '';
-        const currentLang = window.languageManager?.currentLanguage || 'es';
-        const meaning = currentLang === 'es'
-            ? (this.currentWord?.spanish || this.currentWord?.translation)
-            : (this.currentWord?.english || this.currentWord?.translation);
-        document.getElementById('target-meaning').textContent = meaning || '';
-
-        this.updateGameUI();
-        this.startTimer();
-        this.saveSessionState(true);
+        return this.sessionController.resumeSession();
     }
 }
 

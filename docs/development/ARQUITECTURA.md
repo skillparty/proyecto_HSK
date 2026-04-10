@@ -1,5 +1,8 @@
 # Arquitectura del Proyecto - HSK Learning App
 
+> Estado actual (2026): la arquitectura operativa está basada en Firebase (Auth + Firestore).
+> Algunas referencias históricas a Supabase pueden permanecer en secciones legacy del documento.
+
 ## 🏗️ Estructura del Proyecto
 
 ```
@@ -28,29 +31,46 @@ proyecto_HSK/
 │   │
 │   └── js/                 # JavaScript modularizado
 │       ├── app.js                      # Aplicación principal
-│       ├── supabase-client.js          # Cliente Supabase
+│       ├── logger.js                   # Logging centralizado (debug/prod)
+│       ├── firebase-client.js          # Cliente Firebase
 │       ├── auth-backend.js             # Autenticación
 │       ├── user-progress-backend.js    # Progreso de usuario
 │       ├── leaderboard.js              # Sistema de rankings
 │       ├── matrix-game.js              # Lógica del juego
 │       ├── matrix-game-ui.js           # UI del juego
 │       ├── translations.js             # Sistema i18n
-│       ├── supabase-progress-sync.js   # Sincronización
+│       ├── firebase-progress-sync.js   # Sincronización
 │       ├── progress-integrator.js      # Integrador de progreso
-│       ├── compatibility.js            # Compatibilidad legacy
+│       ├── modules/home-controller.js  # Navegación Home + fallback actions
+│       ├── modules/matrix-controller.js # Inicialización/debug/fallback Matrix
+│       ├── modules/quiz-engine.js      # Motor de quiz principal
+│       ├── modules/quiz-legacy-controller.js # Flujo quiz legacy aislado
+│       ├── modules/stats-controller.js # Sincronización + render de estadísticas
+│       ├── modules/theme-controller.js # Gestión de tema y visual state
+│       ├── modules/audio-controller.js # TTS/audio toggle y preferencias de voz
+│       ├── modules/browse-controller.js # Browse, filtros e infinite scroll
+│       ├── modules/modal-controller.js # Modal de limitación ES y mensajes transitorios
+│       ├── modules/health-controller.js # Health panel, digest y export diagnóstico
+│       ├── modules/storage-controller.js # Persistencia local de stats/settings
+│       ├── modules/language-controller.js # i18n runtime y microcopy de controles
+│       ├── modules/progress-controller.js # Progreso diario, streak y tracking global
+│       ├── modules/navigation-controller.js # Tabs, última pestaña y onboarding state
+│       ├── modules/search-controller.js # Búsqueda en header y dropdown de resultados
+│       ├── modules/practice-view-controller.js # Render y helpers de tarjeta de práctica
+│       ├── modules/feedback-controller.js # Feedback de respuesta y progreso/header visual
+│       ├── modules/interaction-controller.js # Event listeners globales, shortcuts y gestos
+│       ├── modules/vocabulary-controller.js # Carga lazy de vocabulario y preferencias usuario
+│       ├── modules/legacy-flow-controller.js # Flujos legacy: accesibilidad, update, quiz/matrix bridges
+│       ├── modules/startup-controller.js # Secuencia de bootstrap e inicialización app
+│       ├── modules/ui-controller.js    # Orquestación de tabs y toasts
 │       └── diagnostic-system.js        # Sistema de diagnóstico
 │
 ├── config/                 # Configuración
-│   ├── supabase-config.js  # Config de Supabase
+│   ├── firebase-config.js  # Config de Firebase (legacy)
 │   ├── sw.js              # Service Worker (PWA)
 │   └── manifest.json      # Manifest PWA
 │
-├── database/              # Esquemas de base de datos
-│   └── supabase-schema.sql # Schema PostgreSQL completo
-│
 ├── docs/                  # 📚 Documentación
-│   ├── setup/
-│   │   └── SUPABASE_SETUP.md
 │   └── development/
 │       ├── MEJORAS_LEADERBOARD_STATISTICS.md
 │       └── REFACTORIZACION_ANALISIS.md
@@ -76,11 +96,9 @@ proyecto_HSK/
 ```
 index.html
     ↓
-Carga Supabase CDN
+Carga Firebase SDK modular
     ↓
-supabase-config.js → Configura cliente
-    ↓
-supabase-client.js → Inicializa conexión
+firebase-client.js → Inicializa conexión
     ↓
 app.js → Inicializa aplicación
     ↓
@@ -94,13 +112,13 @@ auth-backend.js → Verifica autenticación
 ```
 Usuario hace clic en "Sign in with GitHub"
     ↓
-supabase-client.js → signInWithGitHub()
+firebase-client.js → signInWithGitHub()
     ↓
 Redirect a GitHub OAuth
     ↓
-Callback a Supabase
+Callback a Firebase Auth
     ↓
-supabase-client.js → onAuthStateChange()
+firebase-client.js → onAuthStateChange()
     ↓
 auth-backend.js → Actualiza UI
     ↓
@@ -121,11 +139,9 @@ Usuario marca tarjeta (know/don't know)
 app.js → markAsKnown(isKnown)
     ↓
 ├─ Local: Actualiza stats en localStorage
-└─ Supabase: supabase-client.updateProgress()
+└─ Firebase: firebase-client.updateProgress()
     ↓
-Supabase → RPC: update_user_progress()
-    ↓
-Base de datos actualizada
+Firestore actualizado
 ```
 
 ### 4. Leaderboard
@@ -135,9 +151,9 @@ Usuario abre tab Leaderboard
     ↓
 leaderboard.js → loadLeaderboard()
     ↓
-supabase-client.js → getLeaderboard()
+firebase-client.js → getLeaderboard()
     ↓
-Supabase → SELECT FROM leaderboard_view
+Firestore → query user_progress
     ↓
 leaderboard.js → renderLeaderboard()
     ↓
@@ -151,9 +167,9 @@ Usuario abre tab Statistics
     ↓
 app.js → updateStats()
     ↓
-supabase-client.js → getUserStatistics()
+firebase-client.js → getUserStatistics()
     ↓
-Supabase → SELECT FROM user_progress
+Firestore → query user_progress
     ↓
 app.js → renderiza estadísticas por nivel
 ```

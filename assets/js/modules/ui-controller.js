@@ -5,7 +5,23 @@
 class UIController {
     constructor(app) {
         this.app = app;
-        console.log('📱 UIController module initialized');
+        this.logDebug('📱 UIController module initialized');
+    }
+
+    getLogger() {
+        return window.hskLogger || console;
+    }
+
+    logDebug(...args) {
+        this.getLogger().debug(...args);
+    }
+
+    logWarn(...args) {
+        this.getLogger().warn(...args);
+    }
+
+    logError(...args) {
+        this.getLogger().error(...args);
     }
 
     switchTab(tabName) {
@@ -15,7 +31,7 @@ class UIController {
         try {
             localStorage.setItem(this.app.lastTabStorageKey, tabName);
         } catch (error) {
-            console.warn('⚠️ Error saving last tab:', error);
+            this.logWarn('⚠️ Error saving last tab:', error);
         }
 
         // Hide all tabs
@@ -40,7 +56,7 @@ class UIController {
         this.handleTabInitialization(tabName);
         this.renderOnboardingHint(tabName);
 
-        console.log(`📱 Switched to tab: ${tabName}`);
+        this.logDebug('📱 Switched to tab: ' + tabName);
     }
 
     handleTabInitialization(tabName) {
@@ -85,7 +101,7 @@ class UIController {
             if (savedTab && allowedTabs.has(savedTab) && document.getElementById(savedTab)) {
                 this.switchTab(savedTab);
             }
-        } catch (e) { console.warn('Tab restore error:', e); }
+        } catch (e) { this.logWarn('Tab restore error:', e); }
     }
 
     showToast(message, type = 'info', duration = 3500, action = null) {
@@ -149,7 +165,7 @@ class UIController {
     }
 
     showError(message) {
-        console.error('❌ Error:', message);
+        this.logError('❌ Error:', message);
         this.showToast(message, 'error', 4000);
     }
 

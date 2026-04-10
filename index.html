@@ -237,27 +237,27 @@
                         </div>
                     </div>
                     <div class="home-cards">
-                        <div class="home-card" data-tab-target="practice" role="button" tabindex="0" onclick="window.app && window.app.switchTab('practice')">
+                        <div class="home-card" data-tab-target="practice" role="button" tabindex="0">
                             <div class="home-card-icon chinese-char">练习</div>
                             <div class="home-card-title" data-i18n="homeCardPracticeTitle">Practice</div>
                             <div class="home-card-desc" data-i18n="homeCardPracticeDesc">Flashcards and guided practice</div>
                         </div>
-                        <div class="home-card" data-tab-target="browse" role="button" tabindex="0" onclick="window.app && window.app.switchTab('browse')">
+                        <div class="home-card" data-tab-target="browse" role="button" tabindex="0">
                             <div class="home-card-icon chinese-char">词汇</div>
                             <div class="home-card-title" data-i18n="homeCardBrowseTitle">Browse</div>
                             <div class="home-card-desc" data-i18n="homeCardBrowseDesc">Explore vocabulary by level</div>
                         </div>
-                        <div class="home-card" data-tab-target="quiz" role="button" tabindex="0" onclick="window.app && window.app.switchTab('quiz')">
+                        <div class="home-card" data-tab-target="quiz" role="button" tabindex="0">
                             <div class="home-card-icon chinese-char">测验</div>
                             <div class="home-card-title" data-i18n="homeCardQuizTitle">Quiz</div>
                             <div class="home-card-desc" data-i18n="homeCardQuizDesc">Test your knowledge</div>
                         </div>
-                        <div class="home-card" data-tab-target="matrix" role="button" tabindex="0" onclick="window.app && window.app.switchTab('matrix')">
+                        <div class="home-card" data-tab-target="matrix" role="button" tabindex="0">
                             <div class="home-card-icon chinese-char">矩阵</div>
                             <div class="home-card-title" data-i18n="homeCardMatrixTitle">Matrix</div>
                             <div class="home-card-desc" data-i18n="homeCardMatrixDesc">Find characters against the clock</div>
                         </div>
-                        <div class="home-card" data-tab-target="stats" role="button" tabindex="0" onclick="window.app && window.app.switchTab('stats')">
+                        <div class="home-card" data-tab-target="stats" role="button" tabindex="0">
                             <div class="home-card-icon chinese-char">统计</div>
                             <div class="home-card-title" data-i18n="homeCardStatsTitle">Statistics</div>
                             <div class="home-card-desc" data-i18n="homeCardStatsDesc">Track your progress and streaks</div>
@@ -555,7 +555,7 @@
                         </div>
                         <h4 data-i18n="noStatsYet">No progress to show yet</h4>
                         <p data-i18n="startWithPracticeToSeeStats">Start with Practice to see your stats here</p>
-                        <button class="btn btn-primary" onclick="window.app && window.app.switchTab('practice')" data-i18n="goToPractice">Go to Practice</button>
+                        <button class="btn btn-primary" id="go-to-practice-btn" data-i18n="goToPractice">Go to Practice</button>
                     </div>
                 </div>
 
@@ -639,25 +639,41 @@
 
         console.log('🔥 Firebase Modular Bridge & Instances initialized');
 
-        // Initialize App with a small retry mechanism to handle race conditions in some browsers
-        const initApp = (retries = 3) => {
-            if (window.HSKApp) {
+        // Robust bootstrap: wait until HSKApp is loaded before instantiation.
+        const initApp = () => {
+            if (window.app) return true;
+            if (typeof window.HSKApp === 'function') {
                 console.log('🚀 Initializing HSKApp...');
-                window.app = new HSKApp();
-            } else if (retries > 0) {
-                console.warn(`⏳ HSKApp not found, retrying in 50ms... (${retries} retries left)`);
-                setTimeout(() => initApp(retries - 1), 50);
-            } else {
-                console.error('❌ HSKApp class not found after multiple retries.');
+                window.app = new window.HSKApp();
+                return true;
             }
+            return false;
         };
 
-        // Trigger initialization when DOM is ready
+        const bootStartedAt = Date.now();
+        const bootTimeoutMs = 8000;
+
+        window.addEventListener('hsk:app-class-ready', () => initApp(), { once: true });
+
+        const bootInterval = setInterval(() => {
+            if (initApp()) {
+                clearInterval(bootInterval);
+                return;
+            }
+
+            if (Date.now() - bootStartedAt > bootTimeoutMs) {
+                clearInterval(bootInterval);
+                console.error('❌ HSKApp class not found before bootstrap timeout.');
+            }
+        }, 100);
+
         if (document.readyState === 'loading') {
-            window.addEventListener('DOMContentLoaded', () => initApp());
+            window.addEventListener('DOMContentLoaded', () => initApp(), { once: true });
         } else {
             initApp();
         }
+
+        window.addEventListener('load', () => initApp(), { once: true });
     </script>
 
     <!-- Firebase Client (Dependent on bridge) -->
@@ -672,7 +688,27 @@
     <!-- Modules -->
     <script src="assets/js/modules/flashcard-manager.js?v=1" defer></script>
     <script src="assets/js/modules/quiz-engine.js?v=1" defer></script>
+    <script src="assets/js/modules/quiz-legacy-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/stats-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/theme-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/audio-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/browse-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/modal-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/health-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/storage-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/language-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/progress-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/navigation-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/search-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/practice-view-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/feedback-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/vocabulary-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
     <script src="assets/js/modules/ui-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/home-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/matrix-controller.js?v=1" defer></script>
     
     <script src="assets/js/progress-integrator.js?v=2" defer></script>
     <script src="assets/js/auth-backend.js?v=8" defer></script>
@@ -686,9 +722,12 @@
         }
     </script>
     <!-- Background Data (Base64 Fallback) -->
+    <script src="assets/js/logger.js?v=1" defer></script>
     <script src="assets/js/bg-data.js" defer></script>
     <script src="assets/js/app.js?v=29" defer></script>
     <script src="assets/js/matrix-game-ui.js?v=5" defer></script>
+    <script src="assets/js/modules/matrix-session-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/matrix-score-controller.js?v=1" defer></script>
     <script src="assets/js/matrix-game.js?v=6" defer></script>
     <script src="assets/js/leaderboard.js?v=4" defer></script>
 

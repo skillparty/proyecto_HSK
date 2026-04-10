@@ -21,8 +21,8 @@ Confuc10++ está diseñado para estudiar vocabulario HSK mediante tarjetas de pr
 | Capa | Tecnología |
 |------|------------|
 | Frontend | HTML5, CSS3, JavaScript (ES6+) |
-| Backend gestionado | Supabase (PostgreSQL, Auth) |
-| Autenticación | GitHub OAuth vía Supabase |
+| Backend gestionado | Firebase (Firestore + Auth) |
+| Autenticación | GitHub OAuth vía Firebase |
 | Hosting | GitHub Pages |
 | PWA | Service Worker y Web App Manifest |
 
@@ -43,28 +43,24 @@ npm run dev
 
 Abrir en navegador: http://localhost:3369
 
-## Configuración de entorno
+## Configuración de Firebase
 
-Crear un archivo `.env` a partir de `.env.example` y definir:
-
-```env
-SUPABASE_URL=tu_supabase_url
-SUPABASE_ANON_KEY=tu_supabase_anon_key
-GITHUB_CLIENT_ID=tu_github_client_id
-GITHUB_CLIENT_SECRET=tu_github_client_secret
-```
-
-## Configuración de Supabase
-
-1. Crear un proyecto en Supabase.
-2. Ejecutar el script `database/supabase-schema.sql`.
-3. Configurar GitHub como proveedor OAuth en Supabase Auth.
-4. Revisar políticas de acceso (RLS) según el entorno.
+1. Crear o seleccionar proyecto en Firebase.
+2. Habilitar Firestore y Authentication.
+3. Configurar proveedor GitHub en Firebase Auth.
+4. Validar reglas en `firestore.rules` y los índices en `firestore.indexes.json`.
 
 ## Scripts disponibles
 
 - `npm run dev`: inicia un servidor local en el puerto 3369.
-- `npm test`: validación mínima (placeholder del proyecto).
+- `npm run check:syntax`: valida sintaxis de JavaScript y detecta `onclick` inline en HTML.
+- `npm run ci`: ejecuta validaciones mínimas previas a deploy.
+- `npm test`: alias de `npm run ci`.
+
+## Modo Debug
+
+- Agrega `?debug=1` a la URL para habilitar logs de diagnóstico en el navegador.
+- También puedes activar debug persistente con `localStorage.setItem('hsk-debug', '1')`.
 
 ## Estructura del repositorio
 
