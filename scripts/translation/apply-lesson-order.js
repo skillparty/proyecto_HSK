@@ -8,7 +8,8 @@ function parseArgs(argv) {
     map: 'assets/data/hsk_lesson_order_map.json',
     en: 'assets/data/hsk_vocabulary.json',
     es: 'assets/data/hsk_vocabulary_spanish.json',
-    write: false
+    write: false,
+    strictMap: false
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -17,6 +18,7 @@ function parseArgs(argv) {
     if (token === '--en') args.en = argv[i + 1];
     if (token === '--es') args.es = argv[i + 1];
     if (token === '--write') args.write = true;
+    if (token === '--strict-map') args.strictMap = true;
   }
 
   return args;
@@ -86,6 +88,18 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
+function hasCompleteOrderMetadata(entry) {
+  return Boolean(
+    entry
+    && entry.character
+    && entry.pinyin
+    && entry.english
+    && entry.book
+    && entry.lesson
+    && entry.lessonOrder
+  );
+}
+
 function main() {
   const root = process.cwd();
   const args = parseArgs(process.argv.slice(2));
@@ -102,14 +116,18 @@ function main() {
     return;
   }
 
-  const invalid = entries.filter((entry) => (
-    !entry.character || !entry.pinyin || !entry.english || !entry.book || !entry.lesson || !entry.lessonOrder
-  ));
+  const completeEntries = entries.filter(hasCompleteOrderMetadata);
+  const incompleteEntries = entries.length - completeEntries.length;
 
-  if (invalid.length > 0) {
-    console.error('[ORDER] Invalid map entries found. Required fields: character, pinyin, english, book, lesson, lessonOrder');
+  if (incompleteEntries > 0 && args.strictMap) {
+    console.error('[ORDER] Incomplete map entries found and strict mode is enabled.');
+    console.error('[ORDER] Required fields: character, pinyin, english, book, lesson, lessonOrder');
     process.exitCode = 1;
     return;
+  }
+
+  if (incompleteEntries > 0) {
+    console.log(`[ORDER] Skipping ${incompleteEntries} incomplete map entries (use --strict-map to fail instead).`);
   }
 
   const english = readJson(enPath);
@@ -122,7 +140,7 @@ function main() {
   let missingEn = 0;
   let missingEs = 0;
 
-  for (const entry of entries) {
+  for (const entry of completeEntries) {
     const enMatch = resolveMatch(entry, englishByCP);
     if (enMatch) {
       applyMetadata(enMatch.item, entry);
@@ -149,6 +167,8 @@ function main() {
 
   console.log('[ORDER] Lesson-order apply summary');
   console.log(`- Map entries: ${entries.length}`);
+  console.log(`- Complete entries: ${completeEntries.length}`);
+  console.log(`- Skipped incomplete entries: ${incompleteEntries}`);
   console.log(`- EN updated: ${updatedEn}`);
   console.log(`- ES updated: ${updatedEs}`);
   console.log(`- EN missing: ${missingEn}`);

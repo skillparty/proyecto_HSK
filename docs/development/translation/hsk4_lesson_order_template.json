@@ -1,0 +1,6007 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-11T22:46:55.596Z",
+  "description": "Template for HSK4 lesson ordering. Fill book/lesson/lessonOrder per textbook sequence.",
+  "entries": [
+    {
+      "level": 4,
+      "sourceOrder": 0,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "﻿爱情",
+      "pinyin": "àiqíng",
+      "english": "(romantic) love"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 1,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "安排",
+      "pinyin": "ānpái",
+      "english": "arrange; to plan"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 2,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "安全",
+      "pinyin": "ānquán",
+      "english": "safe; safety; secure; security"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 3,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "按时",
+      "pinyin": "ànshí",
+      "english": "on time; on schedule"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 4,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "按照",
+      "pinyin": "ànzhào",
+      "english": "according to; in accordance with; in light of"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 5,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "百分之",
+      "pinyin": "bǎifēnzhī",
+      "english": "percent"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 6,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "棒",
+      "pinyin": "bàng",
+      "english": "stick; club; good; excellent"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 7,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "包子",
+      "pinyin": "bāozi",
+      "english": "steamed stuffed bun"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 8,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "保护",
+      "pinyin": "bǎohù",
+      "english": "to protect; to defend"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 9,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "保证",
+      "pinyin": "bǎozhèng",
+      "english": "to guarantee; ensure"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 10,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "报名",
+      "pinyin": "bào míng",
+      "english": "sign up; apply"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 11,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "抱",
+      "pinyin": "bào",
+      "english": "to hold; to hug; carry in one's arms; to cradle"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 12,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "抱歉",
+      "pinyin": "bàoqiàn",
+      "english": "be sorry; feel apologetic; to regret"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 13,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "倍",
+      "pinyin": "bèi",
+      "english": "(two, three, etc)-fold; times (multiplier)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 14,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "本来",
+      "pinyin": "běnlái",
+      "english": "originally; at first"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 15,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "笨",
+      "pinyin": "bèn",
+      "english": "stupid; foolish; silly; dumb; clumsy"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 16,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "比如",
+      "pinyin": "bǐrú",
+      "english": "for example; for instance; such as"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 17,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "毕业",
+      "pinyin": "bì yè",
+      "english": "to graduate; to finish school"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 18,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "遍",
+      "pinyin": "biàn",
+      "english": "a time; everywhere; turn; (mw for times or turns)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 19,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "标准",
+      "pinyin": "biāozhǔn",
+      "english": "(an official) standard; norm; criterion"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 20,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "表格",
+      "pinyin": "biǎogé",
+      "english": "form (document)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 21,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "表示",
+      "pinyin": "biǎoshì",
+      "english": "express; show; indicate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 22,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "表演",
+      "pinyin": "biǎoyǎn",
+      "english": "perform; to play"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 23,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "表扬",
+      "pinyin": "biǎoyáng",
+      "english": "to praise; commend"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 24,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "饼干",
+      "pinyin": "bǐnggān",
+      "english": "biscuit; cracker; cookie"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 25,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "并且",
+      "pinyin": "bìngqiě",
+      "english": "and; besides; moreover"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 26,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "博士",
+      "pinyin": "bóshì",
+      "english": "doctor; PhD"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 27,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "不得不",
+      "pinyin": "bù dé bù",
+      "english": "have to; have no choice but to; cannot but"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 28,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "不管",
+      "pinyin": "bùguǎn",
+      "english": "no matter (what, how, etc.); regardless of"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 29,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "不过",
+      "pinyin": "búguò",
+      "english": "only; merely; but; however"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 30,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "不仅",
+      "pinyin": "bùjǐn",
+      "english": "not only; not just"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 31,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "部分",
+      "pinyin": "bùfen",
+      "english": "part; share; section"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 32,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "擦",
+      "pinyin": "cā",
+      "english": "to wipe; to rub; to polish"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 33,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "猜",
+      "pinyin": "cāi",
+      "english": "to guess"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 34,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "材料",
+      "pinyin": "cáiliào",
+      "english": "material"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 35,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "参观",
+      "pinyin": "cānguān",
+      "english": "to visit (a place, such as a tourist spot); inspect"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 36,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "餐厅",
+      "pinyin": "cāntīng",
+      "english": "dining hall; cafeteria; restaurant"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 37,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "厕所",
+      "pinyin": "cèsuǒ",
+      "english": "bathroom; toilet; lavatory"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 38,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "差不多",
+      "pinyin": "chàbuduō",
+      "english": "almost; about the same"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 39,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "长城",
+      "pinyin": "chángchéng",
+      "english": "the Great Wall"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 40,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "长江",
+      "pinyin": "Chángjiāng",
+      "english": "the Yangtze River; the Changjiang River"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 41,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "尝",
+      "pinyin": "cháng",
+      "english": "to taste; flavor; (past tense marker)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 42,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "场",
+      "pinyin": "chǎng",
+      "english": "courtyard; place; field; (mw for games, performances, etc.)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 43,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "超过",
+      "pinyin": "chāoguò",
+      "english": "surpass; exceed; outstrip"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 44,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "成功",
+      "pinyin": "chénggōng",
+      "english": "success; to succeed"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 45,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "成为",
+      "pinyin": "chéngwéi",
+      "english": "become; turn into"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 46,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "诚实",
+      "pinyin": "chéngshí",
+      "english": "honest; honorable"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 47,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "乘坐",
+      "pinyin": "chéngzuò",
+      "english": "ride; get into (a vehicle)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 48,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "吃惊",
+      "pinyin": "chī jīng",
+      "english": "be startled; be shocked; be amazed"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 49,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "重新",
+      "pinyin": "chóngxīn",
+      "english": "again; anew; once more"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 50,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "抽烟",
+      "pinyin": "chōuyān",
+      "english": "to smoke (a cigarette, pipe, etc.)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 51,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "出差",
+      "pinyin": "chū chāi",
+      "english": "go on a business trip"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 52,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "出发",
+      "pinyin": "chūfā",
+      "english": "start out; set off"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 53,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "出生",
+      "pinyin": "chūshēng",
+      "english": "be born"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 54,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "出现",
+      "pinyin": "chūxiàn",
+      "english": "appear; arise; emerge"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 55,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "厨房",
+      "pinyin": "chúfáng",
+      "english": "kitchen"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 56,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "传真",
+      "pinyin": "chuánzhēn",
+      "english": "fax; facsimile"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 57,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "窗户",
+      "pinyin": "chuānghu",
+      "english": "window"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 58,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "词语",
+      "pinyin": "cíyǔ",
+      "english": "words and expressions; terms"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 59,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "从来",
+      "pinyin": "cónglái",
+      "english": "always; at all times"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 60,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "粗心",
+      "pinyin": "cūxīn",
+      "english": "careless; inadvertent; negligent"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 61,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "存",
+      "pinyin": "cún",
+      "english": "exist; to deposit; to store"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 62,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "错误",
+      "pinyin": "cuòwù",
+      "english": "error; mistake; mistaken"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 63,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "答案",
+      "pinyin": "dá'àn",
+      "english": "answer; solution"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 64,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "打扮",
+      "pinyin": "dǎban",
+      "english": "dress up; put on make up"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 65,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "打扰",
+      "pinyin": "dǎrǎo",
+      "english": "disturb"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 66,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "打印",
+      "pinyin": "dǎyìn",
+      "english": "to print"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 67,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "打招呼",
+      "pinyin": "dǎzhāohu",
+      "english": "notify; greet; inform"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 68,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "打折",
+      "pinyin": "dǎzhé",
+      "english": "sell at a discount"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 69,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "打针",
+      "pinyin": "dǎzhēn",
+      "english": "inject; get a shot"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 70,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "大概",
+      "pinyin": "dàgài",
+      "english": "probably; roughly; approximate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 71,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "大使馆",
+      "pinyin": "dàshǐguǎn",
+      "english": "embassy"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 72,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "大约",
+      "pinyin": "dàyuē",
+      "english": "approximately; about"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 73,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "大夫",
+      "pinyin": "dàifu",
+      "english": "doctor; physician"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 74,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "戴",
+      "pinyin": "dài",
+      "english": "put on; to wear; to respect"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 75,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "当",
+      "pinyin": "dāng",
+      "english": "should; act as; work as; manage; match; (sound of bells)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 76,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "当时",
+      "pinyin": "dāngshí",
+      "english": "then; at that time; while"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 77,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "刀",
+      "pinyin": "dāo",
+      "english": "knife; blade (Kangxi radical 18)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 78,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "导游",
+      "pinyin": "dǎoyóu",
+      "english": "tour guide"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 79,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "到处",
+      "pinyin": "dàochù",
+      "english": "everywhere; in all places; all over"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 80,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "到底",
+      "pinyin": "dào dǐ",
+      "english": "after all; in the end (used in a question)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 81,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "倒",
+      "pinyin": "dǎo, dào",
+      "english": "to collapse; to fall; fail; to exchange | to pour; contrary to expectations"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 82,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "道歉",
+      "pinyin": "dàoqiàn",
+      "english": "apologize; make an apology"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 83,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "得意",
+      "pinyin": "déyì",
+      "english": "proud of oneself; complacent"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 84,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "得",
+      "pinyin": "de",
+      "english": "(complement particle)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 85,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "登机牌",
+      "pinyin": "dēngjīpái",
+      "english": "boarding pass"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 86,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "等",
+      "pinyin": "děng",
+      "english": "to wait; rank; equal; etc."
+    },
+    {
+      "level": 4,
+      "sourceOrder": 87,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "低",
+      "pinyin": "dī",
+      "english": "low; to lower (one's head); droop"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 88,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "底",
+      "pinyin": "dǐ",
+      "english": "bottom; background; base"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 89,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "地点",
+      "pinyin": "dìdiǎn",
+      "english": "place; site; location"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 90,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "地球",
+      "pinyin": "dìqiú",
+      "english": "the Earth; planet"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 91,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "地址",
+      "pinyin": "dìzhǐ",
+      "english": "address"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 92,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "调查",
+      "pinyin": "diàochá",
+      "english": "investigate; survey; inquiry"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 93,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "掉",
+      "pinyin": "diào",
+      "english": "to drop; to fall"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 94,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "丢",
+      "pinyin": "diū",
+      "english": "lose (something); throw; put aside"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 95,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "动作",
+      "pinyin": "dòngzuò",
+      "english": "movement; motion; action"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 96,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "堵车",
+      "pinyin": "dǔchē",
+      "english": "traffic jam"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 97,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "肚子",
+      "pinyin": "dùzi",
+      "english": "belly; abdomen; stomach"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 98,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "短信",
+      "pinyin": "duǎnxìn",
+      "english": "text message; SMS"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 99,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "对话",
+      "pinyin": "duìhuà",
+      "english": "dialogue; conversation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 100,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "对面",
+      "pinyin": "duìmiàn",
+      "english": "opposite; across from; the other side"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 101,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "对于",
+      "pinyin": "duìyú",
+      "english": "regarding; as far as sth. is concerned; with regards to; for"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 102,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "儿童",
+      "pinyin": "értóng",
+      "english": "child; children"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 103,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "而",
+      "pinyin": "ér",
+      "english": "and; but; yet; while (Kangxi radical 126)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 104,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "发生",
+      "pinyin": "fāshēng",
+      "english": "happen; occur; take place"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 105,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "发展",
+      "pinyin": "fāzhǎn",
+      "english": "develop; development; growth"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 106,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "法律",
+      "pinyin": "fǎlǜ",
+      "english": "law; statute"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 107,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "翻译",
+      "pinyin": "fānyì",
+      "english": "translate; translation; interpret"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 108,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "烦恼",
+      "pinyin": "fánnǎo",
+      "english": "worried; vexed"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 109,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "反对",
+      "pinyin": "fǎnduì",
+      "english": "oppose; fight against"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 110,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "方法",
+      "pinyin": "fāngfǎ",
+      "english": "method; way; means"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 111,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "方面",
+      "pinyin": "fāngmiàn",
+      "english": "aspect; field; side"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 112,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "方向",
+      "pinyin": "fāngxiàng",
+      "english": "direction; orientation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 113,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "房东",
+      "pinyin": "fángdōng",
+      "english": "landlord"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 114,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "放弃",
+      "pinyin": "fàngqì",
+      "english": "abandon; renounce; give up"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 115,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "放暑假",
+      "pinyin": "fàng shǔjià",
+      "english": "have summer vacation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 116,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "放松",
+      "pinyin": "fàngsōng",
+      "english": "relax; loosen; slacken"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 117,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "份",
+      "pinyin": "fèn",
+      "english": "part; portion; (mw for documents, papers, jobs, etc.)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 118,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "丰富",
+      "pinyin": "fēngfù",
+      "english": "rich; enrich; abundant; plentiful"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 119,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "否则",
+      "pinyin": "fǒuzé",
+      "english": "if not; otherwise; or else"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 120,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "符合",
+      "pinyin": "fúhé",
+      "english": "in keeping with; in accordance with; conform"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 121,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "父亲",
+      "pinyin": "fùqin",
+      "english": "father"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 122,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "付款",
+      "pinyin": "fù kuǎn",
+      "english": "to pay"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 123,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "负责",
+      "pinyin": "fùzé",
+      "english": "responsible for (something); in charge of"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 124,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "复印",
+      "pinyin": "fùyìn",
+      "english": "photocopy; duplicate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 125,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "复杂",
+      "pinyin": "fùzá",
+      "english": "complicated; complex"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 126,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "富",
+      "pinyin": "fù",
+      "english": "wealthy"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 127,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "改变",
+      "pinyin": "gǎibiàn",
+      "english": "to change; alter; to transform"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 128,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "干杯",
+      "pinyin": "gān bēi",
+      "english": "to drink a toast; cheers!; bottoms up!"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 129,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "赶",
+      "pinyin": "gǎn",
+      "english": "catch up; overtake; drive away"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 130,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "敢",
+      "pinyin": "gǎn",
+      "english": "to dare"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 131,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "感动",
+      "pinyin": "gǎndòng",
+      "english": "be moved; to touch emotionally"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 132,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "感觉",
+      "pinyin": "gǎnjué",
+      "english": "to feel; become aware of; feeling"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 133,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "感情",
+      "pinyin": "gǎnqíng",
+      "english": "feeling; emotion; sensation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 134,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "感谢",
+      "pinyin": "gǎnxiè",
+      "english": "thank; be grateful"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 135,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "干",
+      "pinyin": "gān",
+      "english": "to concern; shield; dry; clean (Kangxi radical 51)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 136,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "刚",
+      "pinyin": "gāng",
+      "english": "just (indicating the immediate past); recently; firm"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 137,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "高速公路",
+      "pinyin": "gāosù gōnglù",
+      "english": "highway"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 138,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "胳膊",
+      "pinyin": "gēbo",
+      "english": "arm"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 139,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "各",
+      "pinyin": "gè",
+      "english": "each; every"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 140,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "工资",
+      "pinyin": "gōngzī",
+      "english": "wages; pay; earnings; salary"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 141,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "公里",
+      "pinyin": "gōnglǐ",
+      "english": "kilometer"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 142,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "功夫",
+      "pinyin": "gōngfu",
+      "english": "kung fu; skill; art; labor"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 143,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "共同",
+      "pinyin": "gòngtóng",
+      "english": "together; common; joint"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 144,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "购物",
+      "pinyin": "gòuwù",
+      "english": "go shopping; buy goods"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 145,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "够",
+      "pinyin": "gòu",
+      "english": "enough; to reach"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 146,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "估计",
+      "pinyin": "gūjì",
+      "english": "appraise; estimate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 147,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "鼓励",
+      "pinyin": "gǔlì",
+      "english": "encourage; inspire"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 148,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "故意",
+      "pinyin": "gùyì",
+      "english": "deliberately; intentional; on purpose"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 149,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "顾客",
+      "pinyin": "gùkè",
+      "english": "customer; client"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 150,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "挂",
+      "pinyin": "guà",
+      "english": "hang; put up; suspend"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 151,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "关键",
+      "pinyin": "guānjiàn",
+      "english": "crucial; key; pivotal"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 152,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "观众",
+      "pinyin": "guānzhòng",
+      "english": "spectator; audience"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 153,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "管理",
+      "pinyin": "guǎnlǐ",
+      "english": "supervise; manage"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 154,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "光",
+      "pinyin": "guāng",
+      "english": "light; ray; bright; only; merely; used up"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 155,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "广播",
+      "pinyin": "guǎngbō",
+      "english": "broadcast; on the air"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 156,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "广告",
+      "pinyin": "guǎnggào",
+      "english": "advertisement; a commercial"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 157,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "逛",
+      "pinyin": "guàng",
+      "english": "to stroll; to visit; go window shopping"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 158,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "规定",
+      "pinyin": "guīdìng",
+      "english": "regulation; stipulate; fix; set"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 159,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "国籍",
+      "pinyin": "guójí",
+      "english": "nationality"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 160,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "国际",
+      "pinyin": "guójì",
+      "english": "international"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 161,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "果汁",
+      "pinyin": "guǒzhī",
+      "english": "fruit juice"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 162,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "过程",
+      "pinyin": "guòchéng",
+      "english": "course of events; process"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 163,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "海洋",
+      "pinyin": "hǎiyáng",
+      "english": "ocean"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 164,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "害羞",
+      "pinyin": "hài xiū",
+      "english": "blush; shy"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 165,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "寒假",
+      "pinyin": "hánjià",
+      "english": "winter vacation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 166,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "汗",
+      "pinyin": "hàn",
+      "english": "sweat; perspiration; Khan"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 167,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "航班",
+      "pinyin": "hángbān",
+      "english": "scheduled flight; flight number"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 168,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "好处",
+      "pinyin": "hǎochu",
+      "english": "benefit; advantage"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 169,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "好像",
+      "pinyin": "hǎoxiàng",
+      "english": "as if; seem to be"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 170,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "号码",
+      "pinyin": "hàomǎ",
+      "english": "number"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 171,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "合格",
+      "pinyin": "hégé",
+      "english": "qualified; up to standard"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 172,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "合适",
+      "pinyin": "héshì",
+      "english": "suitable; proper; appropriate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 173,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "盒子",
+      "pinyin": "hézi",
+      "english": "box"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 174,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "后悔",
+      "pinyin": "hòuhuǐ",
+      "english": "to regret; repent"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 175,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "厚",
+      "pinyin": "hòu",
+      "english": "thick (for flat things); generous"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 176,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "互联网",
+      "pinyin": "Hùliánwǎng",
+      "english": "Internet"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 177,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "互相",
+      "pinyin": "hùxiāng",
+      "english": "mutually; with each other"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 178,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "护士",
+      "pinyin": "hùshi",
+      "english": "nurse"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 179,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "怀疑",
+      "pinyin": "huáiyí",
+      "english": "doubt; to suspect; be skeptical"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 180,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "回忆",
+      "pinyin": "huíyì",
+      "english": "to recall; recollect"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 181,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "活动",
+      "pinyin": "huódòng",
+      "english": "activity; exercise; move about"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 182,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "活泼",
+      "pinyin": "huópo",
+      "english": "lively; vivacious"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 183,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "火",
+      "pinyin": "huǒ",
+      "english": "fire (Kangxi radical 86)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 184,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "获得",
+      "pinyin": "huòdé",
+      "english": "obtain; acquire; to gain"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 185,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "积极",
+      "pinyin": "jījí",
+      "english": "active; positive; energetic"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 186,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "积累",
+      "pinyin": "jīlěi",
+      "english": "accumulate; accumulation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 187,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "基础",
+      "pinyin": "jīchǔ",
+      "english": "base; foundation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 188,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "激动",
+      "pinyin": "jīdòng",
+      "english": "excite; agitate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 189,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "及时",
+      "pinyin": "jíshí",
+      "english": "timely; in time; promptly; without delay"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 190,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "即使",
+      "pinyin": "jíshǐ",
+      "english": "even if; even though"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 191,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "计划",
+      "pinyin": "jìhuà",
+      "english": "plan; project"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 192,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "记者",
+      "pinyin": "jìzhě",
+      "english": "reporter; journalist"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 193,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "技术",
+      "pinyin": "jìshù",
+      "english": "technology; technique; skill"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 194,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "既然",
+      "pinyin": "jìrán",
+      "english": "since; given that; now that"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 195,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "继续",
+      "pinyin": "jìxù",
+      "english": "to continue; to go on; to proceed"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 196,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "寄",
+      "pinyin": "jì",
+      "english": "send by mail"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 197,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "加班",
+      "pinyin": "jiā bān",
+      "english": "work overtime"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 198,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "加油站",
+      "pinyin": "jiāyóuzhàn",
+      "english": "gas station"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 199,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "家具",
+      "pinyin": "jiājù",
+      "english": "furniture"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 200,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "假",
+      "pinyin": "jiǎ, jià",
+      "english": "fake; if; borrow | vacation; holiday"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 201,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "价格",
+      "pinyin": "jiàgé",
+      "english": "price"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 202,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "坚持",
+      "pinyin": "jiānchí",
+      "english": "persist in; persevere"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 203,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "减肥",
+      "pinyin": "jiǎnféi",
+      "english": "go on a diet; lose weight"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 204,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "减少",
+      "pinyin": "jiǎnshǎo",
+      "english": "reduce; to decrease"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 205,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "建议",
+      "pinyin": "jiànyì",
+      "english": "to propose; to suggest; recommend"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 206,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "将来",
+      "pinyin": "jiānglái",
+      "english": "the future"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 207,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "奖金",
+      "pinyin": "jiǎngjīn",
+      "english": "bonus"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 208,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "降低",
+      "pinyin": "jiàngdī",
+      "english": "reduce; to lower; to drop"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 209,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "降落",
+      "pinyin": "jiàngluò",
+      "english": "descend; to land; put down"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 210,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "交",
+      "pinyin": "jiāo",
+      "english": "deliver; turn over; intersect; to pay (money); friendship"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 211,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "交流",
+      "pinyin": "jiāoliú",
+      "english": "communicate; exchange; give and take; interaction; to alternate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 212,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "交通",
+      "pinyin": "jiāotōng",
+      "english": "traffic; transportation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 213,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "郊区",
+      "pinyin": "jiāoqū",
+      "english": "suburbs; outskirts"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 214,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "骄傲",
+      "pinyin": "jiāo'ào",
+      "english": "proud; arrogant; conceited; take pride in"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 215,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "饺子",
+      "pinyin": "jiǎozi",
+      "english": "dumpling; potsticker"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 216,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "教授",
+      "pinyin": "jiàoshòu",
+      "english": "professor; instruct; to lecture"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 217,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "教育",
+      "pinyin": "jiàoyù",
+      "english": "education"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 218,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "接受",
+      "pinyin": "jiēshòu",
+      "english": "accept; receive (honors, etc.)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 219,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "接着",
+      "pinyin": "jiēzhe",
+      "english": "continue; carry on; to catch; follow"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 220,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "节",
+      "pinyin": "jié",
+      "english": "section; part; festival; moral integrity; save; (mw for class periods)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 221,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "节约",
+      "pinyin": "jiéyuē",
+      "english": "frugal; to save"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 222,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "结果",
+      "pinyin": "jiéguǒ",
+      "english": "result; outcome; finally"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 223,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "解释",
+      "pinyin": "jiěshì",
+      "english": "to explain"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 224,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "尽管",
+      "pinyin": "jǐnguǎn",
+      "english": "despite; although; even though | freely; without hesitation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 225,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "紧张",
+      "pinyin": "jǐnzhāng",
+      "english": "nervous; tension; strain"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 226,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "进行",
+      "pinyin": "jìnxíng",
+      "english": "carry on; carry out; undertake"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 227,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "禁止",
+      "pinyin": "jìnzhǐ",
+      "english": "to ban; prohibit"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 228,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "京剧",
+      "pinyin": "jīngjù",
+      "english": "Beijing Opera"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 229,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "经济",
+      "pinyin": "jīngjì",
+      "english": "economy; economic"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 230,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "经历",
+      "pinyin": "jīnglì",
+      "english": "undergo; to experience"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 231,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "经验",
+      "pinyin": "jīngyàn",
+      "english": "experience"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 232,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "精彩",
+      "pinyin": "jīngcǎi",
+      "english": "brilliant; spectacular; wonderful"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 233,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "景色",
+      "pinyin": "jǐngsè",
+      "english": "scenery; landscape; scene; view"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 234,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "警察",
+      "pinyin": "jǐngchá",
+      "english": "police"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 235,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "竞争",
+      "pinyin": "jìngzhēng",
+      "english": "compete"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 236,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "竟然",
+      "pinyin": "jìngrán",
+      "english": "unexpectedly; to one's surprise; go so far as to"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 237,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "镜子",
+      "pinyin": "jìngzi",
+      "english": "mirror"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 238,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "究竟",
+      "pinyin": "jiūjìng",
+      "english": "after all; when all is said and done; actually"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 239,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "举",
+      "pinyin": "jǔ",
+      "english": "lift; raise; cite"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 240,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "举办",
+      "pinyin": "jǔbàn",
+      "english": "to conduct; to hold"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 241,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "举行",
+      "pinyin": "jǔxíng",
+      "english": "convene; to hold (a meeting, ceremony, etc.)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 242,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "拒绝",
+      "pinyin": "jùjué",
+      "english": "to refuse; to decline; to reject"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 243,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "距离",
+      "pinyin": "jùlí",
+      "english": "distance; be apart; away from"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 244,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "聚会",
+      "pinyin": "jùhuì",
+      "english": "hold a meeting; get together; a party"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 245,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "开玩笑",
+      "pinyin": "kāi wánxiào",
+      "english": "joke; play a joke; make fun of"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 246,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "开心",
+      "pinyin": "kāixīn",
+      "english": "feel happy; have a great time; make fun of somebody"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 247,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "看法",
+      "pinyin": "kànfǎ",
+      "english": "point of view; opinion"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 248,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "考虑",
+      "pinyin": "kǎolǜ",
+      "english": "think over; consider"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 249,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "烤鸭",
+      "pinyin": "kǎoyā",
+      "english": "roast duck"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 250,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "科学",
+      "pinyin": "kēxué",
+      "english": "science; scientific knowledge"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 251,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "棵",
+      "pinyin": "kē",
+      "english": "(mw for plants)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 252,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "咳嗽",
+      "pinyin": "késou",
+      "english": "to cough"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 253,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "可怜",
+      "pinyin": "kělián",
+      "english": "pitiful; poor; pathetic"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 254,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "可是",
+      "pinyin": "kěshì",
+      "english": "but; however"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 255,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "可惜",
+      "pinyin": "kěxī",
+      "english": "it's a pity; regrettable; too bad"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 256,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "客厅",
+      "pinyin": "kètīng",
+      "english": "living room; parlor"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 257,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "肯定",
+      "pinyin": "kěndìng",
+      "english": "sure; definite; affirm; approve"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 258,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "空",
+      "pinyin": "kōng, kòng",
+      "english": "empty; sky | leave blank; leisure"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 259,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "空气",
+      "pinyin": "kōngqì",
+      "english": "air"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 260,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "恐怕",
+      "pinyin": "kǒngpà",
+      "english": "be afraid; to fear; I'm afraid that..."
+    },
+    {
+      "level": 4,
+      "sourceOrder": 261,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "苦",
+      "pinyin": "kǔ",
+      "english": "bitter; miserable"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 262,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "矿泉水",
+      "pinyin": "kuàngquánshuǐ",
+      "english": "mineral water"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 263,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "困",
+      "pinyin": "kùn",
+      "english": "sleepy; surround; hard-pressed"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 264,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "困难",
+      "pinyin": "kùnnan",
+      "english": "difficulty; difficult; problem"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 265,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "垃圾桶",
+      "pinyin": "lājītǒng",
+      "english": "garbage can"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 266,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "拉",
+      "pinyin": "lā",
+      "english": "to pull; to play (string instruments); to drag"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 267,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "辣",
+      "pinyin": "là",
+      "english": "hot (spicy)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 268,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "来不及",
+      "pinyin": "lái bu jí",
+      "english": "there's not enough time (to do something); it's too late"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 269,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "来得及",
+      "pinyin": "lái de jí",
+      "english": "there's still time"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 270,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "来自",
+      "pinyin": "láizì",
+      "english": "come from (a place)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 271,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "懒",
+      "pinyin": "lǎn",
+      "english": "lazy"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 272,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "浪费",
+      "pinyin": "làngfèi",
+      "english": "to waste; squander"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 273,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "浪漫",
+      "pinyin": "làngmàn",
+      "english": "romantic"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 274,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "老虎",
+      "pinyin": "lǎohǔ",
+      "english": "tiger"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 275,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "冷静",
+      "pinyin": "lěngjìng",
+      "english": "calm; cool-headed; sober"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 276,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "礼拜天",
+      "pinyin": "lǐbàitiān",
+      "english": "Sunday"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 277,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "礼貌",
+      "pinyin": "lǐmào",
+      "english": "courtesy; politeness; manners"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 278,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "理发",
+      "pinyin": "lǐfà",
+      "english": "a barber, hairdressing; haircut"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 279,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "理解",
+      "pinyin": "lǐjiě",
+      "english": "comprehend; understand"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 280,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "理想",
+      "pinyin": "lǐxiǎng",
+      "english": "ideal"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 281,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "力气",
+      "pinyin": "lìqi",
+      "english": "physical strength; effort"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 282,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "厉害",
+      "pinyin": "lìhai",
+      "english": "terrible; formidable; fierce; cool; awesome"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 283,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "例如",
+      "pinyin": "lìrú",
+      "english": "for example; for instance"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 284,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "俩",
+      "pinyin": "liǎng",
+      "english": "(colloquial) two (people)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 285,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "连",
+      "pinyin": "lián",
+      "english": "even; including; join"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 286,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "联系",
+      "pinyin": "liánxì",
+      "english": "integrate; link; connection; contact"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 287,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "凉快",
+      "pinyin": "liángkuai",
+      "english": "nice and cool; pleasantly cool"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 288,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "零钱",
+      "pinyin": "língqián",
+      "english": "small change (of money)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 289,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "另外",
+      "pinyin": "lìngwài",
+      "english": "another; in addition; besides"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 290,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "留",
+      "pinyin": "liú",
+      "english": "to leave (behind, a message); to retain; to stay"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 291,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "流利",
+      "pinyin": "liúlì",
+      "english": "fluent"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 292,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "流行",
+      "pinyin": "liúxíng",
+      "english": "spread; prevalent; be popular"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 293,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "旅行",
+      "pinyin": "lǚxíng",
+      "english": "travel"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 294,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "律师",
+      "pinyin": "lǜshī",
+      "english": "lawyer"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 295,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "乱",
+      "pinyin": "luàn",
+      "english": "disorder; confusion; arbitrarily"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 296,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "麻烦",
+      "pinyin": "máfan",
+      "english": "trouble (someone); troubling; bothersome"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 297,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "马虎",
+      "pinyin": "mǎhu",
+      "english": "careless; sloppy; casual"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 298,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "满",
+      "pinyin": "mǎn",
+      "english": "full; abbreviation for Manchurian"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 299,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "毛",
+      "pinyin": "máo",
+      "english": "hair; fur; feather; dime (Kangxi radical 82)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 300,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "毛巾",
+      "pinyin": "máojīn",
+      "english": "towel; washcloth"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 301,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "美丽",
+      "pinyin": "měilì",
+      "english": "beautiful"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 302,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "梦",
+      "pinyin": "mèng",
+      "english": "to dream"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 303,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "迷路",
+      "pinyin": "mílù",
+      "english": "to get lost"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 304,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "密码",
+      "pinyin": "mìmǎ",
+      "english": "password; secret code"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 305,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "免费",
+      "pinyin": "miǎn fèi",
+      "english": "free (of charge); no cost"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 306,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "秒",
+      "pinyin": "miǎo",
+      "english": "second (unit of time or angle)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 307,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "民族",
+      "pinyin": "mínzú",
+      "english": "nationality; ethnic group"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 308,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "母亲",
+      "pinyin": "mǔqin",
+      "english": "mother"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 309,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "目的",
+      "pinyin": "mùdì",
+      "english": "purpose; aim; goal"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 310,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "耐心",
+      "pinyin": "nàixīn",
+      "english": "to be patient"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 311,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "难道",
+      "pinyin": "nándào",
+      "english": "could it be that ...?; don't tell me ..."
+    },
+    {
+      "level": 4,
+      "sourceOrder": 312,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "难受",
+      "pinyin": "nánshòu",
+      "english": "feel unwell; to suffer pain"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 313,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "内",
+      "pinyin": "nèi",
+      "english": "inside; inner; internal; within"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 314,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "内容",
+      "pinyin": "nèiróng",
+      "english": "content; substance; details"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 315,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "能力",
+      "pinyin": "nénglì",
+      "english": "capability; capable; ability"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 316,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "年龄",
+      "pinyin": "niánlíng",
+      "english": "(a person's) age"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 317,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "弄",
+      "pinyin": "nòng",
+      "english": "do; manage; to handle; make"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 318,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "暖和",
+      "pinyin": "nuǎnhuo",
+      "english": "warm; nice and warm"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 319,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "偶尔",
+      "pinyin": "ǒu'ěr",
+      "english": "occasionally; once in a while; sometimes"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 320,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "排队",
+      "pinyin": "pái duì",
+      "english": "queue; stand in line"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 321,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "排列",
+      "pinyin": "páiliè",
+      "english": "arrange; align; permutation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 322,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "判断",
+      "pinyin": "pànduàn",
+      "english": "to judge; judgment; to decide"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 323,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "陪",
+      "pinyin": "péi",
+      "english": "accompany; keep company"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 324,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "批评",
+      "pinyin": "pīpíng",
+      "english": "criticize"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 325,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "皮肤",
+      "pinyin": "pífū",
+      "english": "skin"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 326,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "脾气",
+      "pinyin": "píqi",
+      "english": "temperament; disposition; temper"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 327,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "篇",
+      "pinyin": "piān",
+      "english": "sheet; (mw for articles); piece of writing"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 328,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "骗",
+      "pinyin": "piàn",
+      "english": "to cheat; to swindle; deceive"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 329,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "乒乓球",
+      "pinyin": "pīngpāngqiú",
+      "english": "ping pong; table tennis"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 330,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "平时",
+      "pinyin": "píngshí",
+      "english": "ordinarily; in normal times; in peacetime"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 331,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "破",
+      "pinyin": "pò",
+      "english": "broken; damaged; to split"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 332,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "葡萄",
+      "pinyin": "pútao",
+      "english": "grape"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 333,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "普遍",
+      "pinyin": "pǔbiàn",
+      "english": "common; universal; general; widespread"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 334,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "普通话",
+      "pinyin": "pǔtōnghuà",
+      "english": "Mandarin (common language)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 335,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "其次",
+      "pinyin": "qícì",
+      "english": "next; secondly"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 336,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "其中",
+      "pinyin": "qízhōng",
+      "english": "among; in; included among these"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 337,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "气候",
+      "pinyin": "qìhòu",
+      "english": "climate; atmosphere; weather"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 338,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "千万",
+      "pinyin": "qiānwàn",
+      "english": "ten million; be sure to; must"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 339,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "签证",
+      "pinyin": "qiānzhèng",
+      "english": "visa"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 340,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "敲",
+      "pinyin": "qiāo",
+      "english": "knock; blackmail"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 341,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "桥",
+      "pinyin": "qiáo",
+      "english": "bridge"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 342,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "巧克力",
+      "pinyin": "qiǎokèlì",
+      "english": "chocolate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 343,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "亲戚",
+      "pinyin": "qīnqi",
+      "english": "a relative (i.e. family relation)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 344,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "轻",
+      "pinyin": "qīng",
+      "english": "light; easy; gentle; soft"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 345,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "轻松",
+      "pinyin": "qīngsōng",
+      "english": "relaxed; gentle; easygoing"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 346,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "情况",
+      "pinyin": "qíngkuàng",
+      "english": "circumstance; state of affairs; situation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 347,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "穷",
+      "pinyin": "qióng",
+      "english": "poor; exhausted"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 348,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "区别",
+      "pinyin": "qūbié",
+      "english": "difference; distinguish"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 349,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "取",
+      "pinyin": "qǔ",
+      "english": "to take; get; choose"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 350,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "全部",
+      "pinyin": "quánbù",
+      "english": "whole; entire; complete"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 351,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "缺点",
+      "pinyin": "quēdiǎn",
+      "english": "weak point; defect; fault; shortcoming"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 352,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "缺少",
+      "pinyin": "quēshǎo",
+      "english": "to lack; be short of; be deficient in"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 353,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "却",
+      "pinyin": "què",
+      "english": "but; yet; however"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 354,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "确实",
+      "pinyin": "quèshí",
+      "english": "indeed; in truth; reliable"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 355,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "然而",
+      "pinyin": "rán'ér",
+      "english": "however; yet; but"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 356,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "热闹",
+      "pinyin": "rènao",
+      "english": "bustling; lively; busy"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 357,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "任何",
+      "pinyin": "rènhé",
+      "english": "any; whatever; whichever"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 358,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "任务",
+      "pinyin": "rènwu",
+      "english": "a mission; an assignment; a task"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 359,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "扔",
+      "pinyin": "rēng",
+      "english": "to throw; throw away"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 360,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "仍然",
+      "pinyin": "réngrán",
+      "english": "still; yet"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 361,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "日记",
+      "pinyin": "rìjì",
+      "english": "diary"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 362,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "入口",
+      "pinyin": "rùkǒu",
+      "english": "entrance"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 363,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "散步",
+      "pinyin": "sàn bù",
+      "english": "to go for a walk"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 364,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "森林",
+      "pinyin": "sēnlín",
+      "english": "forest"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 365,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "沙发",
+      "pinyin": "shāfā",
+      "english": "sofa"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 366,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "伤心",
+      "pinyin": "shāngxīn",
+      "english": "sad; grieve; brokenhearted"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 367,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "商量",
+      "pinyin": "shāngliang",
+      "english": "consult; talk over; discuss"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 368,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "稍微",
+      "pinyin": "shāowēi",
+      "english": "a little bit; slightly"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 369,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "勺子",
+      "pinyin": "sháozi",
+      "english": "spoon; scoop; ladle"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 370,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "社会",
+      "pinyin": "shèhuì",
+      "english": "society"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 371,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "申请",
+      "pinyin": "shēnqǐng",
+      "english": "apply for; application"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 372,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "深",
+      "pinyin": "shēn",
+      "english": "deep; profound; dark (of colors)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 373,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "甚至",
+      "pinyin": "shènzhì",
+      "english": "even (to the point of); so much so that"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 374,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "生活",
+      "pinyin": "shēnghuó",
+      "english": "life; livelihood; to live"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 375,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "生命",
+      "pinyin": "shēngmìng",
+      "english": "life"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 376,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "生意",
+      "pinyin": "shēngyi",
+      "english": "business; trade"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 377,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "省",
+      "pinyin": "shěng",
+      "english": "to save; economize; omit; province"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 378,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "剩",
+      "pinyin": "shèng",
+      "english": "have as remainder; be left over; surplus"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 379,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "失败",
+      "pinyin": "shībài",
+      "english": "be defeated; fail; lose"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 380,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "失望",
+      "pinyin": "shīwàng",
+      "english": "disappointed; lose hope"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 381,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "师傅",
+      "pinyin": "shīfu",
+      "english": "master; qualified worker; teacher"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 382,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "十分",
+      "pinyin": "shífēn",
+      "english": "very; fully; 100%"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 383,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "实际",
+      "pinyin": "shíjì",
+      "english": "actual; reality; practice"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 384,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "实在",
+      "pinyin": "shízài",
+      "english": "honest; in reality; honestly; indeed; certainly"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 385,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "使",
+      "pinyin": "shǐ",
+      "english": "to use; to make; to cause; enable; envoy; messenger"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 386,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "使用",
+      "pinyin": "shǐyòng",
+      "english": "to use; employ; apply; administer; manipulate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 387,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "世纪",
+      "pinyin": "shìjì",
+      "english": "century"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 388,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "是否",
+      "pinyin": "shìfǒu",
+      "english": "whether (or not); if"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 389,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "适合",
+      "pinyin": "shìhé",
+      "english": "to suit; to fit"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 390,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "适应",
+      "pinyin": "shìyìng",
+      "english": "to suit; to fit; adapt"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 391,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "收",
+      "pinyin": "shōu",
+      "english": "receive; accept; collect; to harvest"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 392,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "收入",
+      "pinyin": "shōurù",
+      "english": "take in; income; revenue"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 393,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "收拾",
+      "pinyin": "shōushi",
+      "english": "to tidy; put in order; to repair; to settle with; punish"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 394,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "首都",
+      "pinyin": "shǒudū",
+      "english": "capital (city)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 395,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "首先",
+      "pinyin": "shǒuxiān",
+      "english": "first (of all); in the first place; firstly"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 396,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "受不了",
+      "pinyin": "shòu bu liǎo",
+      "english": "cannot endure; unbearable; can't stand"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 397,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "受到",
+      "pinyin": "shòudào",
+      "english": "receive (influence, restriction, etc.); be subjected to"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 398,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "售货员",
+      "pinyin": "shòuhuòyuán",
+      "english": "salesclerk; shop assistant"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 399,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "输",
+      "pinyin": "shū",
+      "english": "to transport; to lose (a game, etc.)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 400,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "熟悉",
+      "pinyin": "shúxī",
+      "english": "familiar with; know well"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 401,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "数量",
+      "pinyin": "shùliàng",
+      "english": "amount; quantity; number"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 402,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "数字",
+      "pinyin": "shùzì",
+      "english": "number; numeral; figure; digit"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 403,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "帅",
+      "pinyin": "shuài",
+      "english": "handsome; graceful; commander-in-chief"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 404,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "顺便",
+      "pinyin": "shùnbiàn",
+      "english": "conveniently; in passing; on the way"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 405,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "顺利",
+      "pinyin": "shùnlì",
+      "english": "go smoothly; without a hitch; successful"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 406,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "顺序",
+      "pinyin": "shùnxù",
+      "english": "sequence; order"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 407,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "说明",
+      "pinyin": "shuōmíng",
+      "english": "explain; explanation; illustrate; to show"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 408,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "硕士",
+      "pinyin": "shuòshì",
+      "english": "Master's degree (M.A.)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 409,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "死",
+      "pinyin": "sǐ",
+      "english": "to die; dead; fixed; impassible; extremely"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 410,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "速度",
+      "pinyin": "sùdù",
+      "english": "speed; rate; velocity"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 411,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "塑料袋",
+      "pinyin": "sùliàodài",
+      "english": "plastic bag"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 412,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "酸",
+      "pinyin": "suān",
+      "english": "sour; sore; ache"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 413,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "随便",
+      "pinyin": "suíbiàn",
+      "english": "as one pleases; informal; random; casual"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 414,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "随着",
+      "pinyin": "suízhe",
+      "english": "along with; in the wake of"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 415,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "孙子",
+      "pinyin": "sūnzi",
+      "english": "grandson; son's son"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 416,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "所有",
+      "pinyin": "suǒyǒu",
+      "english": "all; to have; to possess"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 417,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "台",
+      "pinyin": "tái",
+      "english": "platform; Taiwan (abbr.); desk; stage; typhoon; (mw for machines); (classical) you (in letters)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 418,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "抬",
+      "pinyin": "tái",
+      "english": "to lift; to raise (with both palms up); carry (together)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 419,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "态度",
+      "pinyin": "tàidu",
+      "english": "manner; bearing; attitude"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 420,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "谈",
+      "pinyin": "tán",
+      "english": "to talk; to chat; discuss"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 421,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "弹钢琴",
+      "pinyin": "tán gāngqín",
+      "english": "play the piano"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 422,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "汤",
+      "pinyin": "tāng",
+      "english": "soup; broth"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 423,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "糖",
+      "pinyin": "táng",
+      "english": "sugar; candy; sweets"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 424,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "躺",
+      "pinyin": "tǎng",
+      "english": "recline; lie down (on back or side)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 425,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "趟",
+      "pinyin": "tàng, tāng",
+      "english": "(mw for trips times) | to wade"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 426,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "讨论",
+      "pinyin": "tǎolùn",
+      "english": "to discuss; discussion; to talk over"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 427,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "讨厌",
+      "pinyin": "tǎoyàn",
+      "english": "to hate; loathe; disgusting; troublesome"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 428,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "特点",
+      "pinyin": "tèdiǎn",
+      "english": "a characteristic; trait; feature"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 429,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "提",
+      "pinyin": "tí",
+      "english": "to carry; to lift; to raise (an issue)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 430,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "提供",
+      "pinyin": "tígōng",
+      "english": "to supply; provide; furnish"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 431,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "提前",
+      "pinyin": "tíqián",
+      "english": "shift to an earlier date; bring forward; to advance"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 432,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "提醒",
+      "pinyin": "tíxǐng",
+      "english": "remind; call attention to; warn of"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 433,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "填空",
+      "pinyin": "tiánkòng",
+      "english": "fill in the blanks; fill a vacancy"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 434,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "条件",
+      "pinyin": "tiáojiàn",
+      "english": "condition; circumstances; prerequisite"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 435,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "停",
+      "pinyin": "tíng",
+      "english": "to stop; to halt; to park (a car)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 436,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "挺",
+      "pinyin": "tǐng",
+      "english": "straighten up; stick out; rather (good); very"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 437,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "通过",
+      "pinyin": "tōngguò",
+      "english": "by means of; through (a method); pass through; via"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 438,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "通知",
+      "pinyin": "tōngzhī",
+      "english": "notify; to inform; notice"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 439,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "同情",
+      "pinyin": "tóngqíng",
+      "english": "compassion; sympathy"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 440,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "同时",
+      "pinyin": "tóngshí",
+      "english": "at the same time; simultaneously"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 441,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "推",
+      "pinyin": "tuī",
+      "english": "to push; to scrape; to decline; postpone; elect"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 442,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "推迟",
+      "pinyin": "tuīchí",
+      "english": "postpone; defer"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 443,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "脱",
+      "pinyin": "tuō",
+      "english": "to shed; take off; to escape"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 444,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "袜子",
+      "pinyin": "wàzi",
+      "english": "socks; stockings"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 445,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "完全",
+      "pinyin": "wánquán",
+      "english": "complete; whole; totally"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 446,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "网球",
+      "pinyin": "wǎngqiú",
+      "english": "tennis; tennis ball"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 447,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "网站",
+      "pinyin": "wǎngzhàn",
+      "english": "website"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 448,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "往往",
+      "pinyin": "wǎngwǎng",
+      "english": "often; frequently; more often than not"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 449,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "危险",
+      "pinyin": "wēixiǎn",
+      "english": "danger; dangerous; perilous"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 450,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "卫生间",
+      "pinyin": "wèishēngjiān",
+      "english": "restroom; bathroom; water closet (WC)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 451,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "味道",
+      "pinyin": "wèidao",
+      "english": "flavor; taste"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 452,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "温度",
+      "pinyin": "wēndù",
+      "english": "temperature"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 453,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "文章",
+      "pinyin": "wénzhāng",
+      "english": "article; essay"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 454,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "污染",
+      "pinyin": "wūrǎn",
+      "english": "pollution; contamination"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 455,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "无",
+      "pinyin": "wú",
+      "english": "have not; without; not (Kangxi radical 71)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 456,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "无聊",
+      "pinyin": "wúliáo",
+      "english": "nonsense; bored; silly; stupid"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 457,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "无论",
+      "pinyin": "wúlùn",
+      "english": "no matter what; regardless of whether..."
+    },
+    {
+      "level": 4,
+      "sourceOrder": 458,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "误会",
+      "pinyin": "wùhuì",
+      "english": "to misunderstand; to mistake"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 459,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "西红柿",
+      "pinyin": "xīhóngshì",
+      "english": "tomato"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 460,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "吸引",
+      "pinyin": "xīyǐn",
+      "english": "attract (interest, investment, etc.)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 461,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "咸",
+      "pinyin": "xián",
+      "english": "salty; salted; all"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 462,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "现金",
+      "pinyin": "xiànjīn",
+      "english": "cash"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 463,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "羡慕",
+      "pinyin": "xiànmù",
+      "english": "to envy; admire"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 464,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "相反",
+      "pinyin": "xiāngfǎn",
+      "english": "opposite; contrary"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 465,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "相同",
+      "pinyin": "xiāngtóng",
+      "english": "identical; same; alike"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 466,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "香",
+      "pinyin": "xiāng",
+      "english": "fragrant; savory (Kangxi radical 186)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 467,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "详细",
+      "pinyin": "xiángxì",
+      "english": "detailed; in detail; minute"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 468,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "响",
+      "pinyin": "xiǎng",
+      "english": "make a sound; to ring; echo"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 469,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "橡皮",
+      "pinyin": "xiàngpí",
+      "english": "rubber; an eraser"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 470,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "消息",
+      "pinyin": "xiāoxi",
+      "english": "news; information"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 471,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "小吃",
+      "pinyin": "xiǎochī",
+      "english": "snack; refreshments"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 472,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "小伙子",
+      "pinyin": "xiǎohuǒzi",
+      "english": "young man; lad; youngster"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 473,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "小说",
+      "pinyin": "xiǎoshuō",
+      "english": "novel; fiction"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 474,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "笑话",
+      "pinyin": "xiàohua",
+      "english": "joke; laugh at"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 475,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "效果",
+      "pinyin": "xiàoguǒ",
+      "english": "effect; result"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 476,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "心情",
+      "pinyin": "xīnqíng",
+      "english": "mood; state of mind"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 477,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "辛苦",
+      "pinyin": "xīnkǔ",
+      "english": "hard; exhausting; toilsome; laborious"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 478,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "信封",
+      "pinyin": "xìnfēng",
+      "english": "envelope"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 479,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "信息",
+      "pinyin": "xìnxī",
+      "english": "information; news; message"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 480,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "信心",
+      "pinyin": "xìnxīn",
+      "english": "confidence; faith (in sb. or sth.)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 481,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "兴奋",
+      "pinyin": "xīngfèn",
+      "english": "excitement； be excited"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 482,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "行",
+      "pinyin": "xíng",
+      "english": "walk; be current; do; will do; okay"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 483,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "醒",
+      "pinyin": "xǐng",
+      "english": "wake up"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 484,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "幸福",
+      "pinyin": "xìngfú",
+      "english": "happy; blessed; fortunate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 485,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "性别",
+      "pinyin": "xìngbié",
+      "english": "gender; sex; sexual distinction"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 486,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "性格",
+      "pinyin": "xìnggé",
+      "english": "nature; personality; temperament"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 487,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "修理",
+      "pinyin": "xiūlǐ",
+      "english": "to repair; perform maintenance; to overhaul"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 488,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "许多",
+      "pinyin": "xǔduō",
+      "english": "many; a lot; much"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 489,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "学期",
+      "pinyin": "xuéqī",
+      "english": "semester; school term"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 490,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "压力",
+      "pinyin": "yālì",
+      "english": "pressure; stress"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 491,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "呀",
+      "pinyin": "ya",
+      "english": "ah; oh; (used for 啊 after words ending with a, e, i, o, or ü)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 492,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "牙膏",
+      "pinyin": "yágāo",
+      "english": "toothpaste"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 493,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "亚洲",
+      "pinyin": "Yàzhōu",
+      "english": "Asia"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 494,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "严格",
+      "pinyin": "yángé",
+      "english": "strict; stringent; tight"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 495,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "严重",
+      "pinyin": "yánzhòng",
+      "english": "grave; serious; critical"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 496,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "研究",
+      "pinyin": "yánjiū",
+      "english": "to study; to research"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 497,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "盐",
+      "pinyin": "yán",
+      "english": "salt"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 498,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "眼镜",
+      "pinyin": "yǎnjìng",
+      "english": "glasses; spectacles"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 499,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "演出",
+      "pinyin": "yǎnchū",
+      "english": "to act (in a play); to perform; to put on a show; performance"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 500,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "演员",
+      "pinyin": "yǎnyuán",
+      "english": "actor or actress; performer"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 501,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "阳光",
+      "pinyin": "yángguāng",
+      "english": "sunshine; sunlight"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 502,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "养成",
+      "pinyin": "yǎngchéng",
+      "english": "cultivate; acquire; to form"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 503,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "样子",
+      "pinyin": "yàngzi",
+      "english": "manner; air; appearance; looks"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 504,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "邀请",
+      "pinyin": "yāoqǐng",
+      "english": "to invite"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 505,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "要是",
+      "pinyin": "yàoshi",
+      "english": "if; suppose; in case"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 506,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "钥匙",
+      "pinyin": "yàoshi",
+      "english": "key"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 507,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "也许",
+      "pinyin": "yěxǔ",
+      "english": "perhaps; probably; maybe"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 508,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "叶子",
+      "pinyin": "yèzi",
+      "english": "leaves"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 509,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "页",
+      "pinyin": "yè",
+      "english": "page; leaf (Kangxi radical 181)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 510,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "一切",
+      "pinyin": "yíqiè",
+      "english": "all; every; everything"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 511,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "以",
+      "pinyin": "yǐ",
+      "english": "to use; according to; so as to; for; by"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 512,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "以为",
+      "pinyin": "yǐwéi",
+      "english": "think (mistakenly); consider (that); believe"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 513,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "艺术",
+      "pinyin": "yìshù",
+      "english": "art"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 514,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "意见",
+      "pinyin": "yìjiàn",
+      "english": "opinion; view; suggestion; complaint"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 515,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "因此",
+      "pinyin": "yīncǐ",
+      "english": "therefore; thus; that is why; because of this"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 516,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "引起",
+      "pinyin": "yǐnqǐ",
+      "english": "give rise to; lead to; to cause; arouse"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 517,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "印象",
+      "pinyin": "yìnxiàng",
+      "english": "impression"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 518,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "赢",
+      "pinyin": "yíng",
+      "english": "to win; to beat; to profit"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 519,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "应聘",
+      "pinyin": "yìngpìn",
+      "english": "accept a job offer; to apply for a job"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 520,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "永远",
+      "pinyin": "yǒngyuǎn",
+      "english": "forever; eternal; always"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 521,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "勇敢",
+      "pinyin": "yǒnggǎn",
+      "english": "brave; courageous"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 522,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "优点",
+      "pinyin": "yōudiǎn",
+      "english": "merit; good point; a strength; a benefit"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 523,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "优秀",
+      "pinyin": "yōuxiù",
+      "english": "outstanding; excellent"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 524,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "幽默",
+      "pinyin": "yōumò",
+      "english": "humorous"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 525,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "尤其",
+      "pinyin": "yóuqí",
+      "english": "especially; particularly"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 526,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "由",
+      "pinyin": "yóu",
+      "english": "follow; from; by; through"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 527,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "由于",
+      "pinyin": "yóuyú",
+      "english": "due to; owing to; as a result of; thanks to"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 528,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "邮局",
+      "pinyin": "yóujú",
+      "english": "post office"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 529,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "友好",
+      "pinyin": "yǒuhǎo",
+      "english": "friendly (relations); close friends"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 530,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "友谊",
+      "pinyin": "yǒuyì",
+      "english": "friendship; companionship"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 531,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "有趣",
+      "pinyin": "yǒuqù",
+      "english": "interesting; fascinating; amusing"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 532,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "于是",
+      "pinyin": "yúshì",
+      "english": "as a result; thus; therefore"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 533,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "愉快",
+      "pinyin": "yúkuài",
+      "english": "happy; cheerful; delightful"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 534,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "与",
+      "pinyin": "yǔ",
+      "english": "(formal) and; to give; together with; participate; final particle expressing doubt or surprise"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 535,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "羽毛球",
+      "pinyin": "yǔmáoqiú",
+      "english": "badminton"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 536,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "语法",
+      "pinyin": "yǔfǎ",
+      "english": "grammar"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 537,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "语言",
+      "pinyin": "yǔyán",
+      "english": "language"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 538,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "预习",
+      "pinyin": "yùxí",
+      "english": "(of students) prepare a lesson before class; preview"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 539,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "原来",
+      "pinyin": "yuánlái",
+      "english": "original; former; as it turns out"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 540,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "原谅",
+      "pinyin": "yuánliàng",
+      "english": "to excuse; forgive; to pardon"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 541,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "原因",
+      "pinyin": "yuányīn",
+      "english": "cause; reason"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 542,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "约会",
+      "pinyin": "yuēhuì",
+      "english": "appointment; engagement; date"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 543,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "阅读",
+      "pinyin": "yuèdú",
+      "english": "read; reading"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 544,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "云",
+      "pinyin": "yún",
+      "english": "cloud; Yunnan province | say; speak"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 545,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "允许",
+      "pinyin": "yǔnxǔ",
+      "english": "to permit; allow"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 546,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "杂志",
+      "pinyin": "zázhì",
+      "english": "magazine"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 547,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "咱们",
+      "pinyin": "zánmen",
+      "english": "we (including the listener); us; our"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 548,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "暂时",
+      "pinyin": "zànshí",
+      "english": "temporary; transient; for the moment"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 549,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "脏",
+      "pinyin": "zāng",
+      "english": "filthy; dirty"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 550,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "责任",
+      "pinyin": "zérèn",
+      "english": "responsibility; blame; duty"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 551,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "增加",
+      "pinyin": "zēngjiā",
+      "english": "to increase; to raise; add"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 552,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "占线",
+      "pinyin": "zhànxiàn",
+      "english": "the (phone) line is busy"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 553,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "招聘",
+      "pinyin": "zhāopìn",
+      "english": "recruitment; take job applications for a job"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 554,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "照",
+      "pinyin": "zhào",
+      "english": "to shine; illuminate; according to"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 555,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "真正",
+      "pinyin": "zhēnzhèng",
+      "english": "genuine; real; true"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 556,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "整理",
+      "pinyin": "zhěnglǐ",
+      "english": "put in order; arrange; straighten up; to tidy; to pack (luggage)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 557,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "正常",
+      "pinyin": "zhèngcháng",
+      "english": "normal; regular; ordinary"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 558,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "正好",
+      "pinyin": "zhènghǎo",
+      "english": "just (in time); just right; just enough; happen to; by chance"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 559,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "正确",
+      "pinyin": "zhèngquè",
+      "english": "correct; proper"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 560,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "正式",
+      "pinyin": "zhèngshì",
+      "english": "formal; official"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 561,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "证明",
+      "pinyin": "zhèngmíng",
+      "english": "proof; testify; confirm; certificate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 562,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "之",
+      "pinyin": "zhī",
+      "english": "(literary equivalent to 的); (pronoun); of"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 563,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "支持",
+      "pinyin": "zhīchí",
+      "english": "sustain; hold out; | support; stand by (e.g. international support)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 564,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "知识",
+      "pinyin": "zhīshi",
+      "english": "knowledge; intellectual"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 565,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "直接",
+      "pinyin": "zhíjiē",
+      "english": "direct; immediate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 566,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "值得",
+      "pinyin": "zhíde",
+      "english": "be worth; deserve"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 567,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "职业",
+      "pinyin": "zhíyè",
+      "english": "profession; occupation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 568,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "植物",
+      "pinyin": "zhíwù",
+      "english": "plant; botanical; vegetation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 569,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "只好",
+      "pinyin": "zhǐhǎo",
+      "english": "have to; be forced to"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 570,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "只要",
+      "pinyin": "zhǐyào",
+      "english": "so long as; if only; provided that"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 571,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "指",
+      "pinyin": "zhǐ",
+      "english": "finger; to point (at, to, out); refer to"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 572,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "至少",
+      "pinyin": "zhìshǎo",
+      "english": "at least; (to say the) least"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 573,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "质量",
+      "pinyin": "zhìliàng",
+      "english": "quality; mass (physics)"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 574,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "重",
+      "pinyin": "zhòng",
+      "english": "heavy; serious; important"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 575,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "重点",
+      "pinyin": "zhòngdiǎn",
+      "english": "emphasis; main point"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 576,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "重视",
+      "pinyin": "zhòngshì",
+      "english": "to value; take seriously"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 577,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "周围",
+      "pinyin": "zhōuwéi",
+      "english": "surroundings; vicinity; environment"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 578,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "主意",
+      "pinyin": "zhǔyi",
+      "english": "plan; idea; decision"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 579,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "祝贺",
+      "pinyin": "zhùhè",
+      "english": "congratulate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 580,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "著名",
+      "pinyin": "zhùmíng",
+      "english": "famous; well-known; celebration"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 581,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "专门",
+      "pinyin": "zhuānmén",
+      "english": "specialized"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 582,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "专业",
+      "pinyin": "zhuānyè",
+      "english": "profession; specialized field of study; major"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 583,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "转",
+      "pinyin": "zhuǎn, zhuàn",
+      "english": "to turn; to change; pass on | revolve; rotate"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 584,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "赚",
+      "pinyin": "zhuàn",
+      "english": "earn; make a profit"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 585,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "准确",
+      "pinyin": "zhǔnquè",
+      "english": "accurate; precise"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 586,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "准时",
+      "pinyin": "zhǔnshí",
+      "english": "punctually; on time"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 587,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "仔细",
+      "pinyin": "zǐxì",
+      "english": "careful; attentive; cautious"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 588,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "自然",
+      "pinyin": "zìrán",
+      "english": "nature; natural"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 589,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "自信",
+      "pinyin": "zìxìn",
+      "english": "self-confidence"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 590,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "总结",
+      "pinyin": "zǒngjié",
+      "english": "summarize; conclude"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 591,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "租",
+      "pinyin": "zū",
+      "english": "to rent"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 592,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "最好",
+      "pinyin": "zuìhǎo",
+      "english": "the best; had better ...; it would be best"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 593,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "尊重",
+      "pinyin": "zūnzhòng",
+      "english": "esteem; to respect; to value; to honor"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 594,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "左右",
+      "pinyin": "zuǒyòu",
+      "english": "about; approximate; around | left and right"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 595,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "作家",
+      "pinyin": "zuòjiā",
+      "english": "author; writer"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 596,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "作用",
+      "pinyin": "zuòyòng",
+      "english": "action; activity; effect"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 597,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "作者",
+      "pinyin": "zuòzhě",
+      "english": "author; writer"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 598,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "座",
+      "pinyin": "zuò",
+      "english": "(mw for mountains, bridges, tall buildings, etc.); | seat; base; stand; constellation"
+    },
+    {
+      "level": 4,
+      "sourceOrder": 599,
+      "book": "",
+      "lesson": null,
+      "lessonOrder": null,
+      "character": "座位",
+      "pinyin": "zuòwèi",
+      "english": "seat; place"
+    }
+  ]
+}

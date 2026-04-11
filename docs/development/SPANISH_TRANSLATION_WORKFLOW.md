@@ -86,6 +86,23 @@ Maintain lesson-order map in:
 
 - `assets/data/hsk_lesson_order_map.json`
 
+Generate HSK4 editable template (all level words with empty order fields):
+
+```bash
+npm run translation:lesson-template:hsk4
+```
+
+Template output:
+
+- `docs/development/translation/hsk4_lesson_order_template.json`
+
+Recommended process:
+
+1. Fill `book` (`shang` / `xia`), `lesson` and `lessonOrder` in the template.
+2. Copy completed entries into `assets/data/hsk_lesson_order_map.json`.
+3. Run dry validation.
+4. Apply to EN/ES datasets.
+
 Validate map matches without writing:
 
 ```bash
@@ -96,6 +113,12 @@ Apply lesson-order metadata to EN and ES datasets:
 
 ```bash
 npm run translation:lesson-order:apply
+```
+
+If you want the apply step to fail when any map row is incomplete:
+
+```bash
+npm run translation:lesson-order:strict
 ```
 
 ## Suggested review cadence
