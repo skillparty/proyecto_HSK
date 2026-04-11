@@ -27,7 +27,7 @@ class FlashcardManager {
             this.app.vocabulary :
             this.app.vocabulary.filter(word => word.level == level);
 
-        this.currentSession = [...levelFilter];
+        this.currentSession = this.sortForPractice(levelFilter, level);
         this.sessionIndex = 0;
 
         if (this.currentSession.length > 0) {
@@ -46,6 +46,80 @@ class FlashcardManager {
         } else {
             this.handleNoVocabulary(level);
         }
+    }
+
+    getBookRank(bookValue) {
+        const book = String(bookValue || '').trim().toLowerCase();
+        if (!book) return 1;
+
+        if (['shang', 's', 'upper', 'up', '1', 'vol1', 'book1', '上', '上册'].includes(book)) return 1;
+        if (['xia', 'x', 'lower', 'down', '2', 'vol2', 'book2', '下', '下册'].includes(book)) return 2;
+
+        const numeric = Number(book);
+        return Number.isFinite(numeric) ? numeric : 1;
+    }
+
+    getLessonNumber(word) {
+        const lesson = Number(word.lesson ?? word.lessonNumber ?? word.unit ?? 0);
+        return Number.isFinite(lesson) ? lesson : 0;
+    }
+
+    getLessonSequence(word) {
+        const sequence = Number(word.lessonOrder ?? word.orderInLesson ?? word.sequence ?? 0);
+        return Number.isFinite(sequence) ? sequence : 0;
+    }
+
+    hasBookLessonMetadata(word) {
+        return Boolean(
+            word.book !== undefined
+            || word.bookPart !== undefined
+            || word.volume !== undefined
+            || word.lesson !== undefined
+            || word.lessonNumber !== undefined
+            || word.unit !== undefined
+            || word.lessonOrder !== undefined
+            || word.orderInLesson !== undefined
+            || word.sequence !== undefined
+        );
+    }
+
+    sortForPractice(words, selectedLevel) {
+        const withIndex = words.map((word, index) => ({ word, index }));
+
+        withIndex.sort((a, b) => {
+            const aWord = a.word;
+            const bWord = b.word;
+
+            const aLevel = Number(aWord.level || 0);
+            const bLevel = Number(bWord.level || 0);
+            if (selectedLevel === 'all' && aLevel !== bLevel) {
+                return aLevel - bLevel;
+            }
+
+            const aHasMetadata = this.hasBookLessonMetadata(aWord);
+            const bHasMetadata = this.hasBookLessonMetadata(bWord);
+            if (aHasMetadata || bHasMetadata) {
+                const aBookRank = this.getBookRank(aWord.book ?? aWord.bookPart ?? aWord.volume);
+                const bBookRank = this.getBookRank(bWord.book ?? bWord.bookPart ?? bWord.volume);
+                if (aBookRank !== bBookRank) return aBookRank - bBookRank;
+
+                const aLesson = this.getLessonNumber(aWord);
+                const bLesson = this.getLessonNumber(bWord);
+                if (aLesson !== bLesson) return aLesson - bLesson;
+
+                const aSequence = this.getLessonSequence(aWord);
+                const bSequence = this.getLessonSequence(bWord);
+                if (aSequence !== bSequence) return aSequence - bSequence;
+            }
+
+            const aOrder = Number.isFinite(Number(aWord._sourceOrder)) ? Number(aWord._sourceOrder) : a.index;
+            const bOrder = Number.isFinite(Number(bWord._sourceOrder)) ? Number(bWord._sourceOrder) : b.index;
+            if (aOrder !== bOrder) return aOrder - bOrder;
+
+            return a.index - b.index;
+        });
+
+        return withIndex.map((entry) => entry.word);
     }
 
     handleNoVocabulary(level) {

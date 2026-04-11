@@ -66,6 +66,38 @@ npm run translation:worklist
 - Coverage report: `docs/development/translation/coverage-report.json`
 - Translation worklist: `docs/development/translation/hsk_es_worklist.json`
 
+## Lesson/book order for practice module
+
+Practice session order supports textbook sequencing by metadata fields:
+
+- `book` (for example: `shang`, `xia`)
+- `lesson` (numeric lesson index)
+- `lessonOrder` (position of each word inside the lesson)
+
+When these fields exist, practice ordering is:
+
+1. Book order (`shang` before `xia`)
+2. Lesson ascending
+3. Word position inside lesson ascending
+
+If metadata is missing, the app falls back to canonical source order.
+
+Maintain lesson-order map in:
+
+- `assets/data/hsk_lesson_order_map.json`
+
+Validate map matches without writing:
+
+```bash
+npm run translation:lesson-order:dry
+```
+
+Apply lesson-order metadata to EN and ES datasets:
+
+```bash
+npm run translation:lesson-order:apply
+```
+
 ## Suggested review cadence
 
 - Work by level in this order: HSK2 → HSK3 → HSK4 → HSK5 → HSK6.

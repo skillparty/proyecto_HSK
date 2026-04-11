@@ -3,6 +3,98 @@ class VocabularyController {
         this.app = app;
     }
 
+    normalizeText(value) {
+        return String(value || '').trim();
+    }
+
+    normalizePinyin(value) {
+        return this.normalizeText(value)
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/\s+/g, '')
+            .toLowerCase();
+    }
+
+    normalizeGloss(value) {
+        return this.normalizeText(value)
+            .toLowerCase()
+            .replace(/\s+/g, ' ');
+    }
+
+    makeCPKey(item) {
+        return `${this.normalizeText(item.character)}::${this.normalizePinyin(item.pinyin)}`;
+    }
+
+    groupByCP(items) {
+        return items.reduce((accumulator, item) => {
+            const key = this.makeCPKey(item);
+            if (!accumulator.has(key)) {
+                accumulator.set(key, []);
+            }
+            accumulator.get(key).push(item);
+            return accumulator;
+        }, new Map());
+    }
+
+    resolveEnglishSourceIndex(spanishItem, englishByCP) {
+        const candidates = englishByCP.get(this.makeCPKey(spanishItem)) || [];
+        if (candidates.length === 0) {
+            return null;
+        }
+
+        if (candidates.length === 1) {
+            return candidates[0]._sourceOrder;
+        }
+
+        const targetGloss = this.normalizeGloss(spanishItem.translation || spanishItem.english);
+        const byGloss = candidates.find((candidate) => (
+            this.normalizeGloss(candidate.translation || candidate.english) === targetGloss
+        ));
+
+        return byGloss ? byGloss._sourceOrder : null;
+    }
+
+    async attachCanonicalStudyOrder(vocabulary, targetLanguage) {
+        if (!Array.isArray(vocabulary) || vocabulary.length === 0) {
+            return vocabulary;
+        }
+
+        if (targetLanguage !== 'es') {
+            return vocabulary.map((item, index) => ({
+                ...item,
+                _sourceOrder: index
+            }));
+        }
+
+        try {
+            const englishResponse = await fetch('assets/data/hsk_vocabulary.json');
+            if (!englishResponse.ok) {
+                throw new Error('Unable to load EN source for canonical order');
+            }
+
+            const englishVocabulary = await englishResponse.json();
+            const englishWithOrder = englishVocabulary.map((item, index) => ({
+                ...item,
+                _sourceOrder: index
+            }));
+            const englishByCP = this.groupByCP(englishWithOrder);
+
+            return vocabulary.map((item, index) => {
+                const sourceOrder = this.resolveEnglishSourceIndex(item, englishByCP);
+                return {
+                    ...item,
+                    _sourceOrder: sourceOrder !== null ? sourceOrder : (100000 + index)
+                };
+            });
+        } catch (error) {
+            this.app.logWarn('[ORDER] Failed to map ES vocabulary to EN canonical order:', error);
+            return vocabulary.map((item, index) => ({
+                ...item,
+                _sourceOrder: index
+            }));
+        }
+    }
+
     async loadVocabulary(forceLanguage = null) {
         if (this.app.vocabularyLoading && !forceLanguage) {
             return this.app.vocabularyPromise;
@@ -44,6 +136,8 @@ class VocabularyController {
                     }));
                 }
 
+                this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
+
                 this.app.logInfo('[OK] Loaded ' + this.app.vocabulary.length + ' items');
                 this.app.vocabularyLoaded = true;
                 this.app.vocabularyLoading = false;
@@ -73,6 +167,8 @@ class VocabularyController {
                                 spanish: word.translation || word.english
                             }));
                         }
+
+                        this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
                     } else {
                         throw new Error('No fallback available');
                     }
@@ -83,6 +179,7 @@ class VocabularyController {
                     ];
                 }
 
+                this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
                 this.app.vocabularyLoaded = true;
                 this.app.vocabularyLoading = false;
                 return this.app.vocabulary;

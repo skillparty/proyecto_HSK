@@ -9,7 +9,9 @@
     "test": "npm run ci",
     "translation:report": "node scripts/translation/coverage-report.js --report docs/development/translation/coverage-report.json",
     "translation:report:strict": "node scripts/translation/coverage-report.js --strict --report docs/development/translation/coverage-report.json",
-    "translation:worklist": "node scripts/translation/generate-worklist.js --output docs/development/translation/hsk_es_worklist.json"
+    "translation:worklist": "node scripts/translation/generate-worklist.js --output docs/development/translation/hsk_es_worklist.json",
+    "translation:lesson-order:dry": "node scripts/translation/apply-lesson-order.js",
+    "translation:lesson-order:apply": "node scripts/translation/apply-lesson-order.js --write"
   },
   "keywords": [
     "hsk",
