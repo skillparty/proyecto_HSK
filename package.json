@@ -11,6 +11,7 @@
     "translation:report:strict": "node scripts/translation/coverage-report.js --strict --report docs/development/translation/coverage-report.json",
     "translation:worklist": "node scripts/translation/generate-worklist.js --output docs/development/translation/hsk_es_worklist.json",
     "translation:lesson-template:hsk4": "node scripts/translation/generate-lesson-order-template.js --level 4 --output docs/development/translation/hsk4_lesson_order_template.json",
+    "translation:lesson-block:hsk4-l1": "node scripts/translation/create-lesson-block-from-template.js --book shang --lesson 1 --start 0 --count 40 --output docs/development/translation/hsk4_shang_lesson_01_draft.json",
     "translation:lesson-order:dry": "node scripts/translation/apply-lesson-order.js",
     "translation:lesson-order:apply": "node scripts/translation/apply-lesson-order.js --write",
     "translation:lesson-order:strict": "node scripts/translation/apply-lesson-order.js --write --strict-map"
