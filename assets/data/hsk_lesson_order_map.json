@@ -1,5 +1,366 @@
 {
   "version": 1,
   "description": "Map vocabulary to textbook sequence. For HSK4+, use book=shang/xia and lesson 1..N.",
-  "entries": []
+  "entries": [
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 1,
+      "character": "﻿爱情",
+      "pinyin": "àiqíng",
+      "english": "(romantic) love"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 2,
+      "character": "安排",
+      "pinyin": "ānpái",
+      "english": "arrange; to plan"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 3,
+      "character": "安全",
+      "pinyin": "ānquán",
+      "english": "safe; safety; secure; security"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 4,
+      "character": "按时",
+      "pinyin": "ànshí",
+      "english": "on time; on schedule"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 5,
+      "character": "按照",
+      "pinyin": "ànzhào",
+      "english": "according to; in accordance with; in light of"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 6,
+      "character": "百分之",
+      "pinyin": "bǎifēnzhī",
+      "english": "percent"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 7,
+      "character": "棒",
+      "pinyin": "bàng",
+      "english": "stick; club; good; excellent"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 8,
+      "character": "包子",
+      "pinyin": "bāozi",
+      "english": "steamed stuffed bun"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 9,
+      "character": "保护",
+      "pinyin": "bǎohù",
+      "english": "to protect; to defend"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 10,
+      "character": "保证",
+      "pinyin": "bǎozhèng",
+      "english": "to guarantee; ensure"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 11,
+      "character": "报名",
+      "pinyin": "bào míng",
+      "english": "sign up; apply"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 12,
+      "character": "抱",
+      "pinyin": "bào",
+      "english": "to hold; to hug; carry in one's arms; to cradle"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 13,
+      "character": "抱歉",
+      "pinyin": "bàoqiàn",
+      "english": "be sorry; feel apologetic; to regret"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 14,
+      "character": "倍",
+      "pinyin": "bèi",
+      "english": "(two, three, etc)-fold; times (multiplier)"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 15,
+      "character": "本来",
+      "pinyin": "běnlái",
+      "english": "originally; at first"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 16,
+      "character": "笨",
+      "pinyin": "bèn",
+      "english": "stupid; foolish; silly; dumb; clumsy"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 17,
+      "character": "比如",
+      "pinyin": "bǐrú",
+      "english": "for example; for instance; such as"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 18,
+      "character": "毕业",
+      "pinyin": "bì yè",
+      "english": "to graduate; to finish school"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 19,
+      "character": "遍",
+      "pinyin": "biàn",
+      "english": "a time; everywhere; turn; (mw for times or turns)"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 20,
+      "character": "标准",
+      "pinyin": "biāozhǔn",
+      "english": "(an official) standard; norm; criterion"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 21,
+      "character": "表格",
+      "pinyin": "biǎogé",
+      "english": "form (document)"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 22,
+      "character": "表示",
+      "pinyin": "biǎoshì",
+      "english": "express; show; indicate"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 23,
+      "character": "表演",
+      "pinyin": "biǎoyǎn",
+      "english": "perform; to play"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 24,
+      "character": "表扬",
+      "pinyin": "biǎoyáng",
+      "english": "to praise; commend"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 25,
+      "character": "饼干",
+      "pinyin": "bǐnggān",
+      "english": "biscuit; cracker; cookie"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 26,
+      "character": "并且",
+      "pinyin": "bìngqiě",
+      "english": "and; besides; moreover"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 27,
+      "character": "博士",
+      "pinyin": "bóshì",
+      "english": "doctor; PhD"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 28,
+      "character": "不得不",
+      "pinyin": "bù dé bù",
+      "english": "have to; have no choice but to; cannot but"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 29,
+      "character": "不管",
+      "pinyin": "bùguǎn",
+      "english": "no matter (what, how, etc.); regardless of"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 30,
+      "character": "不过",
+      "pinyin": "búguò",
+      "english": "only; merely; but; however"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 31,
+      "character": "不仅",
+      "pinyin": "bùjǐn",
+      "english": "not only; not just"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 32,
+      "character": "部分",
+      "pinyin": "bùfen",
+      "english": "part; share; section"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 33,
+      "character": "擦",
+      "pinyin": "cā",
+      "english": "to wipe; to rub; to polish"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 34,
+      "character": "猜",
+      "pinyin": "cāi",
+      "english": "to guess"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 35,
+      "character": "材料",
+      "pinyin": "cáiliào",
+      "english": "material"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 36,
+      "character": "参观",
+      "pinyin": "cānguān",
+      "english": "to visit (a place, such as a tourist spot); inspect"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 37,
+      "character": "餐厅",
+      "pinyin": "cāntīng",
+      "english": "dining hall; cafeteria; restaurant"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 38,
+      "character": "厕所",
+      "pinyin": "cèsuǒ",
+      "english": "bathroom; toilet; lavatory"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 39,
+      "character": "差不多",
+      "pinyin": "chàbuduō",
+      "english": "almost; about the same"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 1,
+      "lessonOrder": 40,
+      "character": "长城",
+      "pinyin": "chángchéng",
+      "english": "the Great Wall"
+    }
+  ]
 }

@@ -99,9 +99,22 @@ Template output:
 Recommended process:
 
 1. Fill `book` (`shang` / `xia`), `lesson` and `lessonOrder` in the template.
-2. Copy completed entries into `assets/data/hsk_lesson_order_map.json`.
-3. Run dry validation.
-4. Apply to EN/ES datasets.
+2. Generate or edit a lesson draft block (example: HSK4 shang lesson 1).
+3. Merge completed draft entries into `assets/data/hsk_lesson_order_map.json`.
+4. Run dry validation.
+5. Apply to EN/ES datasets.
+
+Merge lesson-1 draft into map (dry-run):
+
+```bash
+npm run translation:lesson-merge:hsk4-l1:dry
+```
+
+Merge lesson-1 draft into map (write):
+
+```bash
+npm run translation:lesson-merge:hsk4-l1:apply
+```
 
 Validate map matches without writing:
 
