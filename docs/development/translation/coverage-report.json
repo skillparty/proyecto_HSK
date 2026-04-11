@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-11T16:47:35.275Z",
+  "generatedAt": "2026-04-11T21:46:53.535Z",
   "totals": {
     "english": 5000,
-    "spanish": 5043,
+    "spanish": 5041,
     "missingTranslations": 0,
-    "orphanSpanishEntries": 8,
+    "orphanSpanishEntries": 0,
     "overallCoverage": 100
   },
   "byLevel": [
@@ -47,54 +47,5 @@
   ],
   "missingByLevel": {},
   "missingEntries": [],
-  "orphanSpanishEntries": [
-    {
-      "character": "出租车",
-      "pinyin": "chūzūchē",
-      "spanish": "taxi",
-      "level": 1
-    },
-    {
-      "character": "东西",
-      "pinyin": "dōngxi",
-      "spanish": "cosa",
-      "level": 1
-    },
-    {
-      "character": "对不起",
-      "pinyin": "duìbuqǐ",
-      "spanish": "lo siento",
-      "level": 1
-    },
-    {
-      "character": "多少",
-      "pinyin": "duōshao",
-      "spanish": "cuánto",
-      "level": 1
-    },
-    {
-      "character": "火车站",
-      "pinyin": "huǒchēzhàn",
-      "spanish": "estación de tren",
-      "level": 1
-    },
-    {
-      "character": "男人",
-      "pinyin": "nánrén",
-      "spanish": "hombre",
-      "level": 1
-    },
-    {
-      "character": "女人",
-      "pinyin": "nǚrén",
-      "spanish": "mujer",
-      "level": 1
-    },
-    {
-      "character": "下雨",
-      "pinyin": "xiàyǔ",
-      "spanish": "llover",
-      "level": 1
-    }
-  ]
+  "orphanSpanishEntries": []
 }

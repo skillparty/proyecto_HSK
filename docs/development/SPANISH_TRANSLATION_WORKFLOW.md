@@ -28,6 +28,13 @@ A translation is valid only if all checks pass:
 - Consistent terminology across levels.
 - No empty or placeholder Spanish text.
 - Register and sense are appropriate for HSK context.
+- No orphan Spanish entries (items in ES dataset that do not map to an EN source entry under normalized triple key).
+
+Matching policy for QA and worklist generation:
+
+- Use normalized triple key: `character + pinyin + english`.
+- Pinyin normalization should ignore whitespace and tone marks for matching robustness.
+- Avoid `character + pinyin` as a unique key when semantic senses differ.
 
 ## Operational commands
 
@@ -42,6 +49,11 @@ Strict report (fails with non-zero code if there are missing translations):
 ```bash
 npm run translation:report:strict
 ```
+
+Strict mode should fail when either condition is true:
+
+- Missing translations > 0
+- Orphan Spanish entries > 0
 
 Generate translation worklist (JSON):
 

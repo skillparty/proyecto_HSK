@@ -51,17 +51,31 @@ class LanguageController {
             return;
         }
 
+        const normalizeText = (value) => String(value || '').trim().toLowerCase();
+        const normalizePinyin = (value) => String(value || '')
+            .trim()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/\s+/g, '')
+            .toLowerCase();
+
         this.app.quiz.questions = this.app.quiz.questions.map((question) => {
+            const questionEnglish = normalizeText(question.english || question.translation);
             const byCharacterAndPinyin = this.app.vocabulary.find((word) =>
-                word.character === question.character && word.pinyin === question.pinyin
+                word.character === question.character
+                && normalizePinyin(word.pinyin) === normalizePinyin(question.pinyin)
+                && normalizeText(word.english || word.translation) === questionEnglish
             );
             if (byCharacterAndPinyin) return byCharacterAndPinyin;
 
-            const byCharacter = this.app.vocabulary.find((word) => word.character === question.character);
-            if (byCharacter) return byCharacter;
-
-            const byPinyin = this.app.vocabulary.find((word) => word.pinyin === question.pinyin);
-            if (byPinyin) return byPinyin;
+            // Keep a conservative fallback only when the source question has no gloss.
+            if (!questionEnglish) {
+                const byCharacterAndPinyinOnly = this.app.vocabulary.find((word) =>
+                    word.character === question.character
+                    && normalizePinyin(word.pinyin) === normalizePinyin(question.pinyin)
+                );
+                if (byCharacterAndPinyinOnly) return byCharacterAndPinyinOnly;
+            }
 
             return question;
         });

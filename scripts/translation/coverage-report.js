@@ -19,6 +19,28 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
+function normalizeText(value) {
+  return String(value || '').trim();
+}
+
+function normalizeGloss(value) {
+  return normalizeText(value).toLowerCase().replace(/\s+/g, ' ');
+}
+
+function normalizePinyin(value) {
+  return normalizeText(value)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '')
+    .toLowerCase();
+}
+
+function makeCPKey(item) {
+  const character = normalizeText(item.character);
+  const pinyin = normalizePinyin(item.pinyin);
+  return `${character}::${pinyin}`;
+}
+
 function byLevel(items) {
   return items.reduce((accumulator, item) => {
     const level = String(item.level ?? 'unknown');
@@ -27,8 +49,33 @@ function byLevel(items) {
   }, {});
 }
 
-function makeKey(item) {
-  return `${item.character}::${item.pinyin}`;
+function groupByCP(items) {
+  return items.reduce((accumulator, item) => {
+    const key = makeCPKey(item);
+    if (!accumulator.has(key)) {
+      accumulator.set(key, []);
+    }
+    accumulator.get(key).push(item);
+    return accumulator;
+  }, new Map());
+}
+
+function resolveCandidateForEnglish(englishItem, spanishByCP) {
+  const candidates = spanishByCP.get(makeCPKey(englishItem)) || [];
+  if (candidates.length === 0) {
+    return null;
+  }
+
+  // Unique character+pinyin pair: trust that mapping even if gloss text changed over time.
+  if (candidates.length === 1) {
+    return candidates[0];
+  }
+
+  // Ambiguous pair: require gloss alignment to avoid sense collisions.
+  const targetGloss = normalizeGloss(englishItem.translation || englishItem.english);
+  return candidates.find((candidate) => (
+    normalizeGloss(candidate.translation || candidate.english) === targetGloss
+  )) || null;
 }
 
 function toLevelSummary(levels, enByLevel, translatedByLevel) {
@@ -49,8 +96,8 @@ function main() {
   const english = readJson(englishPath);
   const spanish = readJson(spanishPath);
 
-  const englishByKey = new Map(english.map((item) => [makeKey(item), item]));
-  const spanishByKey = new Map(spanish.map((item) => [makeKey(item), item]));
+  const englishByCP = groupByCP(english);
+  const spanishByCP = groupByCP(spanish);
 
   const missingEntries = [];
   const missingByLevel = {};
@@ -58,8 +105,7 @@ function main() {
 
   for (const englishItem of english) {
     const levelKey = String(englishItem.level ?? 'unknown');
-    const key = makeKey(englishItem);
-    const spanishItem = spanishByKey.get(key);
+    const spanishItem = resolveCandidateForEnglish(englishItem, spanishByCP);
 
     if (!spanishItem || !spanishItem.spanish || !String(spanishItem.spanish).trim()) {
       missingEntries.push({
@@ -77,14 +123,34 @@ function main() {
 
   const orphanSpanishEntries = [];
   for (const spanishItem of spanish) {
-    const key = makeKey(spanishItem);
-    if (!englishByKey.has(key)) {
+    const englishCandidates = englishByCP.get(makeCPKey(spanishItem)) || [];
+
+    if (englishCandidates.length === 0) {
       orphanSpanishEntries.push({
         character: spanishItem.character,
         pinyin: spanishItem.pinyin,
+        english: spanishItem.english,
         spanish: spanishItem.spanish,
         level: spanishItem.level
       });
+      continue;
+    }
+
+    if (englishCandidates.length > 1) {
+      const spanishGloss = normalizeGloss(spanishItem.translation || spanishItem.english);
+      const hasSenseMatch = englishCandidates.some((englishItem) => (
+        normalizeGloss(englishItem.translation || englishItem.english) === spanishGloss
+      ));
+
+      if (!hasSenseMatch) {
+        orphanSpanishEntries.push({
+          character: spanishItem.character,
+          pinyin: spanishItem.pinyin,
+          english: spanishItem.english,
+          spanish: spanishItem.spanish,
+          level: spanishItem.level
+        });
+      }
     }
   }
 
@@ -112,6 +178,7 @@ function main() {
   console.log(`English entries: ${report.totals.english}`);
   console.log(`Spanish entries: ${report.totals.spanish}`);
   console.log(`Missing translations: ${report.totals.missingTranslations}`);
+  console.log(`Orphan Spanish entries: ${report.totals.orphanSpanishEntries}`);
   console.log(`Overall coverage: ${report.totals.overallCoverage}%`);
   console.log('');
 
@@ -127,7 +194,7 @@ function main() {
     console.log(`Detailed report written to ${absoluteReportPath}`);
   }
 
-  if (args.strict && missingEntries.length > 0) {
+  if (args.strict && (missingEntries.length > 0 || orphanSpanishEntries.length > 0)) {
     process.exitCode = 1;
   }
 }
