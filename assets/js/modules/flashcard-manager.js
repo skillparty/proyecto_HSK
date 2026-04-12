@@ -143,6 +143,7 @@ class FlashcardManager {
             answer: document.getElementById('answer-text'),
             fullInfo: document.getElementById('full-info'),
             hint: document.getElementById('hint-text'),
+            frontMeta: document.getElementById('lesson-meta-front'),
             flashcard: document.getElementById('flashcard')
         };
 
@@ -184,6 +185,11 @@ class FlashcardManager {
         }
 
         elements.question.textContent = question || '?';
+        const frontLessonMeta = this.getLessonMetadataLabel(this.currentWord);
+        if (elements.frontMeta) {
+            elements.frontMeta.textContent = frontLessonMeta;
+            elements.frontMeta.style.display = frontLessonMeta ? 'inline-flex' : 'none';
+        }
         if (elements.hint) elements.hint.textContent = hint || '';
         
         // Reset Inputs
