@@ -224,6 +224,7 @@ class FlashcardManager {
     }
 
     renderDetailedInfo(container, meaning) {
+        const lessonMeta = this.getLessonMetadataLabel(this.currentWord);
         container.innerHTML = `
             <div class="word-info-expanded">
                 <div class="card-back-header">
@@ -240,6 +241,7 @@ class FlashcardManager {
                         <span>${this.app.getTranslation('playPronunciation')}</span>
                     </button>
                 </div>
+                ${lessonMeta ? `<div class="card-back-meta">${lessonMeta}</div>` : ''}
                 
                 <div class="translations-section">
                     <div class="translation-item primary-translation">
@@ -332,6 +334,47 @@ class FlashcardManager {
         if (eng.includes('noun')) return this.app.getTranslation('wordTypeNoun') || 'Noun';
         if (eng.includes('number') || /\d/.test(word.character)) return this.app.getTranslation('wordTypeNumber') || 'Number';
         return word.character.length === 1 ? (this.app.getTranslation('wordTypeCharacter') || 'Character') : (this.app.getTranslation('wordTypeWord') || 'Word');
+    }
+
+    getBookLabel(bookValue) {
+        const raw = String(bookValue || '').trim().toLowerCase();
+        if (!raw) return '';
+
+        if (['shang', '上', '上册'].includes(raw)) return 'Shang';
+        if (['xia', '下', '下册'].includes(raw)) return 'Xia';
+        return String(bookValue);
+    }
+
+    getLessonMetadataLabel(word) {
+        const hasLessonMeta = word && (
+            word.book !== undefined
+            || word.bookPart !== undefined
+            || word.volume !== undefined
+            || word.lesson !== undefined
+            || word.lessonOrder !== undefined
+            || word.orderInLesson !== undefined
+        );
+
+        if (!hasLessonMeta) {
+            return '';
+        }
+
+        const lang = this.app.currentLanguage || 'en';
+        const level = Number(word.level || this.app.currentLevel || 0);
+        const bookLabel = this.getBookLabel(word.book ?? word.bookPart ?? word.volume);
+        const lessonNumber = Number(word.lesson || 0);
+        const lessonOrder = Number(word.lessonOrder || word.orderInLesson || 0);
+
+        const lessonWord = lang === 'es' ? 'Leccion' : 'Lesson';
+        const orderWord = lang === 'es' ? 'Palabra' : 'Word';
+        const segments = [];
+
+        if (level) segments.push(`HSK ${level}`);
+        if (bookLabel) segments.push(bookLabel);
+        if (lessonNumber) segments.push(`${lessonWord} ${lessonNumber}`);
+        if (lessonOrder) segments.push(`${orderWord} #${lessonOrder}`);
+
+        return segments.join(' · ');
     }
 
     flipCard() {
