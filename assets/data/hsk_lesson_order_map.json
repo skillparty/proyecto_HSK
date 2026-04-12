@@ -4321,6 +4321,1086 @@
       "character": "信息",
       "pinyin": "xìnxī",
       "english": "information; news; message"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 1,
+      "character": "信心",
+      "pinyin": "xìnxīn",
+      "english": "confidence; faith (in sb. or sth.)"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 2,
+      "character": "兴奋",
+      "pinyin": "xīngfèn",
+      "english": "excitement； be excited"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 3,
+      "character": "行",
+      "pinyin": "xíng",
+      "english": "walk; be current; do; will do; okay"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 4,
+      "character": "醒",
+      "pinyin": "xǐng",
+      "english": "wake up"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 5,
+      "character": "幸福",
+      "pinyin": "xìngfú",
+      "english": "happy; blessed; fortunate"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 6,
+      "character": "性别",
+      "pinyin": "xìngbié",
+      "english": "gender; sex; sexual distinction"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 7,
+      "character": "性格",
+      "pinyin": "xìnggé",
+      "english": "nature; personality; temperament"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 8,
+      "character": "修理",
+      "pinyin": "xiūlǐ",
+      "english": "to repair; perform maintenance; to overhaul"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 9,
+      "character": "许多",
+      "pinyin": "xǔduō",
+      "english": "many; a lot; much"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 10,
+      "character": "学期",
+      "pinyin": "xuéqī",
+      "english": "semester; school term"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 11,
+      "character": "压力",
+      "pinyin": "yālì",
+      "english": "pressure; stress"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 12,
+      "character": "呀",
+      "pinyin": "ya",
+      "english": "ah; oh; (used for 啊 after words ending with a, e, i, o, or ü)"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 13,
+      "character": "牙膏",
+      "pinyin": "yágāo",
+      "english": "toothpaste"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 14,
+      "character": "亚洲",
+      "pinyin": "Yàzhōu",
+      "english": "Asia"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 15,
+      "character": "严格",
+      "pinyin": "yángé",
+      "english": "strict; stringent; tight"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 16,
+      "character": "严重",
+      "pinyin": "yánzhòng",
+      "english": "grave; serious; critical"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 17,
+      "character": "研究",
+      "pinyin": "yánjiū",
+      "english": "to study; to research"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 18,
+      "character": "盐",
+      "pinyin": "yán",
+      "english": "salt"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 19,
+      "character": "眼镜",
+      "pinyin": "yǎnjìng",
+      "english": "glasses; spectacles"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 20,
+      "character": "演出",
+      "pinyin": "yǎnchū",
+      "english": "to act (in a play); to perform; to put on a show; performance"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 21,
+      "character": "演员",
+      "pinyin": "yǎnyuán",
+      "english": "actor or actress; performer"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 22,
+      "character": "阳光",
+      "pinyin": "yángguāng",
+      "english": "sunshine; sunlight"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 23,
+      "character": "养成",
+      "pinyin": "yǎngchéng",
+      "english": "cultivate; acquire; to form"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 24,
+      "character": "样子",
+      "pinyin": "yàngzi",
+      "english": "manner; air; appearance; looks"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 25,
+      "character": "邀请",
+      "pinyin": "yāoqǐng",
+      "english": "to invite"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 26,
+      "character": "要是",
+      "pinyin": "yàoshi",
+      "english": "if; suppose; in case"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 27,
+      "character": "钥匙",
+      "pinyin": "yàoshi",
+      "english": "key"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 28,
+      "character": "也许",
+      "pinyin": "yěxǔ",
+      "english": "perhaps; probably; maybe"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 29,
+      "character": "叶子",
+      "pinyin": "yèzi",
+      "english": "leaves"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 30,
+      "character": "页",
+      "pinyin": "yè",
+      "english": "page; leaf (Kangxi radical 181)"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 31,
+      "character": "一切",
+      "pinyin": "yíqiè",
+      "english": "all; every; everything"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 32,
+      "character": "以",
+      "pinyin": "yǐ",
+      "english": "to use; according to; so as to; for; by"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 33,
+      "character": "以为",
+      "pinyin": "yǐwéi",
+      "english": "think (mistakenly); consider (that); believe"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 34,
+      "character": "艺术",
+      "pinyin": "yìshù",
+      "english": "art"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 35,
+      "character": "意见",
+      "pinyin": "yìjiàn",
+      "english": "opinion; view; suggestion; complaint"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 36,
+      "character": "因此",
+      "pinyin": "yīncǐ",
+      "english": "therefore; thus; that is why; because of this"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 37,
+      "character": "引起",
+      "pinyin": "yǐnqǐ",
+      "english": "give rise to; lead to; to cause; arouse"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 38,
+      "character": "印象",
+      "pinyin": "yìnxiàng",
+      "english": "impression"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 39,
+      "character": "赢",
+      "pinyin": "yíng",
+      "english": "to win; to beat; to profit"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 13,
+      "lessonOrder": 40,
+      "character": "应聘",
+      "pinyin": "yìngpìn",
+      "english": "accept a job offer; to apply for a job"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 1,
+      "character": "永远",
+      "pinyin": "yǒngyuǎn",
+      "english": "forever; eternal; always"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 2,
+      "character": "勇敢",
+      "pinyin": "yǒnggǎn",
+      "english": "brave; courageous"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 3,
+      "character": "优点",
+      "pinyin": "yōudiǎn",
+      "english": "merit; good point; a strength; a benefit"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 4,
+      "character": "优秀",
+      "pinyin": "yōuxiù",
+      "english": "outstanding; excellent"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 5,
+      "character": "幽默",
+      "pinyin": "yōumò",
+      "english": "humorous"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 6,
+      "character": "尤其",
+      "pinyin": "yóuqí",
+      "english": "especially; particularly"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 7,
+      "character": "由",
+      "pinyin": "yóu",
+      "english": "follow; from; by; through"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 8,
+      "character": "由于",
+      "pinyin": "yóuyú",
+      "english": "due to; owing to; as a result of; thanks to"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 9,
+      "character": "邮局",
+      "pinyin": "yóujú",
+      "english": "post office"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 10,
+      "character": "友好",
+      "pinyin": "yǒuhǎo",
+      "english": "friendly (relations); close friends"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 11,
+      "character": "友谊",
+      "pinyin": "yǒuyì",
+      "english": "friendship; companionship"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 12,
+      "character": "有趣",
+      "pinyin": "yǒuqù",
+      "english": "interesting; fascinating; amusing"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 13,
+      "character": "于是",
+      "pinyin": "yúshì",
+      "english": "as a result; thus; therefore"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 14,
+      "character": "愉快",
+      "pinyin": "yúkuài",
+      "english": "happy; cheerful; delightful"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 15,
+      "character": "与",
+      "pinyin": "yǔ",
+      "english": "(formal) and; to give; together with; participate; final particle expressing doubt or surprise"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 16,
+      "character": "羽毛球",
+      "pinyin": "yǔmáoqiú",
+      "english": "badminton"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 17,
+      "character": "语法",
+      "pinyin": "yǔfǎ",
+      "english": "grammar"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 18,
+      "character": "语言",
+      "pinyin": "yǔyán",
+      "english": "language"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 19,
+      "character": "预习",
+      "pinyin": "yùxí",
+      "english": "(of students) prepare a lesson before class; preview"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 20,
+      "character": "原来",
+      "pinyin": "yuánlái",
+      "english": "original; former; as it turns out"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 21,
+      "character": "原谅",
+      "pinyin": "yuánliàng",
+      "english": "to excuse; forgive; to pardon"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 22,
+      "character": "原因",
+      "pinyin": "yuányīn",
+      "english": "cause; reason"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 23,
+      "character": "约会",
+      "pinyin": "yuēhuì",
+      "english": "appointment; engagement; date"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 24,
+      "character": "阅读",
+      "pinyin": "yuèdú",
+      "english": "read; reading"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 25,
+      "character": "云",
+      "pinyin": "yún",
+      "english": "cloud; Yunnan province | say; speak"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 26,
+      "character": "允许",
+      "pinyin": "yǔnxǔ",
+      "english": "to permit; allow"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 27,
+      "character": "杂志",
+      "pinyin": "zázhì",
+      "english": "magazine"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 28,
+      "character": "咱们",
+      "pinyin": "zánmen",
+      "english": "we (including the listener); us; our"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 29,
+      "character": "暂时",
+      "pinyin": "zànshí",
+      "english": "temporary; transient; for the moment"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 30,
+      "character": "脏",
+      "pinyin": "zāng",
+      "english": "filthy; dirty"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 31,
+      "character": "责任",
+      "pinyin": "zérèn",
+      "english": "responsibility; blame; duty"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 32,
+      "character": "增加",
+      "pinyin": "zēngjiā",
+      "english": "to increase; to raise; add"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 33,
+      "character": "占线",
+      "pinyin": "zhànxiàn",
+      "english": "the (phone) line is busy"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 34,
+      "character": "招聘",
+      "pinyin": "zhāopìn",
+      "english": "recruitment; take job applications for a job"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 35,
+      "character": "照",
+      "pinyin": "zhào",
+      "english": "to shine; illuminate; according to"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 36,
+      "character": "真正",
+      "pinyin": "zhēnzhèng",
+      "english": "genuine; real; true"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 37,
+      "character": "整理",
+      "pinyin": "zhěnglǐ",
+      "english": "put in order; arrange; straighten up; to tidy; to pack (luggage)"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 38,
+      "character": "正常",
+      "pinyin": "zhèngcháng",
+      "english": "normal; regular; ordinary"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 39,
+      "character": "正好",
+      "pinyin": "zhènghǎo",
+      "english": "just (in time); just right; just enough; happen to; by chance"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 14,
+      "lessonOrder": 40,
+      "character": "正确",
+      "pinyin": "zhèngquè",
+      "english": "correct; proper"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 1,
+      "character": "正式",
+      "pinyin": "zhèngshì",
+      "english": "formal; official"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 2,
+      "character": "证明",
+      "pinyin": "zhèngmíng",
+      "english": "proof; testify; confirm; certificate"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 3,
+      "character": "之",
+      "pinyin": "zhī",
+      "english": "(literary equivalent to 的); (pronoun); of"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 4,
+      "character": "支持",
+      "pinyin": "zhīchí",
+      "english": "sustain; hold out; | support; stand by (e.g. international support)"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 5,
+      "character": "知识",
+      "pinyin": "zhīshi",
+      "english": "knowledge; intellectual"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 6,
+      "character": "直接",
+      "pinyin": "zhíjiē",
+      "english": "direct; immediate"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 7,
+      "character": "值得",
+      "pinyin": "zhíde",
+      "english": "be worth; deserve"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 8,
+      "character": "职业",
+      "pinyin": "zhíyè",
+      "english": "profession; occupation"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 9,
+      "character": "植物",
+      "pinyin": "zhíwù",
+      "english": "plant; botanical; vegetation"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 10,
+      "character": "只好",
+      "pinyin": "zhǐhǎo",
+      "english": "have to; be forced to"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 11,
+      "character": "只要",
+      "pinyin": "zhǐyào",
+      "english": "so long as; if only; provided that"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 12,
+      "character": "指",
+      "pinyin": "zhǐ",
+      "english": "finger; to point (at, to, out); refer to"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 13,
+      "character": "至少",
+      "pinyin": "zhìshǎo",
+      "english": "at least; (to say the) least"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 14,
+      "character": "质量",
+      "pinyin": "zhìliàng",
+      "english": "quality; mass (physics)"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 15,
+      "character": "重",
+      "pinyin": "zhòng",
+      "english": "heavy; serious; important"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 16,
+      "character": "重点",
+      "pinyin": "zhòngdiǎn",
+      "english": "emphasis; main point"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 17,
+      "character": "重视",
+      "pinyin": "zhòngshì",
+      "english": "to value; take seriously"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 18,
+      "character": "周围",
+      "pinyin": "zhōuwéi",
+      "english": "surroundings; vicinity; environment"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 19,
+      "character": "主意",
+      "pinyin": "zhǔyi",
+      "english": "plan; idea; decision"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 20,
+      "character": "祝贺",
+      "pinyin": "zhùhè",
+      "english": "congratulate"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 21,
+      "character": "著名",
+      "pinyin": "zhùmíng",
+      "english": "famous; well-known; celebration"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 22,
+      "character": "专门",
+      "pinyin": "zhuānmén",
+      "english": "specialized"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 23,
+      "character": "专业",
+      "pinyin": "zhuānyè",
+      "english": "profession; specialized field of study; major"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 24,
+      "character": "转",
+      "pinyin": "zhuǎn, zhuàn",
+      "english": "to turn; to change; pass on | revolve; rotate"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 25,
+      "character": "赚",
+      "pinyin": "zhuàn",
+      "english": "earn; make a profit"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 26,
+      "character": "准确",
+      "pinyin": "zhǔnquè",
+      "english": "accurate; precise"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 27,
+      "character": "准时",
+      "pinyin": "zhǔnshí",
+      "english": "punctually; on time"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 28,
+      "character": "仔细",
+      "pinyin": "zǐxì",
+      "english": "careful; attentive; cautious"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 29,
+      "character": "自然",
+      "pinyin": "zìrán",
+      "english": "nature; natural"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 30,
+      "character": "自信",
+      "pinyin": "zìxìn",
+      "english": "self-confidence"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 31,
+      "character": "总结",
+      "pinyin": "zǒngjié",
+      "english": "summarize; conclude"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 32,
+      "character": "租",
+      "pinyin": "zū",
+      "english": "to rent"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 33,
+      "character": "最好",
+      "pinyin": "zuìhǎo",
+      "english": "the best; had better ...; it would be best"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 34,
+      "character": "尊重",
+      "pinyin": "zūnzhòng",
+      "english": "esteem; to respect; to value; to honor"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 35,
+      "character": "左右",
+      "pinyin": "zuǒyòu",
+      "english": "about; approximate; around | left and right"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 36,
+      "character": "作家",
+      "pinyin": "zuòjiā",
+      "english": "author; writer"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 37,
+      "character": "作用",
+      "pinyin": "zuòyòng",
+      "english": "action; activity; effect"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 38,
+      "character": "作者",
+      "pinyin": "zuòzhě",
+      "english": "author; writer"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 39,
+      "character": "座",
+      "pinyin": "zuò",
+      "english": "(mw for mountains, bridges, tall buildings, etc.); | seat; base; stand; constellation"
+    },
+    {
+      "level": 4,
+      "book": "shang",
+      "lesson": 15,
+      "lessonOrder": 40,
+      "character": "座位",
+      "pinyin": "zuòwèi",
+      "english": "seat; place"
     }
   ]
 }
