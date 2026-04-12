@@ -4491,4200 +4491,6000 @@
     "pinyin": "àiqíng",
     "english": "(romantic) love",
     "spanish": "amor (romántico)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 1
   },
   {
     "character": "安排",
     "pinyin": "ānpái",
     "english": "arrange; to plan",
     "spanish": "organizar; planificar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 2
   },
   {
     "character": "安全",
     "pinyin": "ānquán",
     "english": "safe; safety; secure; security",
     "spanish": "seguro; seguridad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 3
   },
   {
     "character": "按时",
     "pinyin": "ànshí",
     "english": "on time; on schedule",
     "spanish": "a tiempo; según lo previsto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 4
   },
   {
     "character": "按照",
     "pinyin": "ànzhào",
     "english": "according to; in accordance with; in light of",
     "spanish": "según; de acuerdo con",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 5
   },
   {
     "character": "百分之",
     "pinyin": "bǎifēnzhī",
     "english": "percent",
     "spanish": "por ciento",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 6
   },
   {
     "character": "棒",
     "pinyin": "bàng",
     "english": "stick; club; good; excellent",
     "spanish": "palo; excelente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 7
   },
   {
     "character": "包子",
     "pinyin": "bāozi",
     "english": "steamed stuffed bun",
     "spanish": "baozi; bollo relleno al vapor",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 8
   },
   {
     "character": "保护",
     "pinyin": "bǎohù",
     "english": "to protect; to defend",
     "spanish": "proteger; defender",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 9
   },
   {
     "character": "保证",
     "pinyin": "bǎozhèng",
     "english": "to guarantee; ensure",
     "spanish": "garantizar; asegurar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 10
   },
   {
     "character": "报名",
     "pinyin": "bào míng",
     "english": "sign up; apply",
     "spanish": "inscribirse; solicitar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 11
   },
   {
     "character": "抱",
     "pinyin": "bào",
     "english": "to hold; to hug; carry in one's arms; to cradle",
     "spanish": "abrazar; sostener en brazos",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 12
   },
   {
     "character": "抱歉",
     "pinyin": "bàoqiàn",
     "english": "be sorry; feel apologetic; to regret",
     "spanish": "lamentar; disculparse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 13
   },
   {
     "character": "倍",
     "pinyin": "bèi",
     "english": "(two, three, etc)-fold; times (multiplier)",
     "spanish": "vez; múltiplo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 14
   },
   {
     "character": "本来",
     "pinyin": "běnlái",
     "english": "originally; at first",
     "spanish": "originalmente; al principio",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 15
   },
   {
     "character": "笨",
     "pinyin": "bèn",
     "english": "stupid; foolish; silly; dumb; clumsy",
     "spanish": "tonto; torpe",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 16
   },
   {
     "character": "比如",
     "pinyin": "bǐrú",
     "english": "for example; for instance; such as",
     "spanish": "por ejemplo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 17
   },
   {
     "character": "毕业",
     "pinyin": "bì yè",
     "english": "to graduate; to finish school",
     "spanish": "graduarse; terminar los estudios",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 18
   },
   {
     "character": "遍",
     "pinyin": "biàn",
     "english": "a time; everywhere; turn; (mw for times or turns)",
     "spanish": "vez; por todas partes",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 19
   },
   {
     "character": "标准",
     "pinyin": "biāozhǔn",
     "english": "(an official) standard; norm; criterion",
     "spanish": "estándar; norma; criterio",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 20
   },
   {
     "character": "表格",
     "pinyin": "biǎogé",
     "english": "form (document)",
     "spanish": "formulario",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 21
   },
   {
     "character": "表示",
     "pinyin": "biǎoshì",
     "english": "express; show; indicate",
     "spanish": "expresar; mostrar; indicar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 22
   },
   {
     "character": "表演",
     "pinyin": "biǎoyǎn",
     "english": "perform; to play",
     "spanish": "actuar; representar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 23
   },
   {
     "character": "表扬",
     "pinyin": "biǎoyáng",
     "english": "to praise; commend",
     "spanish": "elogiar; felicitar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 24
   },
   {
     "character": "饼干",
     "pinyin": "bǐnggān",
     "english": "biscuit; cracker; cookie",
     "spanish": "galleta",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 25
   },
   {
     "character": "并且",
     "pinyin": "bìngqiě",
     "english": "and; besides; moreover",
     "spanish": "y además; asimismo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 26
   },
   {
     "character": "博士",
     "pinyin": "bóshì",
     "english": "doctor; PhD",
     "spanish": "doctor; doctorado (PhD)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 27
   },
   {
     "character": "不得不",
     "pinyin": "bù dé bù",
     "english": "have to; have no choice but to; cannot but",
     "spanish": "tener que; no tener más remedio que",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 28
   },
   {
     "character": "不管",
     "pinyin": "bùguǎn",
     "english": "no matter (what, how, etc.); regardless of",
     "spanish": "sin importar; no importa",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 29
   },
   {
     "character": "不过",
     "pinyin": "búguò",
     "english": "only; merely; but; however",
     "spanish": "pero; sin embargo; solo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 30
   },
   {
     "character": "不仅",
     "pinyin": "bùjǐn",
     "english": "not only; not just",
     "spanish": "no solo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 31
   },
   {
     "character": "部分",
     "pinyin": "bùfen",
     "english": "part; share; section",
     "spanish": "parte; sección",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 32
   },
   {
     "character": "擦",
     "pinyin": "cā",
     "english": "to wipe; to rub; to polish",
     "spanish": "limpiar; frotar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 33
   },
   {
     "character": "猜",
     "pinyin": "cāi",
     "english": "to guess",
     "spanish": "adivinar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 34
   },
   {
     "character": "材料",
     "pinyin": "cáiliào",
     "english": "material",
     "spanish": "material",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 35
   },
   {
     "character": "参观",
     "pinyin": "cānguān",
     "english": "to visit (a place, such as a tourist spot); inspect",
     "spanish": "visitar; recorrer",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 36
   },
   {
     "character": "餐厅",
     "pinyin": "cāntīng",
     "english": "dining hall; cafeteria; restaurant",
     "spanish": "restaurante; comedor",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 37
   },
   {
     "character": "厕所",
     "pinyin": "cèsuǒ",
     "english": "bathroom; toilet; lavatory",
     "spanish": "baño; aseo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 38
   },
   {
     "character": "差不多",
     "pinyin": "chàbuduō",
     "english": "almost; about the same",
     "spanish": "casi; aproximadamente igual",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 39
   },
   {
     "character": "尝",
     "pinyin": "cháng",
     "english": "to taste; flavor; (past tense marker)",
     "spanish": "probar; sabor",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 2
   },
   {
     "character": "场",
     "pinyin": "chǎng",
     "english": "courtyard; place; field; (mw for games, performances, etc.)",
     "spanish": "lugar; campo; clasificador de eventos",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 3
   },
   {
     "character": "超过",
     "pinyin": "chāoguò",
     "english": "surpass; exceed; outstrip",
     "spanish": "superar; exceder",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 4
   },
   {
     "character": "成功",
     "pinyin": "chénggōng",
     "english": "success; to succeed",
     "spanish": "éxito; tener éxito",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 5
   },
   {
     "character": "成为",
     "pinyin": "chéngwéi",
     "english": "become; turn into",
     "spanish": "convertirse en",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 6
   },
   {
     "character": "诚实",
     "pinyin": "chéngshí",
     "english": "honest; honorable",
     "spanish": "honesto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 7
   },
   {
     "character": "乘坐",
     "pinyin": "chéngzuò",
     "english": "ride; get into (a vehicle)",
     "spanish": "tomar (un transporte); viajar en",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 8
   },
   {
     "character": "吃惊",
     "pinyin": "chī jīng",
     "english": "be startled; be shocked; be amazed",
     "spanish": "sorprenderse; quedarse asombrado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 9
   },
   {
     "character": "抽烟",
     "pinyin": "chōuyān",
     "english": "to smoke (a cigarette, pipe, etc.)",
     "spanish": "fumar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 11
   },
   {
     "character": "出差",
     "pinyin": "chū chāi",
     "english": "go on a business trip",
     "spanish": "viajar por trabajo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 12
   },
   {
     "character": "出发",
     "pinyin": "chūfā",
     "english": "start out; set off",
     "spanish": "partir; ponerse en marcha",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 13
   },
   {
     "character": "出生",
     "pinyin": "chūshēng",
     "english": "be born",
     "spanish": "nacer",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 14
   },
   {
     "character": "出现",
     "pinyin": "chūxiàn",
     "english": "appear; arise; emerge",
     "spanish": "aparecer; surgir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 15
   },
   {
     "character": "厨房",
     "pinyin": "chúfáng",
     "english": "kitchen",
     "spanish": "cocina",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 16
   },
   {
     "character": "传真",
     "pinyin": "chuánzhēn",
     "english": "fax; facsimile",
     "spanish": "fax; facsímil",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 17
   },
   {
     "character": "窗户",
     "pinyin": "chuānghu",
     "english": "window",
     "spanish": "ventana",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 18
   },
   {
     "character": "词语",
     "pinyin": "cíyǔ",
     "english": "words and expressions; terms",
     "spanish": "palabras y expresiones; términos",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 19
   },
   {
     "character": "从来",
     "pinyin": "cónglái",
     "english": "always; at all times",
     "spanish": "siempre; desde siempre",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 20
   },
   {
     "character": "粗心",
     "pinyin": "cūxīn",
     "english": "careless; inadvertent; negligent",
     "spanish": "descuidado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 21
   },
   {
     "character": "存",
     "pinyin": "cún",
     "english": "exist; to deposit; to store",
     "spanish": "existir; depositar; guardar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 22
   },
   {
     "character": "错误",
     "pinyin": "cuòwù",
     "english": "error; mistake; mistaken",
     "spanish": "error; equivocación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 23
   },
   {
     "character": "答案",
     "pinyin": "dá'àn",
     "english": "answer; solution",
     "spanish": "respuesta; solución",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 24
   },
   {
     "character": "打扮",
     "pinyin": "dǎban",
     "english": "dress up; put on make up",
     "spanish": "arreglarse; maquillarse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 25
   },
   {
     "character": "打扰",
     "pinyin": "dǎrǎo",
     "english": "disturb",
     "spanish": "molestar; interrumpir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 26
   },
   {
     "character": "打印",
     "pinyin": "dǎyìn",
     "english": "to print",
     "spanish": "imprimir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 27
   },
   {
     "character": "打招呼",
     "pinyin": "dǎzhāohu",
     "english": "notify; greet; inform",
     "spanish": "saludar; avisar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 28
   },
   {
     "character": "打折",
     "pinyin": "dǎzhé",
     "english": "sell at a discount",
     "spanish": "hacer descuento; rebajar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 29
   },
   {
     "character": "打针",
     "pinyin": "dǎzhēn",
     "english": "inject; get a shot",
     "spanish": "poner una inyección; vacunarse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 30
   },
   {
     "character": "大夫",
     "pinyin": "dàifu",
     "english": "doctor; physician",
     "spanish": "doctor; médico",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 34
   },
   {
     "character": "大概",
     "pinyin": "dàgài",
     "english": "probably; roughly; approximate",
     "spanish": "probablemente; aproximadamente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 31
   },
   {
     "character": "大使馆",
     "pinyin": "dàshǐguǎn",
     "english": "embassy",
     "spanish": "embajada",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 32
   },
   {
     "character": "大约",
     "pinyin": "dàyuē",
     "english": "approximately; about",
     "spanish": "aproximadamente; alrededor de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 33
   },
   {
     "character": "戴",
     "pinyin": "dài",
     "english": "put on; to wear; to respect",
     "spanish": "llevar puesto; ponerse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 35
   },
   {
     "character": "弹钢琴",
     "pinyin": "tán gāngqín",
     "english": "play the piano",
     "spanish": "tocar el piano",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 22
   },
   {
     "character": "当",
     "pinyin": "dāng",
     "english": "should; act as; work as; manage; match; (sound of bells)",
     "spanish": "ser; actuar como; trabajar de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 36
   },
   {
     "character": "当时",
     "pinyin": "dāngshí",
     "english": "then; at that time; while",
     "spanish": "en aquel momento; entonces",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 37
   },
   {
     "character": "刀",
     "pinyin": "dāo",
     "english": "knife; blade (Kangxi radical 18)",
     "spanish": "cuchillo; hoja",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 38
   },
   {
     "character": "导游",
     "pinyin": "dǎoyóu",
     "english": "tour guide",
     "spanish": "guía turístico",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 39
   },
   {
     "character": "到处",
     "pinyin": "dàochù",
     "english": "everywhere; in all places; all over",
     "spanish": "por todas partes",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 40
   },
   {
     "character": "到底",
     "pinyin": "dào dǐ",
     "english": "after all; in the end (used in a question)",
     "spanish": "al fin y al cabo; en definitiva",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 1
   },
   {
     "character": "倒",
     "pinyin": "dǎo, dào",
     "english": "to collapse; to fall; fail; to exchange | to pour; contrary to expectations",
     "spanish": "caer; volcar; verter; al contrario de lo esperado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 2
   },
   {
     "character": "道歉",
     "pinyin": "dàoqiàn",
     "english": "apologize; make an apology",
     "spanish": "pedir disculpas; disculparse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 3
   },
   {
     "character": "得",
     "pinyin": "de",
     "english": "(complement particle)",
     "spanish": "partícula de complemento",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 5
   },
   {
     "character": "得意",
     "pinyin": "déyì",
     "english": "proud of oneself; complacent",
     "spanish": "orgulloso de sí mismo; complacido",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 4
   },
   {
     "character": "地点",
     "pinyin": "dìdiǎn",
     "english": "place; site; location",
     "spanish": "lugar; ubicación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 10
   },
   {
     "character": "地球",
     "pinyin": "dìqiú",
     "english": "the Earth; planet",
     "spanish": "la Tierra; planeta",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 11
   },
   {
     "character": "地址",
     "pinyin": "dìzhǐ",
     "english": "address",
     "spanish": "dirección",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 12
   },
   {
     "character": "登机牌",
     "pinyin": "dēngjīpái",
     "english": "boarding pass",
     "spanish": "tarjeta de embarque",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 6
   },
   {
     "character": "等",
     "pinyin": "děng",
     "english": "to wait; rank; equal; etc.",
     "spanish": "esperar; rango; igual; etc.",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 7
   },
   {
     "character": "低",
     "pinyin": "dī",
     "english": "low; to lower (one's head); droop",
     "spanish": "bajo; bajar (la cabeza)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 8
   },
   {
     "character": "底",
     "pinyin": "dǐ",
     "english": "bottom; background; base",
     "spanish": "fondo; base",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 9
   },
   {
     "character": "调查",
     "pinyin": "diàochá",
     "english": "investigate; survey; inquiry",
     "spanish": "investigar; encuesta",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 13
   },
   {
     "character": "掉",
     "pinyin": "diào",
     "english": "to drop; to fall",
     "spanish": "caer; dejar caer",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 14
   },
   {
     "character": "丢",
     "pinyin": "diū",
     "english": "lose (something); throw; put aside",
     "spanish": "perder; tirar; dejar de lado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 15
   },
   {
     "character": "动作",
     "pinyin": "dòngzuò",
     "english": "movement; motion; action",
     "spanish": "movimiento; acción",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 16
   },
   {
     "character": "堵车",
     "pinyin": "dǔchē",
     "english": "traffic jam",
     "spanish": "atasco; embotellamiento",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 17
   },
   {
     "character": "肚子",
     "pinyin": "dùzi",
     "english": "belly; abdomen; stomach",
     "spanish": "vientre; abdomen; estómago",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 18
   },
   {
     "character": "短信",
     "pinyin": "duǎnxìn",
     "english": "text message; SMS",
     "spanish": "mensaje de texto; SMS",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 19
   },
   {
     "character": "对话",
     "pinyin": "duìhuà",
     "english": "dialogue; conversation",
     "spanish": "diálogo; conversación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 20
   },
   {
     "character": "对面",
     "pinyin": "duìmiàn",
     "english": "opposite; across from; the other side",
     "spanish": "enfrente; al otro lado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 21
   },
   {
     "character": "对于",
     "pinyin": "duìyú",
     "english": "regarding; as far as sth. is concerned; with regards to; for",
     "spanish": "respecto a; en cuanto a",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 22
   },
   {
     "character": "儿童",
     "pinyin": "értóng",
     "english": "child; children",
     "spanish": "niño; infancia",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 23
   },
   {
     "character": "而",
     "pinyin": "ér",
     "english": "and; but; yet; while (Kangxi radical 126)",
     "spanish": "y; pero; mientras que",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 24
   },
   {
     "character": "发生",
     "pinyin": "fāshēng",
     "english": "happen; occur; take place",
     "spanish": "ocurrir; suceder",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 25
   },
   {
     "character": "发展",
     "pinyin": "fāzhǎn",
     "english": "develop; development; growth",
     "spanish": "desarrollar; desarrollo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 26
   },
   {
     "character": "法律",
     "pinyin": "fǎlǜ",
     "english": "law; statute",
     "spanish": "ley; legislación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 27
   },
   {
     "character": "翻译",
     "pinyin": "fānyì",
     "english": "translate; translation; interpret",
     "spanish": "traducir; traducción; interpretar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 28
   },
   {
     "character": "烦恼",
     "pinyin": "fánnǎo",
     "english": "worried; vexed",
     "spanish": "preocupado; agobiado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 29
   },
   {
     "character": "反对",
     "pinyin": "fǎnduì",
     "english": "oppose; fight against",
     "spanish": "oponerse a",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 30
   },
   {
     "character": "方法",
     "pinyin": "fāngfǎ",
     "english": "method; way; means",
     "spanish": "método; forma",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 31
   },
   {
     "character": "方面",
     "pinyin": "fāngmiàn",
     "english": "aspect; field; side",
     "spanish": "aspecto; ámbito",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 32
   },
   {
     "character": "方向",
     "pinyin": "fāngxiàng",
     "english": "direction; orientation",
     "spanish": "dirección",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 33
   },
   {
     "character": "房东",
     "pinyin": "fángdōng",
     "english": "landlord",
     "spanish": "casero; propietario",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 34
   },
   {
     "character": "放弃",
     "pinyin": "fàngqì",
     "english": "abandon; renounce; give up",
     "spanish": "abandonar; renunciar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 35
   },
   {
     "character": "放暑假",
     "pinyin": "fàng shǔjià",
     "english": "have summer vacation",
     "spanish": "tener vacaciones de verano",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 36
   },
   {
     "character": "放松",
     "pinyin": "fàngsōng",
     "english": "relax; loosen; slacken",
     "spanish": "relajarse; aflojar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 37
   },
   {
     "character": "份",
     "pinyin": "fèn",
     "english": "part; portion; (mw for documents, papers, jobs, etc.)",
     "spanish": "parte; porción; clasificador",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 38
   },
   {
     "character": "丰富",
     "pinyin": "fēngfù",
     "english": "rich; enrich; abundant; plentiful",
     "spanish": "abundante; enriquecer",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 39
   },
   {
     "character": "否则",
     "pinyin": "fǒuzé",
     "english": "if not; otherwise; or else",
     "spanish": "si no; de lo contrario",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 3,
+    "lessonOrder": 40
   },
   {
     "character": "符合",
     "pinyin": "fúhé",
     "english": "in keeping with; in accordance with; conform",
     "spanish": "ajustarse a; cumplir con",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 1
   },
   {
     "character": "父亲",
     "pinyin": "fùqin",
     "english": "father",
     "spanish": "padre",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 2
   },
   {
     "character": "付款",
     "pinyin": "fù kuǎn",
     "english": "to pay",
     "spanish": "pagar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 3
   },
   {
     "character": "负责",
     "pinyin": "fùzé",
     "english": "responsible for (something); in charge of",
     "spanish": "ser responsable de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 4
   },
   {
     "character": "复印",
     "pinyin": "fùyìn",
     "english": "photocopy; duplicate",
     "spanish": "fotocopiar; copia",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 5
   },
   {
     "character": "复杂",
     "pinyin": "fùzá",
     "english": "complicated; complex",
     "spanish": "complejo; complicado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 6
   },
   {
     "character": "富",
     "pinyin": "fù",
     "english": "wealthy",
     "spanish": "rico; adinerado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 7
   },
   {
     "character": "改变",
     "pinyin": "gǎibiàn",
     "english": "to change; alter; to transform",
     "spanish": "cambiar; transformar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 8
   },
   {
     "character": "赶",
     "pinyin": "gǎn",
     "english": "catch up; overtake; drive away",
     "spanish": "alcanzar; darse prisa; ahuyentar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 10
   },
   {
     "character": "敢",
     "pinyin": "gǎn",
     "english": "to dare",
     "spanish": "atreverse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 11
   },
   {
     "character": "感动",
     "pinyin": "gǎndòng",
     "english": "be moved; to touch emotionally",
     "spanish": "conmover(se)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 12
   },
   {
     "character": "感觉",
     "pinyin": "gǎnjué",
     "english": "to feel; become aware of; feeling",
     "spanish": "sentir; sensación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 13
   },
   {
     "character": "感情",
     "pinyin": "gǎnqíng",
     "english": "feeling; emotion; sensation",
     "spanish": "sentimiento; emoción",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 14
   },
   {
     "character": "感谢",
     "pinyin": "gǎnxiè",
     "english": "thank; be grateful",
     "spanish": "agradecer; dar las gracias",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 15
   },
   {
     "character": "干",
     "pinyin": "gān",
     "english": "to concern; shield; dry; clean (Kangxi radical 51)",
     "spanish": "seco; limpio; hacer",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 16
   },
   {
     "character": "干杯",
     "pinyin": "gān bēi",
     "english": "to drink a toast; cheers!; bottoms up!",
     "spanish": "brindar; ¡salud!",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 9
   },
   {
     "character": "刚",
     "pinyin": "gāng",
     "english": "just (indicating the immediate past); recently; firm",
     "spanish": "justo; recién; firme",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 17
   },
   {
     "character": "高速公路",
     "pinyin": "gāosù gōnglù",
     "english": "highway",
     "spanish": "autopista",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 18
   },
   {
     "character": "胳膊",
     "pinyin": "gēbo",
     "english": "arm",
     "spanish": "brazo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 19
   },
   {
     "character": "各",
     "pinyin": "gè",
     "english": "each; every",
     "spanish": "cada",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 20
   },
   {
     "character": "工资",
     "pinyin": "gōngzī",
     "english": "wages; pay; earnings; salary",
     "spanish": "salario; sueldo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 21
   },
   {
     "character": "公里",
     "pinyin": "gōnglǐ",
     "english": "kilometer",
     "spanish": "kilómetro",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 22
   },
   {
     "character": "功夫",
     "pinyin": "gōngfu",
     "english": "kung fu; skill; art; labor",
     "spanish": "kung fu; habilidad; esfuerzo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 23
   },
   {
     "character": "共同",
     "pinyin": "gòngtóng",
     "english": "together; common; joint",
     "spanish": "conjunto; en común",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 24
   },
   {
     "character": "购物",
     "pinyin": "gòuwù",
     "english": "go shopping; buy goods",
     "spanish": "ir de compras",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 25
   },
   {
     "character": "够",
     "pinyin": "gòu",
     "english": "enough; to reach",
     "spanish": "suficiente; alcanzar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 26
   },
   {
     "character": "估计",
     "pinyin": "gūjì",
     "english": "appraise; estimate",
     "spanish": "estimar; cálculo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 27
   },
   {
     "character": "鼓励",
     "pinyin": "gǔlì",
     "english": "encourage; inspire",
     "spanish": "animar; motivar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 28
   },
   {
     "character": "故意",
     "pinyin": "gùyì",
     "english": "deliberately; intentional; on purpose",
     "spanish": "a propósito; deliberadamente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 29
   },
   {
     "character": "顾客",
     "pinyin": "gùkè",
     "english": "customer; client",
     "spanish": "cliente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 30
   },
   {
     "character": "挂",
     "pinyin": "guà",
     "english": "hang; put up; suspend",
     "spanish": "colgar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 31
   },
   {
     "character": "关键",
     "pinyin": "guānjiàn",
     "english": "crucial; key; pivotal",
     "spanish": "clave; crucial",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 32
   },
   {
     "character": "观众",
     "pinyin": "guānzhòng",
     "english": "spectator; audience",
     "spanish": "espectador; audiencia",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 33
   },
   {
     "character": "管理",
     "pinyin": "guǎnlǐ",
     "english": "supervise; manage",
     "spanish": "gestionar; administrar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 34
   },
   {
     "character": "光",
     "pinyin": "guāng",
     "english": "light; ray; bright; only; merely; used up",
     "spanish": "luz; rayo; solo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 35
   },
   {
     "character": "广播",
     "pinyin": "guǎngbō",
     "english": "broadcast; on the air",
     "spanish": "radiodifusión; emitir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 36
   },
   {
     "character": "广告",
     "pinyin": "guǎnggào",
     "english": "advertisement; a commercial",
     "spanish": "anuncio; publicidad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 37
   },
   {
     "character": "逛",
     "pinyin": "guàng",
     "english": "to stroll; to visit; go window shopping",
     "spanish": "pasear; curiosear tiendas",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 38
   },
   {
     "character": "规定",
     "pinyin": "guīdìng",
     "english": "regulation; stipulate; fix; set",
     "spanish": "norma; estipular",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 39
   },
   {
     "character": "国籍",
     "pinyin": "guójí",
     "english": "nationality",
     "spanish": "nacionalidad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 4,
+    "lessonOrder": 40
   },
   {
     "character": "国际",
     "pinyin": "guójì",
     "english": "international",
     "spanish": "internacional",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 1
   },
   {
     "character": "果汁",
     "pinyin": "guǒzhī",
     "english": "fruit juice",
     "spanish": "zumo de fruta",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 2
   },
   {
     "character": "过程",
     "pinyin": "guòchéng",
     "english": "course of events; process",
     "spanish": "proceso; transcurso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 3
   },
   {
     "character": "咳嗽",
     "pinyin": "késou",
     "english": "to cough",
     "spanish": "toser; tos",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 13
   },
   {
     "character": "海洋",
     "pinyin": "hǎiyáng",
     "english": "ocean",
     "spanish": "océano",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 4
   },
   {
     "character": "害羞",
     "pinyin": "hài xiū",
     "english": "blush; shy",
     "spanish": "tímido; avergonzarse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 5
   },
   {
     "character": "寒假",
     "pinyin": "hánjià",
     "english": "winter vacation",
     "spanish": "vacaciones de invierno",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 6
   },
   {
     "character": "汗",
     "pinyin": "hàn",
     "english": "sweat; perspiration; Khan",
     "spanish": "sudor",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 7
   },
   {
     "character": "航班",
     "pinyin": "hángbān",
     "english": "scheduled flight; flight number",
     "spanish": "vuelo programado; número de vuelo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 8
   },
   {
     "character": "好处",
     "pinyin": "hǎochu",
     "english": "benefit; advantage",
     "spanish": "beneficio; ventaja",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 9
   },
   {
     "character": "好像",
     "pinyin": "hǎoxiàng",
     "english": "as if; seem to be",
     "spanish": "parecer; como si",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 10
   },
   {
     "character": "号码",
     "pinyin": "hàomǎ",
     "english": "number",
     "spanish": "número",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 11
   },
   {
     "character": "合格",
     "pinyin": "hégé",
     "english": "qualified; up to standard",
     "spanish": "apto; conforme a estándar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 12
   },
   {
     "character": "合适",
     "pinyin": "héshì",
     "english": "suitable; proper; appropriate",
     "spanish": "adecuado; apropiado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 13
   },
   {
     "character": "盒子",
     "pinyin": "hézi",
     "english": "box",
     "spanish": "caja",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 14
   },
   {
     "character": "后悔",
     "pinyin": "hòuhuǐ",
     "english": "to regret; repent",
     "spanish": "arrepentirse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 15
   },
   {
     "character": "厚",
     "pinyin": "hòu",
     "english": "thick (for flat things); generous",
     "spanish": "grueso; generoso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 16
   },
   {
     "character": "互联网",
     "pinyin": "Hùliánwǎng",
     "english": "Internet",
     "spanish": "Internet",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 17
   },
   {
     "character": "互相",
     "pinyin": "hùxiāng",
     "english": "mutually; with each other",
     "spanish": "mutuamente; entre sí",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 18
   },
   {
     "character": "护士",
     "pinyin": "hùshi",
     "english": "nurse",
     "spanish": "enfermero; enfermera",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 19
   },
   {
     "character": "怀疑",
     "pinyin": "huáiyí",
     "english": "doubt; to suspect; be skeptical",
     "spanish": "dudar; sospechar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 20
   },
   {
     "character": "回忆",
     "pinyin": "huíyì",
     "english": "to recall; recollect",
     "spanish": "recordar; recuerdo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 21
   },
   {
     "character": "活动",
     "pinyin": "huódòng",
     "english": "activity; exercise; move about",
     "spanish": "actividad; moverse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 22
   },
   {
     "character": "活泼",
     "pinyin": "huópo",
     "english": "lively; vivacious",
     "spanish": "vivaz; alegre",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 23
   },
   {
     "character": "火",
     "pinyin": "huǒ",
     "english": "fire (Kangxi radical 86)",
     "spanish": "fuego",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 24
   },
   {
     "character": "获得",
     "pinyin": "huòdé",
     "english": "obtain; acquire; to gain",
     "spanish": "obtener; conseguir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 25
   },
   {
     "character": "积极",
     "pinyin": "jījí",
     "english": "active; positive; energetic",
     "spanish": "activo; positivo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 26
   },
   {
     "character": "积累",
     "pinyin": "jīlěi",
     "english": "accumulate; accumulation",
     "spanish": "acumular; acumulación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 27
   },
   {
     "character": "基础",
     "pinyin": "jīchǔ",
     "english": "base; foundation",
     "spanish": "base; fundamento",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 28
   },
   {
     "character": "激动",
     "pinyin": "jīdòng",
     "english": "excite; agitate",
     "spanish": "emocionar; alterarse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 29
   },
   {
     "character": "及时",
     "pinyin": "jíshí",
     "english": "timely; in time; promptly; without delay",
     "spanish": "a tiempo; oportunamente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 30
   },
   {
     "character": "即使",
     "pinyin": "jíshǐ",
     "english": "even if; even though",
     "spanish": "aunque; incluso si",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 31
   },
   {
     "character": "计划",
     "pinyin": "jìhuà",
     "english": "plan; project",
     "spanish": "plan; proyecto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 32
   },
   {
     "character": "记者",
     "pinyin": "jìzhě",
     "english": "reporter; journalist",
     "spanish": "periodista; reportero",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 33
   },
   {
     "character": "技术",
     "pinyin": "jìshù",
     "english": "technology; technique; skill",
     "spanish": "tecnología; técnica",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 34
   },
   {
     "character": "既然",
     "pinyin": "jìrán",
     "english": "since; given that; now that",
     "spanish": "ya que; dado que",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 35
   },
   {
     "character": "继续",
     "pinyin": "jìxù",
     "english": "to continue; to go on; to proceed",
     "spanish": "continuar; seguir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 36
   },
   {
     "character": "寄",
     "pinyin": "jì",
     "english": "send by mail",
     "spanish": "enviar por correo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 37
   },
   {
     "character": "加班",
     "pinyin": "jiā bān",
     "english": "work overtime",
     "spanish": "hacer horas extra",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 38
   },
   {
     "character": "加油站",
     "pinyin": "jiāyóuzhàn",
     "english": "gas station",
     "spanish": "gasolinera",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 39
   },
   {
     "character": "家具",
     "pinyin": "jiājù",
     "english": "furniture",
     "spanish": "muebles",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 5,
+    "lessonOrder": 40
   },
   {
     "character": "假",
     "pinyin": "jiǎ, jià",
     "english": "fake; if; borrow | vacation; holiday",
     "spanish": "falso; si; pedir prestado | vacaciones; festivo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 1
   },
   {
     "character": "价格",
     "pinyin": "jiàgé",
     "english": "price",
     "spanish": "precio",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 2
   },
   {
     "character": "坚持",
     "pinyin": "jiānchí",
     "english": "persist in; persevere",
     "spanish": "persistir; perseverar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 3
   },
   {
     "character": "减肥",
     "pinyin": "jiǎnféi",
     "english": "go on a diet; lose weight",
     "spanish": "ponerse a dieta; adelgazar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 4
   },
   {
     "character": "减少",
     "pinyin": "jiǎnshǎo",
     "english": "reduce; to decrease",
     "spanish": "reducir; disminuir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 5
   },
   {
     "character": "建议",
     "pinyin": "jiànyì",
     "english": "to propose; to suggest; recommend",
     "spanish": "proponer; sugerir; recomendar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 6
   },
   {
     "character": "将来",
     "pinyin": "jiānglái",
     "english": "the future",
     "spanish": "el futuro",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 7
   },
   {
     "character": "奖金",
     "pinyin": "jiǎngjīn",
     "english": "bonus",
     "spanish": "bono; prima",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 8
   },
   {
     "character": "降低",
     "pinyin": "jiàngdī",
     "english": "reduce; to lower; to drop",
     "spanish": "reducir; bajar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 9
   },
   {
     "character": "降落",
     "pinyin": "jiàngluò",
     "english": "descend; to land; put down",
     "spanish": "descender; aterrizar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 10
   },
   {
     "character": "交",
     "pinyin": "jiāo",
     "english": "deliver; turn over; intersect; to pay (money); friendship",
     "spanish": "entregar; transferir; cruzarse; pagar; amistad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 11
   },
   {
     "character": "交流",
     "pinyin": "jiāoliú",
     "english": "communicate; exchange; give and take; interaction; to alternate",
     "spanish": "comunicar; intercambiar; interacción",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 12
   },
   {
     "character": "交通",
     "pinyin": "jiāotōng",
     "english": "traffic; transportation",
     "spanish": "tráfico; transporte",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 13
   },
   {
     "character": "郊区",
     "pinyin": "jiāoqū",
     "english": "suburbs; outskirts",
     "spanish": "suburbios; afueras",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 14
   },
   {
     "character": "骄傲",
     "pinyin": "jiāo'ào",
     "english": "proud; arrogant; conceited; take pride in",
     "spanish": "orgulloso; arrogante; enorgullecerse de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 15
   },
   {
     "character": "饺子",
     "pinyin": "jiǎozi",
     "english": "dumpling; potsticker",
     "spanish": "empanadilla china; jiaozi",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 16
   },
   {
     "character": "教授",
     "pinyin": "jiàoshòu",
     "english": "professor; instruct; to lecture",
     "spanish": "profesor; instruir; dar clase",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 17
   },
   {
     "character": "教育",
     "pinyin": "jiàoyù",
     "english": "education",
     "spanish": "educación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 18
   },
   {
     "character": "接受",
     "pinyin": "jiēshòu",
     "english": "accept; receive (honors, etc.)",
     "spanish": "aceptar; recibir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 19
   },
   {
     "character": "接着",
     "pinyin": "jiēzhe",
     "english": "continue; carry on; to catch; follow",
     "spanish": "continuar; seguir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 20
   },
   {
     "character": "节",
     "pinyin": "jié",
     "english": "section; part; festival; moral integrity; save; (mw for class periods)",
     "spanish": "sección; parte; festival; integridad; ahorrar; clasificador de clases",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 21
   },
   {
     "character": "节约",
     "pinyin": "jiéyuē",
     "english": "frugal; to save",
     "spanish": "ahorrar; frugal",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 22
   },
   {
     "character": "结果",
     "pinyin": "jiéguǒ",
     "english": "result; outcome; finally",
     "spanish": "resultado; finalmente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 23
   },
   {
     "character": "解释",
     "pinyin": "jiěshì",
     "english": "to explain",
     "spanish": "explicar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 24
   },
   {
     "character": "尽管",
     "pinyin": "jǐnguǎn",
     "english": "despite; although; even though | freely; without hesitation",
     "spanish": "a pesar de; aunque | libremente; sin dudar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 25
   },
   {
     "character": "紧张",
     "pinyin": "jǐnzhāng",
     "english": "nervous; tension; strain",
     "spanish": "nervioso; tensión",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 26
   },
   {
     "character": "进行",
     "pinyin": "jìnxíng",
     "english": "carry on; carry out; undertake",
     "spanish": "llevar a cabo; realizar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 27
   },
   {
     "character": "禁止",
     "pinyin": "jìnzhǐ",
     "english": "to ban; prohibit",
     "spanish": "prohibir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 28
   },
   {
     "character": "京剧",
     "pinyin": "jīngjù",
     "english": "Beijing Opera",
     "spanish": "Ópera de Pekín",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 29
   },
   {
     "character": "经济",
     "pinyin": "jīngjì",
     "english": "economy; economic",
     "spanish": "economía; económico",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 30
   },
   {
     "character": "经历",
     "pinyin": "jīnglì",
     "english": "undergo; to experience",
     "spanish": "experimentar; pasar por",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 31
   },
   {
     "character": "经验",
     "pinyin": "jīngyàn",
     "english": "experience",
     "spanish": "experiencia",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 32
   },
   {
     "character": "精彩",
     "pinyin": "jīngcǎi",
     "english": "brilliant; spectacular; wonderful",
     "spanish": "brillante; espectacular; maravilloso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 33
   },
   {
     "character": "景色",
     "pinyin": "jǐngsè",
     "english": "scenery; landscape; scene; view",
     "spanish": "paisaje; vista",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 34
   },
   {
     "character": "警察",
     "pinyin": "jǐngchá",
     "english": "police",
     "spanish": "policía",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 35
   },
   {
     "character": "竞争",
     "pinyin": "jìngzhēng",
     "english": "compete",
     "spanish": "competir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 36
   },
   {
     "character": "竟然",
     "pinyin": "jìngrán",
     "english": "unexpectedly; to one's surprise; go so far as to",
     "spanish": "inesperadamente; para sorpresa de uno",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 37
   },
   {
     "character": "镜子",
     "pinyin": "jìngzi",
     "english": "mirror",
     "spanish": "espejo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 38
   },
   {
     "character": "究竟",
     "pinyin": "jiūjìng",
     "english": "after all; when all is said and done; actually",
     "spanish": "al fin y al cabo; en realidad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 39
   },
   {
     "character": "举",
     "pinyin": "jǔ",
     "english": "lift; raise; cite",
     "spanish": "levantar; alzar; citar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 6,
+    "lessonOrder": 40
   },
   {
     "character": "举办",
     "pinyin": "jǔbàn",
     "english": "to conduct; to hold",
     "spanish": "organizar; celebrar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 1
   },
   {
     "character": "举行",
     "pinyin": "jǔxíng",
     "english": "convene; to hold (a meeting, ceremony, etc.)",
     "spanish": "celebrar; llevar a cabo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 2
   },
   {
     "character": "拒绝",
     "pinyin": "jùjué",
     "english": "to refuse; to decline; to reject",
     "spanish": "rechazar; negarse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 3
   },
   {
     "character": "距离",
     "pinyin": "jùlí",
     "english": "distance; be apart; away from",
     "spanish": "distancia; estar separado de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 4
   },
   {
     "character": "聚会",
     "pinyin": "jùhuì",
     "english": "hold a meeting; get together; a party",
     "spanish": "reunirse; fiesta; reunión",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 5
   },
   {
     "character": "开玩笑",
     "pinyin": "kāi wánxiào",
     "english": "joke; play a joke; make fun of",
     "spanish": "bromear; tomar el pelo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 6
   },
   {
     "character": "开心",
     "pinyin": "kāixīn",
     "english": "feel happy; have a great time; make fun of somebody",
     "spanish": "estar contento; pasarlo bien",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 7
   },
   {
     "character": "看法",
     "pinyin": "kànfǎ",
     "english": "point of view; opinion",
     "spanish": "punto de vista; opinión",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 8
   },
   {
     "character": "考虑",
     "pinyin": "kǎolǜ",
     "english": "think over; consider",
     "spanish": "considerar; pensar detenidamente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 9
   },
   {
     "character": "烤鸭",
     "pinyin": "kǎoyā",
     "english": "roast duck",
     "spanish": "pato asado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 10
   },
   {
     "character": "科学",
     "pinyin": "kēxué",
     "english": "science; scientific knowledge",
     "spanish": "ciencia; conocimiento científico",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 11
   },
   {
     "character": "棵",
     "pinyin": "kē",
     "english": "(mw for plants)",
     "spanish": "clasificador para plantas",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 12
   },
   {
     "character": "可怜",
     "pinyin": "kělián",
     "english": "pitiful; poor; pathetic",
     "spanish": "lamentable; pobre; digno de lástima",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 14
   },
   {
     "character": "可是",
     "pinyin": "kěshì",
     "english": "but; however",
     "spanish": "pero; sin embargo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 15
   },
   {
     "character": "可惜",
     "pinyin": "kěxī",
     "english": "it's a pity; regrettable; too bad",
     "spanish": "qué lástima; lamentable",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 16
   },
   {
     "character": "客厅",
     "pinyin": "kètīng",
     "english": "living room; parlor",
     "spanish": "sala de estar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 17
   },
   {
     "character": "肯定",
     "pinyin": "kěndìng",
     "english": "sure; definite; affirm; approve",
     "spanish": "seguro; afirmar; aprobar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 18
   },
   {
     "character": "空",
     "pinyin": "kōng, kòng",
     "english": "empty; sky | leave blank; leisure",
     "spanish": "vacío; cielo | dejar en blanco; tiempo libre",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 19
   },
   {
     "character": "空气",
     "pinyin": "kōngqì",
     "english": "air",
     "spanish": "aire",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 20
   },
   {
     "character": "恐怕",
     "pinyin": "kǒngpà",
     "english": "be afraid; to fear; I'm afraid that...",
     "spanish": "temer; me temo que...",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 21
   },
   {
     "character": "苦",
     "pinyin": "kǔ",
     "english": "bitter; miserable",
     "spanish": "amargo; sufriente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 22
   },
   {
     "character": "矿泉水",
     "pinyin": "kuàngquánshuǐ",
     "english": "mineral water",
     "spanish": "agua mineral",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 23
   },
   {
     "character": "困",
     "pinyin": "kùn",
     "english": "sleepy; surround; hard-pressed",
     "spanish": "somnoliento; rodear; en apuros",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 24
   },
   {
     "character": "困难",
     "pinyin": "kùnnan",
     "english": "difficulty; difficult; problem",
     "spanish": "dificultad; difícil; problema",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 25
   },
   {
     "character": "垃圾桶",
     "pinyin": "lājītǒng",
     "english": "garbage can",
     "spanish": "cubo de basura",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 26
   },
   {
     "character": "拉",
     "pinyin": "lā",
     "english": "to pull; to play (string instruments); to drag",
     "spanish": "tirar de; tocar (instrumentos de cuerda); arrastrar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 27
   },
   {
     "character": "辣",
     "pinyin": "là",
     "english": "hot (spicy)",
     "spanish": "picante",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 28
   },
   {
     "character": "来不及",
     "pinyin": "lái bu jí",
     "english": "there's not enough time (to do something); it's too late",
     "spanish": "no llegar a tiempo; ser demasiado tarde",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 29
   },
   {
     "character": "来得及",
     "pinyin": "lái de jí",
     "english": "there's still time",
     "spanish": "llegar a tiempo; aún hay tiempo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 30
   },
   {
     "character": "来自",
     "pinyin": "láizì",
     "english": "come from (a place)",
     "spanish": "venir de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 31
   },
   {
     "character": "懒",
     "pinyin": "lǎn",
     "english": "lazy",
     "spanish": "perezoso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 32
   },
   {
     "character": "浪费",
     "pinyin": "làngfèi",
     "english": "to waste; squander",
     "spanish": "malgastar; desperdiciar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 33
   },
   {
     "character": "浪漫",
     "pinyin": "làngmàn",
     "english": "romantic",
     "spanish": "romántico",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 34
   },
   {
     "character": "老虎",
     "pinyin": "lǎohǔ",
     "english": "tiger",
     "spanish": "tigre",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 35
   },
   {
     "character": "冷静",
     "pinyin": "lěngjìng",
     "english": "calm; cool-headed; sober",
     "spanish": "calmado; sereno",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 36
   },
   {
     "character": "礼拜天",
     "pinyin": "lǐbàitiān",
     "english": "Sunday",
     "spanish": "domingo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 37
   },
   {
     "character": "礼貌",
     "pinyin": "lǐmào",
     "english": "courtesy; politeness; manners",
     "spanish": "cortesía; educación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 38
   },
   {
     "character": "理发",
     "pinyin": "lǐfà",
     "english": "a barber, hairdressing; haircut",
     "spanish": "cortar el pelo; peluquería",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 39
   },
   {
     "character": "理解",
     "pinyin": "lǐjiě",
     "english": "comprehend; understand",
     "spanish": "comprender; entender",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 7,
+    "lessonOrder": 40
   },
   {
     "character": "理想",
     "pinyin": "lǐxiǎng",
     "english": "ideal",
     "spanish": "ideal",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 1
   },
   {
     "character": "力气",
     "pinyin": "lìqi",
     "english": "physical strength; effort",
     "spanish": "fuerza física; esfuerzo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 2
   },
   {
     "character": "厉害",
     "pinyin": "lìhai",
     "english": "terrible; formidable; fierce; cool; awesome",
     "spanish": "formidable; fuerte; impresionante",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 3
   },
   {
     "character": "例如",
     "pinyin": "lìrú",
     "english": "for example; for instance",
     "spanish": "por ejemplo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 4
   },
   {
     "character": "俩",
     "pinyin": "liǎng",
     "english": "(colloquial) two (people)",
     "spanish": "dos (personas, coloquial)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 5
   },
   {
     "character": "连",
     "pinyin": "lián",
     "english": "even; including; join",
     "spanish": "incluso; incluyendo; conectar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 6
   },
   {
     "character": "联系",
     "pinyin": "liánxì",
     "english": "integrate; link; connection; contact",
     "spanish": "conectar; vínculo; contacto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 7
   },
   {
     "character": "凉快",
     "pinyin": "liángkuai",
     "english": "nice and cool; pleasantly cool",
     "spanish": "fresco; agradablemente fresco",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 8
   },
   {
     "character": "零钱",
     "pinyin": "língqián",
     "english": "small change (of money)",
     "spanish": "calderilla; cambio suelto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 9
   },
   {
     "character": "另外",
     "pinyin": "lìngwài",
     "english": "another; in addition; besides",
     "spanish": "otro; además",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 10
   },
   {
     "character": "流利",
     "pinyin": "liúlì",
     "english": "fluent",
     "spanish": "fluido",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 12
   },
   {
     "character": "流行",
     "pinyin": "liúxíng",
     "english": "spread; prevalent; be popular",
     "spanish": "popular; ponerse de moda; difundirse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 13
   },
   {
     "character": "留",
     "pinyin": "liú",
     "english": "to leave (behind, a message); to retain; to stay",
     "spanish": "dejar; conservar; quedarse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 11
   },
   {
     "character": "旅行",
     "pinyin": "lǚxíng",
     "english": "travel",
     "spanish": "viajar; viaje",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 14
   },
   {
     "character": "律师",
     "pinyin": "lǜshī",
     "english": "lawyer",
     "spanish": "abogado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 15
   },
   {
     "character": "乱",
     "pinyin": "luàn",
     "english": "disorder; confusion; arbitrarily",
     "spanish": "desorden; confusión; arbitrariamente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 16
   },
   {
     "character": "麻烦",
     "pinyin": "máfan",
     "english": "trouble (someone); troubling; bothersome",
     "spanish": "molestia; problemático; molestar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 17
   },
   {
     "character": "马虎",
     "pinyin": "mǎhu",
     "english": "careless; sloppy; casual",
     "spanish": "descuidado; chapucero",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 18
   },
   {
     "character": "满",
     "pinyin": "mǎn",
     "english": "full; abbreviation for Manchurian",
     "spanish": "lleno; abreviatura de manchú",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 19
   },
   {
     "character": "毛",
     "pinyin": "máo",
     "english": "hair; fur; feather; dime (Kangxi radical 82)",
     "spanish": "pelo; pelaje; pluma; diez centavos (mao)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 20
   },
   {
     "character": "毛巾",
     "pinyin": "máojīn",
     "english": "towel; washcloth",
     "spanish": "toalla; paño",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 21
   },
   {
     "character": "美丽",
     "pinyin": "měilì",
     "english": "beautiful",
     "spanish": "hermoso; bello",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 22
   },
   {
     "character": "梦",
     "pinyin": "mèng",
     "english": "to dream",
     "spanish": "soñar; sueño",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 23
   },
   {
     "character": "迷路",
     "pinyin": "mílù",
     "english": "to get lost",
     "spanish": "perderse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 24
   },
   {
     "character": "密码",
     "pinyin": "mìmǎ",
     "english": "password; secret code",
     "spanish": "contraseña; código secreto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 25
   },
   {
     "character": "免费",
     "pinyin": "miǎn fèi",
     "english": "free (of charge); no cost",
     "spanish": "gratis; sin costo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 26
   },
   {
     "character": "秒",
     "pinyin": "miǎo",
     "english": "second (unit of time or angle)",
     "spanish": "segundo (unidad de tiempo)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 27
   },
   {
     "character": "民族",
     "pinyin": "mínzú",
     "english": "nationality; ethnic group",
     "spanish": "etnia; nacionalidad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 28
   },
   {
     "character": "母亲",
     "pinyin": "mǔqin",
     "english": "mother",
     "spanish": "madre",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 29
   },
   {
     "character": "目的",
     "pinyin": "mùdì",
     "english": "purpose; aim; goal",
     "spanish": "objetivo; propósito",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 30
   },
   {
     "character": "耐心",
     "pinyin": "nàixīn",
     "english": "to be patient",
     "spanish": "paciencia; ser paciente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 31
   },
   {
     "character": "难道",
     "pinyin": "nándào",
     "english": "could it be that ...?; don't tell me ...",
     "spanish": "¿acaso...?; ¿no me digas que...?",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 32
   },
   {
     "character": "难受",
     "pinyin": "nánshòu",
     "english": "feel unwell; to suffer pain",
     "spanish": "sentirse mal; sufrir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 33
   },
   {
     "character": "内",
     "pinyin": "nèi",
     "english": "inside; inner; internal; within",
     "spanish": "interior; dentro de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 34
   },
   {
     "character": "内容",
     "pinyin": "nèiróng",
     "english": "content; substance; details",
     "spanish": "contenido; detalles",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 35
   },
   {
     "character": "能力",
     "pinyin": "nénglì",
     "english": "capability; capable; ability",
     "spanish": "capacidad; habilidad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 36
   },
   {
     "character": "年龄",
     "pinyin": "niánlíng",
     "english": "(a person's) age",
     "spanish": "edad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 37
   },
   {
     "character": "弄",
     "pinyin": "nòng",
     "english": "do; manage; to handle; make",
     "spanish": "hacer; manejar; arreglar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 38
   },
   {
     "character": "暖和",
     "pinyin": "nuǎnhuo",
     "english": "warm; nice and warm",
     "spanish": "templado; cálido",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 39
   },
   {
     "character": "偶尔",
     "pinyin": "ǒu'ěr",
     "english": "occasionally; once in a while; sometimes",
     "spanish": "de vez en cuando; ocasionalmente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 8,
+    "lessonOrder": 40
   },
   {
     "character": "排队",
     "pinyin": "pái duì",
     "english": "queue; stand in line",
     "spanish": "hacer cola",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 1
   },
   {
     "character": "排列",
     "pinyin": "páiliè",
     "english": "arrange; align; permutation",
     "spanish": "ordenar; alinear; permutación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 2
   },
   {
     "character": "判断",
     "pinyin": "pànduàn",
     "english": "to judge; judgment; to decide",
     "spanish": "juzgar; juicio; decidir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 3
   },
   {
     "character": "陪",
     "pinyin": "péi",
     "english": "accompany; keep company",
     "spanish": "acompañar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 4
   },
   {
     "character": "批评",
     "pinyin": "pīpíng",
     "english": "criticize",
     "spanish": "criticar; crítica",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 5
   },
   {
     "character": "皮肤",
     "pinyin": "pífū",
     "english": "skin",
     "spanish": "piel",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 6
   },
   {
     "character": "脾气",
     "pinyin": "píqi",
     "english": "temperament; disposition; temper",
     "spanish": "carácter; temperamento",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 7
   },
   {
     "character": "篇",
     "pinyin": "piān",
     "english": "sheet; (mw for articles); piece of writing",
     "spanish": "pieza escrita; clasificador de artículos",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 8
   },
   {
     "character": "骗",
     "pinyin": "piàn",
     "english": "to cheat; to swindle; deceive",
     "spanish": "engañar; estafar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 9
   },
   {
     "character": "乒乓球",
     "pinyin": "pīngpāngqiú",
     "english": "ping pong; table tennis",
     "spanish": "tenis de mesa; ping-pong",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 10
   },
   {
     "character": "平时",
     "pinyin": "píngshí",
     "english": "ordinarily; in normal times; in peacetime",
     "spanish": "normalmente; en tiempos normales",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 11
   },
   {
     "character": "破",
     "pinyin": "pò",
     "english": "broken; damaged; to split",
     "spanish": "roto; romper",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 12
   },
   {
     "character": "葡萄",
     "pinyin": "pútao",
     "english": "grape",
     "spanish": "uva",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 13
   },
   {
     "character": "普遍",
     "pinyin": "pǔbiàn",
     "english": "common; universal; general; widespread",
     "spanish": "común; generalizado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 14
   },
   {
     "character": "普通话",
     "pinyin": "pǔtōnghuà",
     "english": "Mandarin (common language)",
     "spanish": "mandarín (putonghua)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 15
   },
   {
     "character": "其次",
     "pinyin": "qícì",
     "english": "next; secondly",
     "spanish": "en segundo lugar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 16
   },
   {
     "character": "其中",
     "pinyin": "qízhōng",
     "english": "among; in; included among these",
     "spanish": "entre ellos; dentro de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 17
   },
   {
     "character": "气候",
     "pinyin": "qìhòu",
     "english": "climate; atmosphere; weather",
     "spanish": "clima",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 18
   },
   {
     "character": "千万",
     "pinyin": "qiānwàn",
     "english": "ten million; be sure to; must",
     "spanish": "diez millones; asegúrate de; debes",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 19
   },
   {
     "character": "签证",
     "pinyin": "qiānzhèng",
     "english": "visa",
     "spanish": "visado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 20
   },
   {
     "character": "敲",
     "pinyin": "qiāo",
     "english": "knock; blackmail",
     "spanish": "golpear; llamar (a la puerta)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 21
   },
   {
     "character": "桥",
     "pinyin": "qiáo",
     "english": "bridge",
     "spanish": "puente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 22
   },
   {
     "character": "巧克力",
     "pinyin": "qiǎokèlì",
     "english": "chocolate",
     "spanish": "chocolate",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 23
   },
   {
     "character": "亲戚",
     "pinyin": "qīnqi",
     "english": "a relative (i.e. family relation)",
     "spanish": "pariente; familiar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 24
   },
   {
     "character": "轻",
     "pinyin": "qīng",
     "english": "light; easy; gentle; soft",
     "spanish": "ligero; suave; fácil",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 25
   },
   {
     "character": "轻松",
     "pinyin": "qīngsōng",
     "english": "relaxed; gentle; easygoing",
     "spanish": "relajado; tranquilo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 26
   },
   {
     "character": "情况",
     "pinyin": "qíngkuàng",
     "english": "circumstance; state of affairs; situation",
     "spanish": "situación; circunstancia",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 27
   },
   {
     "character": "穷",
     "pinyin": "qióng",
     "english": "poor; exhausted",
     "spanish": "pobre; agotado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 28
   },
   {
     "character": "区别",
     "pinyin": "qūbié",
     "english": "difference; distinguish",
     "spanish": "diferencia; distinguir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 29
   },
   {
     "character": "取",
     "pinyin": "qǔ",
     "english": "to take; get; choose",
     "spanish": "tomar; obtener; elegir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 30
   },
   {
     "character": "全部",
     "pinyin": "quánbù",
     "english": "whole; entire; complete",
     "spanish": "todo; completo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 31
   },
   {
     "character": "缺点",
     "pinyin": "quēdiǎn",
     "english": "weak point; defect; fault; shortcoming",
     "spanish": "defecto; punto débil",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 32
   },
   {
     "character": "缺少",
     "pinyin": "quēshǎo",
     "english": "to lack; be short of; be deficient in",
     "spanish": "carecer de; faltar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 33
   },
   {
     "character": "却",
     "pinyin": "què",
     "english": "but; yet; however",
     "spanish": "sin embargo; pero",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 34
   },
   {
     "character": "确实",
     "pinyin": "quèshí",
     "english": "indeed; in truth; reliable",
     "spanish": "realmente; en efecto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 35
   },
   {
     "character": "然而",
     "pinyin": "rán'ér",
     "english": "however; yet; but",
     "spanish": "sin embargo; no obstante",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 36
   },
   {
     "character": "热闹",
     "pinyin": "rènao",
     "english": "bustling; lively; busy",
     "spanish": "animado; bullicioso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 37
   },
   {
     "character": "任何",
     "pinyin": "rènhé",
     "english": "any; whatever; whichever",
     "spanish": "cualquier; cualquiera",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 38
   },
   {
     "character": "任务",
     "pinyin": "rènwu",
     "english": "a mission; an assignment; a task",
     "spanish": "tarea; misión",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 39
   },
   {
     "character": "扔",
     "pinyin": "rēng",
     "english": "to throw; throw away",
     "spanish": "tirar; arrojar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 9,
+    "lessonOrder": 40
   },
   {
     "character": "仍然",
     "pinyin": "réngrán",
     "english": "still; yet",
     "spanish": "todavía; aún",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 1
   },
   {
     "character": "日记",
     "pinyin": "rìjì",
     "english": "diary",
     "spanish": "diario",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 2
   },
   {
     "character": "入口",
     "pinyin": "rùkǒu",
     "english": "entrance",
     "spanish": "entrada",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 3
   },
   {
     "character": "散步",
     "pinyin": "sàn bù",
     "english": "to go for a walk",
     "spanish": "dar un paseo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 4
   },
   {
     "character": "森林",
     "pinyin": "sēnlín",
     "english": "forest",
     "spanish": "bosque",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 5
   },
   {
     "character": "沙发",
     "pinyin": "shāfā",
     "english": "sofa",
     "spanish": "sofá",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 6
   },
   {
     "character": "伤心",
     "pinyin": "shāngxīn",
     "english": "sad; grieve; brokenhearted",
     "spanish": "triste; afligido",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 7
   },
   {
     "character": "商量",
     "pinyin": "shāngliang",
     "english": "consult; talk over; discuss",
     "spanish": "consultar; discutir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 8
   },
   {
     "character": "稍微",
     "pinyin": "shāowēi",
     "english": "a little bit; slightly",
     "spanish": "un poco; ligeramente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 9
   },
   {
     "character": "勺子",
     "pinyin": "sháozi",
     "english": "spoon; scoop; ladle",
     "spanish": "cuchara; cucharón",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 10
   },
   {
     "character": "社会",
     "pinyin": "shèhuì",
     "english": "society",
     "spanish": "sociedad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 11
   },
   {
     "character": "申请",
     "pinyin": "shēnqǐng",
     "english": "apply for; application",
     "spanish": "solicitar; solicitud",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 12
   },
   {
     "character": "深",
     "pinyin": "shēn",
     "english": "deep; profound; dark (of colors)",
     "spanish": "profundo; oscuro",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 13
   },
   {
     "character": "甚至",
     "pinyin": "shènzhì",
     "english": "even (to the point of); so much so that",
     "spanish": "incluso; hasta el punto de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 14
   },
   {
     "character": "生活",
     "pinyin": "shēnghuó",
     "english": "life; livelihood; to live",
     "spanish": "vida; vivir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 15
   },
   {
     "character": "生命",
     "pinyin": "shēngmìng",
     "english": "life",
     "spanish": "vida",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 16
   },
   {
     "character": "生意",
     "pinyin": "shēngyi",
     "english": "business; trade",
     "spanish": "negocio; comercio",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 17
   },
   {
     "character": "省",
     "pinyin": "shěng",
     "english": "to save; economize; omit; province",
     "spanish": "ahorrar; omitir; provincia",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 18
   },
   {
     "character": "剩",
     "pinyin": "shèng",
     "english": "have as remainder; be left over; surplus",
     "spanish": "sobrar; restante",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 19
   },
   {
     "character": "失败",
     "pinyin": "shībài",
     "english": "be defeated; fail; lose",
     "spanish": "fracasar; perder",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 20
   },
   {
     "character": "失望",
     "pinyin": "shīwàng",
     "english": "disappointed; lose hope",
     "spanish": "decepcionado; perder la esperanza",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 21
   },
   {
     "character": "师傅",
     "pinyin": "shīfu",
     "english": "master; qualified worker; teacher",
     "spanish": "maestro; trabajador cualificado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 22
   },
   {
     "character": "十分",
     "pinyin": "shífēn",
     "english": "very; fully; 100%",
     "spanish": "muy; completamente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 23
   },
   {
     "character": "实际",
     "pinyin": "shíjì",
     "english": "actual; reality; practice",
     "spanish": "real; realidad; práctico",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 24
   },
   {
     "character": "实在",
     "pinyin": "shízài",
     "english": "honest; in reality; honestly; indeed; certainly",
     "spanish": "realmente; sinceramente; de verdad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 25
   },
   {
     "character": "使",
     "pinyin": "shǐ",
     "english": "to use; to make; to cause; enable; envoy; messenger",
     "spanish": "hacer; causar; usar; habilitar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 26
   },
   {
     "character": "使用",
     "pinyin": "shǐyòng",
     "english": "to use; employ; apply; administer; manipulate",
     "spanish": "usar; aplicar; emplear",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 27
   },
   {
     "character": "世纪",
     "pinyin": "shìjì",
     "english": "century",
     "spanish": "siglo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 28
   },
   {
     "character": "是否",
     "pinyin": "shìfǒu",
     "english": "whether (or not); if",
     "spanish": "si; si o no",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 29
   },
   {
     "character": "适合",
     "pinyin": "shìhé",
     "english": "to suit; to fit",
     "spanish": "adecuarse; encajar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 30
   },
   {
     "character": "适应",
     "pinyin": "shìyìng",
     "english": "to suit; to fit; adapt",
     "spanish": "adaptarse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 31
   },
   {
     "character": "收",
     "pinyin": "shōu",
     "english": "receive; accept; collect; to harvest",
     "spanish": "recibir; aceptar; recoger",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 32
   },
   {
     "character": "收入",
     "pinyin": "shōurù",
     "english": "take in; income; revenue",
     "spanish": "ingresos; recaudar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 33
   },
   {
     "character": "收拾",
     "pinyin": "shōushi",
     "english": "to tidy; put in order; to repair; to settle with; punish",
     "spanish": "ordenar; arreglar; castigar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 34
   },
   {
     "character": "首都",
     "pinyin": "shǒudū",
     "english": "capital (city)",
     "spanish": "capital",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 35
   },
   {
     "character": "首先",
     "pinyin": "shǒuxiān",
     "english": "first (of all); in the first place; firstly",
     "spanish": "primero; en primer lugar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 36
   },
   {
     "character": "受不了",
     "pinyin": "shòu bu liǎo",
     "english": "cannot endure; unbearable; can't stand",
     "spanish": "no poder soportar; insoportable",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 37
   },
   {
     "character": "受到",
     "pinyin": "shòudào",
     "english": "receive (influence, restriction, etc.); be subjected to",
     "spanish": "recibir; verse afectado por",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 38
   },
   {
     "character": "售货员",
     "pinyin": "shòuhuòyuán",
     "english": "salesclerk; shop assistant",
     "spanish": "dependiente; vendedor",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 39
   },
   {
     "character": "输",
     "pinyin": "shū",
     "english": "to transport; to lose (a game, etc.)",
     "spanish": "transportar; perder",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 10,
+    "lessonOrder": 40
   },
   {
     "character": "熟悉",
     "pinyin": "shúxī",
     "english": "familiar with; know well",
     "spanish": "familiarizado con; conocer bien",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 1
   },
   {
     "character": "数量",
     "pinyin": "shùliàng",
     "english": "amount; quantity; number",
     "spanish": "cantidad; número",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 2
   },
   {
     "character": "数字",
     "pinyin": "shùzì",
     "english": "number; numeral; figure; digit",
     "spanish": "número; cifra; dígito",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 3
   },
   {
     "character": "帅",
     "pinyin": "shuài",
     "english": "handsome; graceful; commander-in-chief",
     "spanish": "guapo; elegante; comandante en jefe",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 4
   },
   {
     "character": "顺便",
     "pinyin": "shùnbiàn",
     "english": "conveniently; in passing; on the way",
     "spanish": "de paso; ya que estoy",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 5
   },
   {
     "character": "顺利",
     "pinyin": "shùnlì",
     "english": "go smoothly; without a hitch; successful",
     "spanish": "sin contratiempos; exitoso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 6
   },
   {
     "character": "顺序",
     "pinyin": "shùnxù",
     "english": "sequence; order",
     "spanish": "secuencia; orden",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 7
   },
   {
     "character": "说明",
     "pinyin": "shuōmíng",
     "english": "explain; explanation; illustrate; to show",
     "spanish": "explicar; explicación; mostrar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 8
   },
   {
     "character": "硕士",
     "pinyin": "shuòshì",
     "english": "Master's degree (M.A.)",
     "spanish": "maestría; máster",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 9
   },
   {
     "character": "死",
     "pinyin": "sǐ",
     "english": "to die; dead; fixed; impassible; extremely",
     "spanish": "morir; muerto; rígido; extremadamente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 10
   },
   {
     "character": "速度",
     "pinyin": "sùdù",
     "english": "speed; rate; velocity",
     "spanish": "velocidad; ritmo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 11
   },
   {
     "character": "塑料袋",
     "pinyin": "sùliàodài",
     "english": "plastic bag",
     "spanish": "bolsa de plástico",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 12
   },
   {
     "character": "酸",
     "pinyin": "suān",
     "english": "sour; sore; ache",
     "spanish": "agrio; dolorido",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 13
   },
   {
     "character": "随便",
     "pinyin": "suíbiàn",
     "english": "as one pleases; informal; random; casual",
     "spanish": "como quieras; casual; informal",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 14
   },
   {
     "character": "随着",
     "pinyin": "suízhe",
     "english": "along with; in the wake of",
     "spanish": "a medida que; junto con",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 15
   },
   {
     "character": "孙子",
     "pinyin": "sūnzi",
     "english": "grandson; son's son",
     "spanish": "nieto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 16
   },
   {
     "character": "所有",
     "pinyin": "suǒyǒu",
     "english": "all; to have; to possess",
     "spanish": "todo; poseer",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 17
   },
   {
     "character": "台",
     "pinyin": "tái",
     "english": "platform; Taiwan (abbr.); desk; stage; typhoon; (mw for machines); (classical) you (in letters)",
     "spanish": "plataforma; Taiwán (abrev.); mesa; escenario; tifón; clasificador para máquinas",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 18
   },
   {
     "character": "抬",
     "pinyin": "tái",
     "english": "to lift; to raise (with both palms up); carry (together)",
     "spanish": "levantar; alzar; cargar entre varios",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 19
   },
   {
     "character": "态度",
     "pinyin": "tàidu",
     "english": "manner; bearing; attitude",
     "spanish": "actitud; manera",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 20
   },
   {
     "character": "谈",
     "pinyin": "tán",
     "english": "to talk; to chat; discuss",
     "spanish": "hablar; charlar; discutir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 21
   },
   {
     "character": "汤",
     "pinyin": "tāng",
     "english": "soup; broth",
     "spanish": "sopa; caldo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 23
   },
   {
     "character": "糖",
     "pinyin": "táng",
     "english": "sugar; candy; sweets",
     "spanish": "azúcar; caramelo; dulces",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 24
   },
   {
     "character": "躺",
     "pinyin": "tǎng",
     "english": "recline; lie down (on back or side)",
     "spanish": "tumbarse; recostarse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 25
   },
   {
     "character": "趟",
     "pinyin": "tàng, tāng",
     "english": "(mw for trips times) | to wade",
     "spanish": "vez (clasificador de viajes) | vadear",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 26
   },
   {
     "character": "讨论",
     "pinyin": "tǎolùn",
     "english": "to discuss; discussion; to talk over",
     "spanish": "discutir; debate",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 27
   },
   {
     "character": "讨厌",
     "pinyin": "tǎoyàn",
     "english": "to hate; loathe; disgusting; troublesome",
     "spanish": "odiar; molesto; desagradable",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 28
   },
   {
     "character": "特点",
     "pinyin": "tèdiǎn",
     "english": "a characteristic; trait; feature",
     "spanish": "característica; rasgo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 29
   },
   {
     "character": "提",
     "pinyin": "tí",
     "english": "to carry; to lift; to raise (an issue)",
     "spanish": "llevar en la mano; levantar; plantear",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 30
   },
   {
     "character": "提供",
     "pinyin": "tígōng",
     "english": "to supply; provide; furnish",
     "spanish": "proporcionar; suministrar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 31
   },
   {
     "character": "提前",
     "pinyin": "tíqián",
     "english": "shift to an earlier date; bring forward; to advance",
     "spanish": "adelantar; anticipar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 32
   },
   {
     "character": "提醒",
     "pinyin": "tíxǐng",
     "english": "remind; call attention to; warn of",
     "spanish": "recordar; avisar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 33
   },
   {
     "character": "填空",
     "pinyin": "tiánkòng",
     "english": "fill in the blanks; fill a vacancy",
     "spanish": "rellenar espacios en blanco; cubrir una vacante",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 34
   },
   {
     "character": "条件",
     "pinyin": "tiáojiàn",
     "english": "condition; circumstances; prerequisite",
     "spanish": "condición; requisito; circunstancia",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 35
   },
   {
     "character": "停",
     "pinyin": "tíng",
     "english": "to stop; to halt; to park (a car)",
     "spanish": "parar; detener; estacionar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 36
   },
   {
     "character": "挺",
     "pinyin": "tǐng",
     "english": "straighten up; stick out; rather (good); very",
     "spanish": "enderezar; sobresalir; bastante; muy",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 37
   },
   {
     "character": "通过",
     "pinyin": "tōngguò",
     "english": "by means of; through (a method); pass through; via",
     "spanish": "por medio de; a través de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 38
   },
   {
     "character": "通知",
     "pinyin": "tōngzhī",
     "english": "notify; to inform; notice",
     "spanish": "notificar; informar; aviso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 39
   },
   {
     "character": "同情",
     "pinyin": "tóngqíng",
     "english": "compassion; sympathy",
     "spanish": "compasión; simpatía",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 11,
+    "lessonOrder": 40
   },
   {
     "character": "同时",
     "pinyin": "tóngshí",
     "english": "at the same time; simultaneously",
     "spanish": "al mismo tiempo; simultáneamente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 1
   },
   {
     "character": "推",
     "pinyin": "tuī",
     "english": "to push; to scrape; to decline; postpone; elect",
     "spanish": "empujar; raspar; rechazar; posponer; elegir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 2
   },
   {
     "character": "推迟",
     "pinyin": "tuīchí",
     "english": "postpone; defer",
     "spanish": "posponer; aplazar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 3
   },
   {
     "character": "脱",
     "pinyin": "tuō",
     "english": "to shed; take off; to escape",
     "spanish": "quitarse; desprenderse; escapar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 4
   },
   {
     "character": "袜子",
     "pinyin": "wàzi",
     "english": "socks; stockings",
     "spanish": "calcetines; medias",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 5
   },
   {
     "character": "完全",
     "pinyin": "wánquán",
     "english": "complete; whole; totally",
     "spanish": "completo; totalmente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 6
   },
   {
     "character": "网球",
     "pinyin": "wǎngqiú",
     "english": "tennis; tennis ball",
     "spanish": "tenis; pelota de tenis",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 7
   },
   {
     "character": "网站",
     "pinyin": "wǎngzhàn",
     "english": "website",
     "spanish": "sitio web",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 8
   },
   {
     "character": "往往",
     "pinyin": "wǎngwǎng",
     "english": "often; frequently; more often than not",
     "spanish": "a menudo; frecuentemente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 9
   },
   {
     "character": "危险",
     "pinyin": "wēixiǎn",
     "english": "danger; dangerous; perilous",
     "spanish": "peligro; peligroso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 10
   },
   {
     "character": "卫生间",
     "pinyin": "wèishēngjiān",
     "english": "restroom; bathroom; water closet (WC)",
     "spanish": "baño; aseo; WC",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 11
   },
   {
     "character": "味道",
     "pinyin": "wèidao",
     "english": "flavor; taste",
     "spanish": "sabor; gusto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 12
   },
   {
     "character": "温度",
     "pinyin": "wēndù",
     "english": "temperature",
     "spanish": "temperatura",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 13
   },
   {
     "character": "文章",
     "pinyin": "wénzhāng",
     "english": "article; essay",
     "spanish": "artículo; ensayo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 14
   },
   {
     "character": "污染",
     "pinyin": "wūrǎn",
     "english": "pollution; contamination",
     "spanish": "contaminación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 15
   },
   {
     "character": "无",
     "pinyin": "wú",
     "english": "have not; without; not (Kangxi radical 71)",
     "spanish": "sin; no tener",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 16
   },
   {
     "character": "无聊",
     "pinyin": "wúliáo",
     "english": "nonsense; bored; silly; stupid",
     "spanish": "aburrido; tontería",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 17
   },
   {
     "character": "无论",
     "pinyin": "wúlùn",
     "english": "no matter what; regardless of whether...",
     "spanish": "sin importar; no importa si...",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 18
   },
   {
     "character": "误会",
     "pinyin": "wùhuì",
     "english": "to misunderstand; to mistake",
     "spanish": "malentender; malentendido",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 19
   },
   {
     "character": "吸引",
     "pinyin": "xīyǐn",
     "english": "attract (interest, investment, etc.)",
     "spanish": "atraer",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 21
   },
   {
     "character": "西红柿",
     "pinyin": "xīhóngshì",
     "english": "tomato",
     "spanish": "tomate",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 20
   },
   {
     "character": "咸",
     "pinyin": "xián",
     "english": "salty; salted; all",
     "spanish": "salado; todos (arcaico)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 22
   },
   {
     "character": "现金",
     "pinyin": "xiànjīn",
     "english": "cash",
     "spanish": "efectivo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 23
   },
   {
     "character": "羡慕",
     "pinyin": "xiànmù",
     "english": "to envy; admire",
     "spanish": "envidiar; admirar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 24
   },
   {
     "character": "相反",
     "pinyin": "xiāngfǎn",
     "english": "opposite; contrary",
     "spanish": "opuesto; al contrario",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 25
   },
   {
     "character": "相同",
     "pinyin": "xiāngtóng",
     "english": "identical; same; alike",
     "spanish": "igual; idéntico",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 26
   },
   {
     "character": "香",
     "pinyin": "xiāng",
     "english": "fragrant; savory (Kangxi radical 186)",
     "spanish": "fragante; aromático",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 27
   },
   {
     "character": "详细",
     "pinyin": "xiángxì",
     "english": "detailed; in detail; minute",
     "spanish": "detallado; minucioso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 28
   },
   {
     "character": "响",
     "pinyin": "xiǎng",
     "english": "make a sound; to ring; echo",
     "spanish": "sonar; hacer ruido; resonar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 29
   },
   {
     "character": "橡皮",
     "pinyin": "xiàngpí",
     "english": "rubber; an eraser",
     "spanish": "goma; borrador",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 30
   },
   {
     "character": "消息",
     "pinyin": "xiāoxi",
     "english": "news; information",
     "spanish": "noticia; información",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 31
   },
   {
     "character": "小吃",
     "pinyin": "xiǎochī",
     "english": "snack; refreshments",
     "spanish": "aperitivo; tentempié",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 32
   },
   {
     "character": "小伙子",
     "pinyin": "xiǎohuǒzi",
     "english": "young man; lad; youngster",
     "spanish": "muchacho; joven",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 33
   },
   {
     "character": "小说",
     "pinyin": "xiǎoshuō",
     "english": "novel; fiction",
     "spanish": "novela; ficción",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 34
   },
   {
     "character": "效果",
     "pinyin": "xiàoguǒ",
     "english": "effect; result",
     "spanish": "efecto; resultado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 36
   },
   {
     "character": "笑话",
     "pinyin": "xiàohua",
     "english": "joke; laugh at",
     "spanish": "chiste; burlarse de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 35
   },
   {
     "character": "心情",
     "pinyin": "xīnqíng",
     "english": "mood; state of mind",
     "spanish": "estado de ánimo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 37
   },
   {
     "character": "辛苦",
     "pinyin": "xīnkǔ",
     "english": "hard; exhausting; toilsome; laborious",
     "spanish": "duro; agotador; laborioso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 38
   },
   {
     "character": "信封",
     "pinyin": "xìnfēng",
     "english": "envelope",
     "spanish": "sobre",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 39
   },
   {
     "character": "信息",
     "pinyin": "xìnxī",
     "english": "information; news; message",
     "spanish": "información; mensaje",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 12,
+    "lessonOrder": 40
   },
   {
     "character": "信心",
     "pinyin": "xìnxīn",
     "english": "confidence; faith (in sb. or sth.)",
     "spanish": "confianza; fe",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 1
   },
   {
     "character": "行",
     "pinyin": "xíng",
     "english": "walk; be current; do; will do; okay",
     "spanish": "caminar; funcionar; vale; estar bien",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 3
   },
   {
     "character": "醒",
     "pinyin": "xǐng",
     "english": "wake up",
     "spanish": "despertarse",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 4
   },
   {
     "character": "兴奋",
     "pinyin": "xīngfèn",
     "english": "excitement； be excited",
     "spanish": "emocionado; excitación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 2
   },
   {
     "character": "幸福",
     "pinyin": "xìngfú",
     "english": "happy; blessed; fortunate",
     "spanish": "feliz; afortunado; felicidad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 5
   },
   {
     "character": "性别",
     "pinyin": "xìngbié",
     "english": "gender; sex; sexual distinction",
     "spanish": "género; sexo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 6
   },
   {
     "character": "性格",
     "pinyin": "xìnggé",
     "english": "nature; personality; temperament",
     "spanish": "carácter; personalidad; temperamento",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 7
   },
   {
     "character": "修理",
     "pinyin": "xiūlǐ",
     "english": "to repair; perform maintenance; to overhaul",
     "spanish": "reparar; hacer mantenimiento",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 8
   },
   {
     "character": "许多",
     "pinyin": "xǔduō",
     "english": "many; a lot; much",
     "spanish": "muchos; mucho",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 9
   },
   {
     "character": "学期",
     "pinyin": "xuéqī",
     "english": "semester; school term",
     "spanish": "semestre; periodo escolar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 10
   },
   {
     "character": "压力",
     "pinyin": "yālì",
     "english": "pressure; stress",
     "spanish": "presión; estrés",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 11
   },
   {
     "character": "牙膏",
     "pinyin": "yágāo",
     "english": "toothpaste",
     "spanish": "pasta de dientes",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 13
   },
   {
     "character": "亚洲",
     "pinyin": "Yàzhōu",
     "english": "Asia",
     "spanish": "Asia",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 14
   },
   {
     "character": "呀",
     "pinyin": "ya",
     "english": "ah; oh; (used for 啊 after words ending with a, e, i, o, or ü)",
     "spanish": "ah; oh; partícula exclamativa",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 12
   },
   {
     "character": "严格",
     "pinyin": "yángé",
     "english": "strict; stringent; tight",
     "spanish": "estricto; riguroso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 15
   },
   {
     "character": "严重",
     "pinyin": "yánzhòng",
     "english": "grave; serious; critical",
     "spanish": "grave; serio; crítico",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 16
   },
   {
     "character": "研究",
     "pinyin": "yánjiū",
     "english": "to study; to research",
     "spanish": "investigar; estudiar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 17
   },
   {
     "character": "盐",
     "pinyin": "yán",
     "english": "salt",
     "spanish": "sal",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 18
   },
   {
     "character": "眼镜",
     "pinyin": "yǎnjìng",
     "english": "glasses; spectacles",
     "spanish": "gafas; lentes",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 19
   },
   {
     "character": "演出",
     "pinyin": "yǎnchū",
     "english": "to act (in a play); to perform; to put on a show; performance",
     "spanish": "actuar; presentar un espectáculo; función",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 20
   },
   {
     "character": "演员",
     "pinyin": "yǎnyuán",
     "english": "actor or actress; performer",
     "spanish": "actor; actriz; intérprete",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 21
   },
   {
     "character": "阳光",
     "pinyin": "yángguāng",
     "english": "sunshine; sunlight",
     "spanish": "luz del sol; sol",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 22
   },
   {
     "character": "养成",
     "pinyin": "yǎngchéng",
     "english": "cultivate; acquire; to form",
     "spanish": "cultivar; adquirir; formar (hábito)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 23
   },
   {
     "character": "样子",
     "pinyin": "yàngzi",
     "english": "manner; air; appearance; looks",
     "spanish": "apariencia; aspecto; manera",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 24
   },
   {
     "character": "邀请",
     "pinyin": "yāoqǐng",
     "english": "to invite",
     "spanish": "invitar; invitación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 25
   },
   {
     "character": "要是",
     "pinyin": "yàoshi",
     "english": "if; suppose; in case",
     "spanish": "si; en caso de que",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 26
   },
   {
     "character": "钥匙",
     "pinyin": "yàoshi",
     "english": "key",
     "spanish": "llave",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 27
   },
   {
     "character": "也许",
     "pinyin": "yěxǔ",
     "english": "perhaps; probably; maybe",
     "spanish": "quizás; tal vez; probablemente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 28
   },
   {
     "character": "叶子",
     "pinyin": "yèzi",
     "english": "leaves",
     "spanish": "hoja; hojas",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 29
   },
   {
     "character": "页",
     "pinyin": "yè",
     "english": "page; leaf (Kangxi radical 181)",
     "spanish": "página; hoja",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 30
   },
   {
     "character": "一切",
     "pinyin": "yíqiè",
     "english": "all; every; everything",
     "spanish": "todo; todo en general",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 31
   },
   {
     "character": "以",
     "pinyin": "yǐ",
     "english": "to use; according to; so as to; for; by",
     "spanish": "usar; según; para; por",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 32
   },
   {
     "character": "以为",
     "pinyin": "yǐwéi",
     "english": "think (mistakenly); consider (that); believe",
     "spanish": "creer (equivocadamente); pensar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 33
   },
   {
     "character": "艺术",
     "pinyin": "yìshù",
     "english": "art",
     "spanish": "arte",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 34
   },
   {
     "character": "意见",
     "pinyin": "yìjiàn",
     "english": "opinion; view; suggestion; complaint",
     "spanish": "opinión; sugerencia; queja",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 35
   },
   {
     "character": "因此",
     "pinyin": "yīncǐ",
     "english": "therefore; thus; that is why; because of this",
     "spanish": "por lo tanto; por eso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 36
   },
   {
     "character": "引起",
     "pinyin": "yǐnqǐ",
     "english": "give rise to; lead to; to cause; arouse",
     "spanish": "causar; provocar; suscitar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 37
   },
   {
     "character": "印象",
     "pinyin": "yìnxiàng",
     "english": "impression",
     "spanish": "impresión",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 38
   },
   {
     "character": "应聘",
     "pinyin": "yìngpìn",
     "english": "accept a job offer; to apply for a job",
     "spanish": "postularse; aceptar una oferta de trabajo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 40
   },
   {
     "character": "赢",
     "pinyin": "yíng",
     "english": "to win; to beat; to profit",
     "spanish": "ganar; vencer; obtener beneficio",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 13,
+    "lessonOrder": 39
   },
   {
     "character": "永远",
     "pinyin": "yǒngyuǎn",
     "english": "forever; eternal; always",
     "spanish": "siempre; para siempre",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 1
   },
   {
     "character": "勇敢",
     "pinyin": "yǒnggǎn",
     "english": "brave; courageous",
     "spanish": "valiente; valeroso",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 2
   },
   {
     "character": "优点",
     "pinyin": "yōudiǎn",
     "english": "merit; good point; a strength; a benefit",
     "spanish": "ventaja; punto fuerte; mérito",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 3
   },
   {
     "character": "优秀",
     "pinyin": "yōuxiù",
     "english": "outstanding; excellent",
     "spanish": "excelente; sobresaliente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 4
   },
   {
     "character": "幽默",
     "pinyin": "yōumò",
     "english": "humorous",
     "spanish": "humorístico; con humor",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 5
   },
   {
     "character": "尤其",
     "pinyin": "yóuqí",
     "english": "especially; particularly",
     "spanish": "especialmente; en particular",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 6
   },
   {
     "character": "由",
     "pinyin": "yóu",
     "english": "follow; from; by; through",
     "spanish": "de; por; mediante",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 7
   },
   {
     "character": "由于",
     "pinyin": "yóuyú",
     "english": "due to; owing to; as a result of; thanks to",
     "spanish": "debido a; a causa de",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 8
   },
   {
     "character": "邮局",
     "pinyin": "yóujú",
     "english": "post office",
     "spanish": "oficina de correos",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 9
   },
   {
     "character": "友好",
     "pinyin": "yǒuhǎo",
     "english": "friendly (relations); close friends",
     "spanish": "amistoso; cordial",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 10
   },
   {
     "character": "友谊",
     "pinyin": "yǒuyì",
     "english": "friendship; companionship",
     "spanish": "amistad",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 11
   },
   {
     "character": "有趣",
     "pinyin": "yǒuqù",
     "english": "interesting; fascinating; amusing",
     "spanish": "interesante; divertido",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 12
   },
   {
     "character": "于是",
     "pinyin": "yúshì",
     "english": "as a result; thus; therefore",
     "spanish": "entonces; por lo tanto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 13
   },
   {
     "character": "愉快",
     "pinyin": "yúkuài",
     "english": "happy; cheerful; delightful",
     "spanish": "feliz; agradable",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 14
   },
   {
     "character": "与",
     "pinyin": "yǔ",
     "english": "(formal) and; to give; together with; participate; final particle expressing doubt or surprise",
     "spanish": "y (formal); con; participar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 15
   },
   {
     "character": "羽毛球",
     "pinyin": "yǔmáoqiú",
     "english": "badminton",
     "spanish": "bádminton",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 16
   },
   {
     "character": "语法",
     "pinyin": "yǔfǎ",
     "english": "grammar",
     "spanish": "gramática",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 17
   },
   {
     "character": "语言",
     "pinyin": "yǔyán",
     "english": "language",
     "spanish": "idioma; lengua",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 18
   },
   {
     "character": "预习",
     "pinyin": "yùxí",
     "english": "(of students) prepare a lesson before class; preview",
     "spanish": "preparar la lección; preestudiar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 19
   },
   {
     "character": "原来",
     "pinyin": "yuánlái",
     "english": "original; former; as it turns out",
     "spanish": "original; antes; resulta que",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 20
   },
   {
     "character": "原谅",
     "pinyin": "yuánliàng",
     "english": "to excuse; forgive; to pardon",
     "spanish": "perdonar; disculpar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 21
   },
   {
     "character": "原因",
     "pinyin": "yuányīn",
     "english": "cause; reason",
     "spanish": "causa; razón",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 22
   },
   {
     "character": "约会",
     "pinyin": "yuēhuì",
     "english": "appointment; engagement; date",
     "spanish": "cita; encuentro",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 23
   },
   {
     "character": "阅读",
     "pinyin": "yuèdú",
     "english": "read; reading",
     "spanish": "leer; lectura",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 24
   },
   {
     "character": "云",
     "pinyin": "yún",
     "english": "cloud; Yunnan province | say; speak",
     "spanish": "nube; Yunnan | decir; hablar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 25
   },
   {
     "character": "允许",
     "pinyin": "yǔnxǔ",
     "english": "to permit; allow",
     "spanish": "permitir; autorizar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 26
   },
   {
     "character": "杂志",
     "pinyin": "zázhì",
     "english": "magazine",
     "spanish": "revista",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 27
   },
   {
     "character": "咱们",
     "pinyin": "zánmen",
     "english": "we (including the listener); us; our",
     "spanish": "nosotros (incluyéndote)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 28
   },
   {
     "character": "暂时",
     "pinyin": "zànshí",
     "english": "temporary; transient; for the moment",
     "spanish": "temporalmente; por ahora",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 29
   },
   {
     "character": "脏",
     "pinyin": "zāng",
     "english": "filthy; dirty",
     "spanish": "sucio",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 30
   },
   {
     "character": "责任",
     "pinyin": "zérèn",
     "english": "responsibility; blame; duty",
     "spanish": "responsabilidad; deber; culpa",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 31
   },
   {
     "character": "增加",
     "pinyin": "zēngjiā",
     "english": "to increase; to raise; add",
     "spanish": "aumentar; incrementar; añadir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 32
   },
   {
     "character": "占线",
     "pinyin": "zhànxiàn",
     "english": "the (phone) line is busy",
     "spanish": "línea ocupada",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 33
   },
   {
     "character": "长城",
     "pinyin": "chángchéng",
     "english": "the Great Wall",
     "spanish": "la Gran Muralla",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 1,
+    "lessonOrder": 40
   },
   {
     "character": "长江",
     "pinyin": "Chángjiāng",
     "english": "the Yangtze River; the Changjiang River",
     "spanish": "río Yangtsé; río Changjiang",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 1
   },
   {
     "character": "招聘",
     "pinyin": "zhāopìn",
     "english": "recruitment; take job applications for a job",
     "spanish": "reclutar; contratación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 34
   },
   {
     "character": "照",
     "pinyin": "zhào",
     "english": "to shine; illuminate; according to",
     "spanish": "iluminar; según",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 35
   },
   {
     "character": "真正",
     "pinyin": "zhēnzhèng",
     "english": "genuine; real; true",
     "spanish": "verdadero; real",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 36
   },
   {
     "character": "整理",
     "pinyin": "zhěnglǐ",
     "english": "put in order; arrange; straighten up; to tidy; to pack (luggage)",
     "spanish": "ordenar; arreglar; hacer la maleta",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 37
   },
   {
     "character": "正常",
     "pinyin": "zhèngcháng",
     "english": "normal; regular; ordinary",
     "spanish": "normal; regular",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 38
   },
   {
     "character": "正好",
     "pinyin": "zhènghǎo",
     "english": "just (in time); just right; just enough; happen to; by chance",
     "spanish": "justo; justo a tiempo; casualmente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 39
   },
   {
     "character": "正确",
     "pinyin": "zhèngquè",
     "english": "correct; proper",
     "spanish": "correcto; adecuado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 14,
+    "lessonOrder": 40
   },
   {
     "character": "正式",
     "pinyin": "zhèngshì",
     "english": "formal; official",
     "spanish": "formal; oficial",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 1
   },
   {
     "character": "证明",
     "pinyin": "zhèngmíng",
     "english": "proof; testify; confirm; certificate",
     "spanish": "probar; demostrar; certificado",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 2
   },
   {
     "character": "之",
     "pinyin": "zhī",
     "english": "(literary equivalent to 的); (pronoun); of",
     "spanish": "partícula literaria equivalente a 的",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 3
   },
   {
     "character": "支持",
     "pinyin": "zhīchí",
     "english": "sustain; hold out; | support; stand by (e.g. international support)",
     "spanish": "sostener; apoyar; respaldar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 4
   },
   {
     "character": "知识",
     "pinyin": "zhīshi",
     "english": "knowledge; intellectual",
     "spanish": "conocimiento",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 5
   },
   {
     "character": "直接",
     "pinyin": "zhíjiē",
     "english": "direct; immediate",
     "spanish": "directo; inmediato",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 6
   },
   {
     "character": "值得",
     "pinyin": "zhíde",
     "english": "be worth; deserve",
     "spanish": "valer la pena; merecer",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 7
   },
   {
     "character": "职业",
     "pinyin": "zhíyè",
     "english": "profession; occupation",
     "spanish": "profesión; ocupación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 8
   },
   {
     "character": "植物",
     "pinyin": "zhíwù",
     "english": "plant; botanical; vegetation",
     "spanish": "planta; vegetal",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 9
   },
   {
     "character": "只好",
     "pinyin": "zhǐhǎo",
     "english": "have to; be forced to",
     "spanish": "no tener más remedio que",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 10
   },
   {
     "character": "只要",
     "pinyin": "zhǐyào",
     "english": "so long as; if only; provided that",
     "spanish": "con tal de que; siempre que",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 11
   },
   {
     "character": "指",
     "pinyin": "zhǐ",
     "english": "finger; to point (at, to, out); refer to",
     "spanish": "dedo; señalar; referirse a",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 12
   },
   {
     "character": "至少",
     "pinyin": "zhìshǎo",
     "english": "at least; (to say the) least",
     "spanish": "al menos",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 13
   },
   {
     "character": "质量",
     "pinyin": "zhìliàng",
     "english": "quality; mass (physics)",
     "spanish": "calidad; masa (física)",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 14
   },
   {
     "character": "重",
     "pinyin": "zhòng",
     "english": "heavy; serious; important",
     "spanish": "pesado; serio; importante",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 15
   },
   {
     "character": "重点",
     "pinyin": "zhòngdiǎn",
     "english": "emphasis; main point",
     "spanish": "punto clave; énfasis",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 16
   },
   {
     "character": "重视",
     "pinyin": "zhòngshì",
     "english": "to value; take seriously",
     "spanish": "valorar; tomar en serio",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 17
   },
   {
     "character": "重新",
     "pinyin": "chóngxīn",
     "english": "again; anew; once more",
     "spanish": "de nuevo; otra vez",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 2,
+    "lessonOrder": 10
   },
   {
     "character": "周围",
     "pinyin": "zhōuwéi",
     "english": "surroundings; vicinity; environment",
     "spanish": "alrededores; entorno",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 18
   },
   {
     "character": "主意",
     "pinyin": "zhǔyi",
     "english": "plan; idea; decision",
     "spanish": "idea; plan; decisión",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 19
   },
   {
     "character": "祝贺",
     "pinyin": "zhùhè",
     "english": "congratulate",
     "spanish": "felicitar; felicitación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 20
   },
   {
     "character": "著名",
     "pinyin": "zhùmíng",
     "english": "famous; well-known; celebration",
     "spanish": "famoso; reconocido",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 21
   },
   {
     "character": "专门",
     "pinyin": "zhuānmén",
     "english": "specialized",
     "spanish": "especializado; expresamente",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 22
   },
   {
     "character": "专业",
     "pinyin": "zhuānyè",
     "english": "profession; specialized field of study; major",
     "spanish": "especialidad; profesión; carrera",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 23
   },
   {
     "character": "转",
     "pinyin": "zhuǎn, zhuàn",
     "english": "to turn; to change; pass on | revolve; rotate",
     "spanish": "girar; cambiar; transferir | rotar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 24
   },
   {
     "character": "赚",
     "pinyin": "zhuàn",
     "english": "earn; make a profit",
     "spanish": "ganar; obtener beneficio",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 25
   },
   {
     "character": "准确",
     "pinyin": "zhǔnquè",
     "english": "accurate; precise",
     "spanish": "preciso; exacto",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 26
   },
   {
     "character": "准时",
     "pinyin": "zhǔnshí",
     "english": "punctually; on time",
     "spanish": "puntualmente; a tiempo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 27
   },
   {
     "character": "仔细",
     "pinyin": "zǐxì",
     "english": "careful; attentive; cautious",
     "spanish": "cuidadoso; atento",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 28
   },
   {
     "character": "自然",
     "pinyin": "zìrán",
     "english": "nature; natural",
     "spanish": "naturaleza; natural",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 29
   },
   {
     "character": "自信",
     "pinyin": "zìxìn",
     "english": "self-confidence",
     "spanish": "confianza en uno mismo",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 30
   },
   {
     "character": "总结",
     "pinyin": "zǒngjié",
     "english": "summarize; conclude",
     "spanish": "resumir; concluir",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 31
   },
   {
     "character": "租",
     "pinyin": "zū",
     "english": "to rent",
     "spanish": "alquilar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 32
   },
   {
     "character": "最好",
     "pinyin": "zuìhǎo",
     "english": "the best; had better ...; it would be best",
     "spanish": "lo mejor; será mejor que",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 33
   },
   {
     "character": "尊重",
     "pinyin": "zūnzhòng",
     "english": "esteem; to respect; to value; to honor",
     "spanish": "respetar; respeto; honrar",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 34
   },
   {
     "character": "左右",
     "pinyin": "zuǒyòu",
     "english": "about; approximate; around | left and right",
     "spanish": "aproximadamente | izquierda y derecha",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 35
   },
   {
     "character": "作家",
     "pinyin": "zuòjiā",
     "english": "author; writer",
     "spanish": "autor; escritor",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 36
   },
   {
     "character": "作用",
     "pinyin": "zuòyòng",
     "english": "action; activity; effect",
     "spanish": "efecto; función; acción",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 37
   },
   {
     "character": "作者",
     "pinyin": "zuòzhě",
     "english": "author; writer",
     "spanish": "autor; escritor",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 38
   },
   {
     "character": "座",
     "pinyin": "zuò",
     "english": "(mw for mountains, bridges, tall buildings, etc.); | seat; base; stand; constellation",
     "spanish": "clasificador de montañas/puentes/edificios | asiento; base; constelación",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 39
   },
   {
     "character": "座位",
     "pinyin": "zuòwèi",
     "english": "seat; place",
     "spanish": "asiento; plaza",
-    "level": 4
+    "level": 4,
+    "book": "shang",
+    "lesson": 15,
+    "lessonOrder": 40
   },
   {
     "character": "哎",
