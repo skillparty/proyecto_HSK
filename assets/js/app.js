@@ -8,6 +8,7 @@ class HSKApp {
         this.selectedLevel = '1';
         this.currentLevel = '1';
         this.practiceMode = 'char-to-english';
+        this.practiceOrderMode = 'lesson';
         this.isDarkMode = true; // Default to dark theme (PlanetScale style)
         this.isAudioEnabled = true;
         this.selectedVoice = 'auto'; // 'male', 'female', 'auto'

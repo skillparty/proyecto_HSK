@@ -227,6 +227,27 @@ class InteractionController {
             });
         }
 
+        const practiceOrderSelect = document.getElementById('practice-order-mode');
+        if (practiceOrderSelect) {
+            practiceOrderSelect.value = this.app.practiceOrderMode || 'lesson';
+            practiceOrderSelect.addEventListener('change', (event) => {
+                const nextMode = event.target.value === 'mixed' ? 'mixed' : 'lesson';
+                this.app.practiceOrderMode = nextMode;
+
+                try {
+                    localStorage.setItem('hsk-practice-order-mode', nextMode);
+                } catch (error) {
+                    this.app.logWarn('Error saving practice order mode:', error);
+                }
+
+                if (this.app.userProgress && typeof this.app.userProgress.updatePreference === 'function') {
+                    this.app.userProgress.updatePreference('practiceOrderMode', nextMode);
+                }
+
+                this.app.flashcardManager.setupSession();
+            });
+        }
+
         document.querySelectorAll('input[name="practice-mode"]').forEach((radio) => {
             radio.addEventListener('change', (event) => {
                 this.app.practiceMode = event.target.value;

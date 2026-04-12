@@ -10,6 +10,7 @@ class BackendUserProgress {
                 voicePreference: 'auto',
                 defaultHskLevel: '1',
                 practiceMode: 'char-to-pinyin',
+                practiceOrderMode: 'lesson',
                 dailyGoal: 20,
                 weeklyGoal: 100
             },

@@ -225,6 +225,14 @@ class VocabularyController {
             this.app.practiceMode = preferences.practiceMode;
         }
 
+        if (preferences.practiceOrderMode && ['lesson', 'mixed'].includes(preferences.practiceOrderMode)) {
+            this.app.practiceOrderMode = preferences.practiceOrderMode;
+            const practiceOrderSelect = document.getElementById('practice-order-mode');
+            if (practiceOrderSelect) {
+                practiceOrderSelect.value = preferences.practiceOrderMode;
+            }
+        }
+
         if (preferences.currentLevel) {
             this.app.currentLevel = preferences.currentLevel;
         }

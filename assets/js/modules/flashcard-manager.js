@@ -27,7 +27,7 @@ class FlashcardManager {
             this.app.vocabulary :
             this.app.vocabulary.filter(word => word.level == level);
 
-        this.currentSession = this.sortForPractice(levelFilter, level);
+        this.currentSession = this.buildSessionOrder(levelFilter, level);
         this.sessionIndex = 0;
 
         if (this.currentSession.length > 0) {
@@ -120,6 +120,23 @@ class FlashcardManager {
         });
 
         return withIndex.map((entry) => entry.word);
+    }
+
+    shuffleWords(words) {
+        const items = [...words];
+        for (let i = items.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [items[i], items[j]] = [items[j], items[i]];
+        }
+        return items;
+    }
+
+    buildSessionOrder(words, selectedLevel) {
+        const mode = this.app.practiceOrderMode || 'lesson';
+        if (mode === 'mixed') {
+            return this.shuffleWords(words);
+        }
+        return this.sortForPractice(words, selectedLevel);
     }
 
     handleNoVocabulary(level) {

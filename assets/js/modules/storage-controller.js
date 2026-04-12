@@ -51,6 +51,11 @@ class StorageController {
             if (savedVoice) {
                 this.app.selectedVoice = savedVoice;
             }
+
+            const practiceOrderMode = localStorage.getItem('hsk-practice-order-mode');
+            if (practiceOrderMode === 'lesson' || practiceOrderMode === 'mixed') {
+                this.app.practiceOrderMode = practiceOrderMode;
+            }
         } catch (error) {
             this.app.logWarn('Error loading settings:', error);
         }
