@@ -26,7 +26,7 @@
     <!-- <link rel="stylesheet" href="assets/css/styles-final.css?v=1"> -->
     <!-- <link rel="stylesheet" href="assets/css/styles-planetscale-v17.css" id="main-stylesheet-old"> -->
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=1" id="design-tokens">
-    <link rel="stylesheet" href="assets/css/styles-professional.css?v=11" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/styles-professional.css?v=14" id="main-stylesheet">
 
     <link rel="stylesheet" href="assets/css/matrix-game-styles.css?v=2">
     <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=2">
@@ -186,7 +186,9 @@
                 <button class="nav-tab active" data-tab="practice"><span
                         data-i18n="practiceTab">Practice</span></button>
                 <button class="nav-tab" data-tab="browse"><span data-i18n="browseTab">Browse</span></button>
+                <button class="nav-tab" data-tab="strokes-radicals"><span data-i18n="strokesRadicalsTab">Trazos & Radicales</span></button>
                 <button class="nav-tab" data-tab="quiz"><span data-i18n="quizTab">Quiz</span></button>
+                <button class="nav-tab" data-tab="past-exams"><span data-i18n="pastExamsTab">Exámenes</span></button>
                 <button class="nav-tab" data-tab="matrix">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
@@ -247,10 +249,20 @@
                             <div class="home-card-title" data-i18n="homeCardBrowseTitle">Browse</div>
                             <div class="home-card-desc" data-i18n="homeCardBrowseDesc">Explore vocabulary by level</div>
                         </div>
+                        <div class="home-card" data-tab-target="strokes-radicals" role="button" tabindex="0">
+                            <div class="home-card-icon chinese-char">部首</div>
+                            <div class="home-card-title" data-i18n="homeCardStrokesTitle">Trazos y Radicales</div>
+                            <div class="home-card-desc" data-i18n="homeCardStrokesDesc">Filtra vocabulario solo con radicales y trazos</div>
+                        </div>
                         <div class="home-card" data-tab-target="quiz" role="button" tabindex="0">
                             <div class="home-card-icon chinese-char">测验</div>
                             <div class="home-card-title" data-i18n="homeCardQuizTitle">Quiz</div>
                             <div class="home-card-desc" data-i18n="homeCardQuizDesc">Test your knowledge</div>
+                        </div>
+                        <div class="home-card" data-tab-target="past-exams" role="button" tabindex="0">
+                            <div class="home-card-icon chinese-char">考题</div>
+                            <div class="home-card-title" data-i18n="homeCardPastExamsTitle">Exámenes pasados</div>
+                            <div class="home-card-desc" data-i18n="homeCardPastExamsDesc">Practica con formatos reales sin audio</div>
                         </div>
                         <div class="home-card" data-tab-target="matrix" role="button" tabindex="0">
                             <div class="home-card-icon chinese-char">矩阵</div>
@@ -371,6 +383,149 @@
                     </div>
                 </div>
 
+                <!-- Strokes & Radicals Tab -->
+                <div id="strokes-radicals" class="tab-panel">
+                    <div class="strokes-radicals-container">
+                        <div class="strokes-radicals-header">
+                            <h3 data-i18n="strokesRadicalsTitle">Trazos y Radicales</h3>
+                            <p data-i18n="strokesRadicalsSubtitle">Explora solo términos que incluyen radicales Kangxi o descripciones de trazos.</p>
+                        </div>
+
+                        <div class="strokes-radicals-stats">
+                            <div class="sr-stat-card">
+                                <div id="strokes-radicals-total-radicals" class="sr-stat-value">0</div>
+                                <div class="sr-stat-label" data-i18n="strokesRadicalsTotalRadicals">Radicales detectados</div>
+                            </div>
+                            <div class="sr-stat-card">
+                                <div id="strokes-radicals-total-strokes" class="sr-stat-value">0</div>
+                                <div class="sr-stat-label" data-i18n="strokesRadicalsTotalStrokes">Trazos detectados</div>
+                            </div>
+                            <div class="sr-stat-card">
+                                <div id="strokes-radicals-total-results" class="sr-stat-value">0</div>
+                                <div class="sr-stat-label" data-i18n="strokesRadicalsTotalResults">Resultados</div>
+                            </div>
+                        </div>
+
+                        <div class="strokes-radicals-controls">
+                            <div class="control-group">
+                                <label for="strokes-radicals-type" class="control-label" data-i18n="strokesRadicalsTypeLabel">Tipo</label>
+                                <select id="strokes-radicals-type" class="select-input">
+                                    <option value="all" data-i18n="strokesRadicalsTypeAll">Todo</option>
+                                    <option value="radicals" data-i18n="strokesRadicalsTypeRadicals">Solo radicales</option>
+                                    <option value="strokes" data-i18n="strokesRadicalsTypeStrokes">Solo trazos</option>
+                                </select>
+                            </div>
+
+                            <div class="control-group">
+                                <label for="strokes-radicals-level" class="control-label" data-i18n="levelLabel">Nivel HSK</label>
+                                <select id="strokes-radicals-level" class="select-input">
+                                    <option value="all" data-i18n="allLevels">Todos los niveles</option>
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                </select>
+                            </div>
+
+                            <div class="control-group sr-search-group">
+                                <label for="strokes-radicals-search" class="control-label" data-i18n="strokesRadicalsSearchLabel">Buscar</label>
+                                <input
+                                    type="text"
+                                    id="strokes-radicals-search"
+                                    class="search-input"
+                                    data-i18n-placeholder="strokesRadicalsSearchPlaceholder"
+                                    placeholder="Buscar en radicales y trazos..."
+                                >
+                            </div>
+                        </div>
+
+                        <div class="strokes-radicals-reference" id="strokes-radicals-reference">
+                            <div class="sr-reference-header">
+                                <h4 data-i18n="strokesRadicalsReferenceTitle">Catalogo completo</h4>
+                                <p data-i18n="strokesRadicalsReferenceSubtitle">Incluye trazos base/extendidos y los 214 radicales Kangxi.</p>
+                            </div>
+
+                            <div class="sr-reference-stats">
+                                <div class="sr-reference-stat-card">
+                                    <div id="strokes-radicals-catalog-strokes" class="sr-reference-stat-value">0/0</div>
+                                    <div class="sr-reference-stat-label" data-i18n="strokesRadicalsCatalogStrokes">Trazos del catalogo</div>
+                                </div>
+                                <div class="sr-reference-stat-card">
+                                    <div id="strokes-radicals-catalog-radicals" class="sr-reference-stat-value">0/0</div>
+                                    <div class="sr-reference-stat-label" data-i18n="strokesRadicalsCatalogRadicals">Radicales del catalogo</div>
+                                </div>
+                            </div>
+
+                            <div class="sr-reference-sections">
+                                <section id="strokes-radicals-strokes-section" class="sr-reference-section">
+                                    <h5 data-i18n="strokesRadicalsSectionStrokes">Trazos</h5>
+                                    <div id="strokes-radicals-strokes-catalog" class="sr-reference-grid sr-reference-grid-strokes"></div>
+                                </section>
+
+                                <section id="strokes-radicals-radicals-section" class="sr-reference-section">
+                                    <h5 data-i18n="strokesRadicalsSectionRadicals">Radicales Kangxi (1-214)</h5>
+                                    <div id="strokes-radicals-radicals-catalog" class="sr-reference-grid sr-reference-grid-radicals"></div>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div class="strokes-radicals-practice" id="strokes-radicals-practice">
+                            <div class="sr-practice-header">
+                                <h4 data-i18n="strokesRadicalsPracticeTitle">Práctica rápida</h4>
+                                <div class="sr-practice-score-wrap">
+                                    <span data-i18n="strokesRadicalsPracticeScore">Puntuación</span>
+                                    <strong id="sr-practice-score">0/0</strong>
+                                </div>
+                            </div>
+
+                            <div class="sr-practice-toolbar">
+                                <div class="control-group sr-practice-difficulty-group">
+                                    <label for="sr-practice-difficulty" class="control-label" data-i18n="strokesRadicalsPracticeDifficultyLabel">Dificultad</label>
+                                    <select id="sr-practice-difficulty" class="select-input">
+                                        <option value="auto" data-i18n="strokesRadicalsPracticeDifficultyAuto">Auto</option>
+                                        <option value="easy" data-i18n="strokesRadicalsPracticeDifficultyEasy">Fácil</option>
+                                        <option value="normal" data-i18n="strokesRadicalsPracticeDifficultyNormal">Normal</option>
+                                        <option value="hard" data-i18n="strokesRadicalsPracticeDifficultyHard">Difícil</option>
+                                    </select>
+                                </div>
+
+                                <button id="sr-practice-reset-session" class="btn btn-secondary" type="button" data-i18n="strokesRadicalsPracticeResetSession">Reiniciar sesión</button>
+                            </div>
+
+                            <div class="sr-practice-metrics">
+                                <div class="sr-practice-metric">
+                                    <span data-i18n="strokesRadicalsPracticeStreak">Racha</span>
+                                    <strong id="sr-practice-streak">0</strong>
+                                </div>
+                                <div class="sr-practice-metric">
+                                    <span data-i18n="strokesRadicalsPracticeBestStreak">Mejor racha</span>
+                                    <strong id="sr-practice-best-streak">0</strong>
+                                </div>
+                                <div class="sr-practice-metric">
+                                    <span data-i18n="strokesRadicalsPracticeAccuracy">Precisión</span>
+                                    <strong id="sr-practice-accuracy">0%</strong>
+                                </div>
+                                <div class="sr-practice-metric">
+                                    <span data-i18n="strokesRadicalsPracticeCurrentDifficulty">Dificultad activa</span>
+                                    <strong id="sr-practice-current-difficulty">Fácil</strong>
+                                </div>
+                            </div>
+
+                            <p id="sr-practice-question" class="sr-practice-question" data-i18n="strokesRadicalsPracticePrompt">Clasifica este término.</p>
+                            <div id="sr-practice-character" class="sr-practice-character">-</div>
+                            <div id="sr-practice-hint" class="sr-practice-hint"></div>
+                            <div id="sr-practice-options" class="sr-practice-options"></div>
+                            <div id="sr-practice-feedback" class="sr-practice-feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+                            <button id="sr-practice-next" class="btn btn-primary" data-i18n="next" style="display: none;">Siguiente</button>
+                        </div>
+
+                        <div id="strokes-radicals-grid" class="strokes-radicals-grid"></div>
+                        <div id="strokes-radicals-empty" class="strokes-radicals-empty" style="display: none;"></div>
+                    </div>
+                </div>
+
                 <!-- Quiz Tab -->
                 <div id="quiz" class="tab-panel">
                     <div class="quiz-setup" id="quiz-setup">
@@ -440,6 +595,84 @@
                         <div class="results-actions">
                             <button id="restart-quiz" class="btn btn-primary" data-i18n="tryAgain">Retry</button>
                             <button id="new-quiz" class="btn btn-secondary" data-i18n="newQuiz">New Quiz</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Past Exams Tab -->
+                <div id="past-exams" class="tab-panel">
+                    <div class="quiz-setup" id="past-exams-setup">
+                        <h3 data-i18n="pastExamsTitle">Exámenes pasados HSK</h3>
+                        <p class="past-exams-note" data-i18n="pastExamsNoAudioNotice">Esta versión no incluye ejercicios de audio (listening).</p>
+                        <div class="quiz-options">
+                            <div class="control-group">
+                                <label for="past-exam-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
+                                <select id="past-exam-level" class="select-input">
+                                    <option value="all" data-i18n="allLevels">All levels</option>
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="past-exam-section" class="control-label" data-i18n="pastExamsSectionLabel">Sección</label>
+                                <select id="past-exam-section" class="select-input">
+                                    <option value="all" data-i18n="pastExamsSectionAll">Todas</option>
+                                    <option value="reading" data-i18n="pastExamsSectionReading">Lectura</option>
+                                    <option value="writing" data-i18n="pastExamsSectionWriting">Escritura</option>
+                                    <option value="grammar" data-i18n="pastExamsSectionGrammar">Gramática</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="past-exam-questions" class="control-label" data-i18n="numberOfQuestions">Number of questions</label>
+                                <select id="past-exam-questions" class="select-input">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="start-past-exam" class="btn btn-primary" data-i18n="pastExamsStart">Comenzar examen</button>
+                    </div>
+
+                    <div class="quiz-container" id="past-exams-container" style="display: none;">
+                        <div class="quiz-header">
+                            <div class="quiz-progress">
+                                <span data-i18n="question">Question</span>
+                                <span id="past-exam-current">1</span>
+                                <span data-i18n="of">of</span>
+                                <span id="past-exam-total">10</span>
+                            </div>
+                            <div class="quiz-score-display">
+                                <span data-i18n="score">Score</span>:
+                                <span id="past-exam-score">0</span>
+                            </div>
+                        </div>
+                        <div class="quiz-content" id="past-exam-content">
+                            <div class="question-text" id="past-exam-question"></div>
+                            <div class="quiz-options" id="past-exam-options"></div>
+                            <div class="quiz-actions">
+                                <button id="past-exam-submit" class="btn btn-primary" disabled data-i18n="submit">Enviar</button>
+                                <button id="past-exam-next" class="btn btn-primary" style="display: none;" data-i18n="next">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-results" id="past-exams-results" style="display: none;">
+                        <h3 data-i18n="pastExamsCompleted">Examen completado</h3>
+                        <div class="results-summary">
+                            <div>
+                                <span data-i18n="finalScore">Final Score</span>:
+                                <strong id="past-exam-final-score">0/0</strong>
+                                (<span id="past-exam-final-percentage">0%</span>)
+                            </div>
+                        </div>
+                        <div class="results-actions">
+                            <button id="restart-past-exam" class="btn btn-primary" data-i18n="tryAgain">Reintentar</button>
+                            <button id="new-past-exam" class="btn btn-secondary" data-i18n="newQuiz">Nuevo set</button>
                         </div>
                     </div>
                 </div>
@@ -692,7 +925,7 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=14" defer></script>
+    <script src="assets/js/translations.js?v=17" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=1" defer></script>
 
     <!-- Modules -->
@@ -703,20 +936,22 @@
     <script src="assets/js/modules/theme-controller.js?v=1" defer></script>
     <script src="assets/js/modules/audio-controller.js?v=1" defer></script>
     <script src="assets/js/modules/browse-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/strokes-radicals-controller.js?v=4" defer></script>
     <script src="assets/js/modules/modal-controller.js?v=1" defer></script>
     <script src="assets/js/modules/health-controller.js?v=1" defer></script>
     <script src="assets/js/modules/storage-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/language-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/language-controller.js?v=2" defer></script>
     <script src="assets/js/modules/progress-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/navigation-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/navigation-controller.js?v=2" defer></script>
     <script src="assets/js/modules/search-controller.js?v=1" defer></script>
     <script src="assets/js/modules/practice-view-controller.js?v=1" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=2" defer></script>
+    <script src="assets/js/modules/past-exams-controller.js?v=2" defer></script>
     <script src="assets/js/modules/vocabulary-controller.js?v=1" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=2" defer></script>
     <script src="assets/js/modules/home-controller.js?v=1" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=1" defer></script>
     
@@ -734,7 +969,7 @@
     <!-- Background Data (Base64 Fallback) -->
     <script src="assets/js/logger.js?v=1" defer></script>
     <script src="assets/js/bg-data.js" defer></script>
-    <script src="assets/js/app.js?v=29" defer></script>
+    <script src="assets/js/app.js?v=30" defer></script>
     <script src="assets/js/matrix-game-ui.js?v=5" defer></script>
     <script src="assets/js/modules/matrix-session-controller.js?v=1" defer></script>
     <script src="assets/js/modules/matrix-score-controller.js?v=1" defer></script>
@@ -750,7 +985,7 @@
             window.addEventListener('load', async () => {
                 try {
                     const appBasePath = window.location.pathname.replace(/\/[^/]*$/, '/');
-                    const swUrl = `${appBasePath}sw.js?v=4`;
+                    const swUrl = `${appBasePath}sw.js?v=9`;
 
                     const registration = await navigator.serviceWorker.register(swUrl, {
                         scope: appBasePath

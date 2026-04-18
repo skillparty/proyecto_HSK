@@ -65,6 +65,7 @@ class HSKApp {
         this.themeController = new ThemeController(this);
         this.audioController = new AudioController(this);
         this.browseController = new BrowseController(this);
+        this.strokesRadicalsController = new StrokesRadicalsController(this);
         this.modalController = new ModalController(this);
         this.healthController = new HealthController(this);
         this.storageController = new StorageController(this);
@@ -75,6 +76,7 @@ class HSKApp {
         this.practiceViewController = new PracticeViewController(this);
         this.feedbackController = new FeedbackController(this);
         this.interactionController = new InteractionController(this);
+        this.pastExamsController = new PastExamsController(this);
         this.vocabularyController = new VocabularyController(this);
         this.legacyFlowController = new LegacyFlowController(this);
         this.startupController = new StartupController(this);
@@ -214,6 +216,8 @@ class HSKApp {
     getMeaningForLanguage(word) { return this.browseController.getMeaningForLanguage(word); }
     updateVocabularyCards() { return this.browseController.updateVocabularyCards(); }
     initializeBrowse() { return this.browseController.initializeBrowse(); }
+    initializeStrokesRadicals() { return this.strokesRadicalsController.initialize(); }
+    refreshStrokesRadicals() { return this.strokesRadicalsController.refresh(); }
     setupInfiniteScroll() { return this.browseController.setupInfiniteScroll(); }
     loadMoreVocabulary() { return this.browseController.loadMoreVocabulary(); }
     filterVocabulary() { return this.browseController.filterVocabulary(); }
@@ -249,6 +253,8 @@ class HSKApp {
     loadStats() { return this.storageController.loadStats(); }
     saveStats() { return this.storageController.saveStats(); }
     loadSettings() { return this.storageController.loadSettings(); }
+    initializePastExams() { return this.pastExamsController.initialize(); }
+    refreshPastExamsLanguage() { return this.pastExamsController.refreshLanguage(); }
     initializeQuiz() { return this.legacyFlowController.initializeQuiz(); }
     setupQuizEventListeners() { return this.legacyFlowController.setupQuizEventListeners(); }
 

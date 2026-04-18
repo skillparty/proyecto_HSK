@@ -1,4 +1,4 @@
-const SW_VERSION = '3.2.0-20260409';
+const SW_VERSION = '3.2.8-20260417';
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = ['hsk-static-', 'hsk-runtime-', 'hsk-learning-', 'hsk-dynamic-'];
@@ -9,25 +9,35 @@ const PRECACHE_FILES = [
     './config/manifest.json',
     './assets/css/design-tokens.css',
     './assets/css/styles-professional.css',
+    './assets/css/styles-professional.css?v=14',
     './assets/css/matrix-game-styles.css',
     './assets/css/leaderboard-styles.css',
     './assets/css/user-profile-styles.css',
     './assets/js/translations.js',
+    './assets/js/translations.js?v=17',
     './assets/js/firebase-client.js',
     './assets/js/firebase-progress-sync.js',
     './assets/js/modules/flashcard-manager.js',
     './assets/js/modules/quiz-engine.js',
     './assets/js/modules/ui-controller.js',
+    './assets/js/modules/ui-controller.js?v=2',
+    './assets/js/modules/navigation-controller.js?v=2',
+    './assets/js/modules/language-controller.js?v=2',
+    './assets/js/modules/interaction-controller.js?v=2',
+    './assets/js/modules/past-exams-controller.js?v=2',
+    './assets/js/modules/strokes-radicals-controller.js?v=4',
     './assets/js/progress-integrator.js',
     './assets/js/auth-backend.js',
     './assets/js/user-progress-backend.js',
     './assets/js/bg-data.js',
     './assets/js/app.js',
+    './assets/js/app.js?v=30',
     './assets/js/matrix-game.js',
     './assets/js/matrix-game-ui.js',
     './assets/js/leaderboard.js',
     './assets/data/hsk_vocabulary.json',
     './assets/data/hsk_vocabulary_spanish.json',
+    './assets/data/hsk_past_exams.json',
     './assets/images/logo_appDM.png',
     './assets/images/logo_appLM.png',
     './assets/images/bg-fusion.png'
@@ -52,6 +62,17 @@ function shouldCacheRuntime(request) {
     const isCacheableType = ['style', 'script', 'font', 'image'].includes(request.destination);
 
     return isAssetPath || isCacheableType;
+}
+
+function getRuntimeCacheKey(request) {
+    const url = new URL(request.url);
+    const isStaticAsset = url.pathname.includes('/assets/') || url.pathname.includes('/config/');
+
+    if (isStaticAsset && url.searchParams.has('v')) {
+        return `${url.origin}${url.pathname}`;
+    }
+
+    return request;
 }
 
 self.addEventListener('install', (event) => {
@@ -103,13 +124,18 @@ self.addEventListener('fetch', (event) => {
     }
 
     event.respondWith((async () => {
-        const cachedResponse = await caches.match(event.request);
+        const cacheKey = getRuntimeCacheKey(event.request);
+        const cacheKeyIsNormalized = typeof cacheKey === 'string';
+        const cachedResponse = await caches.match(cacheKey) || await caches.match(event.request);
         if (cachedResponse) {
             fetch(event.request)
                 .then(async (networkResponse) => {
                     if (networkResponse && networkResponse.ok) {
                         const cache = await caches.open(RUNTIME_CACHE);
                         cache.put(event.request, networkResponse.clone());
+                        if (cacheKeyIsNormalized) {
+                            cache.put(cacheKey, networkResponse.clone());
+                        }
                     }
                 })
                 .catch(() => {});
@@ -120,6 +146,9 @@ self.addEventListener('fetch', (event) => {
         if (networkResponse && networkResponse.ok) {
             const cache = await caches.open(RUNTIME_CACHE);
             cache.put(event.request, networkResponse.clone());
+            if (cacheKeyIsNormalized) {
+                cache.put(cacheKey, networkResponse.clone());
+            }
         }
         return networkResponse;
     })());

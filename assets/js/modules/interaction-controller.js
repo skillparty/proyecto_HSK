@@ -24,18 +24,26 @@ class InteractionController {
                         event.preventDefault();
                         break;
                     case '4':
-                        this.app.switchTab('quiz');
+                        this.app.switchTab('strokes-radicals');
                         event.preventDefault();
                         break;
                     case '5':
-                        this.app.switchTab('matrix');
+                        this.app.switchTab('quiz');
                         event.preventDefault();
                         break;
                     case '6':
-                        this.app.switchTab('leaderboard');
+                        this.app.switchTab('past-exams');
                         event.preventDefault();
                         break;
                     case '7':
+                        this.app.switchTab('matrix');
+                        event.preventDefault();
+                        break;
+                    case '8':
+                        this.app.switchTab('leaderboard');
+                        event.preventDefault();
+                        break;
+                    case '9':
                         this.app.switchTab('stats');
                         event.preventDefault();
                         break;
@@ -93,7 +101,7 @@ class InteractionController {
 
     showKeyboardShortcuts() {
         const shortcuts = [
-            { key: 'Alt + 1-7', action: 'Switch tabs' },
+            { key: 'Alt + 1-9', action: 'Switch tabs' },
             { key: 'Space', action: 'Flip flashcard' },
             { key: '1-4', action: 'Rate difficulty (Easy/Good/Hard/Again)' },
             { key: '←/→', action: 'Previous/Next card' },
@@ -333,6 +341,31 @@ class InteractionController {
         const newQuizBtn = document.getElementById('new-quiz');
         if (newQuizBtn) {
             newQuizBtn.addEventListener('click', () => this.app.quizEngine.restart());
+        }
+
+        const startPastExamBtn = document.getElementById('start-past-exam');
+        if (startPastExamBtn) {
+            startPastExamBtn.addEventListener('click', () => this.app.pastExamsController.startExam());
+        }
+
+        const submitPastExamBtn = document.getElementById('past-exam-submit');
+        if (submitPastExamBtn) {
+            submitPastExamBtn.addEventListener('click', () => this.app.pastExamsController.submitAnswer());
+        }
+
+        const nextPastExamBtn = document.getElementById('past-exam-next');
+        if (nextPastExamBtn) {
+            nextPastExamBtn.addEventListener('click', () => this.app.pastExamsController.nextQuestion());
+        }
+
+        const restartPastExamBtn = document.getElementById('restart-past-exam');
+        if (restartPastExamBtn) {
+            restartPastExamBtn.addEventListener('click', () => this.app.pastExamsController.restart());
+        }
+
+        const newPastExamBtn = document.getElementById('new-past-exam');
+        if (newPastExamBtn) {
+            newPastExamBtn.addEventListener('click', () => this.app.pastExamsController.newExam());
         }
 
         const resetStatsBtn = document.getElementById('reset-stats');

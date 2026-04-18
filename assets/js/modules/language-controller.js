@@ -21,6 +21,8 @@ class LanguageController {
             this.app.showQuizQuestion();
         }
 
+        this.app.refreshPastExamsLanguage();
+        this.app.refreshStrokesRadicals();
         this.app.updateThemeButton();
         this.app.updateAudioButton();
         this.updateHeaderControlMicrocopy();

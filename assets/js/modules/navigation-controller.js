@@ -26,7 +26,7 @@ class NavigationController {
     }
 
     restoreLastVisitedTab() {
-        const allowedTabs = new Set(['home', 'practice', 'browse', 'quiz', 'matrix', 'leaderboard', 'stats']);
+        const allowedTabs = new Set(['home', 'practice', 'browse', 'strokes-radicals', 'quiz', 'past-exams', 'matrix', 'leaderboard', 'stats']);
         const savedTab = this.loadLastVisitedTab();
 
         if (!savedTab || !allowedTabs.has(savedTab)) {
@@ -71,7 +71,7 @@ class NavigationController {
     }
 
     isLearningModuleTab(tabName) {
-        return ['practice', 'browse', 'quiz', 'matrix', 'leaderboard', 'stats'].includes(tabName);
+        return ['practice', 'browse', 'strokes-radicals', 'quiz', 'past-exams', 'matrix', 'leaderboard', 'stats'].includes(tabName);
     }
 
     getTabDisplayName(tabName) {

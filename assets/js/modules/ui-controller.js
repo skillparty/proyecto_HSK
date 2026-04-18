@@ -67,6 +67,9 @@ class UIController {
                     this.app.browseInitialized = true;
                 }
                 break;
+            case 'strokes-radicals':
+                this.app.initializeStrokesRadicals();
+                break;
             case 'quiz':
                 if (!this.app.quizInitialized) {
                     this.app.initializeQuiz();
@@ -75,6 +78,9 @@ class UIController {
                 if (this.app.quizEngine) {
                     this.app.renderQuizResumeAction();
                 }
+                break;
+            case 'past-exams':
+                this.app.initializePastExams();
                 break;
             case 'stats':
                 this.app.updateStats();
@@ -95,7 +101,7 @@ class UIController {
     }
 
     restoreLastVisitedTab() {
-        const allowedTabs = new Set(['home', 'practice', 'browse', 'quiz', 'matrix', 'leaderboard', 'stats']);
+        const allowedTabs = new Set(['home', 'practice', 'browse', 'strokes-radicals', 'quiz', 'past-exams', 'matrix', 'leaderboard', 'stats']);
         try {
             const savedTab = localStorage.getItem(this.app.lastTabStorageKey);
             if (savedTab && allowedTabs.has(savedTab) && document.getElementById(savedTab)) {

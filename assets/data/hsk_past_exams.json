@@ -1,0 +1,218 @@
+[
+  {
+    "id": "hsk1-reading-01",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción correcta de 你好",
+      "en": "Select the correct translation for 你好"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "gracias", "en": "thank you" } },
+      { "key": "B", "label": { "es": "hola", "en": "hello" } },
+      { "key": "C", "label": { "es": "adiós", "en": "goodbye" } },
+      { "key": "D", "label": { "es": "perdón", "en": "sorry" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk1-grammar-01",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 我___学生。",
+      "en": "Complete: 我___学生。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "是", "en": "是" } },
+      { "key": "B", "label": { "es": "在", "en": "在" } },
+      { "key": "C", "label": { "es": "有", "en": "有" } },
+      { "key": "D", "label": { "es": "不", "en": "不" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk2-reading-01",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "¿Qué significa 医院?",
+      "en": "What does 医院 mean?"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "escuela", "en": "school" } },
+      { "key": "B", "label": { "es": "restaurante", "en": "restaurant" } },
+      { "key": "C", "label": { "es": "hospital", "en": "hospital" } },
+      { "key": "D", "label": { "es": "aeropuerto", "en": "airport" } }
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "hsk2-writing-01",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 今天 / 我 / 去 / 公司",
+      "en": "Order the sentence: 今天 / 我 / 去 / 公司"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "我今天公司去", "en": "我今天公司去" } },
+      { "key": "B", "label": { "es": "今天我去公司", "en": "今天我去公司" } },
+      { "key": "C", "label": { "es": "去今天我公司", "en": "去今天我公司" } },
+      { "key": "D", "label": { "es": "公司今天我去", "en": "公司今天我去" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk3-reading-01",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la opción más cercana a 高兴",
+      "en": "Choose the closest meaning to 高兴"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "triste", "en": "sad" } },
+      { "key": "B", "label": { "es": "cansado", "en": "tired" } },
+      { "key": "C", "label": { "es": "feliz", "en": "happy" } },
+      { "key": "D", "label": { "es": "enojado", "en": "angry" } }
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "hsk3-grammar-01",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 他跑得___。",
+      "en": "Complete: 他跑得___。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "快", "en": "快" } },
+      { "key": "B", "label": { "es": "快地", "en": "快地" } },
+      { "key": "C", "label": { "es": "很快", "en": "很快" } },
+      { "key": "D", "label": { "es": "地快", "en": "地快" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk4-reading-01",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "¿Qué palabra expresa la idea de 'continuar' en: 继续学习?",
+      "en": "Which word expresses 'continue' in: 继续学习?"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "学习", "en": "study" } },
+      { "key": "B", "label": { "es": "继续", "en": "continue" } },
+      { "key": "C", "label": { "es": "已经", "en": "already" } },
+      { "key": "D", "label": { "es": "马上", "en": "immediately" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk4-writing-01",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Elige la oración más natural:",
+      "en": "Choose the most natural sentence:"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "因为下雨，所以我们取消了比赛。", "en": "因为下雨，所以我们取消了比赛。" } },
+      { "key": "B", "label": { "es": "所以下雨，因为我们取消了比赛。", "en": "所以下雨，因为我们取消了比赛。" } },
+      { "key": "C", "label": { "es": "我们取消比赛因为了下雨。", "en": "我们取消比赛因为了下雨。" } },
+      { "key": "D", "label": { "es": "因为我们比赛，所以下雨取消了。", "en": "因为我们比赛，所以下雨取消了。" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk5-reading-01",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona el sinónimo más cercano a 建议",
+      "en": "Select the closest synonym for 建议"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "要求", "en": "demand" } },
+      { "key": "B", "label": { "es": "提议", "en": "proposal" } },
+      { "key": "C", "label": { "es": "拒绝", "en": "reject" } },
+      { "key": "D", "label": { "es": "怀疑", "en": "doubt" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk5-grammar-01",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 这个计划不仅提高了效率，___降低了成本。",
+      "en": "Complete: 这个计划不仅提高了效率，___降低了成本。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "而且", "en": "而且" } },
+      { "key": "B", "label": { "es": "但是", "en": "但是" } },
+      { "key": "C", "label": { "es": "虽然", "en": "虽然" } },
+      { "key": "D", "label": { "es": "如果", "en": "如果" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk6-reading-01",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "En el contexto académico, 推敲 se acerca más a:",
+      "en": "In an academic context, 推敲 is closest to:"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "analizar cuidadosamente", "en": "carefully deliberate" } },
+      { "key": "B", "label": { "es": "difundir rápidamente", "en": "spread quickly" } },
+      { "key": "C", "label": { "es": "evitar discutir", "en": "avoid discussing" } },
+      { "key": "D", "label": { "es": "recordar de memoria", "en": "memorize" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk6-writing-01",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Elige el conector más apropiado: 结论已经明确，___无需赘述。",
+      "en": "Choose the most appropriate connector: 结论已经明确，___无需赘述。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "因此", "en": "因此" } },
+      { "key": "B", "label": { "es": "不过", "en": "不过" } },
+      { "key": "C", "label": { "es": "否则", "en": "否则" } },
+      { "key": "D", "label": { "es": "即使", "en": "即使" } }
+    ],
+    "answer": "A"
+  }
+]
