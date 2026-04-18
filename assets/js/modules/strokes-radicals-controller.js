@@ -20,6 +20,36 @@ class StrokesRadicalsController {
             /\btrazo(?:s)?\b/i,
             /\b(heng|shu|pie|na|dian|ti|gou|zhe)\b/i
         ];
+        this.strokeCodeComponentLabelsByLanguage = {
+            es: {
+                H: 'horizontal',
+                S: 'vertical',
+                P: 'descendente izquierda',
+                N: 'descendente derecha',
+                D: 'punto',
+                T: 'ascendente',
+                Z: 'giro',
+                G: 'gancho',
+                W: 'curva',
+                B: 'corto',
+                X: 'diagonal',
+                Q: 'cerrado'
+            },
+            en: {
+                H: 'horizontal',
+                S: 'vertical',
+                P: 'left-falling',
+                N: 'right-falling',
+                D: 'dot',
+                T: 'rising',
+                Z: 'turn',
+                G: 'hook',
+                W: 'bend',
+                B: 'short',
+                X: 'diagonal',
+                Q: 'enclosed'
+            }
+        };
         this.strokeCharacters = new Set(['横', '竖', '撇', '捺', '点', '提', '钩', '折', '㇀', '㇏', '丶', '丿', '丨', '一']);
         this.strokeCatalog = this.buildStrokeCatalog();
         this.radicalCatalog = this.buildRadicalCatalog();
@@ -63,44 +93,76 @@ class StrokesRadicalsController {
         this.getLogger().warn(...args);
     }
 
+    getStrokeCodeComponentLabels(languageCode = 'en') {
+        return this.strokeCodeComponentLabelsByLanguage[languageCode]
+            || this.strokeCodeComponentLabelsByLanguage.en;
+    }
+
+    buildCompositeStrokeName(strokeCode, languageCode = 'en') {
+        const normalizedCode = String(strokeCode || '').trim().toUpperCase();
+        if (!normalizedCode) {
+            return '';
+        }
+
+        const componentLabels = this.getStrokeCodeComponentLabels(languageCode);
+        const components = normalizedCode
+            .split('')
+            .map((part) => componentLabels[part] || part);
+
+        if (components.length === 1) {
+            if (languageCode === 'es') {
+                return `Variante ${normalizedCode}: ${components[0]}`;
+            }
+
+            return `Variant ${normalizedCode}: ${components[0]}`;
+        }
+
+        const joiner = ' + ';
+        if (languageCode === 'es') {
+            return `Compuesto ${normalizedCode}: ${components.join(joiner)}`;
+        }
+
+        return `Composite ${normalizedCode}: ${components.join(joiner)}`;
+    }
+
     getExtendedStrokeMetadata() {
         return new Map([
-            [0x31c0, { strokeCode: 'T', nameEs: 'Trazo CJK T', nameEn: 'CJK stroke T' }],
-            [0x31c1, { strokeCode: 'WG', nameEs: 'Trazo CJK WG', nameEn: 'CJK stroke WG' }],
-            [0x31c2, { strokeCode: 'XG', nameEs: 'Trazo CJK XG', nameEn: 'CJK stroke XG' }],
-            [0x31c3, { strokeCode: 'BXG', nameEs: 'Trazo CJK BXG', nameEn: 'CJK stroke BXG' }],
-            [0x31c4, { strokeCode: 'SW', nameEs: 'Trazo CJK SW', nameEn: 'CJK stroke SW' }],
-            [0x31c5, { strokeCode: 'HZZ', nameEs: 'Trazo CJK HZZ', nameEn: 'CJK stroke HZZ' }],
-            [0x31c6, { strokeCode: 'HZG', nameEs: 'Trazo CJK HZG', nameEn: 'CJK stroke HZG' }],
-            [0x31c7, { strokeCode: 'HP', nameEs: 'Trazo CJK HP', nameEn: 'CJK stroke HP' }],
-            [0x31c8, { strokeCode: 'HZWG', nameEs: 'Trazo CJK HZWG', nameEn: 'CJK stroke HZWG' }],
-            [0x31c9, { strokeCode: 'SZWG', nameEs: 'Trazo CJK SZWG', nameEn: 'CJK stroke SZWG' }],
-            [0x31ca, { strokeCode: 'HZT', nameEs: 'Trazo CJK HZT', nameEn: 'CJK stroke HZT' }],
-            [0x31cb, { strokeCode: 'HZZP', nameEs: 'Trazo CJK HZZP', nameEn: 'CJK stroke HZZP' }],
-            [0x31cc, { strokeCode: 'HPWG', nameEs: 'Trazo CJK HPWG', nameEn: 'CJK stroke HPWG' }],
-            [0x31cd, { strokeCode: 'HZW', nameEs: 'Trazo CJK HZW', nameEn: 'CJK stroke HZW' }],
-            [0x31ce, { strokeCode: 'HZZZ', nameEs: 'Trazo CJK HZZZ', nameEn: 'CJK stroke HZZZ' }],
-            [0x31cf, { strokeCode: 'N', nameEs: 'Trazo CJK N', nameEn: 'CJK stroke N' }],
-            [0x31d0, { strokeCode: 'H', nameEs: 'Trazo CJK H', nameEn: 'CJK stroke H' }],
-            [0x31d1, { strokeCode: 'S', nameEs: 'Trazo CJK S', nameEn: 'CJK stroke S' }],
-            [0x31d2, { strokeCode: 'P', nameEs: 'Trazo CJK P', nameEn: 'CJK stroke P' }],
-            [0x31d3, { strokeCode: 'SP', nameEs: 'Trazo CJK SP', nameEn: 'CJK stroke SP' }],
-            [0x31d4, { strokeCode: 'D', nameEs: 'Trazo CJK D', nameEn: 'CJK stroke D' }],
-            [0x31d5, { strokeCode: 'HZ', nameEs: 'Trazo CJK HZ', nameEn: 'CJK stroke HZ' }],
-            [0x31d6, { strokeCode: 'HG', nameEs: 'Trazo CJK HG', nameEn: 'CJK stroke HG' }],
-            [0x31d7, { strokeCode: 'SZ', nameEs: 'Trazo CJK SZ', nameEn: 'CJK stroke SZ' }],
-            [0x31d8, { strokeCode: 'SWZ', nameEs: 'Trazo CJK SWZ', nameEn: 'CJK stroke SWZ' }],
-            [0x31d9, { strokeCode: 'ST', nameEs: 'Trazo CJK ST', nameEn: 'CJK stroke ST' }],
-            [0x31da, { strokeCode: 'SG', nameEs: 'Trazo CJK SG', nameEn: 'CJK stroke SG' }],
-            [0x31db, { strokeCode: 'PD', nameEs: 'Trazo CJK PD', nameEn: 'CJK stroke PD' }],
-            [0x31dc, { strokeCode: 'PZ', nameEs: 'Trazo CJK PZ', nameEn: 'CJK stroke PZ' }],
-            [0x31dd, { strokeCode: 'TN', nameEs: 'Trazo CJK TN', nameEn: 'CJK stroke TN' }],
-            [0x31de, { strokeCode: 'SZZ', nameEs: 'Trazo CJK SZZ', nameEn: 'CJK stroke SZZ' }],
-            [0x31df, { strokeCode: 'SWG', nameEs: 'Trazo CJK SWG', nameEn: 'CJK stroke SWG' }],
-            [0x31e0, { strokeCode: 'HXWG', nameEs: 'Trazo CJK HXWG', nameEn: 'CJK stroke HXWG' }],
-            [0x31e1, { strokeCode: 'HZZZG', nameEs: 'Trazo CJK HZZZG', nameEn: 'CJK stroke HZZZG' }],
-            [0x31e2, { strokeCode: 'PG', nameEs: 'Trazo CJK PG', nameEn: 'CJK stroke PG' }],
-            [0x31e3, { strokeCode: 'Q', nameEs: 'Trazo CJK Q', nameEn: 'CJK stroke Q' }]
+            [0x31c0, { strokeCode: 'T' }],
+            [0x31c1, { strokeCode: 'WG' }],
+            [0x31c2, { strokeCode: 'XG' }],
+            [0x31c3, { strokeCode: 'BXG' }],
+            [0x31c4, { strokeCode: 'SW' }],
+            [0x31c5, { strokeCode: 'HZZ' }],
+            [0x31c6, { strokeCode: 'HZG' }],
+            [0x31c7, { strokeCode: 'HP' }],
+            [0x31c8, { strokeCode: 'HZWG' }],
+            [0x31c9, { strokeCode: 'SZWG' }],
+            [0x31ca, { strokeCode: 'HZT' }],
+            [0x31cb, { strokeCode: 'HZZP' }],
+            [0x31cc, { strokeCode: 'HPWG' }],
+            [0x31cd, { strokeCode: 'HZW' }],
+            [0x31ce, { strokeCode: 'HZZZ' }],
+            [0x31cf, { strokeCode: 'N' }],
+            [0x31d0, { strokeCode: 'H' }],
+            [0x31d1, { strokeCode: 'S' }],
+            [0x31d2, { strokeCode: 'P' }],
+            [0x31d3, { strokeCode: 'SP' }],
+            [0x31d4, { strokeCode: 'D' }],
+            [0x31d5, { strokeCode: 'HZ' }],
+            [0x31d6, { strokeCode: 'HG' }],
+            [0x31d7, { strokeCode: 'SZ' }],
+            [0x31d8, { strokeCode: 'SWZ' }],
+            [0x31d9, { strokeCode: 'ST' }],
+            [0x31da, { strokeCode: 'SG' }],
+            [0x31db, { strokeCode: 'PD' }],
+            [0x31dc, { strokeCode: 'PZ' }],
+            [0x31dd, { strokeCode: 'TN' }],
+            [0x31de, { strokeCode: 'SZZ' }],
+            [0x31df, { strokeCode: 'SWG' }],
+            [0x31e0, { strokeCode: 'HXWG' }],
+            [0x31e1, { strokeCode: 'HZZZG' }],
+            [0x31e2, { strokeCode: 'PG' }],
+            [0x31e3, { strokeCode: 'Q' }]
         ]);
     }
 
@@ -176,14 +238,17 @@ class StrokesRadicalsController {
         const extensionStrokes = [];
         for (let codePoint = 0x31c0; codePoint <= 0x31e3; codePoint += 1) {
             const metadata = extendedStrokeMetadata.get(codePoint);
+            const strokeCode = String(metadata?.strokeCode || '').trim().toUpperCase();
+            const computedNameEs = this.buildCompositeStrokeName(strokeCode, 'es');
+            const computedNameEn = this.buildCompositeStrokeName(strokeCode, 'en');
             const fallbackHex = codePoint.toString(16).toUpperCase();
             extensionStrokes.push({
                 id: `extended-${codePoint.toString(16)}`,
                 symbol: String.fromCodePoint(codePoint),
                 pinyin: '',
-                nameEs: metadata?.nameEs || `Trazo extendido U+${fallbackHex}`,
-                nameEn: metadata?.nameEn || `Extended stroke U+${fallbackHex}`,
-                strokeCode: metadata?.strokeCode || '',
+                nameEs: computedNameEs || `Trazo extendido U+${fallbackHex}`,
+                nameEn: computedNameEn || `Extended stroke U+${fallbackHex}`,
+                strokeCode,
                 family: 'extended'
             });
         }

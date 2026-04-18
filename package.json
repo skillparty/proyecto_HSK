@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "npx serve . -p 3369",
     "check:syntax": "node scripts/ci/check-syntax.js",
-    "ci": "npm run check:syntax",
+    "check:strokes-catalog": "node scripts/ci/check-strokes-radicals-catalog.js",
+    "ci": "npm run check:syntax && npm run check:strokes-catalog",
     "test": "npm run ci",
     "translation:report": "node scripts/translation/coverage-report.js --report docs/development/translation/coverage-report.json",
     "translation:report:strict": "node scripts/translation/coverage-report.js --strict --report docs/development/translation/coverage-report.json",
