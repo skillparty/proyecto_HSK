@@ -63,6 +63,47 @@ class StrokesRadicalsController {
         this.getLogger().warn(...args);
     }
 
+    getExtendedStrokeMetadata() {
+        return new Map([
+            [0x31c0, { strokeCode: 'T', nameEs: 'Trazo CJK T', nameEn: 'CJK stroke T' }],
+            [0x31c1, { strokeCode: 'WG', nameEs: 'Trazo CJK WG', nameEn: 'CJK stroke WG' }],
+            [0x31c2, { strokeCode: 'XG', nameEs: 'Trazo CJK XG', nameEn: 'CJK stroke XG' }],
+            [0x31c3, { strokeCode: 'BXG', nameEs: 'Trazo CJK BXG', nameEn: 'CJK stroke BXG' }],
+            [0x31c4, { strokeCode: 'SW', nameEs: 'Trazo CJK SW', nameEn: 'CJK stroke SW' }],
+            [0x31c5, { strokeCode: 'HZZ', nameEs: 'Trazo CJK HZZ', nameEn: 'CJK stroke HZZ' }],
+            [0x31c6, { strokeCode: 'HZG', nameEs: 'Trazo CJK HZG', nameEn: 'CJK stroke HZG' }],
+            [0x31c7, { strokeCode: 'HP', nameEs: 'Trazo CJK HP', nameEn: 'CJK stroke HP' }],
+            [0x31c8, { strokeCode: 'HZWG', nameEs: 'Trazo CJK HZWG', nameEn: 'CJK stroke HZWG' }],
+            [0x31c9, { strokeCode: 'SZWG', nameEs: 'Trazo CJK SZWG', nameEn: 'CJK stroke SZWG' }],
+            [0x31ca, { strokeCode: 'HZT', nameEs: 'Trazo CJK HZT', nameEn: 'CJK stroke HZT' }],
+            [0x31cb, { strokeCode: 'HZZP', nameEs: 'Trazo CJK HZZP', nameEn: 'CJK stroke HZZP' }],
+            [0x31cc, { strokeCode: 'HPWG', nameEs: 'Trazo CJK HPWG', nameEn: 'CJK stroke HPWG' }],
+            [0x31cd, { strokeCode: 'HZW', nameEs: 'Trazo CJK HZW', nameEn: 'CJK stroke HZW' }],
+            [0x31ce, { strokeCode: 'HZZZ', nameEs: 'Trazo CJK HZZZ', nameEn: 'CJK stroke HZZZ' }],
+            [0x31cf, { strokeCode: 'N', nameEs: 'Trazo CJK N', nameEn: 'CJK stroke N' }],
+            [0x31d0, { strokeCode: 'H', nameEs: 'Trazo CJK H', nameEn: 'CJK stroke H' }],
+            [0x31d1, { strokeCode: 'S', nameEs: 'Trazo CJK S', nameEn: 'CJK stroke S' }],
+            [0x31d2, { strokeCode: 'P', nameEs: 'Trazo CJK P', nameEn: 'CJK stroke P' }],
+            [0x31d3, { strokeCode: 'SP', nameEs: 'Trazo CJK SP', nameEn: 'CJK stroke SP' }],
+            [0x31d4, { strokeCode: 'D', nameEs: 'Trazo CJK D', nameEn: 'CJK stroke D' }],
+            [0x31d5, { strokeCode: 'HZ', nameEs: 'Trazo CJK HZ', nameEn: 'CJK stroke HZ' }],
+            [0x31d6, { strokeCode: 'HG', nameEs: 'Trazo CJK HG', nameEn: 'CJK stroke HG' }],
+            [0x31d7, { strokeCode: 'SZ', nameEs: 'Trazo CJK SZ', nameEn: 'CJK stroke SZ' }],
+            [0x31d8, { strokeCode: 'SWZ', nameEs: 'Trazo CJK SWZ', nameEn: 'CJK stroke SWZ' }],
+            [0x31d9, { strokeCode: 'ST', nameEs: 'Trazo CJK ST', nameEn: 'CJK stroke ST' }],
+            [0x31da, { strokeCode: 'SG', nameEs: 'Trazo CJK SG', nameEn: 'CJK stroke SG' }],
+            [0x31db, { strokeCode: 'PD', nameEs: 'Trazo CJK PD', nameEn: 'CJK stroke PD' }],
+            [0x31dc, { strokeCode: 'PZ', nameEs: 'Trazo CJK PZ', nameEn: 'CJK stroke PZ' }],
+            [0x31dd, { strokeCode: 'TN', nameEs: 'Trazo CJK TN', nameEn: 'CJK stroke TN' }],
+            [0x31de, { strokeCode: 'SZZ', nameEs: 'Trazo CJK SZZ', nameEn: 'CJK stroke SZZ' }],
+            [0x31df, { strokeCode: 'SWG', nameEs: 'Trazo CJK SWG', nameEn: 'CJK stroke SWG' }],
+            [0x31e0, { strokeCode: 'HXWG', nameEs: 'Trazo CJK HXWG', nameEn: 'CJK stroke HXWG' }],
+            [0x31e1, { strokeCode: 'HZZZG', nameEs: 'Trazo CJK HZZZG', nameEn: 'CJK stroke HZZZG' }],
+            [0x31e2, { strokeCode: 'PG', nameEs: 'Trazo CJK PG', nameEn: 'CJK stroke PG' }],
+            [0x31e3, { strokeCode: 'Q', nameEs: 'Trazo CJK Q', nameEn: 'CJK stroke Q' }]
+        ]);
+    }
+
     buildStrokeCatalog() {
         const coreStrokes = [
             {
@@ -131,14 +172,18 @@ class StrokesRadicalsController {
             }
         ];
 
+        const extendedStrokeMetadata = this.getExtendedStrokeMetadata();
         const extensionStrokes = [];
         for (let codePoint = 0x31c0; codePoint <= 0x31e3; codePoint += 1) {
+            const metadata = extendedStrokeMetadata.get(codePoint);
+            const fallbackHex = codePoint.toString(16).toUpperCase();
             extensionStrokes.push({
                 id: `extended-${codePoint.toString(16)}`,
                 symbol: String.fromCodePoint(codePoint),
                 pinyin: '',
-                nameEs: '',
-                nameEn: '',
+                nameEs: metadata?.nameEs || `Trazo extendido U+${fallbackHex}`,
+                nameEn: metadata?.nameEn || `Extended stroke U+${fallbackHex}`,
+                strokeCode: metadata?.strokeCode || '',
                 family: 'extended'
             });
         }
@@ -151,6 +196,7 @@ class StrokesRadicalsController {
                 entry.pinyin,
                 entry.nameEs,
                 entry.nameEn,
+                entry.strokeCode,
                 entry.family,
                 index + 1
             ].join(' ').toLowerCase())
@@ -833,9 +879,13 @@ class StrokesRadicalsController {
     }
 
     getStrokeLabel(entry) {
-        if (entry.family === 'core') {
+        if (entry.nameEs || entry.nameEn) {
             const localizedName = this.app.currentLanguage === 'es' ? entry.nameEs : entry.nameEn;
-            return `${localizedName} (${entry.pinyin})`;
+            if (entry.pinyin) {
+                return `${localizedName} (${entry.pinyin})`;
+            }
+
+            return localizedName;
         }
 
         return this.app.getTranslation('strokesRadicalsStrokeLabel', { number: entry.order });
