@@ -82,16 +82,20 @@ function getByCode(strokeCode) {
 const sampleVariant = getByCode('T');
 assert.ok(sampleVariant, 'Missing sample stroke code T');
 assert.ok(sampleVariant.nameEs.includes('Variante T'), 'Expected pedagogical ES label for T');
+assert.ok(sampleVariant.nameEs.includes('(ti)'), 'Expected ES pinyin component for T');
+assert.ok(sampleVariant.nameEn.includes('(ti)'), 'Expected EN pinyin component for T');
 
 const sampleCompositeEs = getByCode('HZ');
 assert.ok(sampleCompositeEs, 'Missing sample stroke code HZ');
 assert.ok(sampleCompositeEs.nameEs.includes('Compuesto HZ'), 'Expected composite ES label for HZ');
-assert.ok(sampleCompositeEs.nameEs.includes('horizontal'), 'Expected ES component detail for HZ');
+assert.ok(sampleCompositeEs.nameEs.includes('(heng)'), 'Expected ES heng component for HZ');
+assert.ok(sampleCompositeEs.nameEs.includes('(zhe)'), 'Expected ES zhe component for HZ');
 
 const sampleCompositeEn = getByCode('HZZZG');
 assert.ok(sampleCompositeEn, 'Missing sample stroke code HZZZG');
 assert.ok(sampleCompositeEn.nameEn.includes('Composite HZZZG'), 'Expected composite EN label for HZZZG');
-assert.ok(sampleCompositeEn.nameEn.includes('horizontal'), 'Expected EN component detail for HZZZG');
-assert.ok(sampleCompositeEn.nameEn.includes('hook'), 'Expected EN component detail for HZZZG');
+assert.ok(sampleCompositeEn.nameEn.includes('(heng)'), 'Expected EN heng component for HZZZG');
+assert.ok(sampleCompositeEn.nameEn.includes('(zhe)'), 'Expected EN zhe component for HZZZG');
+assert.ok(sampleCompositeEn.nameEn.includes('(gou)'), 'Expected EN gou component for HZZZG');
 
 console.log('Strokes/radicals catalog checks passed. Extended strokes:', extendedStrokes.length);

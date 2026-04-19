@@ -22,32 +22,32 @@ class StrokesRadicalsController {
         ];
         this.strokeCodeComponentLabelsByLanguage = {
             es: {
-                H: 'horizontal',
-                S: 'vertical',
-                P: 'descendente izquierda',
-                N: 'descendente derecha',
-                D: 'punto',
-                T: 'ascendente',
-                Z: 'giro',
-                G: 'gancho',
-                W: 'curva',
-                B: 'corto',
-                X: 'diagonal',
-                Q: 'cerrado'
+                H: 'horizontal (heng)',
+                S: 'vertical (shu)',
+                P: 'caida izquierda (pie)',
+                N: 'caida derecha (na)',
+                D: 'punto (dian)',
+                T: 'ascendente (ti)',
+                Z: 'quiebre (zhe)',
+                G: 'gancho (gou)',
+                W: 'curva (wan)',
+                B: 'abreviado (duan)',
+                X: 'oblicuo (xie)',
+                Q: 'cierre envolvente (quan)'
             },
             en: {
-                H: 'horizontal',
-                S: 'vertical',
-                P: 'left-falling',
-                N: 'right-falling',
-                D: 'dot',
-                T: 'rising',
-                Z: 'turn',
-                G: 'hook',
-                W: 'bend',
-                B: 'short',
-                X: 'diagonal',
-                Q: 'enclosed'
+                H: 'horizontal (heng)',
+                S: 'vertical (shu)',
+                P: 'left-falling (pie)',
+                N: 'right-falling (na)',
+                D: 'dot (dian)',
+                T: 'rising (ti)',
+                Z: 'turning (zhe)',
+                G: 'hook (gou)',
+                W: 'bend (wan)',
+                B: 'short (duan)',
+                X: 'slanting (xie)',
+                Q: 'enclosing (quan)'
             }
         };
         this.strokeCharacters = new Set(['横', '竖', '撇', '捺', '点', '提', '钩', '折', '㇀', '㇏', '丶', '丿', '丨', '一']);
