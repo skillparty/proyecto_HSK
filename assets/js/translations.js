@@ -176,6 +176,7 @@ const translations = {
         pastExamsStart: "Comenzar examen",
         pastExamsCompleted: "Examen completado",
         pastExamsNoQuestions: "No hay preguntas para ese filtro",
+        pastExamsPoolExpanded: "Se amplio el examen a {count} preguntas con banco dinamico.",
         pastExamsLoadError: "No se pudieron cargar los exámenes",
 
         // Statistics
@@ -526,6 +527,7 @@ const translations = {
         pastExamsStart: "Start exam",
         pastExamsCompleted: "Exam completed",
         pastExamsNoQuestions: "No questions available for that filter",
+        pastExamsPoolExpanded: "Exam expanded to {count} questions using adaptive pool.",
         pastExamsLoadError: "Could not load past exams",
 
         // Statistics
