@@ -22,30 +22,30 @@ class StrokesRadicalsController {
         ];
         this.strokeCodeComponentLabelsByLanguage = {
             es: {
-                H: 'horizontal (heng)',
-                S: 'vertical (shu)',
-                P: 'caida izquierda (pie)',
-                N: 'caida derecha (na)',
-                D: 'punto (dian)',
-                T: 'ascendente (ti)',
-                Z: 'quiebre (zhe)',
-                G: 'gancho (gou)',
+                H: 'horizontal 一 (heng)',
+                S: 'vertical 丨 (shu)',
+                P: 'descendente izquierda 丿 (pie)',
+                N: 'descendente derecha ㇏ (na)',
+                D: 'punto 丶 (dian)',
+                T: 'ascendente ㇀ (ti)',
+                Z: 'giro/quiebre (zhe)',
+                G: 'gancho 亅 (gou)',
                 W: 'curva (wan)',
-                B: 'abreviado (duan)',
+                B: 'trazo corto (duan)',
                 X: 'oblicuo (xie)',
-                Q: 'cierre envolvente (quan)'
+                Q: 'envolvente (quan)'
             },
             en: {
-                H: 'horizontal (heng)',
-                S: 'vertical (shu)',
-                P: 'left-falling (pie)',
-                N: 'right-falling (na)',
-                D: 'dot (dian)',
-                T: 'rising (ti)',
+                H: 'horizontal 一 (heng)',
+                S: 'vertical 丨 (shu)',
+                P: 'left-falling 丿 (pie)',
+                N: 'right-falling ㇏ (na)',
+                D: 'dot 丶 (dian)',
+                T: 'rising ㇀ (ti)',
                 Z: 'turning (zhe)',
-                G: 'hook (gou)',
+                G: 'hook 亅 (gou)',
                 W: 'bend (wan)',
-                B: 'short (duan)',
+                B: 'short stroke (duan)',
                 X: 'slanting (xie)',
                 Q: 'enclosing (quan)'
             }
