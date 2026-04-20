@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="assets/css/matrix-game-styles.css?v=2">
     <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=2">
     <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=2">
+    <link rel="stylesheet" href="assets/css/quantifier-snake-styles.css?v=1">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
         rel="stylesheet" id="fonts-stylesheet">
@@ -189,6 +190,7 @@
                 <button class="nav-tab" data-tab="strokes-radicals"><span data-i18n="strokesRadicalsTab">Trazos & Radicales</span></button>
                 <button class="nav-tab" data-tab="quiz"><span data-i18n="quizTab">Quiz</span></button>
                 <button class="nav-tab" data-tab="past-exams"><span data-i18n="pastExamsTab">Exámenes</span></button>
+                <button class="nav-tab" data-tab="snake-quantifiers"><span data-i18n="snakeQuantifierTab">Viborita</span></button>
                 <button class="nav-tab" data-tab="matrix">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
@@ -268,6 +270,11 @@
                             <div class="home-card-icon chinese-char">矩阵</div>
                             <div class="home-card-title" data-i18n="homeCardMatrixTitle">Matrix</div>
                             <div class="home-card-desc" data-i18n="homeCardMatrixDesc">Find characters against the clock</div>
+                        </div>
+                        <div class="home-card" data-tab-target="snake-quantifiers" role="button" tabindex="0">
+                            <div class="home-card-icon chinese-char">蛇量</div>
+                            <div class="home-card-title" data-i18n="homeCardSnakeQuantifierTitle">Viborita de cuantificadores</div>
+                            <div class="home-card-desc" data-i18n="homeCardSnakeQuantifierDesc">Come solo palabras compatibles con el cuantificador objetivo</div>
                         </div>
                         <div class="home-card" data-tab-target="stats" role="button" tabindex="0">
                             <div class="home-card-icon chinese-char">统计</div>
@@ -683,6 +690,73 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Quantifier Snake Tab -->
+                <div id="snake-quantifiers" class="tab-panel">
+                    <div class="snakeq-shell">
+                        <h3 class="snakeq-title" data-i18n="snakeQuantifierTitle">Viborita de cuantificadores</h3>
+                        <p class="snakeq-subtitle" data-i18n="snakeQuantifierSubtitle">Sigue el cuantificador objetivo y come solo palabras compatibles para sobrevivir.</p>
+
+                        <div id="snakeq-setup" class="snakeq-setup">
+                            <div class="snakeq-setup-grid">
+                                <div>
+                                    <label class="snakeq-select-label" for="snakeq-difficulty" data-i18n="snakeQuantifierDifficultyLabel">Dificultad</label>
+                                    <select id="snakeq-difficulty" class="snakeq-select">
+                                        <option value="easy" data-i18n="snakeQuantifierDifficultyEasy">Fácil</option>
+                                        <option value="normal" data-i18n="snakeQuantifierDifficultyNormal">Normal</option>
+                                        <option value="hard" data-i18n="snakeQuantifierDifficultyHard">Difícil</option>
+                                    </select>
+                                </div>
+
+                                <ul class="snakeq-rules">
+                                    <li data-i18n="snakeQuantifierRuleLives">Tienes 3 vidas por partida.</li>
+                                    <li data-i18n="snakeQuantifierRuleColorEasyNormal">En fácil/normal, las palabras correctas comparten color con el cuantificador.</li>
+                                    <li data-i18n="snakeQuantifierRuleColorHard">En difícil no hay pistas de color.</li>
+                                </ul>
+                            </div>
+
+                            <div class="snakeq-start-row">
+                                <button id="snakeq-start" class="snakeq-btn-primary" data-i18n="snakeQuantifierStart">Iniciar viborita</button>
+                            </div>
+                        </div>
+
+                        <div id="snakeq-game" class="snakeq-game" style="display: none;">
+                            <div class="snakeq-hud">
+                                <div class="snakeq-metric">
+                                    <span class="snakeq-metric-label" data-i18n="snakeQuantifierScore">Puntaje</span>
+                                    <strong id="snakeq-score" class="snakeq-metric-value">0</strong>
+                                </div>
+                                <div class="snakeq-metric">
+                                    <span class="snakeq-metric-label" data-i18n="snakeQuantifierLives">Vidas</span>
+                                    <strong id="snakeq-lives" class="snakeq-metric-value">3/3</strong>
+                                </div>
+                                <div class="snakeq-metric">
+                                    <span class="snakeq-metric-label" data-i18n="snakeQuantifierMode">Modo</span>
+                                    <strong id="snakeq-mode" class="snakeq-metric-value">Fácil</strong>
+                                </div>
+                            </div>
+
+                            <div class="snakeq-target-row">
+                                <span class="snakeq-target-label" data-i18n="snakeQuantifierTargetLabel">Cuantificador objetivo</span>
+                                <span id="snakeq-target-badge" class="snakeq-target-badge">-</span>
+                            </div>
+
+                            <div id="snakeq-board-wrap" class="snakeq-board-wrap">
+                                <canvas id="snakeq-canvas" width="540" height="540"></canvas>
+                            </div>
+
+                            <p id="snakeq-feedback" class="snakeq-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+
+                            <div class="snakeq-actions">
+                                <button id="snakeq-pause" class="snakeq-btn-secondary" data-i18n="snakeQuantifierPause">Pausar</button>
+                                <button id="snakeq-restart" class="snakeq-btn-primary" data-i18n="snakeQuantifierRestart">Reiniciar</button>
+                                <button id="snakeq-back" class="snakeq-btn-neutral" data-i18n="snakeQuantifierBackToSetup">Cambiar dificultad</button>
+                            </div>
+
+                            <p class="snakeq-controls-hint" data-i18n="snakeQuantifierControlsHint">Controles: flechas o WASD para mover, barra espaciadora para pausar.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Leaderboard Tab -->
@@ -932,7 +1006,7 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=18" defer></script>
+    <script src="assets/js/translations.js?v=19" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=1" defer></script>
 
     <!-- Modules -->
@@ -947,18 +1021,21 @@
     <script src="assets/js/modules/modal-controller.js?v=1" defer></script>
     <script src="assets/js/modules/health-controller.js?v=1" defer></script>
     <script src="assets/js/modules/storage-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/language-controller.js?v=2" defer></script>
+    <script src="assets/js/modules/language-controller.js?v=3" defer></script>
     <script src="assets/js/modules/progress-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/navigation-controller.js?v=2" defer></script>
+    <script src="assets/js/modules/navigation-controller.js?v=3" defer></script>
     <script src="assets/js/modules/search-controller.js?v=1" defer></script>
     <script src="assets/js/modules/practice-view-controller.js?v=1" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=2" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=3" defer></script>
     <script src="assets/js/modules/past-exams-controller.js?v=3" defer></script>
+    <script src="assets/js/modules/quantifier-snake-utils.js?v=1" defer></script>
+    <script src="assets/js/modules/quantifier-snake-canvas.js?v=1" defer></script>
+    <script src="assets/js/modules/quantifier-snake-controller.js?v=1" defer></script>
     <script src="assets/js/modules/vocabulary-controller.js?v=1" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=2" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=3" defer></script>
     <script src="assets/js/modules/home-controller.js?v=1" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=1" defer></script>
     
@@ -976,7 +1053,7 @@
     <!-- Background Data (Base64 Fallback) -->
     <script src="assets/js/logger.js?v=1" defer></script>
     <script src="assets/js/bg-data.js" defer></script>
-    <script src="assets/js/app.js?v=30" defer></script>
+    <script src="assets/js/app.js?v=31" defer></script>
     <script src="assets/js/matrix-game-ui.js?v=5" defer></script>
     <script src="assets/js/modules/matrix-session-controller.js?v=1" defer></script>
     <script src="assets/js/modules/matrix-score-controller.js?v=1" defer></script>
@@ -992,7 +1069,7 @@
             window.addEventListener('load', async () => {
                 try {
                     const appBasePath = window.location.pathname.replace(/\/[^/]*$/, '/');
-                    const swUrl = `${appBasePath}sw.js?v=9`;
+                    const swUrl = `${appBasePath}sw.js?v=10`;
 
                     const registration = await navigator.serviceWorker.register(swUrl, {
                         scope: appBasePath

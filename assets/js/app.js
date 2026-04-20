@@ -77,6 +77,7 @@ class HSKApp {
         this.feedbackController = new FeedbackController(this);
         this.interactionController = new InteractionController(this);
         this.pastExamsController = new PastExamsController(this);
+        this.quantifierSnakeController = new QuantifierSnakeController(this);
         this.vocabularyController = new VocabularyController(this);
         this.legacyFlowController = new LegacyFlowController(this);
         this.startupController = new StartupController(this);
@@ -255,6 +256,9 @@ class HSKApp {
     loadSettings() { return this.storageController.loadSettings(); }
     initializePastExams() { return this.pastExamsController.initialize(); }
     refreshPastExamsLanguage() { return this.pastExamsController.refreshLanguage(); }
+    initializeQuantifierSnake() { return this.quantifierSnakeController.initialize(); }
+    refreshQuantifierSnakeLanguage() { return this.quantifierSnakeController.refreshLanguage(); }
+    resumeQuantifierSnakeIfNeeded() { return this.quantifierSnakeController.onTabActivated(); }
     initializeQuiz() { return this.legacyFlowController.initializeQuiz(); }
     setupQuizEventListeners() { return this.legacyFlowController.setupQuizEventListeners(); }
 

@@ -1,0 +1,121 @@
+{
+  "quantifiers": [
+    {
+      "id": "ge",
+      "hanzi": "个",
+      "pinyin": "ge",
+      "es": "uso general",
+      "en": "general use"
+    },
+    {
+      "id": "ben",
+      "hanzi": "本",
+      "pinyin": "ben",
+      "es": "libros y publicaciones",
+      "en": "books and publications"
+    },
+    {
+      "id": "zhi",
+      "hanzi": "只",
+      "pinyin": "zhi",
+      "es": "animales y objetos sueltos",
+      "en": "animals and single items"
+    },
+    {
+      "id": "zhang",
+      "hanzi": "张",
+      "pinyin": "zhang",
+      "es": "objetos planos",
+      "en": "flat objects"
+    },
+    {
+      "id": "tiao",
+      "hanzi": "条",
+      "pinyin": "tiao",
+      "es": "objetos largos y flexibles",
+      "en": "long and flexible objects"
+    },
+    {
+      "id": "bei",
+      "hanzi": "杯",
+      "pinyin": "bei",
+      "es": "bebidas en vaso o taza",
+      "en": "drinks in cups"
+    },
+    {
+      "id": "wan",
+      "hanzi": "碗",
+      "pinyin": "wan",
+      "es": "porciones en bol",
+      "en": "bowl servings"
+    },
+    {
+      "id": "liang",
+      "hanzi": "辆",
+      "pinyin": "liang",
+      "es": "vehiculos con ruedas",
+      "en": "wheeled vehicles"
+    },
+    {
+      "id": "jian",
+      "hanzi": "件",
+      "pinyin": "jian",
+      "es": "prendas o asuntos",
+      "en": "clothing items or matters"
+    }
+  ],
+  "words": [
+    { "id": "ren", "hanzi": "人", "pinyin": "ren", "es": "persona", "en": "person", "quantifiers": ["ge"] },
+    { "id": "xuesheng", "hanzi": "学生", "pinyin": "xuesheng", "es": "estudiante", "en": "student", "quantifiers": ["ge"] },
+    { "id": "laoshi", "hanzi": "老师", "pinyin": "laoshi", "es": "profesor", "en": "teacher", "quantifiers": ["ge"] },
+    { "id": "pingguo", "hanzi": "苹果", "pinyin": "pingguo", "es": "manzana", "en": "apple", "quantifiers": ["ge"] },
+    { "id": "wenti", "hanzi": "问题", "pinyin": "wenti", "es": "pregunta", "en": "question", "quantifiers": ["ge"] },
+    { "id": "chengshi", "hanzi": "城市", "pinyin": "chengshi", "es": "ciudad", "en": "city", "quantifiers": ["ge"] },
+
+    { "id": "shu", "hanzi": "书", "pinyin": "shu", "es": "libro", "en": "book", "quantifiers": ["ben"] },
+    { "id": "zazhi", "hanzi": "杂志", "pinyin": "zazhi", "es": "revista", "en": "magazine", "quantifiers": ["ben"] },
+    { "id": "cidian", "hanzi": "词典", "pinyin": "cidian", "es": "diccionario", "en": "dictionary", "quantifiers": ["ben"] },
+    { "id": "bijiben", "hanzi": "笔记本", "pinyin": "bijiben", "es": "cuaderno", "en": "notebook", "quantifiers": ["ben"] },
+
+    { "id": "mao", "hanzi": "猫", "pinyin": "mao", "es": "gato", "en": "cat", "quantifiers": ["zhi"] },
+    { "id": "gou", "hanzi": "狗", "pinyin": "gou", "es": "perro", "en": "dog", "quantifiers": ["zhi"] },
+    { "id": "niao", "hanzi": "鸟", "pinyin": "niao", "es": "pajaro", "en": "bird", "quantifiers": ["zhi"] },
+    { "id": "bi", "hanzi": "笔", "pinyin": "bi", "es": "lapiz", "en": "pen", "quantifiers": ["zhi"] },
+    { "id": "xiezi", "hanzi": "鞋子", "pinyin": "xiezi", "es": "zapato", "en": "shoe", "quantifiers": ["zhi"] },
+
+    { "id": "zhi-paper", "hanzi": "纸", "pinyin": "zhi", "es": "hoja", "en": "sheet", "quantifiers": ["zhang"] },
+    { "id": "zhaopian", "hanzi": "照片", "pinyin": "zhaopian", "es": "foto", "en": "photo", "quantifiers": ["zhang"] },
+    { "id": "ditu", "hanzi": "地图", "pinyin": "ditu", "es": "mapa", "en": "map", "quantifiers": ["zhang"] },
+    { "id": "piao", "hanzi": "票", "pinyin": "piao", "es": "boleto", "en": "ticket", "quantifiers": ["zhang"] },
+    { "id": "zhuozi", "hanzi": "桌子", "pinyin": "zhuozi", "es": "mesa", "en": "table", "quantifiers": ["zhang"] },
+
+    { "id": "yu", "hanzi": "鱼", "pinyin": "yu", "es": "pez", "en": "fish", "quantifiers": ["tiao"] },
+    { "id": "kuzi", "hanzi": "裤子", "pinyin": "kuzi", "es": "pantalon", "en": "pants", "quantifiers": ["tiao"] },
+    { "id": "qunzi", "hanzi": "裙子", "pinyin": "qunzi", "es": "falda", "en": "skirt", "quantifiers": ["tiao"] },
+    { "id": "lu", "hanzi": "路", "pinyin": "lu", "es": "camino", "en": "road", "quantifiers": ["tiao"] },
+    { "id": "he", "hanzi": "河", "pinyin": "he", "es": "rio", "en": "river", "quantifiers": ["tiao"] },
+
+    { "id": "shui", "hanzi": "水", "pinyin": "shui", "es": "agua", "en": "water", "quantifiers": ["bei"] },
+    { "id": "cha", "hanzi": "茶", "pinyin": "cha", "es": "te", "en": "tea", "quantifiers": ["bei"] },
+    { "id": "kafei", "hanzi": "咖啡", "pinyin": "kafei", "es": "cafe", "en": "coffee", "quantifiers": ["bei"] },
+    { "id": "pijiu", "hanzi": "啤酒", "pinyin": "pijiu", "es": "cerveza", "en": "beer", "quantifiers": ["bei"] },
+    { "id": "guozhi", "hanzi": "果汁", "pinyin": "guozhi", "es": "jugo", "en": "juice", "quantifiers": ["bei"] },
+
+    { "id": "mifan", "hanzi": "米饭", "pinyin": "mifan", "es": "arroz", "en": "rice", "quantifiers": ["wan"] },
+    { "id": "miantiao", "hanzi": "面条", "pinyin": "miantiao", "es": "fideos", "en": "noodles", "quantifiers": ["wan"] },
+    { "id": "tang", "hanzi": "汤", "pinyin": "tang", "es": "sopa", "en": "soup", "quantifiers": ["wan"] },
+    { "id": "zhou", "hanzi": "粥", "pinyin": "zhou", "es": "gachas", "en": "porridge", "quantifiers": ["wan"] },
+
+    { "id": "che", "hanzi": "车", "pinyin": "che", "es": "vehiculo", "en": "vehicle", "quantifiers": ["liang"] },
+    { "id": "qiche", "hanzi": "汽车", "pinyin": "qiche", "es": "automovil", "en": "car", "quantifiers": ["liang"] },
+    { "id": "zixingche", "hanzi": "自行车", "pinyin": "zixingche", "es": "bicicleta", "en": "bicycle", "quantifiers": ["liang"] },
+    { "id": "motuoche", "hanzi": "摩托车", "pinyin": "motuoche", "es": "motocicleta", "en": "motorcycle", "quantifiers": ["liang"] },
+    { "id": "gongjiaoche", "hanzi": "公交车", "pinyin": "gongjiaoche", "es": "autobus", "en": "bus", "quantifiers": ["liang"] },
+
+    { "id": "yifu", "hanzi": "衣服", "pinyin": "yifu", "es": "ropa", "en": "clothing", "quantifiers": ["jian"] },
+    { "id": "chenshan", "hanzi": "衬衫", "pinyin": "chenshan", "es": "camisa", "en": "shirt", "quantifiers": ["jian"] },
+    { "id": "maoyi", "hanzi": "毛衣", "pinyin": "maoyi", "es": "sueter", "en": "sweater", "quantifiers": ["jian"] },
+    { "id": "shiqing", "hanzi": "事情", "pinyin": "shiqing", "es": "asunto", "en": "matter", "quantifiers": ["jian"] },
+    { "id": "xingli", "hanzi": "行李", "pinyin": "xingli", "es": "equipaje", "en": "luggage", "quantifiers": ["jian"] }
+  ]
+}

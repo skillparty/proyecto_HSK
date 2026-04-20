@@ -82,6 +82,36 @@ class UIController {
             case 'past-exams':
                 this.app.initializePastExams();
                 break;
+            case 'snake-quantifiers':
+                if (!this.app.snakeQuantifierInitialized) {
+                    const initResult = this.app.initializeQuantifierSnake();
+
+                    if (initResult && typeof initResult.then === 'function') {
+                        initResult
+                            .then(() => {
+                                this.app.snakeQuantifierInitialized = Boolean(
+                                    this.app.quantifierSnakeController &&
+                                    this.app.quantifierSnakeController.isInitialized
+                                );
+
+                                if (this.app.snakeQuantifierInitialized) {
+                                    this.app.resumeQuantifierSnakeIfNeeded();
+                                }
+                            })
+                            .catch((error) => {
+                                this.app.snakeQuantifierInitialized = false;
+                                this.logError('Failed to initialize quantifier snake tab:', error);
+                            });
+                    } else {
+                        this.app.snakeQuantifierInitialized = Boolean(
+                            this.app.quantifierSnakeController &&
+                            this.app.quantifierSnakeController.isInitialized
+                        );
+                    }
+                } else {
+                    this.app.resumeQuantifierSnakeIfNeeded();
+                }
+                break;
             case 'stats':
                 this.app.updateStats();
                 break;
@@ -101,7 +131,7 @@ class UIController {
     }
 
     restoreLastVisitedTab() {
-        const allowedTabs = new Set(['home', 'practice', 'browse', 'strokes-radicals', 'quiz', 'past-exams', 'matrix', 'leaderboard', 'stats']);
+        const allowedTabs = new Set(['home', 'practice', 'browse', 'strokes-radicals', 'quiz', 'past-exams', 'snake-quantifiers', 'matrix', 'leaderboard', 'stats']);
         try {
             const savedTab = localStorage.getItem(this.app.lastTabStorageKey);
             if (savedTab && allowedTabs.has(savedTab) && document.getElementById(savedTab)) {

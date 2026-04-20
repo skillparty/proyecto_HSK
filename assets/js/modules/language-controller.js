@@ -22,6 +22,7 @@ class LanguageController {
         }
 
         this.app.refreshPastExamsLanguage();
+        this.app.refreshQuantifierSnakeLanguage();
         this.app.refreshStrokesRadicals();
         this.app.updateThemeButton();
         this.app.updateAudioButton();

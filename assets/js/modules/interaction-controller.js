@@ -36,14 +36,18 @@ class InteractionController {
                         event.preventDefault();
                         break;
                     case '7':
-                        this.app.switchTab('matrix');
+                        this.app.switchTab('snake-quantifiers');
                         event.preventDefault();
                         break;
                     case '8':
-                        this.app.switchTab('leaderboard');
+                        this.app.switchTab('matrix');
                         event.preventDefault();
                         break;
                     case '9':
+                        this.app.switchTab('leaderboard');
+                        event.preventDefault();
+                        break;
+                    case '0':
                         this.app.switchTab('stats');
                         event.preventDefault();
                         break;
@@ -101,7 +105,7 @@ class InteractionController {
 
     showKeyboardShortcuts() {
         const shortcuts = [
-            { key: 'Alt + 1-9', action: 'Switch tabs' },
+            { key: 'Alt + 1-0', action: 'Switch tabs' },
             { key: 'Space', action: 'Flip flashcard' },
             { key: '1-4', action: 'Rate difficulty (Easy/Good/Hard/Again)' },
             { key: '←/→', action: 'Previous/Next card' },
