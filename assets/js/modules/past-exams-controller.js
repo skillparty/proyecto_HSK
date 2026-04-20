@@ -8,7 +8,13 @@ class PastExamsController {
             score: 0,
             selectedAnswer: null,
             correctAnswer: null,
-            isActive: false
+            isActive: false,
+            poolSummary: {
+                total: 0,
+                staticCount: 0,
+                generatedCount: 0,
+                repeatedCount: 0
+            }
         };
     }
 
@@ -433,12 +439,41 @@ class PastExamsController {
             usedRepeats = this.fillWithRepeats(selected, normalizedCount);
         }
 
+        const finalQuestions = selected.slice(0, normalizedCount);
+
         return {
             requestedCount: normalizedCount,
-            questions: selected.slice(0, normalizedCount),
+            questions: finalQuestions,
+            summary: this.computePoolSummary(finalQuestions),
             usedGenerated,
             usedRepeats
         };
+    }
+
+    computePoolSummary(questions) {
+        const summary = {
+            total: Array.isArray(questions) ? questions.length : 0,
+            staticCount: 0,
+            generatedCount: 0,
+            repeatedCount: 0
+        };
+
+        (Array.isArray(questions) ? questions : []).forEach((question) => {
+            const questionId = String(question?.id || '');
+            if (questionId.includes('::repeat-')) {
+                summary.repeatedCount += 1;
+                return;
+            }
+
+            if (questionId.startsWith('generated-')) {
+                summary.generatedCount += 1;
+                return;
+            }
+
+            summary.staticCount += 1;
+        });
+
+        return summary;
     }
 
     hashText(value) {
@@ -476,6 +511,7 @@ class PastExamsController {
         this.state.selectedAnswer = null;
         this.state.correctAnswer = null;
         this.state.isActive = true;
+        this.state.poolSummary = selection.summary || this.computePoolSummary(selection.questions);
 
         if (selection.usedGenerated || selection.usedRepeats) {
             this.app.showToast(
@@ -500,6 +536,7 @@ class PastExamsController {
         this.setText('past-exam-current', String(this.state.currentQuestion + 1));
         this.setText('past-exam-total', String(this.state.questions.length));
         this.setText('past-exam-score', String(this.state.score));
+        this.renderPoolSummary();
 
         const sectionLabel = this.localizeSection(question.sectionType);
         const questionPrompt = this.localizeValue(question.prompt) || '';
@@ -634,7 +671,14 @@ class PastExamsController {
 
     newExam() {
         this.state.isActive = false;
+        this.state.poolSummary = {
+            total: 0,
+            staticCount: 0,
+            generatedCount: 0,
+            repeatedCount: 0
+        };
         this.toggleLayout('setup');
+        this.renderPoolSummary();
     }
 
     showResults() {
@@ -793,6 +837,28 @@ class PastExamsController {
         if (element) {
             element.textContent = value;
         }
+    }
+
+    renderPoolSummary() {
+        const summaryEl = document.getElementById('past-exam-pool-summary');
+        if (!summaryEl) {
+            return;
+        }
+
+        const hasQuestions = Array.isArray(this.state.questions) && this.state.questions.length > 0;
+        if (!hasQuestions) {
+            summaryEl.textContent = '';
+            summaryEl.style.display = 'none';
+            return;
+        }
+
+        const summary = this.state.poolSummary || this.computePoolSummary(this.state.questions);
+        summaryEl.textContent = this.app.getTranslation('pastExamsPoolSummary', {
+            staticCount: String(summary.staticCount || 0),
+            generatedCount: String(summary.generatedCount || 0),
+            repeatedCount: String(summary.repeatedCount || 0)
+        });
+        summaryEl.style.display = 'block';
     }
 
     shuffle(items) {

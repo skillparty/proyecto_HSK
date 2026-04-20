@@ -131,6 +131,12 @@ requestCases.forEach((testCase) => {
     `Expected ${testCase.count} questions for level=${testCase.level} section=${testCase.section}`
   );
 
+  assert.ok(result.summary && typeof result.summary === 'object', 'Expected summary object in selection result');
+  const summaryTotal = Number(result.summary.staticCount || 0)
+    + Number(result.summary.generatedCount || 0)
+    + Number(result.summary.repeatedCount || 0);
+  assert.strictEqual(summaryTotal, testCase.count, 'Summary counters must match question count');
+
   result.questions.forEach(assertQuestionShape);
 });
 
@@ -160,6 +166,7 @@ assert.ok(
   lowEntropyResult.questions.some((question) => question.sectionType === 'writing' || question.sectionType === 'grammar'),
   'Section=all should rotate to writing/grammar when reading generation fails'
 );
+assert.ok(lowEntropyResult.summary.repeatedCount >= 0, 'Low entropy summary should expose repeated count');
 
 appStub.pastExamQuestionBank = [];
 appStub.vocabulary = [];

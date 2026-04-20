@@ -591,6 +591,16 @@ select.header-control {
     font-size: 0.92rem;
 }
 
+.past-exams-pool-summary {
+    margin: 6px 0 14px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
 /* ============================================================================
    8. PRACTICE MODULE
    ============================================================================ */
