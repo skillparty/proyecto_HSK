@@ -1632,6 +1632,25 @@ select.header-control {
     text-align: left;
 }
 
+.control-group-checkbox {
+    margin-top: -4px;
+}
+
+.control-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.control-checkbox-input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+}
+
 .control-label {
     display: block;
     margin-bottom: 8px;

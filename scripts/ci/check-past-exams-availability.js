@@ -168,6 +168,33 @@ assert.ok(
 );
 assert.ok(lowEntropyResult.summary.repeatedCount >= 0, 'Low entropy summary should expose repeated count');
 
+appStub.pastExamQuestionBank = [
+  {
+    id: 'official-reading-only-1',
+    hskLevel: 1,
+    examSetId: 'official-only',
+    sectionType: 'reading',
+    audioRequired: false,
+    prompt: { es: 'Oficial', en: 'Official' },
+    options: [
+      { key: 'A', label: { es: 'a', en: 'a' } },
+      { key: 'B', label: { es: 'b', en: 'b' } },
+      { key: 'C', label: { es: 'c', en: 'c' } },
+      { key: 'D', label: { es: 'd', en: 'd' } }
+    ],
+    answer: 'A'
+  }
+];
+appStub.vocabulary = buildMockVocabulary();
+
+const officialOnlyResult = controller.selectExamQuestions('1', 'reading', 5, { officialOnly: true });
+assert.strictEqual(officialOnlyResult.questions.length, 5, 'Official-only mode should still fill requested count');
+assert.strictEqual(officialOnlyResult.summary.generatedCount, 0, 'Official-only mode must not include generated questions');
+assert.ok(
+  officialOnlyResult.questions.every((question) => !String(question.id || '').startsWith('generated-')),
+  'Official-only mode must not include generated question ids'
+);
+
 appStub.pastExamQuestionBank = [];
 appStub.vocabulary = [];
 

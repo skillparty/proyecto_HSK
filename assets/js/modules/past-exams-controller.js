@@ -9,6 +9,9 @@ class PastExamsController {
             selectedAnswer: null,
             correctAnswer: null,
             isActive: false,
+            examConfig: {
+                officialOnly: false
+            },
             poolSummary: {
                 total: 0,
                 staticCount: 0,
@@ -406,10 +409,11 @@ class PastExamsController {
         return true;
     }
 
-    selectExamQuestions(level, section, requestedCount) {
+    selectExamQuestions(level, section, requestedCount, config = {}) {
         const normalizedCount = this.normalizeRequestedCount(requestedCount);
         const selected = [];
         const usedIds = new Set();
+        const officialOnly = config.officialOnly === true;
         let usedGenerated = false;
         let usedRepeats = false;
 
@@ -422,7 +426,7 @@ class PastExamsController {
             const staticQuestions = this.getFilteredStaticQuestions(stage.level, stage.section);
             this.appendUniqueQuestions(selected, staticQuestions, usedIds, normalizedCount);
 
-            if (selected.length >= normalizedCount) {
+            if (selected.length >= normalizedCount || officialOnly) {
                 return;
             }
 
@@ -446,7 +450,8 @@ class PastExamsController {
             questions: finalQuestions,
             summary: this.computePoolSummary(finalQuestions),
             usedGenerated,
-            usedRepeats
+            usedRepeats,
+            officialOnly
         };
     }
 
@@ -493,13 +498,14 @@ class PastExamsController {
         const level = this.getSelectValue('past-exam-level', 'all');
         const section = this.getSelectValue('past-exam-section', 'all');
         const requestedCount = this.normalizeRequestedCount(this.getSelectValue('past-exam-questions', '10'));
+        const officialOnly = this.getCheckboxValue('past-exam-official-only', false);
 
         const strictStaticPool = this.getFilteredStaticQuestions(level, section);
-        if (strictStaticPool.length < requestedCount) {
+        if (!officialOnly && strictStaticPool.length < requestedCount) {
             await this.ensureVocabularyLoaded();
         }
 
-        const selection = this.selectExamQuestions(level, section, requestedCount);
+        const selection = this.selectExamQuestions(level, section, requestedCount, { officialOnly });
         if (!selection.questions.length) {
             this.app.showToast(this.app.getTranslation('pastExamsNoQuestions') || 'No questions available for this filter', 'warning', 2400);
             return;
@@ -511,12 +517,23 @@ class PastExamsController {
         this.state.selectedAnswer = null;
         this.state.correctAnswer = null;
         this.state.isActive = true;
+        this.state.examConfig = {
+            officialOnly
+        };
         this.state.poolSummary = selection.summary || this.computePoolSummary(selection.questions);
 
-        if (selection.usedGenerated || selection.usedRepeats) {
+        if (selection.usedGenerated) {
             this.app.showToast(
                 this.app.getTranslation('pastExamsPoolExpanded', { count: String(selection.questions.length) })
                 || `Exam expanded to ${selection.questions.length} questions using adaptive pool`,
+                'info',
+                2400
+            );
+        } else if (selection.usedRepeats) {
+            const messageKey = officialOnly ? 'pastExamsPoolExpandedOfficial' : 'pastExamsPoolExpandedRepeats';
+            this.app.showToast(
+                this.app.getTranslation(messageKey, { count: String(selection.questions.length) })
+                || `Exam expanded to ${selection.questions.length} questions with repeated items`,
                 'info',
                 2400
             );
@@ -671,6 +688,9 @@ class PastExamsController {
 
     newExam() {
         this.state.isActive = false;
+        this.state.examConfig = {
+            officialOnly: false
+        };
         this.state.poolSummary = {
             total: 0,
             staticCount: 0,
@@ -853,12 +873,41 @@ class PastExamsController {
         }
 
         const summary = this.state.poolSummary || this.computePoolSummary(this.state.questions);
+        const total = Number(summary.total || 0);
+        const staticCount = Number(summary.staticCount || 0);
+        const generatedCount = Number(summary.generatedCount || 0);
+        const repeatedCount = Number(summary.repeatedCount || 0);
+        const modeLabel = this.state.examConfig?.officialOnly
+            ? (this.app.getTranslation('pastExamsModeOfficial') || 'Official only')
+            : (this.app.getTranslation('pastExamsModeAdaptive') || 'Adaptive');
+
         summaryEl.textContent = this.app.getTranslation('pastExamsPoolSummary', {
-            staticCount: String(summary.staticCount || 0),
-            generatedCount: String(summary.generatedCount || 0),
-            repeatedCount: String(summary.repeatedCount || 0)
+            mode: modeLabel,
+            staticCount: String(staticCount),
+            generatedCount: String(generatedCount),
+            repeatedCount: String(repeatedCount),
+            staticPct: String(this.getPercentage(staticCount, total)),
+            generatedPct: String(this.getPercentage(generatedCount, total)),
+            repeatedPct: String(this.getPercentage(repeatedCount, total))
         });
         summaryEl.style.display = 'block';
+    }
+
+    getPercentage(value, total) {
+        if (!Number.isFinite(total) || total <= 0) {
+            return 0;
+        }
+
+        return Math.round((Number(value || 0) / total) * 100);
+    }
+
+    getCheckboxValue(id, fallbackValue = false) {
+        const element = document.getElementById(id);
+        if (!element || element.type !== 'checkbox') {
+            return fallbackValue;
+        }
+
+        return element.checked;
     }
 
     shuffle(items) {
