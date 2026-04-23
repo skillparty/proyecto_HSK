@@ -1,6 +1,8 @@
 class ThemeController {
     constructor(app) {
         this.app = app;
+        this.darkLogoPath = 'assets/images/logo_dark.png';
+        this.lightLogoPath = 'assets/images/logo_light.png';
     }
 
     initializeTheme() {
@@ -29,9 +31,20 @@ class ThemeController {
         document.documentElement.setAttribute('data-theme', mode);
         document.body.setAttribute('data-theme', mode);
 
+        const logoPath = this.app.isDarkMode ? this.darkLogoPath : this.lightLogoPath;
         const logo = document.getElementById('app-logo-img');
         if (logo) {
-            logo.src = this.app.isDarkMode ? 'logo_appDM.png' : 'logo_appLM.png';
+            logo.src = logoPath;
+        }
+
+        const favicon = document.getElementById('app-favicon');
+        if (favicon) {
+            favicon.setAttribute('href', logoPath);
+        }
+
+        const touchIcon = document.getElementById('app-touch-icon');
+        if (touchIcon) {
+            touchIcon.setAttribute('href', logoPath);
         }
 
         const root = document.documentElement;

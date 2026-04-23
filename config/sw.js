@@ -1,4 +1,4 @@
-const SW_VERSION = '3.2.0-20260409';
+const SW_VERSION = '3.2.1-20260422';
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = ['hsk-static-', 'hsk-runtime-', 'hsk-learning-', 'hsk-dynamic-'];
@@ -26,8 +26,8 @@ const PRECACHE_FILES = [
     './assets/js/leaderboard.js',
     './assets/data/hsk_vocabulary.json',
     './assets/data/hsk_vocabulary_spanish.json',
-    './assets/images/logo_appDM.png',
-    './assets/images/logo_appLM.png',
+    './assets/images/logo_dark.png',
+    './assets/images/logo_light.png',
     './assets/images/bg-fusion.png'
 ];
 

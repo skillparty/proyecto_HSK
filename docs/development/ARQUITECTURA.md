@@ -25,8 +25,8 @@ proyecto_HSK/
 │   │   └── [otros archivos HSK]
 │   │
 │   ├── images/             # Imágenes y logos
-│   │   ├── logo_appDM.png  # Logo modo oscuro
-│   │   ├── logo_appLM.png  # Logo modo claro
+│   │   ├── logo_dark.png  # Logo modo oscuro
+│   │   ├── logo_light.png  # Logo modo claro
 │   │   └── [otras imágenes]
 │   │
 │   └── js/                 # JavaScript modularizado

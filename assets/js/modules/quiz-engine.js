@@ -333,7 +333,7 @@ class QuizEngine {
         if (!state || !state.updatedAt || !state.quiz) return false;
 
         const age = Date.now() - Number(state.updatedAt);
-        if (age > this.app.quizSessionMaxAgeMs) {
+        if (age > this.getSessionMaxAgeMs()) {
             this.clearSession();
             return false;
         }
@@ -381,6 +381,76 @@ class QuizEngine {
             this.app.uiController.showToast(message, type, duration);
         } else if (typeof this.app.showToast === 'function') {
             this.app.showToast(message, type, duration);
+        }
+    }
+
+    getSessionStorageKey() {
+        return this.app.quizSessionStorageKey || 'hsk-quiz-session-v1';
+    }
+
+    getSessionMaxAgeMs() {
+        const configured = Number(this.app.quizSessionMaxAgeMs);
+        if (Number.isFinite(configured) && configured > 0) {
+            return configured;
+        }
+
+        return 6 * 60 * 60 * 1000;
+    }
+
+    saveSession() {
+        try {
+            const levelSelect = document.getElementById('quiz-level');
+            const questionsSelect = document.getElementById('quiz-questions');
+
+            const selectedLevel = levelSelect ? levelSelect.value : (this.app.currentLevel || '1');
+            const numQuestions = questionsSelect
+                ? (parseInt(questionsSelect.value, 10) || this.state.questions.length || 10)
+                : (this.state.questions.length || 10);
+
+            const payload = {
+                selectedLevel,
+                numQuestions,
+                updatedAt: Date.now(),
+                quiz: {
+                    questions: Array.isArray(this.state.questions) ? this.state.questions : [],
+                    currentQuestion: Number(this.state.currentQuestion) || 0,
+                    score: Number(this.state.score) || 0,
+                    selectedAnswer: this.state.selectedAnswer || null,
+                    correctAnswer: this.state.correctAnswer || null,
+                    isActive: Boolean(this.state.isActive)
+                }
+            };
+
+            localStorage.setItem(this.getSessionStorageKey(), JSON.stringify(payload));
+        } catch (error) {
+            console.warn('⚠️ Unable to save quiz session state:', error);
+        }
+    }
+
+    loadSession() {
+        try {
+            const raw = localStorage.getItem(this.getSessionStorageKey());
+            if (!raw) {
+                return null;
+            }
+
+            const parsed = JSON.parse(raw);
+            if (!parsed || typeof parsed !== 'object') {
+                return null;
+            }
+
+            return parsed;
+        } catch (error) {
+            console.warn('⚠️ Unable to load quiz session state:', error);
+            return null;
+        }
+    }
+
+    clearSession() {
+        try {
+            localStorage.removeItem(this.getSessionStorageKey());
+        } catch (error) {
+            console.warn('⚠️ Unable to clear quiz session state:', error);
         }
     }
 }

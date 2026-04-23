@@ -1,4 +1,4 @@
-const SW_VERSION = '3.3.0-20260420';
+const SW_VERSION = '3.3.2-20260422';
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = ['hsk-static-', 'hsk-runtime-', 'hsk-learning-', 'hsk-dynamic-'];
@@ -21,6 +21,7 @@ const PRECACHE_FILES = [
     './assets/js/firebase-progress-sync.js',
     './assets/js/modules/flashcard-manager.js',
     './assets/js/modules/quiz-engine.js',
+    './assets/js/modules/quiz-engine.js?v=2',
     './assets/js/modules/ui-controller.js',
     './assets/js/modules/ui-controller.js?v=3',
     './assets/js/modules/navigation-controller.js?v=3',
@@ -47,8 +48,8 @@ const PRECACHE_FILES = [
     './assets/data/hsk_vocabulary_spanish.json',
     './assets/data/hsk_past_exams.json',
     './assets/data/quantifier_snake_words.json',
-    './assets/images/logo_appDM.png',
-    './assets/images/logo_appLM.png',
+    './assets/images/logo_dark.png',
+    './assets/images/logo_light.png',
     './assets/images/bg-fusion.png'
 ];
 

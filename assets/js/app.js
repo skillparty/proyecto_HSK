@@ -235,9 +235,23 @@ class HSKApp {
     nextQuizQuestion() { this.quizEngine.nextQuestion(); }
     showQuizResults() { this.quizEngine.showResults(); }
     restartQuiz() { this.quizEngine.restart(); }
-    saveQuizSessionState() { this.quizEngine.saveSession(); }
-    loadQuizSessionState() { return this.quizEngine.loadSession(); }
-    clearQuizSessionState() { this.quizEngine.clearSession(); }
+    saveQuizSessionState() {
+        if (this.quizEngine && typeof this.quizEngine.saveSession === 'function') {
+            this.quizEngine.saveSession();
+        }
+    }
+    loadQuizSessionState() {
+        if (this.quizEngine && typeof this.quizEngine.loadSession === 'function') {
+            return this.quizEngine.loadSession();
+        }
+
+        return null;
+    }
+    clearQuizSessionState() {
+        if (this.quizEngine && typeof this.quizEngine.clearSession === 'function') {
+            this.quizEngine.clearSession();
+        }
+    }
     renderQuizResumeAction() { return this.legacyFlowController.renderQuizResumeAction(); }
     resumeQuizSession() { return this.legacyFlowController.resumeQuizSession(); }
     hasResumableQuizSession(session) { return this.quizEngine.hasResumableSession(session); }
