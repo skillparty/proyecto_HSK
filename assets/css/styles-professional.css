@@ -194,9 +194,9 @@ ul {
 }
 
 .app-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-main);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
     margin: 0;
     white-space: nowrap;
     letter-spacing: -0.5px;
@@ -359,11 +359,12 @@ select.header-control {
 }
 
 .nav-tab.active {
-    color: var(--text-main);
-    font-weight: 500;
+    color: var(--primary);
+    font-weight: 600;
     background: transparent;
-    border-bottom: 2px solid var(--text-main);
+    border-bottom: 3px solid var(--primary);
     border-radius: 0;
+    padding-bottom: 9px;
 }
 
 .nav-tab::after {
@@ -410,12 +411,13 @@ select.header-control {
    ============================================================================ */
 .home-hero {
     text-align: center;
-    padding: 120px 20px;
+    padding: 100px 20px;
     background: var(--color-secondary);
-    border-radius: var(--radius-none);
-    margin-bottom: 64px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 48px;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-product);
 }
 
 .home-hero::before {
@@ -500,6 +502,7 @@ select.header-control {
 .home-card {
     background: var(--bg-card);
     border: 1px solid var(--color-border);
+    border-top: 4px solid transparent;
     border-radius: var(--radius-lg);
     padding: 32px;
     display: flex;
@@ -507,41 +510,44 @@ select.header-control {
     align-items: flex-start;
     text-align: left;
     cursor: pointer;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-top-color var(--transition-fast);
 }
 
 .home-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
     border-color: var(--color-border);
+    border-top-color: var(--primary);
 }
 
 .home-card:hover .home-card-icon {
-    font-size: 24px;
-    margin-bottom: 16px;
-    color: var(--color-text-main);
-    background: transparent;
-    width: auto;
-    height: auto;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: var(--primary);
+    background: var(--color-primary-subtle);
+    width: 64px;
+    height: 64px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0;
+    border-radius: var(--radius-md);
     padding: 0;
+    transition: transform var(--transition-bounce);
 }
 
 .home-card-icon {
-    font-size: 24px;
-    margin-bottom: 16px;
-    color: var(--color-text-main);
-    background: transparent;
-    width: auto;
-    height: auto;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: var(--primary);
+    background: var(--color-primary-subtle);
+    width: 64px;
+    height: 64px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0;
+    border-radius: var(--radius-md);
     padding: 0;
+    transition: transform var(--transition-bounce);
 }
 
 /* Specific override for Chinese characters to ensure they fit */
@@ -1060,12 +1066,12 @@ select.header-control {
 }
 
 .vocab-card {
-    background: var(--bg-panel);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: var(--radius-md);
-    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px 20px;
     text-align: center;
-    transition: transform var(--transition-fast);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -1073,7 +1079,7 @@ select.header-control {
 
 .vocab-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(244, 63, 94, 0.3);
+    border-color: var(--color-primary-subtle);
     box-shadow: var(--shadow-md);
 }
 
