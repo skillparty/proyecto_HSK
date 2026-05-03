@@ -1,8 +1,8 @@
 /* 
 ================================================================================
-CONFUC10 ++ DESIGN TOKENS
+HSK ++ DESIGN TOKENS (Notion-Inspired Theme)
 ================================================================================
-Version: 1.0.0
+Version: 3.0.0
 Description: Centralized Design Token system for the HSK Learning Platform.
              All visual decisions (colors, typography, spacing, effects) are
              defined HERE and consumed by all component stylesheets via var().
@@ -18,43 +18,53 @@ Architecture: CSS Custom Properties following the css-architecture skill.
 :root {
     /* ---- COLOR PALETTE ---- */
 
-    /* Brand - Andes & China Fusion Theme */
-    --color-primary: #D94E3B;         /* Terracotta Red (Andean Textiles / Chinese Lanterns) */
-    --color-primary-hover: #B93D2B;   /* Darker shade for interactions */
-    --color-primary-subtle: rgba(217, 78, 59, 0.12); /* For backgrounds */
-    --color-primary-glow: rgba(217, 78, 59, 0.3);    /* For glows & shadows */
+    /* Brand - Notion Purple */
+    --color-primary: #5645d4;         
+    --color-primary-hover: #4534b3;   
+    --color-primary-subtle: #d6b6f6; 
+    --color-primary-glow: rgba(86, 69, 212, 0.3);    
 
-    --color-secondary: #0F2C59;       /* Deep Andean Blue */
-    --color-accent: #EAB308;          /* Imperial Gold (Sun / Emperor) */
-    --color-accent-subtle: rgba(234, 179, 8, 0.12);
+    /* Deep Navy & Charcoal */
+    --color-secondary: #0a1530;       /* Brand Navy */
+    --color-accent: #dd5b00;          /* Brand Orange for accents */
+    --color-accent-subtle: #ffe8d4;
 
-    /* Backgrounds (Dark Theme) */
-    --color-bg-app: #0f172a;          /* Deepest layer */
-    --color-bg-panel: rgba(15, 23, 42, 0.7);   /* Cards, modals */
-    --color-bg-card: rgba(30, 41, 59, 0.8);    /* Elevated cards */
-    --color-bg-input: rgba(255, 255, 255, 0.05); /* Form inputs */
-    --color-bg-hover: rgba(255, 255, 255, 0.03);  /* Hover states */
+    /* Backgrounds (Light Theme Default) */
+    --color-bg-app: #ffffff;          /* Canvas White */
+    --color-bg-panel: #ffffff;        /* Canvas White */
+    --color-bg-card: #f6f5f4;         /* Surface - very light gray */
+    --color-bg-input: #ffffff;        /* Form inputs */
+    --color-bg-hover: #fafaf9;        /* Surface Soft */
+
+    /* Pastel Tints for Cards / Features */
+    --color-tint-peach: #ffe8d4;
+    --color-tint-rose: #fde0ec;
+    --color-tint-mint: #d9f3e1;
+    --color-tint-lavender: #e6e0f5;
+    --color-tint-sky: #dcecfa;
+    --color-tint-yellow: #fef7d6;
 
     /* Borders */
-    --color-border: rgba(255, 255, 255, 0.12);
-    --color-border-subtle: rgba(255, 255, 255, 0.05);
+    --color-border: #e5e3df;          /* Hairline */
+    --color-border-subtle: #ede9e4;   /* Hairline Soft */
     --color-border-focus: var(--color-primary);
 
     /* Text */
-    --color-text-main: #f8fafc;       /* Headings, primary content */
-    --color-text-muted: #b2bfd1;      /* Secondary text */
-    --color-text-dim: #8ea0b8;        /* Tertiary / disabled text */
+    --color-text-main: #1a1a1a;       /* Ink */
+    --color-text-charcoal: #37352f;   /* Charcoal - Warm emphasis */
+    --color-text-muted: #5d5b54;      /* Slate */
+    --color-text-dim: #787671;        /* Steel */
+    --color-text-on-dark: #ffffff;    /* On Dark */
 
     /* Semantic Status */
-    --color-success: #10b981;
-    --color-success-subtle: rgba(16, 185, 129, 0.12);
-    --color-warning: #f59e0b;
-    --color-warning-subtle: rgba(245, 158, 11, 0.12);
-    --color-error: #ef4444;
-    --color-error-subtle: rgba(239, 68, 68, 0.12);
+    --color-success: #1aae39;
+    --color-success-subtle: #d9f3e1;
+    --color-warning: #dd5b00;
+    --color-warning-subtle: #ffe8d4;
+    --color-error: #e03131;
+    --color-error-subtle: #fde0ec;
 
     /* ---- COMPATIBILITY ALIASES ---- */
-    /* These map new tokens to old variable names used across modules */
     --primary: var(--color-primary);
     --primary-hover: var(--color-primary-hover);
     --secondary: var(--color-secondary);
@@ -76,70 +86,87 @@ Architecture: CSS Custom Properties following the css-architecture skill.
     --text-secondary: var(--color-text-muted);
 
     /* ---- TYPOGRAPHY ---- */
-    --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-main: "Inter", -apple-system, system-ui, "Segoe UI", Helvetica, sans-serif;
+    --font-display: "Inter", -apple-system, system-ui, "Segoe UI", Helvetica, sans-serif;
     --font-chinese: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    /* Font Sizes - Modular Scale (1.25 ratio) */
-    --text-xs: 0.75rem;    /* 12px */
-    --text-sm: 0.85rem;    /* 13.6px */
-    --text-base: 1rem;     /* 16px */
-    --text-lg: 1.125rem;   /* 18px */
-    --text-xl: 1.25rem;    /* 20px */
-    --text-2xl: 1.5rem;    /* 24px */
-    --text-3xl: 2rem;      /* 32px */
-    --text-4xl: 2.5rem;    /* 40px */
+    /* Font Sizes - Notion Hierarchy */
+    --text-xs: 12px;       /* Micro */
+    --text-sm: 14px;       /* Body Small */
+    --text-base: 16px;     /* Body Medium */
+    --text-lg: 18px;       /* Subtitle */
+    --text-xl: 22px;       /* Heading 4 */
+    --text-2xl: 28px;      /* Heading 3 */
+    --text-3xl: 36px;      /* Heading 2 */
+    --text-4xl: 48px;      /* Heading 1 */
+    --text-5xl: 56px;      /* Display LG */
 
     /* Font Weights */
+    --weight-light: 400;
     --weight-normal: 400;
-    --weight-medium: 500;
-    --weight-semibold: 600;
-    --weight-bold: 700;
-    --weight-extrabold: 800;
+    --weight-medium: 500;  
+    --weight-semibold: 600; /* Primary heading weight */
+    --weight-bold: 600;
+    --weight-extrabold: 600; /* Notion caps out around 600 */
 
     /* Line Heights */
-    --leading-tight: 1.2;
-    --leading-normal: 1.6;
-    --leading-relaxed: 1.8;
+    --leading-tight: 1.15;
+    --leading-normal: 1.55;
+    --leading-relaxed: 1.6;
+
+    /* Letter Spacing */
+    --tracking-tight: -0.5px;
+    --tracking-hero: -1px;
+    --tracking-normal: 0px;
 
     /* ---- SPACING ---- */
-    --space-xs: 4px;
-    --space-sm: 8px;
+    --space-xxs: 4px;
+    --space-xs: 8px;
+    --space-sm: 12px;
     --space-md: 16px;
-    --space-lg: 24px;
-    --space-xl: 32px;
-    --space-2xl: 48px;
-    --space-3xl: 64px;
+    --space-lg: 20px;
+    --space-xl: 24px;
+    --space-xxl: 32px;
+    --space-section: 64px;
 
     /* ---- LAYOUT ---- */
-    --header-height: 70px;
-    --max-width: 1200px;
+    --header-height: 64px;
+    --subnav-height: 52px;
+    --max-width: 1280px;
 
     /* ---- BORDER RADIUS ---- */
+    --radius-none: 0px;
+    --radius-xs: 4px;
     --radius-sm: 6px;
-    --radius-md: 12px;
-    --radius-lg: 24px;
-    --radius-xl: 32px;
-    --radius-full: 9999px;
+    --radius-md: 8px;   /* Buttons */
+    --radius-lg: 12px;  /* Cards */
+    --radius-xl: 16px;
+    --radius-pill: 9999px; /* Status badges only, not buttons */
+    --radius-full: 50%;
 
     /* ---- SHADOWS ---- */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --shadow-glow: 0 0 20px var(--color-primary-glow);
-    --shadow-glow-success: 0 0 15px var(--color-success-subtle);
-    --shadow-glow-accent: 0 0 15px var(--color-accent-subtle);
+    --shadow-sm: rgba(15, 15, 15, 0.04) 0px 1px 2px 0px; /* Hover tiles */
+    --shadow-md: rgba(15, 15, 15, 0.08) 0px 4px 12px 0px; /* Feature cards */
+    --shadow-lg: rgba(15, 15, 15, 0.16) 0px 16px 48px -8px; /* Modals */
+    --shadow-xl: rgba(15, 15, 15, 0.20) 0px 24px 48px -8px; /* Mockups */
+    --shadow-product: rgba(15, 15, 15, 0.20) 0px 24px 48px -8px; 
+    --shadow-glow: none;
+    --shadow-glow-success: none;
+    --shadow-glow-accent: none;
 
     /* ---- EFFECTS ---- */
-    --backdrop-blur: blur(16px);
-    --backdrop-blur-heavy: blur(24px);
+    --backdrop-blur: blur(10px);
+    --backdrop-blur-heavy: blur(20px);
 
     /* ---- TRANSITIONS ---- */
     --transition-fast: 0.15s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
-    --transition-bounce: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease;
+    --transition-bounce: 0.3s ease;
+    
+    /* Interactive Transform */
+    --transform-active: translateY(1px); /* More subtle than Apple's scale */
 
     /* ---- Z-INDEX SCALE ---- */
     --z-base: 1;
@@ -152,25 +179,22 @@ Architecture: CSS Custom Properties following the css-architecture skill.
 
 /* ============================================================================
    CHINESE CHARACTER SPECIFIC TOKENS
-   ============================================================================
-   Following the chinese-output skill recommendations for optimal
-   Hanzi rendering in web contexts.
    ============================================================================ */
 :root {
     /* Character display sizing */
-    --hanzi-sm: 1.5rem;
-    --hanzi-md: 2.2rem;
-    --hanzi-lg: 4rem;
-    --hanzi-xl: 6rem;
-    --hanzi-hero: 8rem;
+    --hanzi-sm: 24px;
+    --hanzi-md: 36px;
+    --hanzi-lg: 48px;
+    --hanzi-xl: 80px;
+    --hanzi-hero: 120px;
 
     /* Pinyin sizing */
-    --pinyin-sm: 0.75rem;
-    --pinyin-md: 1rem;
-    --pinyin-lg: 1.25rem;
+    --pinyin-sm: 12px;
+    --pinyin-md: 14px;
+    --pinyin-lg: 16px;
 
-    /* Character weight - heavier for legibility at small sizes */
-    --hanzi-weight: 700;
+    /* Character weight */
+    --hanzi-weight: 500;
     --hanzi-weight-light: 400;
 }
 
@@ -185,17 +209,19 @@ Architecture: CSS Custom Properties following the css-architecture skill.
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-feature-settings: "liga" 1;
+    color: var(--color-text-charcoal);
 }
 
-/* Pinyin — always render in Latin font for clarity. */
+/* Pinyin */
 .pinyin {
     font-family: var(--font-main);
-    font-weight: var(--weight-medium);
-    letter-spacing: 0.02em;
+    font-weight: var(--weight-normal);
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-text-muted);
 }
 
 /* Tone marks need precise rendering */
 .pinyin-tone {
     font-family: var(--font-main);
-    unicode-range: U+0300-036F, U+00C0-00FF; /* Combining diacritical marks */
+    unicode-range: U+0300-036F, U+00C0-00FF; 
 }
