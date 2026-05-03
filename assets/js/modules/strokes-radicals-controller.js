@@ -327,10 +327,6 @@ class StrokesRadicalsController {
             meaning = '';
         }
 
-        if (meaning.toUpperCase().startsWith('MYMEMORY WARNING')) {
-            meaning = String(word.english || word.translation || '').trim();
-        }
-
         return meaning || String(word.english || word.translation || '?');
     }
 
