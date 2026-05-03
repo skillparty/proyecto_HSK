@@ -1,14 +1,14 @@
 /* 
 ================================================================================
-HSK ++ DESIGN TOKENS (Notion-Inspired Theme)
+HSK ++ DESIGN TOKENS (Sino-Bolivian Fusion Theme)
 ================================================================================
-Version: 3.0.0
+Version: 4.0.0
 Description: Centralized Design Token system for the HSK Learning Platform.
-             All visual decisions (colors, typography, spacing, effects) are
-             defined HERE and consumed by all component stylesheets via var().
+             Combines traditional Chinese aesthetics (Imperial Red, Jade) with
+             the Bolivian flag's vibrancy (Red, Yellow, Green), structured over 
+             a clean, academic Notion-like layout.
              
-Architecture: CSS Custom Properties following the css-architecture skill.
-              Organized by category: Colors > Typography > Spacing > Effects.
+Architecture: CSS Custom Properties.
 ================================================================================
 */
 
@@ -18,31 +18,31 @@ Architecture: CSS Custom Properties following the css-architecture skill.
 :root {
     /* ---- COLOR PALETTE ---- */
 
-    /* Brand - Notion Purple */
-    --color-primary: #5645d4;         
-    --color-primary-hover: #4534b3;   
-    --color-primary-subtle: #d6b6f6; 
-    --color-primary-glow: rgba(86, 69, 212, 0.3);    
+    /* Brand - Sino-Bolivian Red */
+    --color-primary: #d32f2f;         /* Traditional Red */
+    --color-primary-hover: #b71c1c;   /* Deeper Red */
+    --color-primary-subtle: #ffcdd2;  /* Soft Red for tags */
+    --color-primary-glow: rgba(211, 47, 47, 0.3);    
 
-    /* Deep Navy & Charcoal */
-    --color-secondary: #0a1530;       /* Brand Navy */
-    --color-accent: #dd5b00;          /* Brand Orange for accents */
-    --color-accent-subtle: #ffe8d4;
+    /* Deep Imperial Backgrounds & Golden Accents */
+    --color-secondary: #2b0a0a;       /* Deep Oxblood / Lacquer Red for Hero */
+    --color-accent: #f59e0b;          /* Bolivian/Chinese Imperial Gold */
+    --color-accent-subtle: #fef3c7;
 
     /* Backgrounds (Light Theme Default) */
     --color-bg-app: #ffffff;          /* Canvas White */
     --color-bg-panel: #ffffff;        /* Canvas White */
-    --color-bg-card: #f6f5f4;         /* Surface - very light gray */
+    --color-bg-card: #faf9f8;         /* Surface - warm cream */
     --color-bg-input: #ffffff;        /* Form inputs */
-    --color-bg-hover: #fafaf9;        /* Surface Soft */
+    --color-bg-hover: #f5f4f2;        /* Surface Soft */
 
     /* Pastel Tints for Cards / Features */
-    --color-tint-peach: #ffe8d4;
-    --color-tint-rose: #fde0ec;
-    --color-tint-mint: #d9f3e1;
-    --color-tint-lavender: #e6e0f5;
-    --color-tint-sky: #dcecfa;
-    --color-tint-yellow: #fef7d6;
+    --color-tint-peach: #ffedd5;
+    --color-tint-rose: #ffe4e6;
+    --color-tint-mint: #d1fae5;
+    --color-tint-lavender: #f3e8ff;
+    --color-tint-sky: #e0f2fe;
+    --color-tint-yellow: #fef3c7;
 
     /* Borders */
     --color-border: #e5e3df;          /* Hairline */
@@ -56,13 +56,13 @@ Architecture: CSS Custom Properties following the css-architecture skill.
     --color-text-dim: #787671;        /* Steel */
     --color-text-on-dark: #ffffff;    /* On Dark */
 
-    /* Semantic Status */
-    --color-success: #1aae39;
-    --color-success-subtle: #d9f3e1;
-    --color-warning: #dd5b00;
-    --color-warning-subtle: #ffe8d4;
-    --color-error: #e03131;
-    --color-error-subtle: #fde0ec;
+    /* Semantic Status - Bolivian Green & Gold */
+    --color-success: #059669;         /* Bolivian Green */
+    --color-success-subtle: #d1fae5;
+    --color-warning: #f59e0b;         /* Bolivian Yellow */
+    --color-warning-subtle: #fef3c7;
+    --color-error: #dc2626;           /* Bolivian Red */
+    --color-error-subtle: #fee2e2;
 
     /* ---- COMPATIBILITY ALIASES ---- */
     --primary: var(--color-primary);
@@ -146,11 +146,11 @@ Architecture: CSS Custom Properties following the css-architecture skill.
     --radius-full: 50%;
 
     /* ---- SHADOWS ---- */
-    --shadow-sm: rgba(15, 15, 15, 0.04) 0px 1px 2px 0px; /* Hover tiles */
-    --shadow-md: rgba(15, 15, 15, 0.08) 0px 4px 12px 0px; /* Feature cards */
-    --shadow-lg: rgba(15, 15, 15, 0.16) 0px 16px 48px -8px; /* Modals */
-    --shadow-xl: rgba(15, 15, 15, 0.20) 0px 24px 48px -8px; /* Mockups */
-    --shadow-product: rgba(15, 15, 15, 0.20) 0px 24px 48px -8px; 
+    --shadow-sm: rgba(211, 47, 47, 0.04) 0px 1px 2px 0px; /* Subtle red tint shadow */
+    --shadow-md: rgba(211, 47, 47, 0.06) 0px 4px 12px 0px; /* Feature cards */
+    --shadow-lg: rgba(27, 25, 25, 0.16) 0px 16px 48px -8px; /* Modals */
+    --shadow-xl: rgba(27, 25, 25, 0.20) 0px 24px 48px -8px; /* Mockups */
+    --shadow-product: rgba(27, 25, 25, 0.20) 0px 24px 48px -8px; 
     --shadow-glow: none;
     --shadow-glow-success: none;
     --shadow-glow-accent: none;
