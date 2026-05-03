@@ -35,7 +35,7 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     /* Clean, modern background with subtle gradient overlay */
-    background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('../images/bg-fusion.png') !important;
+    
     background-size: cover !important;
     background-position: center !important;
     background-attachment: fixed !important;
@@ -182,7 +182,7 @@ ul {
 .header-brand .logo {
     height: 36px;
     width: auto;
-    filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.3));
+    filter: drop-shadow(0 0 8px var(--color-primary-subtle));
     transition: var(--transition-normal);
 }
 
@@ -199,13 +199,8 @@ ul {
 
 .app-title {
     font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1.2;
+    font-weight: 600;
+    color: var(--text-main);
     margin: 0;
     white-space: nowrap;
 }
@@ -323,10 +318,12 @@ select.header-control {
    ============================================================================ */
 .nav-container {
     width: 100%;
-    background: var(--bg-panel);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    position: relative;
-    /* Changed from sticky to relative */
+    background: rgba(245, 245, 247, 0.8);
+    backdrop-filter: var(--backdrop-blur);
+    -webkit-backdrop-filter: var(--backdrop-blur);
+    border-bottom: 1px solid var(--color-border-subtle);
+    position: sticky;
+    top: 0;
     z-index: 900;
     display: flex;
     justify-content: center;
@@ -367,9 +364,9 @@ select.header-control {
 }
 
 .nav-tab.active {
-    color: var(--primary);
+    color: var(--color-primary);
     font-weight: 600;
-    background: rgba(244, 63, 94, 0.1);
+    background: var(--color-primary-subtle);
 }
 
 .nav-tab::after {
@@ -416,27 +413,15 @@ select.header-control {
    ============================================================================ */
 .home-hero {
     text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
-    border-radius: var(--radius-lg);
+    padding: 80px 20px;
+    background: var(--bg-panel);
+    border-radius: var(--radius-none);
     margin-bottom: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
 }
 
-.home-hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(244, 63, 94, 0.1) 0%, transparent 50%);
-    animation: rotate 20s linear infinite;
-    pointer-events: none;
-}
+
 
 @keyframes rotate {
     from {
@@ -449,22 +434,21 @@ select.header-control {
 }
 
 .home-hero h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: var(--text-5xl);
+    font-family: var(--font-display);
+    letter-spacing: var(--tracking-hero);
+    font-weight: 600;
     margin-bottom: 15px;
-    background: linear-gradient(to right, #fff, #cbd5e1);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
+    color: var(--text-main);
 }
 
 .home-hero p {
-    font-size: 1.1rem;
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    letter-spacing: var(--tracking-normal);
     color: var(--text-muted);
     max-width: 600px;
     margin: 0 auto 40px;
-    position: relative;
 }
 
 .welcome-stats {
@@ -527,7 +511,7 @@ select.header-control {
 .home-card:hover .home-card-icon {
     transform: scale(1.1);
     color: var(--primary);
-    background: rgba(244, 63, 94, 0.1);
+    background: var(--color-primary-subtle);
 }
 
 .home-card-icon {
@@ -649,10 +633,9 @@ select.header-control {
 
 .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary), #e11d48);
-    border-radius: var(--radius-full, 100px);
-    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 10px rgba(244, 63, 94, 0.3);
+    background: var(--primary);
+    border-radius: var(--radius-pill);
+    transition: width 0.6s ease;
 }
 
 .study-streak {
@@ -682,7 +665,7 @@ select.header-control {
 .streak-day.today {
     border-color: var(--primary);
     color: var(--primary);
-    background: rgba(244, 63, 94, 0.1);
+    background: var(--color-primary-subtle);
 }
 
 /* Level Selector */
@@ -747,10 +730,8 @@ select.header-control {
     height: 100%;
     backface-visibility: hidden;
     border-radius: var(--radius-lg);
-    background: var(--bg-panel-transparent);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.2);
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -771,15 +752,11 @@ select.header-control {
 
 /* Card Content */
 .card-character {
-    font-size: 8rem;
+    font-size: var(--hanzi-hero);
     font-family: var(--font-chinese);
-    font-weight: 400;
+    font-weight: var(--hanzi-weight);
     margin-bottom: 20px;
-    background: linear-gradient(180deg, #fff 0%, #e2e8f0 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+    color: var(--text-main);
 }
 
 .card-hint {
@@ -936,9 +913,10 @@ select.header-control {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: var(--radius-md);
-    font-weight: 600;
+    padding: 11px 22px;
+    border-radius: var(--radius-pill);
+    font-weight: 400;
+    font-size: var(--text-base);
     cursor: pointer;
     transition: transform var(--transition-fast);
 }
@@ -968,8 +946,13 @@ select.header-control {
     }
 
     .home-hero h2 {
-        font-size: 1.8rem;
-    }
+    font-size: var(--text-5xl);
+    font-family: var(--font-display);
+    letter-spacing: var(--tracking-hero);
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
 
     .welcome-stats {
         gap: 20px;
@@ -1002,8 +985,12 @@ select.header-control {
     }
 
     .card-character {
-        font-size: 6rem;
-    }
+    font-size: var(--hanzi-hero);
+    font-family: var(--font-chinese);
+    font-weight: var(--hanzi-weight);
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
 
     .flashcard {
         height: 400px;
@@ -1069,7 +1056,7 @@ select.header-control {
 
 .vocab-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(244, 63, 94, 0.3);
+    border-color: var(--color-primary-subtle);
     box-shadow: var(--shadow-md);
 }
 
@@ -1707,8 +1694,8 @@ select.header-control {
 }
 
 .onboarding-hint--module {
-    border-color: rgba(244, 63, 94, 0.35);
-    background: rgba(244, 63, 94, 0.08);
+    border-color: var(--color-primary-subtle);
+    background: var(--color-primary-subtle);
 }
 
 .quiz-container {
@@ -1814,7 +1801,7 @@ select.header-control {
 
 .quiz-option.selected {
     border-color: var(--primary);
-    background: rgba(244, 63, 94, 0.1);
+    background: var(--color-primary-subtle);
     color: var(--primary);
 }
 
@@ -1844,18 +1831,18 @@ select.header-control {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 12px 30px;
-    border-radius: var(--radius-md);
-    font-weight: 600;
+    padding: 11px 22px;
+    border-radius: var(--radius-pill);
+    font-weight: 400;
+    font-size: var(--text-base);
     cursor: pointer;
-    font-size: 1rem;
     transition: transform var(--transition-fast);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
     background: var(--primary-hover);
-    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+    box-shadow: 0 4px 12px var(--color-primary-subtle);
 }
 
 /* ============================================================================
