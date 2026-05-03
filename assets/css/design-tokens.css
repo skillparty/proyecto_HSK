@@ -1,8 +1,8 @@
 /* 
 ================================================================================
-HSK ++ DESIGN TOKENS (Apple-Inspired Theme)
+CONFUC10 ++ DESIGN TOKENS
 ================================================================================
-Version: 2.0.0
+Version: 1.0.0
 Description: Centralized Design Token system for the HSK Learning Platform.
              All visual decisions (colors, typography, spacing, effects) are
              defined HERE and consumed by all component stylesheets via var().
@@ -18,38 +18,32 @@ Architecture: CSS Custom Properties following the css-architecture skill.
 :root {
     /* ---- COLOR PALETTE ---- */
 
-    /* Brand - Action Blue */
-    --color-primary: #0066cc;         
-    --color-primary-hover: #0071e3;   /* Focus Blue */
-    --color-primary-subtle: rgba(0, 102, 204, 0.12); 
-    --color-primary-glow: rgba(0, 102, 204, 0.3);    
+    /* Brand - Andes & China Fusion Theme */
+    --color-primary: #D94E3B;         /* Terracotta Red (Andean Textiles / Chinese Lanterns) */
+    --color-primary-hover: #B93D2B;   /* Darker shade for interactions */
+    --color-primary-subtle: rgba(217, 78, 59, 0.12); /* For backgrounds */
+    --color-primary-glow: rgba(217, 78, 59, 0.3);    /* For glows & shadows */
 
-    --color-secondary: #1d1d1f;       /* Near-Black Ink */
-    --color-accent: #2997ff;          /* Sky Link Blue (for dark mode/accents) */
-    --color-accent-subtle: rgba(41, 151, 255, 0.12);
+    --color-secondary: #0F2C59;       /* Deep Andean Blue */
+    --color-accent: #EAB308;          /* Imperial Gold (Sun / Emperor) */
+    --color-accent-subtle: rgba(234, 179, 8, 0.12);
 
-    /* Backgrounds (Light Theme Default) */
-    --color-bg-app: #f5f5f7;          /* Canvas Parchment */
-    --color-bg-panel: #ffffff;        /* Pure White Canvas */
-    --color-bg-card: #fafafc;         /* Surface Pearl */
-    --color-bg-input: #ffffff;        /* Form inputs */
-    --color-bg-hover: rgba(0, 0, 0, 0.03);  /* Hover states */
-
-    /* Surfaces - Dark mode variants when needed */
-    --color-surface-dark-1: #272729;
-    --color-surface-dark-2: #2a2a2c;
-    --color-surface-dark-3: #252527;
+    /* Backgrounds (Dark Theme) */
+    --color-bg-app: #0f172a;          /* Deepest layer */
+    --color-bg-panel: rgba(15, 23, 42, 0.7);   /* Cards, modals */
+    --color-bg-card: rgba(30, 41, 59, 0.8);    /* Elevated cards */
+    --color-bg-input: rgba(255, 255, 255, 0.05); /* Form inputs */
+    --color-bg-hover: rgba(255, 255, 255, 0.03);  /* Hover states */
 
     /* Borders */
-    --color-border: #e0e0e0;          /* Hairline */
-    --color-border-subtle: #f0f0f0;   /* Divider Soft */
-    --color-border-focus: var(--color-primary-hover);
+    --color-border: rgba(255, 255, 255, 0.12);
+    --color-border-subtle: rgba(255, 255, 255, 0.05);
+    --color-border-focus: var(--color-primary);
 
     /* Text */
-    --color-text-main: #1d1d1f;       /* Ink - Headings, primary content */
-    --color-text-muted: #7a7a7a;      /* Ink Muted 48 - Secondary text */
-    --color-text-dim: #cccccc;        /* Body Muted - Tertiary text */
-    --color-text-on-dark: #ffffff;    /* Text on dark surfaces */
+    --color-text-main: #f8fafc;       /* Headings, primary content */
+    --color-text-muted: #b2bfd1;      /* Secondary text */
+    --color-text-dim: #8ea0b8;        /* Tertiary / disabled text */
 
     /* Semantic Status */
     --color-success: #10b981;
@@ -82,86 +76,70 @@ Architecture: CSS Custom Properties following the css-architecture skill.
     --text-secondary: var(--color-text-muted);
 
     /* ---- TYPOGRAPHY ---- */
-    --font-main: "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-    --font-display: "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     --font-chinese: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    /* Font Sizes - Apple Hierarchy */
-    --text-xs: 12px;       /* Fine print */
-    --text-sm: 14px;       /* Caption */
-    --text-base: 17px;     /* Body - Note the 17px base */
-    --text-lg: 21px;       /* Tagline */
-    --text-xl: 24px;       /* Lead airy */
-    --text-2xl: 28px;      /* Lead */
-    --text-3xl: 34px;      /* Display MD */
-    --text-4xl: 40px;      /* Display LG */
-    --text-5xl: 56px;      /* Hero Display */
+    /* Font Sizes - Modular Scale (1.25 ratio) */
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.85rem;    /* 13.6px */
+    --text-base: 1rem;     /* 16px */
+    --text-lg: 1.125rem;   /* 18px */
+    --text-xl: 1.25rem;    /* 20px */
+    --text-2xl: 1.5rem;    /* 24px */
+    --text-3xl: 2rem;      /* 32px */
+    --text-4xl: 2.5rem;    /* 40px */
 
     /* Font Weights */
-    --weight-light: 300;
     --weight-normal: 400;
-    --weight-medium: 500;  /* Deliberately avoiding if possible, but kept for fallback */
-    --weight-semibold: 600; /* Primary heading weight */
+    --weight-medium: 500;
+    --weight-semibold: 600;
     --weight-bold: 700;
     --weight-extrabold: 800;
 
     /* Line Heights */
-    --leading-tight: 1.07;
-    --leading-normal: 1.47;
-    --leading-relaxed: 2.41;
-
-    /* Letter Spacing (Apple Tight) */
-    --tracking-tight: -0.374px;
-    --tracking-hero: -0.28px;
-    --tracking-normal: 0px;
+    --leading-tight: 1.2;
+    --leading-normal: 1.6;
+    --leading-relaxed: 1.8;
 
     /* ---- SPACING ---- */
-    --space-xxs: 4px;
-    --space-xs: 8px;
-    --space-sm: 12px;
-    --space-md: 17px;
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
     --space-lg: 24px;
     --space-xl: 32px;
-    --space-xxl: 48px;
-    --space-section: 80px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
 
     /* ---- LAYOUT ---- */
-    --header-height: 44px;
-    --subnav-height: 52px;
-    --max-width: 1440px;
+    --header-height: 70px;
+    --max-width: 1200px;
 
     /* ---- BORDER RADIUS ---- */
-    --radius-none: 0px;
-    --radius-xs: 5px;
-    --radius-sm: 8px;
-    --radius-md: 11px;
-    --radius-lg: 18px;
-    --radius-pill: 9999px;
-    --radius-full: 50%;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-full: 9999px;
 
     /* ---- SHADOWS ---- */
-    --shadow-sm: none;
-    --shadow-md: none;
-    --shadow-lg: none;
-    --shadow-xl: none;
-    --shadow-product: rgba(0, 0, 0, 0.22) 3px 5px 30px 0; /* The ONLY true shadow */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     --shadow-glow: 0 0 20px var(--color-primary-glow);
     --shadow-glow-success: 0 0 15px var(--color-success-subtle);
     --shadow-glow-accent: 0 0 15px var(--color-accent-subtle);
 
     /* ---- EFFECTS ---- */
-    --backdrop-blur: saturate(180%) blur(20px);
-    --backdrop-blur-heavy: saturate(180%) blur(30px);
+    --backdrop-blur: blur(16px);
+    --backdrop-blur-heavy: blur(24px);
 
     /* ---- TRANSITIONS ---- */
     --transition-fast: 0.15s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
     --transition-bounce: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    
-    /* Interactive Transform */
-    --transform-active: scale(0.95);
 
     /* ---- Z-INDEX SCALE ---- */
     --z-base: 1;
@@ -180,19 +158,19 @@ Architecture: CSS Custom Properties following the css-architecture skill.
    ============================================================================ */
 :root {
     /* Character display sizing */
-    --hanzi-sm: 24px;
-    --hanzi-md: 34px;
-    --hanzi-lg: 56px;
-    --hanzi-xl: 80px;
-    --hanzi-hero: 120px;
+    --hanzi-sm: 1.5rem;
+    --hanzi-md: 2.2rem;
+    --hanzi-lg: 4rem;
+    --hanzi-xl: 6rem;
+    --hanzi-hero: 8rem;
 
     /* Pinyin sizing */
-    --pinyin-sm: 12px;
-    --pinyin-md: 14px;
-    --pinyin-lg: 17px;
+    --pinyin-sm: 0.75rem;
+    --pinyin-md: 1rem;
+    --pinyin-lg: 1.25rem;
 
     /* Character weight - heavier for legibility at small sizes */
-    --hanzi-weight: 600;
+    --hanzi-weight: 700;
     --hanzi-weight-light: 400;
 }
 
@@ -212,8 +190,8 @@ Architecture: CSS Custom Properties following the css-architecture skill.
 /* Pinyin — always render in Latin font for clarity. */
 .pinyin {
     font-family: var(--font-main);
-    font-weight: var(--weight-normal);
-    letter-spacing: var(--tracking-normal);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.02em;
 }
 
 /* Tone marks need precise rendering */

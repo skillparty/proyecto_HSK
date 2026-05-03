@@ -1,74 +1,72 @@
-/* Quantifier Snake Styles - Apple Design System */
+/* Quantifier Snake styles */
 
 #snake-quantifiers {
-    padding: var(--space-md) 0 var(--space-xl);
+    padding: 16px 0 28px;
 }
 
 .snakeq-shell {
     max-width: 1080px;
     margin: 0 auto;
-    padding: var(--space-lg);
-    border-radius: var(--radius-none);
-    background: var(--bg-panel);
-    border: 1px solid var(--color-border-subtle);
-    box-shadow: none;
+    padding: 20px;
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(249, 115, 22, 0.14), transparent 38%),
+        radial-gradient(circle at 80% 18%, rgba(37, 99, 235, 0.14), transparent 42%),
+        linear-gradient(165deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.88));
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    box-shadow: 0 22px 48px rgba(15, 23, 42, 0.35);
 }
 
 .snakeq-title {
     margin: 0;
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    font-weight: 600;
-    letter-spacing: var(--tracking-tight);
-    color: var(--text-main);
+    font-size: 1.8rem;
+    color: #f8fafc;
 }
 
 .snakeq-subtitle {
-    margin: var(--space-xs) 0 0;
-    color: var(--text-muted);
-    line-height: var(--leading-normal);
-    font-size: var(--text-base);
+    margin: 8px 0 0;
+    color: rgba(226, 232, 240, 0.84);
+    line-height: 1.5;
 }
 
 .snakeq-setup {
-    margin-top: var(--space-lg);
+    margin-top: 22px;
     display: grid;
-    gap: var(--space-md);
-    padding: var(--space-lg);
-    border-radius: var(--radius-lg);
-    background: var(--bg-card);
-    border: 1px solid var(--color-border);
+    gap: 18px;
+    padding: 20px;
+    border-radius: 18px;
+    background: rgba(15, 23, 42, 0.62);
+    border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .snakeq-setup-grid {
     display: grid;
     grid-template-columns: minmax(220px, 320px) 1fr;
-    gap: var(--space-md);
+    gap: 16px;
     align-items: center;
 }
 
 .snakeq-select-label {
     display: block;
-    margin-bottom: var(--space-xs);
-    font-size: var(--text-sm);
+    margin-bottom: 8px;
+    font-size: 0.92rem;
     font-weight: 600;
-    color: var(--text-muted);
+    color: #e2e8f0;
 }
 
 .snakeq-select {
     width: 100%;
     padding: 10px 12px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-    background: var(--bg-input);
-    color: var(--text-main);
-    font-size: var(--text-base);
-    transition: border-color var(--transition-fast);
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.34);
+    background: rgba(15, 23, 42, 0.88);
+    color: #f8fafc;
+    font-size: 0.95rem;
 }
 
 .snakeq-select:focus {
-    outline: none;
-    border-color: var(--primary);
+    outline: 2px solid rgba(59, 130, 246, 0.35);
+    outline-offset: 2px;
 }
 
 .snakeq-rules {
@@ -77,13 +75,13 @@
     list-style: none;
     display: grid;
     gap: 6px;
-    color: var(--text-muted);
-    font-size: var(--text-sm);
+    color: rgba(226, 232, 240, 0.86);
+    font-size: 0.93rem;
 }
 
 .snakeq-rules li::before {
     content: '•';
-    color: var(--primary);
+    color: #f97316;
     margin-right: 8px;
 }
 
@@ -96,159 +94,150 @@
 .snakeq-btn-secondary,
 .snakeq-btn-neutral {
     border: none;
-    border-radius: var(--radius-pill);
-    padding: 11px 22px;
-    font-size: var(--text-base);
-    font-weight: 400;
+    border-radius: 12px;
+    padding: 11px 16px;
+    font-size: 0.94rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform var(--transition-fast), background var(--transition-fast);
+    transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .snakeq-btn-primary {
-    color: #ffffff;
-    background: var(--primary);
+    color: #fff;
+    background: linear-gradient(140deg, #f97316, #ea580c);
+    box-shadow: 0 12px 20px rgba(234, 88, 12, 0.35);
 }
 
 .snakeq-btn-secondary {
-    color: #ffffff;
-    background: var(--primary); /* keeping it unified to Action Blue */
+    color: #fff;
+    background: linear-gradient(140deg, #2563eb, #1d4ed8);
+    box-shadow: 0 12px 20px rgba(37, 99, 235, 0.26);
 }
 
 .snakeq-btn-neutral {
-    color: var(--text-main);
-    background: var(--bg-card);
-    border: 1px solid var(--color-border);
+    color: #e2e8f0;
+    background: rgba(51, 65, 85, 0.92);
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.28);
 }
 
 .snakeq-btn-primary:hover,
-.snakeq-btn-secondary:hover {
-    background: var(--primary-hover);
-}
-
+.snakeq-btn-secondary:hover,
 .snakeq-btn-neutral:hover {
-    background: var(--color-border-subtle);
-}
-
-.snakeq-btn-primary:active,
-.snakeq-btn-secondary:active,
-.snakeq-btn-neutral:active {
-    transform: var(--transform-active);
+    transform: translateY(-1px);
 }
 
 .snakeq-game {
-    margin-top: var(--space-lg);
+    margin-top: 22px;
     display: none;
-    flex-direction: column;
-    gap: var(--space-md);
+    gap: 16px;
 }
 
 .snakeq-hud {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-sm);
+    gap: 10px;
 }
 
 .snakeq-metric {
-    padding: var(--space-sm) var(--space-md);
-    border-radius: var(--radius-lg);
-    background: var(--bg-card);
-    border: 1px solid var(--color-border);
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.58);
+    border: 1px solid rgba(148, 163, 184, 0.22);
 }
 
 .snakeq-metric-label {
     display: block;
-    color: var(--text-muted);
-    font-size: var(--text-sm);
+    color: rgba(203, 213, 225, 0.78);
+    font-size: 0.8rem;
     margin-bottom: 4px;
 }
 
 .snakeq-metric-value {
-    color: var(--text-main);
-    font-size: var(--text-lg);
-    font-weight: 600;
+    color: #f8fafc;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 .snakeq-target-row {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: 10px;
     flex-wrap: wrap;
 }
 
 .snakeq-target-label {
-    color: var(--text-muted);
+    color: rgba(226, 232, 240, 0.86);
     font-weight: 600;
-    font-size: var(--text-sm);
 }
 
 .snakeq-target-badge {
-    --snakeq-target-color: var(--primary);
+    --snakeq-target-color: #f97316;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 12px;
-    border-radius: var(--radius-pill);
+    padding: 7px 12px;
+    border-radius: 999px;
     border: 1px solid var(--snakeq-target-color);
-    background: var(--color-primary-subtle);
-    color: var(--primary);
-    font-weight: 600;
-    font-size: var(--text-sm);
+    background: rgba(15, 23, 42, 0.78);
+    box-shadow: inset 0 0 0 1px rgba(248, 250, 252, 0.12);
+    color: #f8fafc;
+    font-weight: 700;
+    letter-spacing: 0.01em;
 }
 
 .snakeq-target-badge--neutral {
-    border-color: var(--color-border);
-    background: var(--bg-card);
-    color: var(--text-muted);
+    border-color: rgba(148, 163, 184, 0.46);
+    background: rgba(51, 65, 85, 0.72);
 }
 
 .snakeq-board-wrap {
     width: min(100%, 620px);
     margin: 0 auto;
-    border-radius: var(--radius-lg);
+    border-radius: 18px;
     overflow: hidden;
-    border: 1px solid var(--color-border);
-    box-shadow: none;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    box-shadow: 0 20px 40px rgba(2, 6, 23, 0.4);
 }
 
 #snakeq-canvas {
     width: 100%;
     height: auto;
     display: block;
-    background: var(--bg-panel); /* flat, no dark void */
+    background: #0f172a;
 }
 
 .snakeq-feedback {
     min-height: 24px;
     margin: 0;
-    font-size: var(--text-base);
+    font-size: 0.94rem;
     font-weight: 600;
 }
 
 .snakeq-feedback-info {
-    color: var(--text-main);
+    color: #cbd5e1;
 }
 
 .snakeq-feedback-success {
-    color: var(--success);
+    color: #4ade80;
 }
 
 .snakeq-feedback-warning {
-    color: var(--warning);
+    color: #facc15;
 }
 
 .snakeq-feedback-danger {
-    color: var(--error);
+    color: #f87171;
 }
 
 .snakeq-controls-hint {
     margin: 0;
-    color: var(--text-dim);
-    font-size: var(--text-xs);
+    color: rgba(203, 213, 225, 0.72);
+    font-size: 0.86rem;
 }
 
 .snakeq-actions {
     display: flex;
-    gap: var(--space-sm);
+    gap: 10px;
     flex-wrap: wrap;
 }
 
@@ -264,15 +253,16 @@
 
 @media (max-width: 640px) {
     #snake-quantifiers {
-        padding: var(--space-xs) 0 var(--space-lg);
+        padding: 8px 0 20px;
     }
 
     .snakeq-shell {
-        padding: var(--space-md);
+        padding: 16px;
+        border-radius: 16px;
     }
 
     .snakeq-title {
-        font-size: var(--text-2xl);
+        font-size: 1.45rem;
     }
 
     .snakeq-hud {
