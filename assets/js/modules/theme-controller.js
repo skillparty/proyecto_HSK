@@ -49,13 +49,47 @@ class ThemeController {
 
         const root = document.documentElement;
         if (this.app.isDarkMode) {
-            root.style.setProperty('--theme-bg', '#0f0f23');
-            root.style.setProperty('--theme-surface', '#1e1e3f');
-            root.style.setProperty('--theme-text', '#ffffff');
+            // Variables de tema genéricas
+            root.style.setProperty('--theme-bg', '#0f172a');
+            root.style.setProperty('--theme-surface', '#1e293b');
+            root.style.setProperty('--theme-text', '#f8fafc');
+
+            // Sobrescribir variables de tokens de diseño para modo oscuro
+            root.style.setProperty('--color-bg-app', '#0f172a');
+            root.style.setProperty('--color-bg-panel', '#1e293b');
+            root.style.setProperty('--color-bg-card', '#1e293b');
+            root.style.setProperty('--color-bg-input', '#0f172a');
+            root.style.setProperty('--color-bg-hover', '#334155');
+            root.style.setProperty('--color-border', '#334155');
+            root.style.setProperty('--color-border-subtle', '#1e293b');
+            root.style.setProperty('--color-text-main', '#f8fafc');
+            root.style.setProperty('--color-text-charcoal', '#e2e8f0');
+            root.style.setProperty('--color-text-muted', '#94a3b8');
+            root.style.setProperty('--color-text-dim', '#64748b');
+
+            // Sobrescribir alias de compatibilidad de diseño para modo oscuro
+            root.style.setProperty('--bg-app', '#0f172a');
+            root.style.setProperty('--bg-panel', '#1e293b');
+            root.style.setProperty('--bg-card', '#1e293b');
+            root.style.setProperty('--text-main', '#f8fafc');
+            root.style.setProperty('--text-muted', '#94a3b8');
+            root.style.setProperty('--text-dim', '#64748b');
+            root.style.setProperty('--card-bg', '#1e293b');
+            root.style.setProperty('--border-color', '#334155');
+            root.style.setProperty('--input-bg', '#0f172a');
+            root.style.setProperty('--text-primary', '#f8fafc');
+            root.style.setProperty('--text-secondary', '#94a3b8');
         } else {
-            root.style.setProperty('--theme-bg', '#ffffff');
-            root.style.setProperty('--theme-surface', '#f8fafc');
-            root.style.setProperty('--theme-text', '#1e293b');
+            // En modo claro eliminamos las propiedades en línea para que los tokens por defecto de design-tokens.css tomen el control natural
+            const props = [
+                '--theme-bg', '--theme-surface', '--theme-text',
+                '--color-bg-app', '--color-bg-panel', '--color-bg-card', '--color-bg-input', '--color-bg-hover',
+                '--color-border', '--color-border-subtle',
+                '--color-text-main', '--color-text-charcoal', '--color-text-muted', '--color-text-dim',
+                '--bg-app', '--bg-panel', '--bg-card', '--text-main', '--text-muted', '--text-dim',
+                '--card-bg', '--border-color', '--input-bg', '--text-primary', '--text-secondary'
+            ];
+            props.forEach(p => root.style.removeProperty(p));
         }
 
         let bgSource = "url('assets/images/bg-fusion.png')";
@@ -64,8 +98,12 @@ class ThemeController {
             bgSource = "url('" + window.bgFusionBase64 + "')";
         }
 
-        document.body.style.background =
-            'linear-gradient(rgba(15, 23, 42, 0.40), rgba(15, 23, 42, 0.60)), ' + bgSource;
+        // El degradado del fondo debe adaptarse según el tema seleccionado
+        const overlay = this.app.isDarkMode
+            ? 'linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.65))'
+            : 'linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.92))';
+
+        document.body.style.background = overlay + ', ' + bgSource;
         document.body.style.backgroundSize = 'cover';
         document.body.style.backgroundPosition = 'center';
         document.body.style.backgroundAttachment = 'fixed';
