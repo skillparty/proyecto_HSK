@@ -883,6 +883,29 @@
                             <div class="stat-value" id="quiz-count">0</div>
                             <div class="stat-label" data-i18n="quizzesCompleted">Quizzes Completed</div>
                         </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="study-time">0m</div>
+                            <div class="stat-label" data-i18n="studyTime">Study Time</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="snake-highscore">0</div>
+                            <div class="stat-label" data-i18n="snakeHighScore">Snake Record</div>
+                        </div>
+                    </div>
+
+                    <div id="stats-dashboard-row" class="stats-dashboard-row" style="display: none;">
+                        <div class="stats-chart-card">
+                            <h4 data-i18n="progressByLevelChart">Progreso de Vocabulario HSK</h4>
+                            <div class="canvas-chart-wrap">
+                                <canvas id="stats-canvas-chart" width="480" height="230"></canvas>
+                            </div>
+                        </div>
+                        <div class="stats-achievements-card">
+                            <h4 data-i18n="hskAchievements">Logros HSK</h4>
+                            <div class="stats-achievements-grid" id="stats-achievements-grid">
+                                <!-- Los logros se renderizarán dinámicamente aquí -->
+                            </div>
+                        </div>
                     </div>
 
                     <div id="stats-empty-state" class="stats-empty-state" style="display: none;">

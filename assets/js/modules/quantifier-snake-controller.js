@@ -446,6 +446,14 @@ class QuantifierSnakeController {
     this.state.isPaused = false;
     this.stopLoop();
 
+    // Validar y guardar récord de puntuación alta
+    let isNewRecord = false;
+    if (this.state.score > (this.app.stats.snakeHighScore || 0)) {
+      this.app.stats.snakeHighScore = this.state.score;
+      this.app.saveStats();
+      isNewRecord = true;
+    }
+
     this.setFeedback(
       "snakeQuantifierGameOverFeedback",
       {
@@ -457,12 +465,14 @@ class QuantifierSnakeController {
     this.updatePauseButtonLabel();
     this.render();
 
+    const toastMsg = isNewRecord
+      ? `🎉 ¡Nuevo récord en Viborita HSK! Puntaje: ${this.state.score}`
+      : this.app.getTranslation("snakeQuantifierGameOverToast", { score: this.state.score });
+
     this.app.showToast(
-      this.app.getTranslation("snakeQuantifierGameOverToast", {
-        score: this.state.score,
-      }),
-      "warning",
-      2600,
+      toastMsg,
+      isNewRecord ? "success" : "warning",
+      3000,
     );
   }
 

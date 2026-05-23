@@ -40,6 +40,8 @@ class StorageController {
         Number(this.app.stats.quizAnswered || 0) || 0;
       this.app.stats.matrixRounds =
         Number(this.app.stats.matrixRounds || 0) || 0;
+      this.app.stats.snakeHighScore =
+        Number(this.app.stats.snakeHighScore || 0) || 0;
     } catch (error) {
       this.app.logWarn("Error loading stats:", error);
     }

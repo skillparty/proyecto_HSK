@@ -44,7 +44,8 @@ class HSKApp {
             todayCards: 0,
             quizzesCompleted: 0,
             quizAnswered: 0,
-            matrixRounds: 0
+            matrixRounds: 0,
+            snakeHighScore: 0
         };
 
         this.syncToastState = {

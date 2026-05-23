@@ -17,7 +17,8 @@ class StatsController {
                         incorrectAnswers: Number(firebaseStats.incorrectAnswers) || this.app.stats.incorrectAnswers,
                         currentStreak: Number(firebaseStats.currentStreak) || this.app.stats.currentStreak,
                         bestStreak: Number(firebaseStats.bestStreak) || this.app.stats.bestStreak,
-                        totalTimeSpent: Number(firebaseStats.totalTimeSpent) || this.app.stats.totalTimeSpent
+                        totalTimeSpent: Number(firebaseStats.totalTimeSpent) || this.app.stats.totalTimeSpent,
+                        snakeHighScore: Number(firebaseStats.snakeHighScore) || this.app.stats.snakeHighScore
                     };
 
                     if (this.app.userProgress) {
@@ -35,6 +36,7 @@ class StatsController {
 
         const stats = this.app.stats;
 
+        // Renderizar elementos de texto clásicos
         const totalStudiedEl = document.getElementById('total-studied');
         if (totalStudiedEl) totalStudiedEl.textContent = stats.totalStudied;
 
@@ -51,15 +53,41 @@ class StatsController {
         const accuracyRateEl = document.getElementById('accuracy-rate');
         if (accuracyRateEl) accuracyRateEl.textContent = accuracy + '%';
 
+        // Renderizar nuevas estadísticas: Tiempo de estudio
+        let timeMins = stats.totalTimeSpent || 0;
+        if (this.app.userProgress && this.app.userProgress.profile && this.app.userProgress.profile.progress) {
+            timeMins = Math.max(timeMins, this.app.userProgress.profile.progress.totalTimeSpent || 0);
+        }
+        
+        let timeText = '0m';
+        if (timeMins >= 60) {
+            const hrs = Math.floor(timeMins / 60);
+            const mins = timeMins % 60;
+            timeText = `${hrs}h ${mins}m`;
+        } else {
+            timeText = `${timeMins}m`;
+        }
+        
+        const studyTimeEl = document.getElementById('study-time');
+        if (studyTimeEl) studyTimeEl.textContent = timeText;
+
+        // Récord de Viborita
+        const snakeHighEl = document.getElementById('snake-highscore');
+        if (snakeHighEl) snakeHighEl.textContent = stats.snakeHighScore || 0;
+
+        // Determinar si hay progreso en absoluto para mostrar estados
         const hasStatsProgress = (stats.totalStudied || 0) > 0 ||
             (stats.quizzesCompleted || 0) > 0 ||
-            (stats.currentStreak || 0) > 0;
+            (stats.currentStreak || 0) > 0 ||
+            (stats.snakeHighScore || 0) > 0;
 
         this.toggleStatsEmptyState(!hasStatsProgress);
 
         if (hasStatsProgress) {
             try {
-                await this.updateLevelProgress();
+                const progressData = await this.updateLevelProgress();
+                this.drawCanvasChart(progressData);
+                this.renderAchievements(stats);
             } catch (error) {
                 this.app.logError('[stats] Level progress update failed', error);
             }
@@ -71,16 +99,18 @@ class StatsController {
         const levelProgress = document.querySelector('#stats .level-progress');
         const resetBtn = document.getElementById('reset-stats');
         const emptyState = document.getElementById('stats-empty-state');
+        const dashboardRow = document.getElementById('stats-dashboard-row');
 
         if (statsCards) statsCards.style.display = showEmpty ? 'none' : '';
         if (levelProgress) levelProgress.style.display = showEmpty ? 'none' : '';
         if (resetBtn) resetBtn.style.display = showEmpty ? 'none' : '';
         if (emptyState) emptyState.style.display = showEmpty ? 'flex' : 'none';
+        if (dashboardRow) dashboardRow.style.display = showEmpty ? 'none' : 'grid';
     }
 
     async updateLevelProgress() {
         const container = document.getElementById('level-progress-bars');
-        if (!container) return;
+        if (!container) return [];
 
         if (!this.app.vocabularyLoaded && this.app.vocabularyPromise) {
             this.app.logDebug('[stats] Waiting vocabulary before level progress');
@@ -109,31 +139,250 @@ class StatsController {
             }
         }
 
+        const normalizedProgress = [];
+
         for (let level = 1; level <= 6; level++) {
             const levelWords = this.app.vocabulary.filter(word => word.level === level);
-            const totalWords = levelWords.length;
+            const totalWords = levelWords.length || 150; // Fallback razonable
 
             const levelData = levelProgressData.find(lp => lp.hsk_level === level);
             const studiedWords = levelData ? levelData.total_words_studied : 0;
+            const correctAnswers = levelData ? levelData.correct_answers : 0;
+            const incorrectAnswers = levelData ? levelData.incorrect_answers : 0;
+            
             const accuracy = levelData && (levelData.correct_answers + levelData.incorrect_answers) > 0
                 ? Math.round((levelData.correct_answers / (levelData.correct_answers + levelData.incorrect_answers)) * 100)
                 : 0;
 
             const progress = totalWords > 0 ? Math.min((studiedWords / totalWords) * 100, 100) : 0;
 
+            normalizedProgress.push({
+                hsk_level: level,
+                total_words_studied: studiedWords,
+                total_words: totalWords,
+                correct_answers: correctAnswers,
+                incorrect_answers: incorrectAnswers,
+                accuracy: accuracy,
+                progress: progress
+            });
+
+            // Recrear barra clásica de progreso
             const progressBar = document.createElement('div');
             progressBar.className = 'level-progress-item';
-            const accuracyText = accuracy > 0 ? ' (' + accuracy + '% accuracy)' : '';
+            const accuracyText = accuracy > 0 ? ` (${accuracy}% accuracy)` : '';
             progressBar.innerHTML =
-                '<div class="level-label">HSK ' + level + '</div>' +
-                '<div class="progress-bar">' +
-                    '<div class="progress-fill" style="width: ' + progress + '%"></div>' +
-                '</div>' +
-                '<div class="progress-text">' +
-                    studiedWords + '/' + totalWords + accuracyText +
-                '</div>';
+                `<div class="level-label">HSK ${level}</div>` +
+                `<div class="progress-bar">` +
+                    `<div class="progress-fill" style="width: ${progress}%"></div>` +
+                `</div>` +
+                `<div class="progress-text">` +
+                    `${studiedWords}/${totalWords}${accuracyText}` +
+                `</div>`;
             container.appendChild(progressBar);
         }
+
+        return normalizedProgress;
+    }
+
+    drawCanvasChart(progressData) {
+        const canvas = document.getElementById('stats-canvas-chart');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+
+        // Limpiar lienzo
+        ctx.clearRect(0, 0, width, height);
+
+        // Fondo redondeado con gradiente oscuro suave y borde translúcido
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.42)';
+        this.drawCanvasRoundedRect(ctx, 0, 0, width, height, 16);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.1)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Parámetros de margen
+        const margin = { top: 32, right: 18, bottom: 42, left: 45 };
+        const chartWidth = width - margin.left - margin.right;
+        const chartHeight = height - margin.top - margin.bottom;
+
+        // Dibujar líneas guía horizontales
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.08)';
+        ctx.lineWidth = 1;
+        ctx.fillStyle = '#64748b';
+        ctx.font = '500 10px Inter, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+
+        const lines = 4;
+        for (let i = 0; i <= lines; i++) {
+            const pct = i / lines;
+            const y = margin.top + chartHeight * (1 - pct);
+            
+            ctx.beginPath();
+            ctx.moveTo(margin.left, y);
+            ctx.lineTo(width - margin.right, y);
+            ctx.stroke();
+
+            // Dibujar porcentajes en el eje Y
+            ctx.fillText(`${Math.round(pct * 100)}%`, margin.left - 8, y);
+        }
+
+        // Dibujar barras comparativas HSK 1-6
+        const barSpacing = chartWidth / 6;
+        const barWidth = barSpacing * 0.48;
+
+        progressData.forEach((data, i) => {
+            const percentage = data.total_words > 0 ? Math.min(1.0, data.total_words_studied / data.total_words) : 0;
+            
+            const x = margin.left + i * barSpacing + (barSpacing - barWidth) / 2;
+            const bgHeight = chartHeight;
+            const activeHeight = chartHeight * percentage;
+            const yBg = margin.top;
+            const yActive = margin.top + chartHeight - activeHeight;
+
+            // 1. Barra de fondo (gris translúcido)
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.09)';
+            this.drawCanvasRoundedRect(ctx, x, yBg, barWidth, bgHeight, barWidth * 0.35);
+            ctx.fill();
+
+            // 2. Barra activa con gradiente estético HSL
+            if (activeHeight > 1) {
+                const barGrad = ctx.createLinearGradient(x, yActive, x, margin.top + chartHeight);
+                // Colores degradados según nivel HSK (espectro vibrante premium)
+                const hue = 140 + i * 28; // Cambia armónicamente de verde (140) a turquesa, azul y púrpura (280)
+                barGrad.addColorStop(0, `hsla(${hue}, 75%, 60%, 0.95)`);
+                barGrad.addColorStop(1, `hsla(${hue + 15}, 80%, 42%, 0.85)`);
+                
+                ctx.fillStyle = barGrad;
+                this.drawCanvasRoundedRect(ctx, x, yActive, barWidth, activeHeight, barWidth * 0.35);
+                ctx.fill();
+
+                // Efecto de brillo sheen 3D
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+                ctx.beginPath();
+                ctx.ellipse(x + barWidth / 2, yActive + barWidth * 0.35, barWidth * 0.35, barWidth * 0.18, 0, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // 3. Etiquetas de nivel HSK (Eje X)
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '600 11px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            ctx.fillText(`HSK ${data.hsk_level}`, x + barWidth / 2, margin.top + chartHeight + 8);
+
+            // 4. Cantidad de palabras estudiadas (Encima de la barra)
+            ctx.fillStyle = percentage > 0.05 ? '#e2e8f0' : '#64748b';
+            ctx.font = 'bold 9px Inter, sans-serif';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText(data.total_words_studied, x + barWidth / 2, yActive - 4);
+        });
+    }
+
+    renderAchievements(stats) {
+        const grid = document.getElementById('stats-achievements-grid');
+        if (!grid) return;
+
+        grid.innerHTML = '';
+
+        const isEs = this.app.currentLanguage === 'es';
+
+        const achievementsList = [
+            {
+                id: 'first-steps',
+                title: isEs ? 'Primeros Pasos 👣' : 'First Steps 👣',
+                desc: isEs ? 'Estudia tu primera tarjeta de vocabulario.' : 'Study your first vocabulary card.',
+                iconBg: 'radial-gradient(circle, #34d399, #059669)',
+                condition: (s) => (s.totalStudied || 0) >= 1
+            },
+            {
+                id: 'streak-fire',
+                title: isEs ? 'Racha de Fuego 🔥' : 'On Fire 🔥',
+                desc: isEs ? 'Mantén una racha de estudio de al menos 3 días.' : 'Keep a study streak of at least 3 days.',
+                iconBg: 'radial-gradient(circle, #f59e0b, #d97706)',
+                condition: (s) => (s.currentStreak || 0) >= 3
+            },
+            {
+                id: 'snake-amateur',
+                title: isEs ? 'Viborita Amateur 🐍' : 'Snake Amateur 🐍',
+                desc: isEs ? 'Logra 20 puntos en el juego de clasificadores.' : 'Score 20 points in the Quantifier Snake game.',
+                iconBg: 'radial-gradient(circle, #60a5fa, #2563eb)',
+                condition: (s) => (s.snakeHighScore || 0) >= 20
+            },
+            {
+                id: 'snake-master',
+                title: isEs ? 'Viborita Master 👑' : 'Snake Master 👑',
+                desc: isEs ? 'Logra 60 puntos en el juego de clasificadores.' : 'Score 60 points in the Quantifier Snake game.',
+                iconBg: 'radial-gradient(circle, #c084fc, #7c3aed)',
+                condition: (s) => (s.snakeHighScore || 0) >= 60
+            },
+            {
+                id: 'exam-done',
+                title: isEs ? 'Estrella del Examen 📝' : 'Test Taker 📝',
+                desc: isEs ? 'Completa 1 examen oficial HSK de práctica.' : 'Complete 1 official HSK practice exam.',
+                iconBg: 'radial-gradient(circle, #f472b6, #db2777)',
+                condition: (s) => (s.quizzesCompleted || 0) >= 1
+            },
+            {
+                id: 'matrix-done',
+                title: isEs ? 'Fusión de Caracteres 🌌' : 'Character Fusion 🌌',
+                desc: isEs ? 'Completa una ronda de la Matriz de Fusión.' : 'Complete a round of the Fusion Matrix game.',
+                iconBg: 'radial-gradient(circle, #fb7185, #e11d48)',
+                condition: (s) => (s.matrixRounds || 0) >= 1
+            },
+            {
+                id: 'bilingual',
+                title: isEs ? 'Mente Bilingüe 🌎' : 'Bilingual Mind 🌎',
+                desc: isEs ? 'Estudia con las traducciones en inglés y español.' : 'Study with both English and Spanish translations.',
+                iconBg: 'radial-gradient(circle, #2dd4bf, #0d9488)',
+                condition: () => true // Siempre activo ahora que el reverso de la tarjeta unificado es la norma
+            },
+            {
+                id: 'accuracy-expert',
+                title: isEs ? 'Precisión HSK 🎯' : 'HSK Accuracy Pro 🎯',
+                desc: isEs ? 'Precisión >= 85% con al menos 15 tarjetas estudiadas.' : 'Accuracy >= 85% with at least 15 cards studied.',
+                iconBg: 'radial-gradient(circle, #fb923c, #ea580c)',
+                condition: (s) => {
+                    const acc = s.totalStudied > 0 ? (s.correctAnswers / s.totalStudied) * 100 : 0;
+                    return s.totalStudied >= 15 && acc >= 85;
+                }
+            }
+        ];
+
+        achievementsList.forEach(ach => {
+            const isUnlocked = ach.condition(stats);
+            const badge = document.createElement('div');
+            badge.className = `achievement-badge ${isUnlocked ? 'achievement-badge--unlocked' : 'achievement-badge--locked'}`;
+            
+            badge.innerHTML = `
+                <div class="achievement-icon" style="${isUnlocked ? `background: ${ach.iconBg};` : 'background: rgba(148, 163, 184, 0.12);'}">
+                    ${isUnlocked ? '🏆' : '🔒'}
+                </div>
+                <div class="achievement-info">
+                    <div class="achievement-title">${ach.title}</div>
+                    <div class="achievement-desc">${ach.desc}</div>
+                    <div class="achievement-status">${isUnlocked ? (isEs ? 'Desbloqueado' : 'Unlocked') : (isEs ? 'Bloqueado' : 'Locked')}</div>
+                </div>
+            `;
+            grid.appendChild(badge);
+        });
+    }
+
+    drawCanvasRoundedRect(ctx, x, y, w, h, radius) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + w - radius, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + radius);
+        ctx.lineTo(x + w, y + h - radius);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - radius, y + h);
+        ctx.lineTo(x + radius, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
     }
 
     resetStats() {
@@ -148,7 +397,8 @@ class StatsController {
                 correctAnswers: 0,
                 currentStreak: 0,
                 bestStreak: 0,
-                quizzesCompleted: 0
+                quizzesCompleted: 0,
+                snakeHighScore: 0
             };
             this.app.saveStats();
             this.updateStats();

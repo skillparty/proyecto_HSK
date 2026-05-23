@@ -69,44 +69,214 @@ class QuantifierSnakeCanvasRenderer {
 
     drawSnake() {
         const controller = this.controller;
+        const snake = controller.state.snake;
+        const bodyLength = snake.length;
+        const dir = controller.state.direction || { x: 1, y: 0 };
 
-        controller.state.snake.forEach((segment, index) => {
+        snake.forEach((segment, index) => {
             const isHead = index === 0;
-            const x = segment.x * controller.cellSize;
-            const y = segment.y * controller.cellSize;
+            const isTail = index === bodyLength - 1;
+            
+            // Estrechamiento orgánico progresivo hacia la cola
+            const taperFactor = isHead ? 1.0 : Math.max(0.42, 1.0 - (index * 0.065));
             const inset = controller.cellSize * 0.08;
-            const size = controller.cellSize - inset * 2;
-            const radius = controller.cellSize * 0.25;
+            const baseSize = controller.cellSize - inset * 2;
+            const size = baseSize * taperFactor;
+            
+            // Centrado en la celda
+            const centerOffset = (controller.cellSize - size) / 2;
+            const drawX = segment.x * controller.cellSize + centerOffset;
+            const drawY = segment.y * controller.cellSize + centerOffset;
 
             controller.ctx.save();
 
-            controller.ctx.fillStyle = isHead ? '#22c55e' : '#16a34a';
-            this.drawRoundedRect(x + inset, y + inset, size, size, radius);
+            // Configurar resplandor neón sólo para la cabeza
+            if (isHead) {
+                controller.ctx.shadowBlur = 10;
+                controller.ctx.shadowColor = 'rgba(52, 211, 153, 0.6)';
+                
+                // Dibujar lengua bífida animada
+                this.drawSnakeTongue(drawX, drawY, size, dir);
+            }
+
+            // Gradientes premium
+            if (isHead) {
+                const headGrad = controller.ctx.createRadialGradient(
+                    drawX + size * 0.35, drawY + size * 0.35, size * 0.08,
+                    drawX + size * 0.5, drawY + size * 0.5, size * 0.68
+                );
+                headGrad.addColorStop(0, '#34d399'); // Emerald claro
+                headGrad.addColorStop(0.55, '#10b981'); // Emerald medio
+                headGrad.addColorStop(1, '#047857'); // Forest green
+                controller.ctx.fillStyle = headGrad;
+            } else {
+                const bodyGrad = controller.ctx.createLinearGradient(drawX, drawY, drawX + size, drawY + size);
+                if (index % 2 === 0) {
+                    bodyGrad.addColorStop(0, '#22c55e');
+                    bodyGrad.addColorStop(1, '#15803d');
+                } else {
+                    bodyGrad.addColorStop(0, '#10b981');
+                    bodyGrad.addColorStop(1, '#0f766e');
+                }
+                controller.ctx.fillStyle = bodyGrad;
+            }
+
+            // Determinar radios de esquinas dinámicamente según dirección y posición
+            let tl = size * 0.25, tr = size * 0.25, br = size * 0.25, bl = size * 0.25;
+            if (isHead) {
+                // Radio muy pronunciado en el lado frontal de movimiento
+                const strongRadius = size * 0.5;
+                const weakRadius = size * 0.2;
+                if (dir.x === 1) { // Derecha
+                    tl = weakRadius; bl = weakRadius; tr = strongRadius; br = strongRadius;
+                } else if (dir.x === -1) { // Izquierda
+                    tr = weakRadius; br = weakRadius; tl = strongRadius; bl = strongRadius;
+                } else if (dir.y === 1) { // Abajo
+                    tl = weakRadius; tr = weakRadius; bl = strongRadius; br = strongRadius;
+                } else if (dir.y === -1) { // Arriba
+                    bl = weakRadius; br = weakRadius; tl = strongRadius; tr = strongRadius;
+                }
+            } else if (isTail) {
+                // Cola redondeada casi esférica
+                tl = tr = br = bl = size * 0.45;
+            }
+
+            this.drawCustomRoundedRect(drawX, drawY, size, size, tl, tr, br, bl);
             controller.ctx.fill();
 
+            // Sombra interna y escala 3D con reflejo blanco brillante (sheen gloss)
+            controller.ctx.fillStyle = 'rgba(255, 255, 255, 0.18)';
+            controller.ctx.beginPath();
+            controller.ctx.arc(drawX + size * 0.32, drawY + size * 0.32, size * 0.16, 0, Math.PI * 2);
+            controller.ctx.fill();
+
+            // Dibujar ojos direccionales detallados
             if (isHead) {
-                this.drawSnakeEyes(x + inset, y + inset, size);
+                this.drawSnakeEyes(drawX, drawY, size, dir);
             }
 
             controller.ctx.restore();
         });
     }
 
-    drawSnakeEyes(x, y, size) {
+    drawSnakeEyes(x, y, size, dir) {
         const controller = this.controller;
-        const eyeRadius = Math.max(1.5, size * 0.08);
-        const offsetY = size * 0.35;
-        const leftX = x + size * 0.32;
-        const rightX = x + size * 0.68;
+        const eyeRadius = Math.max(2.2, size * 0.11);
+        const pupilRadius = Math.max(1.0, eyeRadius * 0.45);
+        
+        let leftEye = { x: 0, y: 0 };
+        let rightEye = { x: 0, y: 0 };
+        
+        // Orientación de ojos según dirección de movimiento
+        if (dir.x === 1) { // Derecha
+            leftEye = { x: x + size * 0.65, y: y + size * 0.28 };
+            rightEye = { x: x + size * 0.65, y: y + size * 0.72 };
+        } else if (dir.x === -1) { // Izquierda
+            leftEye = { x: x + size * 0.35, y: y + size * 0.28 };
+            rightEye = { x: x + size * 0.35, y: y + size * 0.72 };
+        } else if (dir.y === 1) { // Abajo
+            leftEye = { x: x + size * 0.28, y: y + size * 0.65 };
+            rightEye = { x: x + size * 0.72, y: y + size * 0.65 };
+        } else if (dir.y === -1) { // Arriba
+            leftEye = { x: x + size * 0.28, y: y + size * 0.35 };
+            rightEye = { x: x + size * 0.72, y: y + size * 0.35 };
+        } else {
+            // Default
+            leftEye = { x: x + size * 0.35, y: y + size * 0.35 };
+            rightEye = { x: x + size * 0.65, y: y + size * 0.35 };
+        }
 
-        controller.ctx.fillStyle = '#052e16';
+        // Dibujar base blanca del ojo (esclerótica)
+        controller.ctx.fillStyle = '#ffffff';
+        
         controller.ctx.beginPath();
-        controller.ctx.arc(leftX, y + offsetY, eyeRadius, 0, Math.PI * 2);
+        controller.ctx.arc(leftEye.x, leftEye.y, eyeRadius, 0, Math.PI * 2);
+        controller.ctx.fill();
+        
+        controller.ctx.beginPath();
+        controller.ctx.arc(rightEye.x, rightEye.y, eyeRadius, 0, Math.PI * 2);
+        controller.ctx.fill();
+
+        // Dibujar pupilas oscuras con micro-mirada adaptada
+        controller.ctx.fillStyle = '#0f172a';
+        const pupOffsetX = dir.x * (eyeRadius * 0.22);
+        const pupOffsetY = dir.y * (eyeRadius * 0.22);
+
+        controller.ctx.beginPath();
+        controller.ctx.arc(leftEye.x + pupOffsetX, leftEye.y + pupOffsetY, pupilRadius, 0, Math.PI * 2);
         controller.ctx.fill();
 
         controller.ctx.beginPath();
-        controller.ctx.arc(rightX, y + offsetY, eyeRadius, 0, Math.PI * 2);
+        controller.ctx.arc(rightEye.x + pupOffsetX, rightEye.y + pupOffsetY, pupilRadius, 0, Math.PI * 2);
         controller.ctx.fill();
+
+        // Destello brillante en la pupila
+        controller.ctx.fillStyle = '#ffffff';
+        controller.ctx.beginPath();
+        controller.ctx.arc(leftEye.x + pupOffsetX - pupilRadius * 0.25, leftEye.y + pupOffsetY - pupilRadius * 0.25, pupilRadius * 0.3, 0, Math.PI * 2);
+        controller.ctx.fill();
+
+        controller.ctx.beginPath();
+        controller.ctx.arc(rightEye.x + pupOffsetX - pupilRadius * 0.25, rightEye.y + pupOffsetY - pupilRadius * 0.25, pupilRadius * 0.3, 0, Math.PI * 2);
+        controller.ctx.fill();
+    }
+
+    drawSnakeTongue(drawX, drawY, size, dir) {
+        // Parpadeo: sólo se dibuja en ciertos intervalos de tiempo
+        if (Math.floor(Date.now() / 250) % 2 === 0) {
+            return;
+        }
+
+        const ctx = this.controller.ctx;
+        ctx.save();
+        ctx.strokeStyle = '#f43f5e'; // Rojo frambuesa vibrante
+        ctx.lineWidth = Math.max(1.8, size * 0.08);
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        ctx.beginPath();
+        // Punto de inicio centrado en la cara correspondiente de la cabeza
+        const startX = drawX + size / 2 + dir.x * (size / 2);
+        const startY = drawY + size / 2 + dir.y * (size / 2);
+
+        // Extensión
+        const length = size * 0.24;
+        const mainX = startX + dir.x * length;
+        const mainY = startY + dir.y * length;
+
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(mainX, mainY);
+
+        // Ramificación bífida
+        const forkSize = size * 0.12;
+        if (dir.x !== 0) {
+            ctx.moveTo(mainX, mainY);
+            ctx.lineTo(mainX + dir.x * forkSize, mainY - forkSize);
+            ctx.moveTo(mainX, mainY);
+            ctx.lineTo(mainX + dir.x * forkSize, mainY + forkSize);
+        } else if (dir.y !== 0) {
+            ctx.moveTo(mainX, mainY);
+            ctx.lineTo(mainX - forkSize, mainY + dir.y * forkSize);
+            ctx.moveTo(mainX, mainY);
+            ctx.lineTo(mainX + forkSize, mainY + dir.y * forkSize);
+        }
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    drawCustomRoundedRect(x, y, w, h, tl, tr, br, bl) {
+        const ctx = this.controller.ctx;
+        ctx.beginPath();
+        ctx.moveTo(x + tl, y);
+        ctx.lineTo(x + w - tr, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + tr);
+        ctx.lineTo(x + w, y + h - br);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - br, y + h);
+        ctx.lineTo(x + bl, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - bl);
+        ctx.lineTo(x, y + tl);
+        ctx.quadraticCurveTo(x, y, x + tl, y);
+        ctx.closePath();
     }
 
     drawFoods() {

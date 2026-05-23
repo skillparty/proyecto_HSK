@@ -195,8 +195,11 @@
     margin: 0 auto;
     border-radius: 18px;
     overflow: hidden;
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    box-shadow: 0 20px 40px rgba(2, 6, 23, 0.4);
+    border: 2px solid rgba(16, 185, 129, 0.22);
+    box-shadow: 
+        0 0 24px rgba(16, 185, 129, 0.06),
+        0 20px 48px rgba(2, 6, 23, 0.45);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 #snakeq-canvas {
