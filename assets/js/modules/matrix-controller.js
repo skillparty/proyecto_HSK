@@ -2,100 +2,124 @@
  * MatrixController Module - Handles matrix initialization, debug and fallback rendering
  */
 class MatrixController {
-    constructor(app) {
-        this.app = app;
-        this.app.logDebug('🧩 MatrixController module initialized');
-    }
+  constructor(app) {
+    this.app = app;
+    this.app.logDebug("🧩 MatrixController module initialized");
+  }
 
-    initialize() {
-        this.app.logInfo('🎮 Initializing Matrix Game...');
-        this.app.logDebug('🔍 Checking window.matrixGame:', !!window.matrixGame);
-        this.app.logDebug('🔍 Checking renderMatrixGameInterface:', typeof renderMatrixGameInterface);
+  initialize() {
+    this.app.logInfo("🎮 Initializing Matrix Game...");
+    this.app.logDebug("🔍 Checking window.matrixGame:", !!window.matrixGame);
+    this.app.logDebug(
+      "🔍 Checking renderMatrixGameInterface:",
+      typeof renderMatrixGameInterface,
+    );
 
-        if (!window.matrixGame) {
-            this.app.logWarn('⚠️ Matrix game not found, attempting to create it...');
+    if (!window.matrixGame) {
+      this.app.logWarn("⚠️ Matrix game not found, attempting to create it...");
 
-            try {
-                if (typeof MatrixGame !== 'undefined') {
-                    window.matrixGame = new MatrixGame();
-                    this.app.logInfo('✅ Matrix game created manually');
-                } else {
-                    this.app.logError('❌ MatrixGame class not found');
-                    this.showFallback();
-                    return;
-                }
-            } catch (error) {
-                this.app.logError('❌ Error creating matrix game:', error);
-                this.showFallback();
-                return;
-            }
-        }
-
-        if (window.matrixGame) {
-            this.app.logInfo('[✓] Matrix game object found');
-
-            if (this.app.vocabulary && this.app.vocabulary.length > 0) {
-                window.matrixGame.vocabulary = this.app.vocabulary;
-                window.matrixGame.allVocabulary = [...this.app.vocabulary];
-                this.app.logDebug('[OK] Vocabulary passed to matrix game: ' + this.app.vocabulary.length + ' words');
-            } else {
-                this.app.logWarn('[⚠] No vocabulary available for matrix game');
-            }
-
-            try {
-                window.matrixGame.showGame();
-                this.app.logInfo('[✓] Matrix game showGame() called successfully');
-            } catch (error) {
-                this.app.logError('[✗] Error calling showGame():', error);
-                this.app.logDebug('Error details:', error.stack);
-                this.showFallback();
-            }
+      try {
+        if (typeof MatrixGame !== "undefined") {
+          window.matrixGame = new MatrixGame();
+          this.app.logInfo("✅ Matrix game created manually");
         } else {
-            this.app.logError('[❌] Matrix game still not available after creation attempt');
-            this.showFallback();
+          this.app.logError("❌ MatrixGame class not found");
+          this.showFallback();
+          return;
         }
+      } catch (error) {
+        this.app.logError("❌ Error creating matrix game:", error);
+        this.showFallback();
+        return;
+      }
     }
 
-    debug() {
-        this.app.logDebug('🔍 === MATRIX GAME DEBUG ===');
-        this.app.logDebug('window.matrixGame exists:', !!window.matrixGame);
-        this.app.logDebug('MatrixGame class exists:', typeof MatrixGame !== 'undefined');
-        this.app.logDebug('renderMatrixGameInterface exists:', typeof renderMatrixGameInterface !== 'undefined');
+    if (window.matrixGame) {
+      this.app.logInfo("[✓] Matrix game object found");
 
-        const matrixTab = document.getElementById('matrix');
-        const matrixContainer = document.getElementById('matrix-game-container');
+      if (this.app.vocabulary && this.app.vocabulary.length > 0) {
+        window.matrixGame.vocabulary = [...this.app.vocabulary]; // copy — never mutate app.vocabulary
+        window.matrixGame.allVocabulary = [...this.app.vocabulary]; // full copy for level-filter resets
+        this.app.logDebug(
+          "[OK] Vocabulary passed to matrix game: " +
+            this.app.vocabulary.length +
+            " words",
+        );
+      } else {
+        this.app.logWarn("[⚠] No vocabulary available for matrix game");
+      }
 
-        this.app.logDebug('Matrix tab exists:', !!matrixTab);
-        this.app.logDebug('Matrix container exists:', !!matrixContainer);
+      try {
+        window.matrixGame.showGame();
+        this.app.logInfo("[✓] Matrix game showGame() called successfully");
+      } catch (error) {
+        this.app.logError("[✗] Error calling showGame():", error);
+        this.app.logDebug("Error details:", error.stack);
+        this.showFallback();
+      }
+    } else {
+      this.app.logError(
+        "[❌] Matrix game still not available after creation attempt",
+      );
+      this.showFallback();
+    }
+  }
 
+  debug() {
+    this.app.logDebug("🔍 === MATRIX GAME DEBUG ===");
+    this.app.logDebug("window.matrixGame exists:", !!window.matrixGame);
+    this.app.logDebug(
+      "MatrixGame class exists:",
+      typeof MatrixGame !== "undefined",
+    );
+    this.app.logDebug(
+      "renderMatrixGameInterface exists:",
+      typeof renderMatrixGameInterface !== "undefined",
+    );
+
+    const matrixTab = document.getElementById("matrix");
+    const matrixContainer = document.getElementById("matrix-game-container");
+
+    this.app.logDebug("Matrix tab exists:", !!matrixTab);
+    this.app.logDebug("Matrix container exists:", !!matrixContainer);
+
+    if (matrixContainer) {
+      this.app.logDebug(
+        "Matrix container display:",
+        matrixContainer.style.display,
+      );
+      this.app.logDebug(
+        "Matrix container innerHTML length:",
+        matrixContainer.innerHTML.length,
+      );
+      this.app.logDebug(
+        "Matrix container content preview:",
+        matrixContainer.innerHTML.substring(0, 200),
+      );
+    }
+
+    if (typeof renderMatrixGameInterface !== "undefined") {
+      this.app.logDebug("Attempting manual render...");
+      try {
+        const html = renderMatrixGameInterface();
+        this.app.logDebug("Generated HTML length:", html.length);
         if (matrixContainer) {
-            this.app.logDebug('Matrix container display:', matrixContainer.style.display);
-            this.app.logDebug('Matrix container innerHTML length:', matrixContainer.innerHTML.length);
-            this.app.logDebug('Matrix container content preview:', matrixContainer.innerHTML.substring(0, 200));
+          matrixContainer.innerHTML = html;
+          this.app.logDebug("✅ Manual render successful");
         }
-
-        if (typeof renderMatrixGameInterface !== 'undefined') {
-            this.app.logDebug('Attempting manual render...');
-            try {
-                const html = renderMatrixGameInterface();
-                this.app.logDebug('Generated HTML length:', html.length);
-                if (matrixContainer) {
-                    matrixContainer.innerHTML = html;
-                    this.app.logDebug('✅ Manual render successful');
-                }
-            } catch (error) {
-                this.app.logError('❌ Manual render failed:', error);
-            }
-        }
-
-        this.app.logDebug('🔍 === END DEBUG ===');
+      } catch (error) {
+        this.app.logError("❌ Manual render failed:", error);
+      }
     }
 
-    showFallback() {
-        const matrixSection = document.getElementById('matrix');
-        if (!matrixSection) return;
+    this.app.logDebug("🔍 === END DEBUG ===");
+  }
 
-        matrixSection.innerHTML = `
+  showFallback() {
+    const matrixSection = document.getElementById("matrix");
+    if (!matrixSection) return;
+
+    matrixSection.innerHTML = `
             <div class="matrix-fallback">
                 <div class="fallback-icon">
                     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -122,8 +146,8 @@ class MatrixController {
                 </div>
                 <div class="debug-info">
                     <p><strong>Debug Info:</strong></p>
-                    <p>Matrix Game Object: ${window.matrixGame ? 'Disponible' : 'No encontrado'}</p>
-                    <p>Vocabulario: ${this.app.vocabulary ? this.app.vocabulary.length + ' palabras' : 'No cargado'}</p>
+                    <p>Matrix Game Object: ${window.matrixGame ? "Disponible" : "No encontrado"}</p>
+                    <p>Vocabulario: ${this.app.vocabulary ? this.app.vocabulary.length + " palabras" : "No cargado"}</p>
                 </div>
             </div>
             <style>
@@ -187,5 +211,5 @@ class MatrixController {
                 }
             </style>
         `;
-    }
+  }
 }

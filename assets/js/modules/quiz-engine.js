@@ -3,454 +3,506 @@
  * Extracted from app.js as part of modularization
  */
 class QuizEngine {
-    constructor(app) {
-        this.app = app;
-        this.state = {
-            questions: [],
-            currentQuestion: 0,
-            score: 0,
-            isActive: false,
-            selectedAnswer: null,
-            correctAnswer: null
-        };
-        
-        console.log('📝 QuizEngine module initialized');
+  constructor(app) {
+    this.app = app;
+    this.state = {
+      questions: [],
+      currentQuestion: 0,
+      score: 0,
+      isActive: false,
+      selectedAnswer: null,
+      correctAnswer: null,
+    };
+
+    console.log("📝 QuizEngine module initialized");
+  }
+
+  // Method to link existing quiz data from app if needed
+  syncFromApp() {
+    if (this.app.quiz) {
+      this.state = this.app.quiz;
+    }
+  }
+
+  // Fisher-Yates shuffle — statistically unbiased
+  shuffleArray(array) {
+    const arr = [...array]; // never mutate the original
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  start() {
+    const levelSelect = document.getElementById("quiz-level");
+    const questionsSelect = document.getElementById("quiz-questions");
+
+    const selectedLevel = levelSelect ? levelSelect.value : "1";
+    const numQuestions = questionsSelect ? parseInt(questionsSelect.value) : 10;
+
+    // Filter vocabulary by level
+    let vocabPool =
+      selectedLevel === "all"
+        ? this.app.vocabulary
+        : this.app.vocabulary.filter((word) => word.level == selectedLevel);
+
+    if (vocabPool.length === 0) {
+      this.app.showToast(
+        this.app.getTranslation("noVocabularyForLevel") ||
+          "No vocabulary for this level",
+        "error",
+        2000,
+      );
+      return;
     }
 
-    // Method to link existing quiz data from app if needed
-    syncFromApp() {
-        if (this.app.quiz) {
-            this.state = this.app.quiz;
-        }
-    }
+    // Shuffle and select questions
+    vocabPool = this.shuffleArray(vocabPool);
+    this.state.questions = vocabPool.slice(0, numQuestions);
+    this.state.currentQuestion = 0;
+    this.state.score = 0;
+    this.state.correctAnswer = null;
+    this.state.selectedAnswer = null;
+    this.state.isActive = true;
 
-    start() {
-        const levelSelect = document.getElementById('quiz-level');
-        const questionsSelect = document.getElementById('quiz-questions');
+    // Sync back to app for compatibility during transition
+    this.app.quiz = this.state;
 
-        const selectedLevel = levelSelect ? levelSelect.value : '1';
-        const numQuestions = questionsSelect ? parseInt(questionsSelect.value) : 10;
+    // Show quiz container
+    document.getElementById("quiz-setup").style.display = "none";
+    document.getElementById("quiz-container").style.display = "block";
+    document.getElementById("quiz-results").style.display = "none";
 
-        // Filter vocabulary by level
-        let vocabPool = selectedLevel === 'all' ?
-            this.app.vocabulary :
-            this.app.vocabulary.filter(word => word.level == selectedLevel);
+    this.saveSession();
+    this.showQuestion();
+  }
 
-        if (vocabPool.length === 0) {
-            this.app.showToast(this.app.getTranslation('noVocabularyForLevel') || 'No vocabulary for this level', 'error', 2000);
-            return;
-        }
+  showQuestion() {
+    const question = this.state.questions[this.state.currentQuestion];
+    const questionDisplay = document.getElementById("quiz-question");
+    const optionsContainer = document.getElementById("quiz-options");
+    const currentSpan = document.getElementById("quiz-current");
+    const totalSpan = document.getElementById("quiz-total");
+    const scoreSpan = document.getElementById("quiz-score");
+    const currentQuestionNumber = this.state.currentQuestion + 1;
+    const totalQuestions = this.state.questions.length;
 
-        // Shuffle and select questions
-        vocabPool = vocabPool.sort(() => Math.random() - 0.5);
-        this.state.questions = vocabPool.slice(0, numQuestions);
-        this.state.currentQuestion = 0;
-        this.state.score = 0;
-        this.state.correctAnswer = null;
-        this.state.selectedAnswer = null;
-        this.state.isActive = true;
+    if (currentSpan) currentSpan.textContent = currentQuestionNumber;
+    if (totalSpan) totalSpan.textContent = totalQuestions;
+    if (scoreSpan) scoreSpan.textContent = this.state.score;
 
-        // Sync back to app for compatibility during transition
-        this.app.quiz = this.state;
+    // Show question
+    if (questionDisplay) {
+      const hskLevelLabel =
+        this.app.getTranslation("quizHskLevel") || "HSK Level";
+      const questionLabel =
+        this.app.getTranslation("quizQuestionCounter") ||
+        this.app.getTranslation("question") ||
+        "Question";
+      const ofLabel = this.app.getTranslation("of") || "of";
+      const hskLevelValue = question?.level
+        ? `HSK ${question.level}`
+        : this.app.getTranslation("allLevels") || "All levels";
 
-        // Show quiz container
-        document.getElementById('quiz-setup').style.display = 'none';
-        document.getElementById('quiz-container').style.display = 'block';
-        document.getElementById('quiz-results').style.display = 'none';
-
-        this.saveSession();
-        this.showQuestion();
-    }
-
-    showQuestion() {
-        const question = this.state.questions[this.state.currentQuestion];
-        const questionDisplay = document.getElementById('quiz-question');
-        const optionsContainer = document.getElementById('quiz-options');
-        const currentSpan = document.getElementById('quiz-current');
-        const totalSpan = document.getElementById('quiz-total');
-        const scoreSpan = document.getElementById('quiz-score');
-        const currentQuestionNumber = this.state.currentQuestion + 1;
-        const totalQuestions = this.state.questions.length;
-
-        if (currentSpan) currentSpan.textContent = currentQuestionNumber;
-        if (totalSpan) totalSpan.textContent = totalQuestions;
-        if (scoreSpan) scoreSpan.textContent = this.state.score;
-
-        // Show question
-        if (questionDisplay) {
-            const hskLevelLabel = this.app.getTranslation('quizHskLevel') || 'HSK Level';
-            const questionLabel = this.app.getTranslation('quizQuestionCounter') || (this.app.getTranslation('question') || 'Question');
-            const ofLabel = this.app.getTranslation('of') || 'of';
-            const hskLevelValue = question?.level ? `HSK ${question.level}` : (this.app.getTranslation('allLevels') || 'All levels');
-
-            questionDisplay.innerHTML = `
+      questionDisplay.innerHTML = `
                 <div class="quiz-question-meta">
                     <span class="quiz-meta-pill">${hskLevelLabel}: ${hskLevelValue}</span>
                     <span class="quiz-meta-pill">${questionLabel} ${currentQuestionNumber} ${ofLabel} ${totalQuestions}</span>
                 </div>
-                <div class="quiz-question-text">${this.app.getTranslation('whatDoesThisCharacterMean') || 'What does this character mean?'}</div>
+                <div class="quiz-question-text">${this.app.getTranslation("whatDoesThisCharacterMean") || "What does this character mean?"}</div>
                 <div class="quiz-character">${question.character}</div>
                 <div class="quiz-pinyin">${question.pinyin}</div>
             `;
-        }
-
-        // Generate options with guaranteed correct answer
-        const correctAnswer = this.app.getMeaningForLanguage(question);
-        const options = this.generateOptions(question, correctAnswer);
-
-        // Store correct answer for validation
-        this.state.correctAnswer = correctAnswer;
-
-        // Render options
-        if (optionsContainer) {
-            optionsContainer.innerHTML = '';
-            options.forEach((option) => {
-                const optionBtn = document.createElement('button');
-                optionBtn.className = 'quiz-option';
-                optionBtn.textContent = option;
-                optionBtn.addEventListener('click', () => {
-                    this.selectAnswer(option, correctAnswer);
-                });
-                optionsContainer.appendChild(optionBtn);
-            });
-        }
-
-        // Reset submit button
-        const submitBtn = document.getElementById('quiz-submit');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.style.display = 'inline-block';
-        }
-
-        const nextBtn = document.getElementById('quiz-next');
-        if (nextBtn) {
-            nextBtn.style.display = 'none';
-        }
-
-        this.state.selectedAnswer = null;
-        this.saveSession();
-
-        console.log(`❓ Quiz question ${this.state.currentQuestion + 1}: ${question.character} (${correctAnswer})`);
     }
 
-    generateOptions(currentWord, correctAnswer) {
-        // Get all possible wrong answers from app vocabulary
-        const allWrongAnswers = this.app.vocabulary
-            .filter(word => word !== currentWord)
-            .map(word => this.app.getMeaningForLanguage(word))
-            .filter(meaning => meaning && meaning !== correctAnswer)
-            .filter((meaning, index, arr) => arr.indexOf(meaning) === index);
+    // Generate options with guaranteed correct answer
+    const correctAnswer = this.app.getMeaningForLanguage(question);
+    const options = this.generateOptions(question, correctAnswer);
 
-        // Ensure we have enough wrong answers
-        if (allWrongAnswers.length < 3) {
-            const genericWrongAnswers = this.app.currentLanguage === 'es'
-                ? ['hola', 'adiós', 'gracias', 'por favor', 'lo siento', 'sí', 'no']
-                : ['hello', 'goodbye', 'thank you', 'please', 'sorry', 'yes', 'no'];
-            allWrongAnswers.push(...genericWrongAnswers.filter(answer => answer !== correctAnswer));
-        }
+    // Store correct answer for validation
+    this.state.correctAnswer = correctAnswer;
 
-        // Select 3 random wrong answers
-        const wrongAnswers = allWrongAnswers
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 3);
-
-        // Combine and shuffle
-        const shuffledOptions = [correctAnswer, ...wrongAnswers].sort(() => Math.random() - 0.5);
-
-        // Safety check
-        if (!shuffledOptions.includes(correctAnswer)) {
-            shuffledOptions[0] = correctAnswer;
-            shuffledOptions.sort(() => Math.random() - 0.5);
-        }
-
-        return shuffledOptions;
-    }
-
-    selectAnswer(selected, correct) {
-        this.state.selectedAnswer = selected;
-        this.state.correctAnswer = correct;
-
-        document.querySelectorAll('.quiz-option').forEach(btn => {
-            btn.classList.remove('selected');
-            if (btn.textContent === selected) {
-                btn.classList.add('selected');
-                btn.style.transform = 'scale(0.95)';
-                setTimeout(() => btn.style.transform = 'scale(1)', 150);
-            }
+    // Render options
+    if (optionsContainer) {
+      optionsContainer.innerHTML = "";
+      options.forEach((option) => {
+        const optionBtn = document.createElement("button");
+        optionBtn.className = "quiz-option";
+        optionBtn.textContent = option;
+        optionBtn.addEventListener("click", () => {
+          this.selectAnswer(option, correctAnswer);
         });
-
-        const submitBtn = document.getElementById('quiz-submit');
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.classList.add('ready');
-            submitBtn.textContent = this.app.getTranslation('submit') || 'Submit';
-        }
+        optionsContainer.appendChild(optionBtn);
+      });
     }
 
-    submitAnswer() {
-        if (!this.state.selectedAnswer) return;
-
-        const isCorrect = this.state.selectedAnswer === this.state.correctAnswer;
-
-        // Update stats in app
-        this.app.stats.totalStudied++;
-        this.app.stats.quizAnswered++;
-
-        if (isCorrect) {
-            this.state.score++;
-            this.app.stats.correctAnswers++;
-        }
-
-        this.app.updateDailyProgress();
-        this.app.saveStats();
-        this.app.updateProgress();
-        this.app.updateHeaderStats();
-
-        this.saveSession();
-
-        // Update UI
-        const scoreSpan = document.getElementById('quiz-score');
-        if (scoreSpan) scoreSpan.textContent = this.state.score;
-
-        document.querySelectorAll('.quiz-option').forEach(btn => {
-            if (btn.textContent === this.state.correctAnswer) {
-                btn.classList.add('correct');
-            } else if (btn.textContent === this.state.selectedAnswer && !isCorrect) {
-                btn.classList.add('incorrect');
-            }
-            btn.disabled = true;
-        });
-
-        this.showFeedback(isCorrect);
-        
-        const submitBtn = document.getElementById('quiz-submit');
-        if (submitBtn) submitBtn.style.display = 'none';
-        
-        const nextBtn = document.getElementById('quiz-next');
-        if (nextBtn) nextBtn.style.display = 'inline-block';
+    // Reset submit button
+    const submitBtn = document.getElementById("quiz-submit");
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.style.display = "inline-block";
     }
 
-    showFeedback(isCorrect) {
-        const quizContent = document.getElementById('quiz-content');
-        if (!quizContent) return;
+    const nextBtn = document.getElementById("quiz-next");
+    if (nextBtn) {
+      nextBtn.style.display = "none";
+    }
 
-        const existingFeedback = document.getElementById('quiz-feedback');
-        if (existingFeedback) existingFeedback.remove();
+    this.state.selectedAnswer = null;
+    this.saveSession();
 
-        const feedback = document.createElement('div');
-        feedback.id = 'quiz-feedback';
-        feedback.className = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
-        feedback.innerHTML = `
-            <div class="feedback-icon">${isCorrect
+    console.log(
+      `❓ Quiz question ${this.state.currentQuestion + 1}: ${question.character} (${correctAnswer})`,
+    );
+  }
+
+  generateOptions(currentWord, correctAnswer) {
+    // Get all possible wrong answers from app vocabulary
+    const allWrongAnswers = this.app.vocabulary
+      .filter((word) => word !== currentWord)
+      .map((word) => this.app.getMeaningForLanguage(word))
+      .filter((meaning) => meaning && meaning !== correctAnswer)
+      .filter((meaning, index, arr) => arr.indexOf(meaning) === index);
+
+    // Ensure we have enough wrong answers
+    if (allWrongAnswers.length < 3) {
+      const genericWrongAnswers =
+        this.app.currentLanguage === "es"
+          ? ["hola", "adiós", "gracias", "por favor", "lo siento", "sí", "no"]
+          : ["hello", "goodbye", "thank you", "please", "sorry", "yes", "no"];
+      allWrongAnswers.push(
+        ...genericWrongAnswers.filter((answer) => answer !== correctAnswer),
+      );
+    }
+
+    // Select 3 random wrong answers
+    const wrongAnswers = this.shuffleArray(allWrongAnswers).slice(0, 3);
+
+    // Combine and shuffle
+    const shuffledOptions = this.shuffleArray([correctAnswer, ...wrongAnswers]);
+
+    // Safety check
+    if (!shuffledOptions.includes(correctAnswer)) {
+      shuffledOptions[0] = correctAnswer;
+      return this.shuffleArray(shuffledOptions);
+    }
+
+    return shuffledOptions;
+  }
+
+  selectAnswer(selected, correct) {
+    this.state.selectedAnswer = selected;
+    this.state.correctAnswer = correct;
+
+    document.querySelectorAll(".quiz-option").forEach((btn) => {
+      btn.classList.remove("selected");
+      if (btn.textContent === selected) {
+        btn.classList.add("selected");
+        btn.style.transform = "scale(0.95)";
+        setTimeout(() => (btn.style.transform = "scale(1)"), 150);
+      }
+    });
+
+    const submitBtn = document.getElementById("quiz-submit");
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.classList.add("ready");
+      submitBtn.textContent = this.app.getTranslation("submit") || "Submit";
+    }
+  }
+
+  submitAnswer() {
+    if (!this.state.selectedAnswer) return;
+
+    const isCorrect = this.state.selectedAnswer === this.state.correctAnswer;
+
+    // Update stats in app
+    this.app.stats.totalStudied++;
+    this.app.stats.quizAnswered++;
+
+    if (isCorrect) {
+      this.state.score++;
+      this.app.stats.correctAnswers++;
+    }
+
+    this.app.updateDailyProgress();
+    this.app.saveStats();
+    this.app.updateProgress();
+    this.app.updateHeaderStats();
+
+    this.saveSession();
+
+    // Update UI
+    const scoreSpan = document.getElementById("quiz-score");
+    if (scoreSpan) scoreSpan.textContent = this.state.score;
+
+    document.querySelectorAll(".quiz-option").forEach((btn) => {
+      if (btn.textContent === this.state.correctAnswer) {
+        btn.classList.add("correct");
+      } else if (btn.textContent === this.state.selectedAnswer && !isCorrect) {
+        btn.classList.add("incorrect");
+      }
+      btn.disabled = true;
+    });
+
+    this.showFeedback(isCorrect);
+
+    const submitBtn = document.getElementById("quiz-submit");
+    if (submitBtn) submitBtn.style.display = "none";
+
+    const nextBtn = document.getElementById("quiz-next");
+    if (nextBtn) nextBtn.style.display = "inline-block";
+  }
+
+  showFeedback(isCorrect) {
+    const quizContent = document.getElementById("quiz-content");
+    if (!quizContent) return;
+
+    const existingFeedback = document.getElementById("quiz-feedback");
+    if (existingFeedback) existingFeedback.remove();
+
+    const feedback = document.createElement("div");
+    feedback.id = "quiz-feedback";
+    feedback.className = `quiz-feedback ${isCorrect ? "correct" : "incorrect"}`;
+    feedback.innerHTML = `
+            <div class="feedback-icon">${
+              isCorrect
                 ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
-                : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'}</div>
-            <div class="feedback-text">${isCorrect
-                ? (this.app.getTranslation('correctQuizFeedback') || 'Correct!')
-                : (this.app.getTranslation('incorrectQuizFeedback') || 'Incorrect')}</div>
-            ${!isCorrect ? `<div class="feedback-answer">${this.app.getTranslation('correctAnswerLabel') || 'Correct answer'}: ${this.state.correctAnswer}</div>` : ''}
+                : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>'
+            }</div>
+            <div class="feedback-text">${
+              isCorrect
+                ? this.app.getTranslation("correctQuizFeedback") || "Correct!"
+                : this.app.getTranslation("incorrectQuizFeedback") ||
+                  "Incorrect"
+            }</div>
+            ${!isCorrect ? `<div class="feedback-answer">${this.app.getTranslation("correctAnswerLabel") || "Correct answer"}: ${this.state.correctAnswer}</div>` : ""}
         `;
 
-        quizContent.appendChild(feedback);
-        setTimeout(() => {
-            if (feedback.parentNode) {
-                feedback.style.opacity = '0';
-                setTimeout(() => feedback.remove(), 300);
-            }
-        }, 2000);
+    quizContent.appendChild(feedback);
+    setTimeout(() => {
+      if (feedback.parentNode) {
+        feedback.style.opacity = "0";
+        setTimeout(() => feedback.remove(), 300);
+      }
+    }, 2000);
+  }
+
+  nextQuestion() {
+    this.state.currentQuestion++;
+
+    if (this.state.currentQuestion >= this.state.questions.length) {
+      this.showResults();
+    } else {
+      const submitBtn = document.getElementById("quiz-submit");
+      if (submitBtn) {
+        submitBtn.style.display = "inline-block";
+        submitBtn.disabled = true;
+        submitBtn.classList.remove("ready");
+        submitBtn.textContent =
+          this.app.getTranslation("selectAnAnswer") || "Select an Answer";
+      }
+      document.getElementById("quiz-next").style.display = "none";
+      this.saveSession();
+      this.showQuestion();
+    }
+  }
+
+  showResults() {
+    const percentage = Math.round(
+      (this.state.score / this.state.questions.length) * 100,
+    );
+
+    document.getElementById("quiz-container").style.display = "none";
+    document.getElementById("quiz-results").style.display = "block";
+    document.getElementById("final-score").textContent =
+      `${this.state.score}/${this.state.questions.length}`;
+    document.getElementById("final-percentage").textContent = `${percentage}%`;
+
+    this.app.stats.quizzesCompleted++;
+    this.app.saveStats();
+    this.clearSession();
+    this.app.renderQuizResumeAction();
+
+    if (this.app.userProgress?.recordQuizCompletion) {
+      this.app.userProgress.recordQuizCompletion(
+        this.app.currentLevel,
+        this.state.score,
+        this.state.questions.length,
+      );
+    }
+  }
+
+  renderResumeAction() {
+    const quizSetup = document.getElementById("quiz-setup");
+    if (!quizSetup) return;
+
+    let resumeBtn = document.getElementById("resume-quiz");
+    if (!this.hasResumableSession()) {
+      if (resumeBtn) resumeBtn.remove();
+      return;
     }
 
-    nextQuestion() {
-        this.state.currentQuestion++;
+    if (!resumeBtn) {
+      const startBtn = document.getElementById("start-quiz");
+      resumeBtn = document.createElement("button");
+      resumeBtn.id = "resume-quiz";
+      resumeBtn.className = "btn btn-secondary";
+      resumeBtn.style.marginLeft = "10px";
+      if (startBtn && startBtn.parentNode) {
+        startBtn.parentNode.insertBefore(resumeBtn, startBtn.nextSibling);
+      } else {
+        quizSetup.appendChild(resumeBtn);
+      }
 
-        if (this.state.currentQuestion >= this.state.questions.length) {
-            this.showResults();
-        } else {
-            const submitBtn = document.getElementById('quiz-submit');
-            if (submitBtn) {
-                submitBtn.style.display = 'inline-block';
-                submitBtn.disabled = true;
-                submitBtn.classList.remove('ready');
-                submitBtn.textContent = this.app.getTranslation('selectAnAnswer') || 'Select an Answer';
-            }
-            document.getElementById('quiz-next').style.display = 'none';
-            this.saveSession();
-            this.showQuestion();
-        }
+      resumeBtn.addEventListener("click", () => this.resumeSession());
     }
 
-    showResults() {
-        const percentage = Math.round((this.state.score / this.state.questions.length) * 100);
+    resumeBtn.textContent =
+      this.app.getTranslation("resumeQuiz") || "Resume Quiz";
+  }
 
-        document.getElementById('quiz-container').style.display = 'none';
-        document.getElementById('quiz-results').style.display = 'block';
-        document.getElementById('final-score').textContent = `${this.state.score}/${this.state.questions.length}`;
-        document.getElementById('final-percentage').textContent = `${percentage}%`;
+  hasResumableSession(session = null) {
+    const state = session || this.loadSession();
+    if (!state || !state.updatedAt || !state.quiz) return false;
 
-        this.app.stats.quizzesCompleted++;
-        this.app.saveStats();
-        this.clearSession();
-        this.app.renderQuizResumeAction();
-
-        if (this.app.userProgress?.recordQuizCompletion) {
-            this.app.userProgress.recordQuizCompletion(
-                this.app.currentLevel,
-                this.state.score,
-                this.state.questions.length
-            );
-        }
+    const age = Date.now() - Number(state.updatedAt);
+    if (age > this.getSessionMaxAgeMs()) {
+      this.clearSession();
+      return false;
     }
 
-    renderResumeAction() {
-        const quizSetup = document.getElementById('quiz-setup');
-        if (!quizSetup) return;
+    return !!(
+      state.quiz.isActive &&
+      Array.isArray(state.quiz.questions) &&
+      state.quiz.questions.length > 0
+    );
+  }
 
-        let resumeBtn = document.getElementById('resume-quiz');
-        if (!this.hasResumableSession()) {
-            if (resumeBtn) resumeBtn.remove();
-            return;
-        }
-
-        if (!resumeBtn) {
-            const startBtn = document.getElementById('start-quiz');
-            resumeBtn = document.createElement('button');
-            resumeBtn.id = 'resume-quiz';
-            resumeBtn.className = 'btn btn-secondary';
-            resumeBtn.style.marginLeft = '10px';
-            if (startBtn && startBtn.parentNode) {
-                startBtn.parentNode.insertBefore(resumeBtn, startBtn.nextSibling);
-            } else {
-                quizSetup.appendChild(resumeBtn);
-            }
-
-            resumeBtn.addEventListener('click', () => this.resumeSession());
-        }
-
-        resumeBtn.textContent = this.app.getTranslation('resumeQuiz') || 'Resume Quiz';
+  resumeSession() {
+    const state = this.loadSession();
+    if (!this.hasResumableSession(state)) {
+      this.renderResumeAction();
+      return;
     }
 
-    hasResumableSession(session = null) {
-        const state = session || this.loadSession();
-        if (!state || !state.updatedAt || !state.quiz) return false;
+    const levelSelect = document.getElementById("quiz-level");
+    const questionsSelect = document.getElementById("quiz-questions");
 
-        const age = Date.now() - Number(state.updatedAt);
-        if (age > this.getSessionMaxAgeMs()) {
-            this.clearSession();
-            return false;
-        }
-
-        return !!(state.quiz.isActive && Array.isArray(state.quiz.questions) && state.quiz.questions.length > 0);
+    if (levelSelect && state.selectedLevel) {
+      levelSelect.value = state.selectedLevel;
     }
 
-    resumeSession() {
-        const state = this.loadSession();
-        if (!this.hasResumableSession(state)) {
-            this.renderResumeAction();
-            return;
-        }
-
-        const levelSelect = document.getElementById('quiz-level');
-        const questionsSelect = document.getElementById('quiz-questions');
-
-        if (levelSelect && state.selectedLevel) {
-            levelSelect.value = state.selectedLevel;
-        }
-
-        if (questionsSelect && state.numQuestions) {
-            questionsSelect.value = String(state.numQuestions);
-        }
-
-        this.state = {
-            ...this.state,
-            ...state.quiz,
-            isActive: true
-        };
-
-        // Sync back to app
-        this.app.quiz = this.state;
-
-        document.getElementById('quiz-setup').style.display = 'none';
-        document.getElementById('quiz-container').style.display = 'block';
-        document.getElementById('quiz-results').style.display = 'none';
-
-        this.showToast(this.app.getTranslation('quizSessionResumed') || 'Quiz session resumed', 'success', 1600);
-        this.showQuestion();
+    if (questionsSelect && state.numQuestions) {
+      questionsSelect.value = String(state.numQuestions);
     }
 
-    showToast(message, type, duration) {
-        if (this.app.uiController) {
-            this.app.uiController.showToast(message, type, duration);
-        } else if (typeof this.app.showToast === 'function') {
-            this.app.showToast(message, type, duration);
-        }
+    this.state = {
+      ...this.state,
+      ...state.quiz,
+      isActive: true,
+    };
+
+    // Sync back to app
+    this.app.quiz = this.state;
+
+    document.getElementById("quiz-setup").style.display = "none";
+    document.getElementById("quiz-container").style.display = "block";
+    document.getElementById("quiz-results").style.display = "none";
+
+    this.showToast(
+      this.app.getTranslation("quizSessionResumed") || "Quiz session resumed",
+      "success",
+      1600,
+    );
+    this.showQuestion();
+  }
+
+  showToast(message, type, duration) {
+    if (this.app.uiController) {
+      this.app.uiController.showToast(message, type, duration);
+    } else if (typeof this.app.showToast === "function") {
+      this.app.showToast(message, type, duration);
+    }
+  }
+
+  getSessionStorageKey() {
+    return this.app.quizSessionStorageKey || "hsk-quiz-session-v1";
+  }
+
+  getSessionMaxAgeMs() {
+    const configured = Number(this.app.quizSessionMaxAgeMs);
+    if (Number.isFinite(configured) && configured > 0) {
+      return configured;
     }
 
-    getSessionStorageKey() {
-        return this.app.quizSessionStorageKey || 'hsk-quiz-session-v1';
+    return 6 * 60 * 60 * 1000;
+  }
+
+  saveSession() {
+    try {
+      const levelSelect = document.getElementById("quiz-level");
+      const questionsSelect = document.getElementById("quiz-questions");
+
+      const selectedLevel = levelSelect
+        ? levelSelect.value
+        : this.app.currentLevel || "1";
+      const numQuestions = questionsSelect
+        ? parseInt(questionsSelect.value, 10) ||
+          this.state.questions.length ||
+          10
+        : this.state.questions.length || 10;
+
+      const payload = {
+        selectedLevel,
+        numQuestions,
+        updatedAt: Date.now(),
+        quiz: {
+          questions: Array.isArray(this.state.questions)
+            ? this.state.questions
+            : [],
+          currentQuestion: Number(this.state.currentQuestion) || 0,
+          score: Number(this.state.score) || 0,
+          selectedAnswer: this.state.selectedAnswer || null,
+          correctAnswer: this.state.correctAnswer || null,
+          isActive: Boolean(this.state.isActive),
+        },
+      };
+
+      localStorage.setItem(
+        this.getSessionStorageKey(),
+        JSON.stringify(payload),
+      );
+    } catch (error) {
+      console.warn("⚠️ Unable to save quiz session state:", error);
     }
+  }
 
-    getSessionMaxAgeMs() {
-        const configured = Number(this.app.quizSessionMaxAgeMs);
-        if (Number.isFinite(configured) && configured > 0) {
-            return configured;
-        }
+  loadSession() {
+    try {
+      const raw = localStorage.getItem(this.getSessionStorageKey());
+      if (!raw) {
+        return null;
+      }
 
-        return 6 * 60 * 60 * 1000;
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== "object") {
+        return null;
+      }
+
+      return parsed;
+    } catch (error) {
+      console.warn("⚠️ Unable to load quiz session state:", error);
+      return null;
     }
+  }
 
-    saveSession() {
-        try {
-            const levelSelect = document.getElementById('quiz-level');
-            const questionsSelect = document.getElementById('quiz-questions');
-
-            const selectedLevel = levelSelect ? levelSelect.value : (this.app.currentLevel || '1');
-            const numQuestions = questionsSelect
-                ? (parseInt(questionsSelect.value, 10) || this.state.questions.length || 10)
-                : (this.state.questions.length || 10);
-
-            const payload = {
-                selectedLevel,
-                numQuestions,
-                updatedAt: Date.now(),
-                quiz: {
-                    questions: Array.isArray(this.state.questions) ? this.state.questions : [],
-                    currentQuestion: Number(this.state.currentQuestion) || 0,
-                    score: Number(this.state.score) || 0,
-                    selectedAnswer: this.state.selectedAnswer || null,
-                    correctAnswer: this.state.correctAnswer || null,
-                    isActive: Boolean(this.state.isActive)
-                }
-            };
-
-            localStorage.setItem(this.getSessionStorageKey(), JSON.stringify(payload));
-        } catch (error) {
-            console.warn('⚠️ Unable to save quiz session state:', error);
-        }
+  clearSession() {
+    try {
+      localStorage.removeItem(this.getSessionStorageKey());
+    } catch (error) {
+      console.warn("⚠️ Unable to clear quiz session state:", error);
     }
-
-    loadSession() {
-        try {
-            const raw = localStorage.getItem(this.getSessionStorageKey());
-            if (!raw) {
-                return null;
-            }
-
-            const parsed = JSON.parse(raw);
-            if (!parsed || typeof parsed !== 'object') {
-                return null;
-            }
-
-            return parsed;
-        } catch (error) {
-            console.warn('⚠️ Unable to load quiz session state:', error);
-            return null;
-        }
-    }
-
-    clearSession() {
-        try {
-            localStorage.removeItem(this.getSessionStorageKey());
-        } catch (error) {
-            console.warn('⚠️ Unable to clear quiz session state:', error);
-        }
-    }
+  }
 }

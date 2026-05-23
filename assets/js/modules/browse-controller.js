@@ -167,7 +167,7 @@ class BrowseController {
         const meaning = this.getMeaningForLanguage(word);
         card.innerHTML =
             '<div class="vocab-character">' + word.character + '</div>' +
-            '<div class="vocab-pinyin">' + word.pinyin + '</div>' +
+            '<div class="vocab-pinyin">' + this.app.colorPinyinByTone(word.pinyin) + '</div>' +
             '<div class="vocab-meaning">' + meaning + '</div>' +
             '<div class="vocab-level">HSK ' + word.level + '</div>' +
             '<button class="vocab-audio-btn" title="' + (this.app.getTranslation('playPronunciation') || 'Play pronunciation') + '">' +

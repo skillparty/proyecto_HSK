@@ -260,6 +260,31 @@ class InteractionController {
             });
         }
 
+        const toneCheckSelect = document.getElementById('tone-check-select');
+        if (toneCheckSelect) {
+            toneCheckSelect.value = this.app.toneCheckMode || 'standard';
+            toneCheckSelect.addEventListener('change', (event) => {
+                const nextMode = event.target.value === 'strict' ? 'strict' : 'standard';
+                this.app.toneCheckMode = nextMode;
+
+                try {
+                    localStorage.setItem('hsk-tone-check-mode', nextMode);
+                } catch (error) {
+                    this.app.logWarn('Error saving tone check mode:', error);
+                }
+
+                if (this.app.userProgress && typeof this.app.userProgress.updatePreference === 'function') {
+                    this.app.userProgress.updatePreference('toneCheckMode', nextMode);
+                }
+
+                this.app.showToast(
+                    this.app.getTranslation('toneCheckModeUpdated') || 'Tone validation updated',
+                    'success',
+                    1500
+                );
+            });
+        }
+
         document.querySelectorAll('input[name="practice-mode"]').forEach((radio) => {
             radio.addEventListener('change', (event) => {
                 this.app.practiceMode = event.target.value;

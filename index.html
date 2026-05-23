@@ -11,7 +11,7 @@
 
     <!-- PWA Meta Tags -->
     <meta name="description" content="Modern HSK Chinese learning app with flashcards, quizzes, and progress tracking">
-    <meta name="theme-color" content="#e11d48">
+    <meta name="theme-color" content="#d32f2f">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=4">
     <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=3">
     <link rel="stylesheet" href="assets/css/quantifier-snake-styles.css?v=3">
+    <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
         rel="stylesheet" id="fonts-stylesheet">
@@ -326,6 +329,15 @@
                                 data-tooltip="Choose lesson sequence order or mixed order">
                                 <option value="lesson" data-i18n="practiceOrderLesson">Lección (recomendado)</option>
                                 <option value="mixed" data-i18n="practiceOrderMixed">Mezclado aleatorio</option>
+                            </select>
+                        </div>
+
+                        <div class="level-selector">
+                            <label for="tone-check-select" data-i18n="toneCheckLabel">Validación de tonos</label>
+                            <select id="tone-check-select" class="select-input"
+                                data-tooltip="Enforce strict tone verification for pinyin input">
+                                <option value="standard" data-i18n="toneCheckStandard">Estándar (sin tonos)</option>
+                                <option value="strict" data-i18n="toneCheckStrict">Estricto (requiere tonos, ej: hao3)</option>
                             </select>
                         </div>
 
@@ -932,7 +944,7 @@
     <script type="module">
         import { initializeApp } from 'firebase/app';
         import { getAuth, GithubAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, serverTimestamp } from 'firebase/firestore';
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, serverTimestamp, increment, runTransaction } from 'firebase/firestore';
 
         // Firebase Configuration
         const firebaseConfig = {
@@ -951,11 +963,12 @@
 
         // Universal bridge to handle modular syntax for legacy scripts
         window.FirebaseSDK = {
-            initializeApp, getAuth, getFirestore, GithubAuthProvider, signInWithPopup, signOut, 
-            onAuthStateChanged, doc, getDoc, setDoc, updateDoc, collection, query, where, 
-            getDocs, orderBy, limit, serverTimestamp
+            initializeApp, getAuth, getFirestore, GithubAuthProvider, signInWithPopup, signOut,
+            onAuthStateChanged, doc, getDoc, setDoc, updateDoc, collection, query, where,
+            getDocs, orderBy, limit, serverTimestamp,
+            increment, runTransaction  // atomic operations — required by updateProgress()
         };
-        
+
         // Export instances to window for firebase-client.js
         window.firebaseApp = app;
         window.firebaseAuth = auth;
@@ -1038,7 +1051,7 @@
     <script src="assets/js/modules/ui-controller.js?v=3" defer></script>
     <script src="assets/js/modules/home-controller.js?v=1" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=1" defer></script>
-    
+
     <script src="assets/js/progress-integrator.js?v=2" defer></script>
     <script src="assets/js/auth-backend.js?v=8" defer></script>
     <script src="assets/js/user-progress-backend.js?v=2" defer></script>
@@ -1075,12 +1088,12 @@
                         scope: appBasePath
                     });
                     console.log('✅ ServiceWorker registered');
-                    
+
                     // Listen for updates
                     registration.addEventListener('updatefound', () => {
                         const newWorker = registration.installing;
                         console.log('👷 New Service Worker installing');
-                        
+
                         newWorker.addEventListener('statechange', () => {
                             if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
                                 console.log('🔄 New content available; please refresh.');

@@ -1,28 +1,19 @@
-// Firebase Configuration for HSK Learning App
-// This file contains the initialization for Firebase integration
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA5IfoQH4pz7yPjVIV9jqUyQK5Hy9L9l-A",
-  authDomain: "confuc10.firebaseapp.com",
-  projectId: "confuc10",
-  storageBucket: "confuc10.firebasestorage.app",
-  messagingSenderId: "541754257691",
-  appId: "1:541754257691:web:cc5e3524f3a92b6c8463be"
-};
-
-// Initialize Firebase
-// Note: initializeApp is loaded from window.FirebaseSDK via index.html
-if (window.FirebaseSDK) {
-    const app = window.FirebaseSDK.initializeApp(firebaseConfig);
-    const auth = window.FirebaseSDK.getAuth(app);
-    const db = window.FirebaseSDK.getFirestore(app);
-
-    // Export to window for access by other scripts
-    window.firebaseApp = app;
-    window.firebaseAuth = auth;
-    window.firebaseDb = db;
-
-    console.log('🔥 Firebase initialized successfully');
-} else {
-    console.error('❌ Firebase SDK not loaded');
-}
+/**
+ * Firebase Configuration Reference — HSK Learning App
+ *
+ * The actual Firebase initialization lives in index.html inside the
+ * <script type="module"> block, which imports from the Firebase Modular SDK v10.
+ *
+ * This file is intentionally kept as a reference/documentation artifact.
+ * DO NOT add initialization logic here — it would cause
+ * "Firebase App named '[DEFAULT]' already exists" errors.
+ *
+ * Project: confuc10
+ * Auth domain: confuc10.firebaseapp.com
+ * Hosting: GitHub Pages → https://skillparty.github.io/proyecto_HSK/
+ *
+ * To change Firebase project:
+ *  1. Update the firebaseConfig object in index.html (~line 941)
+ *  2. Update .firebaserc
+ *  3. Run: firebase use <project-id>
+ */

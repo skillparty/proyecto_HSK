@@ -62,8 +62,19 @@ class PracticeViewController {
             this.app.isFlipped = false;
         }
 
-        questionText.textContent = question || '?';
-        if (hintText) hintText.textContent = hint || '';
+        if (mode === 'pinyin-to-char') {
+            questionText.innerHTML = this.colorPinyinByTone(question) || '?';
+        } else {
+            questionText.textContent = question || '?';
+        }
+
+        if (hintText) {
+            if (mode === 'char-to-english' || mode === 'english-to-char') {
+                hintText.innerHTML = this.colorPinyinByTone(hint) || '';
+            } else {
+                hintText.textContent = hint || '';
+            }
+        }
         fullInfo.style.opacity = '1';
 
         const pinyinInput = document.getElementById('pinyin-input');
@@ -92,7 +103,7 @@ class PracticeViewController {
             <div class="word-info-expanded">
                 <div class="card-back-header">
                     <div class="card-back-character">${this.app.currentWord.character || '?'}</div>
-                    <div class="card-back-pinyin">${this.app.currentWord.pinyin || '?'}</div>
+                    <div class="card-back-pinyin">${this.colorPinyinByTone(this.app.currentWord.pinyin) || '?'}</div>
                     <button class="card-back-pronunciation" onclick="window.app.playAudio('${this.app.currentWord.character}')">
                         <span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;">
@@ -232,27 +243,22 @@ class PracticeViewController {
     }
 
     getExampleSentence(word) {
-        const examples = {
-            '你': { chinese: '你好吗？', english: 'How are you?', spanish: '¿Cómo estás?' },
-            '好': { chinese: '很好，谢谢。', english: 'Very good, thank you.', spanish: 'Muy bien, gracias.' },
-            '我': { chinese: '我是学生。', english: 'I am a student.', spanish: 'Soy estudiante.' },
-            '是': { chinese: '他是老师。', english: 'He is a teacher.', spanish: 'Él es profesor.' },
-            '的': { chinese: '我的书', english: 'My book', spanish: 'Mi libro' },
-            '不': { chinese: '我不知道。', english: 'I don\'t know.', spanish: 'No lo sé.' },
-            '在': { chinese: '我在家。', english: 'I am at home.', spanish: 'Estoy en casa.' },
-            '有': { chinese: '我有一本书。', english: 'I have a book.', spanish: 'Tengo un libro.' }
-        };
+        let example = null;
+        if (this.app.exampleSentences && this.app.exampleSentences[word.character]) {
+            example = this.app.exampleSentences[word.character];
+        }
 
-        const example = examples[word.character];
         if (example) {
+            const pinyinBlock = example.pinyin ? `<div class="example-pinyin" style="font-size: var(--pinyin-md); margin-top: 4px; opacity: 0.85;">${this.colorPinyinByTone(example.pinyin)}</div>` : '';
             return `
-                <div class="example-section">
-                    <div class="example-title">${this.app.getTranslation('usageExample')}</div>
-                    <div class="example-sentence">
-                        <div class="example-chinese">${example.chinese}</div>
-                        <div class="example-translations">
-                            <div class="example-english"><span class="lang-flag">EN</span> ${example.english}</div>
-                            <div class="example-spanish"><span class="lang-flag">ES</span> ${example.spanish}</div>
+                <div class="example-section" style="margin-top: var(--spacing-xl); border-top: 1px solid var(--color-border); padding-top: var(--spacing-lg);">
+                    <div class="example-title" style="font-weight: var(--weight-semibold); color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: 8px;">${this.app.getTranslation('usageExample') || 'Usage Example'}</div>
+                    <div class="example-sentence" style="background: var(--color-bg-card); border-radius: var(--rounded-md); padding: 12px 16px; border-left: 4px solid var(--color-accent);">
+                        <div class="example-chinese" style="font-size: var(--text-lg); font-weight: var(--weight-bold); font-family: var(--font-chinese); color: var(--color-text-charcoal);">${example.chinese}</div>
+                        ${pinyinBlock}
+                        <div class="example-translations" style="margin-top: 10px; display: flex; flex-direction: column; gap: 4px; font-size: var(--text-sm);">
+                            <div class="example-english"><span class="lang-flag" style="font-size: 10px; font-weight: bold; background: #e0f2fe; color: #0369a1; padding: 2px 4px; border-radius: 4px; margin-right: 6px;">EN</span> ${example.english}</div>
+                            <div class="example-spanish"><span class="lang-flag" style="font-size: 10px; font-weight: bold; background: #ffe4e6; color: #be123c; padding: 2px 4px; border-radius: 4px; margin-right: 6px;">ES</span> ${example.spanish}</div>
                         </div>
                     </div>
                 </div>
@@ -267,6 +273,29 @@ class PracticeViewController {
                 </div>
             </div>
         `;
+    }
+
+    colorPinyinByTone(pinyin) {
+        if (!pinyin) return '';
+        const toneMap = {
+            'ā': 1, 'á': 2, 'ǎ': 3, 'à': 4,
+            'ē': 1, 'é': 2, 'ě': 3, 'è': 4,
+            'ī': 1, 'í': 2, 'ǐ': 3, 'ì': 4,
+            'ō': 1, 'ó': 2, 'ǒ': 3, 'ò': 4,
+            'ū': 1, 'ú': 2, 'ǔ': 3, 'ù': 4,
+            'ǖ': 1, 'ǘ': 2, 'ǚ': 3, 'ǜ': 4
+        };
+
+        return pinyin.split(/\s+/).map(syllable => {
+            let detectedTone = 0;
+            for (const char of syllable) {
+                if (toneMap[char]) {
+                    detectedTone = toneMap[char];
+                    break;
+                }
+            }
+            return `<span class="tone-${detectedTone}">${syllable}</span>`;
+        }).join(' ');
     }
 
     resetCardState() {

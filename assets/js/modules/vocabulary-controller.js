@@ -138,6 +138,20 @@ class VocabularyController {
 
                 this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
 
+                // Load example sentences
+                try {
+                    const sentencesResponse = await fetch('assets/data/hsk_example_sentences.json');
+                    if (sentencesResponse.ok) {
+                        this.app.exampleSentences = await sentencesResponse.json();
+                        this.app.logInfo('[SENTENCES] Loaded dynamic example sentences database');
+                    } else {
+                        this.app.exampleSentences = {};
+                    }
+                } catch (sentencesError) {
+                    this.app.logWarn('[SENTENCES] Failed to load example sentences:', sentencesError);
+                    this.app.exampleSentences = {};
+                }
+
                 this.app.logInfo('[OK] Loaded ' + this.app.vocabulary.length + ' items');
                 this.app.vocabularyLoaded = true;
                 this.app.vocabularyLoading = false;

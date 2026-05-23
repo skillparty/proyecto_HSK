@@ -1,13 +1,13 @@
-/* 
+/*
 ================================================================================
 HSK ++ DESIGN TOKENS (Sino-Bolivian Fusion Theme)
 ================================================================================
 Version: 4.0.0
 Description: Centralized Design Token system for the HSK Learning Platform.
              Combines traditional Chinese aesthetics (Imperial Red, Jade) with
-             the Bolivian flag's vibrancy (Red, Yellow, Green), structured over 
+             the Bolivian flag's vibrancy (Red, Yellow, Green), structured over
              a clean, academic Notion-like layout.
-             
+
 Architecture: CSS Custom Properties.
 ================================================================================
 */
@@ -19,22 +19,22 @@ Architecture: CSS Custom Properties.
     /* ---- COLOR PALETTE ---- */
 
     /* Brand - Sino-Bolivian Red */
-    --color-primary: #d32f2f;         /* Traditional Red */
-    --color-primary-hover: #b71c1c;   /* Deeper Red */
-    --color-primary-subtle: #ffcdd2;  /* Soft Red for tags */
-    --color-primary-glow: rgba(211, 47, 47, 0.3);    
+    --color-primary: #d32f2f; /* Traditional Red */
+    --color-primary-hover: #b71c1c; /* Deeper Red */
+    --color-primary-subtle: #ffcdd2; /* Soft Red for tags */
+    --color-primary-glow: rgba(211, 47, 47, 0.3);
 
     /* Deep Imperial Backgrounds & Golden Accents */
-    --color-secondary: #2b0a0a;       /* Deep Oxblood / Lacquer Red for Hero */
-    --color-accent: #f59e0b;          /* Bolivian/Chinese Imperial Gold */
+    --color-secondary: #2b0a0a; /* Deep Oxblood / Lacquer Red for Hero */
+    --color-accent: #f59e0b; /* Bolivian/Chinese Imperial Gold */
     --color-accent-subtle: #fef3c7;
 
     /* Backgrounds (Light Theme Default) */
-    --color-bg-app: #ffffff;          /* Canvas White */
-    --color-bg-panel: #ffffff;        /* Canvas White */
-    --color-bg-card: #faf9f8;         /* Surface - warm cream */
-    --color-bg-input: #ffffff;        /* Form inputs */
-    --color-bg-hover: #f5f4f2;        /* Surface Soft */
+    --color-bg-app: #ffffff; /* Canvas White */
+    --color-bg-panel: #ffffff; /* Canvas White */
+    --color-bg-card: #faf9f8; /* Surface - warm cream */
+    --color-bg-input: #ffffff; /* Form inputs */
+    --color-bg-hover: #f5f4f2; /* Surface Soft */
 
     /* Pastel Tints for Cards / Features */
     --color-tint-peach: #ffedd5;
@@ -45,24 +45,31 @@ Architecture: CSS Custom Properties.
     --color-tint-yellow: #fef3c7;
 
     /* Borders */
-    --color-border: #e5e3df;          /* Hairline */
-    --color-border-subtle: #ede9e4;   /* Hairline Soft */
+    --color-border: #e5e3df; /* Hairline */
+    --color-border-subtle: #ede9e4; /* Hairline Soft */
     --color-border-focus: var(--color-primary);
 
     /* Text */
-    --color-text-main: #1a1a1a;       /* Ink */
-    --color-text-charcoal: #37352f;   /* Charcoal - Warm emphasis */
-    --color-text-muted: #5d5b54;      /* Slate */
-    --color-text-dim: #787671;        /* Steel */
-    --color-text-on-dark: #ffffff;    /* On Dark */
+    --color-text-main: #1a1a1a; /* Ink */
+    --color-text-charcoal: #37352f; /* Charcoal - Warm emphasis */
+    --color-text-muted: #5d5b54; /* Slate */
+    --color-text-dim: #787671; /* Steel */
+    --color-text-on-dark: #ffffff; /* On Dark */
 
     /* Semantic Status - Bolivian Green & Gold */
-    --color-success: #059669;         /* Bolivian Green */
+    --color-success: #059669; /* Bolivian Green */
     --color-success-subtle: #d1fae5;
-    --color-warning: #f59e0b;         /* Bolivian Yellow */
+    --color-warning: #f59e0b; /* Bolivian Yellow */
     --color-warning-subtle: #fef3c7;
-    --color-error: #dc2626;           /* Bolivian Red */
+    --color-error: #dc2626; /* Bolivian Red */
     --color-error-subtle: #fee2e2;
+
+    /* ---- TONE COLORS (Pedagogical Standard) ---- */
+    --color-tone-1: #dc2626; /* Rojo - 1er Tono (mā) */
+    --color-tone-2: #16a34a; /* Verde - 2do Tono (má) */
+    --color-tone-3: #2563eb; /* Azul - 3er Tono (mǎ) */
+    --color-tone-4: #9333ea; /* Púrpura - 4to Tono (mà) */
+    --color-tone-0: #6b7280; /* Gris - Tono Neutro/Ligero (ma) */
 
     /* ---- COMPATIBILITY ALIASES ---- */
     --primary: var(--color-primary);
@@ -86,29 +93,32 @@ Architecture: CSS Custom Properties.
     --text-secondary: var(--color-text-muted);
 
     /* ---- TYPOGRAPHY ---- */
-    --font-main: "Inter", -apple-system, system-ui, "Segoe UI", Helvetica, sans-serif;
-    --font-display: "Inter", -apple-system, system-ui, "Segoe UI", Helvetica, sans-serif;
-    --font-chinese: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --font-main:
+        "Inter", -apple-system, system-ui, "Segoe UI", Helvetica, sans-serif;
+    --font-display:
+        "Inter", -apple-system, system-ui, "Segoe UI", Helvetica, sans-serif;
+    --font-chinese:
+        "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
     /* Font Sizes - Notion Hierarchy */
-    --text-xs: 12px;       /* Micro */
-    --text-sm: 14px;       /* Body Small */
-    --text-base: 16px;     /* Body Medium */
-    --text-lg: 18px;       /* Subtitle */
-    --text-xl: 22px;       /* Heading 4 */
-    --text-2xl: 28px;      /* Heading 3 */
-    --text-3xl: 36px;      /* Heading 2 */
-    --text-4xl: 48px;      /* Heading 1 */
-    --text-5xl: 56px;      /* Display LG */
+    --text-xs: 12px; /* Micro */
+    --text-sm: 14px; /* Body Small */
+    --text-base: 16px; /* Body Medium */
+    --text-lg: 18px; /* Subtitle */
+    --text-xl: 22px; /* Heading 4 */
+    --text-2xl: 28px; /* Heading 3 */
+    --text-3xl: 36px; /* Heading 2 */
+    --text-4xl: 48px; /* Heading 1 */
+    --text-5xl: 56px; /* Display LG */
 
     /* Font Weights */
-    --weight-light: 400;
+    --weight-light: 300;
     --weight-normal: 400;
-    --weight-medium: 500;  
-    --weight-semibold: 600; /* Primary heading weight */
-    --weight-bold: 600;
-    --weight-extrabold: 600; /* Notion caps out around 600 */
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-extrabold: 700; /* Inter supports 700, use for maximum emphasis */
 
     /* Line Heights */
     --leading-tight: 1.15;
@@ -139,8 +149,8 @@ Architecture: CSS Custom Properties.
     --radius-none: 0px;
     --radius-xs: 4px;
     --radius-sm: 6px;
-    --radius-md: 8px;   /* Buttons */
-    --radius-lg: 12px;  /* Cards */
+    --radius-md: 8px; /* Buttons */
+    --radius-lg: 12px; /* Cards */
     --radius-xl: 16px;
     --radius-pill: 9999px; /* Status badges only, not buttons */
     --radius-full: 50%;
@@ -149,11 +159,11 @@ Architecture: CSS Custom Properties.
     --shadow-sm: rgba(211, 47, 47, 0.04) 0px 1px 2px 0px; /* Subtle red tint shadow */
     --shadow-md: rgba(211, 47, 47, 0.06) 0px 4px 12px 0px; /* Feature cards */
     --shadow-lg: rgba(27, 25, 25, 0.16) 0px 16px 48px -8px; /* Modals */
-    --shadow-xl: rgba(27, 25, 25, 0.20) 0px 24px 48px -8px; /* Mockups */
-    --shadow-product: rgba(27, 25, 25, 0.20) 0px 24px 48px -8px; 
-    --shadow-glow: none;
-    --shadow-glow-success: none;
-    --shadow-glow-accent: none;
+    --shadow-xl: rgba(27, 25, 25, 0.2) 0px 24px 48px -8px; /* Mockups */
+    --shadow-product: rgba(27, 25, 25, 0.2) 0px 24px 48px -8px;
+    --shadow-glow: 0 0 0 3px rgba(211, 47, 47, 0.45); /* Red focus ring - WCAG 2.4.7 */
+    --shadow-glow-success: 0 0 0 3px rgba(5, 150, 105, 0.45); /* Green focus ring */
+    --shadow-glow-accent: 0 0 0 3px rgba(245, 158, 11, 0.45); /* Gold focus ring */
 
     /* ---- EFFECTS ---- */
     --backdrop-blur: blur(10px);
@@ -164,7 +174,7 @@ Architecture: CSS Custom Properties.
     --transition-normal: 0.2s ease;
     --transition-slow: 0.3s ease;
     --transition-bounce: 0.3s ease;
-    
+
     /* Interactive Transform */
     --transform-active: translateY(1px); /* More subtle than Apple's scale */
 
@@ -223,5 +233,12 @@ Architecture: CSS Custom Properties.
 /* Tone marks need precise rendering */
 .pinyin-tone {
     font-family: var(--font-main);
-    unicode-range: U+0300-036F, U+00C0-00FF; 
+    unicode-range: U+0300-036F, U+00C0-00FF;
 }
+
+/* Tone Utility Classes for Dynamic Colorization */
+.tone-1 { color: var(--color-tone-1) !important; }
+.tone-2 { color: var(--color-tone-2) !important; }
+.tone-3 { color: var(--color-tone-3) !important; }
+.tone-4 { color: var(--color-tone-4) !important; }
+.tone-0 { color: var(--color-tone-0) !important; }

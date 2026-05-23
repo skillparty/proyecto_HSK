@@ -9,6 +9,7 @@ class HSKApp {
         this.currentLevel = '1';
         this.practiceMode = 'char-to-english';
         this.practiceOrderMode = 'lesson';
+        this.toneCheckMode = localStorage.getItem('hsk-tone-check-mode') || 'standard';
         this.isDarkMode = true; // Default to dark theme (PlanetScale style)
         this.isAudioEnabled = true;
         this.selectedVoice = 'auto'; // 'male', 'female', 'auto'
@@ -170,6 +171,7 @@ class HSKApp {
     normalizePinyin(text) { return this.practiceViewController.normalizePinyin(text); }
     checkPinyinAnswer() { return this.practiceViewController.checkPinyinAnswer(); }
     getToneMarks(pinyin) { return this.practiceViewController.getToneMarks(pinyin); }
+    colorPinyinByTone(pinyin) { return this.practiceViewController.colorPinyinByTone(pinyin); }
     getExampleSentence(word) { return this.practiceViewController.getExampleSentence(word); }
     resetCardState() { return this.practiceViewController.resetCardState(); }
     flipCard() { this.flashcardManager.flipCard(); }
@@ -217,6 +219,13 @@ class HSKApp {
     getMeaningForLanguage(word) { return this.browseController.getMeaningForLanguage(word); }
     updateVocabularyCards() { return this.browseController.updateVocabularyCards(); }
     initializeBrowse() { return this.browseController.initializeBrowse(); }
+    selectVocabWord(word) {
+        this.switchTab('practice');
+        this.currentWord = word;
+        this.isFlipped = false;
+        this.updateCard();
+        this.logDebug('[BROWSE] Redirigido a práctica con palabra: ' + word.character);
+    }
     initializeStrokesRadicals() { return this.strokesRadicalsController.initialize(); }
     refreshStrokesRadicals() { return this.strokesRadicalsController.refresh(); }
     setupInfiniteScroll() { return this.browseController.setupInfiniteScroll(); }

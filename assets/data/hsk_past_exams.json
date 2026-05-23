@@ -36,6 +36,186 @@
     "answer": "A"
   },
   {
+    "id": "hsk1-reading-02",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción correcta de 苹果",
+      "en": "Select the correct translation for 苹果"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "manzana", "en": "apple" } },
+      { "key": "B", "label": { "es": "platano", "en": "banana" } },
+      { "key": "C", "label": { "es": "naranja", "en": "orange" } },
+      { "key": "D", "label": { "es": "uva", "en": "grape" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk1-reading-03",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción correcta de 医生",
+      "en": "Select the correct translation for 医生"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "profesor", "en": "teacher" } },
+      { "key": "B", "label": { "es": "estudiante", "en": "student" } },
+      { "key": "C", "label": { "es": "médico/doctor", "en": "doctor" } },
+      { "key": "D", "label": { "es": "policía", "en": "police" } }
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "hsk1-reading-04",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción correcta de 衣服",
+      "en": "Select the correct translation for 衣服"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "comida", "en": "food" } },
+      { "key": "B", "label": { "es": "ropa", "en": "clothes" } },
+      { "key": "C", "label": { "es": "agua", "en": "water" } },
+      { "key": "D", "label": { "es": "libro", "en": "book" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk1-reading-05",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "¿Qué número representa 三?",
+      "en": "Which number represents 三?"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "dos (2)", "en": "two (2)" } },
+      { "key": "B", "label": { "es": "tres (3)", "en": "three (3)" } },
+      { "key": "C", "label": { "es": "cuatro (4)", "en": "four (4)" } },
+      { "key": "D", "label": { "es": "cinco (5)", "en": "five (5)" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk1-reading-06",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona el pinyin correcto de 谢谢",
+      "en": "Select the correct pinyin for 谢谢"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "xièxie", "en": "xièxie" } },
+      { "key": "B", "label": { "es": "nǐhǎo", "en": "nǐhǎo" } },
+      { "key": "C", "label": { "es": "zàijiàn", "en": "zàijiàn" } },
+      { "key": "D", "label": { "es": "bùkèqi", "en": "bùkèqi" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk1-grammar-02",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 我有三___书。",
+      "en": "Complete: 我有三___书。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "个", "en": "个" } },
+      { "key": "B", "label": { "es": "本", "en": "本" } },
+      { "key": "C", "label": { "es": "只", "en": "只" } },
+      { "key": "D", "label": { "es": "杯", "en": "杯" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk1-grammar-03",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 你的家___哪里？",
+      "en": "Complete: 你的家___哪里？"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "在", "en": "在" } },
+      { "key": "B", "label": { "es": "是", "en": "是" } },
+      { "key": "C", "label": { "es": "有", "en": "有" } },
+      { "key": "D", "label": { "es": "去", "en": "去" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk1-grammar-04",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 王先生不___喝茶，他喝水。",
+      "en": "Complete: 王先生不___喝茶，他喝水。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "在", "en": "在" } },
+      { "key": "B", "label": { "es": "喜欢", "en": "喜欢" } },
+      { "key": "C", "label": { "es": "什么", "en": "什么" } },
+      { "key": "D", "label": { "es": "多少", "en": "多少" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk1-grammar-05",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 今天___二号，明天是三号。",
+      "en": "Complete: 今天___二号，明天是三号。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "是", "en": "是" } },
+      { "key": "B", "label": { "es": "有", "en": "有" } },
+      { "key": "C", "label": { "es": "号", "en": "号" } },
+      { "key": "D", "label": { "es": "在", "en": "in/at" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk1-grammar-06",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 你的猫在椅子___下面。",
+      "en": "Complete: 你的猫在椅子___下面。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "的", "en": "的" } },
+      { "key": "B", "label": { "es": "有", "en": "有" } },
+      { "key": "C", "label": { "es": "是", "en": "是" } },
+      { "key": "D", "label": { "es": "在", "en": "在" } }
+    ],
+    "answer": "A"
+  },
+  {
     "id": "hsk2-reading-01",
     "hskLevel": 2,
     "examSetId": "sample-a",
@@ -68,6 +248,186 @@
       { "key": "B", "label": { "es": "今天我去公司", "en": "今天我去公司" } },
       { "key": "C", "label": { "es": "去今天我公司", "en": "去今天我公司" } },
       { "key": "D", "label": { "es": "公司今天我去", "en": "公司今天我去" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk2-reading-02",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 电脑",
+      "en": "Select the translation for 电脑"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "televisor", "en": "television" } },
+      { "key": "B", "label": { "es": "teléfono", "en": "telephone" } },
+      { "key": "C", "label": { "es": "computadora", "en": "computer" } },
+      { "key": "D", "label": { "es": "reloj", "en": "clock" } }
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "hsk2-reading-03",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 跑步",
+      "en": "Select the translation for 跑步"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "nadar", "en": "swim" } },
+      { "key": "B", "label": { "es": "correr/hacer jogging", "en": "run/jog" } },
+      { "key": "C", "label": { "es": "cantar", "en": "sing" } },
+      { "key": "D", "label": { "es": "bailar", "en": "dance" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk2-reading-04",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 火车站",
+      "en": "Select the translation for 火车站"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "aeropuerto", "en": "airport" } },
+      { "key": "B", "label": { "es": "parada de autobús", "en": "bus stop" } },
+      { "key": "C", "label": { "es": "estación de tren", "en": "train station" } },
+      { "key": "D", "label": { "es": "estación de metro", "en": "subway station" } }
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "hsk2-reading-05",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "¿Qué significa 便宜?",
+      "en": "What does 便宜 mean?"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "caro", "en": "expensive" } },
+      { "key": "B", "label": { "es": "barato", "en": "cheap" } },
+      { "key": "C", "label": { "es": "bonito", "en": "beautiful" } },
+      { "key": "D", "label": { "es": "rápido", "en": "fast" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk2-reading-06",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 鸡蛋",
+      "en": "Select the translation for 鸡蛋"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "leche", "en": "milk" } },
+      { "key": "B", "label": { "es": "arroz", "en": "rice" } },
+      { "key": "C", "label": { "es": "huevo", "en": "egg" } },
+      { "key": "D", "label": { "es": "carne", "en": "meat" } }
+    ],
+    "answer": "C"
+  },
+  {
+    "id": "hsk2-writing-02",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 喜欢 / 妹妹 / 唱歌",
+      "en": "Order the sentence: 喜欢 / 妹妹 / 唱歌"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "喜欢妹妹唱歌", "en": "喜欢妹妹唱歌" } },
+      { "key": "B", "label": { "es": "妹妹喜欢唱歌", "en": "妹妹喜欢唱歌" } },
+      { "key": "C", "label": { "es": "唱歌妹妹喜欢", "en": "唱歌妹妹喜欢" } },
+      { "key": "D", "label": { "es": "妹妹唱歌喜欢", "en": "妹妹唱歌喜欢" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk2-writing-03",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 今天 / 天气 / 怎么样",
+      "en": "Order the sentence: 今天 / 天气 / 怎么样"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "今天天气怎么样", "en": "今天天气怎么样" } },
+      { "key": "B", "label": { "es": "怎么样今天天气", "en": "怎么样今天天气" } },
+      { "key": "C", "label": { "es": "天气怎么样今天", "en": "天气怎么样今天" } },
+      { "key": "D", "label": { "es": "天气今天怎么样", "en": "天气今天怎么样" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk2-writing-04",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 比 / 哥哥 / 我 / 高",
+      "en": "Order the sentence: 比 / 哥哥 / 我 / 高"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "比哥哥我高", "en": "比哥哥我高" } },
+      { "key": "B", "label": { "es": "哥哥比我高", "en": "哥哥比我高" } },
+      { "key": "C", "label": { "es": "我哥哥比高", "en": "我哥哥比高" } },
+      { "key": "D", "label": { "es": "高哥哥比我", "en": "高哥哥比我" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk2-writing-05",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 咖啡 / 喝 / 别 / 了",
+      "en": "Order the sentence: 咖啡 / 喝 / 别 / 了"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "喝咖啡别了", "en": "喝咖啡别了" } },
+      { "key": "B", "label": { "es": "别喝咖啡了", "en": "别喝咖啡了" } },
+      { "key": "C", "label": { "es": "咖啡别喝了", "en": "咖啡别喝了" } },
+      { "key": "D", "label": { "es": "别了喝咖啡", "en": "别了喝咖啡" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk2-writing-06",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 买 / 了 / 两 / 本 / 书 / 我",
+      "en": "Order the sentence: 买 / 了 / 两 / 本 / 书 / 我"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "我买了书两本", "en": "我买了书两本" } },
+      { "key": "B", "label": { "es": "我买了两本书", "en": "我买了两本书" } },
+      { "key": "C", "label": { "es": "两本书我买了", "en": "两本书我买了" } },
+      { "key": "D", "label": { "es": "买了两本书我", "en": "买了两本书我" } }
     ],
     "answer": "B"
   },
@@ -108,6 +468,186 @@
     "answer": "A"
   },
   {
+    "id": "hsk3-reading-02",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la opción opuesta a 便宜",
+      "en": "Select the opposite of 便宜"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "方便", "en": "convenient" } },
+      { "key": "B", "label": { "es": "贵", "en": "expensive" } },
+      { "key": "C", "label": { "es": "简单", "en": "simple" } },
+      { "key": "D", "label": { "es": "难看", "en": "ugly" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk3-reading-03",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona el significado de 经常",
+      "en": "Select the meaning of 经常"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "a menudo / frecuentemente", "en": "often / frequently" } },
+      { "key": "B", "label": { "es": "ocasionalmente", "en": "occasionally" } },
+      { "key": "C", "label": { "es": "raramente", "en": "rarely" } },
+      { "key": "D", "label": { "es": "nunca", "en": "never" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk3-reading-04",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "¿Qué lugar representa 银行?",
+      "en": "Which place represents 银行?"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "escuela", "en": "school" } },
+      { "key": "B", "label": { "es": "banco", "en": "bank" } },
+      { "key": "C", "label": { "es": "supermercado", "en": "supermarket" } },
+      { "key": "D", "label": { "es": "parque", "en": "park" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk3-reading-05",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 检查",
+      "en": "Select the translation for 检查"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "inspeccionar / revisar / chequear", "en": "check / inspect" } },
+      { "key": "B", "label": { "es": "comenzar", "en": "start" } },
+      { "key": "C", "label": { "es": "terminar", "en": "finish" } },
+      { "key": "D", "label": { "es": "olvidar", "en": "forget" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk3-reading-06",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 突然",
+      "en": "Select the translation for 突然"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "lentamente", "en": "slowly" } },
+      { "key": "B", "label": { "es": "de repente / repentinamente", "en": "suddenly" } },
+      { "key": "C", "label": { "es": "claramente", "en": "clearly" } },
+      { "key": "D", "label": { "es": "seguramente", "en": "surely" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk3-grammar-02",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 我___把作业写完了。",
+      "en": "Complete: 我___把作业写完了。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "已经", "en": "已经" } },
+      { "key": "B", "label": { "es": "经常", "en": "经常" } },
+      { "key": "C", "label": { "es": "突然", "en": "突然" } },
+      { "key": "D", "label": { "es": "虽然", "en": "虽然" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk3-grammar-03",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: ___下雨，我们还是去公园了。",
+      "en": "Complete: ___下雨，我们还是去公园了。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "不但", "en": "不但" } },
+      { "key": "B", "label": { "es": "虽然", "en": "虽然" } },
+      { "key": "C", "label": { "es": "因为", "en": "因为" } },
+      { "key": "D", "label": { "es": "除了", "en": "除了" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk3-grammar-04",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 苹果被妹妹___了。",
+      "en": "Complete: 苹果被妹妹___了。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "吃", "en": "吃" } },
+      { "key": "B", "label": { "es": "看见", "en": "看见" } },
+      { "key": "C", "label": { "es": "买了", "en": "买了" } },
+      { "key": "D", "label": { "es": "在", "en": "在" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk3-grammar-05",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 除了唱歌___，她也喜欢跳舞。",
+      "en": "Complete: 除了唱歌___，她 juga 喜欢跳舞。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "以外", "en": "以外" } },
+      { "key": "B", "label": { "es": "因为", "en": "因为" } },
+      { "key": "C", "label": { "es": "所以", "en": "所以" } },
+      { "key": "D", "label": { "es": "而且", "en": "而且" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk3-grammar-06",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 外面很冷，你___多穿件衣服。",
+      "en": "Complete: 外面很冷，你___多穿件衣服。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "必须", "en": "必须" } },
+      { "key": "B", "label": { "es": "经常", "en": "经常" } },
+      { "key": "C", "label": { "es": "突然", "en": "突然" } },
+      { "key": "D", "label": { "es": "正在", "en": "正在" } }
+    ],
+    "answer": "A"
+  },
+  {
     "id": "hsk4-reading-01",
     "hskLevel": 4,
     "examSetId": "sample-a",
@@ -137,11 +677,191 @@
     },
     "options": [
       { "key": "A", "label": { "es": "因为下雨，所以我们取消了比赛。", "en": "因为下雨，所以我们取消了比赛。" } },
-      { "key": "B", "label": { "es": "所以下雨，因为我们取消了比赛。", "en": "所以下雨，因为我们取消了比赛。" } },
-      { "key": "C", "label": { "es": "我们取消比赛因为了下雨。", "en": "我们取消比赛因为了下雨。" } },
+      { "key": "B", "label": { "es": "so 很多下雨，因为我们取消了比赛。", "en": "so 很多下雨，因为我们取消了比赛。" } },
+      { "key": "C", "label": { "es": "我们取消比赛因为了下雨。", "en": "us cancel match because of rain" } },
       { "key": "D", "label": { "es": "因为我们比赛，所以下雨取消了。", "en": "因为我们比赛，所以下雨取消了。" } }
     ],
     "answer": "A"
+  },
+  {
+    "id": "hsk4-reading-02",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona el significado de 顺便",
+      "en": "Select the meaning of 顺便"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "apropiadamente", "en": "appropriately" } },
+      { "key": "B", "label": { "es": "de paso / convenientemente", "en": "by the way / in passing" } },
+      { "key": "C", "label": { "es": "especialmente", "en": "especially" } },
+      { "key": "D", "label": { "es": "seguramente", "en": "surely" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk4-reading-03",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona el significado de 拒绝",
+      "en": "Select the meaning of 拒绝"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "aceptar", "en": "accept" } },
+      { "key": "B", "label": { "es": "rechazar / rehusar", "en": "reject / refuse" } },
+      { "key": "C", "label": { "es": "recomendar", "en": "recommend" } },
+      { "key": "D", "label": { "es": "admitir", "en": "admit" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk4-reading-04",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona el antónimo de 骄傲",
+      "en": "Select the antonym of 骄傲"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "humilde (谦虚)", "en": "humble (谦虚)" } },
+      { "key": "B", "label": { "es": "orgulloso (骄傲)", "en": "proud (骄傲)" } },
+      { "key": "C", "label": { "es": "seguro", "en": "confident" } },
+      { "key": "D", "label": { "es": "feliz", "en": "happy" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk4-reading-05",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 估计",
+      "en": "Select the translation for 估计"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "estimar / evaluar / calcular", "en": "estimate / calculate" } },
+      { "key": "B", "label": { "es": "garantizar", "en": "guarantee" } },
+      { "key": "C", "label": { "es": "decidir", "en": "decide" } },
+      { "key": "D", "label": { "es": "ignorar", "en": "ignore" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk4-reading-06",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "¿Qué significa 质量?",
+      "en": "What does 质量 mean?"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "cantidad", "en": "quantity" } },
+      { "key": "B", "label": { "es": "calidad", "en": "quality" } },
+      { "key": "C", "label": { "es": "peso", "en": "weight" } },
+      { "key": "D", "label": { "es": "altura", "en": "height" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk4-writing-02",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 不管 / 都 / 学习 / 汉语 / 难 / 努力 / 我 / 有多",
+      "en": "Order the sentence: 不管 / 都 / 学习 / 汉语 / 难 / 努力 / 我 / 有多"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "不管汉语有多难，我都会努力学习。", "en": "不管汉语有多难，我都会努力学习。" } },
+      { "key": "B", "label": { "es": "我不管汉语有多难都努力学习。", "en": "我不管汉语有多难都努力学习。" } },
+      { "key": "C", "label": { "es": "汉语有多难，不管我都努力学习。", "en": "汉语有多难，不管我都努力学习。" } },
+      { "key": "D", "label": { "es": "都会努力学习不管汉语有多难我。", "en": "都会努力学习不管汉语有多难我。" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk4-writing-03",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 既然 / 身体 / 舒服 / 不 / 休息 / 就 / 你 / 回家 / 吧",
+      "en": "Order the sentence: 既然 / 身体 / 舒服 / 不 / 休息 / 就 / 你 / 回家 / 吧"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "既然你身体不舒服，就回家休息吧。", "en": "既然你身体不舒服，就回家休息吧。" } },
+      { "key": "B", "label": { "es": "你就回家休息吧既然身体不舒服你。", "en": "你就回家休息吧既然身体不舒服你。" } },
+      { "key": "C", "label": { "es": "身体不舒服，既然你就回家休息吧。", "en": "身体不舒服，既然你就回家休息吧。" } },
+      { "key": "D", "label": { "es": "既然身体不舒服你，就回家吧休息。", "en": "Since you feel unwell, go home to rest." } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk4-writing-04",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 顺便 / 超市 / 帮 / 我 / 去 / 买 / 瓶 / 水 / 吧 / 你",
+      "en": "Order the sentence: 顺便 / 超市 / 帮 / 我 / 去 / 买 / 瓶 / 水 / 吧 / 你"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "你顺便去超市，帮我买瓶水吧。", "en": "你顺便去超市，帮我买瓶水吧。" } },
+      { "key": "B", "label": { "es": "你去超市，顺便帮我买瓶水吧。", "en": "你去超市，顺便帮我买瓶水吧。" } },
+      { "key": "C", "label": { "es": "帮我买瓶水你顺便去超市吧。", "en": "帮 me buy bottle water you in passing go supermarket" } },
+      { "key": "D", "label": { "es": "超市顺便你去帮我买瓶水吧。", "en": "超市顺便你去帮我买瓶水吧。" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk4-writing-05",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 经历 / 成功 / 许多 / 才能 / 失败 / 最终 / 获得 / 你",
+      "en": "Order the sentence: 经历 / 成功 / 许多 / 才能 / 失败 / 最终 / 获得 / 你"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "你成功经历许多失败，才能最终获得。", "en": "你成功经历许多失败，才能最终获得。" } },
+      { "key": "B", "label": { "es": "你必须经历许多失败，才能最终获得成功。", "en": "You must experience many failures to finally achieve success." } },
+      { "key": "C", "label": { "es": "成功经历许多失败你才能最终获得。", "en": "成功经历许多失败你才能最终获得。" } },
+      { "key": "D", "label": { "es": "最终获得成功你才能经历许多失败。", "en": "最终获得成功你才能经历许多失败。" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk4-writing-06",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Ordena la frase: 受到 / 的 / 鼓励 / 老师 / 极大的 / 了 / 他",
+      "en": "Order the sentence: 受到 / 的 / 鼓励 / 老师 / 极大的 / 了 / 他"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "老师受到极大的鼓励了他。", "en": "老师受到极大的鼓励了他。" } },
+      { "key": "B", "label": { "es": "他受到了老师极大的鼓励。", "en": "He received great encouragement from the teacher." } },
+      { "key": "C", "label": { "es": "他极大的鼓励了受到老师。", "en": "他极大的鼓励了受到老师。" } },
+      { "key": "D", "label": { "es": "受到了极大的鼓励老师他的。", "en": "受到了极大的鼓励老师他的。" } }
+    ],
+    "answer": "B"
   },
   {
     "id": "hsk5-reading-01",
@@ -180,6 +900,186 @@
     "answer": "A"
   },
   {
+    "id": "hsk5-reading-02",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la palabra que mejor define 启发",
+      "en": "Select the word that best defines 启发"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "inspirar / dar ideas", "en": "inspire / enlighten" } },
+      { "key": "B", "label": { "es": "limitar", "en": "limit" } },
+      { "key": "C", "label": { "es": "rechazar", "en": "reject" } },
+      { "key": "D", "label": { "es": "repetir", "en": "repeat" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk5-reading-03",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 反应",
+      "en": "Select the translation for 反应"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "reflexionar", "en": "reflect" } },
+      { "key": "B", "label": { "es": "reaccionar / reacción", "en": "react / reaction" } },
+      { "key": "C", "label": { "es": "planear", "en": "plan" } },
+      { "key": "D", "label": { "es": "recordar", "en": "remember" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk5-reading-04",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "¿Qué expresa la palabra 满足?",
+      "en": "What does 满足 express?"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "satisfacer / estar satisfecho", "en": "satisfy / be satisfied" } },
+      { "key": "B", "label": { "es": "desear más", "en": "wish for more" } },
+      { "key": "C", "label": { "es": "carecer", "en": "lack" } },
+      { "key": "D", "label": { "es": "perder", "en": "lose" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk5-reading-05",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 稍微",
+      "en": "Select the translation for 稍微"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "un poco / ligeramente", "en": "slightly / a bit" } },
+      { "key": "B", "label": { "es": "mucho", "en": "a lot" } },
+      { "key": "C", "label": { "es": "nunca", "en": "never" } },
+      { "key": "D", "label": { "es": "siempre", "en": "always" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk5-reading-06",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 核心",
+      "en": "Select the translation for 核心"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "periferia", "en": "outskirts" } },
+      { "key": "B", "label": { "es": "núcleo / centro / clave", "en": "core / center / key" } },
+      { "key": "C", "label": { "es": "superficie", "en": "surface" } },
+      { "key": "D", "label": { "es": "capa", "en": "layer" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk5-grammar-02",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 与其坐着抱怨，___主动寻找解决办法。",
+      "en": "Complete: 与其坐着抱怨，___主动寻找解决办法。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "不如", "en": "不如" } },
+      { "key": "B", "label": { "es": "而且", "en": "而且" } },
+      { "key": "C", "label": { "es": "因为", "en": "因为" } },
+      { "key": "D", "label": { "es": "宁可", "en": "宁可" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk5-grammar-03",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 他___牺牲自己的休息时间，也要把任务完成。",
+      "en": "Complete: 他___牺牲自己的休息时间，也要把任务完成。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "宁可", "en": "宁可" } },
+      { "key": "B", "label": { "es": "不如", "en": "不如" } },
+      { "key": "C", "label": { "es": "甚至", "en": "甚至" } },
+      { "key": "D", "label": { "es": "稍微", "en": "稍微" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk5-grammar-04",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 尽管面临很多困难，___我们没有放弃。",
+      "en": "Complete: 尽管面临很多困难，___我们没有放弃。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "但是", "en": "但是" } },
+      { "key": "B", "label": { "es": "而且", "en": "而且" } },
+      { "key": "C", "label": { "es": "如果", "en": "如果" } },
+      { "key": "D", "label": { "es": "因此", "en": "因此" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk5-grammar-05",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 他对这个问题做出了___深刻的分析。",
+      "en": "Complete: 他对这个问题做出了___深刻的分析。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "非常", "en": "非常" } },
+      { "key": "B", "label": { "es": "极为", "en": "极为" } },
+      { "key": "C", "label": { "es": "稍微", "en": "稍微" } },
+      { "key": "D", "label": { "es": "核心", "en": "核心" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk5-grammar-06",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "grammar",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 随着科技的发展，人们的生活发生了___的变化。",
+      "en": "Complete: 随着科技的发展，人们的生活发生了___的变化。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "巨大", "en": "巨大" } },
+      { "key": "B", "label": { "es": "核心", "en": "核心" } },
+      { "key": "C", "label": { "es": "经常", "en": "经常" } },
+      { "key": "D", "label": { "es": "稍微", "en": "稍微" } }
+    ],
+    "answer": "A"
+  },
+  {
     "id": "hsk6-reading-01",
     "hskLevel": 6,
     "examSetId": "sample-a",
@@ -208,10 +1108,190 @@
       "en": "Choose the most appropriate connector: 结论已经明确，___无需赘述。"
     },
     "options": [
-      { "key": "A", "label": { "es": "因此", "en": "因此" } },
-      { "key": "B", "label": { "es": "不过", "en": "不过" } },
-      { "key": "C", "label": { "es": "否则", "en": "否则" } },
+      { "key": "A", "label": { "es": "因此", "en": "therefore" } },
+      { "key": "B", "label": { "es": "不过", "en": "however" } },
+      { "key": "C", "label": { "es": "否则", "en": "otherwise" } },
+      { "key": "D", "label": { "es": "即使", "en": "even if" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk6-reading-02",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona el significado del Chengyu (refrán) 半途而废",
+      "en": "Select the meaning of the Chengyu 半途而废"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "esforzarse hasta el final", "en": "strive to the end" } },
+      { "key": "B", "label": { "es": "rendirse a mitad de camino", "en": "give up halfway" } },
+      { "key": "C", "label": { "es": "comenzar con entusiasmo", "en": "start with enthusiasm" } },
+      { "key": "D", "label": { "es": "lograr un gran éxito", "en": "achieve great success" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk6-reading-03",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona el significado del Chengyu 锲而不舍",
+      "en": "Select the meaning of the Chengyu 锲而不舍"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "perseverar incansablemente", "en": "perseverance untiringly" } },
+      { "key": "B", "label": { "es": "dar explicaciones simples", "en": "give simple explanations" } },
+      { "key": "C", "label": { "es": "perder el tiempo", "en": "waste time" } },
+      { "key": "D", "label": { "es": "hablar con arrogancia", "en": "talk arrogantly" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk6-reading-04",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 逻辑",
+      "en": "Select the translation for 逻辑"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "intuición", "en": "intuition" } },
+      { "key": "B", "label": { "es": "lógica", "en": "logic" } },
+      { "key": "C", "label": { "es": "emoción", "en": "emotion" } },
+      { "key": "D", "label": { "es": "fantasía", "en": "fantasy" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk6-reading-05",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la definición de 荒谬",
+      "en": "Select the definition of 荒谬"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "razonable", "en": "reasonable" } },
+      { "key": "B", "label": { "es": "absurdo / ridículo", "en": "absurd / ridiculous" } },
+      { "key": "C", "label": { "es": "importante", "en": "important" } },
+      { "key": "D", "label": { "es": "misterioso", "en": "mysterious" } }
+    ],
+    "answer": "B"
+  },
+  {
+    "id": "hsk6-reading-06",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "reading",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Selecciona la traducción de 琢磨",
+      "en": "Select the translation for 琢磨"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "reflexionar / ponderar / pulir", "en": "ponder / deliberate / polish" } },
+      { "key": "B", "label": { "es": "olvidar de inmediato", "en": "forget immediately" } },
+      { "key": "C", "label": { "es": "correr de prisa", "en": "run in a hurry" } },
+      { "key": "D", "label": { "es": "copiar sin pensar", "en": "copy without thinking" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk6-writing-02",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa la oración literaria: 他虽身处逆境，___依然保持乐观的心态。",
+      "en": "Complete the literary sentence: 他虽身处逆境，___依然保持乐观的心态。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "却", "en": "却" } },
+      { "key": "B", "label": { "es": "而且", "en": "而且" } },
+      { "key": "C", "label": { "es": "所以", "en": "所以" } },
+      { "key": "D", "label": { "es": "因为", "en": "因为" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk6-writing-03",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 设立该奖项的宗旨，___鼓励更多的青年学者从事科学研究。",
+      "en": "Complete: 设立该奖项的宗旨，___鼓励更多的青年学者从事科学研究。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "在于", "en": "在于" } },
+      { "key": "B", "label": { "es": "由于", "en": "由于" } },
+      { "key": "C", "label": { "es": "关于", "en": "关于" } },
+      { "key": "D", "label": { "es": "对于", "en": "对于" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk6-writing-04",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 他的成功并非偶然，___长期不懈努力的结果。",
+      "en": "Complete: 他的成功并非偶然，___长期不懈努力的结果。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "而是", "en": "而是" } },
+      { "key": "B", "label": { "es": "但是", "en": "但是" } },
+      { "key": "C", "label": { "es": "由于", "en": "由于" } },
       { "key": "D", "label": { "es": "即使", "en": "即使" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk6-writing-05",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 这一决议的通过，___了双方合作的新纪元。",
+      "en": "Complete: 这一决议的通过，___了双方合作的新纪元。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "开创", "en": "开创" } },
+      { "key": "B", "label": { "es": "开辟", "en": "开辟" } },
+      { "key": "C", "label": { "es": "开始", "en": "开始" } },
+      { "key": "D", "label": { "es": "建立", "en": "建立" } }
+    ],
+    "answer": "A"
+  },
+  {
+    "id": "hsk6-writing-06",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "writing",
+    "audioRequired": false,
+    "prompt": {
+      "es": "Completa: 他在工作中所展现的敬业精神，令人___感佩。",
+      "en": "Complete: 他在工作中所展现的敬业精神，令人___感佩。"
+    },
+    "options": [
+      { "key": "A", "label": { "es": "由衷", "en": "由衷" } },
+      { "key": "B", "label": { "es": "非常", "en": "非常" } },
+      { "key": "C", "label": { "es": "稍微", "en": "稍微" } },
+      { "key": "D", "label": { "es": "已经", "en": "已经" } }
     ],
     "answer": "A"
   }
