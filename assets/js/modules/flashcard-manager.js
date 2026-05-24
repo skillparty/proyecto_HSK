@@ -207,83 +207,24 @@ class FlashcardManager {
   updateCard() {
     if (!this.currentWord) return;
 
-    const elements = {
-      question: document.getElementById("question-text"),
-      answer: document.getElementById("answer-text"),
-      fullInfo: document.getElementById("full-info"),
-      hint: document.getElementById("hint-text"),
-      frontMeta: document.getElementById("lesson-meta-front"),
-      flashcard: document.getElementById("flashcard"),
-    };
-
-    if (!elements.question || !elements.fullInfo) return;
-
-    const meaning = this.app.getMeaningForLanguage(this.currentWord);
-    const mode = this.app.practiceMode || "char-to-english";
-
-    let question = "";
-    let hint = "";
-
-    switch (mode) {
-      case "char-to-pinyin":
-        question = this.currentWord.character;
-        hint = meaning;
-        break;
-      case "pinyin-to-char":
-        question = this.currentWord.pinyin;
-        hint = meaning;
-        break;
-      case "english-to-char":
-        question = meaning;
-        hint = this.currentWord.pinyin;
-        break;
-      case "char-to-english":
-      default:
-        question = this.currentWord.character;
-        hint = this.currentWord.pinyin;
-        break;
-    }
-
-    // Reset Card UI
-    if (elements.flashcard) {
-      elements.flashcard.style.transition = "none";
-      elements.flashcard.classList.remove("flipped");
-      void elements.flashcard.offsetWidth; // Trigger reflow
-      setTimeout(() => (elements.flashcard.style.transition = ""), 50);
-      this.isFlipped = false;
-    }
-
-    if (mode === 'pinyin-to-char') {
-      elements.question.innerHTML = this.app.colorPinyinByTone(question) || '?';
-    } else if (mode === 'english-to-char' || mode === 'char-to-english' || mode === 'char-to-pinyin') {
-      elements.question.innerHTML = this.app.renderChineseCharacters(question, false) || '?';
-    } else {
-      elements.question.textContent = question || '?';
-    }
-    const frontLessonMeta = this.getLessonMetadataLabel(this.currentWord);
-    if (elements.frontMeta) {
-      elements.frontMeta.textContent = frontLessonMeta;
-      elements.frontMeta.style.display = frontLessonMeta
-        ? "inline-flex"
-        : "none";
-    }
-    if (elements.hint) elements.hint.textContent = hint || "";
-
-    // Reset Inputs
-    this.resetInputs();
-
-    // Render detailed info for back of card
-    this.renderDetailedInfo(elements.fullInfo, meaning);
-
-    this.resetCardState();
-
-    // Sync state back to app
-    this.app.isFlipped = false;
+    // Sync state to app orchestrator
     this.app.currentWord = this.currentWord;
+    this.app.isFlipped = false;
     this.app.sessionIndex = this.sessionIndex;
 
+    // Delegate rendering to practiceViewController
+    if (this.app.practiceViewController) {
+      this.app.practiceViewController.updateCard();
+    } else {
+      this.app.updateCard();
+    }
+
+    // Reset local inputs
+    this.resetInputs();
+    this.resetCardState();
+
     this.app.logDebug(
-      `🃏 Card updated: ${this.currentWord.character} (${mode})`,
+      `🃏 Card updated (delegated): ${this.currentWord.character}`,
     );
   }
 

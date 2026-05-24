@@ -64,10 +64,31 @@ class PracticeViewController {
 
         if (mode === 'pinyin-to-char') {
             questionText.innerHTML = this.colorPinyinByTone(question) || '?';
+            questionText.classList.remove('multi-char', 'triple-char');
         } else if (mode === 'english-to-char' || mode === 'char-to-english' || mode === 'char-to-pinyin') {
+            const chars = Array.from(question || '');
+            const isChinese = /[\u3400-\u9fff\uf900-\ufaff]/.test(question);
+            if (isChinese && chars.length > 1) {
+                questionText.classList.add('multi-char');
+                if (chars.length > 2) {
+                    questionText.classList.add('triple-char');
+                } else {
+                    questionText.classList.remove('triple-char');
+                }
+            } else {
+                questionText.classList.remove('multi-char', 'triple-char');
+            }
             questionText.innerHTML = this.renderChineseCharacters(question, false) || '?';
         } else {
             questionText.textContent = question || '?';
+            questionText.classList.remove('multi-char', 'triple-char');
+        }
+
+        const frontMeta = document.getElementById('lesson-meta-front');
+        const frontLessonMeta = this.getLessonMetadataLabel(this.app.currentWord);
+        if (frontMeta) {
+            frontMeta.textContent = frontLessonMeta;
+            frontMeta.style.display = frontLessonMeta ? 'inline-flex' : 'none';
         }
 
         if (hintText) {
@@ -101,10 +122,15 @@ class PracticeViewController {
 
         this.app.waitingForNext = false;
 
+        const backWord = this.app.currentWord.character || '';
+        const backChars = Array.from(backWord);
+        const backContainerClass = `card-back-character-container ${backChars.length > 1 ? 'multi-char' : ''} ${backChars.length > 2 ? 'triple-char' : ''}`;
+        const lessonMeta = this.getLessonMetadataLabel(this.app.currentWord);
+
         fullInfo.innerHTML = `
             <div class="word-info-expanded">
                 <div class="card-back-header">
-                    <div class="card-back-character-container">${this.renderChineseCharacters(this.app.currentWord.character, true)}</div>
+                    <div class="${backContainerClass}">${this.renderChineseCharacters(this.app.currentWord.character, true)}</div>
                     <div class="card-back-header-text">
                         <div class="card-back-pinyin">${this.colorPinyinWithBadges(this.app.currentWord.pinyin) || '?'}</div>
                         <button class="card-back-pronunciation" onclick="window.app.playAudio('${this.app.currentWord.character}')">
@@ -116,6 +142,7 @@ class PracticeViewController {
                         </button>
                     </div>
                 </div>
+                ${lessonMeta ? `<div class="card-back-meta">${lessonMeta}</div>` : ''}
 
                 <div class="translations-section">
                     <div class="translation-item primary-translation">
@@ -389,11 +416,56 @@ class PracticeViewController {
         }).join(' ');
     }
 
+    getBookLabel(bookValue) {
+        const raw = String(bookValue || '')
+            .trim()
+            .toLowerCase();
+        if (!raw) return '';
+
+        if (['shang', '上', '上册'].includes(raw)) return 'Shang';
+        if (['xia', '下', '下册'].includes(raw)) return 'Xia';
+        return String(bookValue);
+    }
+
+    getLessonMetadataLabel(word) {
+        const hasLessonMeta =
+            word &&
+            (word.book !== undefined ||
+                word.bookPart !== undefined ||
+                word.volume !== undefined ||
+                word.lesson !== undefined ||
+                word.lessonOrder !== undefined ||
+                word.orderInLesson !== undefined);
+
+        if (!hasLessonMeta) {
+            return '';
+        }
+
+        const lang = this.app.currentLanguage || 'en';
+        const level = Number(word.level || this.app.currentLevel || 0);
+        const bookLabel = this.getBookLabel(
+            word.book ?? word.bookPart ?? word.volume
+        );
+        const lessonNumber = Number(word.lesson || 0);
+        const lessonOrder = Number(word.lessonOrder || word.orderInLesson || 0);
+
+        const lessonWord = lang === 'es' ? 'Lección' : 'Lesson';
+        const orderWord = lang === 'es' ? 'Palabra' : 'Word';
+        const segments = [];
+
+        if (level) segments.push(`HSK ${level}`);
+        if (bookLabel) segments.push(bookLabel);
+        if (lessonNumber) segments.push(`${lessonWord} ${lessonNumber}`);
+        if (lessonOrder) segments.push(`${orderWord} #${lessonOrder}`);
+
+        return segments.join(' · ');
+    }
+
     renderChineseCharacters(text, isCompact = false) {
         if (!text) return '';
         
-        // Test if text has at least one Chinese character
-        const hasChinese = /[\u4e00-\u9fa5]/.test(text);
+        // Broad range to match all CJK characters (standard, extended, compat)
+        const hasChinese = /[\u3400-\u9fff\uf900-\ufaff]/.test(text);
         
         if (!hasChinese) {
             return `<span class="plain-text-character">${text}</span>`;
