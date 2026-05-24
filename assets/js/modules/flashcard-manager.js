@@ -253,7 +253,13 @@ class FlashcardManager {
       this.isFlipped = false;
     }
 
-    elements.question.textContent = question || "?";
+    if (mode === 'pinyin-to-char') {
+      elements.question.innerHTML = this.app.colorPinyinByTone(question) || '?';
+    } else if (mode === 'english-to-char' || mode === 'char-to-english' || mode === 'char-to-pinyin') {
+      elements.question.innerHTML = this.app.renderChineseCharacters(question, false) || '?';
+    } else {
+      elements.question.textContent = question || '?';
+    }
     const frontLessonMeta = this.getLessonMetadataLabel(this.currentWord);
     if (elements.frontMeta) {
       elements.frontMeta.textContent = frontLessonMeta;
@@ -307,7 +313,7 @@ class FlashcardManager {
     container.innerHTML = `
             <div class="word-info-expanded">
                 <div class="card-back-header">
-                    <div class="card-back-character">${this.currentWord.character || "?"}</div>
+                    <div class="card-back-character-container">${this.app.renderChineseCharacters(this.currentWord.character, true)}</div>
                     <div class="card-back-header-text">
                         <div class="card-back-pinyin">${this.colorPinyinWithBadges(this.currentWord.pinyin) || "?"}</div>
                         <button class="card-back-pronunciation" data-play-character="${(this.currentWord.character || "").replace(/'/g, "&#39;")}">

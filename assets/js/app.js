@@ -169,6 +169,7 @@ class HSKApp {
     updateCard() { return this.practiceViewController.updateCard(); }
     getStrokeCount(character) { return this.practiceViewController.getStrokeCount(character); }
     getWordType(word) { return this.practiceViewController.getWordType(word); }
+    renderChineseCharacters(text, isCompact) { return this.practiceViewController.renderChineseCharacters(text, isCompact); }
     normalizePinyin(text) { return this.practiceViewController.normalizePinyin(text); }
     checkPinyinAnswer() { return this.practiceViewController.checkPinyinAnswer(); }
     getToneMarks(pinyin) { return this.practiceViewController.getToneMarks(pinyin); }

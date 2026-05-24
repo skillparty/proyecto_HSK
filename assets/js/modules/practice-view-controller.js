@@ -64,6 +64,8 @@ class PracticeViewController {
 
         if (mode === 'pinyin-to-char') {
             questionText.innerHTML = this.colorPinyinByTone(question) || '?';
+        } else if (mode === 'english-to-char' || mode === 'char-to-english' || mode === 'char-to-pinyin') {
+            questionText.innerHTML = this.renderChineseCharacters(question, false) || '?';
         } else {
             questionText.textContent = question || '?';
         }
@@ -102,7 +104,7 @@ class PracticeViewController {
         fullInfo.innerHTML = `
             <div class="word-info-expanded">
                 <div class="card-back-header">
-                    <div class="card-back-character">${this.app.currentWord.character || '?'}</div>
+                    <div class="card-back-character-container">${this.renderChineseCharacters(this.app.currentWord.character, true)}</div>
                     <div class="card-back-header-text">
                         <div class="card-back-pinyin">${this.colorPinyinWithBadges(this.app.currentWord.pinyin) || '?'}</div>
                         <button class="card-back-pronunciation" onclick="window.app.playAudio('${this.app.currentWord.character}')">
@@ -385,6 +387,27 @@ class PracticeViewController {
             }
             return `<span class="tone-${detectedTone}">${syllable}</span>`;
         }).join(' ');
+    }
+
+    renderChineseCharacters(text, isCompact = false) {
+        if (!text) return '';
+        
+        // Test if text has at least one Chinese character
+        const hasChinese = /[\u4e00-\u9fa5]/.test(text);
+        
+        if (!hasChinese) {
+            return `<span class="plain-text-character">${text}</span>`;
+        }
+        
+        const chars = Array.from(text);
+        const boxClass = isCompact ? 'card-back-character' : 'card-character';
+        
+        return chars.map(char => {
+            if (/[\s,，.。!！?？;；:：、]/.test(char)) {
+                return `<span class="punctuation-box">${char}</span>`;
+            }
+            return `<div class="${boxClass}">${char}</div>`;
+        }).join('');
     }
 
     resetCardState() {
