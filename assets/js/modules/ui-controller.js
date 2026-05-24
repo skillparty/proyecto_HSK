@@ -52,6 +52,23 @@ class UIController {
       tab.classList.toggle("active", tab.dataset.tab === tabName);
     });
 
+    // Deactivate all dropdown items and groups
+    document.querySelectorAll(".nav-dropdown-item").forEach((item) => {
+      item.classList.toggle("active", item.dataset.tab === tabName);
+    });
+    document.querySelectorAll(".nav-group").forEach((group) => {
+      group.classList.remove("parent-active");
+    });
+
+    // If the target tab is inside a dropdown group, make that group parent-active
+    const activeDropdownItem = document.querySelector(`.nav-dropdown-item[data-tab="${tabName}"]`);
+    if (activeDropdownItem) {
+      const parentGroup = activeDropdownItem.closest(".nav-group");
+      if (parentGroup) {
+        parentGroup.classList.add("parent-active");
+      }
+    }
+
     // Notify app to initialize tab-specific content
     this.handleTabInitialization(tabName);
     this.renderOnboardingHint(tabName);
@@ -61,6 +78,11 @@ class UIController {
 
   handleTabInitialization(tabName) {
     switch (tabName) {
+      case "home":
+        if (this.app.homeController && typeof this.app.homeController.renderDashboard === "function") {
+          this.app.homeController.renderDashboard();
+        }
+        break;
       case "browse":
         if (!this.app.browseInitialized) {
           this.app.initializeBrowse();

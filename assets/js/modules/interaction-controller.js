@@ -158,11 +158,44 @@ class InteractionController {
             btn.addEventListener('click', (event) => {
                 const tabButton = event.target.closest('.nav-tab');
                 if (!tabButton) return;
+                
+                // If it's a dropdown trigger, toggle open state and don't navigate
+                if (tabButton.classList.contains('nav-group-trigger')) {
+                    event.stopPropagation();
+                    const parentGroup = tabButton.closest('.nav-group');
+                    if (parentGroup) {
+                        const isOpen = parentGroup.classList.contains('open');
+                        document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
+                        if (!isOpen) {
+                            parentGroup.classList.add('open');
+                        }
+                    }
+                    return;
+                }
+
                 const tabName = tabButton.dataset.tab;
                 if (tabName) {
                     this.app.uiController.switchTab(tabName);
                 }
             });
+        });
+
+        // Setup dropdown items
+        document.querySelectorAll('.nav-dropdown-item').forEach((item) => {
+            item.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const tabName = item.dataset.tab;
+                if (tabName) {
+                    this.app.uiController.switchTab(tabName);
+                }
+                // Close all dropdowns
+                document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
+            });
+        });
+
+        // Close dropdowns on clicking anywhere outside
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
         });
 
         const nextBtn = document.getElementById('next-btn');
@@ -234,7 +267,13 @@ class InteractionController {
         const levelSelect = document.getElementById('level-select');
         if (levelSelect) {
             levelSelect.addEventListener('change', (event) => {
-                this.app.currentLevel = event.target.value;
+                const nextLevel = event.target.value;
+                this.app.currentLevel = nextLevel;
+                try {
+                    localStorage.setItem('hsk-last-level', nextLevel);
+                } catch (e) {
+                    this.app.logWarn('Error saving level preference:', e);
+                }
                 this.app.flashcardManager.setupSession();
             });
         }

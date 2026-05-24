@@ -87,6 +87,7 @@ class StatsController {
             try {
                 const progressData = await this.updateLevelProgress();
                 this.drawCanvasChart(progressData);
+                this.drawHeatmap();
                 this.renderAchievements(stats);
             } catch (error) {
                 this.app.logError('[stats] Level progress update failed', error);
@@ -109,15 +110,17 @@ class StatsController {
     }
 
     async updateLevelProgress() {
+        const ringsGrid = document.getElementById('stats-rings-grid');
         const container = document.getElementById('level-progress-bars');
-        if (!container) return [];
+        if (!ringsGrid && !container) return [];
 
         if (!this.app.vocabularyLoaded && this.app.vocabularyPromise) {
             this.app.logDebug('[stats] Waiting vocabulary before level progress');
             await this.app.vocabularyPromise;
         }
 
-        container.innerHTML = '';
+        if (container) container.innerHTML = '';
+        if (ringsGrid) ringsGrid.innerHTML = '';
 
         let levelProgressData = [];
 
@@ -166,19 +169,25 @@ class StatsController {
                 progress: progress
             });
 
-            // Recrear barra clásica de progreso
-            const progressBar = document.createElement('div');
-            progressBar.className = 'level-progress-item';
-            const accuracyText = accuracy > 0 ? ` (${accuracy}% accuracy)` : '';
-            progressBar.innerHTML =
-                `<div class="level-label">HSK ${level}</div>` +
-                `<div class="progress-bar">` +
-                    `<div class="progress-fill" style="width: ${progress}%"></div>` +
-                `</div>` +
-                `<div class="progress-text">` +
-                    `${studiedWords}/${totalWords}${accuracyText}` +
-                `</div>`;
-            container.appendChild(progressBar);
+            if (container) {
+                // Recrear barra clásica de progreso
+                const progressBar = document.createElement('div');
+                progressBar.className = 'level-progress-item';
+                const accuracyText = accuracy > 0 ? ` (${accuracy}% accuracy)` : '';
+                progressBar.innerHTML =
+                    `<div class="level-label">HSK ${level}</div>` +
+                    `<div class="progress-bar">` +
+                        `<div class="progress-fill" style="width: ${progress}%"></div>` +
+                    `</div>` +
+                    `<div class="progress-text">` +
+                        `${studiedWords}/${totalWords}${accuracyText}` +
+                    `</div>`;
+                container.appendChild(progressBar);
+            }
+        }
+
+        if (ringsGrid) {
+            this.renderRadialRings(normalizedProgress);
         }
 
         return normalizedProgress;
@@ -383,6 +392,148 @@ class StatsController {
         ctx.lineTo(x, y + radius);
         ctx.quadraticCurveTo(x, y, x + radius, y);
         ctx.closePath();
+    }
+
+    drawHeatmap() {
+        const canvas = document.getElementById('stats-heatmap-canvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+
+        // Limpiar lienzo
+        ctx.clearRect(0, 0, width, height);
+
+        // Obtener días activos
+        const activeDays = (this.app.dailyProgress && this.app.dailyProgress.activeDays) || new Set();
+        
+        const isLight = document.body.classList.contains('light-theme');
+        
+        // Fondo redondeado con gradiente oscuro suave y borde translúcido
+        ctx.fillStyle = isLight ? 'rgba(255, 248, 240, 0.5)' : 'rgba(15, 23, 42, 0.42)';
+        this.drawCanvasRoundedRect(ctx, 0, 0, width, height, 16);
+        ctx.fill();
+        ctx.strokeStyle = isLight ? 'rgba(139, 0, 0, 0.15)' : 'rgba(148, 163, 184, 0.1)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Parámetros de margen
+        const leftOffset = 40;
+        const topOffset = 25;
+        
+        // Dibujar etiquetas de días de la semana
+        ctx.fillStyle = isLight ? 'var(--color-text-muted)' : '#94a3b8';
+        ctx.font = '500 9px Inter, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        
+        const dayLabels = ['D', 'L', 'M', 'M', 'J', 'V', 'S']; // Domingo a Sábado
+        const dayLabelsEn = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        const labels = this.app.currentLanguage === 'es' ? dayLabels : dayLabelsEn;
+        
+        ctx.fillText(labels[1], 15, topOffset + 1 * 11 + 5);
+        ctx.fillText(labels[3], 15, topOffset + 3 * 11 + 5);
+        ctx.fillText(labels[5], 15, topOffset + 5 * 11 + 5);
+
+        // Dibujar cuadrícula de 52 semanas
+        const squareSize = 8;
+        const gap = 3;
+        
+        const today = new Date();
+        const startDate = new Date();
+        startDate.setDate(today.getDate() - 364);
+        const startDayOfWeek = startDate.getDay();
+        startDate.setDate(startDate.getDate() - startDayOfWeek);
+
+        let currentMonth = -1;
+
+        for (let col = 0; col < 53; col++) {
+            const weekStartDate = new Date(startDate);
+            weekStartDate.setDate(startDate.getDate() + col * 7);
+
+            const month = weekStartDate.getMonth();
+            if (month !== currentMonth && col % 4 === 0) {
+                currentMonth = month;
+                const monthNamesEs = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+                const monthNamesEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                const mName = this.app.currentLanguage === 'es' ? monthNamesEs[month] : monthNamesEn[month];
+                ctx.fillStyle = isLight ? 'var(--color-text-dim)' : '#64748b';
+                ctx.font = '500 9px Inter, sans-serif';
+                ctx.fillText(mName, leftOffset + col * (squareSize + gap), 14);
+            }
+
+            for (let row = 0; row < 7; row++) {
+                const cellDate = new Date(weekStartDate);
+                cellDate.setDate(weekStartDate.getDate() + row);
+
+                if (cellDate > today) {
+                    continue;
+                }
+
+                const dateStr = cellDate.toDateString();
+                const isActive = activeDays.has(dateStr);
+
+                const x = leftOffset + col * (squareSize + gap);
+                const y = topOffset + row * (squareSize + gap);
+
+                if (isActive) {
+                    ctx.fillStyle = isLight ? 'var(--color-primary)' : 'var(--accent)';
+                } else {
+                    ctx.fillStyle = isLight ? '#e5e3df' : 'rgba(255, 255, 255, 0.08)';
+                }
+
+                this.drawCanvasRoundedRect(ctx, x, y, squareSize, squareSize, 2);
+                ctx.fill();
+            }
+        }
+    }
+
+    renderRadialRings(normalizedProgress) {
+        const grid = document.getElementById('stats-rings-grid');
+        if (!grid) return;
+
+        grid.innerHTML = '';
+        const isEs = this.app.currentLanguage === 'es';
+
+        const levelThemes = {
+            1: { color: '#ef4444', name: 'HSK 1' },
+            2: { color: '#f59e0b', name: 'HSK 2' },
+            3: { color: '#10b981', name: 'HSK 3' },
+            4: { color: '#3b82f6', name: 'HSK 4' },
+            5: { color: '#8b5cf6', name: 'HSK 5' },
+            6: { color: '#6b7280', name: 'HSK 6' }
+        };
+
+        normalizedProgress.forEach(data => {
+            const theme = levelThemes[data.hsk_level];
+            const pct = Math.round(data.progress);
+
+            const radius = 35;
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference - (data.progress / 100) * circumference;
+
+            const ringCard = document.createElement('div');
+            ringCard.className = 'stats-ring-card';
+
+            ringCard.innerHTML = `
+                <div class="ring-svg-container">
+                    <svg width="90" height="90" viewBox="0 0 90 90" class="ring-svg">
+                        <circle cx="45" cy="45" r="${radius}" fill="none" stroke="rgba(148, 163, 184, 0.1)" stroke-width="6" />
+                        <circle cx="45" cy="45" r="${radius}" fill="none" stroke="${theme.color}" stroke-width="6"
+                            stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
+                            stroke-linecap="round" transform="rotate(-90 45 45)" class="ring-active-circle" />
+                    </svg>
+                    <div class="ring-percent">${pct}%</div>
+                </div>
+                <div class="ring-info">
+                    <h5 class="ring-title">${theme.name}</h5>
+                    <div class="ring-count">${data.total_words_studied}/${data.total_words}</div>
+                    <div class="ring-accuracy">${isEs ? 'Precisión:' : 'Accuracy:'} ${data.accuracy > 0 ? `${data.accuracy}%` : '-'}</div>
+                </div>
+            `;
+            grid.appendChild(ringCard);
+        });
     }
 
     resetStats() {
