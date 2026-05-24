@@ -103,7 +103,7 @@ class PracticeViewController {
             <div class="word-info-expanded">
                 <div class="card-back-header">
                     <div class="card-back-character">${this.app.currentWord.character || '?'}</div>
-                    <div class="card-back-pinyin">${this.colorPinyinByTone(this.app.currentWord.pinyin) || '?'}</div>
+                    <div class="card-back-pinyin">${this.colorPinyinWithBadges(this.app.currentWord.pinyin) || '?'}</div>
                     <button class="card-back-pronunciation" onclick="window.app.playAudio('${this.app.currentWord.character}')">
                         <span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;">
@@ -143,7 +143,7 @@ class PracticeViewController {
                         </div>
                         <div class="detail-info">
                             <div class="detail-label">${this.app.getTranslation('wordTypeLabel')}</div>
-                            <div class="detail-value">${this.getWordType(this.app.currentWord)}</div>
+                            <div class="detail-value">${this.getWordTypeBadge(this.app.currentWord)}</div>
                         </div>
                     </div>
                     <div class="detail-card">
@@ -156,7 +156,7 @@ class PracticeViewController {
                         </div>
                         <div class="detail-info">
                             <div class="detail-label">${this.app.getTranslation('tonesLabel')}</div>
-                            <div class="detail-value tone-display">${this.getToneMarks(this.app.currentWord.pinyin) || '?'}</div>
+                            <div class="detail-value tone-display">${this.getToneVisuals(this.app.currentWord.pinyin) || '?'}</div>
                         </div>
                     </div>
                 </div>
@@ -249,16 +249,22 @@ class PracticeViewController {
         }
 
         if (example) {
-            const pinyinBlock = example.pinyin ? `<div class="example-pinyin" style="font-size: var(--pinyin-md); margin-top: 4px; opacity: 0.85;">${this.colorPinyinByTone(example.pinyin)}</div>` : '';
+            let highlightedChinese = example.chinese || '';
+            if (word.character && highlightedChinese.includes(word.character)) {
+                const regex = new RegExp(word.character, 'g');
+                highlightedChinese = highlightedChinese.replace(regex, `<span class="highlight-char">${word.character}</span>`);
+            }
+
+            const pinyinBlock = example.pinyin ? `<div class="example-pinyin">${this.colorPinyinByTone(example.pinyin)}</div>` : '';
             return `
                 <div class="example-section" style="margin-top: var(--spacing-xl); border-top: 1px solid var(--color-border); padding-top: var(--spacing-lg);">
-                    <div class="example-title" style="font-weight: var(--weight-semibold); color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: 8px;">${this.app.getTranslation('usageExample') || 'Usage Example'}</div>
-                    <div class="example-sentence" style="background: var(--color-bg-card); border-radius: var(--rounded-md); padding: 12px 16px; border-left: 4px solid var(--color-accent);">
-                        <div class="example-chinese" style="font-size: var(--text-lg); font-weight: var(--weight-bold); font-family: var(--font-chinese); color: var(--color-text-charcoal);">${example.chinese}</div>
+                    <div class="example-title">${this.app.getTranslation('usageExample') || 'Uso Ilustrativo'}</div>
+                    <div class="example-sentence">
+                        <div class="example-chinese">${highlightedChinese}</div>
                         ${pinyinBlock}
-                        <div class="example-translations" style="margin-top: 10px; display: flex; flex-direction: column; gap: 4px; font-size: var(--text-sm);">
-                            <div class="example-english"><span class="lang-flag" style="font-size: 10px; font-weight: bold; background: #e0f2fe; color: #0369a1; padding: 2px 4px; border-radius: 4px; margin-right: 6px;">EN</span> ${example.english}</div>
-                            <div class="example-spanish"><span class="lang-flag" style="font-size: 10px; font-weight: bold; background: #ffe4e6; color: #be123c; padding: 2px 4px; border-radius: 4px; margin-right: 6px;">ES</span> ${example.spanish}</div>
+                        <div class="example-translations">
+                            <div class="example-spanish"><span class="lang-flag">ES</span> ${example.spanish || '?'}</div>
+                            <div class="example-english"><span class="lang-flag">EN</span> ${example.english || '?'}</div>
                         </div>
                     </div>
                 </div>
@@ -267,12 +273,96 @@ class PracticeViewController {
 
         return `
             <div class="example-section">
-                <div class="example-title">${this.app.getTranslation('practiceWithWord')}</div>
+                <div class="example-title">${this.app.getTranslation('practiceWithWord') || 'Práctica con esta Palabra'}</div>
                 <div class="practice-tip">
-                    ${this.app.getTranslation('createSentenceUsing', { character: word.character })}
+                    ${this.app.getTranslation('createSentenceUsing', { character: word.character }) || `Intenta formular una oración usando "${word.character}".`}
                 </div>
             </div>
         `;
+    }
+
+    getWordTypeBadge(word) {
+        const type = this.getWordType(word);
+        let gemClass = 'word-type-word';
+        
+        const english = (word.english || '').toLowerCase();
+        if (english.includes('verb') || english.includes('to ')) {
+            gemClass = 'word-type-verb';
+        } else if (english.includes('adj') || english.includes('adjective')) {
+            gemClass = 'word-type-adj';
+        } else if (english.includes('noun') || english.includes('person') || english.includes('thing')) {
+            gemClass = 'word-type-noun';
+        } else if (english.includes('number') || /\d/.test(word.character)) {
+            gemClass = 'word-type-noun';
+        } else if (word.character && word.character.length === 1) {
+            gemClass = 'word-type-char';
+        }
+        
+        return `<span class="word-type-badge ${gemClass}">${type}</span>`;
+    }
+
+    getToneVisuals(pinyin) {
+        if (!pinyin) return '?';
+        const toneMap = {
+            'ā': '1', 'á': '2', 'ǎ': '3', 'à': '4',
+            'ē': '1', 'é': '2', 'ě': '3', 'è': '4',
+            'ī': '1', 'í': '2', 'ǐ': '3', 'ì': '4',
+            'ō': '1', 'ó': '2', 'ǒ': '3', 'ò': '4',
+            'ū': '1', 'ú': '2', 'ǔ': '3', 'ù': '4',
+            'ǖ': '1', 'ǘ': '2', 'ǚ': '3', 'ǜ': '4'
+        };
+
+        const tones = [];
+        const syllables = pinyin.split(/\s+/);
+        for (const syllable of syllables) {
+            let detectedTone = '0';
+            for (const char of syllable) {
+                if (toneMap[char]) {
+                    detectedTone = toneMap[char];
+                    break;
+                }
+            }
+            tones.push(detectedTone);
+        }
+
+        const toneDetails = {
+            '1': { symbol: 'ˉ', arrow: '→', name: 'Plano', css: 'tone-1' },
+            '2': { symbol: 'ˊ', arrow: '↗', name: 'Ascendente', css: 'tone-2' },
+            '3': { symbol: 'ˇ', arrow: '↘↗', name: 'Desc-Asc', css: 'tone-3' },
+            '4': { symbol: 'ˋ', arrow: '↘', name: 'Descendente', css: 'tone-4' },
+            '0': { symbol: '•', arrow: '•', name: 'Neutro', css: 'tone-0' }
+        };
+
+        return tones.map(toneNum => {
+            const info = toneDetails[toneNum] || toneDetails['0'];
+            return `<span class="tone-visual-badge ${info.css}" title="Tono ${toneNum}: ${info.name}">
+                <span>${toneNum}</span>
+                <span class="tone-arrow">${info.arrow}</span>
+            </span>`;
+        }).join(' ');
+    }
+
+    colorPinyinWithBadges(pinyin) {
+        if (!pinyin) return '';
+        const toneMap = {
+            'ā': 1, 'á': 2, 'ǎ': 3, 'à': 4,
+            'ē': 1, 'é': 2, 'ě': 3, 'è': 4,
+            'ī': 1, 'í': 2, 'ǐ': 3, 'ì': 4,
+            'ō': 1, 'ó': 2, 'ǒ': 3, 'ò': 4,
+            'ū': 1, 'ú': 2, 'ǔ': 3, 'ù': 4,
+            'ǖ': 1, 'ǘ': 2, 'ǚ': 3, 'ǜ': 4
+        };
+
+        return pinyin.split(/\s+/).map(syllable => {
+            let detectedTone = 0;
+            for (const char of syllable) {
+                if (toneMap[char]) {
+                    detectedTone = toneMap[char];
+                    break;
+                }
+            }
+            return `<span class="tone-${detectedTone} pinyin-syllable-badge">${syllable}</span>`;
+        }).join(' ');
     }
 
     colorPinyinByTone(pinyin) {

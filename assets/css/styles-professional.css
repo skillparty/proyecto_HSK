@@ -2751,3 +2751,532 @@ body.zen-mode .practice-container {
         0 6px 14px rgba(220, 38, 38, 0.55),
         0 0 8px rgba(245, 158, 11, 0.35);
 }
+
+/* ============================================================================
+   11. PREMIUM FLASHCARD BACK REDESIGN (ACADEMIC & BILINGUAL)
+   ============================================================================ */
+
+/* Contenedor expandido del reverso de tarjeta */
+.word-info-expanded {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 480px;
+    overflow-y: auto;
+    padding-right: 8px;
+    gap: 16px;
+    scrollbar-width: thin;
+}
+
+/* Custom Scrollbar for Card Back */
+.word-info-expanded::-webkit-scrollbar {
+    width: 5px;
+}
+
+.word-info-expanded::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 4px;
+}
+
+.word-info-expanded::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+}
+
+.word-info-expanded::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* Header del Reverso */
+.card-back-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.card-back-pinyin {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-top: -4px;
+    margin-bottom: 16px;
+    letter-spacing: 0.8px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    display: inline-flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pinyin-syllable-badge {
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: rgba(211, 47, 47, 0.03);
+    border: 1px solid rgba(211, 47, 47, 0.08);
+    transition: all 0.25s ease;
+}
+
+.pinyin-syllable-badge:hover {
+    transform: translateY(-1px);
+    background: rgba(211, 47, 47, 0.06);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Botón de pronunciación premium estilo sello de lacre */
+.card-back-pronunciation {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid rgba(245, 158, 11, 0.35) !important;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(211, 47, 47, 0.05) 100%);
+    color: var(--accent) !important;
+    font-weight: 800;
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-back-pronunciation svg {
+    transition: transform 0.3s ease;
+}
+
+.card-back-pronunciation:hover {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+    color: #ffffff !important;
+    border-color: transparent !important;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 
+        0 8px 20px rgba(245, 158, 11, 0.38),
+        0 0 12px rgba(211, 47, 47, 0.2);
+}
+
+.card-back-pronunciation:hover svg {
+    transform: scale(1.18) rotate(-5deg);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.card-back-pronunciation:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+/* Sección de Traducciones Unificada (Dos Columnas Glassmorphism) */
+.translations-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.translation-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.03),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+}
+
+.translation-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* Primaria (Lacquer Red y Wiphala Tricolor boliviano de acento sutil) */
+.primary-translation {
+    border-left: 5px solid var(--primary);
+    background: rgba(211, 47, 47, 0.02);
+}
+
+.primary-translation:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 24px rgba(211, 47, 47, 0.12),
+        inset 0 0 0 1px rgba(211, 47, 47, 0.1);
+    background: rgba(211, 47, 47, 0.04);
+}
+
+.primary-translation .translation-header {
+    background: rgba(211, 47, 47, 0.06);
+    border-bottom: 1.5px solid rgba(211, 47, 47, 0.1);
+}
+
+.primary-translation .translation-content {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 0.2px;
+}
+
+/* Secundaria (Imperial Gold acento) */
+.secondary-translation {
+    border-left: 5px solid var(--accent);
+    background: rgba(245, 158, 11, 0.02);
+}
+
+.secondary-translation:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 24px rgba(245, 158, 11, 0.12),
+        inset 0 0 0 1px rgba(245, 158, 11, 0.1);
+    background: rgba(245, 158, 11, 0.04);
+}
+
+.secondary-translation .translation-header {
+    background: rgba(245, 158, 11, 0.06);
+    border-bottom: 1.5px solid rgba(245, 158, 11, 0.1);
+}
+
+.secondary-translation .translation-content {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.translation-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+}
+
+.lang-flag {
+    font-size: 0.72rem;
+    font-weight: 900;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Badges de bandera con diseño Fusión */
+.primary-translation .lang-flag {
+    background: linear-gradient(135deg, #d32f2f 0%, #388e3c 100%); /* Bolivia Rojo a Verde */
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.secondary-translation .lang-flag {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); /* Azul Imperial */
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.lang-name {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.translation-content {
+    padding: 16px 20px;
+    line-height: 1.5;
+}
+
+/* Cuadrícula de Detalles Mejorada */
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.detail-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.02),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.detail-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(245, 158, 11, 0.2);
+    box-shadow: 
+        0 10px 25px rgba(245, 158, 11, 0.08),
+        inset 0 0 0 1px rgba(245, 158, 11, 0.1);
+}
+
+.detail-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s ease;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-card:hover .detail-icon {
+    transform: scale(1.12) rotate(8deg);
+}
+
+/* Iconos de detalle temáticos */
+.detail-card:nth-child(1) .detail-icon {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--accent);
+    border: 1.5px solid rgba(245, 158, 11, 0.25);
+}
+
+.detail-card:nth-child(2) .detail-icon {
+    background: rgba(211, 47, 47, 0.12);
+    color: var(--primary);
+    border: 1.5px solid rgba(211, 47, 47, 0.25);
+}
+
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.detail-value {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+/* Badges para clasificación por Gemas Preciosas */
+.word-type-badge {
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Verde Jade para Verbos */
+.word-type-verb {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Oro Imperial para Sustantivos */
+.word-type-noun {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--accent);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* Azul Lapislázuli para Adjetivos */
+.word-type-adj {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* Rojo Rubí para Pronombres, Clasificadores o Caracteres únicos */
+.word-type-char, .word-type-word {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Badges Visuales Direccionales de Tonos */
+.tone-visual-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.04);
+}
+
+.tone-visual-badge.tone-1 {
+    background: rgba(59, 130, 246, 0.12);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.tone-visual-badge.tone-2 {
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.tone-visual-badge.tone-3 {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.tone-visual-badge.tone-4 {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.tone-visual-badge.tone-0 {
+    background: rgba(107, 114, 128, 0.12);
+    color: #6b7280;
+    border: 1px solid rgba(107, 114, 128, 0.25);
+}
+
+.tone-arrow {
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+/* Oraciones de Ejemplo Estilo Pergamino */
+.example-section {
+    width: 100%;
+}
+
+.example-title {
+    font-weight: 800;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+    border-left: 3.5px solid var(--accent);
+    padding-left: 10px;
+}
+
+.example-sentence {
+    position: relative;
+    border-radius: 16px;
+    padding: 22px 24px !important;
+    background: rgba(254, 252, 251, 0.45) !important;
+    border: 1.5px solid rgba(245, 158, 11, 0.25) !important;
+    border-left: 6px solid var(--accent) !important; /* Oro Imperial */
+    box-shadow: 
+        inset 0 0 16px rgba(245, 158, 11, 0.03),
+        0 6px 16px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .example-sentence {
+    background: rgba(30, 41, 59, 0.3) !important;
+    border-color: rgba(245, 158, 11, 0.15) !important;
+}
+
+.example-sentence:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        inset 0 0 16px rgba(245, 158, 11, 0.05),
+        0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.example-chinese {
+    font-size: 1.45rem !important;
+    font-weight: 700;
+    font-family: var(--font-chinese);
+    color: var(--color-text-charcoal);
+    letter-spacing: 1.2px;
+    line-height: 1.6;
+}
+
+.example-pinyin {
+    font-size: 0.98rem !important;
+    margin-top: 8px;
+    font-weight: 600;
+    opacity: 0.9;
+    letter-spacing: 0.2px;
+}
+
+.example-translations {
+    margin-top: 14px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid rgba(245, 158, 11, 0.1);
+    padding-top: 12px;
+}
+
+.example-translations > div {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    line-height: 1.4;
+}
+
+.example-translations .lang-flag {
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 1.5px 5px;
+    border-radius: 4px;
+    margin-right: 8px;
+    box-shadow: none;
+}
+
+/* Resaltado caligráfico de Hanzi */
+.highlight-char {
+    color: var(--primary) !important;
+    font-weight: 900;
+    padding: 0 3px;
+    background: rgba(211, 47, 47, 0.06);
+    border-radius: 4px;
+    border-bottom: 2px dashed var(--accent); /* Ondulado caligráfico en oro */
+    margin: 0 2px;
+    display: inline-block;
+    transition: all 0.25s ease;
+}
+
+.highlight-char:hover {
+    background: rgba(211, 47, 47, 0.12);
+    transform: scale(1.08);
+}
+
+/* Responsividad para Reverso de Tarjeta */
+@media (max-width: 580px) {
+    .translations-section,
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}

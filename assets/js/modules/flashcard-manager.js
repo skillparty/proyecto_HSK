@@ -308,7 +308,7 @@ class FlashcardManager {
             <div class="word-info-expanded">
                 <div class="card-back-header">
                     <div class="card-back-character">${this.currentWord.character || "?"}</div>
-                    <div class="card-back-pinyin">${this.app.colorPinyinByTone(this.currentWord.pinyin) || "?"}</div>
+                    <div class="card-back-pinyin">${this.colorPinyinWithBadges(this.currentWord.pinyin) || "?"}</div>
                     <button class="card-back-pronunciation" data-play-character="${(this.currentWord.character || "").replace(/'/g, "&#39;")}">
                         <span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;">
@@ -341,17 +341,28 @@ class FlashcardManager {
  
                 <div class="details-grid">
                     <div class="detail-card">
-                        <div class="detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 11 3H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div>
+                        <div class="detail-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.59 13.41 11 3H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"></path>
+                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                            </svg>
+                        </div>
                         <div class="detail-info">
                             <div class="detail-label">${this.app.getTranslation("wordTypeLabel")}</div>
-                            <div class="detail-value">${this.getWordType(this.currentWord)}</div>
+                            <div class="detail-value">${this.getWordTypeBadge(this.currentWord)}</div>
                         </div>
                     </div>
                     <div class="detail-card">
-                        <div class="detail-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></div>
+                        <div class="detail-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 18V5l12-2v13"></path>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <circle cx="18" cy="16" r="3"></circle>
+                            </svg>
+                        </div>
                         <div class="detail-info">
                             <div class="detail-label">${this.app.getTranslation("tonesLabel")}</div>
-                            <div class="detail-value tone-display">${this.getToneMarks(this.currentWord.pinyin) || "?"}</div>
+                            <div class="detail-value tone-display">${this.getToneVisuals(this.currentWord.pinyin) || "?"}</div>
                         </div>
                     </div>
                 </div>
@@ -654,5 +665,89 @@ class FlashcardManager {
       btn.classList.add("active-rating");
       setTimeout(() => btn.classList.remove("active-rating"), 200);
     }
+  }
+
+  getWordTypeBadge(word) {
+    const type = this.getWordType(word);
+    let gemClass = "word-type-word";
+
+    const english = (word.english || "").toLowerCase();
+    if (english.includes("verb") || english.includes("to ")) {
+      gemClass = "word-type-verb";
+    } else if (english.includes("adj") || english.includes("adjective")) {
+      gemClass = "word-type-adj";
+    } else if (english.includes("noun") || english.includes("person") || english.includes("thing")) {
+      gemClass = "word-type-noun";
+    } else if (english.includes("number") || /\d/.test(word.character)) {
+      gemClass = "word-type-noun";
+    } else if (word.character && word.character.length === 1) {
+      gemClass = "word-type-char";
+    }
+
+    return `<span class="word-type-badge ${gemClass}">${type}</span>`;
+  }
+
+  getToneVisuals(pinyin) {
+    if (!pinyin) return "?";
+    const toneMap = {
+      "ā": "1", "á": "2", "ǎ": "3", "à": "4",
+      "ē": "1", "é": "2", "ě": "3", "è": "4",
+      "ī": "1", "í": "2", "ǐ": "3", "ì": "4",
+      "ō": "1", "ó": "2", "ǒ": "3", "ò": "4",
+      "ū": "1", "ú": "2", "ǔ": "3", "ù": "4",
+      "ǖ": "1", "ǘ": "2", "ǚ": "3", "ǜ": "4"
+    };
+
+    const tones = [];
+    const syllables = pinyin.split(/\s+/);
+    for (const syllable of syllables) {
+      let detectedTone = "0";
+      for (const char of syllable) {
+        if (toneMap[char]) {
+          detectedTone = toneMap[char];
+          break;
+        }
+      }
+      tones.push(detectedTone);
+    }
+
+    const toneDetails = {
+      "1": { symbol: "ˉ", arrow: "→", name: "Plano", css: "tone-1" },
+      "2": { symbol: "ˊ", arrow: "↗", name: "Ascendente", css: "tone-2" },
+      "3": { symbol: "ˇ", arrow: "↘↗", name: "Desc-Asc", css: "tone-3" },
+      "4": { symbol: "ˋ", arrow: "↘", name: "Descendente", css: "tone-4" },
+      "0": { symbol: "•", arrow: "•", name: "Neutro", css: "tone-0" }
+    };
+
+    return tones.map((toneNum) => {
+      const info = toneDetails[toneNum] || toneDetails["0"];
+      return `<span class="tone-visual-badge ${info.css}" title="Tono ${toneNum}: ${info.name}">
+                <span>${toneNum}</span>
+                <span class="tone-arrow">${info.arrow}</span>
+            </span>`;
+    }).join(" ");
+  }
+
+  colorPinyinWithBadges(pinyin) {
+    if (!pinyin) return "";
+    const toneMap = {
+      "ā": 1, "á": 2, "ǎ": 3, "à": 4,
+      "ē": 1, "é": 2, "ě": 3, "è": 4,
+      "ī": 1, "í": 2, "ǐ": 3, "ì": 4,
+      "ō": 1, "ó": 2, "ǒ": 3, "ò": 4,
+      "ū": 1, "ú": 2, "ǔ": 3, "ù": 4,
+      "ǖ": 1, "ǘ": 2, "ǚ": 3, "ǜ": 4
+    };
+
+    return pinyin.split(/\s+/).map((syllable) => {
+      let detectedTone = 0;
+      for (const char of syllable) {
+        if (toneMap[char]) {
+          detectedTone = toneMap[char];
+          break;
+        }
+      }
+      return `<span class="tone-${detectedTone} pinyin-syllable-badge">${syllable}</span>`;
+    }).join(" ");
   }
 }
