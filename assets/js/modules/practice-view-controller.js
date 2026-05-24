@@ -103,17 +103,16 @@ class PracticeViewController {
             <div class="word-info-expanded">
                 <div class="card-back-header">
                     <div class="card-back-character">${this.app.currentWord.character || '?'}</div>
-                    <div class="card-back-pinyin">${this.colorPinyinWithBadges(this.app.currentWord.pinyin) || '?'}</div>
-                    <button class="card-back-pronunciation" onclick="window.app.playAudio('${this.app.currentWord.character}')">
-                        <span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;">
+                    <div class="card-back-header-text">
+                        <div class="card-back-pinyin">${this.colorPinyinWithBadges(this.app.currentWord.pinyin) || '?'}</div>
+                        <button class="card-back-pronunciation" onclick="window.app.playAudio('${this.app.currentWord.character}')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
                                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                             </svg>
-                        </span>
-                        <span>${this.app.getTranslation('playPronunciation')}</span>
-                    </button>
+                            <span>${this.app.getTranslation('playPronunciation')}</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="translations-section">
@@ -136,7 +135,7 @@ class PracticeViewController {
                 <div class="details-grid">
                     <div class="detail-card">
                         <div class="detail-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M20.59 13.41 11 3H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"></path>
                                 <line x1="7" y1="7" x2="7.01" y2="7"></line>
                             </svg>
@@ -148,7 +147,7 @@ class PracticeViewController {
                     </div>
                     <div class="detail-card">
                         <div class="detail-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M9 18V5l12-2v13"></path>
                                 <circle cx="6" cy="18" r="3"></circle>
                                 <circle cx="18" cy="16" r="3"></circle>
