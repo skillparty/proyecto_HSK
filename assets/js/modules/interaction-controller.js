@@ -159,7 +159,7 @@ class InteractionController {
                 const tabButton = event.target.closest('.nav-tab');
                 if (!tabButton) return;
                 
-                // If it's a dropdown trigger, toggle open state and don't navigate
+                // If it's a dropdown trigger, toggle open state and navigate to the default sub-tab
                 if (tabButton.classList.contains('nav-group-trigger')) {
                     event.stopPropagation();
                     const parentGroup = tabButton.closest('.nav-group');
@@ -168,6 +168,19 @@ class InteractionController {
                         document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
                         if (!isOpen) {
                             parentGroup.classList.add('open');
+                        }
+                        
+                        // Premium UX Shortcut: Redirect to the first sub-tab of this group
+                        const groupType = parentGroup.dataset.group;
+                        let targetTab = '';
+                        switch (groupType) {
+                            case 'study': targetTab = 'practice'; break;
+                            case 'evaluate': targetTab = 'quiz'; break;
+                            case 'games': targetTab = 'snake-quantifiers'; break;
+                            case 'progress': targetTab = 'stats'; break;
+                        }
+                        if (targetTab) {
+                            this.app.uiController.switchTab(targetTab);
                         }
                     }
                     return;
@@ -193,9 +206,12 @@ class InteractionController {
             });
         });
 
-        // Close dropdowns on clicking anywhere outside
-        document.addEventListener('click', () => {
-            document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
+        // Close dropdowns on clicking anywhere outside (touch-safe validation)
+        document.addEventListener('click', (event) => {
+            const isClickInsideGroup = event.target.closest('.nav-group');
+            if (!isClickInsideGroup) {
+                document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
+            }
         });
 
         const nextBtn = document.getElementById('next-btn');

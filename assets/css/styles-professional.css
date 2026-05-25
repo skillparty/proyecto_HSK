@@ -603,6 +603,17 @@ select.header-control {
     transition: transform var(--transition-normal) ease, opacity var(--transition-normal) ease, visibility var(--transition-normal) ease;
 }
 
+/* Invisible bridge to prevent dropdown hover gap flickering */
+.nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: transparent;
+}
+
 body.light-theme .nav-dropdown {
     background: rgba(255, 248, 240, 0.95);
     border: 1px solid var(--accent);

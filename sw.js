@@ -1,4 +1,4 @@
-const SW_VERSION = "3.6.0-calligraphy";
+const SW_VERSION = "3.6.1-navigation";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -13,7 +13,7 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css",
-  "./assets/css/styles-professional.css?v=18",
+  "./assets/css/styles-professional.css?v=19",
   "./assets/css/matrix-game-styles.css",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css",
@@ -28,7 +28,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/ui-controller.js?v=3",
   "./assets/js/modules/navigation-controller.js?v=3",
   "./assets/js/modules/language-controller.js?v=3",
-  "./assets/js/modules/interaction-controller.js?v=3",
+  "./assets/js/modules/interaction-controller.js?v=4",
   "./assets/js/modules/past-exams-controller.js?v=3",
   "./assets/js/modules/quantifier-snake-utils.js?v=1",
   "./assets/js/modules/quantifier-snake-canvas.js?v=1",
