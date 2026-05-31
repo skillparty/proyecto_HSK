@@ -284,9 +284,9 @@ class HomeController {
     }
 
     /**
-     * Initializes the Three.js 3D Chinese Cultural Portal scene
-     * Includes interactive rotation, swaying bamboo tree, a glowing Chinese lantern (active after 6:45 PM),
-     * and Chinese characters written stroke-by-stroke in glowing 3D space.
+     * Initializes the Three.js 3D Chinese Cultural Portal scene.
+     * Features: adaptive day/night lighting, swaying bamboo, glowing lantern,
+     * stroke-by-stroke calligraphy, ground plane, and interactive drag rotation.
      */
     init3DScene() {
         const canvas = document.getElementById('matrix-3d-canvas');
@@ -304,99 +304,104 @@ class HomeController {
         this.threeInitialized = true;
         this.threePlaying = true;
 
-        // 1. Scene, Camera, and WebGLRenderer
+        // --- 1. Scene, Camera, Renderer ---
         const scene = new THREE.Scene();
-        
-        // Fog for smooth depth blending
-        scene.fog = new THREE.FogExp2(0x0f172a, 0.015);
 
-        const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
-        camera.position.set(0, 1.2, 7.2);
+        const camera = new THREE.PerspectiveCamera(50, canvas.clientWidth / canvas.clientHeight, 0.1, 80);
+        camera.position.set(0, 1.5, 5.5);
+        camera.lookAt(0, 0.6, 0);
 
         const renderer = new THREE.WebGLRenderer({
             canvas: canvas,
             antialias: true,
             alpha: true,
-            powerPreference: "high-performance"
+            powerPreference: 'high-performance'
         });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-        renderer.shadowMap.enabled = true;
+        renderer.setClearColor(0x000000, 0); // fully transparent background
 
-        // Base group to apply mouse/drag rotations
+        // Root group for mouse rotation
         const sceneGroup = new THREE.Group();
         scene.add(sceneGroup);
 
-        // 2. Lighting
-        // Ambient moonlight
-        const ambientLight = new THREE.AmbientLight(0x1e293b, 0.65);
+        // --- 2. Adaptive Day/Night Lighting ---
+        // Ambient: always present, tinted by time of day
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
 
-        // Soft blueish spotlight representing the night sky / moon
-        const moonLight = new THREE.DirectionalLight(0x38bdf8, 0.75);
-        moonLight.position.set(4, 8, 4);
-        scene.add(moonLight);
+        // Main directional light (sun during day, moonlight at night)
+        const mainLight = new THREE.DirectionalLight(0xffffff, 0.9);
+        mainLight.position.set(3, 6, 4);
+        scene.add(mainLight);
 
-        // Warm light source inside the lantern (enabled at night)
-        const lanternLight = new THREE.PointLight(0xff7a00, 0, 10);
-        lanternLight.position.set(1.9, 1.3, 0.4);
+        // Fill light from the opposite side
+        const fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
+        fillLight.position.set(-3, 2, -2);
+        scene.add(fillLight);
+
+        // Lantern warm point light (night only)
+        const lanternLight = new THREE.PointLight(0xff8c00, 0, 8);
+        lanternLight.position.set(1.5, 2.0, 0.3);
         sceneGroup.add(lanternLight);
 
-        // 3. Hierarchical Swaying Jade Bamboo Tree
-        const bamboo = new THREE.Group();
-        const segHeight = 1.35;
-        const segGeo = new THREE.CylinderGeometry(0.07, 0.09, segHeight, 8);
-        const segMat = new THREE.MeshLambertMaterial({ 
-            color: 0x065f46, 
-            emissive: 0x012b1d, 
-            emissiveIntensity: 0.15 
+        // --- 3. Ground Plane ---
+        const groundGeo = new THREE.CircleGeometry(4, 32);
+        const groundMat = new THREE.MeshLambertMaterial({
+            color: 0x1a3a2a,
+            transparent: true,
+            opacity: 0.25
         });
-        const ringGeo = new THREE.TorusGeometry(0.10, 0.02, 6, 12);
-        const ringMat = new THREE.MeshLambertMaterial({ color: 0xd97706 }); // Golden bamboo nodes
+        const ground = new THREE.Mesh(groundGeo, groundMat);
+        ground.rotation.x = -Math.PI / 2;
+        ground.position.y = -1.5;
+        sceneGroup.add(ground);
+
+        // --- 4. Bamboo Tree (left side) ---
+        const bamboo = new THREE.Group();
+        bamboo.position.set(-1.5, -1.5, -0.3);
+
+        const bambooJoints = [];
+        const segH = 1.1;
+        const segGeo = new THREE.CylinderGeometry(0.06, 0.08, segH, 8);
+        const segMat = new THREE.MeshPhongMaterial({
+            color: 0x1b6b45,
+            emissive: 0x0a2e1a,
+            emissiveIntensity: 0.1,
+            shininess: 40
+        });
+        const nodeGeo = new THREE.TorusGeometry(0.09, 0.018, 6, 12);
+        const nodeMat = new THREE.MeshPhongMaterial({ color: 0xc9a227, shininess: 60 });
 
         let prevJoint = bamboo;
-        const bambooJoints = [];
-        const numSegments = 5;
-
-        // Position bamboo base slightly to the left/back
-        bamboo.position.set(-1.9, -2.6, -0.4);
-
-        for (let i = 0; i < numSegments; i++) {
+        for (let i = 0; i < 5; i++) {
             const joint = new THREE.Group();
-            if (i > 0) {
-                joint.position.set(0, segHeight - 0.05, 0); // stack exactly at the end of the previous segment
-            }
+            if (i > 0) joint.position.set(0, segH - 0.04, 0);
 
-            const mesh = new THREE.Mesh(segGeo, segMat);
-            mesh.position.set(0, segHeight / 2, 0); // shift pivot to base of segment
-            joint.add(mesh);
+            const seg = new THREE.Mesh(segGeo, segMat);
+            seg.position.set(0, segH / 2, 0);
+            joint.add(seg);
 
-            // Add Torus ring at segment node
-            const ring = new THREE.Mesh(ringGeo, ringMat);
-            ring.rotation.x = Math.PI / 2;
-            ring.position.set(0, 0, 0);
-            joint.add(ring);
+            const node = new THREE.Mesh(nodeGeo, nodeMat);
+            node.rotation.x = Math.PI / 2;
+            joint.add(node);
 
-            // Branching green leaves on upper segments
+            // Leaves on upper segments
             if (i >= 2) {
-                const leafGeo = new THREE.ConeGeometry(0.07, 0.55, 4);
-                const leafMat = new THREE.MeshLambertMaterial({ color: 0x059669 });
+                const leafGeo = new THREE.ConeGeometry(0.06, 0.5, 4);
+                const leafMat = new THREE.MeshPhongMaterial({ color: 0x22a55b, shininess: 20 });
 
-                // Left leaf branch
-                const leafL = new THREE.Mesh(leafGeo, leafMat);
-                leafL.rotation.z = Math.PI / 3;
-                leafL.rotation.y = 0.45;
-                leafL.position.set(-0.22, segHeight * 0.7, 0.04);
-                leafL.scale.set(1, 1.1, 0.35);
-                joint.add(leafL);
+                const lL = new THREE.Mesh(leafGeo, leafMat);
+                lL.rotation.z = Math.PI / 3.2;
+                lL.position.set(-0.2, segH * 0.7, 0.03);
+                lL.scale.set(1, 1.1, 0.3);
+                joint.add(lL);
 
-                // Right leaf branch
-                const leafR = new THREE.Mesh(leafGeo, leafMat);
-                leafR.rotation.z = -Math.PI / 3;
-                leafR.rotation.y = -0.45;
-                leafR.position.set(0.22, segHeight * 0.75, -0.04);
-                leafR.scale.set(1, 1.1, 0.35);
-                joint.add(leafR);
+                const lR = new THREE.Mesh(leafGeo, leafMat);
+                lR.rotation.z = -Math.PI / 3.2;
+                lR.position.set(0.2, segH * 0.75, -0.03);
+                lR.scale.set(1, 1.1, 0.3);
+                joint.add(lR);
             }
 
             prevJoint.add(joint);
@@ -405,330 +410,274 @@ class HomeController {
         }
         sceneGroup.add(bamboo);
 
-        // 4. Traditional Chinese Lantern
+        // --- 5. Chinese Lantern (upper right) ---
         const lanternGroup = new THREE.Group();
-        lanternGroup.position.set(1.9, 1.3, 0.4);
+        lanternGroup.position.set(1.5, 2.0, 0.3);
 
-        // Hanging hanger / bracket cord
-        const hangerGeo = new THREE.CylinderGeometry(0.015, 0.015, 0.8, 4);
-        const hangerMat = new THREE.MeshLambertMaterial({ color: 0x1e293b });
-        const hanger = new THREE.Mesh(hangerGeo, hangerMat);
-        hanger.position.set(0, 0.65, 0);
-        lanternGroup.add(hanger);
+        // Cord
+        const cordGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.6, 4);
+        const cordMat = new THREE.MeshLambertMaterial({ color: 0x333333 });
+        const cord = new THREE.Mesh(cordGeo, cordMat);
+        cord.position.y = 0.55;
+        lanternGroup.add(cord);
 
-        // Lantern Main Body (stretched Sphere)
-        const lanternBodyGeo = new THREE.SphereGeometry(0.44, 16, 16);
-        const lanternBodyMat = new THREE.MeshLambertMaterial({
-            color: 0xbe123c, // deep rose/red
+        // Body
+        const bodyGeo = new THREE.SphereGeometry(0.38, 16, 16);
+        const bodyMat = new THREE.MeshPhongMaterial({
+            color: 0xcc1133,
             emissive: 0x000000,
-            emissiveIntensity: 1.0
+            emissiveIntensity: 0.8,
+            shininess: 50
         });
-        const lanternBody = new THREE.Mesh(lanternBodyGeo, lanternBodyMat);
-        lanternBody.scale.set(1.0, 1.25, 1.0);
-        lanternGroup.add(lanternBody);
+        const body = new THREE.Mesh(bodyGeo, bodyMat);
+        body.scale.set(1.0, 1.3, 1.0);
+        lanternGroup.add(body);
 
-        // Top/Bottom Golden Caps
-        const capGeo = new THREE.CylinderGeometry(0.26, 0.31, 0.08, 12);
-        const capMat = new THREE.MeshLambertMaterial({ color: 0xd97706 }); // gold
-        
+        // Golden caps
+        const capGeo = new THREE.CylinderGeometry(0.22, 0.27, 0.06, 12);
+        const capMat = new THREE.MeshPhongMaterial({ color: 0xc9a227, shininess: 80 });
         const topCap = new THREE.Mesh(capGeo, capMat);
-        topCap.position.set(0, 0.58, 0);
+        topCap.position.y = 0.5;
         lanternGroup.add(topCap);
+        const botCap = new THREE.Mesh(capGeo, capMat);
+        botCap.position.y = -0.5;
+        lanternGroup.add(botCap);
 
-        const bottomCap = new THREE.Mesh(capGeo, capMat);
-        bottomCap.position.set(0, -0.58, 0);
-        lanternGroup.add(bottomCap);
-
-        // Hanging red tassel
-        const tasselGeo = new THREE.CylinderGeometry(0.018, 0.035, 0.35, 6);
-        const tasselMat = new THREE.MeshLambertMaterial({ color: 0xd92727 });
+        // Tassel
+        const tasselGeo = new THREE.CylinderGeometry(0.015, 0.03, 0.3, 6);
+        const tasselMat = new THREE.MeshLambertMaterial({ color: 0xcc2222 });
         const tassel = new THREE.Mesh(tasselGeo, tasselMat);
-        tassel.position.set(0, -0.78, 0);
+        tassel.position.y = -0.68;
         lanternGroup.add(tassel);
 
         sceneGroup.add(lanternGroup);
 
-        // 5. Chinese Character Floating Calligraphy
+        // --- 6. Chinese Character Calligraphy (center) ---
         const charGroup = new THREE.Group();
-        charGroup.position.set(0, 0.2, 0.4);
+        charGroup.position.set(0, 0.5, 0.8);
         sceneGroup.add(charGroup);
 
+        const V = (x, y, z) => new THREE.Vector3(x, y, z || 0);
         const charsData = [
             {
-                name: "中",
+                name: '中',
                 strokes: [
-                    [new THREE.Vector3(-0.85, 1.0, 0), new THREE.Vector3(-0.85, -0.25, 0)],
-                    [new THREE.Vector3(-0.85, 1.0, 0), new THREE.Vector3(0.85, 1.0, 0), new THREE.Vector3(0.85, -0.25, 0)],
-                    [new THREE.Vector3(-0.85, -0.25, 0), new THREE.Vector3(0.85, -0.25, 0)],
-                    [new THREE.Vector3(0.0, 1.65, 0.04), new THREE.Vector3(0.0, -0.9, 0.04)]
+                    [V(-0.7, 0.85), V(-0.7, -0.2)],
+                    [V(-0.7, 0.85), V(0.7, 0.85), V(0.7, -0.2)],
+                    [V(-0.7, -0.2), V(0.7, -0.2)],
+                    [V(0, 1.4, 0.03), V(0, -0.7, 0.03)]
                 ]
             },
             {
-                name: "人",
+                name: '人',
                 strokes: [
-                    [new THREE.Vector3(0.0, 1.35, 0), new THREE.Vector3(-0.3, 0.75, 0), new THREE.Vector3(-1.0, -0.45, 0)],
-                    [new THREE.Vector3(-0.12, 0.65, 0.04), new THREE.Vector3(0.35, 0.1, 0.04), new THREE.Vector3(1.0, -0.45, 0.04)]
+                    [V(0, 1.2), V(-0.25, 0.65), V(-0.85, -0.35)],
+                    [V(-0.1, 0.55, 0.03), V(0.3, 0.05, 0.03), V(0.85, -0.35, 0.03)]
                 ]
             },
             {
-                name: "文",
+                name: '文',
                 strokes: [
-                    [new THREE.Vector3(0.0, 1.6, 0), new THREE.Vector3(0.06, 1.25, 0)],
-                    [new THREE.Vector3(-1.1, 0.95, 0), new THREE.Vector3(1.1, 0.95, 0)],
-                    [new THREE.Vector3(0.18, 0.95, 0.04), new THREE.Vector3(-0.75, -0.55, 0.04)],
-                    [new THREE.Vector3(-0.22, 0.45, 0.08), new THREE.Vector3(0.95, -0.55, 0.08)]
+                    [V(0, 1.4), V(0.04, 1.05)],
+                    [V(-0.9, 0.8), V(0.9, 0.8)],
+                    [V(0.15, 0.8, 0.03), V(-0.6, -0.4, 0.03)],
+                    [V(-0.18, 0.4, 0.05), V(0.8, -0.4, 0.05)]
                 ]
             }
         ];
 
-        // Glow Line Materials (neon gold calligraphy)
-        const lineCoreMat = new THREE.LineBasicMaterial({
-            color: 0xfffbeb,
-            transparent: true,
-            opacity: 0.95
-        });
-        const lineGlowMat = new THREE.LineBasicMaterial({
-            color: 0xf59e0b,
-            transparent: true,
-            opacity: 0.6
-        });
+        const coreLineMat = new THREE.LineBasicMaterial({ color: 0xfffbeb, transparent: true, opacity: 0.95 });
+        const glowLineMat = new THREE.LineBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.55 });
 
-        // pen tip drawing point
-        const tipGeo = new THREE.SphereGeometry(0.05, 8, 8);
+        const tipGeo = new THREE.SphereGeometry(0.04, 8, 8);
         const tipMat = new THREE.MeshBasicMaterial({ color: 0xfff7ed });
         const penTip = new THREE.Mesh(tipGeo, tipMat);
         penTip.visible = false;
         charGroup.add(penTip);
 
-        let currentCharIndex = 0;
-        let currentStrokeIndex = 0;
-        let strokeT = 0; // progress 0 to 1
+        let charIdx = 0, strokeIdx = 0, strokeT = 0;
         let phase = 'drawing'; // 'drawing' | 'showing' | 'fading'
-        let showTimer = 0;
-        let fadeT = 1.0;
-
+        let showTimer = 0, fadeT = 1;
         let activeStrokes = [];
 
-        const clearActiveStrokes = () => {
+        const clearStrokes = () => {
             activeStrokes.forEach(s => {
-                charGroup.remove(s.coreLine);
-                charGroup.remove(s.glowLine);
-                s.coreLine.geometry.dispose();
-                s.glowLine.geometry.dispose();
+                charGroup.remove(s.core); charGroup.remove(s.glow);
+                s.core.geometry.dispose(); s.glow.geometry.dispose();
             });
             activeStrokes = [];
             penTip.visible = false;
         };
 
-        const initCharacter = (index) => {
-            clearActiveStrokes();
-            currentCharIndex = index;
-            currentStrokeIndex = 0;
-            strokeT = 0;
-            phase = 'drawing';
-            fadeT = 1.0;
-            lineCoreMat.opacity = 0.95;
-            lineGlowMat.opacity = 0.6;
+        const startChar = (idx) => {
+            clearStrokes();
+            charIdx = idx; strokeIdx = 0; strokeT = 0;
+            phase = 'drawing'; fadeT = 1;
+            coreLineMat.opacity = 0.95; glowLineMat.opacity = 0.55;
         };
+        startChar(0);
 
-        initCharacter(0);
-
-        // 6. Interactive Drag-to-Rotate Mouse/Touch Controls
-        let isDragging = false;
-        let prevX = 0, prevY = 0;
-        let targetRotY = 0;
-        let targetRotX = 0;
-        const autoRotateSpeed = 0.0035;
+        // --- 7. Mouse/Touch Rotation Controls ---
+        let dragging = false, pX = 0, pY = 0;
+        let rotY = 0, rotX = 0;
+        const AUTO_SPEED = 0.003;
 
         canvas.addEventListener('pointerdown', (e) => {
-            isDragging = true;
-            prevX = e.clientX;
-            prevY = e.clientY;
-            canvas.style.cursor = 'grabbing';
-            e.preventDefault();
+            dragging = true; pX = e.clientX; pY = e.clientY;
+            canvas.style.cursor = 'grabbing'; e.preventDefault();
         });
-
         window.addEventListener('pointermove', (e) => {
-            if (!isDragging) return;
-            const deltaX = e.clientX - prevX;
-            const deltaY = e.clientY - prevY;
-            prevX = e.clientX;
-            prevY = e.clientY;
-
-            targetRotY += deltaX * 0.006;
-            targetRotX += deltaY * 0.006;
-            // Clamp X rotation to prevent flipping upside down
-            targetRotX = Math.max(-Math.PI / 6, Math.min(Math.PI / 6, targetRotX));
+            if (!dragging) return;
+            rotY += (e.clientX - pX) * 0.005;
+            rotX += (e.clientY - pY) * 0.005;
+            rotX = Math.max(-0.45, Math.min(0.45, rotX));
+            pX = e.clientX; pY = e.clientY;
         });
-
         window.addEventListener('pointerup', () => {
-            isDragging = false;
-            canvas.style.cursor = 'grab';
+            dragging = false; canvas.style.cursor = 'grab';
         });
 
-        // 7. Time-based Timezone Lantern Glow check
-        // Lanterns turn on at 6:45 PM and turn off at sunrise (6:00 AM) depending on local time
-        const updateTimezoneIllumination = (time) => {
-            const now = new Date();
-            const mins = now.getHours() * 60 + now.getMinutes();
-            // 6:45 PM is 18 * 60 + 45 = 1125. Sunrise is 6:00 AM -> 360.
-            const isNight = (mins >= 1125 || mins < 360);
-
-            if (isNight) {
-                // Emissive warm glow in material
-                lanternBodyMat.emissive.setHex(0xe11d48);
-                // Warm pointlight with fire flicker
-                const flicker = Math.sin(time * 7) * 0.2;
-                lanternLight.intensity = 2.5 + flicker;
-            } else {
-                lanternBodyMat.emissive.setHex(0x000000);
-                lanternLight.intensity = 0;
-            }
-        };
-
-        // 8. Animation Loop
+        // --- 8. Animation Loop ---
         const clock = new THREE.Clock();
 
         const animate = () => {
-            // Check visibility of home panel to prevent unnecessary background rendering
+            requestAnimationFrame(animate);
+
+            // Only render when the Home tab is visible
             const homePanel = document.getElementById('home');
-            const isHomeVisible = homePanel && homePanel.classList.contains('active') && homePanel.style.display !== 'none';
+            if (!homePanel || !homePanel.classList.contains('active') || homePanel.style.display === 'none') return;
+            if (!this.threePlaying) return;
 
-            if (!isHomeVisible || !this.threePlaying) {
-                requestAnimationFrame(animate);
-                return;
+            const dt = clock.getDelta();
+            const t = clock.getElapsedTime();
+
+            // --- Day/night adaptive lighting ---
+            const now = new Date();
+            const mins = now.getHours() * 60 + now.getMinutes();
+            const isNight = mins >= 1125 || mins < 360; // 6:45 PM to 6:00 AM
+
+            if (isNight) {
+                ambientLight.color.setHex(0x1e293b);
+                ambientLight.intensity = 0.4;
+                mainLight.color.setHex(0x38bdf8);
+                mainLight.intensity = 0.5;
+                fillLight.color.setHex(0x1e293b);
+                fillLight.intensity = 0.2;
+
+                // Lantern glows at night
+                bodyMat.emissive.setHex(0xcc1133);
+                const flicker = Math.sin(t * 7) * 0.15;
+                lanternLight.intensity = 2.2 + flicker;
+
+                // Ground darker
+                groundMat.color.setHex(0x0f1a14);
+                groundMat.opacity = 0.35;
+            } else {
+                ambientLight.color.setHex(0xfff8f0);
+                ambientLight.intensity = 0.7;
+                mainLight.color.setHex(0xffeedd);
+                mainLight.intensity = 1.0;
+                fillLight.color.setHex(0xdbeafe);
+                fillLight.intensity = 0.35;
+
+                bodyMat.emissive.setHex(0x220000);
+                lanternLight.intensity = 0;
+
+                groundMat.color.setHex(0x1a3a2a);
+                groundMat.opacity = 0.2;
             }
 
-            const delta = clock.getDelta();
-            const time = clock.getElapsedTime();
+            // --- Auto rotation (normalized) ---
+            if (!dragging) rotY += AUTO_SPEED;
+            // Normalize rotY to prevent float overflow
+            if (rotY > Math.PI * 2) rotY -= Math.PI * 2;
+            if (rotY < -Math.PI * 2) rotY += Math.PI * 2;
 
-            // Handle rotational inertia
-            if (!isDragging) {
-                targetRotY += autoRotateSpeed;
-            }
-            sceneGroup.rotation.y += (targetRotY - sceneGroup.rotation.y) * 0.08;
-            sceneGroup.rotation.x += (targetRotX - sceneGroup.rotation.x) * 0.08;
+            sceneGroup.rotation.y += (rotY - sceneGroup.rotation.y) * 0.06;
+            sceneGroup.rotation.x += (rotX - sceneGroup.rotation.x) * 0.06;
 
-            // Sway Jade Bamboo segments organically
-            bambooJoints.forEach((joint, idx) => {
-                joint.rotation.z = Math.sin(time + idx * 0.4) * 0.022;
-                joint.rotation.x = Math.cos(time * 0.85 + idx * 0.25) * 0.011;
+            // --- Bamboo sway ---
+            bambooJoints.forEach((j, i) => {
+                j.rotation.z = Math.sin(t * 0.8 + i * 0.5) * 0.02;
+                j.rotation.x = Math.cos(t * 0.6 + i * 0.3) * 0.01;
             });
 
-            // Lantern illumination
-            updateTimezoneIllumination(time);
+            // --- Lantern gentle swing ---
+            lanternGroup.rotation.z = Math.sin(t * 0.7) * 0.03;
 
-            // Calligraphy Draw Logic
-            const char = charsData[currentCharIndex];
-            
+            // --- Calligraphy stroke-by-stroke ---
+            const ch = charsData[charIdx];
+
             if (phase === 'drawing') {
-                strokeT += delta * 1.4; // speed of drawing
-                if (strokeT > 1.0) strokeT = 1.0;
+                strokeT += dt * 1.3;
+                if (strokeT > 1) strokeT = 1;
 
-                if (activeStrokes.length <= currentStrokeIndex) {
-                    const strokePts = char.strokes[currentStrokeIndex];
-                    
-                    const coreGeom = new THREE.BufferGeometry();
-                    const glowGeom = new THREE.BufferGeometry();
-                    
-                    const coreLine = new THREE.Line(coreGeom, lineCoreMat);
-                    const glowLine = new THREE.Line(glowGeom, lineGlowMat);
-                    glowLine.scale.set(1.03, 1.03, 1.03); // slightly larger glow
-
-                    charGroup.add(coreLine);
-                    charGroup.add(glowLine);
-
-                    activeStrokes.push({
-                        coreLine,
-                        glowLine,
-                        points: strokePts
-                    });
+                if (activeStrokes.length <= strokeIdx) {
+                    const pts = ch.strokes[strokeIdx];
+                    const coreG = new THREE.BufferGeometry();
+                    const glowG = new THREE.BufferGeometry();
+                    const core = new THREE.Line(coreG, coreLineMat);
+                    const glow = new THREE.Line(glowG, glowLineMat);
+                    glow.scale.set(1.03, 1.03, 1.03);
+                    charGroup.add(core); charGroup.add(glow);
+                    activeStrokes.push({ core, glow, pts });
                 }
 
-                const strokeObj = activeStrokes[currentStrokeIndex];
-                const fullPoints = strokeObj.points;
-                
-                // Draw path dynamically
-                const drawnPoints = [];
-                const totalSegs = fullPoints.length - 1;
-                
-                if (totalSegs > 0) {
-                    const segFloat = strokeT * totalSegs;
-                    const fullSegCount = Math.floor(segFloat);
-                    const partialT = segFloat - fullSegCount;
-
-                    for (let s = 0; s <= fullSegCount; s++) {
-                        drawnPoints.push(fullPoints[s].clone());
-                    }
-
-                    if (fullSegCount < totalSegs) {
-                        const startPt = fullPoints[fullSegCount];
-                        const endPt = fullPoints[fullSegCount + 1];
-                        const interpPt = new THREE.Vector3().lerpVectors(startPt, endPt, partialT);
-                        drawnPoints.push(interpPt);
+                const so = activeStrokes[strokeIdx];
+                const drawn = [];
+                const segs = so.pts.length - 1;
+                if (segs > 0) {
+                    const sf = strokeT * segs;
+                    const full = Math.floor(sf);
+                    const partial = sf - full;
+                    for (let s = 0; s <= full; s++) drawn.push(so.pts[s].clone());
+                    if (full < segs) {
+                        drawn.push(new THREE.Vector3().lerpVectors(so.pts[full], so.pts[full + 1], partial));
                     }
                 } else {
-                    drawnPoints.push(fullPoints[0].clone());
+                    drawn.push(so.pts[0].clone());
                 }
 
-                strokeObj.coreLine.geometry.setFromPoints(drawnPoints);
-                strokeObj.glowLine.geometry.setFromPoints(drawnPoints);
-
-                // Position glowing pen tip
-                const tipPos = drawnPoints[drawnPoints.length - 1];
-                penTip.position.copy(tipPos);
+                so.core.geometry.setFromPoints(drawn);
+                so.glow.geometry.setFromPoints(drawn);
+                penTip.position.copy(drawn[drawn.length - 1]);
                 penTip.visible = true;
 
-                if (strokeT >= 1.0) {
-                    currentStrokeIndex++;
-                    strokeT = 0;
-                    if (currentStrokeIndex >= char.strokes.length) {
-                        phase = 'showing';
-                        showTimer = 0;
-                        penTip.visible = false;
+                if (strokeT >= 1) {
+                    strokeIdx++; strokeT = 0;
+                    if (strokeIdx >= ch.strokes.length) {
+                        phase = 'showing'; showTimer = 0; penTip.visible = false;
                     }
                 }
             } else if (phase === 'showing') {
-                showTimer += delta;
-                
-                // Breathing glow animation
-                const pulse = 0.85 + Math.sin(time * 3.5) * 0.12;
-                lineCoreMat.opacity = 0.95 * pulse;
-                lineGlowMat.opacity = 0.6 * pulse;
-
-                if (showTimer >= 4.0) {
-                    phase = 'fading';
-                    fadeT = 1.0;
-                }
+                showTimer += dt;
+                const pulse = 0.88 + Math.sin(t * 3) * 0.1;
+                coreLineMat.opacity = 0.95 * pulse;
+                glowLineMat.opacity = 0.55 * pulse;
+                if (showTimer >= 3.5) { phase = 'fading'; fadeT = 1; }
             } else if (phase === 'fading') {
-                fadeT -= delta * 1.5;
+                fadeT -= dt * 1.2;
                 if (fadeT <= 0) {
-                    fadeT = 0;
-                    const nextIndex = (currentCharIndex + 1) % charsData.length;
-                    initCharacter(nextIndex);
+                    startChar((charIdx + 1) % charsData.length);
                 } else {
-                    lineCoreMat.opacity = 0.95 * fadeT;
-                    lineGlowMat.opacity = 0.6 * fadeT;
+                    coreLineMat.opacity = 0.95 * fadeT;
+                    glowLineMat.opacity = 0.55 * fadeT;
                 }
             }
 
             renderer.render(scene, camera);
-            requestAnimationFrame(animate);
         };
 
-        // 9. Resize Handling
-        const handleResize = () => {
-            if (!canvas) return;
-            const w = canvas.clientWidth;
-            const h = canvas.clientHeight;
+        // --- 9. Resize ---
+        const onResize = () => {
+            const w = canvas.clientWidth, h = canvas.clientHeight;
+            if (w === 0 || h === 0) return;
             camera.aspect = w / h;
             camera.updateProjectionMatrix();
             renderer.setSize(w, h, false);
         };
-        window.addEventListener('resize', handleResize);
-
-        // Run size fix and start loop
-        setTimeout(handleResize, 100);
+        window.addEventListener('resize', onResize);
+        setTimeout(onResize, 80);
         animate();
     }
 

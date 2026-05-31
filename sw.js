@@ -1,4 +1,4 @@
-const SW_VERSION = "3.6.7-navigation";
+const SW_VERSION = "3.6.8-design-fix";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -13,7 +13,7 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css",
-  "./assets/css/styles-professional.css?v=23",
+  "./assets/css/styles-professional.css?v=24",
   "./assets/css/matrix-game-styles.css",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css",
