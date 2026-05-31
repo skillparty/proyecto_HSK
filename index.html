@@ -26,7 +26,7 @@
     <!-- <link rel="stylesheet" href="assets/css/styles-final.css?v=1"> -->
     <!-- <link rel="stylesheet" href="assets/css/styles-planetscale-v17.css" id="main-stylesheet-old"> -->
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=3" id="design-tokens">
-    <link rel="stylesheet" href="assets/css/styles-professional.css?v=19" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/styles-professional.css?v=21" id="main-stylesheet">
 
     <link rel="stylesheet" href="assets/css/matrix-game-styles.css?v=4">
     <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=4">
@@ -505,6 +505,10 @@
                                 <option value="4">HSK 4</option>
                                 <option value="5">HSK 5</option>
                                 <option value="6">HSK 6</option>
+                            </select>
+                            <select id="browse-sort-order" class="select-input">
+                                <option value="lesson" data-i18n="browseSortLesson" selected>Orden por lección</option>
+                                <option value="alphabetical" data-i18n="browseSortAlphabetical">Orden alfabético</option>
                             </select>
                         </div>
                     </div>
@@ -1162,17 +1166,17 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=19" defer></script>
+    <script src="assets/js/translations.js?v=20" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=1" defer></script>
 
     <!-- Modules -->
-    <script src="assets/js/modules/flashcard-manager.js?v=2" defer></script>
+    <script src="assets/js/modules/flashcard-manager.js?v=3" defer></script>
     <script src="assets/js/modules/quiz-engine.js?v=2" defer></script>
     <script src="assets/js/modules/quiz-legacy-controller.js?v=1" defer></script>
     <script src="assets/js/modules/stats-controller.js?v=1" defer></script>
     <script src="assets/js/modules/theme-controller.js?v=1" defer></script>
     <script src="assets/js/modules/audio-controller.js?v=2" defer></script>
-    <script src="assets/js/modules/browse-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/browse-controller.js?v=3" defer></script>
     <script src="assets/js/modules/strokes-radicals-controller.js?v=4" defer></script>
     <script src="assets/js/modules/modal-controller.js?v=1" defer></script>
     <script src="assets/js/modules/health-controller.js?v=1" defer></script>
@@ -1183,7 +1187,7 @@
     <script src="assets/js/modules/search-controller.js?v=1" defer></script>
     <script src="assets/js/modules/practice-view-controller.js?v=2" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=4" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=6" defer></script>
     <script src="assets/js/modules/past-exams-controller.js?v=3" defer></script>
     <script src="assets/js/modules/quantifier-snake-utils.js?v=1" defer></script>
     <script src="assets/js/modules/quantifier-snake-canvas.js?v=1" defer></script>

@@ -126,6 +126,88 @@ class BrowseController {
             );
         }
 
+        // Retrieve selected sort order
+        const sortOrderSelect = document.getElementById('browse-sort-order');
+        const sortOrder = sortOrderSelect ? sortOrderSelect.value : 'lesson';
+
+        // Make a shallow copy of the filtered array to avoid mutating the original vocabulary array
+        filteredVocab = [...filteredVocab];
+
+        if (sortOrder === 'lesson') {
+            const hasBookLessonMetadata = (word) => Boolean(
+                word.book !== undefined ||
+                word.bookPart !== undefined ||
+                word.volume !== undefined ||
+                word.lesson !== undefined ||
+                word.lessonOrder !== undefined
+            );
+
+            const getBookRank = (bookValue) => {
+                const book = String(bookValue || '').trim().toLowerCase();
+                if (!book) return 1;
+                if (['shang', 's', 'upper', 'up', '1', 'vol1', 'book1', '上', '上册'].includes(book)) return 1;
+                if (['xia', 'x', 'lower', 'down', '2', 'vol2', 'book2', '下', '下册'].includes(book)) return 2;
+                const numeric = Number(book);
+                return Number.isFinite(numeric) ? numeric : 1;
+            };
+
+            const getLessonNumber = (word) => {
+                const lesson = Number(word.lesson ?? 0);
+                return Number.isFinite(lesson) ? lesson : 0;
+            };
+
+            const getLessonSequence = (word) => {
+                const sequence = Number(word.lessonOrder ?? 0);
+                return Number.isFinite(sequence) ? sequence : 0;
+            };
+
+            filteredVocab.sort((a, b) => {
+                // First sort by level if sorting a mixed list
+                const aLevel = Number(a.level || 0);
+                const bLevel = Number(b.level || 0);
+                if (selectedLevel === 'all' && aLevel !== bLevel) {
+                    return aLevel - bLevel;
+                }
+
+                const aHasMetadata = hasBookLessonMetadata(a);
+                const bHasMetadata = hasBookLessonMetadata(b);
+
+                if (aHasMetadata && bHasMetadata) {
+                    const aBookRank = getBookRank(a.book ?? a.bookPart ?? a.volume);
+                    const bBookRank = getBookRank(b.book ?? b.bookPart ?? b.volume);
+                    if (aBookRank !== bBookRank) return aBookRank - bBookRank;
+
+                    const aLesson = getLessonNumber(a);
+                    const bLesson = getLessonNumber(b);
+                    if (aLesson !== bLesson) return aLesson - bLesson;
+
+                    const aSequence = getLessonSequence(a);
+                    const bSequence = getLessonSequence(b);
+                    if (aSequence !== bSequence) return aSequence - bSequence;
+                } else if (aHasMetadata && !bHasMetadata) {
+                    return -1;
+                } else if (!aHasMetadata && bHasMetadata) {
+                    return 1;
+                }
+
+                const aOrder = Number.isFinite(Number(a._sourceOrder)) ? Number(a._sourceOrder) : 999999;
+                const bOrder = Number.isFinite(Number(b._sourceOrder)) ? Number(b._sourceOrder) : 999999;
+                return aOrder - bOrder;
+            });
+        } else {
+            // Sort alphabetically (by level first, then _sourceOrder / alphabetical)
+            filteredVocab.sort((a, b) => {
+                const aLevel = Number(a.level || 0);
+                const bLevel = Number(b.level || 0);
+                if (selectedLevel === 'all' && aLevel !== bLevel) {
+                    return aLevel - bLevel;
+                }
+                const aOrder = Number.isFinite(Number(a._sourceOrder)) ? Number(a._sourceOrder) : 999999;
+                const bOrder = Number.isFinite(Number(b._sourceOrder)) ? Number(b._sourceOrder) : 999999;
+                return aOrder - bOrder;
+            });
+        }
+
         this.app.browseState.filteredVocabulary = filteredVocab;
         this.app.browseState.displayedItems = [];
         this.app.browseState.currentPage = 0;
@@ -165,8 +247,20 @@ class BrowseController {
         card.setAttribute('aria-label', word.character + ' ' + word.pinyin);
 
         const meaning = this.getMeaningForLanguage(word);
+        
+        // Split word into characters to render each in a calligraphic box if there are 2 or more characters
+        const chars = Array.from(word.character || '');
+        let characterHtml = '';
+        if (chars.length > 1) {
+            characterHtml = '<div class="vocab-character-container">' +
+                chars.map(c => `<div class="vocab-character-box">${c}</div>`).join('') +
+                '</div>';
+        } else {
+            characterHtml = '<div class="vocab-character">' + word.character + '</div>';
+        }
+
         card.innerHTML =
-            '<div class="vocab-character">' + word.character + '</div>' +
+            characterHtml +
             '<div class="vocab-pinyin">' + this.app.colorPinyinByTone(word.pinyin) + '</div>' +
             '<div class="vocab-meaning">' + meaning + '</div>' +
             '<div class="vocab-level">HSK ' + word.level + '</div>' +

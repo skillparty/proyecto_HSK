@@ -137,7 +137,8 @@ class FlashcardManager {
 
       const aHasMetadata = this.hasBookLessonMetadata(aWord);
       const bHasMetadata = this.hasBookLessonMetadata(bWord);
-      if (aHasMetadata || bHasMetadata) {
+      
+      if (aHasMetadata && bHasMetadata) {
         const aBookRank = this.getBookRank(
           aWord.book ?? aWord.bookPart ?? aWord.volume,
         );
@@ -153,6 +154,10 @@ class FlashcardManager {
         const aSequence = this.getLessonSequence(aWord);
         const bSequence = this.getLessonSequence(bWord);
         if (aSequence !== bSequence) return aSequence - bSequence;
+      } else if (aHasMetadata && !bHasMetadata) {
+        return -1;
+      } else if (!aHasMetadata && bHasMetadata) {
+        return 1;
       }
 
       const aOrder = Number.isFinite(Number(aWord._sourceOrder))

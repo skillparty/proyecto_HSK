@@ -524,13 +524,7 @@ select.header-control {
     padding: 0 20px;
     display: flex;
     gap: 30px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    /* Hide scrollbar */
-}
-
-.nav-tabs::-webkit-scrollbar {
-    display: none;
+    overflow: visible;
 }
 
 .nav-tab {
@@ -1935,6 +1929,41 @@ body.light-theme .achievement-item.lock {
     width: 68px;
     height: 68px;
     margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    
+    /* Rejilla de Caligrafía Tradicional MiZiGe (米字格) en rojo suave */
+    background-color: rgba(254, 252, 251, 0.75); /* Papel de arroz cálido */
+    border: 1.5px solid rgba(220, 38, 38, 0.32); /* Borde rojo lacado */
+    background-image: 
+        linear-gradient(45deg, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%),
+        linear-gradient(-45deg, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%),
+        linear-gradient(to bottom, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%),
+        linear-gradient(to right, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%);
+    background-size: 100% 100%;
+    box-shadow: 
+        inset 0 0 6px rgba(220, 38, 38, 0.04),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.vocab-character-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 12px;
+    flex-wrap: wrap;
+    min-height: 68px;
+    align-items: center;
+}
+
+.vocab-character-box {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    font-family: var(--font-chinese);
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;

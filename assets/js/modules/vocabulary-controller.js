@@ -54,6 +54,78 @@ class VocabularyController {
         return byGloss ? byGloss._sourceOrder : null;
     }
 
+    async mergeLessonOrderMap(vocabulary) {
+        try {
+            const response = await fetch('assets/data/hsk_lesson_order_map.json');
+            if (!response.ok) {
+                this.app.logWarn('[ORDER] Could not load lesson order map');
+                return vocabulary;
+            }
+
+            const mapData = await response.json();
+            const entries = Array.isArray(mapData) ? mapData : (mapData.entries || []);
+            if (entries.length === 0) {
+                return vocabulary;
+            }
+
+            // Build a lookup from the map: key = "normalizedChar::normalizedPinyin" → entry
+            const mapByCP = new Map();
+            for (const entry of entries) {
+                if (!entry.character || !entry.pinyin || !entry.lesson) continue;
+                const key = this.makeCPKey(entry);
+                if (!mapByCP.has(key)) {
+                    mapByCP.set(key, []);
+                }
+                mapByCP.get(key).push(entry);
+            }
+
+            let merged = 0;
+            const result = vocabulary.map((word) => {
+                // Skip words that already have lesson metadata
+                if (word.lesson !== undefined && word.lessonOrder !== undefined) {
+                    return word;
+                }
+
+                const key = this.makeCPKey(word);
+                const candidates = mapByCP.get(key);
+                if (!candidates || candidates.length === 0) {
+                    return word;
+                }
+
+                // Match by level first, then by english gloss
+                const wordLevel = Number(word.level || 0);
+                let match = candidates.find(c => Number(c.level || 0) === wordLevel);
+                if (!match && candidates.length === 1) {
+                    match = candidates[0];
+                }
+                if (!match) {
+                    // Try matching by english gloss
+                    const wordGloss = this.normalizeGloss(word.english || word.translation || '');
+                    match = candidates.find(c =>
+                        this.normalizeGloss(c.english || c.translation || '') === wordGloss
+                    );
+                }
+                if (!match) {
+                    match = candidates[0]; // fallback to first candidate
+                }
+
+                merged++;
+                return {
+                    ...word,
+                    book: match.book || word.book,
+                    lesson: Number(match.lesson),
+                    lessonOrder: Number(match.lessonOrder || 0)
+                };
+            });
+
+            this.app.logInfo(`[ORDER] Merged lesson metadata for ${merged} words from order map`);
+            return result;
+        } catch (error) {
+            this.app.logWarn('[ORDER] Failed to merge lesson order map:', error);
+            return vocabulary;
+        }
+    }
+
     async attachCanonicalStudyOrder(vocabulary, targetLanguage) {
         if (!Array.isArray(vocabulary) || vocabulary.length === 0) {
             return vocabulary;
@@ -136,6 +208,7 @@ class VocabularyController {
                     }));
                 }
 
+                this.app.vocabulary = await this.mergeLessonOrderMap(this.app.vocabulary);
                 this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
 
                 // Load example sentences
@@ -182,6 +255,7 @@ class VocabularyController {
                             }));
                         }
 
+                        this.app.vocabulary = await this.mergeLessonOrderMap(this.app.vocabulary);
                         this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
                     } else {
                         throw new Error('No fallback available');
@@ -193,6 +267,7 @@ class VocabularyController {
                     ];
                 }
 
+                this.app.vocabulary = await this.mergeLessonOrderMap(this.app.vocabulary);
                 this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
                 this.app.vocabularyLoaded = true;
                 this.app.vocabularyLoading = false;

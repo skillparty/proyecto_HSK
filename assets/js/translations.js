@@ -44,6 +44,8 @@ const translations = {
         // Practice Mode
         levelLabel: "Nivel HSK:",
         allLevels: "Todos los niveles",
+        browseSortLesson: "Orden por lección",
+        browseSortAlphabetical: "Orden alfabético",
         practiceMode: "Modo de práctica:",
         practiceOrderLabel: "Orden de estudio:",
         practiceOrderLesson: "Lección (recomendado)",
@@ -457,6 +459,8 @@ const translations = {
         // Practice Mode
         levelLabel: "HSK Level:",
         allLevels: "All levels",
+        browseSortLesson: "Lesson order",
+        browseSortAlphabetical: "Alphabetical order",
         practiceMode: "Practice mode:",
         practiceOrderLabel: "Study order:",
         practiceOrderLesson: "Lesson sequence (recommended)",

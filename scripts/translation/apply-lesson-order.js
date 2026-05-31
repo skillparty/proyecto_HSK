@@ -94,7 +94,6 @@ function hasCompleteOrderMetadata(entry) {
     && entry.character
     && entry.pinyin
     && entry.english
-    && entry.book
     && entry.lesson
     && entry.lessonOrder
   );

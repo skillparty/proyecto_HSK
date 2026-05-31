@@ -159,7 +159,7 @@ class InteractionController {
                 const tabButton = event.target.closest('.nav-tab');
                 if (!tabButton) return;
                 
-                // If it's a dropdown trigger, toggle open state and navigate to the default sub-tab
+                // If it's a dropdown trigger, toggle open state
                 if (tabButton.classList.contains('nav-group-trigger')) {
                     event.stopPropagation();
                     const parentGroup = tabButton.closest('.nav-group');
@@ -168,19 +168,6 @@ class InteractionController {
                         document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
                         if (!isOpen) {
                             parentGroup.classList.add('open');
-                        }
-                        
-                        // Premium UX Shortcut: Redirect to the first sub-tab of this group
-                        const groupType = parentGroup.dataset.group;
-                        let targetTab = '';
-                        switch (groupType) {
-                            case 'study': targetTab = 'practice'; break;
-                            case 'evaluate': targetTab = 'quiz'; break;
-                            case 'games': targetTab = 'snake-quantifiers'; break;
-                            case 'progress': targetTab = 'stats'; break;
-                        }
-                        if (targetTab) {
-                            this.app.uiController.switchTab(targetTab);
                         }
                     }
                     return;
@@ -400,6 +387,11 @@ class InteractionController {
         const browseLevelFilter = document.getElementById('browse-level-filter');
         if (browseLevelFilter) {
             browseLevelFilter.addEventListener('change', () => this.app.filterVocabulary());
+        }
+
+        const browseSortOrder = document.getElementById('browse-sort-order');
+        if (browseSortOrder) {
+            browseSortOrder.addEventListener('change', () => this.app.filterVocabulary());
         }
 
         const startQuizBtn = document.getElementById('start-quiz');
