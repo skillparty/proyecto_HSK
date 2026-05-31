@@ -509,7 +509,7 @@ class StatsController {
             const theme = levelThemes[data.hsk_level];
             const pct = Math.round(data.progress);
 
-            const radius = 35;
+            const radius = 30;
             const circumference = 2 * Math.PI * radius;
             const offset = circumference - (data.progress / 100) * circumference;
 
@@ -518,11 +518,11 @@ class StatsController {
 
             ringCard.innerHTML = `
                 <div class="ring-svg-container">
-                    <svg width="90" height="90" viewBox="0 0 90 90" class="ring-svg">
-                        <circle cx="45" cy="45" r="${radius}" fill="none" stroke="rgba(148, 163, 184, 0.1)" stroke-width="6" />
-                        <circle cx="45" cy="45" r="${radius}" fill="none" stroke="${theme.color}" stroke-width="6"
+                    <svg width="80" height="80" viewBox="0 0 80 80" class="ring-svg">
+                        <circle cx="40" cy="40" r="${radius}" fill="none" stroke="rgba(148, 163, 184, 0.05)" stroke-width="5" />
+                        <circle cx="40" cy="40" r="${radius}" fill="none" stroke="${theme.color}" stroke-width="5"
                             stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
-                            stroke-linecap="round" transform="rotate(-90 45 45)" class="ring-active-circle" />
+                            stroke-linecap="round" transform="rotate(-90 40 40)" class="ring-active-circle" />
                     </svg>
                     <div class="ring-percent">${pct}%</div>
                 </div>

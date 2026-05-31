@@ -3905,12 +3905,15 @@ body.light-theme .stats-heatmap-card {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-lg);
-    padding: 16px;
+    padding: 12px 8px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 16px;
+    justify-content: center;
+    gap: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+    text-align: center;
 }
 
 body.light-theme .stats-ring-card {
@@ -3926,8 +3929,8 @@ body.light-theme .stats-ring-card {
 
 .ring-svg-container {
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3936,7 +3939,7 @@ body.light-theme .stats-ring-card {
 
 .ring-percent {
     position: absolute;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text-main);
     font-family: var(--font-mono);
@@ -3945,7 +3948,9 @@ body.light-theme .stats-ring-card {
 .ring-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
 }
 
 .ring-title {
@@ -4296,8 +4301,11 @@ body.light-theme .dashboard-3d-portal {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 12px;
+        align-items: center;
+        min-height: 100%;
+        padding: 24px;
         box-sizing: border-box;
+        width: 100%;
     }
 
     .matrix-grid-board {
@@ -4334,10 +4342,24 @@ body.light-theme .dashboard-3d-portal {
 
     .stat-card {
         padding: 8px 10px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 70px;
     }
 
     .stat-card .stat-value {
         font-size: 1.25rem !important;
+        margin-bottom: 2px !important;
+    }
+
+    .stat-card .stat-label {
+        font-size: 0.75rem !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        opacity: 0.85;
     }
 
     .stats-dashboard-row {
@@ -4367,6 +4389,18 @@ body.light-theme .dashboard-3d-portal {
     .level-progress {
         margin-top: 0 !important;
         padding: 16px !important;
+    }
+
+    #reset-stats {
+        align-self: center !important;
+        margin: 20px auto 10px auto !important;
+        max-width: 280px;
+        width: 100%;
+        padding: 12px 24px !important;
+        font-size: 0.95rem !important;
+        font-weight: 600;
+        border-radius: var(--radius-md, 12px) !important;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
     }
 
     #leaderboard {

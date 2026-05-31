@@ -893,6 +893,19 @@
     backdrop-filter: var(--backdrop-blur, blur(16px));
 }
 
+.matrix-config-screen,
+.matrix-results-screen {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.matrix-game-screen {
+    max-width: 750px;
+    width: 100%;
+    margin: 0 auto;
+}
+
 .matrix-title,
 .results-title,
 .diff-name,
