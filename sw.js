@@ -1,4 +1,4 @@
-const SW_VERSION = "3.6.5-navigation";
+const SW_VERSION = "3.6.6-navigation";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [

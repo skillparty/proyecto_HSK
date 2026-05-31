@@ -570,7 +570,7 @@ class MatrixGame {
         }
     }
 
-    endGame() {
+    async endGame() {
         this.logInfo('🏁 Game ended');
 
         this.isPlaying = false;
@@ -586,7 +586,7 @@ class MatrixGame {
             Math.round((this.correctAnswers / (this.correctAnswers + this.wrongAnswers)) * 100) : 0;
 
         // Verificar si es un nuevo récord
-        const isNewRecord = this.checkAndSaveHighScore();
+        const isNewRecord = await this.checkAndSaveHighScore();
 
         // Mostrar pantalla de resultados
         this.showResults(accuracy, isNewRecord);
@@ -601,19 +601,19 @@ class MatrixGame {
         document.getElementById('matrix-results').style.display = 'block';
 
         // Actualizar estadísticas
-        document.getElementById('final-score').textContent = this.score.toLocaleString();
-        document.getElementById('correct-count').textContent = this.correctAnswers;
-        document.getElementById('wrong-count').textContent = this.wrongAnswers;
-        document.getElementById('best-streak').textContent = this.sessionStats.maxStreak;
-        document.getElementById('avg-time').textContent =
+        document.getElementById('matrix-final-score').textContent = this.score.toLocaleString();
+        document.getElementById('matrix-correct-count').textContent = this.correctAnswers;
+        document.getElementById('matrix-wrong-count').textContent = this.wrongAnswers;
+        document.getElementById('matrix-best-streak').textContent = this.sessionStats.maxStreak;
+        document.getElementById('matrix-avg-time').textContent =
             this.sessionStats.averageTime ? `${this.sessionStats.averageTime.toFixed(1)}s` : 'N/A';
-        document.getElementById('accuracy').textContent = `${accuracy}%`;
+        document.getElementById('matrix-accuracy').textContent = `${accuracy}%`;
 
         // Mostrar mensaje de nuevo récord
         if (isNewRecord) {
-            document.getElementById('new-record').style.display = 'block';
+            document.getElementById('matrix-new-record').style.display = 'block';
         } else {
-            document.getElementById('new-record').style.display = 'none';
+            document.getElementById('matrix-new-record').style.display = 'none';
         }
 
         // Guardar estadísticas en el perfil del usuario si está disponible

@@ -112,41 +112,41 @@ function renderMatrixGameInterface() {
                 <div class="result-card highlight">
                     <span class="result-icon ascii-art">[★]</span>
                     <span class="result-label" data-i18n="matrixFinalScore">Final Score</span>
-                    <span id="final-score" class="result-value">0</span>
+                    <span id="matrix-final-score" class="result-value">0</span>
                 </div>
                 
                 <div class="result-card">
                     <span class="result-icon ascii-art">[✓]</span>
                     <span class="result-label" data-i18n="matrixCorrectAnswers">Correct Answers</span>
-                    <span id="correct-count" class="result-value">0</span>
+                    <span id="matrix-correct-count" class="result-value">0</span>
                 </div>
                 
                 <div class="result-card">
                     <span class="result-icon ascii-art">[✗]</span>
                     <span class="result-label" data-i18n="matrixWrongAnswers">Wrong Answers</span>
-                    <span id="wrong-count" class="result-value">0</span>
+                    <span id="matrix-wrong-count" class="result-value">0</span>
                 </div>
                 
                 <div class="result-card">
                     <span class="result-icon ascii-art">[▲]</span>
                     <span class="result-label" data-i18n="matrixBestStreak">Best Streak</span>
-                    <span id="best-streak" class="result-value">0</span>
+                    <span id="matrix-best-streak" class="result-value">0</span>
                 </div>
                 
                 <div class="result-card">
                     <span class="result-icon ascii-art">[~]</span>
                     <span class="result-label" data-i18n="matrixAvgTime">Average Time</span>
-                    <span id="avg-time" class="result-value">0s</span>
+                    <span id="matrix-avg-time" class="result-value">0s</span>
                 </div>
                 
                 <div class="result-card">
                     <span class="result-icon ascii-art">[%]</span>
                         <span class="result-label" data-i18n="accuracy">Accuracy</span>
-                    <span id="accuracy" class="result-value">0%</span>
+                    <span id="matrix-accuracy" class="result-value">0%</span>
                 </div>
             </div>
             
-            <div id="new-record" class="new-record" style="display: none;">
+            <div id="matrix-new-record" class="new-record" style="display: none;">
                 <span class="ascii-art">[★]</span> <span data-i18n="matrixNewRecord">New Personal Record!</span> <span class="ascii-art">[★]</span>
             </div>
             
