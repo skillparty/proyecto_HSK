@@ -65,10 +65,10 @@ Architecture: CSS Custom Properties.
     --color-error-subtle: #fee2e2;
 
     /* ---- TONE COLORS (Pedagogical Standard) ---- */
-    --color-tone-1: #dc2626; /* Rojo - 1er Tono (mā) */
-    --color-tone-2: #16a34a; /* Verde - 2do Tono (má) */
-    --color-tone-3: #2563eb; /* Azul - 3er Tono (mǎ) */
-    --color-tone-4: #9333ea; /* Púrpura - 4to Tono (mà) */
+    --color-tone-1: #d97706; /* Amarillo - 1er Tono (mā) */
+    --color-tone-2: #2563eb; /* Azul - 2do Tono (má) */
+    --color-tone-3: #16a34a; /* Verde - 3er Tono (mǎ) */
+    --color-tone-4: #dc2626; /* Rojo - 4to Tono (mà) */
     --color-tone-0: #6b7280; /* Gris - Tono Neutro/Ligero (ma) */
 
     /* ---- COMPATIBILITY ALIASES ---- */

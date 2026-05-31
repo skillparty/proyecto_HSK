@@ -250,13 +250,18 @@ class BrowseController {
         
         // Split word into characters to render each in a calligraphic box if there are 2 or more characters
         const chars = Array.from(word.character || '');
+        const tones = this.app.getTonesFromPinyin(word.pinyin || '');
         let characterHtml = '';
         if (chars.length > 1) {
             characterHtml = '<div class="vocab-character-container">' +
-                chars.map(c => `<div class="vocab-character-box">${c}</div>`).join('') +
+                chars.map((c, i) => {
+                    const tone = tones[i] !== undefined ? tones[i] : 0;
+                    return `<div class="vocab-character-box tone-${tone}">${c}</div>`;
+                }).join('') +
                 '</div>';
         } else {
-            characterHtml = '<div class="vocab-character">' + word.character + '</div>';
+            const tone = tones[0] !== undefined ? tones[0] : 0;
+            characterHtml = `<div class="vocab-character tone-${tone}">` + word.character + '</div>';
         }
 
         card.innerHTML =

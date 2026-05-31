@@ -130,8 +130,36 @@ class HomeController {
 
         // 4. Character of the Day (每日汉字)
         const dailyWord = this.getDailyCharacter();
-        const charCharacter = document.getElementById('dash-char-character');
-        if (charCharacter) charCharacter.textContent = dailyWord.character || '中';
+        const charContainer = document.querySelector('.char-mi-zi-ge-container');
+        if (charContainer) {
+            const chars = Array.from(dailyWord.character || '中');
+            const tones = this.app.getTonesFromPinyin(dailyWord.pinyin || '');
+            if (chars.length > 1) {
+                const boxSize = chars.length > 3 ? '50px' : '60px';
+                const fontSize = chars.length > 3 ? '1.8rem' : '2.2rem';
+                charContainer.innerHTML = `
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center;">
+                        ${chars.map((c, i) => {
+                            const tone = tones[i] !== undefined ? tones[i] : 0;
+                            return `
+                                <div class="char-mi-zi-ge" style="width: ${boxSize}; height: ${boxSize}; min-width: ${boxSize};">
+                                    <div class="mi-zi-ge-lines"></div>
+                                    <div class="char-display tone-${tone}" style="font-size: ${fontSize};">${c}</div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            } else {
+                const tone = tones[0] !== undefined ? tones[0] : 0;
+                charContainer.innerHTML = `
+                    <div class="char-mi-zi-ge">
+                        <div class="mi-zi-ge-lines"></div>
+                        <div class="char-display tone-${tone}" id="dash-char-character">${dailyWord.character || '中'}</div>
+                    </div>
+                `;
+            }
+        }
 
         const charPinyin = document.getElementById('dash-char-pinyin');
         if (charPinyin) charPinyin.textContent = dailyWord.pinyin || 'zhōng';

@@ -174,6 +174,7 @@ class HSKApp {
     checkPinyinAnswer() { return this.practiceViewController.checkPinyinAnswer(); }
     getToneMarks(pinyin) { return this.practiceViewController.getToneMarks(pinyin); }
     colorPinyinByTone(pinyin) { return this.practiceViewController.colorPinyinByTone(pinyin); }
+    getTonesFromPinyin(pinyin) { return this.practiceViewController.getTonesFromPinyin(pinyin); }
     getExampleSentence(word) { return this.practiceViewController.getExampleSentence(word); }
     resetCardState() { return this.practiceViewController.resetCardState(); }
     flipCard() { this.flashcardManager.flipCard(); }

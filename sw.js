@@ -1,4 +1,4 @@
-const SW_VERSION = "3.6.2-navigation";
+const SW_VERSION = "3.6.3-navigation";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -13,7 +13,7 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css",
-  "./assets/css/styles-professional.css?v=21",
+  "./assets/css/styles-professional.css?v=22",
   "./assets/css/matrix-game-styles.css",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css",
@@ -22,13 +22,13 @@ const PRECACHE_FILES = [
   "./assets/js/firebase-client.js",
   "./assets/js/firebase-progress-sync.js",
   "./assets/js/modules/flashcard-manager.js?v=3",
-  "./assets/js/modules/practice-view-controller.js?v=2",
+  "./assets/js/modules/practice-view-controller.js?v=3",
   "./assets/js/modules/audio-controller.js?v=2",
   "./assets/js/modules/quiz-engine.js?v=2",
   "./assets/js/modules/ui-controller.js?v=3",
   "./assets/js/modules/navigation-controller.js?v=3",
   "./assets/js/modules/language-controller.js?v=3",
-  "./assets/js/modules/browse-controller.js?v=3",
+  "./assets/js/modules/browse-controller.js?v=4",
   "./assets/js/modules/interaction-controller.js?v=6",
   "./assets/js/modules/past-exams-controller.js?v=3",
   "./assets/js/modules/quantifier-snake-utils.js?v=1",
@@ -39,7 +39,7 @@ const PRECACHE_FILES = [
   "./assets/js/auth-backend.js",
   "./assets/js/user-progress-backend.js",
   "./assets/js/bg-data.js",
-  "./assets/js/app.js?v=32",
+  "./assets/js/app.js?v=33",
   "./assets/js/matrix-game.js",
   "./assets/js/matrix-game-ui.js",
   "./assets/js/leaderboard.js",
