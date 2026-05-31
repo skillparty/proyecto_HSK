@@ -1,4 +1,4 @@
-const SW_VERSION = "3.6.3-navigation";
+const SW_VERSION = "3.6.4-navigation";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -22,7 +22,7 @@ const PRECACHE_FILES = [
   "./assets/js/firebase-client.js",
   "./assets/js/firebase-progress-sync.js",
   "./assets/js/modules/flashcard-manager.js?v=3",
-  "./assets/js/modules/practice-view-controller.js?v=3",
+  "./assets/js/modules/practice-view-controller.js?v=4",
   "./assets/js/modules/audio-controller.js?v=2",
   "./assets/js/modules/quiz-engine.js?v=2",
   "./assets/js/modules/ui-controller.js?v=3",
