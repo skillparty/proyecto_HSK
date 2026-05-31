@@ -414,10 +414,13 @@ class FlashcardManager {
       'ǖ':'ü', 'ǘ':'ü', 'ǚ':'ü', 'ǜ':'ü'
     };
 
-    return pinyin.toLowerCase().split(/\s+/).map(syllable => {
+    const regex = /[bcdfghjklmnpqrstwxyz]?h?[aeiouvüāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]+(?:ng|n|r)?/ig;
+    const syllables = pinyin.match(regex) || [];
+
+    return syllables.map(syllable => {
       let tone = '5'; // Neutro por defecto
       let clean = '';
-      for (const char of syllable) {
+      for (const char of syllable.toLowerCase()) {
         if (toneMap[char]) {
           tone = toneMap[char];
         }
@@ -650,7 +653,8 @@ class FlashcardManager {
     };
 
     const tones = [];
-    const syllables = pinyin.split(/\s+/);
+    const regex = /[bcdfghjklmnpqrstwxyz]?h?[aeiouvüāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]+(?:ng|n|r)?/ig;
+    const syllables = pinyin.match(regex) || [];
     for (const syllable of syllables) {
       let detectedTone = "0";
       for (const char of syllable) {
@@ -690,7 +694,10 @@ class FlashcardManager {
       "ǖ": 1, "ǘ": 2, "ǚ": 3, "ǜ": 4
     };
 
-    return pinyin.split(/\s+/).map((syllable) => {
+    const regex = /[bcdfghjklmnpqrstwxyz]?h?[aeiouvüāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]+(?:ng|n|r)?/ig;
+    const syllables = pinyin.match(regex) || [];
+
+    return syllables.map((syllable) => {
       let detectedTone = 0;
       for (const char of syllable) {
         if (toneMap[char]) {

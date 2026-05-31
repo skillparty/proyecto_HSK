@@ -1,4 +1,4 @@
-const SW_VERSION = "3.6.8-design-fix";
+const SW_VERSION = "3.6.9-design-fix";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -13,7 +13,7 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css",
-  "./assets/css/styles-professional.css?v=24",
+  "./assets/css/styles-professional.css?v=25",
   "./assets/css/matrix-game-styles.css",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css",
@@ -21,8 +21,8 @@ const PRECACHE_FILES = [
   "./assets/js/translations.js?v=20",
   "./assets/js/firebase-client.js",
   "./assets/js/firebase-progress-sync.js",
-  "./assets/js/modules/flashcard-manager.js?v=3",
-  "./assets/js/modules/practice-view-controller.js?v=4",
+  "./assets/js/modules/flashcard-manager.js?v=4",
+  "./assets/js/modules/practice-view-controller.js?v=5",
   "./assets/js/modules/audio-controller.js?v=2",
   "./assets/js/modules/quiz-engine.js?v=2",
   "./assets/js/modules/ui-controller.js?v=3",

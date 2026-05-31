@@ -2915,9 +2915,11 @@ body.light-theme .achievement-item.lock {
 }
 
 .stats-chart-card,
-.stats-achievements-card {
+.stats-achievements-card,
+.level-progress {
     background: rgba(30, 41, 59, 0.45);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-lg);
     padding: 24px;
@@ -2925,7 +2927,8 @@ body.light-theme .achievement-item.lock {
 }
 
 .stats-chart-card h4,
-.stats-achievements-card h4 {
+.stats-achievements-card h4,
+.level-progress h4 {
     margin-top: 0;
     margin-bottom: 18px;
     font-size: 1.15rem;
@@ -3306,6 +3309,7 @@ body.zen-mode .practice-container {
 .flashcard,
 .stats-chart-card,
 .stats-achievements-card,
+.level-progress,
 .past-exam-card,
 .vocab-detail-card,
 .sr-card,
@@ -4340,13 +4344,17 @@ body.light-theme .dashboard-3d-portal {
     .stats-dashboard-row {
         flex: 1;
         display: grid;
-        grid-template-columns: 1fr 1.1fr 0.9fr;
-        gap: 12px;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
         min-height: 0;
     }
 
+    .stats-heatmap-card {
+        grid-column: span 3 !important;
+    }
+
     .stats-heatmap-card, .stats-chart-card, .stats-achievements-card, .level-progress {
-        padding: 12px !important;
+        padding: 16px !important;
         min-height: 0;
         display: flex;
         flex-direction: column;
@@ -4359,7 +4367,7 @@ body.light-theme .dashboard-3d-portal {
 
     .level-progress {
         margin-top: 0 !important;
-        padding: 10px !important;
+        padding: 16px !important;
     }
 
     #leaderboard {
