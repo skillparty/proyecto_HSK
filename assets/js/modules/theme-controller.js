@@ -1,8 +1,8 @@
 class ThemeController {
     constructor(app) {
         this.app = app;
-        this.darkLogoPath = 'assets/images/logo_dark.png';
-        this.lightLogoPath = 'assets/images/logo_light.png';
+        this.darkLogoPath = 'assets/images/logoICUMSSAPP.png';
+        this.lightLogoPath = 'assets/images/logoICUMSSAPP.png';
     }
 
     initializeTheme() {
@@ -92,11 +92,7 @@ class ThemeController {
             props.forEach(p => root.style.removeProperty(p));
         }
 
-        let bgSource = "url('assets/images/bg-fusion.png')";
-        if (window.bgFusionBase64) {
-            this.app.logDebug('[theme] Using base64 background image');
-            bgSource = "url('" + window.bgFusionBase64 + "')";
-        }
+        let bgSource = "url('assets/images/fondo.png')";
 
         // El degradado del fondo debe adaptarse según el tema seleccionado
         const overlay = this.app.isDarkMode

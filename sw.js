@@ -1,4 +1,4 @@
-const SW_VERSION = "3.6.4-navigation";
+const SW_VERSION = "3.6.5-navigation";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -48,9 +48,8 @@ const PRECACHE_FILES = [
   "./assets/data/hsk_past_exams.json",
   "./assets/data/hsk_example_sentences.json",
   "./assets/data/quantifier_snake_words.json",
-  "./assets/images/logo_dark.png",
-  "./assets/images/logo_light.png",
-  "./assets/images/bg-fusion.png",
+  "./assets/images/logoICUMSSAPP.png",
+  "./assets/images/fondo.png",
 ];
 
 function isSameOrigin(url) {
