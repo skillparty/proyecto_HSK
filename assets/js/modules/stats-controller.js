@@ -12,13 +12,13 @@ class StatsController {
                 if (firebaseStats) {
                     this.app.stats = {
                         ...this.app.stats,
-                        totalStudied: Number(firebaseStats.totalStudied) || this.app.stats.totalStudied,
-                        correctAnswers: Number(firebaseStats.correctAnswers) || this.app.stats.correctAnswers,
-                        incorrectAnswers: Number(firebaseStats.incorrectAnswers) || this.app.stats.incorrectAnswers,
-                        currentStreak: Number(firebaseStats.currentStreak) || this.app.stats.currentStreak,
-                        bestStreak: Number(firebaseStats.bestStreak) || this.app.stats.bestStreak,
-                        totalTimeSpent: Number(firebaseStats.totalTimeSpent) || this.app.stats.totalTimeSpent,
-                        snakeHighScore: Number(firebaseStats.snakeHighScore) || this.app.stats.snakeHighScore
+                        totalStudied: isNaN(Number(firebaseStats.totalStudied)) ? this.app.stats.totalStudied : Number(firebaseStats.totalStudied),
+                        correctAnswers: isNaN(Number(firebaseStats.correctAnswers)) ? this.app.stats.correctAnswers : Number(firebaseStats.correctAnswers),
+                        incorrectAnswers: isNaN(Number(firebaseStats.incorrectAnswers)) ? this.app.stats.incorrectAnswers : Number(firebaseStats.incorrectAnswers),
+                        currentStreak: isNaN(Number(firebaseStats.currentStreak)) || firebaseStats.currentStreak === -Infinity || Number(firebaseStats.currentStreak) === -Infinity ? this.app.stats.currentStreak : Math.max(0, Number(firebaseStats.currentStreak)),
+                        bestStreak: isNaN(Number(firebaseStats.bestStreak)) || firebaseStats.bestStreak === -Infinity || Number(firebaseStats.bestStreak) === -Infinity ? this.app.stats.bestStreak : Math.max(0, Number(firebaseStats.bestStreak)),
+                        totalTimeSpent: isNaN(Number(firebaseStats.totalTimeSpent)) ? this.app.stats.totalTimeSpent : Number(firebaseStats.totalTimeSpent),
+                        snakeHighScore: isNaN(Number(firebaseStats.snakeHighScore)) ? this.app.stats.snakeHighScore : Number(firebaseStats.snakeHighScore)
                     };
 
                     if (this.app.userProgress) {

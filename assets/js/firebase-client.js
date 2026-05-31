@@ -303,12 +303,8 @@ class FirebaseClient {
             (sum, level) => sum + (level.incorrect_answers || 0),
             0,
           ) || 0,
-        currentStreak: Math.max(
-          ...(data?.map((level) => level.current_streak || 0) || [0]),
-        ),
-        bestStreak: Math.max(
-          ...(data?.map((level) => level.best_streak || 0) || [0]),
-        ),
+        currentStreak: data && data.length > 0 ? Math.max(...data.map((level) => level.current_streak || 0)) : 0,
+        bestStreak: data && data.length > 0 ? Math.max(...data.map((level) => level.best_streak || 0)) : 0,
         totalTimeSpent:
           data?.reduce(
             (sum, level) => sum + (level.total_time_spent || 0),

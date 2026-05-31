@@ -4289,11 +4289,10 @@ body.light-theme .dashboard-3d-portal {
     }
 
     #matrix {
-        overflow: hidden;
+        overflow-y: auto !important;
     }
 
     .matrix-game-container {
-        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -4308,7 +4307,7 @@ body.light-theme .dashboard-3d-portal {
 
     /* 4. Progreso (Stats & Leaderboard) */
     #stats {
-        overflow: hidden;
+        overflow-y: auto !important;
     }
 
     .stats-overview {
