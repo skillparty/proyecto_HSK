@@ -26,7 +26,7 @@
     <!-- <link rel="stylesheet" href="assets/css/styles-final.css?v=1"> -->
     <!-- <link rel="stylesheet" href="assets/css/styles-planetscale-v17.css" id="main-stylesheet-old"> -->
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=4" id="design-tokens">
-    <link rel="stylesheet" href="assets/css/styles-professional.css?v=22" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/styles-professional.css?v=23" id="main-stylesheet">
 
     <link rel="stylesheet" href="assets/css/matrix-game-styles.css?v=4">
     <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=4">
@@ -38,6 +38,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
         rel="stylesheet" id="fonts-stylesheet">
+
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="config/manifest.json">
@@ -290,111 +293,115 @@
             <div class="content-wrapper">
                 <!-- Home Tab -->
                 <div id="home" class="tab-panel">
-                    <div class="dashboard-grid">
-                        <!-- Welcome & User Info Card -->
-                        <div class="dashboard-card welcome-card">
-                            <div class="welcome-header">
-                                <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-                                    <img src="assets/images/logoICUMSSAPP.png" alt="Logo ICUMSS" class="welcome-logo" style="width: 64px; height: 64px; object-fit: contain; border-radius: 8px; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); background: white; padding: 4px;">
-                                    <div class="welcome-user-info">
-                                        <h2 id="dashboard-welcome-title" data-i18n="homeWelcomeTitle">Welcome to Confuc10 ++!</h2>
-                                        <p id="dashboard-welcome-subtitle" data-i18n="homeWelcomeSubtitle">The advanced platform to master Mandarin Chinese</p>
+                    <div class="dashboard-grid-container">
+                        <!-- Left Side: 3D Chinese Cultural Portal -->
+                        <div class="dashboard-3d-portal">
+                            <div class="portal-badge" data-i18n="portalBadge">Impresión Cultural 3D 🎋</div>
+                            <canvas id="matrix-3d-canvas"></canvas>
+                            <div class="portal-instructions" data-i18n="portalInstructions">Arrastra para rotar la escena y ver la caligrafía flotante</div>
+                        </div>
+
+                        <!-- Right Side: Dashboard Statistics and Action Cards -->
+                        <div class="dashboard-action-panel">
+                            <!-- Welcome and Global Stats -->
+                            <div class="dashboard-card welcome-card">
+                                <div class="welcome-header">
+                                    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                                        <img src="assets/images/logoICUMSSAPP.png" alt="Logo ICUMSS" class="welcome-logo" style="width: 50px; height: 50px; object-fit: contain; border-radius: 8px; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); background: white; padding: 4px;">
+                                        <div class="welcome-user-info">
+                                            <h2 id="dashboard-welcome-title" data-i18n="homeWelcomeTitle">Welcome to Confuc10 ++!</h2>
+                                            <p id="dashboard-welcome-subtitle" data-i18n="homeWelcomeSubtitle">The advanced platform to master Mandarin Chinese</p>
+                                        </div>
+                                    </div>
+                                    <div class="welcome-stamp">
+                                        <span>学習</span>
                                     </div>
                                 </div>
-                                <div class="welcome-stamp">
-                                    <span>学習</span>
-                                </div>
-                            </div>
-                            <div class="welcome-stats">
-                                <div class="welcome-stat">
-                                    <span class="stat-number" id="dash-stat-studied">0</span>
-                                    <span class="stat-label" data-i18n="totalStudied">Studied</span>
-                                </div>
-                                <div class="welcome-stat">
-                                    <span class="stat-number" id="dash-stat-streak">0</span>
-                                    <span class="stat-label" data-i18n="currentStreak">Streak</span>
-                                </div>
-                                <div class="welcome-stat">
-                                    <span class="stat-number" id="dash-stat-accuracy">0%</span>
-                                    <span class="stat-label" data-i18n="accuracyRate">Accuracy</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Continue Learning Card -->
-                        <div class="dashboard-card continue-card">
-                            <h3 class="card-title">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><path d="M12 2a10 10 0 0 0-10 10v0a10 10 0 0 0 12 10h0a10 10 0 0 0 10-10v0A10 10 0 0 0 12 2Z"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-                                <span data-i18n="dashContinueTitle">Continuar aprendiendo</span>
-                            </h3>
-                            <div class="continue-content">
-                                <p class="continue-desc" id="dash-continue-desc">Continúa practicando donde te quedaste en tu última sesión.</p>
-                                <button class="btn btn-primary" id="dash-continue-btn">
-                                    <span data-i18n="dashContinueAction">Ir a Práctica</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Daily Goal Card -->
-                        <div class="dashboard-card daily-goal-card">
-                            <h3 class="card-title">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                                <span data-i18n="dashDailyGoalTitle">Meta diaria</span>
-                            </h3>
-                            <div class="daily-goal-content">
-                                <div class="goal-numbers">
-                                    <span id="dash-goal-current">0</span> / <span id="dash-goal-target">20</span> <span data-i18n="dashGoalWords">palabras hoy</span>
-                                </div>
-                                <div class="dashboard-progress-container">
-                                    <div class="dashboard-progress-fill" id="dash-goal-progress" style="width: 0%"></div>
-                                </div>
-                                <p class="goal-feedback" id="dash-goal-feedback">¡Ánimo! Cada paso cuenta para dominar el chino.</p>
-                            </div>
-                        </div>
-
-                        <!-- Daily Word (每日汉字) Card -->
-                        <div class="dashboard-card daily-char-card">
-                            <div class="char-mi-zi-ge-container">
-                                <div class="char-mi-zi-ge">
-                                    <div class="mi-zi-ge-lines"></div>
-                                    <div class="char-display" id="dash-char-character">中</div>
-                                </div>
-                            </div>
-                            <div class="char-details">
-                                <h4 class="char-title" data-i18n="dashDailyWordTitle">每日汉字 (Carácter del día)</h4>
-                                <div class="char-pinyin-meaning">
-                                    <div class="char-pinyin" id="dash-char-pinyin">zhōng</div>
-                                    <div class="char-meaning" id="dash-char-meaning">Medio, centro</div>
-                                </div>
-                                <div class="char-info-pill">
-                                    <span class="char-level" id="dash-char-level">HSK 1</span>
-                                </div>
-                                <button class="btn btn-secondary btn-sm" id="dash-char-study-btn" style="margin-top: 10px;">
-                                    <span data-i18n="practiceWithWord">Practicar palabra</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Achievements / Logros Card -->
-                        <div class="dashboard-card achievements-card">
-                            <h3 class="card-title">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
-                                <span data-i18n="dashAchievementsTitle">Logros recientes</span>
-                            </h3>
-                            <div class="achievements-list" id="dash-achievements-list">
-                                <!-- Dynamic Badges go here -->
-                                <div class="achievement-item lock">
-                                    <div class="achievement-icon">🎓</div>
-                                    <div class="achievement-info">
-                                        <div class="achievement-name" data-i18n="badgeLevel1">HSK 1 Graduado</div>
-                                        <div class="achievement-desc" data-i18n="badgeLevel1Desc">Completa el vocabulario de HSK 1</div>
+                                <div class="welcome-stats" style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; gap: 20px;">
+                                    <div class="welcome-stat" style="margin: 0;">
+                                        <span class="stat-number" id="dash-stat-studied" style="font-size: 1.1rem; font-weight: 700;">0</span>
+                                        <span class="stat-label" data-i18n="totalStudied" style="font-size: 0.75rem; opacity: 0.85;">Studied</span>
+                                    </div>
+                                    <div class="welcome-stat" style="margin: 0;">
+                                        <span class="stat-number" id="dash-stat-streak" style="font-size: 1.1rem; font-weight: 700;">0</span>
+                                        <span class="stat-label" data-i18n="currentStreak" style="font-size: 0.75rem; opacity: 0.85;">Streak</span>
+                                    </div>
+                                    <div class="welcome-stat" style="margin: 0;">
+                                        <span class="stat-number" id="dash-stat-accuracy" style="font-size: 1.1rem; font-weight: 700;">0%</span>
+                                        <span class="stat-label" data-i18n="accuracyRate" style="font-size: 0.75rem; opacity: 0.85;">Accuracy</span>
                                     </div>
                                 </div>
-                                <div class="achievement-item lock">
-                                    <div class="achievement-icon">🔥</div>
-                                    <div class="achievement-info">
-                                        <div class="achievement-name" data-i18n="badgeStreak5">Fuego Sagrado (5)</div>
-                                        <div class="achievement-desc" data-i18n="badgeStreak5Desc">Mantén una racha de 5 días</div>
+                            </div>
+
+                            <div class="dashboard-subgrid">
+                                <!-- Daily Goal Card -->
+                                <div class="dashboard-card daily-goal-card">
+                                    <h3 class="card-title" style="margin-bottom: 6px; font-size: 0.95rem;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                        <span data-i18n="dashDailyGoalTitle">Meta diaria</span>
+                                    </h3>
+                                    <div class="daily-goal-content">
+                                        <div class="goal-numbers" style="font-size: 1rem; font-weight: 700; margin-bottom: 6px;">
+                                            <span id="dash-goal-current">0</span> / <span id="dash-goal-target">20</span> <span data-i18n="dashGoalWords" style="font-size: 0.8rem; font-weight: 500;">palabras</span>
+                                        </div>
+                                        <div class="dashboard-progress-container" style="height: 6px; background: rgba(0,0,0,0.06); border-radius: 4px; overflow: hidden; margin-bottom: 6px;">
+                                            <div class="dashboard-progress-fill" id="dash-goal-progress" style="width: 0%; height: 100%; background: var(--color-success);"></div>
+                                        </div>
+                                        <p class="goal-feedback" id="dash-goal-feedback" style="font-size: 0.72rem; color: var(--text-dim); margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">¡Ánimo! Cada paso cuenta para dominar el chino.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Daily Word (每日汉字) Card -->
+                                <div class="dashboard-card daily-char-card" style="display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: flex-start;">
+                                    <div class="char-mi-zi-ge-container">
+                                        <div class="char-mi-zi-ge" style="width: 68px; height: 68px; min-width: 68px; margin: 0;">
+                                            <div class="mi-zi-ge-lines"></div>
+                                            <div class="char-display" id="dash-char-character" style="font-size: 2.2rem;">中</div>
+                                        </div>
+                                    </div>
+                                    <div class="char-details" style="gap: 2px;">
+                                        <h4 class="char-title" data-i18n="dashDailyWordTitle" style="font-size: 0.72rem; margin: 0; color: var(--text-dim);">Carácter del día</h4>
+                                        <div class="char-pinyin-meaning" style="display: flex; flex-direction: column;">
+                                            <div class="char-pinyin" id="dash-char-pinyin" style="font-size: 0.8rem; font-weight: 700;">zhōng</div>
+                                            <div class="char-meaning" id="dash-char-meaning" style="font-size: 0.75rem; color: var(--text-muted); max-height: 18px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Medio, centro</div>
+                                        </div>
+                                        <div style="display: flex; gap: 6px; align-items: center; margin-top: 2px;">
+                                            <span class="char-level" id="dash-char-level" style="font-size: 0.65rem; background: rgba(0,0,0,0.05); padding: 1px 4px; border-radius: 4px;">HSK 1</span>
+                                            <button class="btn btn-secondary btn-xs" id="dash-char-study-btn" style="padding: 1px 6px; font-size: 0.68rem;">
+                                                <span data-i18n="practiceWithWord">Practicar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Continue Learning Card -->
+                                <div class="dashboard-card continue-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <h3 class="card-title" style="margin-bottom: 4px; font-size: 0.95rem;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;"><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                                        <span data-i18n="dashContinueTitle">Continuar aprendiendo</span>
+                                    </h3>
+                                    <div class="continue-content" style="display: flex; flex-direction: column; gap: 6px;">
+                                        <p class="continue-desc" id="dash-continue-desc" style="font-size: 0.72rem; color: var(--text-muted); margin: 0;">Continúa practicando donde te quedaste.</p>
+                                        <button class="btn btn-primary btn-xs" id="dash-continue-btn" style="padding: 4px 8px; font-size: 0.75rem; align-self: flex-start;">
+                                            <span data-i18n="dashContinueAction">Ir a Práctica</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Achievements / Logros Card -->
+                                <div class="dashboard-card achievements-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                                    <h3 class="card-title" style="margin-bottom: 4px; font-size: 0.95rem;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                                        <span data-i18n="dashAchievementsTitle">Logros recientes</span>
+                                    </h3>
+                                    <div class="achievements-list" id="dash-achievements-list" style="max-height: 64px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 2px;">
+                                        <!-- Dynamic Badges go here -->
+                                        <div class="achievement-item lock" style="padding: 3px 6px; font-size: 0.72rem; gap: 8px;">
+                                            <div class="achievement-icon" style="font-size: 0.9rem;">🎓</div>
+                                            <div class="achievement-info">
+                                                <div class="achievement-name" data-i18n="badgeLevel1" style="font-weight: 700;">HSK 1 Graduado</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1199,7 +1206,7 @@
     <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
     <script src="assets/js/modules/ui-controller.js?v=3" defer></script>
-    <script src="assets/js/modules/home-controller.js?v=2" defer></script>
+    <script src="assets/js/modules/home-controller.js?v=3" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=1" defer></script>
 
     <script src="assets/js/progress-integrator.js?v=2" defer></script>
