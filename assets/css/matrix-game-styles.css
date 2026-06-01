@@ -1240,3 +1240,105 @@
         font-size: 0.85rem;
     }
 }
+
+/* ============================================================
+   DESKTOP OVERVIEW & PLAYABILITY IMPROVEMENTS (992px+)
+   ============================================================ */
+@media (min-width: 992px) {
+    /* Outer container shell for premium visual alignment similar to quantifier snake */
+    .matrix-game-container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 24px;
+        background:
+            radial-gradient(circle at 15% 20%, rgba(217, 78, 59, 0.12), transparent 38%),
+            radial-gradient(circle at 80% 18%, rgba(37, 99, 235, 0.12), transparent 42%),
+            linear-gradient(165deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.88));
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        box-shadow: 0 22px 48px rgba(15, 23, 42, 0.35);
+        border-radius: 22px;
+    }
+
+    .matrix-config-screen,
+    .matrix-game-screen,
+    .matrix-results-screen {
+        background: rgba(15, 23, 42, 0.62) !important;
+        border: 1px solid rgba(148, 163, 184, 0.2) !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        max-width: 800px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 24px;
+    }
+
+    .matrix-settings {
+        padding: 20px;
+        display: grid;
+        gap: 16px;
+        background: rgba(15, 23, 42, 0.45) !important;
+        border: 1px solid rgba(148, 163, 184, 0.15) !important;
+    }
+
+    /* Keep target word compact on desktop to fit vertically */
+    .target-word {
+        padding: 16px 20px !important;
+        margin-bottom: 16px !important;
+        background: rgba(15, 23, 42, 0.45) !important;
+        border: 1px solid rgba(148, 163, 184, 0.15) !important;
+    }
+
+    .target-pinyin {
+        font-size: 2.4rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .target-meaning {
+        font-size: 1.15rem !important;
+    }
+
+    /* Strictly constrain the matrix height and width to prevent overflow cut-off on scroll-free desktop layouts */
+    .character-matrix {
+        display: grid;
+        width: 100%;
+        max-height: calc(100vh - 350px) !important;
+        max-width: calc(100vh - 350px) !important;
+        aspect-ratio: 1 / 1 !important;
+        margin: 0 auto !important;
+        padding: 10px !important;
+        gap: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    .matrix-char {
+        font-size: clamp(1.2rem, 2.5vh, 1.8rem) !important;
+        min-height: 0 !important;
+        height: 100% !important;
+        aspect-ratio: 1 / 1 !important;
+        background: rgba(15, 23, 42, 0.65) !important;
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        color: var(--text-main, #f8fafc) !important;
+    }
+
+    .matrix-char:hover {
+        background: rgba(30, 41, 59, 0.9) !important;
+        border-color: rgba(217, 78, 59, 0.65) !important;
+        transform: translateY(-2px) scale(1.03) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    .matrix-char.correct {
+        background: rgba(16, 185, 129, 0.28) !important;
+        border-color: rgba(16, 185, 129, 0.8) !important;
+    }
+
+    .matrix-char.wrong {
+        background: rgba(239, 68, 68, 0.28) !important;
+        border-color: rgba(239, 68, 68, 0.8) !important;
+    }
+
+    .matrix-char.highlight-correct {
+        background: rgba(234, 179, 8, 0.25) !important;
+        border-color: rgba(234, 179, 8, 0.85) !important;
+    }
+}
