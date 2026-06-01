@@ -4130,6 +4130,15 @@ body.light-theme .dashboard-3d-portal {
         min-height: 0;
     }
 
+    #practice,
+    #browse,
+    #strokes-radicals,
+    #quiz,
+    #past-exams,
+    #home {
+        overflow-y: auto !important;
+    }
+
     /* 1. Inicio (Home Tab) */
     .dashboard-grid-container {
         display: grid;
