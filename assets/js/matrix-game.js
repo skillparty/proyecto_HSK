@@ -152,11 +152,11 @@ class MatrixGame {
             }
 
             // Controles del juego
-            if (e.target.id === 'pause-btn') {
+            if (e.target.closest('#pause-btn')) {
                 this.togglePause();
             }
 
-            if (e.target.id === 'quit-btn') {
+            if (e.target.closest('#quit-btn')) {
                 this.quitGame();
             }
 
@@ -797,61 +797,9 @@ class MatrixGame {
     }
 
     setupGameEventListeners() {
-        this.logDebug('🎛️ Setting up Matrix Game event listeners...');
-
-        // Botón de inicio
-        const startBtn = document.getElementById('matrix-start-btn');
-        if (startBtn) {
-            startBtn.onclick = () => this.startGame();
-        }
-
+        this.logDebug('🎛️ Syncing Matrix Game state components...');
         this.syncResumeAction();
-
-        // Botones de dificultad
-        document.querySelectorAll('.diff-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                this.difficulty = btn.dataset.difficulty;
-            });
-        });
-
-        // Selector de nivel
-        const levelSelect = document.getElementById('matrix-level-select');
-        if (levelSelect) {
-            levelSelect.onchange = (e) => {
-                this.currentLevel = parseInt(e.target.value);
-            };
-        }
-
-        // Controles del juego
-        const pauseBtn = document.getElementById('pause-btn');
-        if (pauseBtn) {
-            pauseBtn.onclick = () => this.togglePause();
-        }
-
-        const quitBtn = document.getElementById('quit-btn');
-        if (quitBtn) {
-            quitBtn.onclick = () => this.endGame();
-        }
-
-        // Botones de resultados
-        const playAgainBtn = document.getElementById('play-again-btn');
-        if (playAgainBtn) {
-            playAgainBtn.onclick = () => this.playAgain();
-        }
-
-        const changeSettingsBtn = document.getElementById('change-settings-btn');
-        if (changeSettingsBtn) {
-            changeSettingsBtn.onclick = () => this.showConfig();
-        }
-
-        const backToAppBtn = document.getElementById('back-to-app-btn');
-        if (backToAppBtn) {
-            backToAppBtn.onclick = () => this.backToApp();
-        }
-
-        this.logDebug('✅ Event listeners configured');
+        this.logDebug('✅ State components synced');
     }
 
     getGameHTML() {

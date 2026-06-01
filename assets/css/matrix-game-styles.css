@@ -367,6 +367,9 @@
     font-size: 1.5rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .control-btn:hover {
@@ -781,98 +784,249 @@
     .matrix-config-screen,
     .matrix-game-screen,
     .matrix-results-screen {
-        padding: 15px;
+        padding: 16px;
     }
     
     .matrix-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .matrix-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 16px;
     }
     
     .difficulty-selector {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .diff-btn {
+        padding: 8px 4px;
+        border-radius: 8px;
+    }
+
+    .diff-icon {
+        font-size: 1.1rem;
+    }
+
+    .diff-name {
+        font-size: 0.85rem;
+    }
+
+    .diff-desc {
+        font-size: 0.7rem;
     }
     
     .game-header {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        grid-template-columns: none;
     }
     
     .game-stats {
-        justify-content: space-around;
-        gap: 15px;
+        display: flex;
+        gap: 12px;
+        justify-content: flex-start;
+    }
+
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+        margin-bottom: 2px;
+    }
+
+    .stat-value {
+        font-size: 1.1rem;
     }
     
     .game-timer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-grow: 1;
         justify-content: center;
     }
     
     .timer-bar-container {
         width: 100%;
-        max-width: 250px;
+        max-width: 90px;
+        height: 12px;
+    }
+    
+    .timer-text {
+        font-size: 0.9rem;
+        min-width: 32px;
     }
     
     .game-controls {
+        display: flex;
+        gap: 6px;
+        justify-content: flex-end;
+    }
+
+    .control-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
     
-    .target-pinyin {
-        font-size: 2rem;
-    }
-    
-    .character-matrix {
-        gap: 8px;
-        padding: 10px;
-        max-width: min(95vw, 500px);
-    }
-    
-    .matrix-char {
-        font-size: clamp(1.2rem, 3.5vw, 1.8rem);
-        border-radius: 8px;
-        min-height: 40px;
-    }
-    
-    .results-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    
-    .results-actions {
-        flex-direction: column;
-    }
-    
-    .action-btn {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .character-matrix {
-        gap: 6px;
-        padding: 8px;
-        max-width: min(98vw, 400px);
-    }
-    
-    .matrix-char {
-        font-size: clamp(1rem, 3vw, 1.5rem);
-        border-radius: 6px;
-        min-height: 35px;
-        border-width: 2px;
-    }
-    
     .target-word {
-        padding: 20px;
+        padding: 12px 16px;
+        margin-bottom: 14px;
+    }
+
+    .target-label {
+        font-size: 0.85rem;
+        margin-bottom: 4px;
     }
     
     .target-pinyin {
         font-size: 1.8rem;
+        margin-bottom: 2px;
+    }
+
+    .target-meaning {
+        font-size: 1rem;
     }
     
-    .game-stats {
+    .character-matrix {
+        gap: 8px;
+        padding: 8px;
+        max-width: min(100vw - 32px, 480px);
+    }
+    
+    .matrix-char {
+        font-size: clamp(1.1rem, 5.5vw, 1.6rem);
+        border-radius: 8px;
+        min-height: 40px;
+        aspect-ratio: 1;
+    }
+    
+    .results-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .results-actions {
+        flex-direction: column;
         gap: 10px;
     }
     
+    .action-btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .matrix-config-screen,
+    .matrix-game-screen,
+    .matrix-results-screen {
+        padding: 12px;
+    }
+
+    .matrix-title {
+        font-size: 1.6rem;
+    }
+
+    .matrix-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .difficulty-selector {
+        gap: 6px;
+    }
+
+    .diff-btn {
+        padding: 6px 2px;
+    }
+
+    .diff-icon {
+        font-size: 1rem;
+    }
+
+    .diff-name {
+        font-size: 0.8rem;
+    }
+
+    .diff-desc {
+        display: none;
+    }
+
+    .game-header {
+        margin-bottom: 10px;
+    }
+
+    .game-stats {
+        gap: 8px;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
     .stat-value {
-        font-size: 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .timer-bar-container {
+        max-width: 60px;
+        height: 10px;
+    }
+
+    .timer-text {
+        font-size: 0.8rem;
+    }
+
+    .control-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+    }
+
+    .target-word {
+        padding: 10px 12px;
+        margin-bottom: 10px;
+    }
+
+    .target-label {
+        font-size: 0.75rem;
+        margin-bottom: 2px;
+    }
+
+    .target-pinyin {
+        font-size: 1.5rem;
+    }
+
+    .target-meaning {
+        font-size: 0.85rem;
+    }
+
+    .character-matrix {
+        gap: 6px;
+        padding: 4px;
+        max-width: min(100vw - 24px, 360px);
+    }
+    
+    .matrix-char {
+        font-size: clamp(1rem, 6.5vw, 1.4rem);
+        border-radius: 6px;
+        min-height: 36px;
     }
 }
 

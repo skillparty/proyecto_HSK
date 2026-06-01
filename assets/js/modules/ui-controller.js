@@ -25,8 +25,16 @@ class UIController {
   }
 
   switchTab(tabName) {
+    const oldTab = this.app.currentTab;
+
     // Update app orchestrator state
     this.app.currentTab = tabName;
+
+    // Pause matrix game if leaving matrix tab
+    if (oldTab === "matrix" && window.matrixGame && window.matrixGame.isPlaying && !window.matrixGame.isPaused) {
+      this.logDebug("⏸️ Auto-pausing Matrix Game because user switched tabs");
+      window.matrixGame.togglePause();
+    }
 
     try {
       localStorage.setItem(this.app.lastTabStorageKey, tabName);
@@ -144,6 +152,8 @@ class UIController {
         if (!this.app.matrixInitialized) {
           this.app.initializeMatrixGame();
           this.app.matrixInitialized = true;
+        } else if (this.app.matrixController) {
+          this.app.matrixController.initialize();
         }
         break;
       case "leaderboard":
