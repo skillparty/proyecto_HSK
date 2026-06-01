@@ -1,4 +1,4 @@
-const SW_VERSION = "3.6.10-design-fix";
+const SW_VERSION = "3.6.11-layout-fix";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [

@@ -2855,7 +2855,7 @@ body.light-theme .achievement-item.lock {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .stat-card {
@@ -2910,8 +2910,8 @@ body.light-theme .achievement-item.lock {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .stats-chart-card,
@@ -3883,7 +3883,7 @@ body.zen-mode .practice-container {
     border-radius: var(--radius-lg);
     padding: 24px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    margin-bottom: 24px;
+    margin-bottom: 10px;
 }
 
 body.light-theme .stats-heatmap-card {
@@ -4300,10 +4300,9 @@ body.light-theme .dashboard-3d-portal {
     .matrix-game-container {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        min-height: 100%;
-        padding: 24px;
+        padding: 16px 24px;
         box-sizing: border-box;
         width: 100%;
     }
@@ -4319,7 +4318,6 @@ body.light-theme .dashboard-3d-portal {
     }
 
     .stats-overview {
-        height: 100%;
         display: flex;
         flex-direction: column;
         gap: 10px;
