@@ -1282,6 +1282,44 @@
         box-sizing: border-box;
     }
 
+    .matrix-game-screen {
+        display: grid !important;
+        grid-template-columns: 280px 1fr !important;
+        grid-template-rows: auto 1fr !important;
+        gap: 20px 24px !important;
+        align-items: center !important;
+        max-width: 950px !important;
+        max-height: 100% !important;
+        overflow: hidden !important;
+        position: relative !important;
+    }
+
+    .matrix-game-screen .game-header {
+        grid-column: 1 / -1 !important;
+        margin-bottom: 0px !important;
+    }
+
+    .matrix-game-screen .target-word {
+        grid-column: 1 !important;
+        grid-row: 2 !important;
+        margin-bottom: 0 !important;
+        height: auto !important;
+        min-height: 220px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 24px 16px !important;
+    }
+
+    .matrix-game-screen .character-matrix {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        max-height: calc(100vh - 280px) !important;
+        max-width: calc(100vh - 280px) !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+
     .matrix-settings {
         padding: 20px;
         display: grid;

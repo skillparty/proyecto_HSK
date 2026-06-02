@@ -1,4 +1,4 @@
-const SW_VERSION = "3.6.11-layout-fix";
+const SW_VERSION = "3.6.12-matrix-fix";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -14,7 +14,7 @@ const PRECACHE_FILES = [
   "./config/manifest.json",
   "./assets/css/design-tokens.css",
   "./assets/css/styles-professional.css?v=26",
-  "./assets/css/matrix-game-styles.css?v=5",
+  "./assets/css/matrix-game-styles.css?v=6",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css",
   "./assets/css/quantifier-snake-styles.css?v=1",
