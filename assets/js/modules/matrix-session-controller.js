@@ -134,6 +134,7 @@ class MatrixSessionController {
 
         this.game.isPlaying = true;
         this.game.isPaused = false;
+        this.game.roundAnswered = false;
         this.game.startTime = Date.now();
 
         this.game.renderMatrix();

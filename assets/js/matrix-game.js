@@ -3,6 +3,9 @@
 
 class MatrixGame {
     constructor() {
+        if (window.matrixGame) {
+            return window.matrixGame;
+        }
         // Estado del juego
         this.currentLevel = 1;
         this.difficulty = 'normal'; // 'easy', 'normal', 'hard'
@@ -44,6 +47,7 @@ class MatrixGame {
         this.correctPosition = null;
         this.timer = null;
         this.startTime = null;
+        this.roundAnswered = false;
 
         // Estadísticas de la sesión
         this.sessionStats = {
@@ -174,8 +178,9 @@ class MatrixGame {
             }
 
             // Clic en caracteres de la matriz
-            if (e.target.classList.contains('matrix-char')) {
-                this.checkAnswer(e.target);
+            const charBtn = e.target.closest('.matrix-char');
+            if (charBtn) {
+                this.checkAnswer(charBtn);
             }
         });
 
@@ -236,6 +241,7 @@ class MatrixGame {
         this.sessionStats.streak = 0;
         this.sessionStats.totalRounds = 0;
         this.currentRound = 0;
+        this.roundAnswered = false;
 
         // Configurar tiempo
         this.timeRemaining = this.config[this.difficulty].timeLimit;
@@ -291,6 +297,7 @@ class MatrixGame {
 
         this.currentRound++;
         this.sessionStats.totalRounds++;
+        this.roundAnswered = false;
 
         // Seleccionar palabra objetivo aleatoria
         this.currentWord = this.vocabulary[Math.floor(Math.random() * this.vocabulary.length)];
@@ -357,6 +364,11 @@ class MatrixGame {
         // Limpiar matriz anterior
         matrixContainer.innerHTML = '';
 
+        // Restablecer eventos de puntero
+        if (matrixContainer) {
+            matrixContainer.style.pointerEvents = 'auto';
+        }
+
         // Establecer grid CSS
         matrixContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
         matrixContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
@@ -376,7 +388,20 @@ class MatrixGame {
     }
 
     checkAnswer(element) {
-        if (!this.isPlaying || this.isPaused) return;
+        if (!this.isPlaying || this.isPaused || this.roundAnswered) return;
+
+        this.roundAnswered = true;
+
+        // Desactivar interacciones del puntero en la cuadrícula temporalmente
+        const matrixContainer = document.getElementById('character-matrix');
+        if (matrixContainer) {
+            matrixContainer.style.pointerEvents = 'none';
+        }
+
+        // Desactivar eventos de puntero en cada botón individualmente también
+        document.querySelectorAll('.matrix-char').forEach(btn => {
+            btn.style.pointerEvents = 'none';
+        });
 
         const index = parseInt(element.dataset.index);
         const responseTime = (Date.now() - this.startTime) / 1000; // en segundos
@@ -854,11 +879,15 @@ class MatrixGame {
     }
 }
 
-// Inicializar el juego cuando se carga el documento
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+// Inicializar el juego cuando se carga el documento si no se ha inicializado ya
+if (!window.matrixGame) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.matrixGame) {
+                window.matrixGame = new MatrixGame();
+            }
+        });
+    } else {
         window.matrixGame = new MatrixGame();
-    });
-} else {
-    window.matrixGame = new MatrixGame();
+    }
 }
