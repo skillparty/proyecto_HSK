@@ -1,0 +1,314 @@
+/* ========================================================
+   Hanzi Builder – Radical assembly and character structure game
+   Prefix: .hanzi-build-
+   ======================================================== */
+
+.hanzi-build-shell {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+}
+
+.hanzi-build-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-1);
+    margin: 0 0 .35rem;
+    text-align: center;
+}
+
+.hanzi-build-subtitle {
+    font-size: .92rem;
+    color: var(--text-2);
+    text-align: center;
+    margin: 0 0 1.5rem;
+    line-height: 1.4;
+}
+
+/* ── Setup ───────────────────────────────────────────── */
+.hanzi-build-setup {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.hanzi-build-setup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.hanzi-build-select-label {
+    display: block;
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--text-2);
+    margin-bottom: .4rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.hanzi-build-select {
+    width: 100%;
+    padding: .55rem .8rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text-1);
+    font-size: .92rem;
+    cursor: pointer;
+    transition: border-color .2s;
+}
+.hanzi-build-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb, 211 47 47), .15);
+}
+
+.hanzi-build-rules {
+    list-style: none;
+    padding: 0;
+    margin: .5rem 0 0;
+    grid-column: span 2;
+}
+.hanzi-build-rules li {
+    font-size: .85rem;
+    color: var(--text-2);
+    padding: .3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+}
+.hanzi-build-rules li::before {
+    content: '🧩';
+    position: absolute;
+    left: 0;
+}
+
+.hanzi-build-start-row {
+    text-align: center;
+    margin-top: .5rem;
+}
+
+/* ── Buttons ─────────────────────────────────────────── */
+.hanzi-build-btn-primary {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    border: none;
+    padding: .7rem 2rem;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .2s;
+}
+.hanzi-build-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16,185,129,.35);
+}
+
+.hanzi-build-btn-secondary {
+    background: var(--surface-2);
+    color: var(--text-1);
+    border: 1px solid var(--border);
+    padding: .55rem 1.4rem;
+    border-radius: var(--radius-md);
+    font-size: .9rem;
+    cursor: pointer;
+    transition: background .15s;
+}
+.hanzi-build-btn-secondary:hover {
+    background: var(--surface-3, var(--surface-1));
+}
+
+.hanzi-build-btn-neutral {
+    background: transparent;
+    color: var(--text-2);
+    border: 1px solid var(--border);
+    padding: .55rem 1.4rem;
+    border-radius: var(--radius-md);
+    font-size: .9rem;
+    cursor: pointer;
+    transition: color .15s;
+}
+.hanzi-build-btn-neutral:hover { color: var(--text-1); }
+
+/* ── Game Area ───────────────────────────────────────── */
+.hanzi-build-game {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
+}
+
+.hanzi-build-hud {
+    display: flex;
+    justify-content: space-around;
+    gap: .5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.hanzi-build-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .15rem;
+}
+.hanzi-build-metric-label {
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--text-2);
+}
+.hanzi-build-metric-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-1);
+}
+
+/* Target display card */
+.hanzi-build-target-card {
+    background: var(--surface-1);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.hanzi-build-target-hint {
+    font-size: 1.1rem;
+    color: var(--text-2);
+    margin-bottom: 0.5rem;
+}
+.hanzi-build-target-meaning {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.3rem;
+}
+.hanzi-build-target-pinyin {
+    font-size: 1rem;
+    color: var(--text-3);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Assembly zone */
+.hanzi-build-assembly-zone {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    min-height: 80px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    align-items: center;
+}
+
+.hanzi-build-slot {
+    width: 60px;
+    height: 60px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-1);
+    background: transparent;
+    transition: all 0.2s;
+}
+
+.hanzi-build-slot.filled {
+    border-style: solid;
+    border-color: var(--primary);
+    background: var(--surface-1);
+}
+
+/* Component palette */
+.hanzi-build-palette {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 1rem;
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.hanzi-build-part {
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-1);
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.15s;
+}
+.hanzi-build-part:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.hanzi-build-part:active {
+    transform: scale(0.95);
+}
+.hanzi-build-part.used {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Actions bar */
+.hanzi-build-actions {
+    display: flex;
+    justify-content: center;
+    gap: .8rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Animations */
+@keyframes hanzi-build-success {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); filter: brightness(1.2); }
+    100% { transform: scale(1); }
+}
+.hanzi-build-success-anim {
+    animation: hanzi-build-success 0.4s ease-out;
+}
+
+/* ── Mobile ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .hanzi-build-setup-grid { grid-template-columns: 1fr; }
+    .hanzi-build-rules { grid-column: span 1; }
+}
+
+@media (max-width: 480px) {
+    .hanzi-build-shell { padding: 1rem .5rem; }
+    .hanzi-build-title { font-size: 1.3rem; }
+    .hanzi-build-part { width: 50px; height: 50px; font-size: 1.5rem; }
+    .hanzi-build-slot { width: 50px; height: 50px; font-size: 1.5rem; }
+    .hanzi-build-actions { flex-direction: column; align-items: stretch; }
+}

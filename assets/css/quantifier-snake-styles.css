@@ -283,3 +283,57 @@
         width: 100%;
     }
 }
+
+/* Mobile controls (D-pad) styling */
+.snakeq-mobile-controls {
+    display: none; /* Hidden by default on desktop */
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 20px auto 10px;
+    max-width: 200px;
+}
+
+.dpad-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.dpad-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(30, 41, 59, 0.85);
+    color: #f8fafc;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.1s ease, background 0.2s ease, border-color 0.2s ease;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.dpad-btn:active {
+    transform: scale(0.9);
+    background: rgba(16, 185, 129, 0.4);
+    border-color: rgba(16, 185, 129, 0.6);
+}
+
+.dpad-center {
+    width: 56px;
+    height: 56px;
+}
+
+/* Breakpoint to show on touch screens or small devices */
+@media (max-width: 900px) {
+    .snakeq-mobile-controls {
+        display: flex;
+    }
+}

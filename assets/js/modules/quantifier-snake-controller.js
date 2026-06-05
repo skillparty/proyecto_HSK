@@ -51,6 +51,7 @@ class QuantifierSnakeController {
     this.wordsByQuantifier = new Map();
 
     this.state = this.createDefaultState();
+    this.directionQueue = [];
     this.loopHandle = null;
     this.isInitialized = false;
     this.eventsBound = false;
@@ -185,6 +186,62 @@ class QuantifierSnakeController {
         this.updateModeLabel();
         this.updateTargetBadge();
       });
+    }
+
+    // Cache D-pad elements
+    this.btnUp = document.getElementById("snakeq-btn-up");
+    this.btnDown = document.getElementById("snakeq-btn-down");
+    this.btnLeft = document.getElementById("snakeq-btn-left");
+    this.btnRight = document.getElementById("snakeq-btn-right");
+
+    const addDirectionTrigger = (element, dir) => {
+      if (!element) return;
+      const handler = (e) => {
+        e.preventDefault();
+        this.addDirectionInput(dir);
+      };
+      element.addEventListener("click", handler);
+      element.addEventListener("touchstart", handler, { passive: false });
+    };
+
+    addDirectionTrigger(this.btnUp, { x: 0, y: -1 });
+    addDirectionTrigger(this.btnDown, { x: 0, y: 1 });
+    addDirectionTrigger(this.btnLeft, { x: -1, y: 0 });
+    addDirectionTrigger(this.btnRight, { x: 1, y: 0 });
+
+    // Swipe controls on canvas wrapper
+    const canvasWrap = this.canvasWrap || this.canvas;
+    if (canvasWrap) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      canvasWrap.addEventListener("touchstart", (e) => {
+        if (!this.state.isRunning || this.state.isPaused) return;
+        const touch = e.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      }, { passive: true });
+
+      canvasWrap.addEventListener("touchend", (e) => {
+        if (!this.state.isRunning || this.state.isPaused) return;
+        const touch = e.changedTouches[0];
+        const diffX = touch.clientX - touchStartX;
+        const diffY = touch.clientY - touchStartY;
+        const threshold = 30; // pixels
+
+        if (Math.max(Math.abs(diffX), Math.abs(diffY)) < threshold) {
+          return;
+        }
+
+        let nextDirection = null;
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          nextDirection = diffX > 0 ? { x: 1, y: 0 } : { x: -1, y: 0 };
+        } else {
+          nextDirection = diffY > 0 ? { x: 0, y: 1 } : { x: 0, y: -1 };
+        }
+
+        this.addDirectionInput(nextDirection);
+      }, { passive: true });
     }
 
     window.addEventListener("resize", this.boundResize);
@@ -347,9 +404,8 @@ class QuantifierSnakeController {
       return;
     }
 
-    const candidateDirection = this.state.queuedDirection;
-    if (!this.isOppositeDirection(candidateDirection, this.state.direction)) {
-      this.state.direction = candidateDirection;
+    if (this.directionQueue.length > 0) {
+      this.state.direction = this.directionQueue.shift();
     }
 
     const currentHead = this.state.snake[0];
@@ -371,6 +427,14 @@ class QuantifierSnakeController {
       this.isOutsideBoard(nextHead) ||
       this.isSnakeCollision(nextHead, snakeBodyToCheck)
     ) {
+      // Play particle explosion at head coordinates
+      if (typeof window.createParticles === "function" && this.canvas) {
+        const rect = this.canvas.getBoundingClientRect();
+        const x = rect.left + (currentHead.x + 0.5) * this.cellSize;
+        const y = rect.top + (currentHead.y + 0.5) * this.cellSize;
+        window.createParticles(x, y, '#ef4444');
+      }
+
       this.consumeLife("collision");
       return;
     }
@@ -401,11 +465,38 @@ class QuantifierSnakeController {
         "success",
       );
 
+      // Play audio pronunciation of the eaten word
+      if (this.app && typeof this.app.playAudio === "function" && eatenFood.word?.hanzi) {
+        this.app.playAudio(eatenFood.word.hanzi);
+      }
+
+      // Play game coin sound
+      if (this.app.audioController) {
+        this.app.audioController.playGameCoin();
+      }
+
+      // Play particle explosion at coordinates
+      if (typeof window.createParticles === "function" && this.canvas) {
+        const rect = this.canvas.getBoundingClientRect();
+        const x = rect.left + (eatenFood.x + 0.5) * this.cellSize;
+        const y = rect.top + (eatenFood.y + 0.5) * this.cellSize;
+        window.createParticles(x, y, this.getTargetColor());
+      }
+
       this.selectNextTarget();
       this.spawnFoodsForTarget();
     } else {
       // Cancel growth when the selected word is not compatible.
       this.state.snake.pop();
+
+      // Play particle explosion at coordinates
+      if (typeof window.createParticles === "function" && this.canvas) {
+        const rect = this.canvas.getBoundingClientRect();
+        const x = rect.left + (eatenFood.x + 0.5) * this.cellSize;
+        const y = rect.top + (eatenFood.y + 0.5) * this.cellSize;
+        window.createParticles(x, y, '#ef4444');
+      }
+
       this.consumeLife("wrong-word", eatenFood.word);
       return;
     }
@@ -415,6 +506,11 @@ class QuantifierSnakeController {
 
   consumeLife(reason, word) {
     this.state.lives = Math.max(0, this.state.lives - 1);
+
+    // Play game explosion sound
+    if (this.app.audioController) {
+      this.app.audioController.playGameExplosion();
+    }
 
     if (reason === "wrong-word") {
       this.setFeedback(
@@ -445,6 +541,11 @@ class QuantifierSnakeController {
     this.state.isRunning = false;
     this.state.isPaused = false;
     this.stopLoop();
+
+    // Play game over sound
+    if (this.app.audioController) {
+      this.app.audioController.playGameOver();
+    }
 
     // Validar y guardar récord de puntuación alta
     let isNewRecord = false;
@@ -542,12 +643,24 @@ class QuantifierSnakeController {
     }
 
     event.preventDefault();
+    this.addDirectionInput(nextDirection);
+  }
 
-    if (this.isOppositeDirection(nextDirection, this.state.direction)) {
+  addDirectionInput(nextDirection) {
+    if (!this.state.isRunning || this.state.isPaused) {
       return;
     }
 
-    this.state.queuedDirection = nextDirection;
+    const lastDir = this.directionQueue.length > 0
+      ? this.directionQueue[this.directionQueue.length - 1]
+      : this.state.direction;
+
+    if (!this.isOppositeDirection(nextDirection, lastDir) &&
+        (nextDirection.x !== lastDir.x || nextDirection.y !== lastDir.y)) {
+      if (this.directionQueue.length < 2) {
+        this.directionQueue.push(nextDirection);
+      }
+    }
   }
 
   isOppositeDirection(a, b) {
@@ -585,6 +698,7 @@ class QuantifierSnakeController {
 
     this.state.direction = { x: 1, y: 0 };
     this.state.queuedDirection = { x: 1, y: 0 };
+    this.directionQueue = [];
   }
 
   selectNextTarget() {

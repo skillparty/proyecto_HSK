@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=4">
     <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=3">
     <link rel="stylesheet" href="assets/css/quantifier-snake-styles.css?v=3">
+    <link rel="stylesheet" href="assets/css/tones-invaders-styles.css?v=1">
+    <link rel="stylesheet" href="assets/css/hanzi-builder-styles.css?v=1">
+    <link rel="stylesheet" href="assets/css/word-linker-styles.css?v=1">
     <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -261,6 +264,15 @@
                         </button>
                         <button class="nav-dropdown-item" data-tab="matrix">
                             <span data-i18n="matrixTab">Matrix</span>
+                        </button>
+                        <button class="nav-dropdown-item" data-tab="tones-invaders">
+                            <span data-i18n="tonesInvadersTab">Invasores de Tonos</span>
+                        </button>
+                        <button class="nav-dropdown-item" data-tab="hanzi-builder">
+                            <span data-i18n="hanziBuilderTab">Constructor de Hanzi</span>
+                        </button>
+                        <button class="nav-dropdown-item" data-tab="word-linker">
+                            <span data-i18n="wordLinkerTab">Conector de Palabras</span>
                         </button>
                     </div>
                 </div>
@@ -885,6 +897,21 @@
                                 <canvas id="snakeq-canvas" width="540" height="540"></canvas>
                             </div>
 
+                            <!-- Mobile Touch D-pad Controls -->
+                            <div id="snakeq-mobile-controls" class="snakeq-mobile-controls">
+                                <div class="dpad-row">
+                                    <button id="snakeq-btn-up" class="dpad-btn btn-up" aria-label="Up">▲</button>
+                                </div>
+                                <div class="dpad-row">
+                                    <button id="snakeq-btn-left" class="dpad-btn btn-left" aria-label="Left">◀</button>
+                                    <div class="dpad-center"></div>
+                                    <button id="snakeq-btn-right" class="dpad-btn btn-right" aria-label="Right">▶</button>
+                                </div>
+                                <div class="dpad-row">
+                                    <button id="snakeq-btn-down" class="dpad-btn btn-down" aria-label="Down">▼</button>
+                                </div>
+                            </div>
+
                             <p id="snakeq-feedback" class="snakeq-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
 
                             <div class="snakeq-actions">
@@ -1066,6 +1093,222 @@
                     <!-- El contenido del juego se cargará dinámicamente aquí -->
                 </div>
             </div>
+
+            <!-- Tones Invaders Tab -->
+            <div id="tones-invaders" class="tab-panel" style="display: none;">
+                <div class="tones-inv-shell">
+                    <h2 class="tones-inv-title" data-i18n="tonesInvTitle">Tones Invaders 🚀</h2>
+                    <p class="tones-inv-subtitle" data-i18n="tonesInvSubtitle">Domina los tonos del chino mandarín en esta batalla espacial arcade.</p>
+                    
+                    <!-- Setup Screen -->
+                    <div id="tones-inv-setup" class="tones-inv-setup">
+                        <div class="tones-inv-setup-grid">
+                            <div>
+                                <label class="tones-inv-select-label" for="tones-inv-level" data-i18n="tonesInvLevelLabel">Nivel HSK</label>
+                                <select id="tones-inv-level" class="tones-inv-select">
+                                    <option value="all" data-i18n="tonesInvLevelAll">Todos los niveles</option>
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="tones-inv-select-label" for="tones-inv-speed" data-i18n="tonesInvSpeedLabel">Dificultad</label>
+                                <select id="tones-inv-speed" class="tones-inv-select">
+                                    <option value="easy" data-i18n="tonesInvSpeedEasy">Fácil (Lento)</option>
+                                    <option value="normal" selected data-i18n="tonesInvSpeedNormal">Normal</option>
+                                    <option value="hard" data-i18n="tonesInvSpeedHard">Difícil (Rápido)</option>
+                                </select>
+                            </div>
+                            <ul class="tones-inv-rules">
+                                <li data-i18n="tonesInvRule1">Los caracteres caen desde arriba. Identifica su tono correcto.</li>
+                                <li data-i18n="tonesInvRule2">Dispara usando los números del 1 al 5 en tu teclado o los botones en pantalla.</li>
+                                <li data-i18n="tonesInvRule3">Cada acierto destruye el carácter y te da puntos. Si llega abajo, pierdes una vida.</li>
+                            </ul>
+                        </div>
+                        <div class="tones-inv-start-row">
+                            <button id="tones-inv-start-btn" class="tones-inv-btn-primary" data-i18n="tonesInvStartBtn">Iniciar Batalla Espacial</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Screen -->
+                    <div id="tones-inv-game-area" class="tones-inv-game" style="display: none;">
+                        <div class="tones-inv-hud">
+                            <div class="tones-inv-metric">
+                                <span class="tones-inv-metric-label" data-i18n="tonesInvHudScore">PUNTOS</span>
+                                <span id="tones-inv-score" class="tones-inv-metric-value">0</span>
+                            </div>
+                            <div class="tones-inv-metric">
+                                <span class="tones-inv-metric-label" data-i18n="tonesInvHudLives">VIDAS</span>
+                                <span id="tones-inv-lives" class="tones-inv-metric-value">❤️❤️❤️</span>
+                            </div>
+                            <div class="tones-inv-metric">
+                                <span class="tones-inv-metric-label" data-i18n="tonesInvHudLevel">NIVEL</span>
+                                <span id="tones-inv-game-level" class="tones-inv-metric-value">1</span>
+                            </div>
+                        </div>
+                        
+                        <div class="tones-inv-canvas-wrap">
+                            <canvas id="tones-inv-canvas" width="600" height="400"></canvas>
+                        </div>
+                        
+                        <!-- Mobile Controls -->
+                        <div class="tones-inv-tone-buttons">
+                            <button class="tones-inv-tone-btn" data-tone="1">1<span>¯</span></button>
+                            <button class="tones-inv-tone-btn" data-tone="2">2<span>´</span></button>
+                            <button class="tones-inv-tone-btn" data-tone="3">3<span>ˇ</span></button>
+                            <button class="tones-inv-tone-btn" data-tone="4">4<span>`</span></button>
+                            <button class="tones-inv-tone-btn" data-tone="5">5<span>•</span></button>
+                        </div>
+                        
+                        <div class="tones-inv-controls-hint" data-i18n="tonesInvControlsHint">Teclado: Presiona del 1 al 5 para disparar los tonos correspondientes.</div>
+                        
+                        <div class="tones-inv-actions">
+                            <button id="tones-inv-pause-btn" class="tones-inv-btn-secondary" data-i18n="tonesInvPauseBtn">Pausar</button>
+                            <button id="tones-inv-quit-btn" class="tones-inv-btn-neutral" data-i18n="tonesInvQuitBtn">Salir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hanzi Builder Tab -->
+            <div id="hanzi-builder" class="tab-panel" style="display: none;">
+                <div class="hanzi-build-shell">
+                    <h2 class="hanzi-build-title" data-i18n="hanziBuildTitle">Hanzi Builder 🧩</h2>
+                    <p class="hanzi-build-subtitle" data-i18n="hanziBuildSubtitle">Crea caracteres chinos a partir de sus radicales y partes básicas.</p>
+                    
+                    <!-- Setup Screen -->
+                    <div id="hanzi-build-setup" class="hanzi-build-setup">
+                        <div class="hanzi-build-setup-grid">
+                            <div>
+                                <label class="hanzi-build-select-label" for="hanzi-build-level" data-i18n="hanziBuildLevelLabel">Nivel HSK</label>
+                                <select id="hanzi-build-level" class="hanzi-build-select">
+                                    <option value="all" data-i18n="hanziBuildLevelAll">Todos los niveles</option>
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                </select>
+                            </div>
+                            <ul class="hanzi-build-rules">
+                                <li data-i18n="hanziBuildRule1">Se te mostrará el pinyin y el significado de una palabra.</li>
+                                <li data-i18n="hanziBuildRule2">Selecciona las partes de la paleta en el orden correcto para armar el carácter.</li>
+                                <li data-i18n="hanziBuildRule3">Tienes 60 segundos para armar tantos como puedas. ¡Evita errores!</li>
+                            </ul>
+                        </div>
+                        <div class="hanzi-build-start-row">
+                            <button id="hanzi-build-start-btn" class="hanzi-build-btn-primary" data-i18n="hanziBuildStartBtn">Iniciar Puzzle de Hanzi</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Screen -->
+                    <div id="hanzi-build-game-area" class="hanzi-build-game" style="display: none;">
+                        <div class="hanzi-build-hud">
+                            <div class="hanzi-build-metric">
+                                <span class="hanzi-build-metric-label" data-i18n="hanziBuildHudScore">PUNTOS</span>
+                                <span id="hanzi-build-score" class="hanzi-build-metric-value">0</span>
+                            </div>
+                            <div class="hanzi-build-metric">
+                                <span class="hanzi-build-metric-label" data-i18n="hanziBuildHudTimer">TIEMPO</span>
+                                <span id="hanzi-build-timer" class="hanzi-build-metric-value">1:00</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Target Card -->
+                        <div id="hanzi-build-target" class="hanzi-build-target-card">
+                            <span class="hanzi-build-target-hint" data-i18n="hanziBuildTargetHint">Construye la palabra:</span>
+                            <span id="hanzi-build-translation" class="hanzi-build-target-meaning">-</span>
+                            <span id="hanzi-build-pinyin" class="hanzi-build-target-pinyin">-</span>
+                        </div>
+                        
+                        <!-- Assembly Zone -->
+                        <div id="hanzi-build-slots" class="hanzi-build-assembly-zone">
+                            <!-- Assembly slots go here -->
+                        </div>
+                        
+                        <!-- Components Palette -->
+                        <div id="hanzi-build-palette-container" class="hanzi-build-palette">
+                            <!-- Clickable components go here -->
+                        </div>
+                        
+                        <div class="hanzi-build-actions">
+                            <button id="hanzi-build-pause-btn" class="hanzi-build-btn-secondary" data-i18n="hanziBuildPauseBtn">Pausar</button>
+                            <button id="hanzi-build-quit-btn" class="hanzi-build-btn-neutral" data-i18n="hanziBuildQuitBtn">Salir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Word Linker Tab -->
+            <div id="word-linker" class="tab-panel" style="display: none;">
+                <div class="word-link-shell">
+                    <h2 class="word-link-title" data-i18n="wordLinkLabel">Word Linker 🔗</h2>
+                    <p class="word-link-subtitle" data-i18n="wordLinkSubtitle">Conecta caracteres en la cuadrícula para formar palabras HSK de 2 sílabas.</p>
+                    
+                    <!-- Setup Screen -->
+                    <div id="word-link-setup" class="word-link-setup">
+                        <div class="word-link-setup-grid">
+                            <div>
+                                <label class="word-link-select-label" for="word-link-level" data-i18n="wordLinkLevelLabel">Nivel HSK</label>
+                                <select id="word-link-level" class="word-link-select">
+                                    <option value="all" data-i18n="wordLinkLevelAll">Todos los niveles</option>
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                </select>
+                            </div>
+                            <ul class="word-link-rules">
+                                <li data-i18n="wordLinkRule1">Se te mostrará la definición y pinyin de la palabra a buscar.</li>
+                                <li data-i18n="wordLinkRule2">Haz clic en los 2 caracteres correspondientes en la cuadrícula en orden.</li>
+                                <li data-i18n="wordLinkRule3">Encuentra todas las palabras de la sopa de letras antes de que acabe el tiempo.</li>
+                            </ul>
+                        </div>
+                        <div class="word-link-start-row">
+                            <button id="word-link-start-btn" class="word-link-btn-primary" data-i18n="wordLinkStartBtn">Iniciar Sopa de Letras</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Screen -->
+                    <div id="word-link-game-area" class="word-link-game" style="display: none;">
+                        <div class="word-link-hud">
+                            <div class="word-link-metric">
+                                <span class="word-link-metric-label" data-i18n="wordLinkHudScore">PUNTOS</span>
+                                <span id="word-link-score" class="word-link-metric-value">0</span>
+                            </div>
+                            <div class="word-link-metric">
+                                <span class="word-link-metric-label" data-i18n="wordLinkHudTimer">TIEMPO</span>
+                                <span id="word-link-timer" class="word-link-metric-value">1:30</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Clue Display -->
+                        <div class="word-link-clue-card">
+                            <div class="word-link-clue-label" data-i18n="wordLinkClueLabel">Encuentra la palabra:</div>
+                            <div id="word-link-clue" class="word-link-clue-text">-</div>
+                        </div>
+                        
+                        <!-- Grid Board -->
+                        <div class="word-link-grid-container">
+                            <div id="word-link-grid-board" class="word-link-grid">
+                                <!-- 16 cells will be generated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="word-link-actions">
+                            <button id="word-link-pause-btn" class="word-link-btn-secondary" data-i18n="wordLinkPauseBtn">Pausar</button>
+                            <button id="word-link-quit-btn" class="word-link-btn-neutral" data-i18n="wordLinkQuitBtn">Salir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
     </main>
 
@@ -1226,6 +1469,9 @@
     <script src="assets/js/modules/matrix-session-controller.js?v=2" defer></script>
     <script src="assets/js/modules/matrix-score-controller.js?v=2" defer></script>
     <script src="assets/js/matrix-game.js?v=8" defer></script>
+    <script src="assets/js/tones-invaders-game.js?v=1" defer></script>
+    <script src="assets/js/hanzi-builder-game.js?v=1" defer></script>
+    <script src="assets/js/word-linker-game.js?v=1" defer></script>
     <script src="assets/js/leaderboard.js?v=4" defer></script>
 
     <!-- Background Image Integration -->

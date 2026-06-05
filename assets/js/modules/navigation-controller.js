@@ -9,6 +9,9 @@ class NavigationController {
       "past-exams",
       "snake-quantifiers",
       "matrix",
+      "tones-invaders",
+      "hanzi-builder",
+      "word-linker",
       "leaderboard",
       "stats",
     ]);
@@ -97,6 +100,9 @@ class NavigationController {
       "past-exams",
       "snake-quantifiers",
       "matrix",
+      "tones-invaders",
+      "hanzi-builder",
+      "word-linker",
       "leaderboard",
       "stats",
     ].includes(tabName);

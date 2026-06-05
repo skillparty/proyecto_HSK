@@ -1,3 +1,45 @@
+// Particle effect generator for games
+window.createParticles = function(x, y, color) {
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.left = '0';
+    container.style.top = '0';
+    container.style.width = '100%';
+    container.style.height = '100%';
+    container.style.pointerEvents = 'none';
+    container.style.zIndex = '9999';
+    document.body.appendChild(container);
+
+    const count = 16;
+    for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'absolute';
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.width = `${Math.random() * 8 + 6}px`;
+        particle.style.height = particle.style.width;
+        particle.style.borderRadius = '50%';
+        particle.style.backgroundColor = color;
+        container.appendChild(particle);
+
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 80 + 40;
+        const targetX = Math.cos(angle) * velocity;
+        const targetY = Math.sin(angle) * velocity;
+
+        particle.animate([
+            { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+            { transform: `translate(${targetX}px, ${targetY}px) scale(0)`, opacity: 0 }
+        ], {
+            duration: 800,
+            easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)',
+            fill: 'forwards'
+        });
+    }
+
+    setTimeout(() => container.remove(), 1000);
+};
+
 // HSK Learning App - Complete Implementation
 class HSKApp {
     constructor() {

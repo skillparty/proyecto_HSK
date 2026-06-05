@@ -35,6 +35,15 @@ class UIController {
       this.logDebug("⏸️ Auto-pausing Matrix Game because user switched tabs");
       window.matrixGame.togglePause();
     }
+    if (oldTab === "tones-invaders" && window.tonesInvadersGame && window.tonesInvadersGame.state.isPlaying && !window.tonesInvadersGame.state.isPaused) {
+      window.tonesInvadersGame.togglePause();
+    }
+    if (oldTab === "hanzi-builder" && window.hanziBuilderGame && window.hanziBuilderGame.state.isPlaying && !window.hanziBuilderGame.state.isPaused) {
+      window.hanziBuilderGame.togglePause();
+    }
+    if (oldTab === "word-linker" && window.wordLinkerGame && window.wordLinkerGame.state.isPlaying && !window.wordLinkerGame.state.isPaused) {
+      window.wordLinkerGame.togglePause();
+    }
 
     try {
       localStorage.setItem(this.app.lastTabStorageKey, tabName);
@@ -161,6 +170,24 @@ class UIController {
           this.app.initializeLeaderboard();
           this.app.leaderboardInitialized = true;
         }
+        break;
+      case "tones-invaders":
+        if (!window.tonesInvadersGame) {
+          window.tonesInvadersGame = new TonesInvadersGame(this.app);
+        }
+        window.tonesInvadersGame.initialize();
+        break;
+      case "hanzi-builder":
+        if (!window.hanziBuilderGame) {
+          window.hanziBuilderGame = new HanziBuilderGame(this.app);
+        }
+        window.hanziBuilderGame.initialize();
+        break;
+      case "word-linker":
+        if (!window.wordLinkerGame) {
+          window.wordLinkerGame = new WordLinkerGame(this.app);
+        }
+        window.wordLinkerGame.initialize();
         break;
     }
   }

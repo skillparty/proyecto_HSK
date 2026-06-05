@@ -281,25 +281,40 @@ class QuantifierSnakeCanvasRenderer {
 
     drawFoods() {
         const controller = this.controller;
+        const config = controller.difficultyConfig[controller.state.difficulty] || controller.difficultyConfig.easy;
 
         controller.state.foods.forEach((food) => {
             const x = food.x * controller.cellSize;
             const y = food.y * controller.cellSize;
             const inset = controller.cellSize * 0.08;
-            const size = controller.cellSize - inset * 2;
-            const radius = controller.cellSize * 0.24;
+
+            // Food pulse effect (sinusoidal scaling over time)
+            const pulseFactor = 0.9 + 0.1 * Math.sin(Date.now() / 150 + (food.x * 3 + food.y * 7));
+            const baseSize = controller.cellSize - inset * 2;
+            const size = baseSize * pulseFactor;
+            const centerOffset = (controller.cellSize - size) / 2;
+            const drawX = x + centerOffset;
+            const drawY = y + centerOffset;
+            const radius = size * 0.24;
 
             controller.ctx.save();
+
+            // Neon glow for compatible food
+            if (config.showColorHints && food.compatible) {
+                controller.ctx.shadowBlur = 12;
+                controller.ctx.shadowColor = controller.getTargetColor();
+            }
+
             controller.ctx.fillStyle = this.getFoodColor(food);
-            this.drawRoundedRect(x + inset, y + inset, size, size, radius);
+            this.drawRoundedRect(drawX, drawY, size, size, radius);
             controller.ctx.fill();
 
-            controller.ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
-            controller.ctx.lineWidth = 1;
+            controller.ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+            controller.ctx.lineWidth = 1.5;
             controller.ctx.stroke();
 
             const label = food.word.hanzi;
-            const fontSize = label.length > 1 ? controller.cellSize * 0.38 : controller.cellSize * 0.48;
+            const fontSize = label.length > 1 ? size * 0.38 : size * 0.48;
 
             controller.ctx.fillStyle = '#f8fafc';
             controller.ctx.font = '600 ' + fontSize.toFixed(1) + 'px "Noto Sans SC", sans-serif';
@@ -313,16 +328,72 @@ class QuantifierSnakeCanvasRenderer {
 
     drawOverlay(message) {
         const controller = this.controller;
+        const width = controller.canvas.width;
+        const height = controller.canvas.height;
 
         controller.ctx.save();
-        controller.ctx.fillStyle = 'rgba(2, 6, 23, 0.58)';
-        controller.ctx.fillRect(0, 0, controller.canvas.width, controller.canvas.height);
+        // Darkened glass backdrop cover
+        controller.ctx.fillStyle = 'rgba(15, 23, 42, 0.72)';
+        controller.ctx.fillRect(0, 0, width, height);
 
-        controller.ctx.fillStyle = '#f8fafc';
-        controller.ctx.font = '700 24px Inter, sans-serif';
+        // Center card configuration
+        const cardW = Math.min(width * 0.8, 340);
+        const cardH = Math.min(height * 0.45, 180);
+        const cardX = (width - cardW) / 2;
+        const cardY = (height - cardH) / 2;
+
+        // Card glow shadow
+        controller.ctx.shadowBlur = 25;
+        controller.ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+
+        // Inner panel (Glassmorphism)
+        const panelGrad = controller.ctx.createLinearGradient(cardX, cardY, cardX + cardW, cardY + cardH);
+        panelGrad.addColorStop(0, 'rgba(30, 41, 59, 0.95)');
+        panelGrad.addColorStop(1, 'rgba(15, 23, 42, 0.95)');
+        controller.ctx.fillStyle = panelGrad;
+
+        this.drawRoundedRect(cardX, cardY, cardW, cardH, 16);
+        controller.ctx.fill();
+
+        // Card border
+        controller.ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        controller.ctx.lineWidth = 1.5;
+        controller.ctx.stroke();
+
+        // Reset shadow
+        controller.ctx.shadowBlur = 0;
+
+        // Draw text
         controller.ctx.textAlign = 'center';
         controller.ctx.textBaseline = 'middle';
-        controller.ctx.fillText(message, controller.canvas.width / 2, controller.canvas.height / 2);
+
+        if (controller.state.lives <= 0 && !controller.state.isRunning) {
+            // GAME OVER STATE
+            controller.ctx.fillStyle = '#ef4444'; // Red title
+            controller.ctx.font = '700 24px "Inter", sans-serif';
+            controller.ctx.fillText(message, width / 2, cardY + cardH * 0.3);
+
+            controller.ctx.fillStyle = '#f8fafc';
+            controller.ctx.font = '500 16px "Inter", sans-serif';
+            const scoreLabel = controller.app.currentLanguage === 'es' ? 'Puntaje final: ' : 'Final Score: ';
+            controller.ctx.fillText(scoreLabel + controller.state.score, width / 2, cardY + cardH * 0.58);
+
+            controller.ctx.fillStyle = '#94a3b8';
+            controller.ctx.font = '400 13px "Inter", sans-serif';
+            const actionLabel = controller.app.currentLanguage === 'es' ? 'Presiona Reiniciar para jugar de nuevo' : 'Click Restart to play again';
+            controller.ctx.fillText(actionLabel, width / 2, cardY + cardH * 0.8);
+        } else {
+            // PAUSED STATE
+            controller.ctx.fillStyle = '#f59e0b'; // Amber title
+            controller.ctx.font = '700 24px "Inter", sans-serif';
+            controller.ctx.fillText(message, width / 2, cardY + cardH * 0.35);
+
+            controller.ctx.fillStyle = '#cbd5e1';
+            controller.ctx.font = '400 14px "Inter", sans-serif';
+            const pauseLabel = controller.app.currentLanguage === 'es' ? 'Presiona Reanudar o Espacio para seguir' : 'Press Resume or Space to continue';
+            controller.ctx.fillText(pauseLabel, width / 2, cardY + cardH * 0.65);
+        }
+
         controller.ctx.restore();
     }
 

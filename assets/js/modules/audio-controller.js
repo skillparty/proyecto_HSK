@@ -1,6 +1,27 @@
 class AudioController {
     constructor(app) {
         this.app = app;
+        this.synth = new AudioSynthesizer();
+    }
+
+    playGameCoin() {
+        if (!this.app.isAudioEnabled) return;
+        this.synth.playCoin();
+    }
+
+    playGameExplosion() {
+        if (!this.app.isAudioEnabled) return;
+        this.synth.playExplosion();
+    }
+
+    playGameHit() {
+        if (!this.app.isAudioEnabled) return;
+        this.synth.playHit();
+    }
+
+    playGameOver() {
+        if (!this.app.isAudioEnabled) return;
+        this.synth.playGameOver();
     }
 
     toggleAudio() {
@@ -192,6 +213,129 @@ class AudioController {
                 button.style.color = '';
             }
         });
+    }
+}
+
+class AudioSynthesizer {
+    constructor() {
+        this.ctx = null;
+    }
+
+    init() {
+        if (!this.ctx) {
+            this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume();
+        }
+    }
+
+    playCoin() {
+        try {
+            this.init();
+            if (!this.ctx || this.ctx.state === 'suspended') return;
+            const now = this.ctx.currentTime;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(587.33, now); // D5
+            osc.frequency.setValueAtTime(880, now + 0.08); // A5
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.005, now + 0.3);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.3);
+        } catch (e) {
+            console.warn('AudioSynthesizer error:', e);
+        }
+    }
+
+    playHit() {
+        try {
+            this.init();
+            if (!this.ctx || this.ctx.state === 'suspended') return;
+            const now = this.ctx.currentTime;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(140, now);
+            osc.frequency.exponentialRampToValueAtTime(35, now + 0.15);
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.exponentialRampToValueAtTime(0.005, now + 0.15);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.15);
+        } catch (e) {
+            console.warn('AudioSynthesizer error:', e);
+        }
+    }
+
+    playExplosion() {
+        try {
+            this.init();
+            if (!this.ctx || this.ctx.state === 'suspended') return;
+            const now = this.ctx.currentTime;
+
+            const bufferSize = this.ctx.sampleRate * 0.35;
+            const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+
+            const noise = this.ctx.createBufferSource();
+            noise.buffer = buffer;
+
+            const filter = this.ctx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(600, now);
+            filter.frequency.exponentialRampToValueAtTime(40, now + 0.35);
+
+            const gain = this.ctx.createGain();
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.005, now + 0.35);
+
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(this.ctx.destination);
+
+            noise.start(now);
+            noise.stop(now + 0.35);
+        } catch (e) {
+            console.warn('AudioSynthesizer error:', e);
+        }
+    }
+
+    playGameOver() {
+        try {
+            this.init();
+            if (!this.ctx || this.ctx.state === 'suspended') return;
+            const now = this.ctx.currentTime;
+            const notes = [293.66, 277.18, 261.63, 196.00]; // D4, C#4, C4, G3
+            const durations = [0.12, 0.12, 0.12, 0.4];
+            let time = now;
+
+            notes.forEach((freq, idx) => {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, time);
+
+                gain.gain.setValueAtTime(0.08, time);
+                gain.gain.exponentialRampToValueAtTime(0.005, time + durations[idx]);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(time);
+                osc.stop(time + durations[idx]);
+
+                time += durations[idx] * 0.85;
+            });
+        } catch (e) {
+            console.warn('AudioSynthesizer error:', e);
+        }
     }
 }
 

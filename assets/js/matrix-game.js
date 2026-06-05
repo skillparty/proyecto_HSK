@@ -447,6 +447,24 @@ class MatrixGame {
         element.classList.add('correct');
         this.showFeedback('correct', `+${roundPoints} puntos`);
 
+        // Play audio pronunciation of the correct character
+        if (window.app && typeof window.app.playAudio === 'function' && this.currentWord?.character) {
+            window.app.playAudio(this.currentWord.character);
+        }
+
+        // Play game coin sound effect
+        if (window.app && window.app.audioController) {
+            window.app.audioController.playGameCoin();
+        }
+
+        // Particle explosion
+        if (typeof window.createParticles === 'function') {
+            const rect = element.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            window.createParticles(x, y, '#10b981'); // Emerald green
+        }
+
         // Actualizar estadísticas de tiempo
         if (responseTime < this.sessionStats.bestTime) {
             this.sessionStats.bestTime = responseTime;
@@ -484,6 +502,19 @@ class MatrixGame {
         // Feedback visual
         element.classList.add('wrong');
         this.showFeedback('wrong', `-${penalty} puntos`);
+
+        // Play game hit sound effect
+        if (window.app && window.app.audioController) {
+            window.app.audioController.playGameHit();
+        }
+
+        // Particle explosion
+        if (typeof window.createParticles === 'function') {
+            const rect = element.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            window.createParticles(x, y, '#ef4444'); // Red
+        }
 
         // Mostrar la respuesta correcta
         const correctElement = document.querySelector(`.matrix-char[data-index="${this.correctPosition}"]`);
@@ -599,6 +630,11 @@ class MatrixGame {
         this.logInfo('🏁 Game ended');
 
         this.isPlaying = false;
+
+        // Play game over sound effect
+        if (window.app && window.app.audioController) {
+            window.app.audioController.playGameOver();
+        }
 
         // Detener timer
         if (this.timer) {
