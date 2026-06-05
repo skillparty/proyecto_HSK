@@ -1,4 +1,4 @@
-const SW_VERSION = "3.9.0-gameplay-update";
+const SW_VERSION = "4.0.0-videos-integrated";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -21,7 +21,7 @@ const PRECACHE_FILES = [
   "./assets/css/tones-invaders-styles.css?v=3",
   "./assets/css/hanzi-builder-styles.css?v=2",
   "./assets/css/word-linker-styles.css?v=2",
-  "./assets/js/translations.js?v=23",
+  "./assets/js/translations.js?v=24",
   "./assets/js/firebase-client.js",
   "./assets/js/firebase-progress-sync.js",
   "./assets/js/modules/flashcard-manager.js?v=4",
@@ -56,6 +56,8 @@ const PRECACHE_FILES = [
   "./assets/data/quantifier_snake_words.json",
   "./assets/images/logoICUMSSAPP.png",
   "./assets/images/fondo.png",
+  "./assets/videos/snakeGame.mp4",
+  "./assets/videos/toneInvader.mp4",
 ];
 
 function isSameOrigin(url) {

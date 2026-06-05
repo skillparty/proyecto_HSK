@@ -293,6 +293,7 @@ const translations = {
 
         // Quantifier Snake
         snakeQuantifierTitle: "Viborita de cuantificadores",
+        snakeQuantifierPreviewTitle: "Vídeo de Demostración",
         snakeQuantifierSubtitle: "Sigue el cuantificador objetivo y come solo palabras compatibles para sobrevivir.",
         snakeQuantifierDifficultyLabel: "Dificultad",
         snakeQuantifierDifficultyEasy: "Fácil",
@@ -354,6 +355,7 @@ const translations = {
 
         // Tones Invaders
         tonesInvTitle: "Tones Invaders 🚀",
+        tonesInvPreviewTitle: "Vídeo de Demostración",
         tonesInvSubtitle: "Domina los tonos del chino mandarín en esta batalla espacial arcade.",
         tonesInvLevelLabel: "Nivel HSK",
         tonesInvLevelAll: "Todos los niveles",
@@ -776,6 +778,7 @@ const translations = {
 
         // Quantifier Snake
         snakeQuantifierTitle: "Quantifier Snake",
+        snakeQuantifierPreviewTitle: "Demonstration Video",
         snakeQuantifierSubtitle: "Follow the target classifier and eat only compatible words to survive.",
         snakeQuantifierDifficultyLabel: "Difficulty",
         snakeQuantifierDifficultyEasy: "Easy",
@@ -837,6 +840,7 @@ const translations = {
 
         // Tones Invaders
         tonesInvTitle: "Tones Invaders 🚀",
+        tonesInvPreviewTitle: "Demonstration Video",
         tonesInvSubtitle: "Master Mandarin Chinese tones in this space arcade battle.",
         tonesInvLevelLabel: "HSK Level",
         tonesInvLevelAll: "All levels",
