@@ -219,24 +219,29 @@
 .tones-inv-tone-btn:active { transform: scale(.92); }
 
 .tones-inv-tone-btn[data-tone="1"] {
-    background: rgba(239,68,68,.15);
-    border-color: #ef4444;
-    color: #ef4444;
+    background: rgba(217,119,6,.15);
+    border-color: #d97706;
+    color: #d97706;
 }
 .tones-inv-tone-btn[data-tone="2"] {
-    background: rgba(234,179,8,.15);
-    border-color: #eab308;
-    color: #eab308;
+    background: rgba(37,99,235,.15);
+    border-color: #2563eb;
+    color: #2563eb;
 }
 .tones-inv-tone-btn[data-tone="3"] {
-    background: rgba(34,197,94,.15);
-    border-color: #22c55e;
-    color: #22c55e;
+    background: rgba(22,163,74,.15);
+    border-color: #16a34a;
+    color: #16a34a;
 }
 .tones-inv-tone-btn[data-tone="4"] {
-    background: rgba(59,130,246,.15);
-    border-color: #3b82f6;
-    color: #3b82f6;
+    background: rgba(220,38,38,.15);
+    border-color: #dc2626;
+    color: #dc2626;
+}
+.tones-inv-tone-btn[data-tone="5"] {
+    background: rgba(107,114,128,.15);
+    border-color: #6b7280;
+    color: #6b7280;
 }
 
 /* ── Actions bar ─────────────────────────────────────── */

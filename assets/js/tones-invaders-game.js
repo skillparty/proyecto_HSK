@@ -29,13 +29,23 @@ class TonesInvadersGame {
         
         this.isInitialized = false;
         
-        // Tone colors and tones mapping
+        // Tone colors (Pedagogical Standard)
         this.toneColors = {
-            1: '#ef4444', // Tone 1: Red
-            2: '#eab308', // Tone 2: Yellow
-            3: '#22c55e', // Tone 3: Green
-            4: '#3b82f6', // Tone 4: Blue
-            5: '#a855f7'  // Tone 5: Purple
+            1: '#d97706', // Tone 1: Amarillo
+            2: '#2563eb', // Tone 2: Azul
+            3: '#16a34a', // Tone 3: Verde
+            4: '#dc2626', // Tone 4: Rojo
+            5: '#6b7280'  // Tone 5: Gris (Neutro)
+        };
+        
+        // Ship movement properties
+        this.playerX = 300;
+        this.playerY = 350;
+        this.keys = {
+            ArrowLeft: false,
+            ArrowRight: false,
+            ArrowUp: false,
+            ArrowDown: false
         };
         
         // Vowel character mapping for tone detection
@@ -111,6 +121,45 @@ class TonesInvadersGame {
         
         // Keyboard bindings
         window.addEventListener('keydown', (e) => this.handleKeyDown(e));
+        window.addEventListener('keyup', (e) => this.handleKeyUp(e));
+        
+        // Touch & Mouse bindings for canvas ship movement
+        const handlePointer = (e) => {
+            if (!this.state.isPlaying || this.state.isPaused) return;
+            const rect = this.canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            
+            const canvasX = ((clientX - rect.left) / rect.width) * this.canvas.width;
+            const canvasY = ((clientY - rect.top) / rect.height) * this.canvas.height;
+            
+            this.playerX = Math.max(20, Math.min(this.canvas.width - 20, canvasX));
+            this.playerY = Math.max(150, Math.min(this.canvas.height - 20, canvasY));
+        };
+        
+        this.canvas.addEventListener('mousemove', (e) => {
+            if (e.buttons === 1) { // Left click held
+                handlePointer(e);
+            }
+        });
+        
+        this.canvas.addEventListener('mousedown', (e) => {
+            handlePointer(e);
+        });
+        
+        this.canvas.addEventListener('touchmove', (e) => {
+            if (this.state.isPlaying && !this.state.isPaused) {
+                e.preventDefault();
+                handlePointer(e);
+            }
+        }, { passive: false });
+        
+        this.canvas.addEventListener('touchstart', (e) => {
+            if (this.state.isPlaying && !this.state.isPaused) {
+                e.preventDefault();
+                handlePointer(e);
+            }
+        }, { passive: false });
         
         this.isInitialized = true;
     }
@@ -118,10 +167,26 @@ class TonesInvadersGame {
     handleKeyDown(e) {
         if (!this.state.isPlaying || this.state.isPaused) return;
         
-        // Keys '1' to '5'
-        if (e.key >= '1' && e.key <= '5') {
+        // Shoot tones: '1' to '4' or 'Space' for neutral tone (5)
+        if (e.key >= '1' && e.key <= '4') {
             e.preventDefault();
             this.fireLaser(parseInt(e.key));
+        } else if (e.key === ' ' || e.code === 'Space') {
+            e.preventDefault();
+            this.fireLaser(5);
+        }
+        
+        // Movements: arrow keys
+        if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+            e.preventDefault();
+            this.keys[e.key] = true;
+        }
+    }
+    
+    handleKeyUp(e) {
+        if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+            e.preventDefault();
+            this.keys[e.key] = false;
         }
     }
     
@@ -142,6 +207,16 @@ class TonesInvadersGame {
         this.lasers = [];
         this.particles = [];
         this.spawnTimer = 0;
+        
+        // Reset player ship
+        this.playerX = this.canvas ? this.canvas.width / 2 : 300;
+        this.playerY = this.canvas ? this.canvas.height - 35 : 350;
+        this.keys = {
+            ArrowLeft: false,
+            ArrowRight: false,
+            ArrowUp: false,
+            ArrowDown: false
+        };
         
         // Difficulty values
         if (this.difficulty === "easy") {
@@ -227,12 +302,12 @@ class TonesInvadersGame {
         document.getElementById('tones-inv-game-area').style.display = 'none';
     }
     
-    // Fire laser from bottom center
+    // Fire laser from ship position
     fireLaser(tone) {
         if (!this.state.isPlaying || this.state.isPaused) return;
         
-        const shipX = this.canvas.width / 2;
-        const shipY = this.canvas.height - 30;
+        const shipX = this.playerX;
+        const shipY = this.playerY - 10;
         
         this.lasers.push({
             x: shipX,
@@ -261,6 +336,21 @@ class TonesInvadersGame {
     
     // Update game logic
     update(dt) {
+        // Move player ship based on key states
+        const playerSpeed = 0.25 * dt;
+        if (this.keys.ArrowLeft) {
+            this.playerX = Math.max(20, this.playerX - playerSpeed);
+        }
+        if (this.keys.ArrowRight) {
+            this.playerX = Math.min(this.canvas.width - 20, this.playerX + playerSpeed);
+        }
+        if (this.keys.ArrowUp) {
+            this.playerY = Math.max(150, this.playerY - playerSpeed);
+        }
+        if (this.keys.ArrowDown) {
+            this.playerY = Math.min(this.canvas.height - 20, this.playerY + playerSpeed);
+        }
+
         // Handle spawns
         this.spawnTimer += dt;
         if (this.spawnTimer >= this.spawnInterval) {
@@ -388,8 +478,8 @@ class TonesInvadersGame {
         }
         
         // Draw launcher / spaceship
-        const shipX = this.canvas.width / 2;
-        const shipY = this.canvas.height - 20;
+        const shipX = this.playerX;
+        const shipY = this.playerY;
         
         this.ctx.fillStyle = '#4f46e5';
         this.ctx.beginPath();
