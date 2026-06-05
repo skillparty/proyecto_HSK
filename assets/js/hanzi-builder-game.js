@@ -184,7 +184,9 @@ class HanziBuilderGame {
         this.state.isPaused = !this.state.isPaused;
         const pauseBtn = document.getElementById('hanzi-build-pause-btn');
         if (pauseBtn) {
-            pauseBtn.textContent = this.state.isPaused ? "Reanudar" : "Pausar";
+            pauseBtn.textContent = this.state.isPaused
+                ? (window.languageManager ? window.languageManager.t('hanziBuildResumeBtn') : "Reanudar")
+                : (window.languageManager ? window.languageManager.t('hanziBuildPauseBtn') : "Pausar");
         }
     }
     
@@ -329,10 +331,12 @@ class HanziBuilderGame {
         if (this.timerIntervalId) clearInterval(this.timerIntervalId);
         
         const assemblyZone = document.getElementById('hanzi-build-slots');
+        const finishedText = window.languageManager ? window.languageManager.t('hanziBuildFinished') : "¡Tiempo Terminado!";
+        const scoreText = window.languageManager ? window.languageManager.t('hanziBuildScoreText', { score: this.state.score }) : `Puntaje Final: <strong>${this.state.score}</strong> puntos`;
         assemblyZone.innerHTML = `
             <div style="padding: 1rem;">
-                <h3 style="color: #ef4444; font-size: 1.5rem; margin-bottom: 0.5rem;" data-i18n="hanziBuildFinished">¡Tiempo Terminado!</h3>
-                <p style="font-size: 1.1rem;" data-i18n="hanziBuildScoreText">Puntaje Final: <strong>${this.state.score}</strong> puntos</p>
+                <h3 style="color: #ef4444; font-size: 1.5rem; margin-bottom: 0.5rem;">${finishedText}</h3>
+                <p style="font-size: 1.1rem;">${scoreText}</p>
             </div>
         `;
         

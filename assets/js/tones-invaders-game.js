@@ -205,7 +205,9 @@ class TonesInvadersGame {
         this.state.isPaused = !this.state.isPaused;
         const pauseBtn = document.getElementById('tones-inv-pause-btn');
         if (pauseBtn) {
-            pauseBtn.textContent = this.state.isPaused ? "Reanudar" : "Pausar";
+            pauseBtn.textContent = this.state.isPaused
+                ? (window.languageManager ? window.languageManager.t('tonesInvResumeBtn') : "Reanudar")
+                : (window.languageManager ? window.languageManager.t('tonesInvPauseBtn') : "Pausar");
         }
         
         if (!this.state.isPaused) {
@@ -502,11 +504,13 @@ class TonesInvadersGame {
         this.ctx.font = 'bold 36px "Inter", sans-serif';
         this.ctx.textAlign = 'center';
         this.ctx.textBaseline = 'middle';
-        this.ctx.fillText("FIN DEL JUEGO", this.canvas.width / 2, this.canvas.height / 2 - 20);
+        const gameOverText = window.languageManager ? window.languageManager.t('tonesInvGameOver') : "FIN DEL JUEGO";
+        const finalScoreLabel = window.languageManager ? window.languageManager.t('tonesInvFinalScore') : "Puntaje Final";
+        this.ctx.fillText(gameOverText, this.canvas.width / 2, this.canvas.height / 2 - 20);
         
         this.ctx.fillStyle = '#ffffff';
         this.ctx.font = '18px "Inter", sans-serif';
-        this.ctx.fillText(`Puntaje Final: ${this.state.score}`, this.canvas.width / 2, this.canvas.height / 2 + 25);
+        this.ctx.fillText(`${finalScoreLabel}: ${this.state.score}`, this.canvas.width / 2, this.canvas.height / 2 + 25);
         
         // Sound
         this.playSynthesizerSound(180, 'sawtooth', 0.3, 0.4);

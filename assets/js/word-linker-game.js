@@ -142,7 +142,9 @@ class WordLinkerGame {
         this.state.isPaused = !this.state.isPaused;
         const pauseBtn = document.getElementById('word-link-pause-btn');
         if (pauseBtn) {
-            pauseBtn.textContent = this.state.isPaused ? "Reanudar" : "Pausar";
+            pauseBtn.textContent = this.state.isPaused
+                ? (window.languageManager ? window.languageManager.t('wordLinkResumeBtn') : "Reanudar")
+                : (window.languageManager ? window.languageManager.t('wordLinkPauseBtn') : "Pausar");
         }
     }
     
@@ -337,10 +339,12 @@ class WordLinkerGame {
         if (this.timerIntervalId) clearInterval(this.timerIntervalId);
         
         const board = document.getElementById('word-link-grid-board');
+        const finishedText = window.languageManager ? window.languageManager.t('wordLinkFinished') : "¡Fin del Tiempo!";
+        const scoreText = window.languageManager ? window.languageManager.t('wordLinkScoreText', { score: this.state.score }) : `Puntaje Final: <strong>${this.state.score}</strong> puntos`;
         board.innerHTML = `
             <div style="padding: 2rem; width: 100%;">
-                <h3 style="color: #ef4444; font-size: 1.5rem; margin-bottom: 0.5rem;" data-i18n="wordLinkFinished">¡Fin del Tiempo!</h3>
-                <p style="font-size: 1.1rem;" data-i18n="wordLinkScoreText">Puntaje Final: <strong>${this.state.score}</strong> puntos</p>
+                <h3 style="color: #ef4444; font-size: 1.5rem; margin-bottom: 0.5rem;">${finishedText}</h3>
+                <p style="font-size: 1.1rem;">${scoreText}</p>
             </div>
         `;
         

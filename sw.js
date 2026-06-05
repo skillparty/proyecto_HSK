@@ -1,4 +1,4 @@
-const SW_VERSION = "3.7.0-new-games";
+const SW_VERSION = "3.8.0-theme-sync";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -18,10 +18,10 @@ const PRECACHE_FILES = [
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css",
   "./assets/css/quantifier-snake-styles.css?v=1",
-  "./assets/css/tones-invaders-styles.css?v=1",
-  "./assets/css/hanzi-builder-styles.css?v=1",
-  "./assets/css/word-linker-styles.css?v=1",
-  "./assets/js/translations.js?v=21",
+  "./assets/css/tones-invaders-styles.css?v=2",
+  "./assets/css/hanzi-builder-styles.css?v=2",
+  "./assets/css/word-linker-styles.css?v=2",
+  "./assets/js/translations.js?v=22",
   "./assets/js/firebase-client.js",
   "./assets/js/firebase-progress-sync.js",
   "./assets/js/modules/flashcard-manager.js?v=4",
@@ -45,9 +45,9 @@ const PRECACHE_FILES = [
   "./assets/js/app.js?v=33",
   "./assets/js/matrix-game.js",
   "./assets/js/matrix-game-ui.js",
-  "./assets/js/tones-invaders-game.js?v=1",
-  "./assets/js/hanzi-builder-game.js?v=1",
-  "./assets/js/word-linker-game.js?v=1",
+  "./assets/js/tones-invaders-game.js?v=2",
+  "./assets/js/hanzi-builder-game.js?v=2",
+  "./assets/js/word-linker-game.js?v=2",
   "./assets/js/leaderboard.js",
   "./assets/data/hsk_vocabulary.json",
   "./assets/data/hsk_vocabulary_spanish.json",

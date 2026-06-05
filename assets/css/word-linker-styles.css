@@ -1,7 +1,13 @@
-/* ========================================================
-   Word Linker – HSK grid character connection game
-   Prefix: .word-link-
-   ======================================================== */
+:root {
+    --text-1: var(--color-text-main);
+    --text-2: var(--color-text-muted);
+    --text-3: var(--color-text-dim);
+    --surface-1: var(--color-bg-panel);
+    --surface-2: var(--color-bg-card);
+    --surface-3: var(--color-bg-hover);
+    --border: var(--color-border);
+    --primary-rgb: 211 47 47;
+}
 
 .word-link-shell {
     max-width: 680px;
