@@ -19,7 +19,21 @@ class TonesInvadersGame {
         // Game lists
         this.invaders = [];
         this.lasers = [];
-        this.particles = [];
+        
+        // Pre-allocate particle pool to reduce GC pressure
+        this.particlePool = [];
+        for (let i = 0; i < 150; i++) {
+            this.particlePool.push({
+                x: 0,
+                y: 0,
+                vx: 0,
+                vy: 0,
+                size: 0,
+                color: '#ffffff',
+                life: 0,
+                active: false
+            });
+        }
         
         // Loop controls
         this.animationFrameId = null;
@@ -205,7 +219,7 @@ class TonesInvadersGame {
         this.state.isPlaying = true;
         this.invaders = [];
         this.lasers = [];
-        this.particles = [];
+        this.particlePool.forEach(p => p.active = false);
         this.spawnTimer = 0;
         
         // Reset player ship
@@ -325,7 +339,9 @@ class TonesInvadersGame {
     gameLoop(timestamp) {
         if (!this.state.isPlaying || this.state.isPaused) return;
         
-        const dt = timestamp - this.lastTime;
+        let dt = timestamp - this.lastTime;
+        // Clamp delta time to avoid large movement jumps during lag spikes
+        if (dt > 100) dt = 16.67;
         this.lastTime = timestamp;
         
         this.update(dt);
@@ -358,11 +374,11 @@ class TonesInvadersGame {
             this.spawnInvader();
         }
         
-        // 1. Move invaders
+        // 1. Move invaders (delta time normalized to 60 FPS baseline of 16.67ms)
         const speed = this.baseSpeed * this.state.speedMultiplier;
         for (let i = this.invaders.length - 1; i >= 0; i--) {
             const inv = this.invaders[i];
-            inv.y += speed;
+            inv.y += speed * (dt / 16.67);
             
             // Check boundary
             if (inv.y > this.canvas.height - 40) {
@@ -381,23 +397,25 @@ class TonesInvadersGame {
             }
         }
         
-        // 2. Move lasers
+        // 2. Move lasers (delta time normalized to 60 FPS baseline of 16.67ms)
         for (let i = this.lasers.length - 1; i >= 0; i--) {
             const laser = this.lasers[i];
-            laser.y += laser.speedY;
+            laser.y += laser.speedY * (dt / 16.67);
             if (laser.y < 0) {
                 this.lasers.splice(i, 1);
             }
         }
         
-        // 3. Move particles
-        for (let i = this.particles.length - 1; i >= 0; i--) {
-            const p = this.particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-            p.life -= dt;
-            if (p.life <= 0) {
-                this.particles.splice(i, 1);
+        // 3. Move particles (using pre-allocated object pool to reduce GC pressure)
+        for (let i = 0; i < this.particlePool.length; i++) {
+            const p = this.particlePool[i];
+            if (p.active) {
+                p.x += p.vx * (dt / 16.67);
+                p.y += p.vy * (dt / 16.67);
+                p.life -= dt;
+                if (p.life <= 0) {
+                    p.active = false;
+                }
             }
         }
         
@@ -538,26 +556,35 @@ class TonesInvadersGame {
         });
         
         // Draw particles
-        this.particles.forEach(p => {
-            this.ctx.fillStyle = p.color;
-            this.ctx.fillRect(p.x, p.y, p.size, p.size);
-        });
+        this.ctx.shadowBlur = 0; // Ensure no shadow blur leaks to particles
+        for (let i = 0; i < this.particlePool.length; i++) {
+            const p = this.particlePool[i];
+            if (p.active) {
+                this.ctx.fillStyle = p.color;
+                this.ctx.fillRect(p.x, p.y, p.size, p.size);
+            }
+        }
     }
     
     // Create explosion effect particles
     createExplosion(x, y, color) {
-        for (let i = 0; i < 20; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            const velocity = 1 + Math.random() * 4;
-            this.particles.push({
-                x: x,
-                y: y,
-                vx: Math.cos(angle) * velocity,
-                vy: Math.sin(angle) * velocity,
-                size: 2 + Math.random() * 3,
-                color: color,
-                life: 300 + Math.random() * 400 // ms
-            });
+        let activatedCount = 0;
+        for (let i = 0; i < this.particlePool.length; i++) {
+            if (activatedCount >= 20) break;
+            const p = this.particlePool[i];
+            if (!p.active) {
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 1 + Math.random() * 4;
+                p.x = x;
+                p.y = y;
+                p.vx = Math.cos(angle) * velocity;
+                p.vy = Math.sin(angle) * velocity;
+                p.size = 2 + Math.random() * 3;
+                p.color = color;
+                p.life = 300 + Math.random() * 400; // ms
+                p.active = true;
+                activatedCount++;
+            }
         }
     }
     

@@ -1,4 +1,4 @@
-const SW_VERSION = "4.0.0-videos-integrated";
+const SW_VERSION = "4.1.0-games-optimized";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -45,7 +45,7 @@ const PRECACHE_FILES = [
   "./assets/js/app.js?v=33",
   "./assets/js/matrix-game.js",
   "./assets/js/matrix-game-ui.js",
-  "./assets/js/tones-invaders-game.js?v=3",
+  "./assets/js/tones-invaders-game.js?v=4",
   "./assets/js/hanzi-builder-game.js?v=2",
   "./assets/js/word-linker-game.js?v=2",
   "./assets/js/leaderboard.js",
