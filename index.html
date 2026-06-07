@@ -26,7 +26,7 @@
     <!-- <link rel="stylesheet" href="assets/css/styles-final.css?v=1"> -->
     <!-- <link rel="stylesheet" href="assets/css/styles-planetscale-v17.css" id="main-stylesheet-old"> -->
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=5" id="design-tokens">
-    <link rel="stylesheet" href="assets/css/styles-professional.css?v=26" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/styles-professional.css?v=27" id="main-stylesheet">
 
     <link rel="stylesheet" href="assets/css/matrix-game-styles.css?v=6">
     <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=4">
@@ -154,11 +154,30 @@
                         <input type="text" id="header-search" placeholder="Search vocabulary..."
                             data-i18n-placeholder="searchPlaceholder">
 
-                        <select id="language-select" class="header-control" title="Language"
-                            data-i18n-title="languageSelectorTitle" data-tooltip="Change interface language" data-i18n-tooltip="languageSelectorTooltip">
-                            <option value="en">EN</option>
-                            <option value="es">ES</option>
-                        </select>
+                        <div class="header-settings-group">
+                            <select id="language-select" class="header-control" title="Language"
+                                data-i18n-title="languageSelectorTitle" data-tooltip="Change interface language" data-i18n-tooltip="languageSelectorTooltip">
+                                <option value="en">EN</option>
+                                <option value="es">ES</option>
+                            </select>
+
+                            <select id="voice-select" class="header-control" title="Voice"
+                                data-i18n-title="voiceSelectorTitle" data-tooltip="Select voice for pronunciation" data-i18n-tooltip="voiceSelectorTooltip">
+                                <option value="auto">Auto</option>
+                                <option value="male">Masculino</option>
+                                <option value="female">Femenino</option>
+                            </select>
+                        </div>
+
+                        <!-- Mobile Settings Toggle Button -->
+                        <button id="mobile-settings-toggle" class="header-control mobile-only" title="Settings"
+                            data-tooltip="Configure language and voice settings">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                            </svg>
+                        </button>
 
                         <!-- Theme Toggle -->
                         <button id="theme-toggle" class="header-control" title="Toggle Theme"
@@ -168,13 +187,6 @@
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                             </svg>
                         </button>
-
-                        <select id="voice-select" class="header-control" title="Voice"
-                            data-i18n-title="voiceSelectorTitle" data-tooltip="Select voice for pronunciation" data-i18n-tooltip="voiceSelectorTooltip">
-                            <option value="auto">Auto</option>
-                            <option value="male">Masculino</option>
-                            <option value="female">Femenino</option>
-                        </select>
 
                         <button id="audio-toggle" class="header-control" title="Toggle Audio"
                             data-i18n-title="audioToggleTitle" data-tooltip="Toggle pronunciation audio">

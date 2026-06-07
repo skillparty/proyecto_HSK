@@ -379,6 +379,16 @@ class InteractionController {
             audioToggle.addEventListener('click', () => this.app.toggleAudio());
         }
 
+        const mobileSettingsToggle = document.getElementById('mobile-settings-toggle');
+        if (mobileSettingsToggle) {
+            mobileSettingsToggle.addEventListener('click', () => {
+                const headerActions = document.querySelector('.header-actions');
+                if (headerActions) {
+                    headerActions.classList.toggle('settings-open');
+                }
+            });
+        }
+
         const searchInput = document.getElementById('search-input');
         if (searchInput) {
             searchInput.addEventListener('input', () => this.app.filterVocabulary());

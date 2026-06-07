@@ -29,6 +29,18 @@ class ThemeController {
         document.documentElement.setAttribute('data-theme', mode);
         document.body.setAttribute('data-theme', mode);
 
+        if (this.app.isDarkMode) {
+            document.body.classList.add('dark-theme');
+            document.body.classList.remove('light-theme');
+            document.documentElement.classList.add('dark-theme');
+            document.documentElement.classList.remove('light-theme');
+        } else {
+            document.body.classList.add('light-theme');
+            document.body.classList.remove('dark-theme');
+            document.documentElement.classList.add('light-theme');
+            document.documentElement.classList.remove('dark-theme');
+        }
+
         const voice = this.app.selectedVoice || 'female';
         const logoPath = (voice === 'male') ? 'assets/images/logo06.png' : 'assets/images/logo05.png';
 
