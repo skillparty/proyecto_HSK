@@ -1,4 +1,4 @@
-const SW_VERSION = "4.4.0-snake-split-layout";
+const SW_VERSION = "4.5.0-voice-logos-and-bg";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -26,7 +26,7 @@ const PRECACHE_FILES = [
   "./assets/js/firebase-progress-sync.js",
   "./assets/js/modules/flashcard-manager.js?v=4",
   "./assets/js/modules/practice-view-controller.js?v=5",
-  "./assets/js/modules/audio-controller.js?v=2",
+  "./assets/js/modules/audio-controller.js?v=3",
   "./assets/js/modules/quiz-engine.js?v=2",
   "./assets/js/modules/ui-controller.js?v=3",
   "./assets/js/modules/navigation-controller.js?v=3",
@@ -55,7 +55,9 @@ const PRECACHE_FILES = [
   "./assets/data/hsk_example_sentences.json",
   "./assets/data/quantifier_snake_words.json",
   "./assets/images/logoICUMSSAPP.png",
-  "./assets/images/fondo.png",
+  "./assets/images/logo05.png",
+  "./assets/images/logo06.png",
+  "./assets/images/background01.png",
   "./assets/videos/snakeGame.mp4",
   "./assets/videos/toneInvader.mp4",
 ];

@@ -18,50 +18,50 @@ Architecture: CSS Custom Properties.
 :root {
     /* ---- COLOR PALETTE ---- */
 
-    /* Brand - Sino-Bolivian Red */
-    --color-primary: #d32f2f; /* Traditional Red */
-    --color-primary-hover: #b71c1c; /* Deeper Red */
-    --color-primary-subtle: #ffcdd2; /* Soft Red for tags */
-    --color-primary-glow: rgba(211, 47, 47, 0.3);
+    /* Brand - Vibrant Red (matches logoICUMSSAPP) */
+    --color-primary: #e53935; /* Vibrant Red */
+    --color-primary-hover: #c62828; /* Deeper Red */
+    --color-primary-subtle: #ffebee; /* Soft Red for tags */
+    --color-primary-glow: rgba(229, 57, 53, 0.25);
 
-    /* Deep Imperial Backgrounds & Golden Accents */
-    --color-secondary: #2b0a0a; /* Deep Oxblood / Lacquer Red for Hero */
-    --color-accent: #f59e0b; /* Bolivian/Chinese Imperial Gold */
-    --color-accent-subtle: #fef3c7;
+    /* Deep Accent & Golden Accents */
+    --color-secondary: #000000; /* Pure Black */
+    --color-accent: #facc15; /* Vibrant Yellow */
+    --color-accent-subtle: #fef9c3;
 
-    /* Backgrounds (Light Theme Default) */
-    --color-bg-app: #ffffff; /* Canvas White */
-    --color-bg-panel: #ffffff; /* Canvas White */
-    --color-bg-card: #faf9f8; /* Surface - warm cream */
-    --color-bg-input: #ffffff; /* Form inputs */
-    --color-bg-hover: #f5f4f2; /* Surface Soft */
+    /* Backgrounds (White & Modern Clean Gray) */
+    --color-bg-app: #ffffff; /* Pure White App Canvas */
+    --color-bg-panel: #ffffff; /* Pure White Panel */
+    --color-bg-card: #ffffff; /* Pure White Card */
+    --color-bg-input: #ffffff; /* Input background */
+    --color-bg-hover: #f4f4f5; /* Light Hover (Zinc 100) */
 
     /* Pastel Tints for Cards / Features */
-    --color-tint-peach: #ffedd5;
-    --color-tint-rose: #ffe4e6;
-    --color-tint-mint: #d1fae5;
-    --color-tint-lavender: #f3e8ff;
-    --color-tint-sky: #e0f2fe;
-    --color-tint-yellow: #fef3c7;
+    --color-tint-peach: #fff7ed;
+    --color-tint-rose: #fff1f2;
+    --color-tint-mint: #f0fdf4;
+    --color-tint-lavender: #faf5ff;
+    --color-tint-sky: #f0f9ff;
+    --color-tint-yellow: #fef9c3;
 
-    /* Borders */
-    --color-border: #e5e3df; /* Hairline */
-    --color-border-subtle: #ede9e4; /* Hairline Soft */
+    /* Borders (Clean zinc/gray instead of warm cream) */
+    --color-border: #e4e4e7; /* Zinc 200 */
+    --color-border-subtle: #f4f4f5; /* Zinc 100 */
     --color-border-focus: var(--color-primary);
 
-    /* Text */
-    --color-text-main: #1a1a1a; /* Ink */
-    --color-text-charcoal: #37352f; /* Charcoal - Warm emphasis */
-    --color-text-muted: #5d5b54; /* Slate */
-    --color-text-dim: #787671; /* Steel */
+    /* Text (Ink Black & Zinc grays) */
+    --color-text-main: #000000; /* Pure Ink Black */
+    --color-text-charcoal: #18181b; /* Zinc 900 */
+    --color-text-muted: #52525b; /* Zinc 600 */
+    --color-text-dim: #71717a; /* Zinc 500 */
     --color-text-on-dark: #ffffff; /* On Dark */
 
-    /* Semantic Status - Bolivian Green & Gold */
-    --color-success: #059669; /* Bolivian Green */
-    --color-success-subtle: #d1fae5;
-    --color-warning: #f59e0b; /* Bolivian Yellow */
-    --color-warning-subtle: #fef3c7;
-    --color-error: #dc2626; /* Bolivian Red */
+    /* Semantic Status - Red, Yellow, Green */
+    --color-success: #22c55e; /* Vibrant Green */
+    --color-success-subtle: #dcfce7;
+    --color-warning: #facc15; /* Vibrant Yellow */
+    --color-warning-subtle: #fef9c3;
+    --color-error: #ef4444; /* Vibrant Red */
     --color-error-subtle: #fee2e2;
 
     /* ---- TONE COLORS (Pedagogical Standard) ---- */

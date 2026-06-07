@@ -308,7 +308,7 @@ ul {
         content: '';
         width: 10px;
         height: 10px;
-        background: #0f172a;
+        background: var(--color-bg-app);
         border: 1px solid #92400e;
         transform: rotate(45deg);
     }

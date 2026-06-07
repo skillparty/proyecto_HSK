@@ -168,11 +168,27 @@ class AudioController {
         }
     }
 
+    updateLogo() {
+        const voice = this.app.selectedVoice || 'female';
+        const logoImg = document.getElementById('app-logo-img');
+        const welcomeLogo = document.querySelector('.welcome-logo');
+
+        const logoSrc = (voice === 'male') ? 'assets/images/logo06.png' : 'assets/images/logo05.png';
+
+        if (logoImg) {
+            logoImg.src = logoSrc;
+        }
+        if (welcomeLogo) {
+            welcomeLogo.src = logoSrc;
+        }
+    }
+
     setVoicePreference(voiceType) {
         this.app.selectedVoice = voiceType;
         localStorage.setItem('hsk-voice-preference', voiceType);
 
         this.playAudio('你好');
+        this.updateLogo();
 
         const voiceNames = {
             male: this.app.currentLanguage === 'es' ? 'Voz masculina' : 'Male voice',
@@ -193,6 +209,7 @@ class AudioController {
             this.app.selectedVoice = savedVoice;
             this.app.logDebug('[audio] Loaded voice preference: ' + savedVoice);
         }
+        this.updateLogo();
     }
 
     updateVoiceSelector() {
