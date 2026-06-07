@@ -1,4 +1,4 @@
-const SW_VERSION = "4.7.0-typography-and-inputs-polish";
+const SW_VERSION = "4.8.0-sidebar-interactions-and-shared-audio";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -33,6 +33,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/language-controller.js?v=3",
   "./assets/js/modules/browse-controller.js?v=4",
   "./assets/js/modules/interaction-controller.js?v=6",
+  "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-controller.js?v=3",
   "./assets/js/modules/quantifier-snake-utils.js?v=1",
   "./assets/js/modules/quantifier-snake-canvas.js?v=3",
