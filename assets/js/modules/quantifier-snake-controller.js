@@ -2,9 +2,9 @@ class QuantifierSnakeController {
   constructor(app) {
     this.app = app;
 
-    this.boardSize = 22;
+    this.boardSize = 24;
     this.maxLives = 3;
-    this.defaultCanvasSize = 660;
+    this.defaultCanvasSize = 720;
     this.dataFilePath = "assets/data/quantifier_snake_words.json";
 
     this.quantifierColors = {
@@ -807,7 +807,7 @@ class QuantifierSnakeController {
 
     const availableWidth =
       this.canvasWrap.clientWidth || this.defaultCanvasSize;
-    const clamped = Math.max(320, Math.min(780, availableWidth));
+    const clamped = Math.max(320, Math.min(820, availableWidth));
     const size = Math.floor(clamped);
 
     this.canvas.width = size;
@@ -895,21 +895,6 @@ class QuantifierSnakeController {
       return;
     }
 
-    if (!this.state.targetQuantifier) {
-      this.targetBadge.textContent = this.app.getTranslation(
-        "snakeQuantifierTargetWaiting",
-      );
-      this.targetBadge.classList.remove("snakeq-target-badge--neutral");
-      this.targetBadge.style.setProperty("--snakeq-target-color", "#64748b");
-      return;
-    }
-
-    const quantifier = this.state.targetQuantifier;
-    const meaning =
-      this.app.currentLanguage === "en" ? quantifier.en : quantifier.es;
-    this.targetBadge.textContent =
-      quantifier.hanzi + " (" + quantifier.pinyin + ") · " + meaning;
-
     const config =
       this.difficultyConfig[this.state.difficulty] ||
       this.difficultyConfig.easy;
@@ -922,6 +907,37 @@ class QuantifierSnakeController {
       "--snakeq-target-color",
       showColor ? this.getTargetColor() : "#64748b",
     );
+
+    const hanziEl = this.targetBadge.querySelector('.snakeq-target-hanzi');
+    const pinyinEl = this.targetBadge.querySelector('.snakeq-target-pinyin');
+    const meaningEl = this.targetBadge.querySelector('.snakeq-target-meaning');
+
+    if (!this.state.targetQuantifier) {
+      const waitingText = this.app.getTranslation("snakeQuantifierTargetWaiting");
+      if (hanziEl && pinyinEl && meaningEl) {
+        hanziEl.textContent = "?";
+        pinyinEl.textContent = "...";
+        meaningEl.textContent = waitingText;
+      } else {
+        this.targetBadge.textContent = waitingText;
+      }
+      this.targetBadge.classList.remove("snakeq-target-badge--neutral");
+      this.targetBadge.style.setProperty("--snakeq-target-color", "#64748b");
+      return;
+    }
+
+    const quantifier = this.state.targetQuantifier;
+    const meaning =
+      this.app.currentLanguage === "en" ? quantifier.en : quantifier.es;
+
+    if (hanziEl && pinyinEl && meaningEl) {
+      hanziEl.textContent = quantifier.hanzi;
+      pinyinEl.textContent = quantifier.pinyin;
+      meaningEl.textContent = meaning;
+    } else {
+      this.targetBadge.textContent =
+        quantifier.hanzi + " (" + quantifier.pinyin + ") · " + meaning;
+    }
   }
 
   updatePauseButtonLabel() {

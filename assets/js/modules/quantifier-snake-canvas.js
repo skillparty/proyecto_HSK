@@ -12,6 +12,72 @@ class QuantifierSnakeCanvasRenderer {
                 twinklePhase: i * 1.3
             });
         }
+
+        // 10x10 Retro 16-bit Pixel-art Sprite Matrices
+        this.HEAD_SPRITE = [
+            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+            [0, 1, 3, 3, 3, 2, 2, 2, 1, 0],
+            [1, 3, 3, 3, 2, 2, 4, 4, 2, 1], // Eye left
+            [1, 3, 2, 2, 2, 2, 6, 4, 1, 1], // Pupil left
+            [1, 2, 2, 2, 2, 2, 2, 1, 5, 5], // Animated Tongue slot
+            [1, 2, 2, 2, 2, 2, 2, 1, 5, 5], // Animated Tongue slot
+            [1, 3, 2, 2, 2, 2, 6, 4, 1, 1], // Pupil right
+            [1, 3, 3, 3, 2, 2, 4, 4, 2, 1], // Eye right
+            [0, 1, 3, 3, 3, 2, 2, 2, 1, 0],
+            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0]
+        ];
+
+        this.BODY_A = [
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+            [1, 3, 3, 2, 2, 3, 3, 2, 2, 1],
+            [1, 3, 7, 2, 1, 3, 7, 2, 1, 1], // Gold scale highlights
+            [1, 2, 2, 1, 2, 2, 2, 1, 2, 1],
+            [1, 2, 1, 2, 2, 2, 1, 2, 2, 1],
+            [1, 2, 1, 2, 2, 2, 1, 2, 2, 1],
+            [1, 2, 2, 1, 2, 2, 2, 1, 2, 1],
+            [1, 3, 7, 2, 1, 3, 7, 2, 1, 1],
+            [1, 3, 3, 2, 2, 3, 3, 2, 2, 1],
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+        ];
+
+        this.BODY_B = [
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+            [1, 2, 2, 3, 3, 2, 2, 3, 3, 1],
+            [1, 1, 3, 7, 2, 1, 3, 7, 2, 1],
+            [1, 2, 1, 2, 2, 2, 1, 2, 2, 1],
+            [1, 2, 2, 1, 2, 2, 2, 1, 2, 1],
+            [1, 2, 2, 1, 2, 2, 2, 1, 2, 1],
+            [1, 2, 1, 2, 2, 2, 1, 2, 2, 1],
+            [1, 1, 3, 7, 2, 1, 3, 7, 2, 1],
+            [1, 2, 2, 3, 3, 2, 2, 3, 3, 1],
+            [0, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+        ];
+
+        this.TAIL_SPRITE = [
+            [0, 0, 0, 0, 0, 0, 1, 1, 1, 0],
+            [0, 0, 0, 0, 1, 1, 2, 3, 3, 1],
+            [0, 0, 0, 1, 2, 2, 2, 7, 3, 1],
+            [0, 0, 1, 2, 2, 2, 2, 2, 2, 1],
+            [0, 1, 2, 2, 2, 2, 2, 1, 2, 1],
+            [0, 1, 2, 2, 2, 2, 2, 1, 2, 1],
+            [0, 0, 1, 2, 2, 2, 2, 2, 2, 1],
+            [0, 0, 0, 1, 2, 2, 2, 7, 3, 1],
+            [0, 0, 0, 0, 1, 1, 2, 3, 3, 1],
+            [0, 0, 0, 0, 0, 0, 1, 1, 1, 0]
+        ];
+
+        this.COIN_SPRITE = [
+            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+            [0, 1, 3, 3, 3, 3, 3, 2, 1, 0],
+            [1, 3, 3, 1, 1, 1, 1, 2, 2, 1],
+            [1, 3, 1, 1, 1, 1, 1, 1, 2, 1], // Center ring is colored darker (1)
+            [1, 3, 1, 1, 1, 1, 1, 1, 2, 1], // for high readability of Hanzi labels
+            [1, 3, 1, 1, 1, 1, 1, 1, 2, 1],
+            [1, 3, 1, 1, 1, 1, 1, 1, 2, 1],
+            [1, 3, 3, 1, 1, 1, 1, 2, 2, 1],
+            [0, 1, 2, 2, 2, 2, 2, 2, 1, 0],
+            [0, 0, 1, 1, 1, 1, 1, 1, 0, 0]
+        ];
     }
 
     render() {
@@ -121,304 +187,164 @@ class QuantifierSnakeCanvasRenderer {
         ctx.restore();
     }
 
+    drawPixelSprite(ctx, x, y, size, spriteMatrix, colorPalette) {
+        const pixels = spriteMatrix.length;
+        const pixelSize = size / pixels;
+
+        for (let r = 0; r < pixels; r++) {
+            for (let c = 0; c < pixels; c++) {
+                const val = spriteMatrix[r][c];
+                if (val === 0) continue;
+
+                const color = colorPalette[val];
+                if (!color || color === 'transparent') continue;
+
+                ctx.fillStyle = color;
+                // Draw a pixel block. We use Math.ceil to prevent tiny gaps between pixels.
+                ctx.fillRect(
+                    x + c * pixelSize,
+                    y + r * pixelSize,
+                    Math.ceil(pixelSize),
+                    Math.ceil(pixelSize)
+                );
+            }
+        }
+    }
+
     drawSnake() {
         const controller = this.controller;
         const snake = controller.state.snake;
         const bodyLength = snake.length;
         const dir = controller.state.direction || { x: 1, y: 0 };
+        const ctx = controller.ctx;
+
+        const snakePalette = {
+            1: '#047857', // Dark forest green (border/shadow)
+            2: '#10b981', // Emerald green (base skin)
+            3: '#34d399', // Mint green (highlights)
+            4: '#ffffff', // Sclera (eyes)
+            5: (Math.floor(Date.now() / 200) % 2 === 0) ? 'transparent' : '#f43f5e', // Animated tongue
+            6: '#0f172a', // Pupil
+            7: '#fbbf24'  // Gold scale accent
+        };
 
         snake.forEach((segment, index) => {
             const isHead = index === 0;
-            const isTail = index === bodyLength - 1;
-            
-            // Estrechamiento orgánico progresivo hacia la cola
-            const taperFactor = isHead ? 1.0 : Math.max(0.42, 1.0 - (index * 0.055));
-            const inset = controller.cellSize * 0.08;
-            const baseSize = controller.cellSize - inset * 2;
-            const size = baseSize * taperFactor;
-            
-            // Centrado en la celda
-            const centerOffset = (controller.cellSize - size) / 2;
-            const drawX = segment.x * controller.cellSize + centerOffset;
-            const drawY = segment.y * controller.cellSize + centerOffset;
+            const isTail = index === bodyLength - 1 && index > 0;
 
-            controller.ctx.save();
+            const drawX = segment.x * controller.cellSize;
+            const drawY = segment.y * controller.cellSize;
+            const size = controller.cellSize;
 
-            // Configurar resplandor neón sólo para la cabeza
+            ctx.save();
+            ctx.imageSmoothingEnabled = false;
+
+            // Neon glow for head
             if (isHead) {
-                controller.ctx.shadowBlur = 14;
-                controller.ctx.shadowColor = 'rgba(52, 211, 153, 0.7)';
-                
-                // Dibujar lengua bífida animada
-                this.drawSnakeTongue(drawX, drawY, size, dir);
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = 'rgba(52, 211, 153, 0.6)';
             }
 
-            // Gradientes premium
-            if (isHead) {
-                const headGrad = controller.ctx.createRadialGradient(
-                    drawX + size * 0.35, drawY + size * 0.35, size * 0.08,
-                    drawX + size * 0.5, drawY + size * 0.5, size * 0.68
-                );
-                headGrad.addColorStop(0, '#6ee7b7'); // Emerald light
-                headGrad.addColorStop(0.4, '#34d399'); // Emerald
-                headGrad.addColorStop(0.75, '#10b981'); // Emerald medium
-                headGrad.addColorStop(1, '#047857'); // Forest green
-                controller.ctx.fillStyle = headGrad;
-            } else {
-                const bodyGrad = controller.ctx.createLinearGradient(drawX, drawY, drawX + size, drawY + size);
-                const segmentProgress = index / Math.max(1, bodyLength - 1);
-                if (index % 2 === 0) {
-                    bodyGrad.addColorStop(0, `hsl(152, ${72 - segmentProgress * 15}%, ${48 - segmentProgress * 12}%)`);
-                    bodyGrad.addColorStop(1, `hsl(155, ${65 - segmentProgress * 10}%, ${35 - segmentProgress * 10}%)`);
-                } else {
-                    bodyGrad.addColorStop(0, `hsl(160, ${68 - segmentProgress * 12}%, ${44 - segmentProgress * 10}%)`);
-                    bodyGrad.addColorStop(1, `hsl(170, ${60 - segmentProgress * 10}%, ${30 - segmentProgress * 8}%)`);
-                }
-                controller.ctx.fillStyle = bodyGrad;
+            // Translate to center of cell for rotation
+            ctx.translate(drawX + size / 2, drawY + size / 2);
+
+            // Determine rotation angle based on movement direction
+            let segDir = { x: dir.x, y: dir.y };
+            if (index > 0) {
+                const prev = snake[index - 1];
+                segDir = {
+                    x: prev.x - segment.x,
+                    y: prev.y - segment.y
+                };
+                // Handle board wrap
+                if (Math.abs(segDir.x) > 1) segDir.x = -Math.sign(segDir.x);
+                if (Math.abs(segDir.y) > 1) segDir.y = -Math.sign(segDir.y);
             }
 
-            // Determinar radios de esquinas dinámicamente según dirección y posición
-            let tl = size * 0.25, tr = size * 0.25, br = size * 0.25, bl = size * 0.25;
+            let angle = 0;
+            if (segDir.x === 1) angle = 0;
+            else if (segDir.x === -1) angle = Math.PI;
+            else if (segDir.y === 1) angle = Math.PI / 2;
+            else if (segDir.y === -1) angle = -Math.PI / 2;
+
+            ctx.rotate(angle);
+
+            // Draw correct sprite
             if (isHead) {
-                const strongRadius = size * 0.5;
-                const weakRadius = size * 0.2;
-                if (dir.x === 1) {
-                    tl = weakRadius; bl = weakRadius; tr = strongRadius; br = strongRadius;
-                } else if (dir.x === -1) {
-                    tr = weakRadius; br = weakRadius; tl = strongRadius; bl = strongRadius;
-                } else if (dir.y === 1) {
-                    tl = weakRadius; tr = weakRadius; bl = strongRadius; br = strongRadius;
-                } else if (dir.y === -1) {
-                    bl = weakRadius; br = weakRadius; tl = strongRadius; tr = strongRadius;
-                }
+                this.drawPixelSprite(ctx, -size / 2, -size / 2, size, this.HEAD_SPRITE, snakePalette);
             } else if (isTail) {
-                tl = tr = br = bl = size * 0.45;
+                this.drawPixelSprite(ctx, -size / 2, -size / 2, size, this.TAIL_SPRITE, snakePalette);
+            } else {
+                // Alternating body segments
+                const sprite = (index % 2 === 0) ? this.BODY_A : this.BODY_B;
+                this.drawPixelSprite(ctx, -size / 2, -size / 2, size, sprite, snakePalette);
             }
 
-            this.drawCustomRoundedRect(drawX, drawY, size, size, tl, tr, br, bl);
-            controller.ctx.fill();
-
-            // 3D sheen/gloss highlight
-            controller.ctx.fillStyle = 'rgba(255, 255, 255, 0.20)';
-            controller.ctx.beginPath();
-            controller.ctx.arc(drawX + size * 0.30, drawY + size * 0.30, size * 0.14, 0, Math.PI * 2);
-            controller.ctx.fill();
-
-            // Subtle body shadow
-            if (!isHead) {
-                controller.ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';
-                controller.ctx.beginPath();
-                controller.ctx.arc(drawX + size * 0.6, drawY + size * 0.65, size * 0.18, 0, Math.PI * 2);
-                controller.ctx.fill();
-            }
-
-            // Dibujar ojos direccionales detallados
-            if (isHead) {
-                this.drawSnakeEyes(drawX, drawY, size, dir);
-            }
-
-            controller.ctx.restore();
+            ctx.restore();
         });
-    }
-
-    drawSnakeEyes(x, y, size, dir) {
-        const controller = this.controller;
-        const eyeRadius = Math.max(2.5, size * 0.12);
-        const pupilRadius = Math.max(1.2, eyeRadius * 0.45);
-        
-        let leftEye = { x: 0, y: 0 };
-        let rightEye = { x: 0, y: 0 };
-        
-        if (dir.x === 1) {
-            leftEye = { x: x + size * 0.65, y: y + size * 0.28 };
-            rightEye = { x: x + size * 0.65, y: y + size * 0.72 };
-        } else if (dir.x === -1) {
-            leftEye = { x: x + size * 0.35, y: y + size * 0.28 };
-            rightEye = { x: x + size * 0.35, y: y + size * 0.72 };
-        } else if (dir.y === 1) {
-            leftEye = { x: x + size * 0.28, y: y + size * 0.65 };
-            rightEye = { x: x + size * 0.72, y: y + size * 0.65 };
-        } else if (dir.y === -1) {
-            leftEye = { x: x + size * 0.28, y: y + size * 0.35 };
-            rightEye = { x: x + size * 0.72, y: y + size * 0.35 };
-        } else {
-            leftEye = { x: x + size * 0.35, y: y + size * 0.35 };
-            rightEye = { x: x + size * 0.65, y: y + size * 0.35 };
-        }
-
-        // Esclerótica con borde sutil
-        controller.ctx.fillStyle = '#ffffff';
-        controller.ctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
-        controller.ctx.lineWidth = 0.5;
-        
-        controller.ctx.beginPath();
-        controller.ctx.arc(leftEye.x, leftEye.y, eyeRadius, 0, Math.PI * 2);
-        controller.ctx.fill();
-        controller.ctx.stroke();
-        
-        controller.ctx.beginPath();
-        controller.ctx.arc(rightEye.x, rightEye.y, eyeRadius, 0, Math.PI * 2);
-        controller.ctx.fill();
-        controller.ctx.stroke();
-
-        // Pupilas
-        controller.ctx.fillStyle = '#0f172a';
-        const pupOffsetX = dir.x * (eyeRadius * 0.22);
-        const pupOffsetY = dir.y * (eyeRadius * 0.22);
-
-        controller.ctx.beginPath();
-        controller.ctx.arc(leftEye.x + pupOffsetX, leftEye.y + pupOffsetY, pupilRadius, 0, Math.PI * 2);
-        controller.ctx.fill();
-
-        controller.ctx.beginPath();
-        controller.ctx.arc(rightEye.x + pupOffsetX, rightEye.y + pupOffsetY, pupilRadius, 0, Math.PI * 2);
-        controller.ctx.fill();
-
-        // Destello brillante
-        controller.ctx.fillStyle = '#ffffff';
-        controller.ctx.beginPath();
-        controller.ctx.arc(leftEye.x + pupOffsetX - pupilRadius * 0.3, leftEye.y + pupOffsetY - pupilRadius * 0.3, pupilRadius * 0.35, 0, Math.PI * 2);
-        controller.ctx.fill();
-
-        controller.ctx.beginPath();
-        controller.ctx.arc(rightEye.x + pupOffsetX - pupilRadius * 0.3, rightEye.y + pupOffsetY - pupilRadius * 0.3, pupilRadius * 0.35, 0, Math.PI * 2);
-        controller.ctx.fill();
-    }
-
-    drawSnakeTongue(drawX, drawY, size, dir) {
-        if (Math.floor(Date.now() / 250) % 2 === 0) {
-            return;
-        }
-
-        const ctx = this.controller.ctx;
-        ctx.save();
-        ctx.strokeStyle = '#f43f5e';
-        ctx.lineWidth = Math.max(1.8, size * 0.08);
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-
-        ctx.beginPath();
-        const startX = drawX + size / 2 + dir.x * (size / 2);
-        const startY = drawY + size / 2 + dir.y * (size / 2);
-
-        const length = size * 0.28;
-        const mainX = startX + dir.x * length;
-        const mainY = startY + dir.y * length;
-
-        ctx.moveTo(startX, startY);
-        ctx.lineTo(mainX, mainY);
-
-        const forkSize = size * 0.14;
-        if (dir.x !== 0) {
-            ctx.moveTo(mainX, mainY);
-            ctx.lineTo(mainX + dir.x * forkSize, mainY - forkSize);
-            ctx.moveTo(mainX, mainY);
-            ctx.lineTo(mainX + dir.x * forkSize, mainY + forkSize);
-        } else if (dir.y !== 0) {
-            ctx.moveTo(mainX, mainY);
-            ctx.lineTo(mainX - forkSize, mainY + dir.y * forkSize);
-            ctx.moveTo(mainX, mainY);
-            ctx.lineTo(mainX + forkSize, mainY + dir.y * forkSize);
-        }
-        ctx.stroke();
-        ctx.restore();
-    }
-
-    drawCustomRoundedRect(x, y, w, h, tl, tr, br, bl) {
-        const ctx = this.controller.ctx;
-        ctx.beginPath();
-        ctx.moveTo(x + tl, y);
-        ctx.lineTo(x + w - tr, y);
-        ctx.quadraticCurveTo(x + w, y, x + w, y + tr);
-        ctx.lineTo(x + w, y + h - br);
-        ctx.quadraticCurveTo(x + w, y + h, x + w - br, y + h);
-        ctx.lineTo(x + bl, y + h);
-        ctx.quadraticCurveTo(x, y + h, x, y + h - bl);
-        ctx.lineTo(x, y + tl);
-        ctx.quadraticCurveTo(x, y, x + tl, y);
-        ctx.closePath();
     }
 
     drawFoods() {
         const controller = this.controller;
         const config = controller.difficultyConfig[controller.state.difficulty] || controller.difficultyConfig.easy;
+        const ctx = controller.ctx;
 
         controller.state.foods.forEach((food) => {
             const x = food.x * controller.cellSize;
             const y = food.y * controller.cellSize;
-            const inset = controller.cellSize * 0.06;
+            const size = controller.cellSize;
 
             // Floating bob effect
             const bobOffset = Math.sin(Date.now() / 600 + (food.x * 5 + food.y * 11)) * 1.5;
+            const drawX = x;
+            const drawY = y + bobOffset;
 
-            // Pulse scaling
-            const pulseFactor = 0.92 + 0.08 * Math.sin(Date.now() / 180 + (food.x * 3 + food.y * 7));
-            const baseSize = controller.cellSize - inset * 2;
-            const size = baseSize * pulseFactor;
-            const centerOffset = (controller.cellSize - size) / 2;
-            const drawX = x + centerOffset;
-            const drawY = y + centerOffset + bobOffset;
-            const radius = size * 0.28;
-
-            controller.ctx.save();
+            ctx.save();
+            ctx.imageSmoothingEnabled = false;
 
             // Neon glow for compatible food
             if (config.showColorHints && food.compatible) {
-                controller.ctx.shadowBlur = 16;
-                controller.ctx.shadowColor = controller.getTargetColor();
+                ctx.shadowBlur = 14;
+                ctx.shadowColor = controller.getTargetColor();
             }
 
-            // Food background with gradient
-            const foodColor = this.getFoodColor(food);
-            const foodGrad = controller.ctx.createRadialGradient(
-                drawX + size * 0.35, drawY + size * 0.35, size * 0.05,
-                drawX + size * 0.5, drawY + size * 0.5, size * 0.65
-            );
-
+            // Setup color palette for the coin
+            const targetColor = controller.getTargetColor();
+            let coinPalette;
             if (config.showColorHints && food.compatible) {
-                const baseColor = controller.getTargetColor();
-                foodGrad.addColorStop(0, this.lightenColor(baseColor, 0.3));
-                foodGrad.addColorStop(0.6, foodColor);
-                foodGrad.addColorStop(1, this.darkenColor(baseColor, 0.2));
+                coinPalette = {
+                    1: this.darkenColor(targetColor, 0.40),
+                    2: targetColor,
+                    3: this.lightenColor(targetColor, 0.35)
+                };
             } else {
-                foodGrad.addColorStop(0, 'rgba(71, 85, 105, 0.95)');
-                foodGrad.addColorStop(1, foodColor);
+                coinPalette = {
+                    1: '#1e293b', // Dark border
+                    2: '#475569', // Slate grey
+                    3: '#94a3b8'  // Highlight
+                };
             }
 
-            controller.ctx.fillStyle = foodGrad;
-            this.drawRoundedRect(drawX, drawY, size, size, radius);
-            controller.ctx.fill();
+            this.drawPixelSprite(ctx, drawX, drawY, size, this.COIN_SPRITE, coinPalette);
 
-            // Inner highlight sheen
-            controller.ctx.fillStyle = 'rgba(255, 255, 255, 0.10)';
-            controller.ctx.beginPath();
-            controller.ctx.arc(drawX + size * 0.35, drawY + size * 0.32, size * 0.18, 0, Math.PI * 2);
-            controller.ctx.fill();
-
-            // Subtle border
-            controller.ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
-            controller.ctx.lineWidth = 1.2;
-            controller.ctx.stroke();
-
-            // Reset shadow for text
-            controller.ctx.shadowBlur = 0;
+            // Reset shadow before drawing text
+            ctx.shadowBlur = 0;
 
             // Hanzi label
             const label = food.word.hanzi;
-            const fontSize = label.length > 1 ? size * 0.36 : size * 0.48;
+            const fontSize = label.length > 1 ? size * 0.36 : size * 0.44;
 
-            controller.ctx.fillStyle = '#f8fafc';
-            controller.ctx.font = '700 ' + fontSize.toFixed(1) + 'px "Noto Sans SC", sans-serif';
-            controller.ctx.textAlign = 'center';
-            controller.ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#f8fafc';
+            ctx.font = '700 ' + fontSize.toFixed(1) + 'px "Noto Sans SC", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
 
             // Text shadow for readability
-            controller.ctx.shadowBlur = 3;
-            controller.ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-            controller.ctx.fillText(label, x + controller.cellSize / 2, y + controller.cellSize / 2 + bobOffset + 1);
-            controller.ctx.shadowBlur = 0;
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+            ctx.fillText(label, x + size / 2, y + size / 2 + bobOffset + 0.5);
 
-            controller.ctx.restore();
+            ctx.restore();
         });
     }
 

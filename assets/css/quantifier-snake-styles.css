@@ -242,48 +242,132 @@
     font-variant-numeric: tabular-nums;
 }
 
-/* ---- Target Badge ---- */
+/* ---- Target Screen / Display ---- */
 .snakeq-target-row {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    background: 
+        linear-gradient(rgba(18, 24, 38, 0.95), rgba(11, 15, 26, 0.98)),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 2px, transparent 2px, transparent 4px);
+    border: 2px solid rgba(148, 163, 184, 0.15);
+    border-radius: 20px;
+    padding: 16px 20px;
+    box-shadow: 
+        inset 0 0 24px rgba(0, 0, 0, 0.75),
+        0 8px 30px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Scanline scan effect */
+.snakeq-target-row::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.04) 10%,
+        rgba(255, 255, 255, 0) 20%
+    );
+    animation: snakeq-scanline 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes snakeq-scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
 }
 
 .snakeq-target-label {
-    color: rgba(226, 232, 240, 0.86);
+    color: rgba(148, 163, 184, 0.85);
     font-weight: 700;
-    font-size: 0.92rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
 }
 
 .snakeq-target-badge {
     --snakeq-target-color: #f97316;
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    border-radius: 999px;
-    border: 1.5px solid var(--snakeq-target-color);
-    background: rgba(15, 23, 42, 0.72);
-    box-shadow:
-        inset 0 0 0 1px rgba(248, 250, 252, 0.08),
-        0 0 16px color-mix(in srgb, var(--snakeq-target-color) 25%, transparent);
+    justify-content: center;
+    gap: 24px;
+    padding: 4px 12px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
     color: #f8fafc;
-    font-weight: 800;
-    font-size: 0.96rem;
-    letter-spacing: 0.01em;
-    transition: border-color 0.3s ease, box-shadow 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+/* Large pulsing Chinese Hanzi */
+.snakeq-target-hanzi {
+    font-size: 3.6rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 
+        0 0 8px var(--snakeq-target-color),
+        0 0 16px var(--snakeq-target-color),
+        0 0 32px color-mix(in srgb, var(--snakeq-target-color) 45%, transparent);
+    font-family: "Noto Sans SC", sans-serif;
+    line-height: 1;
+    animation: snakeq-pulse-glow 2s ease-in-out infinite alternate;
+}
+
+.snakeq-target-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    text-align: left;
+}
+
+.snakeq-target-pinyin {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f8fafc;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.snakeq-target-meaning {
+    font-size: 1rem;
+    color: rgba(226, 232, 240, 0.85);
+    font-weight: 500;
+}
+
+@keyframes snakeq-pulse-glow {
+    from {
+        transform: scale(0.97);
+        text-shadow: 
+            0 0 6px var(--snakeq-target-color),
+            0 0 12px var(--snakeq-target-color),
+            0 0 24px color-mix(in srgb, var(--snakeq-target-color) 30%, transparent);
+    }
+    to {
+        transform: scale(1.03);
+        text-shadow: 
+            0 0 10px var(--snakeq-target-color),
+            0 0 20px var(--snakeq-target-color),
+            0 0 40px color-mix(in srgb, var(--snakeq-target-color) 50%, transparent);
+    }
 }
 
 .snakeq-target-badge--neutral {
-    border-color: rgba(148, 163, 184, 0.40);
-    background: rgba(51, 65, 85, 0.65);
-    box-shadow: none;
+    filter: grayscale(1);
+    opacity: 0.6;
 }
 
 /* ---- Board Wrapper (the star of the show) ---- */
 .snakeq-board-wrap {
-    width: min(100%, 780px);
+    width: min(100%, 820px);
     margin: 0 auto;
     border-radius: 20px;
     overflow: hidden;
