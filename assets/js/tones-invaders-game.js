@@ -301,6 +301,9 @@ class TonesInvadersGame {
         document.getElementById('tones-inv-setup').style.display = 'none';
         document.getElementById('tones-inv-game-area').style.display = 'block';
         
+        // Recalculate canvas size now that game area is visible and has a layout
+        this.resizeCanvas();
+        
         // Sync DOM stats
         this.updateHUD();
         
