@@ -805,14 +805,26 @@ class QuantifierSnakeController {
       return;
     }
 
-    const availableWidth =
-      this.canvasWrap.clientWidth || this.defaultCanvasSize;
-    const clamped = Math.max(320, Math.min(820, availableWidth));
+    // Reset board-wrap width style so we can measure parent available width correctly
+    this.canvasWrap.style.width = '';
+
+    const parent = this.canvasWrap.parentElement;
+    const availableWidth = parent ? parent.clientWidth : this.defaultCanvasSize;
+
+    // Also take viewport height into account so the entire board fits vertically
+    const paddingAndHUDHeight = 320; // estimate for title, HUD, target display, buttons, margins
+    const maxVisibleHeight = Math.max(320, window.innerHeight - paddingAndHUDHeight);
+
+    // Clamp the width, but also ensure it doesn't exceed the available vertical space
+    const clamped = Math.max(320, Math.min(820, availableWidth, maxVisibleHeight));
     const size = Math.floor(clamped);
 
     this.canvas.width = size;
     this.canvas.height = size;
     this.cellSize = size / this.boardSize;
+
+    // Apply the width to the wrap container to match on-screen size exactly
+    this.canvasWrap.style.width = size + 'px';
 
     this.render();
   }
