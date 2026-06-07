@@ -1,4 +1,4 @@
-const SW_VERSION = "4.6.0-premium-responsive-design";
+const SW_VERSION = "4.7.0-typography-and-inputs-polish";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -13,7 +13,7 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css",
-  "./assets/css/styles-professional.css?v=27",
+  "./assets/css/styles-professional.css?v=28",
   "./assets/css/matrix-game-styles.css?v=6",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css",

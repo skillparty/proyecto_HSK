@@ -54,7 +54,16 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
-    /* Removed heavy background to support the clean Notion theme */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
 }
 
 a {
@@ -481,8 +490,8 @@ ul {
 }
 
 #header-search {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--color-bg-input);
+    border: 1px solid var(--color-border);
     color: var(--text-main);
     padding: 8px 16px;
     border-radius: 20px;
@@ -493,14 +502,10 @@ ul {
 
 #header-search:focus {
     outline: none;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--color-bg-input);
     border-color: var(--primary);
     width: 240px;
-}
-
-#header-search:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 .header-control {
@@ -529,10 +534,21 @@ select.header-control {
     font-size: 0.9rem;
     padding: 6px 12px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    appearance: none;
-    /* Custom dropdown arrow would be added ideally */
+    background: var(--color-bg-input);
+    border: 1px solid var(--color-border);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: border-color var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+}
+
+select.header-control:hover {
+    border-color: rgba(229, 57, 53, 0.5);
+}
+
+select.header-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 /* ============================================================================
@@ -1429,14 +1445,25 @@ body.light-theme .achievement-item.lock {
 }
 
 .select-input {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--color-bg-input);
+    border: 1px solid var(--color-border);
     color: var(--text-main);
     padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;
     flex: 1;
     max-width: 200px;
+    transition: border-color var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+}
+
+.select-input:hover {
+    border-color: rgba(229, 57, 53, 0.5);
+}
+
+.select-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 /* Flashcard */
