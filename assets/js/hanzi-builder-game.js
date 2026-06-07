@@ -311,6 +311,15 @@ class HanziBuilderGame {
         // Score points
         this.state.score += 20;
         
+        // Record word study progress
+        window.progressIntegrator?.recordWordStudy({
+            character: this.state.currentWord.character,
+            pinyin: this.state.currentWord.pinyin,
+            isCorrect: true,
+            hskLevel: this.state.currentWord.level,
+            responseTime: 3000
+        });
+        
         // Sound
         this.playSynth(523.25, 'sine', 0.2, 0.15); // C5 note
         setTimeout(() => this.playSynth(659.25, 'sine', 0.15, 0.25), 120); // E5 note
@@ -343,6 +352,20 @@ class HanziBuilderGame {
         // Sound
         this.playSynth(220, 'sawtooth', 0.2, 0.3);
         setTimeout(() => this.playSynth(110, 'triangle', 0.25, 0.45), 250);
+        
+        // Save high score and report progress
+        if (window.app && window.app.stats) {
+            const prevHigh = window.app.stats.hanziBuilderHighScore || 0;
+            if (this.state.score > prevHigh) {
+                window.app.stats.hanziBuilderHighScore = this.state.score;
+            }
+            window.app.saveStats();
+        }
+        
+        // Fire game result event for dashboard integration
+        document.dispatchEvent(new CustomEvent('hsk:game-result', {
+            detail: { game: 'hanzi-builder', score: this.state.score }
+        }));
     }
     
     // Update HTML elements
@@ -374,8 +397,25 @@ class HanziBuilderGame {
         return arr;
     }
     
+    /**
+     * Get the stored high score for Hanzi Builder from localStorage
+     * @returns {number} The high score, or 0 if none exists
+     */
+    getHighScore() {
+        try {
+            const stored = localStorage.getItem('hanzi-builder-highscore');
+            return stored ? parseInt(stored, 10) : 0;
+        } catch (e) {
+            return 0;
+        }
+    }
+    
     // Retro synthesizer helper
     playSynth(frequency, type = 'sine', volume = 0.1, duration = 0.15) {
+        if (window.gameAudioManager) {
+            window.gameAudioManager.playSynth(frequency, type, volume, duration);
+            return;
+        }
         try {
             const AudioCtx = window.AudioContext || window.webkitAudioContext;
             if (!AudioCtx) return;

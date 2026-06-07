@@ -12,6 +12,8 @@ class TonesInvadersGame {
         this.baseSpeed = 0.8;
         this.activeLevel = "all";
         this.difficulty = "normal";
+        this.logicalWidth = 600;
+        this.logicalHeight = 400;
         
         // State
         this.state = this.getInitialState();
@@ -98,6 +100,26 @@ class TonesInvadersGame {
         return 5; // Neutral
     }
     
+    // Recalculates canvas size based on container and applies devicePixelRatio
+    resizeCanvas() {
+        if (!this.canvas) return;
+        const rect = this.canvas.parentNode.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        
+        // Use container width, maintain 3:2 aspect ratio
+        const width = rect.width;
+        const height = rect.width * (this.logicalHeight / this.logicalWidth);
+        
+        this.canvas.width = width * dpr;
+        this.canvas.height = height * dpr;
+        
+        this.canvas.style.width = `${width}px`;
+        this.canvas.style.height = `${height}px`;
+        
+        this.ctx = this.canvas.getContext('2d');
+        this.ctx.scale(dpr * (width / this.logicalWidth), dpr * (height / this.logicalHeight));
+    }
+    
     // Initialize game DOM events
     initialize() {
         if (this.isInitialized) return;
@@ -105,6 +127,10 @@ class TonesInvadersGame {
         this.canvas = document.getElementById('tones-inv-canvas');
         if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
+        
+        // Responsive sizing
+        this.resizeCanvas();
+        window.addEventListener('resize', () => this.resizeCanvas());
         
         // Start Button
         const startBtn = document.getElementById('tones-inv-start-btn');
@@ -144,11 +170,11 @@ class TonesInvadersGame {
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
             
-            const canvasX = ((clientX - rect.left) / rect.width) * this.canvas.width;
-            const canvasY = ((clientY - rect.top) / rect.height) * this.canvas.height;
+            const canvasX = ((clientX - rect.left) / rect.width) * this.logicalWidth;
+            const canvasY = ((clientY - rect.top) / rect.height) * this.logicalHeight;
             
-            this.playerX = Math.max(20, Math.min(this.canvas.width - 20, canvasX));
-            this.playerY = Math.max(150, Math.min(this.canvas.height - 20, canvasY));
+            this.playerX = Math.max(20, Math.min(this.logicalWidth - 20, canvasX));
+            this.playerY = Math.max(150, Math.min(this.logicalHeight - 20, canvasY));
         };
         
         this.canvas.addEventListener('mousemove', (e) => {
@@ -223,8 +249,8 @@ class TonesInvadersGame {
         this.spawnTimer = 0;
         
         // Reset player ship
-        this.playerX = this.canvas ? this.canvas.width / 2 : 300;
-        this.playerY = this.canvas ? this.canvas.height - 35 : 350;
+        this.playerX = this.canvas ? this.logicalWidth / 2 : 300;
+        this.playerY = this.canvas ? this.logicalHeight - 35 : 350;
         this.keys = {
             ArrowLeft: false,
             ArrowRight: false,
@@ -358,13 +384,13 @@ class TonesInvadersGame {
             this.playerX = Math.max(20, this.playerX - playerSpeed);
         }
         if (this.keys.ArrowRight) {
-            this.playerX = Math.min(this.canvas.width - 20, this.playerX + playerSpeed);
+            this.playerX = Math.min(this.logicalWidth - 20, this.playerX + playerSpeed);
         }
         if (this.keys.ArrowUp) {
             this.playerY = Math.max(150, this.playerY - playerSpeed);
         }
         if (this.keys.ArrowDown) {
-            this.playerY = Math.min(this.canvas.height - 20, this.playerY + playerSpeed);
+            this.playerY = Math.min(this.logicalHeight - 20, this.playerY + playerSpeed);
         }
 
         // Handle spawns
@@ -381,7 +407,7 @@ class TonesInvadersGame {
             inv.y += speed * (dt / 16.67);
             
             // Check boundary
-            if (inv.y > this.canvas.height - 40) {
+            if (inv.y > this.logicalHeight - 40) {
                 // Invader reached bottom -> lose a life!
                 this.invaders.splice(i, 1);
                 this.state.lives--;
@@ -444,12 +470,30 @@ class TonesInvadersGame {
                         
                         this.updateHUD();
                         
+                        // Record correct tone match
+                        window.progressIntegrator?.recordWordStudy({
+                            character: inv.char,
+                            pinyin: inv.pinyin,
+                            isCorrect: true,
+                            hskLevel: 1,
+                            responseTime: 2000
+                        });
+                        
                         // Explosion sound
                         this.playSynthesizerSound(120, 'noise', 0.2, 0.25);
                     } else {
                         // Wrong tone -> laser simply passes through or vanishes
                         this.lasers.splice(l, 1);
                         this.playSynthesizerSound(150, 'sawtooth', 0.05, 0.15); // buzzer noise
+                        
+                        // Record incorrect tone match
+                        window.progressIntegrator?.recordWordStudy({
+                            character: inv.char,
+                            pinyin: inv.pinyin,
+                            isCorrect: false,
+                            hskLevel: 1,
+                            responseTime: 2000
+                        });
                     }
                     break; // stop checking invaders for this laser
                 }
@@ -468,7 +512,7 @@ class TonesInvadersGame {
         const char = word.character.charAt(0);
         const tone = this.detectTone(word.pinyin);
         
-        const x = 50 + Math.random() * (this.canvas.width - 100);
+        const x = 50 + Math.random() * (this.logicalWidth - 100);
         const y = 0;
         
         this.invaders.push({
@@ -485,13 +529,13 @@ class TonesInvadersGame {
     draw() {
         // Clear canvas with space galaxy background
         this.ctx.fillStyle = '#070714';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillRect(0, 0, this.logicalWidth, this.logicalHeight);
         
         // Draw space stars
         this.ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
         for (let i = 0; i < 30; i++) {
-            const starX = (Math.sin(i * 123.4) * 0.5 + 0.5) * this.canvas.width;
-            const starY = ((performance.now() * 0.02 + i * 20) % this.canvas.height);
+            const starX = (Math.sin(i * 123.4) * 0.5 + 0.5) * this.logicalWidth;
+            const starY = ((performance.now() * 0.02 + i * 20) % this.logicalHeight);
             this.ctx.fillRect(starX, starY, 2, 2);
         }
         
@@ -615,7 +659,7 @@ class TonesInvadersGame {
         
         // Draw Game Over on canvas
         this.ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillRect(0, 0, this.logicalWidth, this.logicalHeight);
         
         this.ctx.fillStyle = '#ef4444';
         this.ctx.font = 'bold 36px "Inter", sans-serif';
@@ -623,24 +667,41 @@ class TonesInvadersGame {
         this.ctx.textBaseline = 'middle';
         const gameOverText = window.languageManager ? window.languageManager.t('tonesInvGameOver') : "FIN DEL JUEGO";
         const finalScoreLabel = window.languageManager ? window.languageManager.t('tonesInvFinalScore') : "Puntaje Final";
-        this.ctx.fillText(gameOverText, this.canvas.width / 2, this.canvas.height / 2 - 20);
+        this.ctx.fillText(gameOverText, this.logicalWidth / 2, this.logicalHeight / 2 - 20);
         
         this.ctx.fillStyle = '#ffffff';
         this.ctx.font = '18px "Inter", sans-serif';
-        this.ctx.fillText(`${finalScoreLabel}: ${this.state.score}`, this.canvas.width / 2, this.canvas.height / 2 + 25);
+        this.ctx.fillText(`${finalScoreLabel}: ${this.state.score}`, this.logicalWidth / 2, this.logicalHeight / 2 + 25);
         
         // Sound
         this.playSynthesizerSound(180, 'sawtooth', 0.3, 0.4);
         setTimeout(() => this.playSynthesizerSound(90, 'triangle', 0.4, 0.6), 250);
         
-        // Save score if possible
-        if (window.app && window.app.progressController) {
-            // Option to add stats update here
+        // Save high score and report progress
+        if (window.app && window.app.stats) {
+            const prevHigh = window.app.stats.tonesInvadersHighScore || 0;
+            if (this.state.score > prevHigh) {
+                window.app.stats.tonesInvadersHighScore = this.state.score;
+            }
+            window.app.saveStats();
         }
+        
+        // Fire game result event for dashboard integration
+        document.dispatchEvent(new CustomEvent('hsk:game-result', {
+            detail: { game: 'tones-invaders', score: this.state.score }
+        }));
     }
     
     // Retro synthesizer helper using Web Audio API
     playSynthesizerSound(frequency, type = 'sawtooth', volume = 0.1, duration = 0.15) {
+        if (window.gameAudioManager) {
+            if (type === 'noise') {
+                window.gameAudioManager.playNoise(frequency, volume, duration);
+            } else {
+                window.gameAudioManager.playSynth(frequency, type, volume, duration);
+            }
+            return;
+        }
         try {
             const AudioCtx = window.AudioContext || window.webkitAudioContext;
             if (!AudioCtx) return;

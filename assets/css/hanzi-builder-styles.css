@@ -305,16 +305,84 @@
     animation: hanzi-build-success 0.4s ease-out;
 }
 
-/* ── Mobile ──────────────────────────────────────────── */
+/* ── Mobile (≤ 900px) ── tablet / large phone ────────── */
 @media (max-width: 900px) {
     .hanzi-build-setup-grid { grid-template-columns: 1fr; }
     .hanzi-build-rules { grid-column: span 1; }
+
+    /* Ensure target card stays visible without scrolling */
+    .hanzi-build-target-card {
+        min-height: 120px;
+        padding: 1rem;
+    }
 }
 
+/* ── Mobile (≤ 480px) ── small phone ─────────────────── */
 @media (max-width: 480px) {
     .hanzi-build-shell { padding: 1rem .5rem; }
     .hanzi-build-title { font-size: 1.3rem; }
-    .hanzi-build-part { width: 50px; height: 50px; font-size: 1.5rem; }
-    .hanzi-build-slot { width: 50px; height: 50px; font-size: 1.5rem; }
+
+    /* WCAG 2.5.5: 44px minimum touch targets for radical palette buttons */
+    .hanzi-build-part {
+        width: 50px;
+        height: 50px;
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 1.5rem;
+    }
+
+    /* Well-spaced assembly slots on mobile */
+    .hanzi-build-slot {
+        width: 50px;
+        height: 50px;
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 1.5rem;
+    }
+
+    /* Assembly zone: wrap slots when they overflow */
+    .hanzi-build-assembly-zone {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: .75rem;
+    }
+
+    /* Palette: tighter gap, allow wrapping */
+    .hanzi-build-palette {
+        gap: 0.5rem;
+        padding: .75rem;
+    }
+
+    /* Target card: compact but fully visible */
+    .hanzi-build-target-card {
+        min-height: auto;
+        padding: 1rem;
+    }
+    .hanzi-build-target-hint { font-size: 1rem; }
+    .hanzi-build-target-meaning { font-size: 1.1rem; }
+
     .hanzi-build-actions { flex-direction: column; align-items: stretch; }
+
+    /* Compact HUD on small screens */
+    .hanzi-build-metric-label { font-size: .65rem; }
+    .hanzi-build-metric-value { font-size: 1rem; }
+}
+
+/* ── Landscape orientation on mobile ─────────────────── */
+@media (max-width: 900px) and (orientation: landscape) {
+    .hanzi-build-shell { padding: .5rem; }
+    .hanzi-build-title { font-size: 1.1rem; margin-bottom: .1rem; }
+    .hanzi-build-subtitle { margin-bottom: .5rem; }
+
+    /* Compact layout in landscape */
+    .hanzi-build-target-card {
+        min-height: auto;
+        padding: .75rem;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .hanzi-build-assembly-zone { min-height: 60px; padding: .5rem; }
+    .hanzi-build-slot { width: 44px; height: 44px; font-size: 1.3rem; }
+    .hanzi-build-part { width: 44px; height: 44px; font-size: 1.3rem; }
 }

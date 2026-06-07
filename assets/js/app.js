@@ -320,7 +320,13 @@ class HSKApp {
     updateThemeButton() { return this.themeController.updateThemeButton(); }
     changeLanguage(lang) { return this.languageController.changeLanguage(lang); }
     loadStats() { return this.storageController.loadStats(); }
-    saveStats() { return this.storageController.saveStats(); }
+    saveStats() {
+        const res = this.storageController.saveStats();
+        if (this.interactionController && typeof this.interactionController.updateSidebarProgress === 'function') {
+            this.interactionController.updateSidebarProgress();
+        }
+        return res;
+    }
     loadSettings() { return this.storageController.loadSettings(); }
     initializePastExams() { return this.pastExamsController.initialize(); }
     refreshPastExamsLanguage() { return this.pastExamsController.refreshLanguage(); }

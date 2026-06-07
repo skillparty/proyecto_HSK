@@ -266,16 +266,81 @@
     opacity: .7;
 }
 
-/* ── Mobile ──────────────────────────────────────────── */
+/* ── Mobile (≤ 900px) ── tablet / large phone ────────── */
 @media (max-width: 900px) {
     .tones-inv-tone-buttons { display: flex; }
     .tones-inv-setup-grid { grid-template-columns: 1fr; }
     .tones-inv-rules { grid-column: span 1; }
+
+    /* Make canvas container fluid instead of inline-block */
+    .tones-inv-canvas-wrap {
+        display: block;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+    }
+    .tones-inv-canvas-wrap canvas {
+        width: 100%;
+        height: 100%;
+    }
 }
 
+/* ── Mobile (≤ 480px) ── small phone ─────────────────── */
 @media (max-width: 480px) {
     .tones-inv-shell { padding: 1rem .5rem; }
     .tones-inv-title { font-size: 1.3rem; }
-    .tones-inv-tone-btn { width: 54px; height: 54px; font-size: 1.1rem; }
+
+    /* WCAG 2.5.5: 44px minimum touch targets for tone buttons */
+    .tones-inv-tone-btn {
+        width: 54px;
+        height: 54px;
+        min-width: 44px;
+        min-height: 44px;
+        font-size: 1.1rem;
+    }
+
     .tones-inv-actions { flex-direction: column; align-items: stretch; }
+
+    /* Compact HUD layout on small screens */
+    .tones-inv-hud {
+        gap: .35rem;
+    }
+    .tones-inv-metric-label { font-size: .65rem; }
+    .tones-inv-metric-value { font-size: 1rem; }
+
+    /* Reduce canvas wrapper border on small screens */
+    .tones-inv-canvas-wrap {
+        border-width: 1px;
+        border-radius: var(--radius-md);
+    }
+}
+
+/* ── Landscape orientation on mobile ─────────────────── */
+@media (max-width: 900px) and (orientation: landscape) {
+    .tones-inv-shell { padding: .5rem; }
+    .tones-inv-title { font-size: 1.1rem; margin-bottom: .15rem; }
+    .tones-inv-subtitle { font-size: .8rem; margin-bottom: .5rem; }
+
+    /* Shrink canvas in landscape to leave room for tone buttons */
+    .tones-inv-canvas-wrap {
+        max-height: 55vh;
+        aspect-ratio: auto;
+    }
+    .tones-inv-canvas-wrap canvas {
+        max-height: 55vh;
+        width: auto;
+    }
+
+    /* Side-align tone buttons in landscape */
+    .tones-inv-tone-buttons {
+        gap: .4rem;
+        margin-top: .5rem;
+    }
+    .tones-inv-tone-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1rem;
+    }
+
+    /* Compact HUD row in landscape */
+    .tones-inv-hud { margin-bottom: .4rem; }
 }

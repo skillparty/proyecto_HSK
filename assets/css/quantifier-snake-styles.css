@@ -511,6 +511,14 @@
     }
 }
 
+/*
+ * NOTE: Canvas Retina/devicePixelRatio scaling is handled by the
+ * QuantifierSnakeGame controller in JS (resizeCanvas method), not via CSS.
+ * The CSS rule `#snakeq-canvas { width:100%; height:auto; }` ensures the
+ * canvas element fills its wrapper, while the JS sets the actual pixel
+ * buffer dimensions using devicePixelRatio for crisp rendering.
+ */
+
 @media (max-width: 640px) {
     #snake-quantifiers {
         padding: 8px 0 20px;
@@ -550,16 +558,59 @@
         width: 100%;
     }
 
+    /* WCAG 2.5.5: 48px minimum touch targets for D-pad buttons */
     .dpad-btn {
-        width: 54px;
-        height: 54px;
+        width: 58px;
+        height: 58px;
+        min-width: 48px;
+        min-height: 48px;
         border-radius: 14px;
+        font-size: 1.5rem;
     }
 
     .dpad-center {
-        width: 54px;
-        height: 54px;
+        width: 58px;
+        height: 58px;
+        min-width: 48px;
+        min-height: 48px;
     }
+}
+
+/* ── Landscape orientation on mobile ─────────────────── */
+@media (max-width: 900px) and (orientation: landscape) {
+    .snakeq-shell { padding: 12px 14px 16px; }
+    .snakeq-title { font-size: 1.3rem; }
+    .snakeq-subtitle { font-size: 0.82rem; margin-top: 4px; }
+
+    /* Canvas: limit height in landscape to prevent overflow */
+    .snakeq-board-wrap {
+        max-height: 60vh;
+    }
+    #snakeq-canvas {
+        max-height: 60vh;
+        width: auto;
+    }
+
+    /* Compact D-pad in landscape */
+    .snakeq-mobile-controls {
+        margin: 8px auto 4px;
+        gap: 4px;
+    }
+    .dpad-row { gap: 4px; }
+    .dpad-btn {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        font-size: 1.2rem;
+    }
+    .dpad-center { width: 48px; height: 48px; }
+
+    /* HUD in landscape: single row */
+    .snakeq-hud {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+    }
+    .snakeq-metric { padding: 8px 12px; }
 }
 
 /* ============================================================================

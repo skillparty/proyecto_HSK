@@ -248,6 +248,27 @@ class HomeController {
                     const acc = stats.totalStudied > 0 ? (stats.correctAnswers / stats.totalStudied) * 100 : 0;
                     return stats.totalStudied >= 15 && acc >= 85;
                 })()
+            },
+            {
+                id: 'hanzi-builder-star',
+                title: isEs ? 'Constructor de Hanzi ✍️' : 'Hanzi Builder ✍️',
+                desc: isEs ? 'Logra 100 puntos en el Constructor de Hanzi.' : 'Score 100 points in Hanzi Builder.',
+                icon: '✍️',
+                unlocked: (stats.hanziBuilderHighScore || 0) >= 100
+            },
+            {
+                id: 'tone-defender',
+                title: isEs ? 'Defensor de Tonos 🎵' : 'Tone Defender 🎵',
+                desc: isEs ? 'Logra 50 puntos en Invasores de Tonos.' : 'Score 50 points in Tones Invaders.',
+                icon: '🎵',
+                unlocked: (stats.tonesInvadersHighScore || 0) >= 50
+            },
+            {
+                id: 'word-connector',
+                title: isEs ? 'Conector de Palabras 🔗' : 'Word Connector 🔗',
+                desc: isEs ? 'Logra 100 puntos en el Enlazador de Palabras.' : 'Score 100 points in Word Linker.',
+                icon: '🔗',
+                unlocked: (stats.wordLinkerHighScore || 0) >= 100
             }
         ];
 

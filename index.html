@@ -100,19 +100,30 @@
 </head>
 
 <body>
-    <!-- Pilares laterales chinos mejorados -->
+    <!-- Pilares laterales chinos mejorados con controles interactivos -->
     <div class="vertical-pillar-left">
-        <div class="lantern-top"></div>
-        <div class="coin-bottom"></div>
+        <div class="lantern-top" title="¡Farol de la suerte! Balancea al desplazar la página"></div>
+        <div class="hsk-level-nav">
+            <button class="hsk-nav-btn" data-level="1" title="Nivel HSK 1">H1</button>
+            <button class="hsk-nav-btn" data-level="2" title="Nivel HSK 2">H2</button>
+            <button class="hsk-nav-btn" data-level="3" title="Nivel HSK 3">H3</button>
+            <button class="hsk-nav-btn" data-level="4" title="Nivel HSK 4">H4</button>
+            <button class="hsk-nav-btn" data-level="5" title="Nivel HSK 5">H5</button>
+            <button class="hsk-nav-btn" data-level="6" title="Nivel HSK 6">H6</button>
+        </div>
+        <div class="coin-bottom" title="Moneda Imperial. Gira al desplazar la página"></div>
     </div>
     <div class="vertical-pillar-right">
-        <div class="lantern-top"></div>
-        <div class="coin-bottom"></div>
+        <div class="lantern-top" title="¡Farol de la suerte! Balancea al desplazar la página"></div>
+        <div class="hsk-progress-pillar" title="Progreso de tu meta diaria">
+            <div class="hsk-progress-fill-vertical" id="sidebar-progress-fill"></div>
+            <div class="hsk-progress-text" id="sidebar-progress-text">0%</div>
+        </div>
+        <div class="fire-bottom" id="sidebar-fire-streak" title="Tu racha de estudio activa">
+            <span class="fire-icon">🔥</span>
+            <span class="streak-count" id="sidebar-streak-count">0</span>
+        </div>
     </div>
-
-    <!-- Elementos laterales verticales -->
-    <div class="vertical-text-left">孔子学院</div>
-    <div class="vertical-text-right">何宸朗</div>
 
     <div class="app-container">
         <header class="app-header">
@@ -1501,6 +1512,7 @@
     <script src="assets/js/logger.js?v=1" defer></script>
     <script src="assets/js/bg-data.js" defer></script>
     <script src="assets/js/app.js?v=33" defer></script>
+    <script src="assets/js/modules/game-engine.js" defer></script>
     <script src="assets/js/matrix-game-ui.js?v=7" defer></script>
     <script src="assets/js/modules/matrix-session-controller.js?v=2" defer></script>
     <script src="assets/js/modules/matrix-score-controller.js?v=2" defer></script>

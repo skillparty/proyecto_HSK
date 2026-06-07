@@ -273,6 +273,15 @@ class WordLinkerGame {
             this.state.foundWords.push(this.state.currentClueWord);
             this.state.score += 25;
             
+            // Record correct word match
+            window.progressIntegrator?.recordWordStudy({
+                character: this.state.currentClueWord.character,
+                pinyin: this.state.currentClueWord.pinyin,
+                isCorrect: true,
+                hskLevel: this.state.currentClueWord.level || 1,
+                responseTime: 3000
+            });
+            
             // Neon pulse on matched cells
             this.state.selectedIndices.forEach(idx => {
                 if (cells[idx]) {
@@ -301,6 +310,15 @@ class WordLinkerGame {
         } else {
             // Failure buzzer
             this.playSynth(140, 'sawtooth', 0.18, 0.22);
+            
+            // Record incorrect word match
+            window.progressIntegrator?.recordWordStudy({
+                character: this.state.currentClueWord.character,
+                pinyin: this.state.currentClueWord.pinyin,
+                isCorrect: false,
+                hskLevel: this.state.currentClueWord.level || 1,
+                responseTime: 3000
+            });
             
             // Flash selection red
             this.state.selectedIndices.forEach(idx => {
@@ -350,6 +368,20 @@ class WordLinkerGame {
         
         this.playSynth(220, 'sawtooth', 0.2, 0.3);
         setTimeout(() => this.playSynth(110, 'triangle', 0.25, 0.45), 250);
+        
+        // Save high score and report progress
+        if (window.app && window.app.stats) {
+            const prevHigh = window.app.stats.wordLinkerHighScore || 0;
+            if (this.state.score > prevHigh) {
+                window.app.stats.wordLinkerHighScore = this.state.score;
+            }
+            window.app.saveStats();
+        }
+        
+        // Fire game result event for dashboard integration
+        document.dispatchEvent(new CustomEvent('hsk:game-result', {
+            detail: { game: 'word-linker', score: this.state.score }
+        }));
     }
     
     // Update stats
@@ -382,6 +414,10 @@ class WordLinkerGame {
     
     // Synth audio
     playSynth(frequency, type = 'sine', volume = 0.1, duration = 0.15) {
+        if (window.gameAudioManager) {
+            window.gameAudioManager.playSynth(frequency, type, volume, duration);
+            return;
+        }
         try {
             const AudioCtx = window.AudioContext || window.webkitAudioContext;
             if (!AudioCtx) return;
