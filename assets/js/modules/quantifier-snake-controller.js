@@ -811,12 +811,14 @@ class QuantifierSnakeController {
     const parent = this.canvasWrap.parentElement;
     const availableWidth = parent ? parent.clientWidth : this.defaultCanvasSize;
 
-    // Also take viewport height into account so the entire board fits vertically
-    const paddingAndHUDHeight = 320; // estimate for title, HUD, target display, buttons, margins
+    // Also take viewport height into account so the entire board fits vertically.
+    // On desktop (min-width: 992px), layout is side-by-side so vertical padding overhead is much smaller (~140px).
+    const paddingAndHUDHeight = window.innerWidth >= 992 ? 140 : 360;
     const maxVisibleHeight = Math.max(320, window.innerHeight - paddingAndHUDHeight);
 
-    // Clamp the width, but also ensure it doesn't exceed the available vertical space
-    const clamped = Math.max(320, Math.min(820, availableWidth, maxVisibleHeight));
+    // Clamp the width, but also ensure it doesn't exceed the available vertical space.
+    // Increased maximum board size to 880px for a much wider, more immersive playing experience on desktops.
+    const clamped = Math.max(320, Math.min(880, availableWidth, maxVisibleHeight));
     const size = Math.floor(clamped);
 
     this.canvas.width = size;

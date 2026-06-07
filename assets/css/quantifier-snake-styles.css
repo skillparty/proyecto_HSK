@@ -561,3 +561,51 @@
         height: 54px;
     }
 }
+
+/* ============================================================================
+   COLUMNS LAYOUT FOR DESKTOP / LARGE VIEWPOTS
+   ============================================================================ */
+.snakeq-game {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.snakeq-board-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.snakeq-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .snakeq-game {
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+        gap: 36px;
+        width: 100%;
+    }
+
+    .snakeq-board-column {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .snakeq-sidebar {
+        width: 360px;
+        flex-shrink: 0;
+        gap: 20px;
+    }
+}
+

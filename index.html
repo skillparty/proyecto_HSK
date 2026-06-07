@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="assets/css/matrix-game-styles.css?v=6">
     <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=4">
     <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=3">
-    <link rel="stylesheet" href="assets/css/quantifier-snake-styles.css?v=6">
+    <link rel="stylesheet" href="assets/css/quantifier-snake-styles.css?v=7">
     <link rel="stylesheet" href="assets/css/tones-invaders-styles.css?v=3">
     <link rel="stylesheet" href="assets/css/hanzi-builder-styles.css?v=2">
     <link rel="stylesheet" href="assets/css/word-linker-styles.css?v=2">
@@ -879,60 +879,66 @@
                         </div>
 
                         <div id="snakeq-game" class="snakeq-game" style="display: none;">
-                            <div class="snakeq-hud">
-                                <div class="snakeq-metric">
-                                    <span class="snakeq-metric-label" data-i18n="snakeQuantifierScore">Puntaje</span>
-                                    <strong id="snakeq-score" class="snakeq-metric-value">0</strong>
-                                </div>
-                                <div class="snakeq-metric">
-                                    <span class="snakeq-metric-label" data-i18n="snakeQuantifierLives">Vidas</span>
-                                    <strong id="snakeq-lives" class="snakeq-metric-value">3/3</strong>
-                                </div>
-                                <div class="snakeq-metric">
-                                    <span class="snakeq-metric-label" data-i18n="snakeQuantifierMode">Modo</span>
-                                    <strong id="snakeq-mode" class="snakeq-metric-value">Fácil</strong>
+                            <!-- Left Column: Gameplay Board -->
+                            <div class="snakeq-board-column">
+                                <div id="snakeq-board-wrap" class="snakeq-board-wrap">
+                                    <canvas id="snakeq-canvas" width="720" height="720"></canvas>
                                 </div>
                             </div>
 
-                            <div class="snakeq-target-row">
-                                <span class="snakeq-target-label" data-i18n="snakeQuantifierTargetLabel">Cuantificador objetivo</span>
-                                <div id="snakeq-target-badge" class="snakeq-target-badge">
-                                    <div class="snakeq-target-hanzi">-</div>
-                                    <div class="snakeq-target-details">
-                                        <div class="snakeq-target-pinyin">-</div>
-                                        <div class="snakeq-target-meaning">-</div>
+                            <!-- Right Column: HUD & Controls Sidebar -->
+                            <div class="snakeq-sidebar">
+                                <div class="snakeq-hud">
+                                    <div class="snakeq-metric">
+                                        <span class="snakeq-metric-label" data-i18n="snakeQuantifierScore">Puntaje</span>
+                                        <strong id="snakeq-score" class="snakeq-metric-value">0</strong>
+                                    </div>
+                                    <div class="snakeq-metric">
+                                        <span class="snakeq-metric-label" data-i18n="snakeQuantifierLives">Vidas</span>
+                                        <strong id="snakeq-lives" class="snakeq-metric-value">3/3</strong>
+                                    </div>
+                                    <div class="snakeq-metric">
+                                        <span class="snakeq-metric-label" data-i18n="snakeQuantifierMode">Modo</span>
+                                        <strong id="snakeq-mode" class="snakeq-metric-value">Fácil</strong>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div id="snakeq-board-wrap" class="snakeq-board-wrap">
-                                <canvas id="snakeq-canvas" width="720" height="720"></canvas>
-                            </div>
-
-                            <!-- Mobile Touch D-pad Controls -->
-                            <div id="snakeq-mobile-controls" class="snakeq-mobile-controls">
-                                <div class="dpad-row">
-                                    <button id="snakeq-btn-up" class="dpad-btn btn-up" aria-label="Up">▲</button>
+                                <div class="snakeq-target-row">
+                                    <span class="snakeq-target-label" data-i18n="snakeQuantifierTargetLabel">Cuantificador objetivo</span>
+                                    <div id="snakeq-target-badge" class="snakeq-target-badge">
+                                        <div class="snakeq-target-hanzi">-</div>
+                                        <div class="snakeq-target-details">
+                                            <div class="snakeq-target-pinyin">-</div>
+                                            <div class="snakeq-target-meaning">-</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="dpad-row">
-                                    <button id="snakeq-btn-left" class="dpad-btn btn-left" aria-label="Left">◀</button>
-                                    <div class="dpad-center"></div>
-                                    <button id="snakeq-btn-right" class="dpad-btn btn-right" aria-label="Right">▶</button>
+
+                                <!-- Mobile Touch D-pad Controls -->
+                                <div id="snakeq-mobile-controls" class="snakeq-mobile-controls">
+                                    <div class="dpad-row">
+                                        <button id="snakeq-btn-up" class="dpad-btn btn-up" aria-label="Up">▲</button>
+                                    </div>
+                                    <div class="dpad-row">
+                                        <button id="snakeq-btn-left" class="dpad-btn btn-left" aria-label="Left">◀</button>
+                                        <div class="dpad-center"></div>
+                                        <button id="snakeq-btn-right" class="dpad-btn btn-right" aria-label="Right">▶</button>
+                                    </div>
+                                    <div class="dpad-row">
+                                        <button id="snakeq-btn-down" class="dpad-btn btn-down" aria-label="Down">▼</button>
+                                    </div>
                                 </div>
-                                <div class="dpad-row">
-                                    <button id="snakeq-btn-down" class="dpad-btn btn-down" aria-label="Down">▼</button>
+
+                                <p id="snakeq-feedback" class="snakeq-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+
+                                <div class="snakeq-actions">
+                                    <button id="snakeq-pause" class="snakeq-btn-secondary" data-i18n="snakeQuantifierPause">Pausar</button>
+                                    <button id="snakeq-restart" class="snakeq-btn-primary" data-i18n="snakeQuantifierRestart">Reiniciar</button>
+                                    <button id="snakeq-back" class="snakeq-btn-neutral" data-i18n="snakeQuantifierBackToSetup">Cambiar dificultad</button>
                                 </div>
+
+                                <p class="snakeq-controls-hint" data-i18n="snakeQuantifierControlsHint">Controles: flechas o WASD para mover, barra espaciadora para pausar.</p>
                             </div>
-
-                            <p id="snakeq-feedback" class="snakeq-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
-
-                            <div class="snakeq-actions">
-                                <button id="snakeq-pause" class="snakeq-btn-secondary" data-i18n="snakeQuantifierPause">Pausar</button>
-                                <button id="snakeq-restart" class="snakeq-btn-primary" data-i18n="snakeQuantifierRestart">Reiniciar</button>
-                                <button id="snakeq-back" class="snakeq-btn-neutral" data-i18n="snakeQuantifierBackToSetup">Cambiar dificultad</button>
-                            </div>
-
-                            <p class="snakeq-controls-hint" data-i18n="snakeQuantifierControlsHint">Controles: flechas o WASD para mover, barra espaciadora para pausar.</p>
                         </div>
                     </div>
                 </div>
@@ -1460,7 +1466,7 @@
     <script src="assets/js/modules/past-exams-controller.js?v=3" defer></script>
     <script src="assets/js/modules/quantifier-snake-utils.js?v=1" defer></script>
     <script src="assets/js/modules/quantifier-snake-canvas.js?v=3" defer></script>
-    <script src="assets/js/modules/quantifier-snake-controller.js?v=4" defer></script>
+    <script src="assets/js/modules/quantifier-snake-controller.js?v=5" defer></script>
     <script src="assets/js/modules/vocabulary-controller.js?v=1" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
