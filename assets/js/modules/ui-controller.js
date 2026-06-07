@@ -8,6 +8,17 @@ class UIController {
     this.logDebug("📱 UIController module initialized");
   }
 
+  loadScript(url) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = url;
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error(`Failed to load script ${url}`));
+      document.body.appendChild(script);
+    });
+  }
+
   getLogger() {
     return window.hskLogger || console;
   }
@@ -172,22 +183,49 @@ class UIController {
         }
         break;
       case "tones-invaders":
-        if (!window.tonesInvadersGame) {
-          window.tonesInvadersGame = new TonesInvadersGame(this.app);
-        }
-        window.tonesInvadersGame.initialize();
+        (async () => {
+          try {
+            if (!window.TonesInvadersGame) {
+              await this.loadScript("assets/js/tones-invaders-game.js?v=4");
+            }
+            if (!window.tonesInvadersGame) {
+              window.tonesInvadersGame = new TonesInvadersGame(this.app);
+            }
+            window.tonesInvadersGame.initialize();
+          } catch (err) {
+            this.logError("Failed to lazy load tones-invaders-game", err);
+          }
+        })();
         break;
       case "hanzi-builder":
-        if (!window.hanziBuilderGame) {
-          window.hanziBuilderGame = new HanziBuilderGame(this.app);
-        }
-        window.hanziBuilderGame.initialize();
+        (async () => {
+          try {
+            if (!window.HanziBuilderGame) {
+              await this.loadScript("assets/js/hanzi-builder-game.js?v=2");
+            }
+            if (!window.hanziBuilderGame) {
+              window.hanziBuilderGame = new HanziBuilderGame(this.app);
+            }
+            window.hanziBuilderGame.initialize();
+          } catch (err) {
+            this.logError("Failed to lazy load hanzi-builder-game", err);
+          }
+        })();
         break;
       case "word-linker":
-        if (!window.wordLinkerGame) {
-          window.wordLinkerGame = new WordLinkerGame(this.app);
-        }
-        window.wordLinkerGame.initialize();
+        (async () => {
+          try {
+            if (!window.WordLinkerGame) {
+              await this.loadScript("assets/js/word-linker-game.js?v=2");
+            }
+            if (!window.wordLinkerGame) {
+              window.wordLinkerGame = new WordLinkerGame(this.app);
+            }
+            window.wordLinkerGame.initialize();
+          } catch (err) {
+            this.logError("Failed to lazy load word-linker-game", err);
+          }
+        })();
         break;
     }
   }
