@@ -1,173 +1,259 @@
-/* Quantifier Snake styles */
+/* ============================================================================
+   QUANTIFIER SNAKE — Premium Redesign
+   ============================================================================
+   Visual language: deep space dark tones, emerald neon accents, glassmorphism
+   panels, smooth micro-animations. Board scaled to 780px max for more
+   immersive gameplay.
+   ============================================================================ */
 
+/* ---- Layout Root ---- */
 #snake-quantifiers {
-    padding: 16px 0 28px;
+    padding: 20px 0 32px;
 }
 
+/* ---- Shell Container ---- */
 .snakeq-shell {
-    max-width: 1080px;
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 20px;
-    border-radius: 22px;
+    padding: 28px 24px 32px;
+    border-radius: 24px;
     background:
-        radial-gradient(circle at 15% 20%, rgba(249, 115, 22, 0.14), transparent 38%),
-        radial-gradient(circle at 80% 18%, rgba(37, 99, 235, 0.14), transparent 42%),
-        linear-gradient(165deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.88));
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    box-shadow: 0 22px 48px rgba(15, 23, 42, 0.35);
+        radial-gradient(ellipse at 12% 15%, rgba(16, 185, 129, 0.10), transparent 45%),
+        radial-gradient(ellipse at 85% 20%, rgba(37, 99, 235, 0.08), transparent 40%),
+        radial-gradient(ellipse at 50% 90%, rgba(249, 115, 22, 0.06), transparent 50%),
+        linear-gradient(168deg, rgba(15, 23, 42, 0.96), rgba(10, 15, 30, 0.94));
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow:
+        0 24px 56px rgba(2, 6, 23, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+/* ---- Title & Subtitle ---- */
 .snakeq-title {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: 800;
     color: #f8fafc;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #f8fafc 40%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .snakeq-subtitle {
     margin: 8px 0 0;
-    color: rgba(226, 232, 240, 0.84);
-    line-height: 1.5;
+    color: rgba(203, 213, 225, 0.85);
+    font-size: 0.96rem;
+    line-height: 1.6;
 }
 
+/* ---- Setup Panel ---- */
 .snakeq-setup {
-    margin-top: 22px;
+    margin-top: 24px;
     display: grid;
-    gap: 18px;
-    padding: 20px;
+    gap: 20px;
+    padding: 24px;
     border-radius: 18px;
-    background: rgba(15, 23, 42, 0.62);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .snakeq-setup-grid {
     display: grid;
-    grid-template-columns: minmax(220px, 320px) 1fr;
-    gap: 16px;
-    align-items: center;
+    grid-template-columns: minmax(240px, 340px) 1fr;
+    gap: 20px;
+    align-items: start;
 }
 
 .snakeq-select-label {
     display: block;
     margin-bottom: 8px;
-    font-size: 0.92rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 700;
     color: #e2e8f0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .snakeq-select {
     width: 100%;
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(148, 163, 184, 0.34);
-    background: rgba(15, 23, 42, 0.88);
+    padding: 11px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: rgba(15, 23, 42, 0.85);
     color: #f8fafc;
     font-size: 0.95rem;
+    font-weight: 500;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .snakeq-select:focus {
-    outline: 2px solid rgba(59, 130, 246, 0.35);
-    outline-offset: 2px;
+    outline: none;
+    border-color: rgba(16, 185, 129, 0.5);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
+/* ---- Rules ---- */
 .snakeq-rules {
     margin: 0;
     padding: 0;
     list-style: none;
     display: grid;
-    gap: 6px;
+    gap: 8px;
     color: rgba(226, 232, 240, 0.86);
-    font-size: 0.93rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.snakeq-rules li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
 }
 
 .snakeq-rules li::before {
-    content: '•';
-    color: #f97316;
-    margin-right: 8px;
+    content: '◆';
+    color: #10b981;
+    font-size: 0.55em;
+    margin-top: 0.5em;
+    flex-shrink: 0;
 }
 
+/* ---- Start Row ---- */
 .snakeq-start-row {
     display: flex;
     justify-content: flex-start;
 }
 
+/* ---- Buttons ---- */
 .snakeq-btn-primary,
 .snakeq-btn-secondary,
 .snakeq-btn-neutral {
     border: none;
-    border-radius: 12px;
-    padding: 11px 16px;
+    border-radius: 14px;
+    padding: 12px 22px;
     font-size: 0.94rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
+    letter-spacing: 0.01em;
+    transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.snakeq-btn-primary::after,
+.snakeq-btn-secondary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    pointer-events: none;
 }
 
 .snakeq-btn-primary {
     color: #fff;
-    background: linear-gradient(140deg, #f97316, #ea580c);
-    box-shadow: 0 12px 20px rgba(234, 88, 12, 0.35);
+    background: linear-gradient(145deg, #10b981, #059669);
+    box-shadow:
+        0 8px 24px rgba(16, 185, 129, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .snakeq-btn-secondary {
     color: #fff;
-    background: linear-gradient(140deg, #2563eb, #1d4ed8);
-    box-shadow: 0 12px 20px rgba(37, 99, 235, 0.26);
+    background: linear-gradient(145deg, #3b82f6, #2563eb);
+    box-shadow:
+        0 8px 24px rgba(37, 99, 235, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .snakeq-btn-neutral {
     color: #e2e8f0;
-    background: rgba(51, 65, 85, 0.92);
-    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.28);
+    background: rgba(51, 65, 85, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
 }
 
-.snakeq-btn-primary:hover,
-.snakeq-btn-secondary:hover,
-.snakeq-btn-neutral:hover {
-    transform: translateY(-1px);
+.snakeq-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(16, 185, 129, 0.45); }
+.snakeq-btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37, 99, 235, 0.40); }
+.snakeq-btn-neutral:hover { transform: translateY(-2px); background: rgba(51, 65, 85, 1); }
+
+.snakeq-btn-primary:active,
+.snakeq-btn-secondary:active,
+.snakeq-btn-neutral:active {
+    transform: translateY(0) scale(0.98);
 }
 
+/* ---- Game Panel ---- */
 .snakeq-game {
-    margin-top: 22px;
+    margin-top: 24px;
     display: none;
-    gap: 16px;
+    gap: 18px;
 }
 
+/* ---- HUD (Score / Lives / Mode) ---- */
 .snakeq-hud {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
+    gap: 12px;
 }
 
 .snakeq-metric {
-    padding: 12px;
-    border-radius: 12px;
-    background: rgba(15, 23, 42, 0.58);
-    border: 1px solid rgba(148, 163, 184, 0.22);
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.snakeq-metric::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.04), transparent 50%);
+    pointer-events: none;
+}
+
+.snakeq-metric:hover {
+    border-color: rgba(16, 185, 129, 0.25);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.08);
 }
 
 .snakeq-metric-label {
     display: block;
-    color: rgba(203, 213, 225, 0.78);
-    font-size: 0.8rem;
-    margin-bottom: 4px;
+    color: rgba(148, 163, 184, 0.85);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
 }
 
 .snakeq-metric-value {
     color: #f8fafc;
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
 }
 
+/* ---- Target Badge ---- */
 .snakeq-target-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
 .snakeq-target-label {
     color: rgba(226, 232, 240, 0.86);
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 0.92rem;
 }
 
 .snakeq-target-badge {
@@ -175,74 +261,155 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 7px 12px;
+    padding: 8px 16px;
     border-radius: 999px;
-    border: 1px solid var(--snakeq-target-color);
-    background: rgba(15, 23, 42, 0.78);
-    box-shadow: inset 0 0 0 1px rgba(248, 250, 252, 0.12);
+    border: 1.5px solid var(--snakeq-target-color);
+    background: rgba(15, 23, 42, 0.72);
+    box-shadow:
+        inset 0 0 0 1px rgba(248, 250, 252, 0.08),
+        0 0 16px color-mix(in srgb, var(--snakeq-target-color) 25%, transparent);
     color: #f8fafc;
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 0.96rem;
     letter-spacing: 0.01em;
+    transition: border-color 0.3s ease, box-shadow 0.4s ease;
 }
 
 .snakeq-target-badge--neutral {
-    border-color: rgba(148, 163, 184, 0.46);
-    background: rgba(51, 65, 85, 0.72);
+    border-color: rgba(148, 163, 184, 0.40);
+    background: rgba(51, 65, 85, 0.65);
+    box-shadow: none;
 }
 
+/* ---- Board Wrapper (the star of the show) ---- */
 .snakeq-board-wrap {
-    width: min(100%, 620px);
+    width: min(100%, 780px);
     margin: 0 auto;
-    border-radius: 18px;
+    border-radius: 20px;
     overflow: hidden;
-    border: 2px solid rgba(16, 185, 129, 0.22);
-    box-shadow: 
-        0 0 24px rgba(16, 185, 129, 0.06),
-        0 20px 48px rgba(2, 6, 23, 0.45);
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    border: 2px solid rgba(16, 185, 129, 0.28);
+    box-shadow:
+        0 0 32px rgba(16, 185, 129, 0.08),
+        0 0 80px rgba(16, 185, 129, 0.04),
+        0 24px 56px rgba(2, 6, 23, 0.50);
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+    position: relative;
+}
+
+.snakeq-board-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: conic-gradient(
+        from 0deg,
+        rgba(16, 185, 129, 0.3),
+        rgba(37, 99, 235, 0.15),
+        rgba(249, 115, 22, 0.15),
+        rgba(16, 185, 129, 0.3)
+    );
+    z-index: -1;
+    animation: snakeq-border-glow 8s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes snakeq-border-glow {
+    to { transform: rotate(360deg); }
 }
 
 #snakeq-canvas {
     width: 100%;
     height: auto;
     display: block;
-    background: #0f172a;
+    background: #0a0f1e;
 }
 
+/* ---- Feedback Text ---- */
 .snakeq-feedback {
-    min-height: 24px;
+    min-height: 26px;
     margin: 0;
     font-size: 0.94rem;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.01em;
 }
 
-.snakeq-feedback-info {
-    color: #cbd5e1;
-}
+.snakeq-feedback-info { color: #94a3b8; }
+.snakeq-feedback-success { color: #34d399; }
+.snakeq-feedback-warning { color: #fbbf24; }
+.snakeq-feedback-danger { color: #f87171; }
 
-.snakeq-feedback-success {
-    color: #4ade80;
-}
-
-.snakeq-feedback-warning {
-    color: #facc15;
-}
-
-.snakeq-feedback-danger {
-    color: #f87171;
-}
-
+/* ---- Controls Hint ---- */
 .snakeq-controls-hint {
     margin: 0;
-    color: rgba(203, 213, 225, 0.72);
-    font-size: 0.86rem;
+    color: rgba(148, 163, 184, 0.65);
+    font-size: 0.82rem;
+    line-height: 1.5;
 }
 
+/* ---- Action Buttons Row ---- */
 .snakeq-actions {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
 }
+
+/* ============================================================================
+   MOBILE D-PAD CONTROLS
+   ============================================================================ */
+.snakeq-mobile-controls {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin: 24px auto 12px;
+    max-width: 220px;
+}
+
+.dpad-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.dpad-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    background: rgba(15, 23, 42, 0.80);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #e2e8f0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.2s ease;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.dpad-btn:active {
+    transform: scale(0.88);
+    background: rgba(16, 185, 129, 0.35);
+    border-color: rgba(16, 185, 129, 0.6);
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
+}
+
+.dpad-center {
+    width: 60px;
+    height: 60px;
+}
+
+/* ============================================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================================ */
 
 @media (max-width: 900px) {
     .snakeq-hud {
@@ -252,6 +419,10 @@
     .snakeq-setup-grid {
         grid-template-columns: 1fr;
     }
+
+    .snakeq-mobile-controls {
+        display: flex;
+    }
 }
 
 @media (max-width: 640px) {
@@ -260,21 +431,31 @@
     }
 
     .snakeq-shell {
-        padding: 16px;
-        border-radius: 16px;
+        padding: 16px 14px 20px;
+        border-radius: 18px;
     }
 
     .snakeq-title {
-        font-size: 1.45rem;
+        font-size: 1.5rem;
+    }
+
+    .snakeq-subtitle {
+        font-size: 0.88rem;
     }
 
     .snakeq-hud {
         grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .snakeq-metric {
+        padding: 10px 14px;
     }
 
     .snakeq-actions {
         display: grid;
         grid-template-columns: 1fr;
+        gap: 8px;
     }
 
     .snakeq-btn-primary,
@@ -282,58 +463,15 @@
     .snakeq-btn-neutral {
         width: 100%;
     }
-}
 
-/* Mobile controls (D-pad) styling */
-.snakeq-mobile-controls {
-    display: none; /* Hidden by default on desktop */
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    margin: 20px auto 10px;
-    max-width: 200px;
-}
+    .dpad-btn {
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+    }
 
-.dpad-row {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-}
-
-.dpad-btn {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(30, 41, 59, 0.85);
-    color: #f8fafc;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-    transition: transform 0.1s ease, background 0.2s ease, border-color 0.2s ease;
-    user-select: none;
-    touch-action: manipulation;
-}
-
-.dpad-btn:active {
-    transform: scale(0.9);
-    background: rgba(16, 185, 129, 0.4);
-    border-color: rgba(16, 185, 129, 0.6);
-}
-
-.dpad-center {
-    width: 56px;
-    height: 56px;
-}
-
-/* Breakpoint to show on touch screens or small devices */
-@media (max-width: 900px) {
-    .snakeq-mobile-controls {
-        display: flex;
+    .dpad-center {
+        width: 54px;
+        height: 54px;
     }
 }

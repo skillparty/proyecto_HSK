@@ -2,9 +2,9 @@ class QuantifierSnakeController {
   constructor(app) {
     this.app = app;
 
-    this.boardSize = 18;
+    this.boardSize = 22;
     this.maxLives = 3;
-    this.defaultCanvasSize = 540;
+    this.defaultCanvasSize = 660;
     this.dataFilePath = "assets/data/quantifier_snake_words.json";
 
     this.quantifierColors = {
@@ -807,7 +807,7 @@ class QuantifierSnakeController {
 
     const availableWidth =
       this.canvasWrap.clientWidth || this.defaultCanvasSize;
-    const clamped = Math.max(320, Math.min(620, availableWidth));
+    const clamped = Math.max(320, Math.min(780, availableWidth));
     const size = Math.floor(clamped);
 
     this.canvas.width = size;
