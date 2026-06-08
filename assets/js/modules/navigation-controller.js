@@ -14,6 +14,10 @@ class NavigationController {
       "word-linker",
       "leaderboard",
       "stats",
+      "culture-characters",
+      "culture-medicine",
+      "culture-opera",
+      "culture-technology",
     ]);
   }
 
