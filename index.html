@@ -1539,7 +1539,7 @@
     <script src="assets/js/modules/storage-controller.js?v=1" defer></script>
     <script src="assets/js/modules/language-controller.js?v=3" defer></script>
     <script src="assets/js/modules/progress-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/navigation-controller.js?v=3" defer></script>
+    <script src="assets/js/modules/navigation-controller.js?v=4" defer></script>
     <script src="assets/js/modules/search-controller.js?v=1" defer></script>
     <script src="assets/js/modules/practice-view-controller.js?v=5" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=1" defer></script>
@@ -1551,7 +1551,7 @@
     <script src="assets/js/modules/vocabulary-controller.js?v=1" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=3" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=4" defer></script>
     <script src="assets/js/modules/home-controller.js?v=4" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=1" defer></script>
 
@@ -1586,7 +1586,7 @@
             window.addEventListener('load', async () => {
                 try {
                     const appBasePath = window.location.pathname.replace(/\/[^/]*$/, '/');
-                    const swUrl = `${appBasePath}sw.js?v=10`;
+                    const swUrl = `${appBasePath}sw.js?v=11`;
 
                     const registration = await navigator.serviceWorker.register(swUrl, {
                         scope: appBasePath
