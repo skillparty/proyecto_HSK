@@ -261,27 +261,38 @@ class TraditionalMedicineModule extends (window.CultureModuleBase || CultureModu
       document.head.appendChild(style);
     }
 
-    // Set up active tab data
-    const activeData = this.activeTab === 'practices' ? activeContent.practices : activeContent.theory;
-
     let html = `
       <div class="medicine-intro">
         <p>${activeContent.intro}</p>
       </div>
-
-      <div class="medicine-tabs">
-        <button class="medicine-tab-btn ${this.activeTab === 'theory' ? 'active' : ''}" id="med-tab-theory">
-          ${activeContent.tabs.theory}
-        </button>
-        <button class="medicine-tab-btn ${this.activeTab === 'practices' ? 'active' : ''}" id="med-tab-practices">
-          ${activeContent.tabs.practices}
-        </button>
+      
+      <div class="section-header-academic" style="font-size:1.3rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin:2rem 0 1.2rem 0; color:var(--color-text-main, #333); border-bottom:1px solid var(--color-border, #ccc); padding-bottom:0.4rem;">
+        ${activeContent.tabs.theory}
       </div>
-
       <div class="medicine-grid">
     `;
 
-    activeData.forEach(item => {
+    activeContent.theory.forEach(item => {
+      html += `
+        <div class="medicine-card">
+          <div class="med-header">
+            <h3>${item.name}</h3>
+            <span class="pinyin-tag">${item.pinyin}</span>
+            <span class="sub-tag">${item.meaning}</span>
+          </div>
+          <p class="med-description">${item.desc}</p>
+        </div>
+      `;
+    });
+
+    html += `</div>
+      <div class="section-header-academic" style="font-size:1.3rem; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; margin:3rem 0 1.2rem 0; color:var(--color-text-main, #333); border-bottom:1px solid var(--color-border, #ccc); padding-bottom:0.4rem;">
+        ${activeContent.tabs.practices}
+      </div>
+      <div class="medicine-grid">
+    `;
+
+    activeContent.practices.forEach(item => {
       html += `
         <div class="medicine-card">
           <div class="med-header">
@@ -311,24 +322,6 @@ class TraditionalMedicineModule extends (window.CultureModuleBase || CultureModu
     `;
 
     this.container.innerHTML = html;
-
-    // Attach event listeners for tabs
-    const theoryBtn = document.getElementById('med-tab-theory');
-    const practicesBtn = document.getElementById('med-tab-practices');
-
-    if (theoryBtn) {
-      theoryBtn.addEventListener('click', () => {
-        this.activeTab = 'theory';
-        this.render();
-      });
-    }
-
-    if (practicesBtn) {
-      practicesBtn.addEventListener('click', () => {
-        this.activeTab = 'practices';
-        this.render();
-      });
-    }
   }
 }
 

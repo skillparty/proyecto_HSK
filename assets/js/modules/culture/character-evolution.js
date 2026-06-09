@@ -94,6 +94,10 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
         ],
         extraInfo: [
           {
+            title: "Evolución de Materiales y Modos de Escritura",
+            text: "Durante más de dos mil años de desarrollo histórico (desde las dinastías Xia, Shang y Zhou hasta las dinastías Qin y Han), la escritura china pasó por diversos soportes materiales: inscripciones en huesos oraculares, inscripciones en bronce, grabados en piedra, tiras de bambú y escritura en seda. De este proceso surgieron y se consolidaron cinco fuentes o modos de escritura principales: la escritura de Sello, la escritura Oficial, la Cursiva, la Corriente y la Regular, eliminando formas híbridas hasta llegar a la caligrafía actual."
+          },
+          {
             title: "El Zodiaco Chino (生肖 - Shēngxiào)",
             text: "El zodiaco chino es un ciclo de 12 años, cada uno representado por un animal. Originalmente, estos doce signos del zodiaco representaban diferentes tótems de las tribus de la antigua China. El año 2024 corresponde al Año del Dragón. En la mitología china, el dragón es el gobernante supremo de todos los animales marinos y la deidad encargada de hacer llover, estrechamente asociado con la prosperidad agrícola y la buena fortuna."
           },
@@ -197,6 +201,10 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
           "Exhibition Document: 2024 Confucius Institute Chinese Language Day Exhibition."
         ],
         extraInfo: [
+          {
+            title: "Evolution of Materials and Writing Modes",
+            text: "During more than two thousand years of historical development (from the Xia, Shang and Zhou dynasties to the Qin and Han dynasties), Chinese writing went through various material mediums: oracle bone inscriptions, bronze inscriptions, stone engravings, bamboo slips, and silk writing. From this process, five main writing modes emerged and consolidated: Seal script, Clerical script, Cursive script, Running script, and Regular script, eliminating hybrid forms until reaching modern calligraphy."
+          },
           {
             title: "The Chinese Zodiac (生肖 - Shēngxiào)",
             text: "The Chinese zodiac is a 12-year cycle, each represented by an animal. Originally, these twelve zodiac signs represented different totems of the tribes of ancient China. The year 2024 corresponds to the Year of the Dragon. In Chinese mythology, the dragon is the supreme ruler of all marine animals and the deity in charge of making it rain, closely associated with agricultural prosperity and good fortune."
