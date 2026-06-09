@@ -1,4 +1,4 @@
-// Asegurarnos de que CultureModuleBase esté disponible
+// Ensure CultureModuleBase is available
 if (typeof CultureModuleBase === 'undefined' && typeof window.CultureModuleBase === 'undefined') {
   console.warn("CultureModuleBase not found. Please ensure it is loaded before TraditionalMedicineModule.");
 }
@@ -6,231 +6,319 @@ if (typeof CultureModuleBase === 'undefined' && typeof window.CultureModuleBase 
 class TraditionalMedicineModule extends (window.CultureModuleBase || CultureModuleBase) {
   constructor(app) {
     super(app, 'culture-medicine-content', 'Medicina Tradicional China');
-    this.medicineData = null;
+    this.activeTab = 'theory'; // 'theory' or 'practices'
   }
 
-  async loadData() {
-    try {
-      const response = await fetch('assets/data/culture/traditional-medicine.json');
-      if (!response.ok) throw new Error('Data file not found');
-      const data = await response.json();
-      if (!data || !Array.isArray(data.concepts) || !Array.isArray(data.practices)) {
-        throw new Error('Data format is invalid');
-      }
-      this.medicineData = data;
-    } catch (error) {
-      console.log('Using default traditional medicine data');
-      this.medicineData = {
-        concepts: [
-          { 
-            name: "Qi", 
-            hanzi: "气", 
-            pinyin: "qì", 
-            desc: "La energía vital o fuerza de vida que fluye por todo el universo y el cuerpo humano a través de canales llamados meridianos." 
+  // Bilingual content
+  get content() {
+    return {
+      es: {
+        intro: "La Medicina Tradicional China (MTC) es un sistema médico holístico desarrollado durante más de dos milenios. Se fundamenta en la premisa de que el cuerpo humano es un microsistema en constante relación con las leyes de la naturaleza, buscando mantener la homeostasis a través del equilibrio de fuerzas energéticas y orgánicas contrarias.",
+        sourcesTitle: "Fuentes Bibliográficas",
+        tabs: {
+          theory: "Teoría Fundamental",
+          practices: "Aplicaciones Clínicas"
+        },
+        theory: [
+          {
+            name: "Qi (气 / 氣)",
+            pinyin: "qì",
+            meaning: "Energía Vital / Actividad Funcional",
+            desc: "Definido históricamente como la sustancia primordial y la fuerza activa que constituye y mantiene la vida. En términos fisiológicos, el Qi representa el conjunto de funciones dinámicas y metabólicas de los órganos y meridianos del cuerpo."
           },
-          { 
-            name: "Yin y Yang", 
-            hanzi: "阴阳", 
-            pinyin: "yīn yáng", 
-            desc: "Dos fuerzas opuestas pero complementarias. El Yin es frío, pasivo y oscuro; el Yang es caliente, activo y luminoso. La salud depende del equilibrio perfecto entre ambas." 
+          {
+            name: "Yin y Yang (阴阳 / 陰陽)",
+            pinyin: "yīn yáng",
+            meaning: "Dualidad y Homeostasis",
+            desc: "Concepto filosófico y clínico que explica los fenómenos a través de fuerzas opuestas e interdependientes. El Yin (fresco, receptivo, estructural, asociado al agua) y el Yang (caliente, activo, funcional, asociado al fuego) deben coexistir en un dinámico equilibrio. La enfermedad se diagnostica como un exceso o deficiencia de estas fuerzas."
           },
-          { 
-            name: "Cinco Elementos", 
-            hanzi: "五行", 
-            pinyin: "wǔ xíng", 
-            desc: "Madera, Fuego, Tierra, Metal y Agua. Este sistema explica las interacciones fisiológicas y patológicas entre los órganos del cuerpo." 
+          {
+            name: "Cinco Fases (五行)",
+            pinyin: "wǔ xíng",
+            meaning: "Madera, Fuego, Tierra, Metal y Agua",
+            desc: "Un marco conceptual que clasifica los órganos del cuerpo (Zang-Fu) y las funciones corporales según cinco patrones dinámicos en la naturaleza. Este sistema define las relaciones de generación (sheng) y control (ke) mutuo entre los diferentes órganos para mantener la autorregulación fisiológica."
           }
         ],
         practices: [
-          { 
-            name: "Acupuntura", 
-            hanzi: "针灸", 
+          {
+            name: "Acupuntura y Moxibustión (针灸 / 針灸)",
             pinyin: "zhēn jiǔ",
-            icon: "📌", 
-            desc: "Inserción de agujas extremadamente finas en puntos específicos (acupuntos) a lo largo de los meridianos para restaurar el flujo de Qi." 
+            meaning: "Estimulación de Puntos y Meridianos",
+            desc: "Consiste en la inserción de finas agujas metálicas estériles en puntos específicos (acupuntos) a lo largo de los canales o meridianos de energía para regular la circulación del Qi. A menudo se combina con la moxibustión (combustión de hojas secas de Artemisa sobre el punto) para calentar y nutrir los canales corporales."
           },
-          { 
-            name: "Fitoterapia", 
-            hanzi: "中药", 
+          {
+            name: "Fitoterapia China (中药 / 中藥)",
             pinyin: "zhōng yào",
-            icon: "🌿", 
-            desc: "Uso de miles de plantas medicinales, minerales y otros productos, cuidadosamente combinados en fórmulas personalizadas." 
+            meaning: "Farmacología Natural y Fórmulas",
+            desc: "El pilar terapéutico más importante de la MTC. Utiliza combinaciones complejas de plantas medicinales, minerales y sustancias naturales para crear fórmulas personalizadas. Cada ingrediente se selecciona según su sabor (amargo, dulce, picante, salado, ácido) y su naturaleza térmica (fría, tibia, neutra, caliente)."
           },
-          { 
-            name: "Ventosas", 
-            hanzi: "拔罐", 
-            pinyin: "bá guàn",
-            icon: "🏺", 
-            desc: "Aplicación de copas de vidrio o bambú sobre la piel creando un vacío para estimular el flujo sanguíneo y aliviar la tensión." 
-          },
-          { 
-            name: "Tai Chi y Qigong", 
-            hanzi: "气功", 
-            pinyin: "qì gōng",
-            icon: "🧘", 
-            desc: "Prácticas de movimiento físico lento, respiración controlada y meditación diseñadas para cultivar, circular y equilibrar el Qi." 
+          {
+            name: "Tuina y Terapias Manuales (推拿)",
+            pinyin: "tuī ná",
+            meaning: "Masaje Terapéutico y Movilización",
+            desc: "Un sistema de terapia manual que emplea técnicas de tracción, presión y fricción sobre los meridianos y tejidos blandos. Se utiliza para eliminar bloqueos estructurales, estimular la circulación del Qi y de la sangre, y restaurar la movilidad articular en trastornos musculoesqueléticos."
           }
+        ],
+        citations: [
+          "Unschuld, Paul U. (1985). <i>Medicine in China: A History of Ideas</i>. Berkeley: University of California Press.",
+          "Kaptchuk, Ted J. (2000). <i>The Web That Has No Weaver: Understanding Chinese Medicine</i>. New York: Contemporary Books.",
+          "Cheng, Xinnong. (1987). <i>Chinese Acupuncture and Moxibustion</i>. Beijing: Foreign Languages Press."
         ]
-      };
-    }
+      },
+      en: {
+        intro: "Traditional Chinese Medicine (TCM) is a holistic medical system developed over more than two millennia. It is based on the premise that the human body is a microsystem in constant relationship with the laws of nature, seeking to maintain homeostasis through the balance of opposing energetic and organic forces.",
+        sourcesTitle: "Bibliographical Sources",
+        tabs: {
+          theory: "Fundamental Theory",
+          practices: "Clinical Applications"
+        },
+        theory: [
+          {
+            name: "Qi (气 / 氣)",
+            pinyin: "qì",
+            meaning: "Vital Energy / Functional Activity",
+            desc: "Historically defined as the primordial substance and active force that constitutes and maintains life. In physiological terms, Qi represents the collection of dynamic and metabolic functions of the body's organs and meridians."
+          },
+          {
+            name: "Yin and Yang (阴阳 / 陰陽)",
+            pinyin: "yīn yáng",
+            meaning: "Duality and Homeostasis",
+            desc: "A philosophical and clinical concept explaining phenomena through opposing yet interdependent forces. Yin (cool, receptive, structural, associated with water) and Yang (hot, active, functional, associated with fire) must coexist in dynamic equilibrium. Illness is diagnosed as an excess or deficiency of these forces."
+          },
+          {
+            name: "Five Phases (五行)",
+            pinyin: "wǔ xíng",
+            meaning: "Wood, Fire, Earth, Metal, and Water",
+            desc: "A conceptual framework classifying body organs (Zang-Fu) and bodily functions according to five dynamic patterns in nature. This system defines the relationships of generation (sheng) and mutual control (ke) among different organs to maintain physiological self-regulation."
+          }
+        ],
+        practices: [
+          {
+            name: "Acupuncture and Moxibustion (针灸 / 針灸)",
+            pinyin: "zhēn jiǔ",
+            meaning: "Meridian and Point Stimulation",
+            desc: "Involves inserting fine, sterile metal needles into specific points (acupoints) along energy channels or meridians to regulate Qi circulation. It is often combined with moxibustion (burning dried Mugwort leaves over the points) to warm and nourish the body's channels."
+          },
+          {
+            name: "Chinese Herbal Medicine (中药 / 中藥)",
+            pinyin: "zhōng yào",
+            meaning: "Natural Pharmacology and Formulas",
+            desc: "The primary therapeutic pillar of TCM. It uses complex combinations of medicinal plants, minerals, and natural substances to create custom formulations. Each ingredient is selected according to its taste (bitter, sweet, pungent, salty, sour) and thermal nature (cold, warm, neutral, hot)."
+          },
+          {
+            name: "Tuina and Manual Therapies (推拿)",
+            pinyin: "tuī ná",
+            meaning: "Therapeutic Massage and Mobilization",
+            desc: "A manual therapy system employing traction, pressure, and friction techniques on meridians and soft tissues. It is used to clear structural blockages, stimulate Qi and blood circulation, and restore joint mobility in musculoskeletal disorders."
+          }
+        ],
+        citations: [
+          "Unschuld, Paul U. (1985). <i>Medicine in China: A History of Ideas</i>. Berkeley: University of California Press.",
+          "Kaptchuk, Ted J. (2000). <i>The Web That Has No Weaver: Understanding Chinese Medicine</i>. New York: Contemporary Books.",
+          "Cheng, Xinnong. (1987). <i>Chinese Acupuncture and Moxibustion</i>. Beijing: Foreign Languages Press."
+        ]
+      }
+    };
+  }
+
+  async loadData() {
+    this.medicineData = this.content;
   }
 
   render() {
     if (!this.container) return;
 
+    const lang = (this.app && this.app.currentLanguage) === 'en' ? 'en' : 'es';
+    const activeContent = this.content[lang];
+
+    // Inject styles only if they don't exist
     if (!document.getElementById('culture-medicine-styles')) {
       const style = document.createElement('style');
       style.id = 'culture-medicine-styles';
       style.textContent = `
         .medicine-intro {
           padding: 1.5rem;
-          background: linear-gradient(135deg, rgba(46, 139, 87, 0.1), rgba(46, 139, 87, 0.02));
-          border-left: 4px solid #2e8b57;
-          border-radius: 8px;
+          background: var(--color-bg-card, rgba(99, 102, 241, 0.03));
+          border-left: 4px solid var(--color-primary, #6366f1);
+          border-radius: var(--radius-sm, 4px);
           margin-bottom: 2rem;
         }
         .medicine-intro p {
           margin: 0;
-          color: var(--text-color, #333);
-          line-height: 1.6;
+          color: var(--color-text-main, #333);
+          line-height: 1.7;
+          font-size: 0.98rem;
         }
-        .medicine-section-title {
-          font-size: 1.5rem;
-          color: #2e8b57;
-          margin: 2rem 0 1rem 0;
+        .medicine-tabs {
           display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-        .medicine-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          border-bottom: 2px solid var(--color-border, #eaeaea);
+          margin-bottom: 1.5rem;
           gap: 1.5rem;
         }
-        .concept-card, .practice-card {
-          background: var(--surface-color, #fff);
-          border-radius: 12px;
-          padding: 1.5rem;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-          border: 1px solid rgba(0,0,0,0.05);
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .medicine-tab-btn {
+          background: none;
+          border: none;
+          padding: 0.8rem 0;
+          font-size: 1rem;
+          font-weight: 600;
+          color: var(--color-text-muted, #666);
+          cursor: pointer;
           position: relative;
-          overflow: hidden;
+          transition: color 0.2s;
         }
-        .concept-card:hover, .practice-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        .medicine-tab-btn:hover {
+          color: var(--color-primary, #6366f1);
         }
-        .concept-card::before {
+        .medicine-tab-btn.active {
+          color: var(--color-primary, #6366f1);
+        }
+        .medicine-tab-btn.active::after {
           content: '';
           position: absolute;
-          top: 0; left: 0; right: 0; height: 4px;
-          background: linear-gradient(90deg, #2e8b57, #3cb371);
+          bottom: -2px;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: var(--color-primary, #6366f1);
         }
-        .card-header {
+        .medicine-grid {
           display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .medicine-card {
+          background: var(--color-bg-panel, #fff);
+          border: 1px solid var(--color-border, rgba(0,0,0,0.08));
+          border-radius: var(--radius-lg, 12px);
+          padding: 1.6rem;
+          box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.06));
+        }
+        .med-header {
           margin-bottom: 1rem;
+          border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.06));
+          padding-bottom: 0.6rem;
+          display: flex;
+          align-items: baseline;
+          gap: 0.8rem;
+          flex-wrap: wrap;
         }
-        .card-title-group h3 {
-          margin: 0 0 0.2rem 0;
-          font-size: 1.2rem;
-          color: var(--text-color);
-        }
-        .card-title-group .hanzi {
-          font-size: 1.8rem;
-          font-family: 'Noto Sans SC', sans-serif;
-          color: rgba(46, 139, 87, 0.2);
-          position: absolute;
-          top: 10px;
-          right: 15px;
-          font-weight: bold;
-          z-index: 0;
-        }
-        .card-title-group .pinyin {
-          font-size: 0.85rem;
-          color: var(--text-muted);
-        }
-        .card-desc {
+        .med-header h3 {
           margin: 0;
+          font-size: 1.5rem;
+          color: var(--color-primary, #6366f1);
+        }
+        .med-header .pinyin-tag {
+          font-size: 1rem;
+          color: var(--color-text-muted, #666);
+          font-weight: 500;
+        }
+        .med-header .sub-tag {
+          font-size: 0.88rem;
+          color: var(--color-text-dim, #888);
+          margin-left: auto;
+        }
+        .med-description {
           font-size: 0.95rem;
-          line-height: 1.6;
-          color: var(--text-color);
-          position: relative;
-          z-index: 1;
+          line-height: 1.65;
+          color: var(--color-text-main, #444);
+          margin: 0;
         }
-        .practice-icon {
-          font-size: 2.5rem;
-          margin-bottom: 1rem;
-          display: inline-block;
-          background: rgba(46, 139, 87, 0.1);
-          width: 60px;
-          height: 60px;
-          line-height: 60px;
-          text-align: center;
-          border-radius: 50%;
+        .medicine-citations {
+          margin-top: 3rem;
+          padding-top: 1.5rem;
+          border-top: 1px dashed var(--color-border, #ccc);
         }
-        /* Dark mode */
-        body.dark-theme .concept-card, body.dark-theme .practice-card {
-          background: #2a2a2a;
-          border-color: #333;
+        .medicine-citations h4 {
+          margin: 0 0 1rem 0;
+          font-size: 1rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: var(--color-text-muted, #555);
         }
-        body.dark-theme .medicine-intro {
-          background: linear-gradient(135deg, rgba(46, 139, 87, 0.2), rgba(46, 139, 87, 0.05));
+        .medicine-citations ul {
+          margin: 0;
+          padding-left: 1.2rem;
+          color: var(--color-text-dim, #666);
+          font-size: 0.82rem;
+          line-height: 1.7;
         }
-        body.dark-theme .medicine-intro p { color: #eee; }
+        .medicine-citations li {
+          margin-bottom: 0.5rem;
+        }
       `;
       document.head.appendChild(style);
     }
 
+    // Set up active tab data
+    const activeData = this.activeTab === 'practices' ? activeContent.practices : activeContent.theory;
+
     let html = `
       <div class="medicine-intro">
-        <p>La Medicina Tradicional China (MTC) es un sistema médico milenario fundamentado en la observación profunda de la naturaleza y el cuerpo humano. No solo busca curar enfermedades, sino prevenirlas manteniendo el equilibrio energético.</p>
+        <p>${activeContent.intro}</p>
       </div>
-      
-      <h3 class="medicine-section-title"><span>☯️</span> Conceptos Fundamentales</h3>
-      <div class="medicine-grid" style="margin-bottom: 3rem;">
-    `;
 
-    this.medicineData.concepts.forEach(concept => {
-      html += `
-        <div class="concept-card">
-          <div class="card-header">
-            <div class="card-title-group">
-              <h3>${concept.name}</h3>
-              <div class="pinyin">${concept.pinyin}</div>
-              <div class="hanzi">${concept.hanzi}</div>
-            </div>
-          </div>
-          <p class="card-desc">${concept.desc}</p>
-        </div>
-      `;
-    });
-
-    html += `
+      <div class="medicine-tabs">
+        <button class="medicine-tab-btn ${this.activeTab === 'theory' ? 'active' : ''}" id="med-tab-theory">
+          ${activeContent.tabs.theory}
+        </button>
+        <button class="medicine-tab-btn ${this.activeTab === 'practices' ? 'active' : ''}" id="med-tab-practices">
+          ${activeContent.tabs.practices}
+        </button>
       </div>
-      <h3 class="medicine-section-title"><span>🌿</span> Prácticas Terapéuticas</h3>
+
       <div class="medicine-grid">
     `;
 
-    this.medicineData.practices.forEach(practice => {
+    activeData.forEach(item => {
       html += `
-        <div class="practice-card">
-          <div class="practice-icon">${practice.icon}</div>
-          <div class="card-header" style="margin-bottom: 0.5rem;">
-            <div class="card-title-group">
-              <h3>${practice.name} <span style="font-size: 0.9rem; font-weight: normal; color: var(--text-muted);">(${practice.hanzi})</span></h3>
-            </div>
+        <div class="medicine-card">
+          <div class="med-header">
+            <h3>${item.name}</h3>
+            <span class="pinyin-tag">${item.pinyin}</span>
+            <span class="sub-tag">${item.meaning}</span>
           </div>
-          <p class="card-desc">${practice.desc}</p>
+          <p class="med-description">${item.desc}</p>
         </div>
       `;
     });
 
     html += `</div>`;
+
+    // Add Bibliography
+    html += `
+      <div class="medicine-citations">
+        <h4>${activeContent.sourcesTitle}</h4>
+        <ul>
+    `;
+    activeContent.citations.forEach(cit => {
+      html += `<li>${cit}</li>`;
+    });
+    html += `
+        </ul>
+      </div>
+    `;
+
     this.container.innerHTML = html;
+
+    // Attach event listeners for tabs
+    const theoryBtn = document.getElementById('med-tab-theory');
+    const practicesBtn = document.getElementById('med-tab-practices');
+
+    if (theoryBtn) {
+      theoryBtn.addEventListener('click', () => {
+        this.activeTab = 'theory';
+        this.render();
+      });
+    }
+
+    if (practicesBtn) {
+      practicesBtn.addEventListener('click', () => {
+        this.activeTab = 'practices';
+        this.render();
+      });
+    }
   }
 }
 
+// In case the class was lazily loaded
 window.TraditionalMedicineModule = TraditionalMedicineModule;

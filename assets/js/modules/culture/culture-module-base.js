@@ -4,6 +4,13 @@ class CultureModuleBase {
     this.containerId = containerId;
     this.title = title;
     this.isInitialized = false;
+
+    // Auto-re-render on language changes
+    window.addEventListener('languageChanged', () => {
+      if (this.isInitialized) {
+        this.render();
+      }
+    });
   }
 
   get container() {
