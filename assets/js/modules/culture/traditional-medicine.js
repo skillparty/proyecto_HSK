@@ -13,7 +13,11 @@ class TraditionalMedicineModule extends CultureModuleBase {
     try {
       const response = await fetch('assets/data/culture/traditional-medicine.json');
       if (!response.ok) throw new Error('Data file not found');
-      this.medicineData = await response.json();
+      const data = await response.json();
+      if (!data || !Array.isArray(data.concepts) || !Array.isArray(data.practices)) {
+        throw new Error('Data format is invalid');
+      }
+      this.medicineData = data;
     } catch (error) {
       console.log('Using default traditional medicine data');
       this.medicineData = {

@@ -231,10 +231,10 @@ class UIController {
         (async () => {
           try {
             if (!window.CultureModuleBase) {
-              await this.loadScript("assets/js/modules/culture/culture-module-base.js?v=1");
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
             }
             if (!window.CharacterEvolutionModule) {
-              await this.loadScript("assets/js/modules/culture/character-evolution.js?v=1");
+              await this.loadScript("assets/js/modules/culture/character-evolution.js");
             }
             if (!window.characterEvolutionModule) {
               window.characterEvolutionModule = new CharacterEvolutionModule(this.app);
@@ -249,10 +249,10 @@ class UIController {
         (async () => {
           try {
             if (!window.CultureModuleBase) {
-              await this.loadScript("assets/js/modules/culture/culture-module-base.js?v=1");
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
             }
             if (!window.TraditionalMedicineModule) {
-              await this.loadScript("assets/js/modules/culture/traditional-medicine.js?v=1");
+              await this.loadScript("assets/js/modules/culture/traditional-medicine.js");
             }
             if (!window.traditionalMedicineModule) {
               window.traditionalMedicineModule = new TraditionalMedicineModule(this.app);
@@ -267,10 +267,10 @@ class UIController {
         (async () => {
           try {
             if (!window.CultureModuleBase) {
-              await this.loadScript("assets/js/modules/culture/culture-module-base.js?v=1");
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
             }
             if (!window.PekingOperaModule) {
-              await this.loadScript("assets/js/modules/culture/peking-opera.js?v=1");
+              await this.loadScript("assets/js/modules/culture/peking-opera.js");
             }
             if (!window.pekingOperaModule) {
               window.pekingOperaModule = new PekingOperaModule(this.app);
@@ -285,10 +285,10 @@ class UIController {
         (async () => {
           try {
             if (!window.CultureModuleBase) {
-              await this.loadScript("assets/js/modules/culture/culture-module-base.js?v=1");
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
             }
             if (!window.ChineseTechnologyModule) {
-              await this.loadScript("assets/js/modules/culture/chinese-technology.js?v=1");
+              await this.loadScript("assets/js/modules/culture/chinese-technology.js");
             }
             if (!window.chineseTechnologyModule) {
               window.chineseTechnologyModule = new ChineseTechnologyModule(this.app);

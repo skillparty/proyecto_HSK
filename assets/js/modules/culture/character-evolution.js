@@ -16,7 +16,11 @@ class CharacterEvolutionModule extends CultureModuleBase {
       // Intentar cargar JSON real
       const response = await fetch('assets/data/culture/character-evolution.json');
       if (!response.ok) throw new Error('Data file not found');
-      this.charactersData = await response.json();
+      const data = await response.json();
+      if (!Array.isArray(data)) {
+        throw new Error('Data is not a valid array');
+      }
+      this.charactersData = data;
     } catch (error) {
       console.log('Using default character evolution data');
       // Datos por defecto si el JSON no existe aún

@@ -13,7 +13,11 @@ class PekingOperaModule extends CultureModuleBase {
     try {
       const response = await fetch('assets/data/culture/peking-opera.json');
       if (!response.ok) throw new Error('Data file not found');
-      this.operaData = await response.json();
+      const data = await response.json();
+      if (!data || !Array.isArray(data.roles) || !Array.isArray(data.masks)) {
+        throw new Error('Data format is invalid');
+      }
+      this.operaData = data;
     } catch (error) {
       console.log('Using default peking opera data');
       this.operaData = {

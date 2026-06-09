@@ -13,7 +13,11 @@ class ChineseTechnologyModule extends CultureModuleBase {
     try {
       const response = await fetch('assets/data/culture/chinese-technology.json');
       if (!response.ok) throw new Error('Data file not found');
-      this.techData = await response.json();
+      const data = await response.json();
+      if (!data || !Array.isArray(data.achievements) || !Array.isArray(data.innovations)) {
+        throw new Error('Data format is invalid');
+      }
+      this.techData = data;
     } catch (error) {
       console.log('Using default chinese technology data');
       this.techData = {
