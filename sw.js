@@ -1,4 +1,4 @@
-const SW_VERSION = "4.9.1-culture-modules-fix";
+const SW_VERSION = "4.9.2-culture-modules-css-fix";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
