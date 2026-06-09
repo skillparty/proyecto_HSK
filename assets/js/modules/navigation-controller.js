@@ -18,6 +18,8 @@ class NavigationController {
       "culture-medicine",
       "culture-opera",
       "culture-technology",
+      "culture-clothing",
+      "culture-arts",
     ]);
   }
 

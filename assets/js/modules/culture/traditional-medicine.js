@@ -43,8 +43,14 @@ class TraditionalMedicineModule extends (window.CultureModuleBase || CultureModu
           {
             name: "Acupuntura y Moxibustión (针灸 / 針灸)",
             pinyin: "zhēn jiǔ",
-            meaning: "Estimulación de Puntos y Meridianos",
-            desc: "Consiste en la inserción de finas agujas metálicas estériles en puntos específicos (acupuntos) a lo largo de los canales o meridianos de energía para regular la circulación del Qi. A menudo se combina con la moxibustión (combustión de hojas secas de Artemisa sobre el punto) para calentar y nutrir los canales corporales."
+            meaning: "Estimulación de Puntos y Meridianos (经络)",
+            desc: "Consiste en la inserción de finas agujas metálicas estériles en puntos específicos (acupuntos) a lo largo de los canales o meridianos de energía para regular la circulación del Qi. Documentada e integrada formalmente desde la dinastía Tang (唐代), época en la que se expandió hacia Japón, Corea, India y Arabia, hoy en día se practica en más de 140 países y regiones. A menudo se combina con la moxibustión (combustión de hojas secas de Artemisa sobre el punto) para calentar y nutrir los canales corporales."
+          },
+          {
+            name: "Terapia de Ventosas (拔罐)",
+            pinyin: "bá guàn",
+            meaning: "Terapia de Presión Negativa (Método del Ángulo / 角法)",
+            desc: "Método terapéutico que utiliza la succión física y presión negativa sobre la piel para provocar la ruptura capilar controlada y congestión local, estimulando la circulación del Qi y de la sangre, activando la regeneración celular y regulando el sistema inmune. La clasificación técnica de estas herramientas distingue cuatro variantes fundamentales: ventosas de vidrio tradicional (玻璃拔罐器), ventosas de bambú natural (竹筒拔罐器), ventosas de vacío neumático (真空拔罐器) y dispositivos de infrarrojo lejano (远红外拔罐器)."
           },
           {
             name: "Fitoterapia China (中药 / 中藥)",
@@ -74,13 +80,13 @@ class TraditionalMedicineModule extends (window.CultureModuleBase || CultureModu
         },
         theory: [
           {
-            name: "Qi (气 / 氣)",
+            name: "Qi (气 / 气)",
             pinyin: "qì",
             meaning: "Vital Energy / Functional Activity",
             desc: "Historically defined as the primordial substance and active force that constitutes and maintains life. In physiological terms, Qi represents the collection of dynamic and metabolic functions of the body's organs and meridians."
           },
           {
-            name: "Yin and Yang (阴阳 / 陰陽)",
+            name: "Yin and Yang (阴阳 / 阴阳)",
             pinyin: "yīn yáng",
             meaning: "Duality and Homeostasis",
             desc: "A philosophical and clinical concept explaining phenomena through opposing yet interdependent forces. Yin (cool, receptive, structural, associated with water) and Yang (hot, active, functional, associated with fire) must coexist in dynamic equilibrium. Illness is diagnosed as an excess or deficiency of these forces."
@@ -94,13 +100,19 @@ class TraditionalMedicineModule extends (window.CultureModuleBase || CultureModu
         ],
         practices: [
           {
-            name: "Acupuncture and Moxibustion (针灸 / 針灸)",
+            name: "Acupuncture and Moxibustion (针灸 / 针灸)",
             pinyin: "zhēn jiǔ",
-            meaning: "Meridian and Point Stimulation",
-            desc: "Involves inserting fine, sterile metal needles into specific points (acupoints) along energy channels or meridians to regulate Qi circulation. It is often combined with moxibustion (burning dried Mugwort leaves over the points) to warm and nourish the body's channels."
+            meaning: "Meridian and Point Stimulation (经络)",
+            desc: "Involves inserting fine, sterile metal needles into specific points (acupoints) along energy channels or meridians to regulate Qi circulation. Formally documented since the Tang Dynasty (唐代), when its expansion to Japan, Korea, India, and Arabia began, and currently practiced in more than 140 countries and regions worldwide. It is often combined with moxibustion (burning dried Mugwort leaves over the points) to warm and nourish the body's channels."
           },
           {
-            name: "Chinese Herbal Medicine (中药 / 中藥)",
+            name: "Cupping Therapy (拔罐)",
+            pinyin: "bá guàn",
+            meaning: "Negative Pressure Therapy (Horn Method / 角法)",
+            desc: "A therapeutic method using physical suction and negative pressure on the skin to induce controlled capillary rupture and local congestion, stimulating Qi and blood circulation, activating cellular regeneration, and regulating immune response. Device classifications highlight four key types: traditional glass cupping (玻璃拔罐器), natural bamboo cupping (竹筒拔罐器), pneumatic vacuum cupping (真空拔罐器), and technological far-infrared cupping (远红外拔罐器)."
+          },
+          {
+            name: "Chinese Herbal Medicine (中药 / 中药)",
             pinyin: "zhōng yào",
             meaning: "Natural Pharmacology and Formulas",
             desc: "The primary therapeutic pillar of TCM. It uses complex combinations of medicinal plants, minerals, and natural substances to create custom formulations. Each ingredient is selected according to its taste (bitter, sweet, pungent, salty, sour) and thermal nature (cold, warm, neutral, hot)."

@@ -329,6 +329,48 @@ class UIController {
           this.logError("Failed to initialize chinese-technology", err);
         }
         break;
+      case "culture-clothing":
+        try {
+          if (
+            !window.ethnicClothingModule &&
+            window.EthnicClothingModule
+          ) {
+            window.ethnicClothingModule = new EthnicClothingModule(
+              this.app,
+            );
+          }
+          if (window.ethnicClothingModule) {
+            window.ethnicClothingModule
+              .initialize()
+              .catch((err) =>
+                this.logError("culture-clothing init failed:", err),
+              );
+          }
+        } catch (err) {
+          this.logError("Failed to initialize ethnic-clothing", err);
+        }
+        break;
+      case "culture-arts":
+        try {
+          if (
+            !window.traditionalArtsModule &&
+            window.TraditionalArtsModule
+          ) {
+            window.traditionalArtsModule = new TraditionalArtsModule(
+              this.app,
+            );
+          }
+          if (window.traditionalArtsModule) {
+            window.traditionalArtsModule
+              .initialize()
+              .catch((err) =>
+                this.logError("culture-arts init failed:", err),
+              );
+          }
+        } catch (err) {
+          this.logError("Failed to initialize traditional-arts", err);
+        }
+        break;
     }
   }
 
@@ -351,6 +393,8 @@ class UIController {
             "culture-medicine",
             "culture-opera",
             "culture-technology",
+            "culture-clothing",
+            "culture-arts",
           ]);
     try {
       const savedTab = localStorage.getItem(this.app.lastTabStorageKey);

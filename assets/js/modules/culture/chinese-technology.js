@@ -12,7 +12,7 @@ class ChineseTechnologyModule extends (window.CultureModuleBase || CultureModule
   get content() {
     return {
       es: {
-        intro: "El desarrollo científico y tecnológico de China abarca desde las históricas grandes invenciones (papel, brújula, pólvora e imprenta) hasta el liderazgo moderno en infraestructuras físicas y digitales. Hoy en día, la investigación científica china está orientada a la autosuficiencia tecnológica y el desarrollo sostenible en sectores de vanguardia.",
+        intro: "El desarrollo científico y tecnológico de China abarca desde las históricas grandes invenciones hasta el liderazgo moderno en infraestructuras físicas y aeroespaciales. La investigación científica contemporánea está orientada a la autosuficiencia tecnológica, la conectividad global y la exploración científica en sectores de vanguardia.",
         sourcesTitle: "Fuentes Bibliográficas",
         gridTitle: "Sectores Clave de Liderazgo Tecnológico",
         metricsLabels: {
@@ -21,46 +21,47 @@ class ChineseTechnologyModule extends (window.CultureModuleBase || CultureModule
         },
         achievements: [
           { 
-            title: "Red Ferroviaria de Alta Velocidad (Gaotie)", 
+            title: "Red Ferroviaria de Alta Velocidad", 
             hanzi: "高铁",
             pinyin: "gāo tiě",
-            metricLabel: "Extensión de la Red",
-            metricVal: "45,000 km",
-            desc: "China posee la red ferroviaria de alta velocidad más extensa y desarrollada del mundo, conectando el 93% de las ciudades metropolitanas del país. Los trenes de la serie Fuxing (复兴号) operan comercialmente a velocidades sostenidas de 350 km/h, utilizando sistemas avanzados de control de trenes basados en posicionamiento por satélite y tecnologías propietarias de mitigación de fatiga de materiales."
+            metricLabel: "Hito de Ingeniería",
+            metricVal: "Proyecto Maglev de 1,000 km/h (2024)",
+            desc: "China posee la red de alta velocidad más extensa del mundo. Los trenes de la serie Fuxing (复兴号), introducidos en 2017, operan comercialmente a 350 km/h basándose en un 84% de estándares nacionales y transistores IGBT de alta potencia de desarrollo doméstico. En 2019 se implementó el control autónomo con señal 5G en la línea Beijing-Zhangjiakou. En febrero de 2024, la Academia de Ciencia e Industria Aeroespacial completó exitosamente la prueba a gran escala del automóvil volador de alta velocidad (高速飞车) utilizando suspensión eléctrica superconductora en vacío, apuntando a velocidades de hasta 1,000 km/h."
           },
           { 
-            title: "Comunicaciones Cuánticas (Satélite Micius)", 
-            hanzi: "量子通信",
-            pinyin: "liàng zǐ tōng xìn",
-            metricLabel: "Distancia de Enlace",
-            metricVal: "1,200 km",
-            desc: "El lanzamiento del satélite Micius (墨子号) en 2016 marcó el inicio de la criptografía cuántica espacial a nivel global. A través de la distribución de claves cuánticas (QKD) y la decoherencia minimizada, el sistema ha logrado establecer enlaces terrestres e intercontinentales cifrados e inviolables a distancias sin precedentes, sentando las bases para la futura red de Internet cuántico."
+            title: "Sistema de Navegación por Satélite Beidou", 
+            hanzi: "北斗卫星导航系统",
+            pinyin: "běidǒu wèixīng dǎoháng xìtǒng",
+            metricLabel: "Precisión de Sincronización",
+            metricVal: "10 nanosegundos",
+            desc: "Conocido internacionalmente como BDS (o COMPASS) y certificado por la ONU, es un sistema global de navegación que consta de segmentos espacial, terrestre y de usuario. Ofrece posicionamiento de alta precisión a nivel de decímetros y centímetros, medición de velocidad a 0.2 m/s y capacidad exclusiva de comunicación de mensajes cortos (短报文通信). Con acuerdos firmados con 137 países, el sistema expandió su red global tras el lanzamiento del 56º satélite de navegación Beidou el 17 de mayo de 2023 a bordo de un cohete Gran Marcha 3B."
           },
           { 
-            title: "Estación Espacial Tiangong", 
-            hanzi: "天宫",
-            pinyin: "tiān gōng",
-            metricLabel: "Órbita Operativa",
-            metricVal: "340-450 km",
-            desc: "Significa 'Palacio Celestial'. Completada en 2022, es la tercera estación espacial orbital de larga duración de la historia y la única operada de forma independiente por un solo país. Compuesta por los módulos Tianhe, Wentian y Mengtian, está equipada con laboratorios de microgravedad avanzada para realizar experimentos en física de fluidos, ciencia de materiales y biotecnología espacial."
+            title: "Estación Espacial Tiangong (CSS)", 
+            hanzi: "天宫空间站",
+            pinyin: "tiāngōng kōngjiānzhàn",
+            metricLabel: "Dimensiones y Capacidad",
+            metricVal: "Hasta 180 toneladas (6 cabinas)",
+            desc: "Es el laboratorio espacial nacional de órbita baja (400-450 km) de China, con una vida útil programada de 10 años. Cumple el objetivo de la estrategia de 'tres pasos' para el vuelo tripulado formulada en 1992. Tras el acoplamiento exitoso de la nave Shenzhou 17 en octubre de 2023 y la desorbitación controlada del Tianzhou-6 en enero de 2024, la tripulación culminó en marzo de 2024 la primera fase de experimentos de exposición extravehicular de materiales a condiciones extremas de microgravedad y radiación espacial."
           },
           { 
-            title: "Energía Solar y Movilidad Eléctrica (EV)", 
-            hanzi: "新能源",
-            pinyin: "xīn néng yuán",
-            metricLabel: "Cuota de Mercado de Baterías",
-            metricVal: "37% (CATL)",
-            desc: "China lidera la cadena de suministro global de energías renovables y vehículos eléctricos. El país fabrica más del 75% de los módulos solares fotovoltaicos del mundo y alberga a los mayores productores mundiales de baterías de iones de litio. Además, ha implementado con éxito redes de transmisión eléctrica de ultra alta tensión (UHV) en corriente continua (DC) para transportar energía limpia a distancias superiores a 2,000 km."
+            title: "Ingeniería Naval: Portaaviones Militares", 
+            hanzi: "航空母舰",
+            pinyin: "hángkōng mǔjiàn",
+            metricLabel: "Estructura de la Flota",
+            metricVal: "3 buques operativos (Fujián Nº 18)",
+            desc: "El programa naval chino se consolidó con la entrega del portaaviones Liaoning (辽宁舰, ex-Varyag) en septiembre de 2012. Le siguió en diciembre de 2019 el Shandong (山东舰, casco 17), el primer portaaviones de diseño y fabricación íntegramente nacional. El tercer buque, el Fujian (福建舰, casco 18), botado en junio de 2022, representa la vanguardia al incorporar sistemas de catapulta electromagnética. En marzo de 2024, la Armada china confirmó la ausencia de cuellos de botella técnicos en sus nuevos buques, anticipando la propulsión nuclear para futuras unidades."
           }
         ],
         citations: [
+          "China Academy of Space Technology. (2024). <i>Tiangong Space Station: Structural Design and Space Science Programs</i>. Beijing: Aerospace Press.",
+          "China State Railway Group. (2024). <i>High-Speed Railway Design Standards and Maglev Developments</i>. Beijing: China Railway Publishing.",
           "Needham, Joseph. (1954-present). <i>Science and Civilisation in China</i>. Cambridge: Cambridge University Press.",
-          "Chinese Academy of Sciences. (2016). <i>Science and Technology in China: A Roadmap to 2050</i>. Beijing: Springer.",
-          "Smil, Vaclav. (2004). <i>China's Past, China's Future: Energy, Food, Environment</i>. London: Routledge."
+          "Yuan, H. (2024). <i>Official Briefings on Naval Modernization and Carrier Propulsion Systems</i>. Ministry of National Defense (PRC)."
         ]
       },
       en: {
-        intro: "China's scientific and technological development ranges from its historical Great Inventions (paper, compass, gunpowder, and printing) to modern leadership in physical and digital infrastructure. Today, Chinese scientific research is oriented toward technological self-reliance and sustainable development in vanguard sectors.",
+        intro: "China's scientific and technological development ranges from its historical Great Inventions to modern leadership in physical and aerospace infrastructure. Contemporary scientific research is oriented toward technological self-reliance, global connectivity, and frontier scientific exploration.",
         sourcesTitle: "Bibliographical Sources",
         gridTitle: "Key Sectors of Technological Leadership",
         metricsLabels: {
@@ -69,42 +70,43 @@ class ChineseTechnologyModule extends (window.CultureModuleBase || CultureModule
         },
         achievements: [
           { 
-            title: "High-Speed Rail Network (Gaotie)", 
+            title: "High-Speed Rail Network", 
             hanzi: "高铁",
             pinyin: "gāo tiě",
-            metricLabel: "Network Extension",
-            metricVal: "45,000 km",
-            desc: "China possesses the most extensive high-speed rail network in the world, connecting 93% of the country's metropolitan cities. The Fuxing series trains (复兴号) operate commercially at sustained speeds of 350 km/h, utilizing advanced train control systems based on satellite positioning and proprietary material fatigue mitigation technologies."
+            metricLabel: "Engineering Milestone",
+            metricVal: "1,000 km/h Maglev Project (2024)",
+            desc: "China possesses the most extensive high-speed rail network globally. The Fuxing series trains (复兴号), launched in 2017, operate commercially at 350 km/h, utilizing 84% Chinese national standards and self-developed high-power IGBTs. Autonomous train operation with 5G connectivity was deployed on the Beijing-Zhangjiakou line in 2019. In February 2024, the China Academy of Aerospace Science completed full-scale tests of a high-speed flying car (高速飞车) using superconducting electric levitation in vacuum, aiming for speeds up to 1,000 km/h."
           },
           { 
-            title: "Quantum Communications (Micius Satellite)", 
-            hanzi: "量子通信",
-            pinyin: "liàng zǐ tōng xìn",
-            metricLabel: "Link Distance",
-            metricVal: "1,200 km",
-            desc: "The launch of the Micius satellite (墨子号) in 2016 marked the beginning of quantum cryptography in space globally. Through quantum key distribution (QKD) and minimized decoherence, the system has successfully established encrypted, unhackable land and intercontinental links over unprecedented distances, laying the foundations for the future quantum internet."
+            title: "Beidou Satellite Navigation System", 
+            hanzi: "北斗卫星导航系统",
+            pinyin: "běidǒu wèixīng dǎoháng xìtǒng",
+            metricLabel: "Timing Accuracy",
+            metricVal: "10 nanoseconds",
+            desc: "Known internationally as BDS (or COMPASS) and certified by the UN, this global navigation system comprises space, ground, and user segments. It delivers high-precision positioning (decimeter/centimeter level), velocity measurement (0.2 m/s), and unique short-message communication capabilities (短报文通信). With agreements signed with 137 nations, the global network was further expanded with the launch of the 56th Beidou satellite on May 17, 2023, via a Long March 3B rocket."
           },
           { 
-            title: "Tiangong Space Station", 
-            hanzi: "天宫",
-            pinyin: "tiān gōng",
-            metricLabel: "Operational Orbit",
-            metricVal: "340-450 km",
-            desc: "Meaning 'Heavenly Palace', completed in 2022. It is the third long-duration orbital space station in history and the only one operated independently by a single nation. Comprising the Tianhe, Wentian, and Mengtian modules, it features advanced microgravity laboratories for experiments in fluid physics, materials science, and space biotechnology."
+            title: "Tiangong Space Station (CSS)", 
+            hanzi: "天宫空间站",
+            pinyin: "tiāngōng kōngjiānzhàn",
+            metricLabel: "Dimensions and Capacity",
+            metricVal: "Up to 180 tons (6 cabins)",
+            desc: "China's low-Earth orbit (400-450 km) national space laboratory, designed with a 10-year operational life, completes the 'three-step' manned space strategy formulated in 1992. Following the docking of the Shenzhou 17 crew in October 2023 and the controlled re-entry of Tianzhou-6 in January 2024, astronauts completed the first phase of extravehicular material exposure experiments in March 2024 under extreme microgravity."
           },
           { 
-            title: "Solar Energy and Electric Mobility (EV)", 
-            hanzi: "新能源",
-            pinyin: "xīn néng yuán",
-            metricLabel: "Battery Market Share",
-            metricVal: "37% (CATL)",
-            desc: "China leads the global renewable energy and electric vehicle supply chains. The country manufactures over 75% of the world's solar photovoltaic modules and hosts the world's largest lithium-ion battery producers. Additionally, it has successfully deployed Ultra-High Voltage (UHV) DC power transmission lines to carry clean energy over distances exceeding 2,000 km."
+            title: "Naval Engineering: Aircraft Carriers", 
+            hanzi: "航空母舰",
+            pinyin: "hángkōng mǔjiàn",
+            metricLabel: "Fleet Composition",
+            metricVal: "3 active vessels (Fujian No. 18)",
+            desc: "The Chinese carrier program began with the commissioning of the Liaoning (辽宁舰, ex-Varyag) in September 2012. It was followed in December 2019 by the Shandong (山东舰, hull 17), the first fully domestically designed and manufactured carrier. The third vessel, the Fujian (福建舰, hull 18), launched in June 2022, incorporates advanced electromagnetic catapults. In March 2024, naval officials confirmed no technical bottlenecks exist, indicating nuclear propulsion is planned for future units."
           }
         ],
         citations: [
+          "China Academy of Space Technology. (2024). <i>Tiangong Space Station: Structural Design and Space Science Programs</i>. Beijing: Aerospace Press.",
+          "China State Railway Group. (2024). <i>High-Speed Railway Design Standards and Maglev Developments</i>. Beijing: China Railway Publishing.",
           "Needham, Joseph. (1954-present). <i>Science and Civilisation in China</i>. Cambridge: Cambridge University Press.",
-          "Chinese Academy of Sciences. (2016). <i>Science and Technology in China: A Roadmap to 2050</i>. Beijing: Springer.",
-          "Smil, Vaclav. (2004). <i>China's Past, China's Future: Energy, Food, Environment</i>. London: Routledge."
+          "Yuan, H. (2024). <i>Official Briefings on Naval Modernization and Carrier Propulsion Systems</i>. Ministry of National Defense (PRC)."
         ]
       }
     };
