@@ -4501,7 +4501,9 @@ body.light-theme .dashboard-3d-portal {
     #culture-characters,
     #culture-medicine,
     #culture-opera,
-    #culture-technology {
+    #culture-technology,
+    #culture-clothing,
+    #culture-arts {
         overflow-y: auto !important;
     }
 
