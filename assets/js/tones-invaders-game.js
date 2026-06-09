@@ -103,7 +103,8 @@ class TonesInvadersGame {
     // Recalculates canvas size based on container and applies devicePixelRatio
     resizeCanvas() {
         if (!this.canvas) return;
-        const rect = this.canvas.parentNode.getBoundingClientRect();
+        const parentNode = this.canvas.parentNode;
+        const rect = parentNode.getBoundingClientRect();
 
         // Guard: skip resize when container is hidden (rect.width = 0).
         // startGame() calls resizeCanvas() again after the game area is shown.
@@ -111,9 +112,16 @@ class TonesInvadersGame {
 
         const dpr = window.devicePixelRatio || 1;
         
-        // Use container width, maintain 3:2 aspect ratio
-        const width = rect.width;
-        const height = rect.width * (this.logicalHeight / this.logicalWidth);
+        // Measure exact content width (subtract borders and padding to prevent infinite expansion / layout quirks)
+        const style = window.getComputedStyle(parentNode);
+        const borderLeft = parseFloat(style.borderLeftWidth) || 0;
+        const borderRight = parseFloat(style.borderRightWidth) || 0;
+        const paddingLeft = parseFloat(style.paddingLeft) || 0;
+        const paddingRight = parseFloat(style.paddingRight) || 0;
+        const width = rect.width - (borderLeft + borderRight + paddingLeft + paddingRight);
+        
+        // Maintain 3:2 aspect ratio
+        const height = width * (this.logicalHeight / this.logicalWidth);
         
         this.canvas.width = width * dpr;
         this.canvas.height = height * dpr;
@@ -122,6 +130,8 @@ class TonesInvadersGame {
         this.canvas.style.height = `${height}px`;
         
         this.ctx = this.canvas.getContext('2d');
+        // Reset transform to identity before scaling to prevent cumulative/exponential scaling bugs
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
         this.ctx.scale(dpr * (width / this.logicalWidth), dpr * (height / this.logicalHeight));
     }
     
