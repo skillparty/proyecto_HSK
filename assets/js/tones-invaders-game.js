@@ -104,6 +104,11 @@ class TonesInvadersGame {
     resizeCanvas() {
         if (!this.canvas) return;
         const rect = this.canvas.parentNode.getBoundingClientRect();
+
+        // Guard: skip resize when container is hidden (rect.width = 0).
+        // startGame() calls resizeCanvas() again after the game area is shown.
+        if (rect.width === 0) return;
+
         const dpr = window.devicePixelRatio || 1;
         
         // Use container width, maintain 3:2 aspect ratio

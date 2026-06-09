@@ -13,9 +13,14 @@ class CultureModuleBase {
   async initialize() {
     if (this.isInitialized) return;
     this.renderLoading();
-    await this.loadData();
-    this.render();
-    this.isInitialized = true;
+    try {
+      await this.loadData();
+      this.render();
+      this.isInitialized = true;
+    } catch (err) {
+      console.error(`[CultureModule] Error initializing ${this.title}:`, err);
+      this.renderError(err && err.message ? err.message : String(err));
+    }
   }
 
   renderLoading() {
@@ -26,6 +31,22 @@ class CultureModuleBase {
           <p style="margin-top: 16px; color: var(--text-muted);">Cargando ${this.title}...</p>
         </div>
         <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+      `;
+    }
+  }
+
+  renderError(msg) {
+    if (this.container) {
+      this.container.innerHTML = `
+        <div style="padding: 2rem; text-align: center; color: var(--color-error, #dc2626);">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚠️</div>
+          <p style="font-weight: 600; margin-bottom: 0.5rem;">No se pudo cargar ${this.title}</p>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted, #666); margin-bottom: 1.5rem;">${msg || "Error desconocido"}</p>
+          <button onclick="this.closest('[id]') && window.app && window.app.uiController && window.app.uiController.handleTabInitialization(this.closest('[id]').parentElement.parentElement.id)"
+            style="padding: 0.5rem 1.5rem; background: var(--color-primary, #d32f2f); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+            Reintentar
+          </button>
+        </div>
       `;
     }
   }

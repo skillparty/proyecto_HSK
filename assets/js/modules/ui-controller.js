@@ -42,17 +42,37 @@ class UIController {
     this.app.currentTab = tabName;
 
     // Pause matrix game if leaving matrix tab
-    if (oldTab === "matrix" && window.matrixGame && window.matrixGame.isPlaying && !window.matrixGame.isPaused) {
+    if (
+      oldTab === "matrix" &&
+      window.matrixGame &&
+      window.matrixGame.isPlaying &&
+      !window.matrixGame.isPaused
+    ) {
       this.logDebug("⏸️ Auto-pausing Matrix Game because user switched tabs");
       window.matrixGame.togglePause();
     }
-    if (oldTab === "tones-invaders" && window.tonesInvadersGame && window.tonesInvadersGame.state.isPlaying && !window.tonesInvadersGame.state.isPaused) {
+    if (
+      oldTab === "tones-invaders" &&
+      window.tonesInvadersGame &&
+      window.tonesInvadersGame.state.isPlaying &&
+      !window.tonesInvadersGame.state.isPaused
+    ) {
       window.tonesInvadersGame.togglePause();
     }
-    if (oldTab === "hanzi-builder" && window.hanziBuilderGame && window.hanziBuilderGame.state.isPlaying && !window.hanziBuilderGame.state.isPaused) {
+    if (
+      oldTab === "hanzi-builder" &&
+      window.hanziBuilderGame &&
+      window.hanziBuilderGame.state.isPlaying &&
+      !window.hanziBuilderGame.state.isPaused
+    ) {
       window.hanziBuilderGame.togglePause();
     }
-    if (oldTab === "word-linker" && window.wordLinkerGame && window.wordLinkerGame.state.isPlaying && !window.wordLinkerGame.state.isPaused) {
+    if (
+      oldTab === "word-linker" &&
+      window.wordLinkerGame &&
+      window.wordLinkerGame.state.isPlaying &&
+      !window.wordLinkerGame.state.isPaused
+    ) {
       window.wordLinkerGame.togglePause();
     }
 
@@ -89,7 +109,9 @@ class UIController {
     });
 
     // If the target tab is inside a dropdown group, make that group parent-active
-    const activeDropdownItem = document.querySelector(`.nav-dropdown-item[data-tab="${tabName}"]`);
+    const activeDropdownItem = document.querySelector(
+      `.nav-dropdown-item[data-tab="${tabName}"]`,
+    );
     if (activeDropdownItem) {
       const parentGroup = activeDropdownItem.closest(".nav-group");
       if (parentGroup) {
@@ -107,7 +129,10 @@ class UIController {
   handleTabInitialization(tabName) {
     switch (tabName) {
       case "home":
-        if (this.app.homeController && typeof this.app.homeController.renderDashboard === "function") {
+        if (
+          this.app.homeController &&
+          typeof this.app.homeController.renderDashboard === "function"
+        ) {
           this.app.homeController.renderDashboard();
         }
         break;
@@ -229,11 +254,20 @@ class UIController {
         break;
       case "culture-characters":
         try {
-          if (!window.characterEvolutionModule && window.CharacterEvolutionModule) {
-            window.characterEvolutionModule = new CharacterEvolutionModule(this.app);
+          if (
+            !window.characterEvolutionModule &&
+            window.CharacterEvolutionModule
+          ) {
+            window.characterEvolutionModule = new CharacterEvolutionModule(
+              this.app,
+            );
           }
           if (window.characterEvolutionModule) {
-            window.characterEvolutionModule.initialize();
+            window.characterEvolutionModule
+              .initialize()
+              .catch((err) =>
+                this.logError("culture-characters init failed:", err),
+              );
           }
         } catch (err) {
           this.logError("Failed to initialize character-evolution", err);
@@ -241,11 +275,20 @@ class UIController {
         break;
       case "culture-medicine":
         try {
-          if (!window.traditionalMedicineModule && window.TraditionalMedicineModule) {
-            window.traditionalMedicineModule = new TraditionalMedicineModule(this.app);
+          if (
+            !window.traditionalMedicineModule &&
+            window.TraditionalMedicineModule
+          ) {
+            window.traditionalMedicineModule = new TraditionalMedicineModule(
+              this.app,
+            );
           }
           if (window.traditionalMedicineModule) {
-            window.traditionalMedicineModule.initialize();
+            window.traditionalMedicineModule
+              .initialize()
+              .catch((err) =>
+                this.logError("culture-medicine init failed:", err),
+              );
           }
         } catch (err) {
           this.logError("Failed to initialize traditional-medicine", err);
@@ -257,7 +300,9 @@ class UIController {
             window.pekingOperaModule = new PekingOperaModule(this.app);
           }
           if (window.pekingOperaModule) {
-            window.pekingOperaModule.initialize();
+            window.pekingOperaModule
+              .initialize()
+              .catch((err) => this.logError("culture-opera init failed:", err));
           }
         } catch (err) {
           this.logError("Failed to initialize peking-opera", err);
@@ -265,11 +310,20 @@ class UIController {
         break;
       case "culture-technology":
         try {
-          if (!window.chineseTechnologyModule && window.ChineseTechnologyModule) {
-            window.chineseTechnologyModule = new ChineseTechnologyModule(this.app);
+          if (
+            !window.chineseTechnologyModule &&
+            window.ChineseTechnologyModule
+          ) {
+            window.chineseTechnologyModule = new ChineseTechnologyModule(
+              this.app,
+            );
           }
           if (window.chineseTechnologyModule) {
-            window.chineseTechnologyModule.initialize();
+            window.chineseTechnologyModule
+              .initialize()
+              .catch((err) =>
+                this.logError("culture-technology init failed:", err),
+              );
           }
         } catch (err) {
           this.logError("Failed to initialize chinese-technology", err);

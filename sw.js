@@ -1,4 +1,4 @@
-const SW_VERSION = "4.9.3-culture-modules-fix";
+const SW_VERSION = "4.10.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -55,6 +55,10 @@ const PRECACHE_FILES = [
   "./assets/js/hanzi-builder-game.js?v=2",
   "./assets/js/word-linker-game.js?v=2",
   "./assets/js/leaderboard.js",
+  "./assets/data/culture/character-evolution.json",
+  "./assets/data/culture/chinese-technology.json",
+  "./assets/data/culture/peking-opera.json",
+  "./assets/data/culture/traditional-medicine.json",
   "./assets/data/hsk_vocabulary.json",
   "./assets/data/hsk_vocabulary_spanish.json",
   "./assets/data/hsk_past_exams.json",

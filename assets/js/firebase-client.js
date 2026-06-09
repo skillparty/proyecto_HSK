@@ -303,8 +303,14 @@ class FirebaseClient {
             (sum, level) => sum + (level.incorrect_answers || 0),
             0,
           ) || 0,
-        currentStreak: data && data.length > 0 ? Math.max(...data.map((level) => level.current_streak || 0)) : 0,
-        bestStreak: data && data.length > 0 ? Math.max(...data.map((level) => level.best_streak || 0)) : 0,
+        currentStreak:
+          data && data.length > 0
+            ? Math.max(...data.map((level) => level.current_streak || 0))
+            : 0,
+        bestStreak:
+          data && data.length > 0
+            ? Math.max(...data.map((level) => level.best_streak || 0))
+            : 0,
         totalTimeSpent:
           data?.reduce(
             (sum, level) => sum + (level.total_time_spent || 0),
@@ -361,7 +367,7 @@ class FirebaseClient {
           const snap = await transaction.get(docRef);
           if (!snap.exists()) return;
           const data = snap.data();
-          const currentStreak = (data.current_streak || 0) + 1; // already incremented above
+          const currentStreak = data.current_streak || 0; // value already incremented by setDoc above
           const bestStreak = data.best_streak || 0;
           if (currentStreak > bestStreak) {
             transaction.update(docRef, { best_streak: currentStreak });
