@@ -1,0 +1,33 @@
+{
+  "achievements": [
+    { 
+      "title": "Red de Alta Velocidad (Gaotie)", 
+      "hanzi": "高铁",
+      "pinyin": "gāo tiě",
+      "icon": "🚄",
+      "desc": "China posee la red ferroviaria de alta velocidad más grande del mundo (más de 40,000 km), conectando miles de ciudades. Los modernos trenes Fuxing (复兴号) alcanzan velocidades de 350 km/h, revolucionando el transporte interurbano."
+    },
+    { 
+      "title": "Estación Espacial Tiangong", 
+      "hanzi": "天宫",
+      "pinyin": "tiān gōng",
+      "icon": "🛰️",
+      "desc": "Significa 'Palacio Celestial'. Completada en 2022, esta estación orbital modular de investigación es 100% de desarrollo chino, marcando un hito independiente en la presencia humana permanente en el espacio."
+    },
+    { 
+      "title": "Potencia Naval y Marítima", 
+      "hanzi": "航海",
+      "pinyin": "háng hǎi",
+      "icon": "🚢",
+      "desc": "China es el principal constructor naval del mundo. Destaca en la creación de megabuques portacontenedores, rompehielos polares (Xuelong) e innovadores portaaviones con tecnología de catapultas electromagnéticas."
+    },
+    {
+      "title": "Liderazgo en Energías Limpias",
+      "hanzi": "新能源",
+      "pinyin": "xīn néng yuán",
+      "icon": "⚡",
+      "desc": "Líder mundial indiscutible en la producción de vehículos eléctricos (EV), baterías de nueva generación y capacidad instalada de energía solar y eólica, impulsando la transición energética global."
+    }
+  ],
+  "innovations": []
+}

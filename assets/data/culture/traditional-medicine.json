@@ -1,0 +1,45 @@
+{
+  "concepts": [
+    { 
+      "name": "Qi", 
+      "hanzi": "气", 
+      "pinyin": "qì", 
+      "desc": "La energía vital o fuerza de vida que fluye por todo el universo y el cuerpo humano a través de canales llamados meridianos." 
+    },
+    { 
+      "name": "Yin y Yang", 
+      "hanzi": "阴阳", 
+      "pinyin": "yīn yáng", 
+      "desc": "Dos fuerzas opuestas pero complementarias. El Yin es frío, pasivo y oscuro; el Yang es caliente, activo y luminoso. La salud depende del equilibrio perfecto entre ambas." 
+    },
+    { 
+      "name": "Cinco Elementos", 
+      "hanzi": "五行", 
+      "pinyin": "wǔ xíng", 
+      "desc": "Madera, Fuego, Tierra, Metal y Agua. Este sistema explica las interacciones fisiológicas y patológicas entre los órganos del cuerpo." 
+    }
+  ],
+  "practices": [
+    { 
+      "name": "Acupuntura", 
+      "hanzi": "针灸", 
+      "pinyin": "zhēn jiǔ",
+      "icon": "📌", 
+      "desc": "Inserción de agujas extremadamente finas en puntos específicos (acupuntos) a lo largo de los meridianos para restaurar el flujo de Qi." 
+    },
+    { 
+      "name": "Fitoterapia", 
+      "hanzi": "中药", 
+      "pinyin": "zhōng yào",
+      "icon": "🌿", 
+      "desc": "Uso de miles de plantas medicinales, minerales y otros productos, cuidadosamente combinados en fórmulas personalizadas." 
+    },
+    { 
+      "name": "Ventosas", 
+      "hanzi": "拔罐", 
+      "pinyin": "bá guàn",
+      "icon": "🏺", 
+      "desc": "Aplicación de tazas de vidrio o bambú sobre la piel creando un vacío para estimular el flujo sanguíneo y aliviar el dolor muscular." 
+    }
+  ]
+}

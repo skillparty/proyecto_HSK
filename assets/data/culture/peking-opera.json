@@ -1,0 +1,27 @@
+{
+  "roles": [
+    {
+      "name": "Sheng (生)",
+      "desc": "Personajes masculinos principales. Se dividen en Lao Sheng (hombres mayores y dignos), Xiao Sheng (hombres jóvenes) y Wu Sheng (personajes marciales y acróbatas)."
+    },
+    {
+      "name": "Dan (旦)",
+      "desc": "Personajes femeninos. Incluyen Qing Yi (mujeres virtuosas y elegantes), Hua Dan (mujeres jóvenes y vivaces) y Wu Dan (mujeres guerreras)."
+    },
+    {
+      "name": "Jing (净)",
+      "desc": "Personajes masculinos con caras pintadas. Sus elaborados maquillajes revelan su personalidad: lealtad, valentía, astucia o ferocidad."
+    },
+    {
+      "name": "Chou (丑)",
+      "desc": "El payaso o personaje cómico. Se reconoce por una mancha blanca de maquillaje alrededor de los ojos y la nariz. Aportan humor y pueden improvisar."
+    }
+  ],
+  "colors": [
+    { "color": "Rojo", "hex": "#e53935", "meaning": "Lealtad, valentía y rectitud. Usado por héroes legendarios como Guan Yu." },
+    { "color": "Negro", "hex": "#212121", "meaning": "Valor, fiereza e imparcialidad. Representa personajes rudos pero justos como Bao Zheng." },
+    { "color": "Blanco", "hex": "#ffffff", "meaning": "Astucia, engaño y traición. Típico de villanos poderosos como Cao Cao.", "text": "#333" },
+    { "color": "Azul/Verde", "hex": "#1e88e5", "meaning": "Firmeza, terquedad y valor indomable. Común en guerreros rebeldes o héroes populares." },
+    { "color": "Amarillo", "hex": "#fbc02d", "meaning": "Crueldad, ambición e inteligencia oculta. Usado por asesinos o personajes de la realeza corruptos.", "text": "#333" }
+  ]
+}

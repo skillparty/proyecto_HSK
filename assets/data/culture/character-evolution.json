@@ -1,0 +1,18 @@
+[
+  {
+    "character": "日", "pinyin": "rì", "meaning": "Sol",
+    "oracle": "☀️", "bronze": "🌞", "seal": "❂", "description": "Originalmente un círculo con un punto en el centro representando el sol."
+  },
+  {
+    "character": "月", "pinyin": "yuè", "meaning": "Luna",
+    "oracle": "🌙", "bronze": "🌛", "seal": "☾", "description": "Representaba la forma de la luna creciente."
+  },
+  {
+    "character": "水", "pinyin": "shuǐ", "meaning": "Agua",
+    "oracle": "🌊", "bronze": "💧", "seal": "♒", "description": "Dibujado originalmente como un río fluyendo."
+  },
+  {
+    "character": "木", "pinyin": "mù", "meaning": "Árbol / Madera",
+    "oracle": "🌲", "bronze": "🌳", "seal": "𐂷", "description": "Representación visual del tronco, ramas y raíces de un árbol."
+  }
+]
