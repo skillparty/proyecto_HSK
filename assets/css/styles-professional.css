@@ -4497,7 +4497,11 @@ body.light-theme .dashboard-3d-portal {
     #strokes-radicals,
     #quiz,
     #past-exams,
-    #home {
+    #home,
+    #culture-characters,
+    #culture-medicine,
+    #culture-opera,
+    #culture-technology {
         overflow-y: auto !important;
     }
 
