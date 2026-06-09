@@ -16,7 +16,8 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
         intro: "El arte del maquillaje facial de la Ópera de Pekín (京剧脸谱 - Jīngjù Liǎnpǔ) es una forma de expresión teatral tradicional china y un proceso de maquillaje facial altamente codificado para los actores. La Ópera de Pekín, reconocida como Patrimonio Cultural Inmaterial, utiliza estas técnicas artísticas para transmitir la esencia psicológica y moral de los personajes en escena.",
         sourcesTitle: "Fuentes Bibliográficas",
         rolesTitle: "Roles y Maquillaje Facial",
-        masksTitle: "El Arte del Maquillaje Facial (脸谱)",
+        extraInfoTitle: "Filosofía del Maquillaje (脸谱)",
+        masksTitle: "Simbolismo de los Colores",
         roles: [
           {
             name: "Sheng (生)",
@@ -39,11 +40,23 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
             desc: "El personaje humorístico o astuto. Se caracteriza por una mancha de polvo blanco en el centro del rostro (alrededor de los ojos y la nariz)."
           }
         ],
+        extraInfo: [
+          {
+            title: "Función Moral",
+            text: "Tiene la función artística de 'contener elogios y culpas, distinguiendo entre el bien y el mal', permitiendo al público observar una representación visual de la mentalidad y personalidad del personaje."
+          },
+          {
+            title: "La Imagen del Alma",
+            text: "Debido a su capacidad para reflejar el carácter interno mediante patrones externos, el maquillaje facial se conoce en la tradición teatral china como la 'imagen del alma' del personaje. Su evolución es el resultado de siglos de práctica artística, observación y síntesis de los fenómenos de la vida por parte de los artistas operísticos."
+          }
+        ],
         masks: [
-          { color: "Contexto Artístico", meaning: "Generalmente se utiliza para dos roles: puros (Jing) y feos (Chou). La mayoría de los personajes tienen sus propios patrones y colores específicos para resaltar sus características de personalidad.", hex: "#E53935", enName: "Artistic Context" },
-          { color: "Función Moral", meaning: "Tiene la función artística de 'contener elogios y culpas, distinguiendo entre el bien y el mal', permitiendo al público observar una representación visual de la mentalidad y personalidad del personaje.", hex: "#212121", enName: "Moral Function" },
-          { color: "Evolución Histórica", meaning: "La evolución y desarrollo del maquillaje facial es el resultado de la práctica artística a través de la historia por parte de los artistas de la ópera, su observación, experiencia y síntesis de los fenómenos de la vida.", hex: "#1E88E5", enName: "Historical Evolution" },
-          { color: "Imagen del Alma", meaning: "Debido a su capacidad para reflejar el carácter interno mediante patrones externos, el maquillaje facial se conoce en la tradición teatral china como la 'imagen del alma' del personaje.", hex: "#FDD835", enName: "Soul Image" }
+          { color: "Rojo (红)", meaning: "Representa lealtad, valor y rectitud. Usado para personajes heroicos y honorables como Guan Yu.", hex: "#E53935", enName: "Red" },
+          { color: "Negro (黑)", meaning: "Simboliza imparcialidad, integridad y un carácter rudo pero justo. Un ejemplo clásico es Bao Zheng.", hex: "#212121", enName: "Black" },
+          { color: "Blanco (白)", meaning: "Indica traición, engaño y astucia. Se usa para villanos y personajes siniestros como Cao Cao.", hex: "#F5F5F5", enName: "White" },
+          { color: "Amarillo (黄)", meaning: "Refleja ferocidad, ambición y una mente calculadora. Común en guerreros crueles.", hex: "#FDD835", enName: "Yellow" },
+          { color: "Azul / Verde (蓝/绿)", meaning: "El azul denota firmeza y valentía; el verde indica un temperamento impulsivo, violento o terco.", hex: "#1E88E5", enName: "Blue/Green" },
+          { color: "Oro / Plata (金/银)", meaning: "Se reserva para dioses, espíritus, demonios y seres mitológicos, añadiendo un elemento de misterio y majestuosidad.", hex: "#FFD700", enName: "Gold/Silver" }
         ],
         citations: [
           "Documento de Exposición: (REVISADO) 2024 孔院中文日展览 物品解说-EXPOSITION : 22 abril-20 mayo 2024 (Ítem 12: 京剧脸谱).",
@@ -54,7 +67,8 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
         intro: "The art of Peking Opera facial makeup (京剧脸谱 - Jīngjù Liǎnpǔ) is a traditional Chinese theatrical expression and a highly codified facial makeup process for actors. Recognized as Intangible Cultural Heritage, it utilizes artistic techniques to convey the psychological and moral essence of characters.",
         sourcesTitle: "Bibliographical Sources",
         rolesTitle: "Roles and Facial Makeup",
-        masksTitle: "The Art of Facial Makeup (脸谱)",
+        extraInfoTitle: "Makeup Philosophy (脸谱)",
+        masksTitle: "Color Symbolism",
         roles: [
           {
             name: "Sheng (生)",
@@ -77,11 +91,23 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
             desc: "The humorous or cunning character. Characterized by a white powder patch in the center of the face (around the eyes and nose)."
           }
         ],
+        extraInfo: [
+          {
+            title: "Moral Function",
+            text: "It has the artistic function of 'containing praise and blame, distinguishing between good and evil', allowing the audience to observe a visual representation of the character's mentality and personality."
+          },
+          {
+            title: "Image of the Soul",
+            text: "Due to its ability to reflect internal character through external patterns, facial makeup is known in Chinese theatrical tradition as the 'image of the soul' of the character. Its evolution is the result of centuries of artistic practice, observation, and synthesis of life phenomena by opera artists."
+          }
+        ],
         masks: [
-          { color: "Artistic Context", meaning: "Generally used for two roles: pure (Jing) and ugly (Chou). Most characters have their own specific patterns and colors to highlight their personality traits.", hex: "#E53935", enName: "Artistic Context" },
-          { color: "Moral Function", meaning: "It has the artistic function of 'containing praise and blame, distinguishing between good and evil', allowing the audience to observe a visual representation of the character's mentality and personality.", hex: "#212121", enName: "Moral Function" },
-          { color: "Historical Evolution", meaning: "The evolution and development of facial makeup is the result of artistic practice throughout history by opera artists, their observation, experience, and synthesis of life phenomena.", hex: "#1E88E5", enName: "Historical Evolution" },
-          { color: "Image of the Soul", meaning: "Due to its ability to reflect internal character through external patterns, facial makeup is known in Chinese theatrical tradition as the 'image of the soul' of the character.", hex: "#FDD835", enName: "Soul Image" }
+          { color: "Red (红)", meaning: "Represents loyalty, courage, and uprightness. Used for heroic and honorable characters like Guan Yu.", hex: "#E53935", enName: "Red" },
+          { color: "Black (黑)", meaning: "Symbolizes impartiality, integrity, and a rough but fair character. A classic example is Bao Zheng.", hex: "#212121", enName: "Black" },
+          { color: "White (白)", meaning: "Indicates treachery, deceit, and craftiness. Used for villains and sinister characters like Cao Cao.", hex: "#F5F5F5", enName: "White" },
+          { color: "Yellow (黄)", meaning: "Reflects fierceness, ambition, and a calculating mind. Common in cruel warriors.", hex: "#FDD835", enName: "Yellow" },
+          { color: "Blue / Green (蓝/绿)", meaning: "Blue denotes firmness and bravery; green indicates an impulsive, violent, or stubborn temperament.", hex: "#1E88E5", enName: "Blue/Green" },
+          { color: "Gold / Silver (金/银)", meaning: "Reserved for gods, spirits, demons, and mythological beings, adding an element of mystery and majesty.", hex: "#FFD700", enName: "Gold/Silver" }
         ],
         citations: [
           "Exhibition Document: 2024 Confucius Institute Chinese Language Day Exhibition (Item 12: Peking Opera Facial Makeup).",
@@ -297,6 +323,23 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
             <span class="role-type">${role.type}</span>
           </div>
           <p class="role-desc">${role.desc}</p>
+        </div>
+      `;
+    });
+
+      </div>
+
+      <div class="section-header-academic">${activeContent.extraInfoTitle}</div>
+      <div class="roles-grid">
+    `;
+
+    activeContent.extraInfo.forEach(info => {
+      html += `
+        <div class="role-card" style="border-left: 4px solid var(--color-primary, #dc2626);">
+          <div class="role-header">
+            <h3 style="color: var(--color-text-main, #333); font-size: 1.15rem;">${info.title}</h3>
+          </div>
+          <p class="role-desc">${info.text}</p>
         </div>
       `;
     });
