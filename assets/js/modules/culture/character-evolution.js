@@ -100,6 +100,18 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
           {
             title: "Sun Tzu y El Arte de la Guerra (孙子兵法)",
             text: "Sun Tzu fue un célebre estratega y filósofo militar. En su obra 'El Arte de la Guerra', plantea la idea fundamental de que 'someter al ejército enemigo sin luchar es la cima de la excelencia'. El libro de bambú utilizado en la antigüedad servía para documentar estrategias avanzadas sobre el uso del fuego, espías, el estudio del terreno montañoso y acuático, siendo un pilar de la filosofía estratégica de China."
+          },
+          {
+            title: "El Arte de la Caligrafía y los Cuatro Tesoros (文房四宝)",
+            text: "Un arte tradicional exclusivo de China. Los caracteres chinos se originaron con la idea de utilizar imágenes para registrar eventos y evolucionaron durante miles de años. Con la invención de la escritura con pincel, surgió la caligrafía, convirtiéndose en un arte que utiliza los Cuatro Tesoros del Estudio (pincel, tinta, papel y tintero) como herramienta para expresar emociones. Los caracteres chinos son una combinación de forma, sonido y significado."
+          },
+          {
+            title: "Los Seis Libros (六书 - Liù Shū)",
+            text: "Los 'Seis Libros' se refieren a los seis métodos de creación y uso de caracteres chinos: pictogramas, referencias a cosas, comprensión, pictofonética, anotaciones y caracteres prestados. Tienen una gran importancia rectora para la estructura de los caracteres y son la base de la caligrafía. La ontología del arte caligráfico incluye la pincelada ('el uso de la pluma'), la estructura (anudado) y el método de composición (diseño general de líneas y formas)."
+          },
+          {
+            title: "La Estética de los Caracteres",
+            text: "La forma básica de los caracteres chinos es cuadrada. A través de la expansión y contracción de los punteados y la torsión del eje, se combinan diferentes formas en movimiento en hermosas obras. El uso del pincel y la tinta (espesa, ligera, seca y húmeda) otorga a la caligrafía una estructura de punteado y belleza únicas. Históricamente, las obras maestras como el 'Prefacio del Pabellón de las Orquídeas' de Wang Xizhi representan el pináculo de esta expresión."
           }
         ]
       },
@@ -182,7 +194,7 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
         citations: [
           "Qiu, Xigui. (2000). <i>Chinese Writing</i>. Early China Special Monograph Series No. 4. Berkeley: The Society for the Study of Early China.",
           "Keightley, David N. (1978). <i>Sources of Shang History</i>. University of California Press.",
-          "Exhibition Document: 2024 Confucius Institute Chinese Language Day Exhibition (Zodiac and Sun Tzu)."
+          "Exhibition Document: 2024 Confucius Institute Chinese Language Day Exhibition."
         ],
         extraInfo: [
           {
@@ -192,6 +204,18 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
           {
             title: "Sun Tzu and The Art of War (孙子兵法)",
             text: "Sun Tzu was a famous military strategist and philosopher. In his work 'The Art of War', he proposes the fundamental idea that 'subduing the enemy's army without fighting is the acme of skill'. The bamboo slip books used in ancient times served to document advanced strategies on the use of fire, spies, and the study of mountainous and aquatic terrain, being a pillar of China's strategic philosophy."
+          },
+          {
+            title: "The Art of Calligraphy and the Four Treasures (文房四宝)",
+            text: "A traditional art unique to China. Chinese characters originated with the idea of using images to record events and evolved over thousands of years. With the invention of writing with a brush, calligraphy emerged, becoming an art that uses the Four Treasures of the Study (brush, ink, paper, and inkstone) as a tool to express emotions."
+          },
+          {
+            title: "The Six Books (六书 - Liù Shū)",
+            text: "The 'Six Books' refer to the six methods of creating and using Chinese characters: pictograms, referencing things, understanding, pictophonetics, annotations, and borrowed characters. They have a great guiding importance for the structure of characters and are the basis of calligraphy."
+          },
+          {
+            title: "Aesthetics of Characters",
+            text: "The basic shape of Chinese characters is square. Through the expansion and contraction of dots and the twisting of the axis, different shapes are combined in motion in beautiful works. The use of brush and ink (thick, light, dry, and wet) gives calligraphy a unique dotting structure and beauty. Historically, masterpieces such as Wang Xizhi's 'Preface to the Orchid Pavilion' represent the pinnacle of this expression."
           }
         ]
       }
