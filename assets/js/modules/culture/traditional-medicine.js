@@ -1,9 +1,9 @@
 // Asegurarnos de que CultureModuleBase esté disponible
-if (typeof CultureModuleBase === 'undefined') {
+if (typeof CultureModuleBase === 'undefined' && typeof window.CultureModuleBase === 'undefined') {
   console.warn("CultureModuleBase not found. Please ensure it is loaded before TraditionalMedicineModule.");
 }
 
-class TraditionalMedicineModule extends CultureModuleBase {
+class TraditionalMedicineModule extends (window.CultureModuleBase || CultureModuleBase) {
   constructor(app) {
     super(app, 'culture-medicine-content', 'Medicina Tradicional China');
     this.medicineData = null;

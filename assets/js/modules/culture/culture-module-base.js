@@ -3,8 +3,11 @@ class CultureModuleBase {
     this.app = app;
     this.containerId = containerId;
     this.title = title;
-    this.container = document.getElementById(containerId);
     this.isInitialized = false;
+  }
+
+  get container() {
+    return document.getElementById(this.containerId);
   }
 
   async initialize() {

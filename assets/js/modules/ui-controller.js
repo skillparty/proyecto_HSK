@@ -228,76 +228,52 @@ class UIController {
         })();
         break;
       case "culture-characters":
-        (async () => {
-          try {
-            if (!window.CultureModuleBase) {
-              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
-            }
-            if (!window.CharacterEvolutionModule) {
-              await this.loadScript("assets/js/modules/culture/character-evolution.js");
-            }
-            if (!window.characterEvolutionModule) {
-              window.characterEvolutionModule = new CharacterEvolutionModule(this.app);
-            }
-            window.characterEvolutionModule.initialize();
-          } catch (err) {
-            this.logError("Failed to lazy load character-evolution", err);
+        try {
+          if (!window.characterEvolutionModule && window.CharacterEvolutionModule) {
+            window.characterEvolutionModule = new CharacterEvolutionModule(this.app);
           }
-        })();
+          if (window.characterEvolutionModule) {
+            window.characterEvolutionModule.initialize();
+          }
+        } catch (err) {
+          this.logError("Failed to initialize character-evolution", err);
+        }
         break;
       case "culture-medicine":
-        (async () => {
-          try {
-            if (!window.CultureModuleBase) {
-              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
-            }
-            if (!window.TraditionalMedicineModule) {
-              await this.loadScript("assets/js/modules/culture/traditional-medicine.js");
-            }
-            if (!window.traditionalMedicineModule) {
-              window.traditionalMedicineModule = new TraditionalMedicineModule(this.app);
-            }
-            window.traditionalMedicineModule.initialize();
-          } catch (err) {
-            this.logError("Failed to lazy load traditional-medicine", err);
+        try {
+          if (!window.traditionalMedicineModule && window.TraditionalMedicineModule) {
+            window.traditionalMedicineModule = new TraditionalMedicineModule(this.app);
           }
-        })();
+          if (window.traditionalMedicineModule) {
+            window.traditionalMedicineModule.initialize();
+          }
+        } catch (err) {
+          this.logError("Failed to initialize traditional-medicine", err);
+        }
         break;
       case "culture-opera":
-        (async () => {
-          try {
-            if (!window.CultureModuleBase) {
-              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
-            }
-            if (!window.PekingOperaModule) {
-              await this.loadScript("assets/js/modules/culture/peking-opera.js");
-            }
-            if (!window.pekingOperaModule) {
-              window.pekingOperaModule = new PekingOperaModule(this.app);
-            }
-            window.pekingOperaModule.initialize();
-          } catch (err) {
-            this.logError("Failed to lazy load peking-opera", err);
+        try {
+          if (!window.pekingOperaModule && window.PekingOperaModule) {
+            window.pekingOperaModule = new PekingOperaModule(this.app);
           }
-        })();
+          if (window.pekingOperaModule) {
+            window.pekingOperaModule.initialize();
+          }
+        } catch (err) {
+          this.logError("Failed to initialize peking-opera", err);
+        }
         break;
       case "culture-technology":
-        (async () => {
-          try {
-            if (!window.CultureModuleBase) {
-              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
-            }
-            if (!window.ChineseTechnologyModule) {
-              await this.loadScript("assets/js/modules/culture/chinese-technology.js");
-            }
-            if (!window.chineseTechnologyModule) {
-              window.chineseTechnologyModule = new ChineseTechnologyModule(this.app);
-            }
-            window.chineseTechnologyModule.initialize();
-          } catch (err) {
-            this.logError("Failed to lazy load chinese-technology", err);
+        try {
+          if (!window.chineseTechnologyModule && window.ChineseTechnologyModule) {
+            window.chineseTechnologyModule = new ChineseTechnologyModule(this.app);
           }
-        })();
+          if (window.chineseTechnologyModule) {
+            window.chineseTechnologyModule.initialize();
+          }
+        } catch (err) {
+          this.logError("Failed to initialize chinese-technology", err);
+        }
         break;
     }
   }

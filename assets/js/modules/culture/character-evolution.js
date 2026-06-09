@@ -1,11 +1,9 @@
 // Asegurarnos de que CultureModuleBase esté disponible
-if (typeof CultureModuleBase === 'undefined') {
-  // En un caso real, aquí cargaríamos el base si no está, pero como usamos async en app, 
-  // asumiremos que se debe cargar primero. Usamos loadScript del app si es posible.
+if (typeof CultureModuleBase === 'undefined' && typeof window.CultureModuleBase === 'undefined') {
   console.warn("CultureModuleBase not found. Please ensure it is loaded before CharacterEvolutionModule.");
 }
 
-class CharacterEvolutionModule extends CultureModuleBase {
+class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModuleBase) {
   constructor(app) {
     super(app, 'culture-characters-content', 'Evolución de Caracteres');
     this.charactersData = [];

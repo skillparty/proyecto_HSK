@@ -1,9 +1,9 @@
 // Asegurarnos de que CultureModuleBase esté disponible
-if (typeof CultureModuleBase === 'undefined') {
+if (typeof CultureModuleBase === 'undefined' && typeof window.CultureModuleBase === 'undefined') {
   console.warn("CultureModuleBase not found.");
 }
 
-class ChineseTechnologyModule extends CultureModuleBase {
+class ChineseTechnologyModule extends (window.CultureModuleBase || CultureModuleBase) {
   constructor(app) {
     super(app, 'culture-technology-content', 'Tecnología China');
     this.techData = null;

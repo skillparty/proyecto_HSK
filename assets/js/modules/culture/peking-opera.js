@@ -1,9 +1,9 @@
 // Asegurarnos de que CultureModuleBase esté disponible
-if (typeof CultureModuleBase === 'undefined') {
+if (typeof CultureModuleBase === 'undefined' && typeof window.CultureModuleBase === 'undefined') {
   console.warn("CultureModuleBase not found.");
 }
 
-class PekingOperaModule extends CultureModuleBase {
+class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) {
   constructor(app) {
     super(app, 'culture-opera-content', 'Ópera de Pekín');
     this.operaData = null;
@@ -14,10 +14,13 @@ class PekingOperaModule extends CultureModuleBase {
       const response = await fetch('assets/data/culture/peking-opera.json');
       if (!response.ok) throw new Error('Data file not found');
       const data = await response.json();
-      if (!data || !Array.isArray(data.roles) || !Array.isArray(data.masks)) {
+      if (!data || !Array.isArray(data.roles) || (!Array.isArray(data.masks) && !Array.isArray(data.colors))) {
         throw new Error('Data format is invalid');
       }
-      this.operaData = data;
+      this.operaData = {
+        roles: data.roles,
+        masks: data.masks || data.colors
+      };
     } catch (error) {
       console.log('Using default peking opera data');
       this.operaData = {
