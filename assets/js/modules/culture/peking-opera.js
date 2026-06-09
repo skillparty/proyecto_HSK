@@ -13,85 +13,79 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
   get content() {
     return {
       es: {
-        intro: "La Ópera de Pekín (京剧 - Jīngjù) es la forma más representativa del teatro tradicional chino, combinando música, canto, danza, acrobacias y artes marciales. Reconocida como Patrimonio Cultural Inmaterial por la UNESCO, se caracteriza por su alto nivel de simbolismo, donde cada movimiento, vestuario y color facial comunica información clave al espectador.",
+        intro: "El arte del maquillaje facial de la Ópera de Pekín (京剧脸谱 - Jīngjù Liǎnpǔ) es una forma de expresión teatral tradicional china y un proceso de maquillaje facial altamente codificado para los actores. La Ópera de Pekín, reconocida como Patrimonio Cultural Inmaterial, utiliza estas técnicas artísticas para transmitir la esencia psicológica y moral de los personajes en escena.",
         sourcesTitle: "Fuentes Bibliográficas",
-        rolesTitle: "Los Cuatro Roles Principales (四大行当)",
-        masksTitle: "Simbolismo del Color en el Maquillaje (脸谱 / 臉譜)",
+        rolesTitle: "Roles y Maquillaje Facial",
+        masksTitle: "El Arte del Maquillaje Facial (脸谱)",
         roles: [
           {
             name: "Sheng (生)",
             type: "Personaje Masculino",
-            desc: "El papel principal masculino en la ópera. Se subdivide en Lao Sheng (ancianos de carácter digno, con barbas largas), Xiao Sheng (jóvenes refinados con voces agudas) y Wu Sheng (guerreros hábiles en acrobacias y combates)."
+            desc: "Representa a los personajes masculinos positivos. A diferencia de las 'caras pintadas', su maquillaje es relativamente sencillo, destacando el espíritu y la dignidad del personaje."
           },
           {
             name: "Dan (旦)",
             type: "Personaje Femenino",
-            desc: "Representa a todos los personajes femeninos. Históricamente interpretado por hombres, abarca subroles como Qingyi (mujeres nobles y virtuosas), Huadan (chicas jóvenes vivaces u atrevidas) y Wudan (mujeres expertas en artes marciales)."
+            desc: "Roles femeninos de diversa índole, desde damas nobles hasta mujeres guerreras, históricamente interpretados por hombres."
           },
           {
-            name: "Jing (净 / 淨)",
-            type: "Cara Pintada",
-            desc: "Personajes masculinos de gran temperamento, fuerza o estatus. Sus rostros están pintados con diseños geométricos elaborados (Lianpu) que revelan instantáneamente su personalidad y destino moral."
+            name: "Jing (净)",
+            type: "Rol Puro (Cara Pintada)",
+            desc: "Personajes masculinos de gran prominencia que requieren maquillaje facial (Lianpu) complejo. Generalmente representan figuras de autoridad, guerreros o dioses."
           },
           {
-            name: "Chou (丑 / 醜)",
-            type: "El Payaso / Cómico",
-            desc: "El personaje humorístico y astuto del elenco. Fácilmente reconocible por una mancha blanca pintada alrededor de los ojos y la nariz. Es el único papel autorizado a improvisar e interactuar directamente con la audiencia."
+            name: "Chou (丑)",
+            type: "Rol Feo (Cómico)",
+            desc: "El personaje humorístico o astuto. Se caracteriza por una mancha de polvo blanco en el centro del rostro (alrededor de los ojos y la nariz)."
           }
         ],
         masks: [
-          { color: "Rojo (红)", meaning: "Lealtad, rectitud, heroísmo y devoción patriótica. Común en héroes históricos virtuosos como Guan Yu.", hex: "#E53935", enName: "Red" },
-          { color: "Negro (黑)", meaning: "Imparcialidad, integridad moral, honestidad incorruptible y fuerza bruta. Representado célebremente por el juez Bao Zheng.", hex: "#212121", enName: "Black" },
-          { color: "Blanco (白)", meaning: "Traidoría, astucia, malicia, sospecha y duplicidad. Utilizado típicamente para villanos poderosos como Cao Cao.", hex: "#ECEFF1", enName: "White" },
-          { color: "Amarillo (黄)", meaning: "Crueldad, temperamento calculador, ambición oculta y ferocidad implacable.", hex: "#FDD835", enName: "Yellow" },
-          { color: "Azul (蓝)", meaning: "Valentía indomable, ferocidad física, rebeldía contra la autoridad y orgullo temerario.", hex: "#1E88E5", enName: "Blue" },
-          { color: "Verde (绿)", meaning: "Inestabilidad emocional, carácter violento, impulsividad extrema e irascibilidad.", hex: "#4CAF50", enName: "Green" }
+          { color: "Contexto Artístico", meaning: "Generalmente se utiliza para dos roles: puros (Jing) y feos (Chou). La mayoría de los personajes tienen sus propios patrones y colores específicos para resaltar sus características de personalidad.", hex: "#E53935", enName: "Artistic Context" },
+          { color: "Función Moral", meaning: "Tiene la función artística de 'contener elogios y culpas, distinguiendo entre el bien y el mal', permitiendo al público observar una representación visual de la mentalidad y personalidad del personaje.", hex: "#212121", enName: "Moral Function" },
+          { color: "Evolución Histórica", meaning: "La evolución y desarrollo del maquillaje facial es el resultado de la práctica artística a través de la historia por parte de los artistas de la ópera, su observación, experiencia y síntesis de los fenómenos de la vida.", hex: "#1E88E5", enName: "Historical Evolution" },
+          { color: "Imagen del Alma", meaning: "Debido a su capacidad para reflejar el carácter interno mediante patrones externos, el maquillaje facial se conoce en la tradición teatral china como la 'imagen del alma' del personaje.", hex: "#FDD835", enName: "Soul Image" }
         ],
         citations: [
-          "Mackerras, Colin. (1997). <i>Peking Opera</i>. Oxford: Oxford University Press.",
-          "Wichmann, Elizabeth. (1991). <i>Listening to Theatre: The Aural Dimension of Beijing Opera</i>. Honolulu: University of Hawaii Press.",
-          "Halson, Elizabeth. (1966). <i>Peking Opera: A Short Guide</i>. Oxford: Oxford University Press."
+          "Documento de Exposición: (REVISADO) 2024 孔院中文日展览 物品解说-EXPOSITION : 22 abril-20 mayo 2024 (Ítem 12: 京剧脸谱).",
+          "Mackerras, Colin. (1997). <i>Peking Opera</i>. Oxford: Oxford University Press."
         ]
       },
       en: {
-        intro: "Peking Opera (京剧 - Jīngjù) is the most dominant form of traditional Chinese theatre, combining music, vocal performance, mime, dance, acrobatics, and martial arts. Inscribed on the UNESCO Representative List of the Intangible Cultural Heritage of Humanity, it is characterized by its deep symbolism, where every movement, costume, and facial color conveys key information to the audience.",
+        intro: "The art of Peking Opera facial makeup (京剧脸谱 - Jīngjù Liǎnpǔ) is a traditional Chinese theatrical expression and a highly codified facial makeup process for actors. Recognized as Intangible Cultural Heritage, it utilizes artistic techniques to convey the psychological and moral essence of characters.",
         sourcesTitle: "Bibliographical Sources",
-        rolesTitle: "The Four Main Roles (四大行当)",
-        masksTitle: "Color Symbolism in Facial Makeup (Lianpu / 脸谱)",
+        rolesTitle: "Roles and Facial Makeup",
+        masksTitle: "The Art of Facial Makeup (脸谱)",
         roles: [
           {
             name: "Sheng (生)",
             type: "Male Character",
-            desc: "The primary male role in the opera. It is subdivided into Lao Sheng (dignified elder men with long beards), Xiao Sheng (refined young men with high-pitched voices), and Wu Sheng (warriors skilled in acrobatics and martial arts)."
+            desc: "Represents positive male characters. Unlike the 'painted faces', their makeup is relatively simple, emphasizing the character's spirit and dignity."
           },
           {
             name: "Dan (旦)",
             type: "Female Character",
-            desc: "Represents all female characters. Historically performed by men, it covers subroles such as Qingyi (noble, virtuous women), Huadan (vivacious or daring young girls), and Wudan (women skilled in martial combat)."
+            desc: "Female roles of various kinds, from noble ladies to female warriors, historically performed by men."
           },
           {
-            name: "Jing (净 / 淨)",
-            type: "Painted Face",
-            desc: "Male characters with prominent temperaments, strength, or high status. Their faces are painted with elaborate geometric designs (Lianpu) that instantly reveal their personality and moral alignment."
+            name: "Jing (净)",
+            type: "Pure Role (Painted Face)",
+            desc: "Prominent male characters requiring complex facial makeup (Lianpu). They generally represent authority figures, warriors, or gods."
           },
           {
-            name: "Chou (丑 / 醜)",
-            type: "The Clown / Comedian",
-            desc: "The humorous and clever character of the cast. Easily recognizable by a white patch painted around the eyes and nose. It is the only role authorized to improvise and speak directly to the audience."
+            name: "Chou (丑)",
+            type: "Ugly Role (Comedian)",
+            desc: "The humorous or cunning character. Characterized by a white powder patch in the center of the face (around the eyes and nose)."
           }
         ],
         masks: [
-          { color: "Red (红)", meaning: "Loyalty, righteousness, heroism, and patriotic devotion. Common in virtuous historical figures like Guan Yu.", hex: "#E53935", enName: "Red" },
-          { color: "Black (黑)", meaning: "Impartiality, moral integrity, incorruptible honesty, and raw strength. Famously represented by Judge Bao Zheng.", hex: "#212121", enName: "Black" },
-          { color: "White (白)", meaning: "Treachery, cunning, suspicion, and double-dealing. Typically used for powerful villains like Cao Cao.", hex: "#ECEFF1", enName: "White" },
-          { color: "Yellow (黄)", meaning: "Cruelty, calculating temperament, hidden ambition, and fierce ruthlessness.", hex: "#FDD835", enName: "Yellow" },
-          { color: "Blue (蓝)", meaning: "Indomitable bravery, physical ferocity, stubborness, and wild rebelliousness.", hex: "#1E88E5", enName: "Blue" },
-          { color: "Green (绿)", meaning: "Emotional instability, violent character, impulsivity, and extreme irascibility.", hex: "#4CAF50", enName: "Green" }
+          { color: "Artistic Context", meaning: "Generally used for two roles: pure (Jing) and ugly (Chou). Most characters have their own specific patterns and colors to highlight their personality traits.", hex: "#E53935", enName: "Artistic Context" },
+          { color: "Moral Function", meaning: "It has the artistic function of 'containing praise and blame, distinguishing between good and evil', allowing the audience to observe a visual representation of the character's mentality and personality.", hex: "#212121", enName: "Moral Function" },
+          { color: "Historical Evolution", meaning: "The evolution and development of facial makeup is the result of artistic practice throughout history by opera artists, their observation, experience, and synthesis of life phenomena.", hex: "#1E88E5", enName: "Historical Evolution" },
+          { color: "Image of the Soul", meaning: "Due to its ability to reflect internal character through external patterns, facial makeup is known in Chinese theatrical tradition as the 'image of the soul' of the character.", hex: "#FDD835", enName: "Soul Image" }
         ],
         citations: [
-          "Mackerras, Colin. (1997). <i>Peking Opera</i>. Oxford: Oxford University Press.",
-          "Wichmann, Elizabeth. (1991). <i>Listening to Theatre: The Aural Dimension of Beijing Opera</i>. Honolulu: University of Hawaii Press.",
-          "Halson, Elizabeth. (1966). <i>Peking Opera: A Short Guide</i>. Oxford: Oxford University Press."
+          "Exhibition Document: 2024 Confucius Institute Chinese Language Day Exhibition (Item 12: Peking Opera Facial Makeup).",
+          "Mackerras, Colin. (1997). <i>Peking Opera</i>. Oxford: Oxford University Press."
         ]
       }
     };

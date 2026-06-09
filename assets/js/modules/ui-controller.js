@@ -59,6 +59,11 @@ class UIController {
     ) {
       window.tonesInvadersGame.togglePause();
     }
+    
+    if (tabName === "tones-invaders" && window.tonesInvadersGame) {
+        // Delay slight to ensure display block is fully applied before measuring
+        setTimeout(() => window.tonesInvadersGame.resizeCanvas(), 50);
+    }
     if (
       oldTab === "hanzi-builder" &&
       window.hanziBuilderGame &&

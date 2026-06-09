@@ -90,7 +90,17 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
         citations: [
           "Qiu, Xigui. (2000). <i>Chinese Writing</i>. Early China Special Monograph Series No. 4. Berkeley: The Society for the Study of Early China.",
           "Keightley, David N. (1978). <i>Sources of Shang History: The Oracle-Bone Inscriptions of Bronze Age China</i>. University of California Press.",
-          "Wilkinson, Endymion. (2015). <i>Chinese History: A New Manual</i>. Harvard University Asia Center."
+          "Documento de Exposición: (REVISADO) 2024 孔院中文日展览 物品解说 (Ítems de Zodiaco y Sun Tzu)."
+        ],
+        extraInfo: [
+          {
+            title: "El Zodiaco Chino (生肖 - Shēngxiào)",
+            text: "El zodiaco chino es un ciclo de 12 años, cada uno representado por un animal. Originalmente, estos doce signos del zodiaco representaban diferentes tótems de las tribus de la antigua China. El año 2024 corresponde al Año del Dragón. En la mitología china, el dragón es el gobernante supremo de todos los animales marinos y la deidad encargada de hacer llover, estrechamente asociado con la prosperidad agrícola y la buena fortuna."
+          },
+          {
+            title: "Sun Tzu y El Arte de la Guerra (孙子兵法)",
+            text: "Sun Tzu fue un célebre estratega y filósofo militar. En su obra 'El Arte de la Guerra', plantea la idea fundamental de que 'someter al ejército enemigo sin luchar es la cima de la excelencia'. El libro de bambú utilizado en la antigüedad servía para documentar estrategias avanzadas sobre el uso del fuego, espías, el estudio del terreno montañoso y acuático, siendo un pilar de la filosofía estratégica de China."
+          }
         ]
       },
       en: {
@@ -171,8 +181,18 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
         ],
         citations: [
           "Qiu, Xigui. (2000). <i>Chinese Writing</i>. Early China Special Monograph Series No. 4. Berkeley: The Society for the Study of Early China.",
-          "Keightley, David N. (1978). <i>Sources of Shang History: The Oracle-Bone Inscriptions of Bronze Age China</i>. University of California Press.",
-          "Wilkinson, Endymion. (2015). <i>Chinese History: A New Manual</i>. Harvard University Asia Center."
+          "Keightley, David N. (1978). <i>Sources of Shang History</i>. University of California Press.",
+          "Exhibition Document: 2024 Confucius Institute Chinese Language Day Exhibition (Zodiac and Sun Tzu)."
+        ],
+        extraInfo: [
+          {
+            title: "The Chinese Zodiac (生肖 - Shēngxiào)",
+            text: "The Chinese zodiac is a 12-year cycle, each represented by an animal. Originally, these twelve zodiac signs represented different totems of the tribes of ancient China. The year 2024 corresponds to the Year of the Dragon. In Chinese mythology, the dragon is the supreme ruler of all marine animals and the deity in charge of making it rain, closely associated with agricultural prosperity and good fortune."
+          },
+          {
+            title: "Sun Tzu and The Art of War (孙子兵法)",
+            text: "Sun Tzu was a famous military strategist and philosopher. In his work 'The Art of War', he proposes the fundamental idea that 'subduing the enemy's army without fighting is the acme of skill'. The bamboo slip books used in ancient times served to document advanced strategies on the use of fire, spies, and the study of mountainous and aquatic terrain, being a pillar of China's strategic philosophy."
+          }
         ]
       }
     };
@@ -410,21 +430,33 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
 
     // Add Bibliography
     html += `
-      <div class="culture-bibliography">
-        <h4>${activeContent.sourcesTitle}</h4>
-        <ul>
-    `;
-    activeContent.citations.forEach(cit => {
-      html += `<li>${cit}</li>`;
-    });
-    html += `
+      <div class="citations-section">
+        <h4 class="section-header-academic">${activeContent.sourcesTitle}</h4>
+        <ul class="citations-list">
+          ${activeContent.citations.map(cite => `<li>${cite}</li>`).join('')}
         </ul>
       </div>
     `;
+
+    if (activeContent.extraInfo) {
+      html += `
+        <div class="extra-info-section" style="margin-top: 3rem;">
+          <h4 class="section-header-academic">Filosofía e Historia Adicional</h4>
+          <div class="roles-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+            ${activeContent.extraInfo.map(info => `
+              <div class="role-card" style="background: var(--color-bg-panel, #fff); border: 1px solid var(--color-border, rgba(0,0,0,0.08)); border-radius: var(--radius-lg, 12px); padding: 1.5rem; box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.06));">
+                <h5 style="color: var(--color-primary, #dc2626); margin-top: 0; font-size: 1.1rem; border-bottom: 2px solid rgba(220, 38, 38, 0.2); padding-bottom: 0.5rem; margin-bottom: 1rem;">${info.title}</h5>
+                <p style="color: var(--color-text-main, #333); line-height: 1.6; font-size: 0.95rem; margin: 0;">${info.text}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
 
     this.container.innerHTML = html;
   }
 }
 
-// In case the class was lazily loaded
+// Make sure to assign to window for dynamic loading
 window.CharacterEvolutionModule = CharacterEvolutionModule;
