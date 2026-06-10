@@ -327,6 +327,7 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
       `;
     });
 
+    html += `
       </div>
 
       <div class="section-header-academic">${activeContent.extraInfoTitle}</div>
