@@ -266,6 +266,7 @@ class TonesInvadersGame {
         // Reset player ship
         this.playerX = this.canvas ? this.logicalWidth / 2 : 300;
         this.playerY = this.canvas ? this.logicalHeight - 35 : 350;
+        this.lastFiredTone = 5;
         this.keys = {
             ArrowLeft: false,
             ArrowRight: false,
@@ -366,6 +367,8 @@ class TonesInvadersGame {
         
         const shipX = this.playerX;
         const shipY = this.playerY - 10;
+        
+        this.lastFiredTone = tone;
         
         this.lasers.push({
             x: shipX,
@@ -561,17 +564,109 @@ class TonesInvadersGame {
         const shipX = this.playerX;
         const shipY = this.playerY;
         
-        this.ctx.fillStyle = '#4f46e5';
+        // 1. Draw Thruster Flames (pulsing/animating behind the ship)
+        const flamePulse = 8 + Math.sin(performance.now() * 0.04) * 3;
+        
+        // Left Engine Flame
+        const leftFlameGrad = this.ctx.createRadialGradient(shipX - 8, shipY + 12, 1, shipX - 8, shipY + 12 + flamePulse, flamePulse);
+        leftFlameGrad.addColorStop(0, '#38bdf8'); // Cyan core
+        leftFlameGrad.addColorStop(0.4, '#4f46e5'); // Purple middle
+        leftFlameGrad.addColorStop(1, 'rgba(79, 70, 229, 0)');
+        this.ctx.fillStyle = leftFlameGrad;
         this.ctx.beginPath();
-        this.ctx.moveTo(shipX, shipY - 15);
-        this.ctx.lineTo(shipX - 20, shipY + 15);
-        this.ctx.lineTo(shipX + 20, shipY + 15);
+        this.ctx.arc(shipX - 8, shipY + 12, flamePulse, 0, Math.PI * 2);
+        this.ctx.fill();
+        
+        // Right Engine Flame
+        const rightFlameGrad = this.ctx.createRadialGradient(shipX + 8, shipY + 12, 1, shipX + 8, shipY + 12 + flamePulse, flamePulse);
+        rightFlameGrad.addColorStop(0, '#38bdf8');
+        rightFlameGrad.addColorStop(0.4, '#4f46e5');
+        rightFlameGrad.addColorStop(1, 'rgba(79, 70, 229, 0)');
+        this.ctx.fillStyle = rightFlameGrad;
+        this.ctx.beginPath();
+        this.ctx.arc(shipX + 8, shipY + 12, flamePulse, 0, Math.PI * 2);
+        this.ctx.fill();
+        
+        // 2. Draw Swept Wings
+        const wingGrad = this.ctx.createLinearGradient(shipX - 22, shipY, shipX + 22, shipY);
+        wingGrad.addColorStop(0, '#06b6d4'); // Cyan wingtips
+        wingGrad.addColorStop(0.3, '#3b82f6'); // Blue
+        wingGrad.addColorStop(0.5, '#6366f1'); // Indigo middle
+        wingGrad.addColorStop(0.7, '#3b82f6');
+        wingGrad.addColorStop(1, '#06b6d4');
+        
+        this.ctx.fillStyle = wingGrad;
+        this.ctx.beginPath();
+        // Left wing
+        this.ctx.moveTo(shipX - 6, shipY - 2);
+        this.ctx.lineTo(shipX - 22, shipY + 12);
+        this.ctx.lineTo(shipX - 18, shipY + 15);
+        this.ctx.lineTo(shipX - 6, shipY + 8);
+        // Right wing
+        this.ctx.lineTo(shipX + 6, shipY + 8);
+        this.ctx.lineTo(shipX + 18, shipY + 15);
+        this.ctx.lineTo(shipX + 22, shipY + 12);
+        this.ctx.lineTo(shipX + 6, shipY - 2);
         this.ctx.closePath();
         this.ctx.fill();
         
-        // Ship glow
-        this.ctx.strokeStyle = 'rgba(99, 102, 241, 0.4)';
-        this.ctx.lineWidth = 3;
+        // 3. Draw Wingtip Cannons
+        this.ctx.fillStyle = '#06b6d4';
+        this.ctx.shadowBlur = 6;
+        this.ctx.shadowColor = '#06b6d4';
+        // Left cannon
+        this.ctx.fillRect(shipX - 23, shipY + 2, 2, 10);
+        // Right cannon
+        this.ctx.fillRect(shipX + 21, shipY + 2, 2, 10);
+        this.ctx.shadowBlur = 0;
+        
+        // 4. Draw Main Fuselage (Metallic Body)
+        const bodyGrad = this.ctx.createLinearGradient(shipX, shipY - 22, shipX, shipY + 12);
+        bodyGrad.addColorStop(0, '#c7d2fe'); // Indigo-200 (nose tip highlight)
+        bodyGrad.addColorStop(0.4, '#6366f1'); // Indigo-500
+        bodyGrad.addColorStop(1, '#1e1b4b'); // Indigo-950
+        
+        this.ctx.fillStyle = bodyGrad;
+        this.ctx.beginPath();
+        this.ctx.moveTo(shipX, shipY - 22); // Sharp nose
+        this.ctx.lineTo(shipX + 6, shipY - 5);
+        this.ctx.lineTo(shipX + 6, shipY + 12);
+        this.ctx.lineTo(shipX - 6, shipY + 12);
+        this.ctx.lineTo(shipX - 6, shipY - 5);
+        this.ctx.closePath();
+        this.ctx.fill();
+        
+        // 5. Draw Glowing Energy Reactor Core (changes color to match the last fired tone!)
+        const activeTone = this.lastFiredTone || 5;
+        const coreColor = this.toneColors[activeTone] || '#06b6d4';
+        
+        this.ctx.shadowBlur = 15;
+        this.ctx.shadowColor = coreColor;
+        this.ctx.fillStyle = coreColor;
+        this.ctx.beginPath();
+        this.ctx.arc(shipX, shipY + 4, 6, 0, Math.PI * 2);
+        this.ctx.fill();
+        this.ctx.shadowBlur = 0;
+        
+        // Inner white-hot plasma core
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.beginPath();
+        this.ctx.arc(shipX, shipY + 4, 2.5, 0, Math.PI * 2);
+        this.ctx.fill();
+        
+        // 6. Draw Glass Cockpit Canopy
+        const canopyGrad = this.ctx.createLinearGradient(shipX, shipY - 12, shipX, shipY - 2);
+        canopyGrad.addColorStop(0, '#e0f2fe'); // Ice blue
+        canopyGrad.addColorStop(1, '#0284c7'); // Sky blue
+        
+        this.ctx.fillStyle = canopyGrad;
+        this.ctx.beginPath();
+        this.ctx.ellipse(shipX, shipY - 7, 3.5, 6, 0, 0, Math.PI * 2);
+        this.ctx.fill();
+        
+        // Sleek cyan highlight outline around the body
+        this.ctx.strokeStyle = 'rgba(6, 182, 212, 0.4)';
+        this.ctx.lineWidth = 1.5;
         this.ctx.stroke();
         
         // Draw invaders
