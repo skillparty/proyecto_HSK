@@ -167,6 +167,20 @@ class VocabularyController {
         }
     }
 
+    /**
+     * Load all 6 level split files in parallel and merge.
+     * Split files have lesson metadata and canonical order pre-computed —
+     * no secondary fetches needed.
+     */
+    async loadAllLevelsSplit(lang) {
+        const levels = [1, 2, 3, 4, 5, 6];
+        const suffix = lang === 'es' ? 'es' : 'en';
+        const results = await Promise.all(
+            levels.map(l => fetch(`assets/data/vocab/hsk${l}_${suffix}.json`).then(r => r.ok ? r.json() : []))
+        );
+        return results.flat();
+    }
+
     async loadVocabulary(forceLanguage = null) {
         if (this.app.vocabularyLoading && !forceLanguage) {
             return this.app.vocabularyPromise;
@@ -180,36 +194,20 @@ class VocabularyController {
 
         const loadTask = async () => {
             const targetLanguage = forceLanguage || this.app.currentLanguage || 'en';
-            this.app.logInfo('[LOAD] Starting lazy load for ' + targetLanguage + ' vocabulary...');
+            this.app.logInfo('[LOAD] Starting lazy load for ' + targetLanguage + ' vocabulary…');
 
             try {
-                let vocabularyFile;
-                let isSpanishStructure = false;
+                // Use pre-split files: lesson metadata + canonical order already embedded.
+                // Eliminates secondary fetches for EN canonical order (ES mode) and lesson-order map.
+                this.app.vocabulary = await this.loadAllLevelsSplit(targetLanguage);
 
-                if (targetLanguage === 'es') {
-                    vocabularyFile = 'assets/data/hsk_vocabulary_spanish.json';
-                    isSpanishStructure = true;
-                } else {
-                    vocabularyFile = 'assets/data/hsk_vocabulary.json';
-                }
-
-                const response = await fetch(vocabularyFile);
-                if (!response.ok) {
-                    throw new Error('HTTP ' + response.status);
-                }
-
-                this.app.vocabulary = await response.json();
-
-                if (!isSpanishStructure) {
+                if (targetLanguage !== 'es') {
                     this.app.vocabulary = this.app.vocabulary.map((word) => ({
                         ...word,
                         english: word.translation || word.english,
                         spanish: word.spanish || null
                     }));
                 }
-
-                this.app.vocabulary = await this.mergeLessonOrderMap(this.app.vocabulary);
-                this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
 
                 // Load example sentences
                 try {
@@ -239,27 +237,25 @@ class VocabularyController {
             } catch (error) {
                 this.app.logError('[✗] Error loading ' + targetLanguage + ':', error);
 
+                // Fallback: monolithic files with legacy post-processing
                 try {
                     const fallbackFile = targetLanguage === 'es'
-                        ? 'assets/data/hsk_vocabulary.json'
-                        : 'assets/data/hsk_vocabulary_spanish.json';
+                        ? 'assets/data/hsk_vocabulary_spanish.json'
+                        : 'assets/data/hsk_vocabulary.json';
                     const fallbackResponse = await fetch(fallbackFile);
 
-                    if (fallbackResponse.ok) {
-                        this.app.vocabulary = await fallbackResponse.json();
-                        if (targetLanguage === 'es' && fallbackFile === 'assets/data/hsk_vocabulary.json') {
-                            this.app.vocabulary = this.app.vocabulary.map((word) => ({
-                                ...word,
-                                english: word.translation || word.english,
-                                spanish: word.translation || word.english
-                            }));
-                        }
+                    if (!fallbackResponse.ok) throw new Error('No fallback available');
 
-                        this.app.vocabulary = await this.mergeLessonOrderMap(this.app.vocabulary);
-                        this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
-                    } else {
-                        throw new Error('No fallback available');
+                    this.app.vocabulary = await fallbackResponse.json();
+                    if (targetLanguage !== 'es') {
+                        this.app.vocabulary = this.app.vocabulary.map((word) => ({
+                            ...word,
+                            english: word.translation || word.english,
+                            spanish: word.spanish || null
+                        }));
                     }
+                    this.app.vocabulary = await this.mergeLessonOrderMap(this.app.vocabulary);
+                    this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
                 } catch (_fallbackError) {
                     this.app.vocabulary = [
                         { character: '你好', pinyin: 'nǐ hǎo', english: 'hello', spanish: 'hola', level: 1 },
@@ -267,10 +263,9 @@ class VocabularyController {
                     ];
                 }
 
-                this.app.vocabulary = await this.mergeLessonOrderMap(this.app.vocabulary);
-                this.app.vocabulary = await this.attachCanonicalStudyOrder(this.app.vocabulary, targetLanguage);
                 this.app.vocabularyLoaded = true;
                 this.app.vocabularyLoading = false;
+                window.dispatchEvent(new CustomEvent('hsk:vocabulary-ready'));
                 return this.app.vocabulary;
             }
         };

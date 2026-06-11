@@ -1,0 +1,77 @@
+{
+  "levels": {
+    "1": {
+      "en": {
+        "file": "vocab/hsk1_en.json",
+        "words": 150,
+        "bytes": 22589
+      },
+      "es": {
+        "file": "vocab/hsk1_es.json",
+        "words": 153,
+        "bytes": 20334
+      }
+    },
+    "2": {
+      "en": {
+        "file": "vocab/hsk2_en.json",
+        "words": 150,
+        "bytes": 22832
+      },
+      "es": {
+        "file": "vocab/hsk2_es.json",
+        "words": 147,
+        "bytes": 20005
+      }
+    },
+    "3": {
+      "en": {
+        "file": "vocab/hsk3_en.json",
+        "words": 300,
+        "bytes": 45696
+      },
+      "es": {
+        "file": "vocab/hsk3_es.json",
+        "words": 300,
+        "bytes": 41701
+      }
+    },
+    "4": {
+      "en": {
+        "file": "vocab/hsk4_en.json",
+        "words": 600,
+        "bytes": 125950
+      },
+      "es": {
+        "file": "vocab/hsk4_es.json",
+        "words": 600,
+        "bytes": 111602
+      }
+    },
+    "5": {
+      "en": {
+        "file": "vocab/hsk5_en.json",
+        "words": 1300,
+        "bytes": 218893
+      },
+      "es": {
+        "file": "vocab/hsk5_es.json",
+        "words": 1300,
+        "bytes": 193351
+      }
+    },
+    "6": {
+      "en": {
+        "file": "vocab/hsk6_en.json",
+        "words": 2500,
+        "bytes": 437900
+      },
+      "es": {
+        "file": "vocab/hsk6_es.json",
+        "words": 2500,
+        "bytes": 390400
+      }
+    }
+  },
+  "generated": "2026-06-11T18:17:56.752Z"
+}
