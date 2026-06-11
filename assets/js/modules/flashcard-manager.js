@@ -9,6 +9,7 @@ class FlashcardManager {
     this.sessionIndex = 0;
     this.currentWord = null;
     this.isFlipped = false;
+    this.revealStep = 0;
     this.waitingForNext = false;
 
     this.app.logDebug("🃏 FlashcardManager module initialized");
@@ -564,6 +565,26 @@ class FlashcardManager {
 
   flipCard() {
     const flashcard = document.getElementById("flashcard");
+    const mode = this.app.practiceMode || "char-to-english";
+
+    // Step 0 in char-to-english: reveal pinyin hint before flipping
+    if (mode === "char-to-english" && this.revealStep === 0) {
+      this.revealStep = 1;
+      const hintEl = document.getElementById("hint-text");
+      if (hintEl) {
+        hintEl.classList.remove("hint-hidden");
+        hintEl.classList.add("hint-revealed");
+      }
+      const flipBtn = document.getElementById("flip-btn");
+      if (flipBtn) {
+        flipBtn.textContent =
+          this.app.getTranslation("showAnswer") || "Show answer";
+      }
+      this.app.logDebug("[卡] Pinyin revealed (step 1)");
+      return;
+    }
+
+    // Full flip to back
     const input = document.getElementById("pinyin-input");
     if (flashcard && !this.isFlipped) {
       flashcard.classList.add("flipped");
@@ -580,6 +601,7 @@ class FlashcardManager {
     this.sessionIndex = (this.sessionIndex + 1) % this.currentSession.length;
     this.currentWord = this.currentSession[this.sessionIndex];
     this.isFlipped = false;
+    this.revealStep = 0;
     this.updateCard();
     this.app.updateProgress();
 
@@ -595,17 +617,21 @@ class FlashcardManager {
       this.currentSession.length;
     this.currentWord = this.currentSession[this.sessionIndex];
     this.isFlipped = false;
+    this.revealStep = 0;
     this.updateCard();
     this.app.updateProgress();
   }
 
   resetCardState() {
     const flipBtn = document.getElementById("flip-btn");
+    const mode = this.app.practiceMode || "char-to-english";
     this.isFlipped = false;
+    this.revealStep = 0;
     if (flipBtn) {
       flipBtn.disabled = false;
-      flipBtn.textContent =
-        this.app.getTranslation("showAnswer") || "Show answer";
+      flipBtn.textContent = mode === "char-to-english"
+        ? (this.app.getTranslation("revealPinyin") || "Reveal Pinyin")
+        : (this.app.getTranslation("showAnswer") || "Show answer");
       flipBtn.style.opacity = "1";
     }
     this.disableKnowledgeButtons();

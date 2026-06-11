@@ -1821,6 +1821,17 @@ body.light-theme .achievement-item.lock {
     background: rgba(255, 255, 255, 0.05);
     padding: 8px 16px;
     border-radius: 20px;
+    transition: opacity 0.25s ease;
+}
+
+.card-hint.hint-hidden {
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.card-hint.hint-revealed {
+    opacity: 1;
 }
 
 .card-front-meta {
@@ -3816,8 +3827,8 @@ body.zen-mode .practice-container {
 .pinyin-syllable-badge {
     padding: 1px 6px;
     border-radius: 5px;
-    background: rgba(211, 47, 47, 0.03);
-    border: 1px solid rgba(211, 47, 47, 0.08);
+    background: color-mix(in srgb, currentColor 6%, transparent);
+    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
     font-size: 1.1rem;
 }
 
@@ -4095,32 +4106,39 @@ body.zen-mode .practice-container {
     box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.04);
 }
 
+/* Canonical tone palette: 1=red 2=green 3=blue 4=purple 0=gray */
+.tone-1 { color: #dc2626; }
+.tone-2 { color: #16a34a; }
+.tone-3 { color: #2563eb; }
+.tone-4 { color: #7c3aed; }
+.tone-0 { color: #6b7280; }
+
 .tone-visual-badge.tone-1 {
-    background: rgba(217, 119, 6, 0.12);
-    color: #d97706;
-    border: 1px solid rgba(217, 119, 6, 0.25);
-}
-
-.tone-visual-badge.tone-2 {
-    background: rgba(37, 99, 235, 0.12);
-    color: #2563eb;
-    border: 1px solid rgba(37, 99, 235, 0.25);
-}
-
-.tone-visual-badge.tone-3 {
-    background: rgba(22, 163, 74, 0.12);
-    color: #16a34a;
-    border: 1px solid rgba(22, 163, 74, 0.25);
-}
-
-.tone-visual-badge.tone-4 {
-    background: rgba(220, 38, 38, 0.12);
+    background: rgba(220, 38, 38, 0.10);
     color: #dc2626;
     border: 1px solid rgba(220, 38, 38, 0.25);
 }
 
+.tone-visual-badge.tone-2 {
+    background: rgba(22, 163, 74, 0.10);
+    color: #16a34a;
+    border: 1px solid rgba(22, 163, 74, 0.25);
+}
+
+.tone-visual-badge.tone-3 {
+    background: rgba(37, 99, 235, 0.10);
+    color: #2563eb;
+    border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+.tone-visual-badge.tone-4 {
+    background: rgba(124, 58, 237, 0.10);
+    color: #7c3aed;
+    border: 1px solid rgba(124, 58, 237, 0.25);
+}
+
 .tone-visual-badge.tone-0 {
-    background: rgba(107, 114, 128, 0.12);
+    background: rgba(107, 114, 128, 0.10);
     color: #6b7280;
     border: 1px solid rgba(107, 114, 128, 0.25);
 }

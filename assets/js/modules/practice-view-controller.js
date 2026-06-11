@@ -97,6 +97,13 @@ class PracticeViewController {
             } else {
                 hintText.textContent = hint || '';
             }
+            // Progressive reveal: hide hint initially for char-to-english
+            if (mode === 'char-to-english') {
+                hintText.classList.add('hint-hidden');
+                hintText.classList.remove('hint-revealed');
+            } else {
+                hintText.classList.remove('hint-hidden', 'hint-revealed');
+            }
         }
         fullInfo.style.opacity = '1';
 
@@ -518,8 +525,14 @@ class PracticeViewController {
     resetCardState() {
         const flashcard = document.getElementById('flashcard');
         const flipBtn = document.getElementById('flip-btn');
+        const mode = this.app.practiceMode || 'char-to-english';
 
         this.app.isFlipped = false;
+
+        // Reset progressive reveal state
+        if (this.app.flashcardManager) {
+            this.app.flashcardManager.revealStep = 0;
+        }
 
         if (flashcard) {
             flashcard.classList.remove('flipped');
@@ -527,7 +540,9 @@ class PracticeViewController {
 
         if (flipBtn) {
             flipBtn.disabled = false;
-            flipBtn.textContent = this.app.getTranslation('showAnswer') || 'Show answer';
+            flipBtn.textContent = mode === 'char-to-english'
+                ? (this.app.getTranslation('revealPinyin') || 'Reveal Pinyin')
+                : (this.app.getTranslation('showAnswer') || 'Show answer');
             flipBtn.style.opacity = '1';
         }
 
