@@ -4938,3 +4938,40 @@ body.light-theme .dashboard-3d-portal {
     .srs-card-inner { flex-direction: column; align-items: flex-start; }
     .srs-start-btn  { width: 100%; text-align: center; }
 }
+
+/* ── Header streak enhancements ──────────────────────────────────── */
+.header-streak-icon {
+    font-size: 1rem;
+    line-height: 1;
+    filter: grayscale(1);
+    transition: filter 0.3s ease;
+}
+
+#header-streak-stat.streak-active .header-streak-icon {
+    filter: none;
+    animation: streakPulse 2s ease-in-out infinite;
+}
+
+@keyframes streakPulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.15); }
+}
+
+.header-due-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.header-due-badge:hover { transform: scale(1.1); }

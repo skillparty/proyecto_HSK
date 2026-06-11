@@ -1,6 +1,10 @@
 class FeedbackController {
     constructor(app) {
         this.app = app;
+        // Update due-badge once vocabulary is available
+        window.addEventListener('hsk:vocabulary-ready', () => {
+            this.updateHeaderStats();
+        }, { once: true });
     }
 
     enableKnowledgeButtons() {
@@ -206,6 +210,42 @@ class FeedbackController {
 
         if (studiedEl) studiedEl.textContent = totalStudied;
         if (streakEl) streakEl.textContent = currentStreak;
+
+        // Streak icon: active (colored + pulse) when streak >= 1
+        const streakStat = document.getElementById('header-streak-stat');
+        if (streakStat) {
+            streakStat.classList.toggle('streak-active', currentStreak >= 1);
+        }
+
+        // Due-cards badge: show count from SRS engine when there are due cards
+        const dueBadge = document.getElementById('header-due-badge');
+        if (dueBadge) {
+            const engine = this.app.srsEngine;
+            const vocab = this.app.vocabulary;
+            if (engine && vocab && vocab.length > 0) {
+                const { due } = engine.getSummary(vocab);
+                if (due > 0) {
+                    dueBadge.textContent = due > 99 ? '99+' : String(due);
+                    dueBadge.style.display = '';
+                    dueBadge.title = due === 1
+                        ? '1 tarjeta vencida'
+                        : `${due} tarjetas vencidas`;
+                    dueBadge.onclick = () => {
+                        const orderSel = document.getElementById('practice-order-mode');
+                        if (orderSel) {
+                            orderSel.value = 'srs';
+                            orderSel.dispatchEvent(new Event('change'));
+                        } else {
+                            this.app.practiceOrderMode = 'srs';
+                            if (this.app.flashcardManager) this.app.flashcardManager.setupSession();
+                        }
+                        this.app.switchTab('practice');
+                    };
+                } else {
+                    dueBadge.style.display = 'none';
+                }
+            }
+        }
 
         if (progressEl) {
             const progress = totalStudied > 0

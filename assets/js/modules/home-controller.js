@@ -403,8 +403,22 @@ class HomeController {
             return;
         }
 
+        // Respect reduced-motion preference — skip heavy 3D animation
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            this.logDebug('🎋 Skipping 3D scene: prefers-reduced-motion');
+            return;
+        }
+
         if (typeof THREE === 'undefined') {
-            this.logWarn('⚠️ Three.js library not loaded, skipping 3D initialization');
+            // Three.js not loaded yet — load it dynamically, then retry
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+            script.onload = () => {
+                this.logDebug('🎋 Three.js loaded on demand, initializing scene');
+                this.init3DScene();
+            };
+            script.onerror = () => this.logWarn('⚠️ Three.js failed to load from CDN');
+            document.head.appendChild(script);
             return;
         }
 

@@ -13,7 +13,7 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css",
-  "./assets/css/styles-professional.css?v=28",
+  "./assets/css/styles-professional.css?v=29",
   "./assets/css/matrix-game-styles.css?v=6",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css",
