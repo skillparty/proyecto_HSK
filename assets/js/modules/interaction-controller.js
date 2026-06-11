@@ -285,7 +285,7 @@ class InteractionController {
         if (practiceOrderSelect) {
             practiceOrderSelect.value = this.app.practiceOrderMode || 'lesson';
             practiceOrderSelect.addEventListener('change', (event) => {
-                const nextMode = event.target.value === 'mixed' ? 'mixed' : 'lesson';
+                const nextMode = ['mixed', 'srs'].includes(event.target.value) ? event.target.value : 'lesson';
                 this.app.practiceOrderMode = nextMode;
 
                 try {

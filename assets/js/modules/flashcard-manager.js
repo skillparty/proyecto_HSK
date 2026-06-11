@@ -188,7 +188,40 @@ class FlashcardManager {
     if (mode === "mixed") {
       return this.shuffleWords(words);
     }
+    if (mode === "srs" && this.app.srsEngine) {
+      return this.buildSrsQueue(words, selectedLevel);
+    }
     return this.sortForPractice(words, selectedLevel);
+  }
+
+  buildSrsQueue(words, selectedLevel) {
+    const engine = this.app.srsEngine;
+    // New words enter in lesson order so SRS respects the curriculum
+    const ordered = this.sortForPractice(words, selectedLevel);
+    const newLimit = Number(this.app.stats?.dailyGoal) > 0
+      ? Number(this.app.stats.dailyGoal)
+      : 20;
+
+    const queue = engine.buildQueue(ordered, { newLimit });
+    if (queue.length > 0) {
+      const summary = engine.getSummary(ordered);
+      this.app.logDebug(
+        `🧠 SRS queue: ${summary.due} due + ${Math.min(summary.fresh, newLimit)} new (learned: ${summary.learned})`,
+      );
+      return queue;
+    }
+
+    // Nothing due and nothing new: offer early review (soonest due first)
+    const upcoming = engine.getUpcomingWords(ordered);
+    if (upcoming.length > 0 && typeof this.app.showToast === "function") {
+      this.app.showToast(
+        this.app.getTranslation("srsNothingDue") ||
+          "Sin tarjetas pendientes hoy - repaso adelantado",
+        "success",
+        2500,
+      );
+    }
+    return upcoming;
   }
 
   handleNoVocabulary(level) {
@@ -610,8 +643,8 @@ class FlashcardManager {
     const isKnown = ["easy", "good"].includes(difficulty);
     this.app.logDebug(`🧠 Rated as: ${difficulty} (Known: ${isKnown})`);
 
-    // Call orchestrator markAsKnown which handles stats and firebase sync
-    this.app.markAsKnown(isKnown);
+    // Call orchestrator markAsKnown which handles stats, SRS and firebase sync
+    this.app.markAsKnown(isKnown, difficulty);
 
     // Visual feedback for rating
     const btn = document.querySelector(`[data-difficulty="${difficulty}"]`);

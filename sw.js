@@ -1,4 +1,4 @@
-const SW_VERSION = "4.12.0";
+const SW_VERSION = "4.13.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -21,10 +21,11 @@ const PRECACHE_FILES = [
   "./assets/css/tones-invaders-styles.css?v=3",
   "./assets/css/hanzi-builder-styles.css?v=2",
   "./assets/css/word-linker-styles.css?v=2",
-  "./assets/js/translations.js?v=24",
+  "./assets/js/translations.js?v=25",
   "./assets/js/firebase-client.js",
   "./assets/js/firebase-progress-sync.js",
-  "./assets/js/modules/flashcard-manager.js?v=4",
+  "./assets/js/modules/srs-engine.js?v=1",
+  "./assets/js/modules/flashcard-manager.js?v=5",
   "./assets/js/modules/practice-view-controller.js?v=5",
   "./assets/js/modules/audio-controller.js?v=3",
   "./assets/js/modules/quiz-engine.js?v=2",
@@ -39,7 +40,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/culture/traditional-arts.js",
   "./assets/js/modules/language-controller.js?v=3",
   "./assets/js/modules/browse-controller.js?v=4",
-  "./assets/js/modules/interaction-controller.js?v=6",
+  "./assets/js/modules/interaction-controller.js?v=7",
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-controller.js?v=3",
   "./assets/js/modules/quantifier-snake-utils.js?v=1",
@@ -50,7 +51,7 @@ const PRECACHE_FILES = [
   "./assets/js/auth-backend.js",
   "./assets/js/user-progress-backend.js",
   "./assets/js/bg-data.js",
-  "./assets/js/app.js?v=33",
+  "./assets/js/app.js?v=35",
   "./assets/js/matrix-game.js",
   "./assets/js/matrix-game-ui.js",
   "./assets/js/tones-invaders-game.js?v=4",

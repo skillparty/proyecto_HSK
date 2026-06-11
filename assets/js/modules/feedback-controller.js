@@ -35,8 +35,14 @@ class FeedbackController {
         this.app.logDebug('🔒 Knowledge buttons disabled');
     }
 
-    async markAsKnown(isKnown) {
+    async markAsKnown(isKnown, rating = null) {
         if (!this.app.currentWord || !this.app.isFlipped) return;
+
+        // Update SRS schedule for this word (rating defaults from binary result)
+        if (this.app.srsEngine) {
+            const srsRating = rating || (isKnown ? 'good' : 'again');
+            this.app.srsEngine.rate(this.app.currentWord, srsRating);
+        }
 
         this.app.stats.totalStudied = (Number(this.app.stats.totalStudied) || 0) + 1;
 

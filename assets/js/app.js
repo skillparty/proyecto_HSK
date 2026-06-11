@@ -100,6 +100,7 @@ class HSKApp {
 
         // Core Modules Initialization
         this.uiController = new UIController(this);
+        this.srsEngine = new SRSEngine(this);
         this.flashcardManager = new FlashcardManager(this);
         this.quizEngine = new QuizEngine(this);
         this.quizLegacyController = new QuizLegacyController(this);
@@ -226,7 +227,7 @@ class HSKApp {
 
     enableKnowledgeButtons() { return this.feedbackController.enableKnowledgeButtons(); }
     disableKnowledgeButtons() { return this.feedbackController.disableKnowledgeButtons(); }
-    async markAsKnown(isKnown) { return this.feedbackController.markAsKnown(isKnown); }
+    async markAsKnown(isKnown, rating = null) { return this.feedbackController.markAsKnown(isKnown, rating); }
     showKnowledgeFeedback(isKnown) { return this.feedbackController.showKnowledgeFeedback(isKnown); }
     updateProgress() { return this.feedbackController.updateProgress(); }
     updateHeaderStats() { return this.feedbackController.updateHeaderStats(); }

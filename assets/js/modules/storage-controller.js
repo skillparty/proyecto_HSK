@@ -86,7 +86,7 @@ class StorageController {
       const practiceOrderMode = localStorage.getItem(
         StorageController.KEYS.PRACTICE_ORDER,
       );
-      if (practiceOrderMode === "lesson" || practiceOrderMode === "mixed") {
+      if (["lesson", "mixed", "srs"].includes(practiceOrderMode)) {
         this.app.practiceOrderMode = practiceOrderMode;
       }
 

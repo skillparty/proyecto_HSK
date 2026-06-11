@@ -569,6 +569,7 @@
                             <label for="practice-order-mode" data-i18n="practiceOrderLabel">Orden de estudio</label>
                             <select id="practice-order-mode" class="select-input"
                                 data-tooltip="Choose lesson sequence order or mixed order">
+                                <option value="srs" data-i18n="practiceOrderSrs">Repaso inteligente (SRS)</option>
                                 <option value="lesson" data-i18n="practiceOrderLesson">Lección (recomendado)</option>
                                 <option value="mixed" data-i18n="practiceOrderMixed">Mezclado aleatorio</option>
                             </select>
@@ -1597,11 +1598,12 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=24" defer></script>
+    <script src="assets/js/translations.js?v=25" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=1" defer></script>
 
     <!-- Modules -->
-    <script src="assets/js/modules/flashcard-manager.js?v=4" defer></script>
+    <script src="assets/js/modules/srs-engine.js?v=1" defer></script>
+    <script src="assets/js/modules/flashcard-manager.js?v=5" defer></script>
     <script src="assets/js/modules/quiz-engine.js?v=2" defer></script>
     <script src="assets/js/modules/quiz-legacy-controller.js?v=1" defer></script>
     <script src="assets/js/modules/stats-controller.js?v=2" defer></script>
@@ -1611,14 +1613,14 @@
     <script src="assets/js/modules/strokes-radicals-controller.js?v=4" defer></script>
     <script src="assets/js/modules/modal-controller.js?v=1" defer></script>
     <script src="assets/js/modules/health-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/storage-controller.js?v=1" defer></script>
+    <script src="assets/js/modules/storage-controller.js?v=2" defer></script>
     <script src="assets/js/modules/language-controller.js?v=3" defer></script>
     <script src="assets/js/modules/progress-controller.js?v=1" defer></script>
     <script src="assets/js/modules/navigation-controller.js?v=4" defer></script>
     <script src="assets/js/modules/search-controller.js?v=1" defer></script>
     <script src="assets/js/modules/practice-view-controller.js?v=5" defer></script>
-    <script src="assets/js/modules/feedback-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=6" defer></script>
+    <script src="assets/js/modules/feedback-controller.js?v=2" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=7" defer></script>
     <script src="assets/js/modules/past-exams-controller.js?v=3" defer></script>
     <script src="assets/js/modules/quantifier-snake-utils.js?v=1" defer></script>
     <script src="assets/js/modules/quantifier-snake-canvas.js?v=3" defer></script>
@@ -1653,7 +1655,7 @@
     <!-- Background Data (Base64 Fallback) -->
     <script src="assets/js/logger.js?v=1" defer></script>
     <script src="assets/js/bg-data.js" defer></script>
-    <script src="assets/js/app.js?v=34" defer></script>
+    <script src="assets/js/app.js?v=35" defer></script>
     <script src="assets/js/tones-invaders-game.js?v=1" defer></script>
     <script src="assets/js/modules/game-engine.js" defer></script>
     <script src="assets/js/matrix-game-ui.js?v=7" defer></script>
