@@ -454,6 +454,37 @@
                             </div>
 
                             <div class="dashboard-subgrid">
+                                <!-- SRS Daily Loop Card -->
+                                <div class="dashboard-card srs-daily-card" id="dash-srs-card" style="grid-column: span 2; display: none;">
+                                    <div class="srs-card-inner">
+                                        <div class="srs-donut-wrap">
+                                            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden="true">
+                                                <circle cx="26" cy="26" r="20" stroke="var(--color-border)" stroke-width="5" fill="none"/>
+                                                <circle id="srs-ring-fill" cx="26" cy="26" r="20"
+                                                    stroke="var(--accent)"
+                                                    stroke-width="5" fill="none"
+                                                    stroke-linecap="round"
+                                                    stroke-dasharray="0 125.7"
+                                                    transform="rotate(-90 26 26)"
+                                                    style="transition: stroke-dasharray 0.6s ease;"/>
+                                            </svg>
+                                            <div class="srs-count-overlay">
+                                                <span id="srs-card-count" class="srs-count">…</span>
+                                            </div>
+                                        </div>
+                                        <div class="srs-text-block">
+                                            <p id="srs-card-label" class="srs-label">tarjetas hoy</p>
+                                            <p id="srs-card-sub" class="srs-sub">cargando…</p>
+                                            <div class="srs-chips">
+                                                <span class="srs-chip srs-chip-due"><span id="srs-due-count">0</span> <span data-i18n="srsDue">vencidas</span></span>
+                                                <span class="srs-chip srs-chip-new"><span id="srs-new-count">0</span> <span data-i18n="srsNew">nuevas</span></span>
+                                                <span class="srs-chip srs-chip-learned"><span id="srs-learned-count">0</span> <span data-i18n="srsLearned">aprendidas</span></span>
+                                            </div>
+                                        </div>
+                                        <button class="srs-start-btn srs-btn-primary" id="srs-start-btn" data-i18n="srsStartBtn">Iniciar repaso SRS</button>
+                                    </div>
+                                </div>
+
                                 <!-- Daily Goal Card -->
                                 <div class="dashboard-card daily-goal-card">
                                     <h3 class="card-title" style="margin-bottom: 6px; font-size: 0.95rem;">
@@ -1598,7 +1629,7 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=25" defer></script>
+    <script src="assets/js/translations.js?v=26" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=1" defer></script>
 
     <!-- Modules -->
@@ -1629,7 +1660,7 @@
     <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
     <script src="assets/js/modules/ui-controller.js?v=5" defer></script>
-    <script src="assets/js/modules/home-controller.js?v=4" defer></script>
+    <script src="assets/js/modules/home-controller.js?v=5" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=1" defer></script>
 
     <!-- Culture Modules -->

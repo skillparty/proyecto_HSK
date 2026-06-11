@@ -4831,3 +4831,110 @@ body.light-theme .dashboard-3d-portal {
         overflow-y: auto;
     }
 }
+
+/* ── SRS Daily Loop Card ─────────────────────────────────────────── */
+.srs-daily-card {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(229,57,53,0.04) 100%);
+    border: 1px solid rgba(229,57,53,0.25);
+}
+
+.srs-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.srs-donut-wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+}
+
+.srs-count-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.srs-count {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.srs-text-block {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.srs-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-primary, var(--color-text));
+}
+
+.srs-sub {
+    font-size: 0.72rem;
+    color: var(--text-dim, var(--color-text-muted));
+    margin: 0;
+}
+
+.srs-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.srs-chip {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.srs-chip-due     { background: rgba(229, 57, 53, 0.12); color: var(--accent); }
+.srs-chip-new     { background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
+.srs-chip-learned { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+
+.srs-start-btn {
+    flex-shrink: 0;
+    padding: 8px 18px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    white-space: nowrap;
+}
+
+.srs-start-btn:hover  { opacity: 0.85; transform: translateY(-1px); }
+.srs-start-btn:active { transform: scale(0.97); }
+
+.srs-btn-primary {
+    background: var(--accent);
+    color: #fff;
+}
+
+.srs-btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+}
+
+@media (max-width: 480px) {
+    .srs-card-inner { flex-direction: column; align-items: flex-start; }
+    .srs-start-btn  { width: 100%; text-align: center; }
+}

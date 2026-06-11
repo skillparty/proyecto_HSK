@@ -296,11 +296,98 @@ class HomeController {
             });
         }
 
+        // 6. SRS Daily Loop Card
+        this.renderSrsCard();
+
         // Initialize or resume the 3D Chinese Cultural Portal
         if (!this.threeInitialized) {
             this.init3DScene();
         } else {
             this.threePlaying = true;
+        }
+    }
+
+    renderSrsCard() {
+        const card = document.getElementById('dash-srs-card');
+        if (!card) return;
+
+        const isEs = this.app.currentLanguage === 'es';
+        const engine = this.app.srsEngine;
+        const vocab = this.app.vocabulary;
+
+        if (!engine || !vocab || vocab.length === 0) {
+            card.style.display = 'none';
+            return;
+        }
+
+        card.style.display = '';
+        const summary = engine.getSummary(vocab);
+        const { due, fresh, learned } = summary;
+        const dailyGoal = Number(this.app.stats?.dailyGoal) || 20;
+        const newToday = Math.min(fresh, dailyGoal);
+        const total = due + newToday;
+
+        const countEl = card.querySelector('#srs-card-count');
+        const labelEl = card.querySelector('#srs-card-label');
+        const subEl   = card.querySelector('#srs-card-sub');
+        const ringEl  = card.querySelector('#srs-ring-fill');
+        const dueEl   = card.querySelector('#srs-due-count');
+        const newEl   = card.querySelector('#srs-new-count');
+        const learnedEl = card.querySelector('#srs-learned-count');
+        const btn     = card.querySelector('#srs-start-btn');
+
+        if (dueEl)     dueEl.textContent   = due;
+        if (newEl)     newEl.textContent    = newToday;
+        if (learnedEl) learnedEl.textContent = learned;
+
+        if (total === 0) {
+            if (countEl) countEl.textContent = '✓';
+            if (labelEl) labelEl.textContent = isEs ? '¡Todo al día!' : 'All caught up!';
+            if (subEl)   subEl.textContent   = isEs
+                ? `${learned} palabras aprendidas · sin pendientes hoy`
+                : `${learned} words learned · nothing due today`;
+            if (btn) {
+                btn.textContent = isEs ? 'Repasar antes' : 'Study early';
+                btn.className = 'srs-start-btn srs-btn-secondary';
+            }
+        } else {
+            if (countEl) countEl.textContent = total;
+            if (labelEl) labelEl.textContent = isEs ? 'tarjetas hoy' : 'cards today';
+            if (subEl) {
+                const parts = [];
+                if (due > 0)     parts.push(isEs ? `${due} vencidas` : `${due} due`);
+                if (newToday > 0) parts.push(isEs ? `${newToday} nuevas` : `${newToday} new`);
+                subEl.textContent = parts.join(' · ');
+            }
+            if (btn) {
+                btn.textContent = isEs ? 'Iniciar repaso SRS' : 'Start SRS review';
+                btn.className = 'srs-start-btn srs-btn-primary';
+            }
+        }
+
+        // Donut ring: proportion of due out of (due + upcoming)
+        if (ringEl) {
+            const upcoming = engine.getUpcomingWords(vocab).length;
+            const denom = due + upcoming || 1;
+            const pct = Math.min(1, due / denom);
+            const circumference = 2 * Math.PI * 20;
+            ringEl.style.strokeDasharray = `${(pct * circumference).toFixed(1)} ${circumference.toFixed(1)}`;
+        }
+
+        if (btn) {
+            btn.onclick = () => {
+                const orderSel = document.getElementById('practice-order-mode');
+                if (orderSel) {
+                    orderSel.value = 'srs';
+                    orderSel.dispatchEvent(new Event('change'));
+                } else {
+                    this.app.practiceOrderMode = 'srs';
+                    if (this.app.flashcardManager) {
+                        this.app.flashcardManager.setupSession();
+                    }
+                }
+                this.app.switchTab('practice');
+            };
         }
     }
 
@@ -796,6 +883,11 @@ class HomeController {
                 this.app.switchTab(targetTab);
             }
         });
+
+        // Re-render SRS card once vocabulary is available (may fire before or after tab switch)
+        window.addEventListener('hsk:vocabulary-ready', () => {
+            this.renderSrsCard();
+        }, { once: true });
 
         this.bound = true;
     }

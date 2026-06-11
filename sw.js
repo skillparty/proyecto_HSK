@@ -21,7 +21,7 @@ const PRECACHE_FILES = [
   "./assets/css/tones-invaders-styles.css?v=3",
   "./assets/css/hanzi-builder-styles.css?v=2",
   "./assets/css/word-linker-styles.css?v=2",
-  "./assets/js/translations.js?v=25",
+  "./assets/js/translations.js?v=26",
   "./assets/js/firebase-client.js",
   "./assets/js/firebase-progress-sync.js",
   "./assets/js/modules/srs-engine.js?v=1",
