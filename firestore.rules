@@ -294,6 +294,23 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // --- srs_data ---
+    // Spaced-repetition scheduling state, one document per user.
+    // Document ID: {userId} (Firebase Auth UID)
+    // Fields:
+    //   - records: map of per-word SRS records (reps, interval, ease, due, lapses, last)
+    //   - updatedAt: number (client timestamp, ms)
+    match /srs_data/{userId} {
+      allow read: if isOwner(userId);
+
+      allow create, update: if isOwner(userId) &&
+                               request.resource.data.keys().hasOnly(['records', 'updatedAt']) &&
+                               request.resource.data.records is map &&
+                               request.resource.data.updatedAt is number;
+
+      allow delete: if false;
+    }
+
     // --- Default: deny all other collections ---
     match /{document=**} {
       allow read, write: if false;
