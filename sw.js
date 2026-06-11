@@ -1,4 +1,4 @@
-const SW_VERSION = "4.19.0";
+const SW_VERSION = "4.20.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -52,7 +52,7 @@ const PRECACHE_FILES = [
   "./assets/js/user-progress-backend.js",
   "./assets/js/bg-data.js",
   "./assets/js/app.js?v=36",
-  "./assets/js/matrix-game.js?v=2",
+  "./assets/js/matrix-game.js?v=3",
   "./assets/js/matrix-game-ui.js",
   "./assets/js/tones-invaders-game.js?v=5",
   "./assets/js/hanzi-builder-game.js?v=2",

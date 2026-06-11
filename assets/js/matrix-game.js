@@ -131,11 +131,23 @@ class MatrixGame {
     }
 
     setupEventListeners() {
+        // Los listeners viven en document y se registran UNA sola vez de forma
+        // global. Despachan siempre a window.matrixGame (instancia canónica),
+        // nunca a `this`: si por cualquier carrera de carga llegara a existir
+        // una instancia huérfana, sus eventos no duplican respuestas/rondas.
+        if (window.__matrixGameListenersWired) return;
+        window.__matrixGameListenersWired = true;
+
+        const game = () => window.matrixGame;
+
         // Configuración del juego
         document.addEventListener('click', (e) => {
+            const g = game();
+            if (!g) return;
+
             // Botón de inicio
             if (e.target.id === 'matrix-start-btn' || e.target.closest('#matrix-start-btn')) {
-                this.startGame();
+                g.startGame();
             }
 
             // Selección de dificultad
@@ -143,68 +155,72 @@ class MatrixGame {
                 const btn = e.target.closest('.diff-btn');
                 document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                this.difficulty = btn.dataset.difficulty;
+                g.difficulty = btn.dataset.difficulty;
             }
 
             // Controles del juego
             if (e.target.closest('#pause-btn')) {
-                this.togglePause();
+                g.togglePause();
             }
 
             if (e.target.closest('#quit-btn')) {
-                this.quitGame();
+                g.quitGame();
             }
 
             // Botones de resultados
             if (e.target.id === 'play-again-btn' || e.target.closest('#play-again-btn')) {
-                this.playAgain();
+                g.playAgain();
             }
 
             if (e.target.id === 'change-settings-btn' || e.target.closest('#change-settings-btn')) {
-                this.showConfig();
+                g.showConfig();
             }
 
             if (e.target.id === 'back-to-app-btn' || e.target.closest('#back-to-app-btn')) {
-                this.backToApp();
+                g.backToApp();
             }
 
             // Clic en caracteres de la matriz
             const charBtn = e.target.closest('.matrix-char');
             if (charBtn) {
-                this.checkAnswer(charBtn);
+                g.checkAnswer(charBtn);
             }
         });
 
         // Cambio de nivel
         document.addEventListener('change', (e) => {
+            const g = game();
+            if (!g) return;
             if (e.target.id === 'matrix-level-select') {
-                this.currentLevel = parseInt(e.target.value);
+                g.currentLevel = parseInt(e.target.value);
             }
         });
 
         // Atajos de teclado
         document.addEventListener('keydown', (e) => {
-            if (this.isPlaying && !this.isPaused) {
+            const g = game();
+            if (!g) return;
+            if (g.isPlaying && !g.isPaused) {
                 // Teclas numéricas para selección rápida (teclado numérico)
-                const gridSize = this.config[this.difficulty].gridSize;
+                const gridSize = g.config[g.difficulty].gridSize;
                 const keyNum = parseInt(e.key);
                 if (keyNum >= 1 && keyNum <= gridSize * gridSize) {
                     const chars = document.querySelectorAll('.matrix-char');
                     if (chars[keyNum - 1]) {
-                        this.checkAnswer(chars[keyNum - 1]);
+                        g.checkAnswer(chars[keyNum - 1]);
                     }
                 }
             }
 
             // Pausa con espacio
-            if (e.key === ' ' && this.isPlaying) {
+            if (e.key === ' ' && g.isPlaying) {
                 e.preventDefault();
-                this.togglePause();
+                g.togglePause();
             }
 
             // Salir con Escape
-            if (e.key === 'Escape' && this.isPlaying) {
-                this.quitGame();
+            if (e.key === 'Escape' && g.isPlaying) {
+                g.quitGame();
             }
         });
     }
@@ -321,12 +337,16 @@ class MatrixGame {
         // Posición aleatoria para la respuesta correcta
         this.correctPosition = Math.floor(Math.random() * totalCells);
 
-        // Obtener caracteres aleatorios diferentes al correcto
-        const otherChars = this.vocabulary
-            .filter(word => word.character !== this.currentWord.character)
+        // Obtener caracteres aleatorios diferentes al correcto.
+        // Set: el pool ponderado por SRS contiene entradas duplicadas y la
+        // grilla no debe mostrar el mismo carácter dos veces.
+        const otherChars = [...new Set(
+            this.vocabulary
+                .filter(word => word.character !== this.currentWord.character)
+                .map(word => word.character)
+        )]
             .sort(() => Math.random() - 0.5)
-            .slice(0, totalCells - 1)
-            .map(word => word.character);
+            .slice(0, totalCells - 1);
 
         // Construir la matriz
         for (let i = 0; i < totalCells; i++) {
@@ -856,7 +876,10 @@ class MatrixGame {
 
     getGameHTML() {
         // HTML de respaldo para el juego
-        return renderMatrixGameInterface ? renderMatrixGameInterface() : `
+        // typeof: referencia directa lanza ReferenceError si matrix-game-ui.js
+        // aún no cargó, y eso abortaba el constructor dejando una instancia
+        // fantasma con listeners activos.
+        return typeof renderMatrixGameInterface === 'function' ? renderMatrixGameInterface() : `
             <div class="matrix-error">
                 <h2>Error cargando el juego</h2>
                 <p>Por favor, recarga la página</p>

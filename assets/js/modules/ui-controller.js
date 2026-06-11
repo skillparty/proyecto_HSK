@@ -241,7 +241,7 @@ class UIController {
               await this.loadScript("assets/js/modules/matrix-score-controller.js");
             }
             if (!window.MatrixGame) {
-              await this.loadScript("assets/js/matrix-game.js?v=2");
+              await this.loadScript("assets/js/matrix-game.js?v=3");
             }
             if (typeof renderMatrixGameInterface === "undefined") {
               await this.loadScript("assets/js/matrix-game-ui.js");
