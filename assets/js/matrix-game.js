@@ -100,26 +100,17 @@ class MatrixGame {
         this.renderGameInterface();
     }
 
-    async loadVocabulary() {
-        try {
-            // Intentar cargar el vocabulario desde el objeto global de la app
-            if (window.app && window.app.vocabulary) {
-                this.vocabulary = [...window.app.vocabulary];
-                this.allVocabulary = [...window.app.vocabulary];
-                this.logDebug('✅ Vocabulary loaded from main app:', this.vocabulary.length, 'words');
-            } else {
-                // Cargar vocabulario de respaldo
-                const response = await fetch('assets/data/hsk_vocabulary_spanish.json');
-                const data = await response.json();
-                this.vocabulary = [...data];
-                this.allVocabulary = [...data];
-                this.logDebug('✅ Vocabulary loaded from file:', this.vocabulary.length, 'words');
-            }
-        } catch (error) {
-            this.logError('❌ Error loading vocabulary:', error);
-            // Usar vocabulario de ejemplo si falla la carga
+    loadVocabulary() {
+        // El vocabulario llega desde la app (matrix-controller lo asigna);
+        // si aún no está, usar el vocabulario de ejemplo como respaldo.
+        if (window.app && window.app.vocabulary && window.app.vocabulary.length > 0) {
+            this.vocabulary = [...window.app.vocabulary];
+            this.allVocabulary = [...window.app.vocabulary];
+            this.logDebug('✅ Vocabulary loaded from main app:', this.vocabulary.length, 'words');
+        } else {
             this.vocabulary = this.getDefaultVocabulary();
             this.allVocabulary = [...this.vocabulary];
+            this.logWarn('⚠️ App vocabulary not ready, using fallback vocabulary');
         }
     }
 

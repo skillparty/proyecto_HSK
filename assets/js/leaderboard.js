@@ -223,6 +223,26 @@ class LeaderboardManager {
     }
   }
 
+  // Escape user-controlled strings before inserting into innerHTML templates.
+  // Leaderboard data comes from other users' Firestore documents.
+  escapeHtml(value) {
+    if (value === null || value === undefined) return "";
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  // Only allow https URLs for avatars; anything else falls back to default.
+  safeAvatarUrl(url) {
+    if (typeof url === "string" && url.startsWith("https://")) {
+      return this.escapeHtml(url);
+    }
+    return "/default-avatar.png";
+  }
+
   renderUserCard(user) {
     const isCurrentUser =
       window.firebaseClient &&
@@ -311,13 +331,13 @@ class LeaderboardManager {
                     ${getMedal(user.rank)}
                 </div>
                 <div class="user-info">
-                    <img src="${user.avatar_url || "/default-avatar.png"}"
-                         alt="${user.display_name || user.username}"
+                    <img src="${this.safeAvatarUrl(user.avatar_url)}"
+                         alt="${this.escapeHtml(user.display_name || user.username)}"
                          class="user-avatar"
                          onerror="this.src='/default-avatar.png'">
                     <div class="user-details">
-                        <div class="user-name">${user.display_name || user.username}</div>
-                        <div class="user-username">@${user.username}</div>
+                        <div class="user-name">${this.escapeHtml(user.display_name || user.username)}</div>
+                        <div class="user-username">@${this.escapeHtml(user.username)}</div>
                     </div>
                 </div>
                 <div class="user-stats">

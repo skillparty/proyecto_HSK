@@ -241,7 +241,7 @@ class UIController {
               await this.loadScript("assets/js/modules/matrix-score-controller.js");
             }
             if (!window.MatrixGame) {
-              await this.loadScript("assets/js/matrix-game.js");
+              await this.loadScript("assets/js/matrix-game.js?v=2");
             }
             if (typeof renderMatrixGameInterface === "undefined") {
               await this.loadScript("assets/js/matrix-game-ui.js");
@@ -262,7 +262,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/leaderboard-styles.css");
             if (!window.LeaderboardManager) {
-              await this.loadScript("assets/js/leaderboard.js");
+              await this.loadScript("assets/js/leaderboard.js?v=2");
             }
             if (!this.app.leaderboardInitialized) {
               this.app.initializeLeaderboard();

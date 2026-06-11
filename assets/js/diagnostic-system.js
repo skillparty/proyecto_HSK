@@ -155,12 +155,12 @@ class HSKDiagnosticSystem {
         
         // Verificar que el CSS principal esté cargado
         const stylesheets = Array.from(document.styleSheets);
-        const mainCSS = stylesheets.find(sheet => 
-            sheet.href && sheet.href.includes('styles-v2.css')
+        const mainCSS = stylesheets.find(sheet =>
+            sheet.href && sheet.href.includes('styles-professional.css')
         );
-        
+
         if (!mainCSS) {
-            this.addIssue('interface', 'critical', 'CSS Loading', 'Main stylesheet (styles-v2.css) not loaded');
+            this.addIssue('interface', 'critical', 'CSS Loading', 'Main stylesheet (styles-professional.css) not loaded');
             cssIssues.push('Main CSS not loaded');
         }
         

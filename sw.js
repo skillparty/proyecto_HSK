@@ -1,4 +1,4 @@
-const SW_VERSION = "4.17.0";
+const SW_VERSION = "4.18.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -52,18 +52,28 @@ const PRECACHE_FILES = [
   "./assets/js/user-progress-backend.js",
   "./assets/js/bg-data.js",
   "./assets/js/app.js?v=36",
-  "./assets/js/matrix-game.js",
+  "./assets/js/matrix-game.js?v=2",
   "./assets/js/matrix-game-ui.js",
   "./assets/js/tones-invaders-game.js?v=5",
   "./assets/js/hanzi-builder-game.js?v=2",
   "./assets/js/word-linker-game.js?v=3",
-  "./assets/js/leaderboard.js",
+  "./assets/js/leaderboard.js?v=2",
   "./assets/data/culture/character-evolution.json",
   "./assets/data/culture/chinese-technology.json",
   "./assets/data/culture/peking-opera.json",
   "./assets/data/culture/traditional-medicine.json",
-  "./assets/data/hsk_vocabulary.json",
-  "./assets/data/hsk_vocabulary_spanish.json",
+  "./assets/data/vocab/hsk1_en.json",
+  "./assets/data/vocab/hsk2_en.json",
+  "./assets/data/vocab/hsk3_en.json",
+  "./assets/data/vocab/hsk4_en.json",
+  "./assets/data/vocab/hsk5_en.json",
+  "./assets/data/vocab/hsk6_en.json",
+  "./assets/data/vocab/hsk1_es.json",
+  "./assets/data/vocab/hsk2_es.json",
+  "./assets/data/vocab/hsk3_es.json",
+  "./assets/data/vocab/hsk4_es.json",
+  "./assets/data/vocab/hsk5_es.json",
+  "./assets/data/vocab/hsk6_es.json",
   "./assets/data/hsk_past_exams.json",
   "./assets/data/hsk_example_sentences.json",
   "./assets/data/quantifier_snake_words.json",
