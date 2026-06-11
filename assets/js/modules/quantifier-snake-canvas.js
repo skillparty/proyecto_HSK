@@ -87,8 +87,10 @@ class QuantifierSnakeCanvasRenderer {
             return;
         }
 
-        const width = controller.canvas.width;
-        const height = controller.canvas.height;
+        // viewSize = CSS pixels; canvas.width holds devicePixelRatio-scaled
+        // physical pixels and the context transform maps between them.
+        const width = controller.viewSize || controller.canvas.width;
+        const height = controller.viewSize || controller.canvas.height;
 
         controller.ctx.clearRect(0, 0, width, height);
         this.drawBoardBackground(width, height);
@@ -156,6 +158,7 @@ class QuantifierSnakeCanvasRenderer {
     drawGrid() {
         const controller = this.controller;
         const ctx = controller.ctx;
+        const view = controller.viewSize || controller.canvas.width;
 
         ctx.save();
         ctx.lineWidth = 0.5;
@@ -170,19 +173,19 @@ class QuantifierSnakeCanvasRenderer {
 
             ctx.beginPath();
             ctx.moveTo(coordinate, 0);
-            ctx.lineTo(coordinate, controller.canvas.height);
+            ctx.lineTo(coordinate, view);
             ctx.stroke();
 
             ctx.beginPath();
             ctx.moveTo(0, coordinate);
-            ctx.lineTo(controller.canvas.width, coordinate);
+            ctx.lineTo(view, coordinate);
             ctx.stroke();
         }
 
         // Outer border glow
         ctx.strokeStyle = 'rgba(16, 185, 129, 0.12)';
         ctx.lineWidth = 1.5;
-        ctx.strokeRect(0.5, 0.5, controller.canvas.width - 1, controller.canvas.height - 1);
+        ctx.strokeRect(0.5, 0.5, view - 1, view - 1);
 
         ctx.restore();
     }
@@ -330,19 +333,27 @@ class QuantifierSnakeCanvasRenderer {
             // Reset shadow before drawing text
             ctx.shadowBlur = 0;
 
-            // Hanzi label
+            // Hanzi label — large with dark outline so it reads at a glance
             const label = food.word.hanzi;
-            const fontSize = label.length > 1 ? size * 0.36 : size * 0.44;
+            const fontSize = label.length > 1 ? size * 0.48 : size * 0.62;
 
-            ctx.fillStyle = '#f8fafc';
             ctx.font = '700 ' + fontSize.toFixed(1) + 'px "Noto Sans SC", sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
-            // Text shadow for readability
-            ctx.shadowBlur = 3;
-            ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-            ctx.fillText(label, x + size / 2, y + size / 2 + bobOffset + 0.5);
+            const labelX = x + size / 2;
+            const labelY = y + size / 2 + bobOffset + 0.5;
+
+            ctx.shadowBlur = 4;
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+            ctx.lineWidth = Math.max(2, size * 0.07);
+            ctx.lineJoin = 'round';
+            ctx.strokeStyle = 'rgba(2, 6, 23, 0.92)';
+            ctx.strokeText(label, labelX, labelY);
+
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText(label, labelX, labelY);
 
             ctx.restore();
         });
@@ -350,8 +361,8 @@ class QuantifierSnakeCanvasRenderer {
 
     drawOverlay(message) {
         const controller = this.controller;
-        const width = controller.canvas.width;
-        const height = controller.canvas.height;
+        const width = controller.viewSize || controller.canvas.width;
+        const height = controller.viewSize || controller.canvas.height;
 
         controller.ctx.save();
 

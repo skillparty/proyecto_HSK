@@ -2,7 +2,8 @@ class QuantifierSnakeController {
   constructor(app) {
     this.app = app;
 
-    this.boardSize = 24;
+    // 18 celdas (antes 24): celdas ~33% más grandes para que los hanzi se lean
+    this.boardSize = 18;
     this.maxLives = 3;
     this.defaultCanvasSize = 720;
     this.dataFilePath = "assets/data/quantifier_snake_words.json";
@@ -364,7 +365,8 @@ class QuantifierSnakeController {
     }
 
     if (this.gamePanel) {
-      this.gamePanel.style.display = "block";
+      // "" para no pisar el display:flex del CSS (board + sidebar en fila)
+      this.gamePanel.style.display = "";
     }
 
     this.syncCanvasSize();
@@ -817,12 +819,20 @@ class QuantifierSnakeController {
     const maxVisibleHeight = Math.max(320, window.innerHeight - paddingAndHUDHeight);
 
     // Clamp the width, but also ensure it doesn't exceed the available vertical space.
-    // Increased maximum board size to 880px for a much wider, more immersive playing experience on desktops.
-    const clamped = Math.max(320, Math.min(880, availableWidth, maxVisibleHeight));
+    const clamped = Math.max(320, Math.min(960, availableWidth, maxVisibleHeight));
     const size = Math.floor(clamped);
 
-    this.canvas.width = size;
-    this.canvas.height = size;
+    // Render at devicePixelRatio so hanzi and sprites stay crisp on retina
+    // displays. Logic coordinates (cellSize, particles) stay in CSS pixels.
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.viewSize = size;
+    this.canvas.width = Math.floor(size * dpr);
+    this.canvas.height = Math.floor(size * dpr);
+    this.canvas.style.width = size + 'px';
+    this.canvas.style.height = size + 'px';
+    if (this.ctx) {
+      this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
     this.cellSize = size / this.boardSize;
 
     // Apply the width to the wrap container to match on-screen size exactly

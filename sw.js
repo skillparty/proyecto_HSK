@@ -1,4 +1,4 @@
-const SW_VERSION = "4.20.0";
+const SW_VERSION = "4.21.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -13,11 +13,11 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css",
-  "./assets/css/styles-professional.css?v=30",
+  "./assets/css/styles-professional.css?v=31",
   "./assets/css/matrix-game-styles.css?v=6",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css",
-  "./assets/css/quantifier-snake-styles.css?v=7",
+  "./assets/css/quantifier-snake-styles.css?v=8",
   "./assets/css/tones-invaders-styles.css?v=3",
   "./assets/css/hanzi-builder-styles.css?v=2",
   "./assets/css/word-linker-styles.css?v=2",
@@ -44,8 +44,8 @@ const PRECACHE_FILES = [
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-controller.js?v=3",
   "./assets/js/modules/quantifier-snake-utils.js?v=1",
-  "./assets/js/modules/quantifier-snake-canvas.js?v=3",
-  "./assets/js/modules/quantifier-snake-controller.js?v=5",
+  "./assets/js/modules/quantifier-snake-canvas.js?v=4",
+  "./assets/js/modules/quantifier-snake-controller.js?v=6",
   "./assets/js/modules/strokes-radicals-controller.js?v=4",
   "./assets/js/progress-integrator.js",
   "./assets/js/auth-backend.js",

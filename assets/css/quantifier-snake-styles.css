@@ -15,7 +15,8 @@
 
 /* ---- Shell Container ---- */
 .snakeq-shell {
-    max-width: 1120px;
+    width: 100%;
+    max-width: 1320px;
     margin: 0 auto;
     padding: 28px 24px 32px;
     border-radius: 24px;
@@ -369,7 +370,7 @@
 
 /* ---- Board Wrapper (the star of the show) ---- */
 .snakeq-board-wrap {
-    width: min(100%, 820px);
+    width: min(100%, 960px);
     margin: 0 auto;
     border-radius: 20px;
     overflow: hidden;
@@ -654,7 +655,7 @@
     }
 
     .snakeq-sidebar {
-        width: 360px;
+        width: 300px;
         flex-shrink: 0;
         gap: 20px;
     }

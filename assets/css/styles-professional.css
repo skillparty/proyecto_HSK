@@ -4635,58 +4635,8 @@ body.light-theme .dashboard-3d-portal {
     }
 
     /* 3. Juegos (Snake & Matrix) */
-    #snake-quantifiers {
-        overflow: hidden;
-    }
-
-    .snakeq-shell {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
-        padding: 8px 16px;
-    }
-
-    .snakeq-title {
-        font-size: 1.3rem !important;
-        margin-bottom: 2px !important;
-    }
-
-    .snakeq-subtitle {
-        font-size: 0.78rem !important;
-        margin-bottom: 8px !important;
-    }
-
-    .snakeq-setup {
-        padding: 16px !important;
-        margin: 0 auto !important;
-        max-width: 580px;
-        width: 100%;
-    }
-
-    .snakeq-game {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        min-height: 0;
-    }
-
-    .snakeq-board-wrap {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 0;
-        margin: 6px 0 !important;
-    }
-
-    #snakeq-canvas {
-        max-height: calc(100vh - 340px);
-        max-width: calc(100vh - 340px);
-        width: auto !important;
-        height: auto !important;
-        aspect-ratio: 1/1;
-    }
+    /* Snake layout/sizing vive en quantifier-snake-styles.css; las reglas
+       legacy con !important capaban el canvas y rompían el tamaño del board. */
 
     #matrix {
         overflow: hidden !important;
