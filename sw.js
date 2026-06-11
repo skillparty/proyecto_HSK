@@ -1,4 +1,4 @@
-const SW_VERSION = "4.15.0";
+const SW_VERSION = "4.16.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -22,9 +22,9 @@ const PRECACHE_FILES = [
   "./assets/css/hanzi-builder-styles.css?v=2",
   "./assets/css/word-linker-styles.css?v=2",
   "./assets/js/translations.js?v=27",
-  "./assets/js/firebase-client.js",
+  "./assets/js/firebase-client.js?v=5",
   "./assets/js/firebase-progress-sync.js",
-  "./assets/js/modules/srs-engine.js?v=1",
+  "./assets/js/modules/srs-engine.js?v=2",
   "./assets/js/modules/flashcard-manager.js?v=6",
   "./assets/js/modules/practice-view-controller.js?v=6",
   "./assets/js/modules/audio-controller.js?v=3",
@@ -51,7 +51,7 @@ const PRECACHE_FILES = [
   "./assets/js/auth-backend.js",
   "./assets/js/user-progress-backend.js",
   "./assets/js/bg-data.js",
-  "./assets/js/app.js?v=35",
+  "./assets/js/app.js?v=36",
   "./assets/js/matrix-game.js",
   "./assets/js/matrix-game-ui.js",
   "./assets/js/tones-invaders-game.js?v=4",

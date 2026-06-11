@@ -559,6 +559,31 @@ class FirebaseClient {
         `;
   }
 
+  // SRS data sync — stores the full records map in srs_data/{uid}
+  async saveSRSRecords(records) {
+    if (!this.db || !this.user) return;
+    try {
+      const sdk = window.FirebaseSDK;
+      const docRef = sdk.doc(this.db, "srs_data", this.user.uid);
+      await sdk.setDoc(docRef, { records, updatedAt: Date.now() });
+    } catch (error) {
+      console.warn("⚠️ SRS cloud save failed:", error);
+    }
+  }
+
+  async loadSRSRecords() {
+    if (!this.db || !this.user) return null;
+    try {
+      const sdk = window.FirebaseSDK;
+      const docRef = sdk.doc(this.db, "srs_data", this.user.uid);
+      const snap = await sdk.getDoc(docRef);
+      return snap.exists() ? (snap.data().records || null) : null;
+    } catch (error) {
+      console.warn("⚠️ SRS cloud load failed:", error);
+      return null;
+    }
+  }
+
   showLoginButton(container) {
     container.innerHTML = `
             <div class="auth-guest">

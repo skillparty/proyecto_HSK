@@ -378,6 +378,17 @@ class HSKApp {
     showMatrixGameFallback() {
         return this.legacyFlowController.showMatrixGameFallback();
     }
+
+    handleAuthChange(event, session) {
+        if (event === 'SIGNED_IN' && this.srsEngine) {
+            this.srsEngine.syncFromFirebase().then(() => {
+                if (this.feedbackController) this.feedbackController.updateHeaderStats();
+                if (this.homeController && typeof this.homeController.renderSrsCard === 'function') {
+                    this.homeController.renderSrsCard();
+                }
+            });
+        }
+    }
 }
 window.HSKApp = HSKApp;
 window.dispatchEvent(new CustomEvent('hsk:app-class-ready'));

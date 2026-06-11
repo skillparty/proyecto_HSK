@@ -34,6 +34,7 @@ class SRSEngine {
   constructor(app) {
     this.app = app;
     this.records = this.loadRecords();
+    this._syncTimer = null;
     this.app.logDebug(
       `🧠 SRSEngine initialized (${Object.keys(this.records).length} word records)`,
     );
@@ -61,6 +62,49 @@ class SRSEngine {
       );
     } catch (error) {
       this.app.logWarn("SRSEngine: could not save records:", error);
+    }
+    this._scheduleSyncToFirebase();
+  }
+
+  _scheduleSyncToFirebase() {
+    if (!window.firebaseClient || !window.firebaseClient.user) return;
+    clearTimeout(this._syncTimer);
+    this._syncTimer = setTimeout(() => {
+      window.firebaseClient.saveSRSRecords(this.records).catch(() => {});
+    }, 3000);
+  }
+
+  /**
+   * Merge remote records into local: per-key, keep the one with later `last` timestamp.
+   * Call this after loading from Firestore on login.
+   */
+  mergeRemoteRecords(remoteRecords) {
+    if (!remoteRecords || typeof remoteRecords !== "object") return;
+    let changed = false;
+    for (const [key, remote] of Object.entries(remoteRecords)) {
+      const local = this.records[key];
+      if (!local || (remote.last || 0) > (local.last || 0)) {
+        this.records = { ...this.records, [key]: remote };
+        changed = true;
+      }
+    }
+    if (changed) {
+      try {
+        localStorage.setItem(SRSEngine.STORAGE_KEY, JSON.stringify(this.records));
+      } catch (_) {}
+      this.app.logDebug(`🧠 SRS merged ${Object.keys(remoteRecords).length} remote records`);
+    }
+  }
+
+  async syncFromFirebase() {
+    if (!window.firebaseClient || !window.firebaseClient.user) return;
+    try {
+      const remote = await window.firebaseClient.loadSRSRecords();
+      if (remote) this.mergeRemoteRecords(remote);
+      // Push merged state back so all devices stay consistent
+      await window.firebaseClient.saveSRSRecords(this.records);
+    } catch (error) {
+      this.app.logWarn("SRSEngine: Firebase sync error:", error);
     }
   }
 
