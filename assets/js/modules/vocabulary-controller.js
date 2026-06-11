@@ -309,7 +309,7 @@ class VocabularyController {
             this.app.practiceMode = preferences.practiceMode;
         }
 
-        if (preferences.practiceOrderMode && ['lesson', 'mixed'].includes(preferences.practiceOrderMode)) {
+        if (preferences.practiceOrderMode && ['lesson', 'mixed', 'srs'].includes(preferences.practiceOrderMode)) {
             this.app.practiceOrderMode = preferences.practiceOrderMode;
             const practiceOrderSelect = document.getElementById('practice-order-mode');
             if (practiceOrderSelect) {

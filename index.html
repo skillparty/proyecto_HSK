@@ -28,13 +28,7 @@
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=5" id="design-tokens">
     <link rel="stylesheet" href="assets/css/styles-professional.css?v=29" id="main-stylesheet">
 
-    <link rel="stylesheet" href="assets/css/matrix-game-styles.css?v=6">
-    <link rel="stylesheet" href="assets/css/leaderboard-styles.css?v=4">
-    <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=3">
-    <link rel="stylesheet" href="assets/css/quantifier-snake-styles.css?v=7">
-    <link rel="stylesheet" href="assets/css/tones-invaders-styles.css?v=3">
-    <link rel="stylesheet" href="assets/css/hanzi-builder-styles.css?v=2">
-    <link rel="stylesheet" href="assets/css/word-linker-styles.css?v=2">
+    <!-- Game/leaderboard CSS injected on demand by ui-controller.js (see loadStylesheet) -->
     <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1657,21 +1651,14 @@
     <script src="assets/js/modules/quantifier-snake-utils.js?v=1" defer></script>
     <script src="assets/js/modules/quantifier-snake-canvas.js?v=3" defer></script>
     <script src="assets/js/modules/quantifier-snake-controller.js?v=5" defer></script>
-    <script src="assets/js/modules/vocabulary-controller.js?v=2" defer></script>
+    <script src="assets/js/modules/vocabulary-controller.js?v=3" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=5" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=6" defer></script>
     <script src="assets/js/modules/home-controller.js?v=6" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=1" defer></script>
 
-    <!-- Culture Modules -->
-    <script src="assets/js/modules/culture/culture-module-base.js" defer></script>
-    <script src="assets/js/modules/culture/character-evolution.js" defer></script>
-    <script src="assets/js/modules/culture/traditional-medicine.js" defer></script>
-    <script src="assets/js/modules/culture/peking-opera.js" defer></script>
-    <script src="assets/js/modules/culture/chinese-technology.js" defer></script>
-    <script src="assets/js/modules/culture/ethnic-clothing.js" defer></script>
-    <script src="assets/js/modules/culture/traditional-arts.js" defer></script>
+    <!-- Culture modules loaded on demand by ui-controller.js (see loadScript) -->
 
     <script src="assets/js/progress-integrator.js?v=2" defer></script>
     <script src="assets/js/auth-backend.js?v=8" defer></script>
@@ -1688,13 +1675,7 @@
     <script src="assets/js/logger.js?v=1" defer></script>
     <script src="assets/js/bg-data.js" defer></script>
     <script src="assets/js/app.js?v=35" defer></script>
-    <script src="assets/js/tones-invaders-game.js?v=1" defer></script>
-    <script src="assets/js/modules/game-engine.js" defer></script>
-    <script src="assets/js/matrix-game-ui.js?v=7" defer></script>
-    <script src="assets/js/modules/matrix-session-controller.js?v=2" defer></script>
-    <script src="assets/js/modules/matrix-score-controller.js?v=2" defer></script>
-    <script src="assets/js/matrix-game.js?v=8" defer></script>
-    <script src="assets/js/leaderboard.js?v=4" defer></script>
+    <!-- matrix-game.js, tones-invaders-game.js, leaderboard.js loaded on demand by ui-controller.js -->
 
     <!-- Background Image Integration -->
     <!-- Background Image Integration (Removed hardcoded style) -->

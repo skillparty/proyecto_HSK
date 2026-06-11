@@ -9,6 +9,10 @@ class UIController {
   }
 
   loadScript(url) {
+    // Deduplicate: resolve immediately if already injected
+    if (document.querySelector(`script[src="${url}"]`)) {
+      return Promise.resolve();
+    }
     return new Promise((resolve, reject) => {
       const script = document.createElement("script");
       script.src = url;
@@ -17,6 +21,30 @@ class UIController {
       script.onerror = () => reject(new Error(`Failed to load script ${url}`));
       document.body.appendChild(script);
     });
+  }
+
+  loadStylesheet(url) {
+    // Deduplicate: resolve immediately if already injected
+    const existing = document.querySelector(`link[href="${url}"]`);
+    if (existing) return Promise.resolve();
+    return new Promise((resolve) => {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = url;
+      link.onload = () => resolve();
+      link.onerror = () => {
+        this.logWarn(`Stylesheet failed to load: ${url}`);
+        resolve(); // non-fatal — game still usable without styles
+      };
+      document.head.appendChild(link);
+    });
+  }
+
+  async loadGameAssets({ css = [], js = [] } = {}) {
+    await Promise.all([
+      ...css.map((u) => this.loadStylesheet(u)),
+      ...js.map((u) => this.loadScript(u)),
+    ]);
   }
 
   getLogger() {
@@ -160,61 +188,95 @@ class UIController {
         }
         break;
       case "past-exams":
-        this.app.initializePastExams();
+        (async () => {
+          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=7");
+          this.app.initializePastExams();
+        })();
         break;
       case "snake-quantifiers":
-        if (!this.app.snakeQuantifierInitialized) {
-          const initResult = this.app.initializeQuantifierSnake();
-
-          if (initResult && typeof initResult.then === "function") {
-            initResult
-              .then(() => {
-                this.app.snakeQuantifierInitialized = Boolean(
-                  this.app.quantifierSnakeController &&
-                  this.app.quantifierSnakeController.isInitialized,
-                );
-
-                if (this.app.snakeQuantifierInitialized) {
-                  this.app.resumeQuantifierSnakeIfNeeded();
-                }
-              })
-              .catch((error) => {
-                this.app.snakeQuantifierInitialized = false;
-                this.logError(
-                  "Failed to initialize quantifier snake tab:",
-                  error,
-                );
-              });
+        (async () => {
+          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=7");
+          if (!this.app.snakeQuantifierInitialized) {
+            const initResult = this.app.initializeQuantifierSnake();
+            if (initResult && typeof initResult.then === "function") {
+              initResult
+                .then(() => {
+                  this.app.snakeQuantifierInitialized = Boolean(
+                    this.app.quantifierSnakeController &&
+                    this.app.quantifierSnakeController.isInitialized,
+                  );
+                  if (this.app.snakeQuantifierInitialized) {
+                    this.app.resumeQuantifierSnakeIfNeeded();
+                  }
+                })
+                .catch((error) => {
+                  this.app.snakeQuantifierInitialized = false;
+                  this.logError("Failed to initialize quantifier snake tab:", error);
+                });
+            } else {
+              this.app.snakeQuantifierInitialized = Boolean(
+                this.app.quantifierSnakeController &&
+                this.app.quantifierSnakeController.isInitialized,
+              );
+            }
           } else {
-            this.app.snakeQuantifierInitialized = Boolean(
-              this.app.quantifierSnakeController &&
-              this.app.quantifierSnakeController.isInitialized,
-            );
+            this.app.resumeQuantifierSnakeIfNeeded();
           }
-        } else {
-          this.app.resumeQuantifierSnakeIfNeeded();
-        }
+        })();
         break;
       case "stats":
         this.app.updateStats();
         break;
       case "matrix":
-        if (!this.app.matrixInitialized) {
-          this.app.initializeMatrixGame();
-          this.app.matrixInitialized = true;
-        } else if (this.app.matrixController) {
-          this.app.matrixController.initialize();
-        }
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/matrix-game-styles.css?v=6");
+            if (!window.GameStateManager) {
+              await this.loadScript("assets/js/modules/game-engine.js");
+            }
+            if (!window.MatrixSessionController) {
+              await this.loadScript("assets/js/modules/matrix-session-controller.js");
+            }
+            if (!window.MatrixScoreController) {
+              await this.loadScript("assets/js/modules/matrix-score-controller.js");
+            }
+            if (!window.MatrixGame) {
+              await this.loadScript("assets/js/matrix-game.js");
+            }
+            if (typeof renderMatrixGameInterface === "undefined") {
+              await this.loadScript("assets/js/matrix-game-ui.js");
+            }
+            if (!this.app.matrixInitialized) {
+              this.app.initializeMatrixGame();
+              this.app.matrixInitialized = true;
+            } else if (this.app.matrixController) {
+              this.app.matrixController.initialize();
+            }
+          } catch (err) {
+            this.logError("Failed to lazy load matrix game", err);
+          }
+        })();
         break;
       case "leaderboard":
-        if (!this.app.leaderboardInitialized) {
-          this.app.initializeLeaderboard();
-          this.app.leaderboardInitialized = true;
-        }
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/leaderboard-styles.css");
+            if (!window.LeaderboardManager) {
+              await this.loadScript("assets/js/leaderboard.js");
+            }
+            if (!this.app.leaderboardInitialized) {
+              this.app.initializeLeaderboard();
+              this.app.leaderboardInitialized = true;
+            }
+          } catch (err) {
+            this.logError("Failed to lazy load leaderboard", err);
+          }
+        })();
         break;
       case "tones-invaders":
         (async () => {
           try {
+            await this.loadStylesheet("assets/css/tones-invaders-styles.css?v=3");
             if (!window.TonesInvadersGame) {
               await this.loadScript("assets/js/tones-invaders-game.js?v=4");
             }
@@ -230,6 +292,7 @@ class UIController {
       case "hanzi-builder":
         (async () => {
           try {
+            await this.loadStylesheet("assets/css/hanzi-builder-styles.css?v=2");
             if (!window.HanziBuilderGame) {
               await this.loadScript("assets/js/hanzi-builder-game.js?v=2");
             }
@@ -245,6 +308,7 @@ class UIController {
       case "word-linker":
         (async () => {
           try {
+            await this.loadStylesheet("assets/css/word-linker-styles.css?v=2");
             if (!window.WordLinkerGame) {
               await this.loadScript("assets/js/word-linker-game.js?v=2");
             }
@@ -258,123 +322,112 @@ class UIController {
         })();
         break;
       case "culture-characters":
-        try {
-          if (
-            !window.characterEvolutionModule &&
-            window.CharacterEvolutionModule
-          ) {
-            window.characterEvolutionModule = new CharacterEvolutionModule(
-              this.app,
-            );
+        (async () => {
+          try {
+            if (!window.CultureModuleBase) {
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
+            }
+            if (!window.CharacterEvolutionModule) {
+              await this.loadScript("assets/js/modules/culture/character-evolution.js");
+            }
+            if (!window.characterEvolutionModule) {
+              window.characterEvolutionModule = new CharacterEvolutionModule(this.app);
+            }
+            await window.characterEvolutionModule.initialize();
+          } catch (err) {
+            this.logError("culture-characters init failed:", err);
           }
-          if (window.characterEvolutionModule) {
-            window.characterEvolutionModule
-              .initialize()
-              .catch((err) =>
-                this.logError("culture-characters init failed:", err),
-              );
-          }
-        } catch (err) {
-          this.logError("Failed to initialize character-evolution", err);
-        }
+        })();
         break;
       case "culture-medicine":
-        try {
-          if (
-            !window.traditionalMedicineModule &&
-            window.TraditionalMedicineModule
-          ) {
-            window.traditionalMedicineModule = new TraditionalMedicineModule(
-              this.app,
-            );
+        (async () => {
+          try {
+            if (!window.CultureModuleBase) {
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
+            }
+            if (!window.TraditionalMedicineModule) {
+              await this.loadScript("assets/js/modules/culture/traditional-medicine.js");
+            }
+            if (!window.traditionalMedicineModule) {
+              window.traditionalMedicineModule = new TraditionalMedicineModule(this.app);
+            }
+            await window.traditionalMedicineModule.initialize();
+          } catch (err) {
+            this.logError("culture-medicine init failed:", err);
           }
-          if (window.traditionalMedicineModule) {
-            window.traditionalMedicineModule
-              .initialize()
-              .catch((err) =>
-                this.logError("culture-medicine init failed:", err),
-              );
-          }
-        } catch (err) {
-          this.logError("Failed to initialize traditional-medicine", err);
-        }
+        })();
         break;
       case "culture-opera":
-        try {
-          if (!window.pekingOperaModule && window.PekingOperaModule) {
-            window.pekingOperaModule = new PekingOperaModule(this.app);
+        (async () => {
+          try {
+            if (!window.CultureModuleBase) {
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
+            }
+            if (!window.PekingOperaModule) {
+              await this.loadScript("assets/js/modules/culture/peking-opera.js");
+            }
+            if (!window.pekingOperaModule) {
+              window.pekingOperaModule = new PekingOperaModule(this.app);
+            }
+            await window.pekingOperaModule.initialize();
+          } catch (err) {
+            this.logError("culture-opera init failed:", err);
           }
-          if (window.pekingOperaModule) {
-            window.pekingOperaModule
-              .initialize()
-              .catch((err) => this.logError("culture-opera init failed:", err));
-          }
-        } catch (err) {
-          this.logError("Failed to initialize peking-opera", err);
-        }
+        })();
         break;
       case "culture-technology":
-        try {
-          if (
-            !window.chineseTechnologyModule &&
-            window.ChineseTechnologyModule
-          ) {
-            window.chineseTechnologyModule = new ChineseTechnologyModule(
-              this.app,
-            );
+        (async () => {
+          try {
+            if (!window.CultureModuleBase) {
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
+            }
+            if (!window.ChineseTechnologyModule) {
+              await this.loadScript("assets/js/modules/culture/chinese-technology.js");
+            }
+            if (!window.chineseTechnologyModule) {
+              window.chineseTechnologyModule = new ChineseTechnologyModule(this.app);
+            }
+            await window.chineseTechnologyModule.initialize();
+          } catch (err) {
+            this.logError("culture-technology init failed:", err);
           }
-          if (window.chineseTechnologyModule) {
-            window.chineseTechnologyModule
-              .initialize()
-              .catch((err) =>
-                this.logError("culture-technology init failed:", err),
-              );
-          }
-        } catch (err) {
-          this.logError("Failed to initialize chinese-technology", err);
-        }
+        })();
         break;
       case "culture-clothing":
-        try {
-          if (
-            !window.ethnicClothingModule &&
-            window.EthnicClothingModule
-          ) {
-            window.ethnicClothingModule = new EthnicClothingModule(
-              this.app,
-            );
+        (async () => {
+          try {
+            if (!window.CultureModuleBase) {
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
+            }
+            if (!window.EthnicClothingModule) {
+              await this.loadScript("assets/js/modules/culture/ethnic-clothing.js");
+            }
+            if (!window.ethnicClothingModule) {
+              window.ethnicClothingModule = new EthnicClothingModule(this.app);
+            }
+            await window.ethnicClothingModule.initialize();
+          } catch (err) {
+            this.logError("culture-clothing init failed:", err);
           }
-          if (window.ethnicClothingModule) {
-            window.ethnicClothingModule
-              .initialize()
-              .catch((err) =>
-                this.logError("culture-clothing init failed:", err),
-              );
-          }
-        } catch (err) {
-          this.logError("Failed to initialize ethnic-clothing", err);
-        }
+        })();
         break;
       case "culture-arts":
-        try {
-          if (
-            !window.traditionalArtsModule &&
-            window.TraditionalArtsModule
-          ) {
-            window.traditionalArtsModule = new TraditionalArtsModule(
-              this.app,
-            );
+        (async () => {
+          try {
+            if (!window.CultureModuleBase) {
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
+            }
+            if (!window.TraditionalArtsModule) {
+              await this.loadScript("assets/js/modules/culture/traditional-arts.js");
+            }
+            if (!window.traditionalArtsModule) {
+              window.traditionalArtsModule = new TraditionalArtsModule(this.app);
+            }
+            await window.traditionalArtsModule.initialize();
+          } catch (err) {
+            this.logError("culture-arts init failed:", err);
           }
-          if (window.traditionalArtsModule) {
-            window.traditionalArtsModule
-              .initialize()
-              .catch((err) =>
-                this.logError("culture-arts init failed:", err),
-              );
-          }
-        } catch (err) {
-          this.logError("Failed to initialize traditional-arts", err);
-        }
+        })();
         break;
     }
   }
