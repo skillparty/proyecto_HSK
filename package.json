@@ -31,7 +31,7 @@
   ],
   "author": "Alejandro Rollano",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "@playwright/test": "^1.59.1",
     "jsdom": "^29.1.1"
   }
