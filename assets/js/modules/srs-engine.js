@@ -230,6 +230,26 @@ class SRSEngine {
   }
 
   /**
+   * Returns a weighted copy of `words` for use as a game word pool.
+   * Due words appear 2x, lapsed (forgotten) words appear 3x,
+   * so random-pick games naturally encounter weak words more often.
+   * All original words always stay in the pool — no words are removed.
+   */
+  getWeightedGamePool(words, now = Date.now()) {
+    if (!words || words.length === 0) return words;
+    const pool = [];
+    for (const word of words) {
+      const record = this.getRecord(word);
+      pool.push(word);
+      if (record && record.due <= now) {
+        pool.push(word); // +1 for due
+        if (record.lapses > 0) pool.push(word); // +1 more for lapsed
+      }
+    }
+    return pool;
+  }
+
+  /**
    * Summary counts for dashboards / home screen.
    * @returns {{due: number, fresh: number, learned: number, total: number}}
    */

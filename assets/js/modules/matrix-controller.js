@@ -38,8 +38,11 @@ class MatrixController {
       this.app.logInfo("[✓] Matrix game object found");
 
       if (this.app.vocabulary && this.app.vocabulary.length > 0) {
-        window.matrixGame.vocabulary = [...this.app.vocabulary]; // copy — never mutate app.vocabulary
-        window.matrixGame.allVocabulary = [...this.app.vocabulary]; // full copy for level-filter resets
+        const gamePool = this.app.srsEngine
+          ? this.app.srsEngine.getWeightedGamePool(this.app.vocabulary)
+          : this.app.vocabulary;
+        window.matrixGame.vocabulary = [...gamePool];
+        window.matrixGame.allVocabulary = [...gamePool];
         this.app.logDebug(
           "[OK] Vocabulary passed to matrix game: " +
             this.app.vocabulary.length +

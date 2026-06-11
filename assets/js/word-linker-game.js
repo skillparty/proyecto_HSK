@@ -83,8 +83,11 @@ class WordLinkerGame {
         this.state = this.getInitialState();
         this.state.isPlaying = true;
         
-        // Filter vocabulary to 2-character words
+        // Filter vocabulary to 2-character words — SRS-due words weighted higher
         let rawVocab = window.app.vocabulary || [];
+        if (rawVocab.length > 0 && window.app && window.app.srsEngine) {
+            rawVocab = window.app.srsEngine.getWeightedGamePool(rawVocab);
+        }
         if (rawVocab.length === 0) {
             rawVocab = [...this.fallbackVocab];
         }

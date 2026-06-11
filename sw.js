@@ -1,4 +1,4 @@
-const SW_VERSION = "4.16.0";
+const SW_VERSION = "4.17.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -24,7 +24,7 @@ const PRECACHE_FILES = [
   "./assets/js/translations.js?v=27",
   "./assets/js/firebase-client.js?v=5",
   "./assets/js/firebase-progress-sync.js",
-  "./assets/js/modules/srs-engine.js?v=2",
+  "./assets/js/modules/srs-engine.js?v=3",
   "./assets/js/modules/flashcard-manager.js?v=6",
   "./assets/js/modules/practice-view-controller.js?v=6",
   "./assets/js/modules/audio-controller.js?v=3",
@@ -54,9 +54,9 @@ const PRECACHE_FILES = [
   "./assets/js/app.js?v=36",
   "./assets/js/matrix-game.js",
   "./assets/js/matrix-game-ui.js",
-  "./assets/js/tones-invaders-game.js?v=4",
+  "./assets/js/tones-invaders-game.js?v=5",
   "./assets/js/hanzi-builder-game.js?v=2",
-  "./assets/js/word-linker-game.js?v=2",
+  "./assets/js/word-linker-game.js?v=3",
   "./assets/js/leaderboard.js",
   "./assets/data/culture/character-evolution.json",
   "./assets/data/culture/chinese-technology.json",

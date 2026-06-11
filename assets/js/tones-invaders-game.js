@@ -286,8 +286,11 @@ class TonesInvadersGame {
             this.spawnInterval = 2500;
         }
         
-        // Filter vocabulary
+        // Filter vocabulary — SRS-due words weighted higher
         let fullList = window.app.vocabulary || [];
+        if (fullList.length > 0 && window.app && window.app.srsEngine) {
+            fullList = window.app.srsEngine.getWeightedGamePool(fullList);
+        }
         if (fullList.length === 0) {
             // Fallback list
             fullList = [
