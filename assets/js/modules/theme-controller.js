@@ -64,62 +64,9 @@ class ThemeController {
             touchIcon.setAttribute('href', logoPath);
         }
 
-        const root = document.documentElement;
-        if (this.app.isDarkMode) {
-            // Variables de tema genéricas (Black & Dark Grey)
-            root.style.setProperty('--theme-bg', '#000000');
-            root.style.setProperty('--theme-surface', '#121212');
-            root.style.setProperty('--theme-text', '#ffffff');
-
-            // Sobrescribir variables de tokens de diseño para modo oscuro
-            root.style.setProperty('--color-bg-app', '#000000');
-            root.style.setProperty('--color-bg-panel', '#121212');
-            root.style.setProperty('--color-bg-card', '#121212');
-            root.style.setProperty('--color-bg-input', '#000000');
-            root.style.setProperty('--color-bg-hover', '#27272a');
-            root.style.setProperty('--color-border', '#27272a');
-            root.style.setProperty('--color-border-subtle', '#121212');
-            root.style.setProperty('--color-text-main', '#ffffff');
-            root.style.setProperty('--color-text-charcoal', '#f4f4f5');
-            root.style.setProperty('--color-text-muted', '#a1a1aa');
-            root.style.setProperty('--color-text-dim', '#71717a');
-
-            // Sobrescribir alias de compatibilidad de diseño para modo oscuro
-            root.style.setProperty('--bg-app', '#000000');
-            root.style.setProperty('--bg-panel', '#121212');
-            root.style.setProperty('--bg-card', '#121212');
-            root.style.setProperty('--text-main', '#ffffff');
-            root.style.setProperty('--text-muted', '#a1a1aa');
-            root.style.setProperty('--text-dim', '#71717a');
-            root.style.setProperty('--card-bg', '#121212');
-            root.style.setProperty('--border-color', '#27272a');
-            root.style.setProperty('--input-bg', '#000000');
-            root.style.setProperty('--text-primary', '#ffffff');
-            root.style.setProperty('--text-secondary', '#a1a1aa');
-        } else {
-            // En modo claro eliminamos las propiedades en línea para que los tokens por defecto de design-tokens.css tomen el control natural
-            const props = [
-                '--theme-bg', '--theme-surface', '--theme-text',
-                '--color-bg-app', '--color-bg-panel', '--color-bg-card', '--color-bg-input', '--color-bg-hover',
-                '--color-border', '--color-border-subtle',
-                '--color-text-main', '--color-text-charcoal', '--color-text-muted', '--color-text-dim',
-                '--bg-app', '--bg-panel', '--bg-card', '--text-main', '--text-muted', '--text-dim',
-                '--card-bg', '--border-color', '--input-bg', '--text-primary', '--text-secondary'
-            ];
-            props.forEach(p => root.style.removeProperty(p));
-        }
-
-        let bgSource = "url('assets/images/background01.png')";
-
-        // El degradado del fondo debe adaptarse según el tema seleccionado
-        const overlay = this.app.isDarkMode
-            ? 'linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65))'
-            : 'linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.92))';
-
-        document.body.style.background = overlay + ', ' + bgSource;
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundPosition = 'center';
-        document.body.style.backgroundAttachment = 'fixed';
+        // Los colores y el fondo del tema viven en design-tokens.css y
+        // styles-professional.css bajo html[data-theme="dark"]. Aquí solo se
+        // alterna el atributo/clases; nunca estilos en línea.
     }
 
     updateThemeButton() {

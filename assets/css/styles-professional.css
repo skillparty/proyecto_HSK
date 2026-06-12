@@ -50,6 +50,10 @@ html {
 body {
     font-family: var(--font-main);
     background-color: var(--bg-app);
+    /* Atmósfera sutil en secciones de trabajo: leve brillo cálido superior,
+       sin competir con el contenido */
+    background-image: radial-gradient(1100px 480px at 50% -120px, rgba(229, 57, 53, 0.05), transparent 70%);
+    background-repeat: no-repeat;
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
@@ -57,6 +61,37 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+}
+
+html[data-theme="dark"] body {
+    background-image: radial-gradient(1100px 480px at 50% -120px, rgba(229, 57, 53, 0.09), transparent 70%);
+}
+
+/* Mural caligráfico (evolución de la escritura) reservado para el home.
+   Capa fija con fade para que el cambio de tab no repinte el body. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.92)),
+        url("../images/background01.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+html[data-theme="dark"] body::before {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)),
+        url("../images/background01.png");
+}
+
+html[data-active-tab="home"] body::before {
+    opacity: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -228,184 +263,8 @@ ul {
         box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
     }
 
-    /* HSK Level Quick-Selector (Left Sidebar) */
-    .hsk-level-nav {
-        position: absolute;
-        top: 60px;
-        left: -13px; /* Center with the 14px wide pillar */
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        z-index: 95;
-    }
-
-    .hsk-nav-btn {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: rgba(15, 23, 42, 0.85);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
-        border: 1.5px solid rgba(245, 158, 11, 0.4);
-        color: #f8fafc;
-        font-size: 0.82rem;
-        font-weight: 700;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 
-            0 4px 10px rgba(0, 0, 0, 0.25),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .hsk-nav-btn:hover {
-        transform: scale(1.15);
-        border-color: #f59e0b;
-        box-shadow: 
-            0 6px 14px rgba(245, 158, 11, 0.25),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    }
-
-    .hsk-nav-btn.active {
-        background: radial-gradient(circle at 35% 35%, #e53935, #c62828);
-        border-color: #fffbcf;
-        box-shadow: 
-            0 0 14px rgba(229, 57, 53, 0.5),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        color: #ffffff;
-    }
-
-    .hsk-nav-btn.clicked {
-        transform: scale(0.9);
-    }
-
-    /* Daily Progress Bar (Right Sidebar) */
-    .hsk-progress-pillar {
-        position: absolute;
-        top: 60px;
-        bottom: 60px;
-        left: 4px;
-        width: 6px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 3px;
-        overflow: visible;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end; /* Progress fills from bottom to top */
-        box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255, 255, 255, 0.03);
-    }
-
-    .hsk-progress-fill-vertical {
-        width: 100%;
-        height: 0%; /* Dynamic */
-        background: linear-gradient(to top, #ef4444 0%, #f59e0b 50%, #10b981 100%);
-        border-radius: 3px;
-        box-shadow: 0 0 8px rgba(16, 185, 129, 0.35);
-        transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .hsk-progress-pillar.completed {
-        box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
-    }
-
-    /* Floating percentage label */
-    .hsk-progress-text {
-        position: absolute;
-        right: 14px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: #e2e8f0;
-        background: rgba(15, 23, 42, 0.85);
-        padding: 2px 5px;
-        border-radius: 4px;
-        border: 1px solid rgba(255,255,255,0.08);
-        pointer-events: none;
-        white-space: nowrap;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-    }
-
-    /* Flame Streak Icon (Right Sidebar bottom) */
-    .fire-bottom {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        bottom: -22px;
-        left: -11px;
-        width: 36px;
-        height: 36px;
-        background: radial-gradient(circle at 35% 35%, #334155, #1e293b);
-        border: 1.5px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        box-shadow: 
-            0 4px 10px rgba(0, 0, 0, 0.35),
-            inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-
-    .fire-bottom .fire-icon {
-        font-size: 1.15rem;
-        filter: grayscale(100%);
-        opacity: 0.4;
-        transition: all 0.4s;
-    }
-
-    .fire-bottom.has-streak {
-        background: radial-gradient(circle at 35% 35%, #fff7ed, #ffedd5);
-        border-color: #f97316;
-        box-shadow: 
-            0 0 14px rgba(249, 115, 22, 0.45),
-            0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .fire-bottom.has-streak .fire-icon {
-        filter: none;
-        opacity: 1;
-        animation: flame-pulse 1.2s ease-in-out infinite alternate;
-    }
-
-    .fire-bottom .streak-count {
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        background: #f97316;
-        color: #ffffff;
-        font-size: 0.65rem;
-        font-weight: 800;
-        min-width: 15px;
-        height: 15px;
-        border-radius: 7.5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 3px;
-        border: 1px solid #ffffff;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-        opacity: 0;
-        transform: scale(0.5);
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .fire-bottom.has-streak .streak-count {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .fire-bottom:hover {
-        transform: scale(1.15);
-    }
-
-    @keyframes flame-pulse {
-        0% { transform: scale(1) rotate(-4deg); }
-        100% { transform: scale(1.1) rotate(4deg); }
-    }
+    /* Los pilares son puramente decorativos: nada de controles.
+       El nivel HSK se elige en Estudiar/Browse; la racha vive en el header. */
 
     /* Faroles Chinos Colgantes en el tope */
     .lantern-top {
@@ -625,10 +484,66 @@ ul {
     display: none !important;
 }
 
+/* Panel de ajustes (idioma, voz, audio): dropdown bajo el engranaje,
+   cerrado por defecto en todos los viewports */
 .header-settings-group {
+    display: none;
+}
+
+.header-actions {
+    position: relative;
+}
+
+.header-actions.settings-open .header-settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 8px;
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-dropdown);
+    min-width: 220px;
+    animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.settings-row {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 10px;
+    border-radius: var(--radius-md);
+}
+
+.settings-row:hover {
+    background: var(--color-bg-hover);
+}
+
+.settings-row-label {
+    font-size: 0.85rem;
+    font-weight: var(--weight-medium);
+    color: var(--text-muted);
+}
+
+.settings-row select {
+    background: var(--color-bg-input);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    min-width: 96px;
+    cursor: pointer;
+}
+
+.settings-row select:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-glow);
 }
 
 #header-search {
@@ -670,27 +585,6 @@ ul {
 .header-control:hover {
     color: var(--text-main);
     background: rgba(255, 255, 255, 0.1);
-}
-
-select.header-control {
-    font-size: 0.9rem;
-    padding: 6px 12px;
-    border-radius: 8px;
-    background: var(--color-bg-input);
-    border: 1px solid var(--color-border);
-    color: var(--text-main);
-    cursor: pointer;
-    transition: border-color var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
-}
-
-select.header-control:hover {
-    border-color: rgba(229, 57, 53, 0.5);
-}
-
-select.header-control:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--color-primary-glow);
 }
 
 /* ============================================================================
@@ -797,7 +691,7 @@ select.header-control:focus {
     background: transparent;
 }
 
-body.light-theme .nav-dropdown {
+html[data-theme="light"] .nav-dropdown {
     background: rgba(255, 255, 255, 0.85); /* Modern light glass */
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.02);
@@ -835,7 +729,7 @@ body.light-theme .nav-dropdown {
     font-family: inherit;
 }
 
-body.light-theme .nav-dropdown-item {
+html[data-theme="light"] .nav-dropdown-item {
     color: var(--color-text-charcoal);
 }
 
@@ -845,7 +739,7 @@ body.light-theme .nav-dropdown-item {
     padding-left: 18px; /* Small slide effect */
 }
 
-body.light-theme .nav-dropdown-item:hover {
+html[data-theme="light"] .nav-dropdown-item:hover {
     color: var(--color-primary);
     background: var(--color-bg-hover);
 }
@@ -856,7 +750,7 @@ body.light-theme .nav-dropdown-item:hover {
     background: rgba(245, 158, 11, 0.15);
 }
 
-body.light-theme .nav-dropdown-item.active {
+html[data-theme="light"] .nav-dropdown-item.active {
     color: var(--color-primary);
     background: rgba(211, 47, 47, 0.08);
 }
@@ -1120,7 +1014,7 @@ body.light-theme .nav-dropdown-item.active {
     overflow: hidden;
 }
 
-body.light-theme .welcome-card {
+html[data-theme="light"] .welcome-card {
     background: linear-gradient(135deg, #f5ecd8, #e8d0a7); /* Warm cream and soft gold gradient */
     border: 1px solid var(--color-primary);
     color: var(--color-text-charcoal);
@@ -1141,7 +1035,7 @@ body.light-theme .welcome-card {
     color: var(--accent);
 }
 
-body.light-theme .welcome-user-info h2 {
+html[data-theme="light"] .welcome-user-info h2 {
     color: var(--color-primary);
 }
 
@@ -1178,7 +1072,7 @@ body.light-theme .welcome-user-info h2 {
     z-index: 2;
 }
 
-body.light-theme .welcome-stats {
+html[data-theme="light"] .welcome-stats {
     border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -1193,7 +1087,7 @@ body.light-theme .welcome-stats {
     color: var(--color-text-on-dark);
 }
 
-body.light-theme .welcome-stat .stat-number {
+html[data-theme="light"] .welcome-stat .stat-number {
     color: var(--color-primary-hover);
 }
 
@@ -1289,7 +1183,7 @@ body.light-theme .welcome-stat .stat-number {
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-body.light-theme .char-mi-zi-ge {
+html[data-theme="light"] .char-mi-zi-ge {
     border-color: var(--color-primary);
 }
 
@@ -1439,7 +1333,7 @@ body.light-theme .char-mi-zi-ge {
     opacity: 0.75;
 }
 
-body.light-theme .achievement-item.lock {
+html[data-theme="light"] .achievement-item.lock {
     background: rgba(0, 0, 0, 0.02);
 }
 
@@ -1758,9 +1652,10 @@ body.light-theme .achievement-item.lock {
 /* Card Content — Front Character (large calligraphy grid) */
 .card-character {
     font-size: 5rem;
-    font-family: var(--font-chinese);
-    font-weight: var(--hanzi-weight);
-    color: var(--color-text-charcoal);
+    font-family: var(--font-chinese-serif);
+    font-weight: 600;
+    /* Tinta fija: la caja de papel de arroz es clara en ambos temas */
+    color: #1c1917;
     position: relative;
     width: 130px;
     height: 130px;
@@ -1787,9 +1682,10 @@ body.light-theme .achievement-item.lock {
 /* Card Content — Back Character (compact) */
 .card-back-character {
     font-size: 3rem;
-    font-family: var(--font-chinese);
-    font-weight: var(--hanzi-weight);
-    color: var(--color-text-charcoal);
+    font-family: var(--font-chinese-serif);
+    font-weight: 600;
+    /* Tinta fija: la caja de papel de arroz es clara en ambos temas */
+    color: #1c1917;
     position: relative;
     width: 72px;
     height: 72px;
@@ -2010,41 +1906,19 @@ body.light-theme .achievement-item.lock {
         display: flex !important;
     }
 
-    .header-settings-group {
-        display: none;
-    }
-
-    /* Absolute dropdown for settings on mobile */
+    /* El dropdown de ajustes es global; en móvil se ancla al viewport
+       (el contenedor puede desbordar) y agranda targets táctiles */
     .header-actions.settings-open .header-settings-group {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        position: absolute;
-        top: 64px;
-        right: 16px;
-        background: var(--bg-panel);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-lg);
-        padding: 16px;
-        box-shadow: var(--shadow-lg);
-        z-index: 1010;
-        min-width: 200px;
-        animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        position: fixed;
+        top: calc(var(--header-height) + 6px);
+        right: 12px;
+        left: auto;
+        max-width: calc(100vw - 24px);
     }
 
-    .header-actions.settings-open .header-settings-group select {
-        width: 100%;
+    .settings-row select {
         min-height: 40px;
-        background: rgba(0, 0, 0, 0.03);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-md);
-        color: var(--text-main);
-        padding: 8px 12px;
         font-size: 0.9rem;
-    }
-
-    [data-theme="dark"] .header-actions.settings-open .header-settings-group select {
-        background: rgba(255, 255, 255, 0.05);
     }
 
     .app-header {
@@ -2282,6 +2156,7 @@ body.light-theme .achievement-item.lock {
     text-align: center;
     transition:
         transform var(--transition-fast),
+        border-color var(--transition-fast),
         box-shadow var(--transition-fast);
     cursor: pointer;
     position: relative;
@@ -2290,18 +2165,19 @@ body.light-theme .achievement-item.lock {
 
 .vocab-card:hover {
     transform: translateY(-4px);
-    border-color: var(--color-primary-subtle);
+    border-color: rgba(229, 57, 53, 0.45);
     box-shadow: var(--shadow-md);
 }
 
 .vocab-char,
 .vocab-character {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
     color: var(--text-main);
-    font-family: var(--font-chinese);
-    width: 68px;
-    height: 68px;
-    margin: 0 auto 12px;
+    font-family: var(--font-chinese-serif);
+    font-weight: 600;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 14px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2325,18 +2201,19 @@ body.light-theme .achievement-item.lock {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin: 0 auto 12px;
+    margin: 0 auto 14px;
     flex-wrap: wrap;
-    min-height: 68px;
+    min-height: 76px;
     align-items: center;
 }
 
 .vocab-character-box {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--text-main);
-    font-family: var(--font-chinese);
-    width: 48px;
-    height: 48px;
+    font-family: var(--font-chinese-serif);
+    font-weight: 600;
+    width: 56px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2356,9 +2233,21 @@ body.light-theme .achievement-item.lock {
         0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
+/* Las cajas mi-zi-ge conservan papel claro en ambos temas: los caracteres
+   dentro usan la paleta de tonos del tema claro, no la aclarada para
+   superficies oscuras */
+html[data-theme="dark"] .vocab-character,
+html[data-theme="dark"] .vocab-character-box {
+    --color-tone-1: #d97706;
+    --color-tone-2: #2563eb;
+    --color-tone-3: #16a34a;
+    --color-tone-4: #dc2626;
+    --color-tone-0: #6b7280;
+}
+
 .vocab-pinyin {
     color: var(--primary);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
     margin-bottom: 4px;
 }
@@ -2367,6 +2256,21 @@ body.light-theme .achievement-item.lock {
     color: var(--text-muted);
     font-size: 0.85rem;
     line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+/* Nivel como badge discreto: metadato, no protagonista */
+.vocab-level {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: var(--color-bg-hover);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-pill);
+    padding: 2px 10px;
 }
 
 /* ============================================================================
@@ -4266,7 +4170,7 @@ body.zen-mode .practice-container {
     margin-bottom: 10px;
 }
 
-body.light-theme .stats-heatmap-card {
+html[data-theme="light"] .stats-heatmap-card {
     background: rgba(255, 248, 240, 0.85);
     border: 1px solid var(--color-border);
     box-shadow: 0 10px 30px rgba(139, 0, 0, 0.05);
@@ -4296,7 +4200,7 @@ body.light-theme .stats-heatmap-card {
     text-align: center;
 }
 
-body.light-theme .stats-ring-card {
+html[data-theme="light"] .stats-ring-card {
     background: rgba(255, 248, 240, 0.85);
     border: 1px solid var(--color-border);
     box-shadow: 0 4px 20px rgba(139, 0, 0, 0.03);
@@ -4390,12 +4294,12 @@ body.light-theme .stats-ring-card {
     min-height: 280px;
 }
 
-.dark-theme .dashboard-3d-portal {
+html[data-theme="dark"] .dashboard-3d-portal {
     background: rgba(15, 23, 42, 0.35);
     border-color: rgba(255, 255, 255, 0.06);
 }
 
-body.light-theme .dashboard-3d-portal {
+html[data-theme="light"] .dashboard-3d-portal {
     background: rgba(255, 255, 255, 0.6);
     border-color: rgba(0, 0, 0, 0.08);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);

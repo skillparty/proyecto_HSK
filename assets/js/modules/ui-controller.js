@@ -69,6 +69,9 @@ class UIController {
     // Update app orchestrator state
     this.app.currentTab = tabName;
 
+    // Expose active tab to CSS (mural backdrop renders on home only)
+    document.documentElement.setAttribute("data-active-tab", tabName);
+
     // Pause matrix game if leaving matrix tab
     if (
       oldTab === "matrix" &&

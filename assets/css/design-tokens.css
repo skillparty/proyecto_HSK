@@ -95,10 +95,15 @@ Architecture: CSS Custom Properties.
     /* ---- TYPOGRAPHY ---- */
     --font-main:
         "Inter", -apple-system, system-ui, "Segoe UI", Helvetica, sans-serif;
+    /* Display serif: carácter editorial para títulos (latín + hanzi) */
     --font-display:
-        "Inter", -apple-system, system-ui, "Segoe UI", Helvetica, sans-serif;
+        "Noto Serif SC", "Songti SC", Georgia, serif;
     --font-chinese:
         "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    /* Hanzi en serif (estilo songti de imprenta) para displays grandes:
+       flashcards, cajas mi-zi-ge, héroes */
+    --font-chinese-serif:
+        "Noto Serif SC", "Songti SC", "Noto Sans SC", serif;
     --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
     /* Font Sizes - Notion Hierarchy */
@@ -185,6 +190,54 @@ Architecture: CSS Custom Properties.
     --z-overlay: 900;
     --z-modal: 1000;
     --z-toast: 1100;
+}
+
+/* ============================================================================
+   DARK THEME OVERRIDES
+   ============================================================================
+   Single source of truth for dark mode. JS only toggles the data-theme
+   attribute on <html>; it must never set color properties inline.
+   Zinc-950 base instead of pure black: softer on the eyes for long
+   study sessions, and lets shadows/elevation still read.
+   ============================================================================ */
+html[data-theme="dark"] {
+    /* Backgrounds */
+    --color-bg-app: #09090b; /* Zinc 950 */
+    --color-bg-panel: #141417;
+    --color-bg-card: #141417;
+    --color-bg-input: #09090b;
+    --color-bg-hover: #27272a; /* Zinc 800 */
+
+    /* Borders */
+    --color-border: #27272a; /* Zinc 800 */
+    --color-border-subtle: #1c1c1f;
+
+    /* Text */
+    --color-text-main: #fafafa; /* Zinc 50 — softer than pure white */
+    --color-text-charcoal: #f4f4f5;
+    --color-text-muted: #a1a1aa; /* Zinc 400 */
+    --color-text-dim: #71717a; /* Zinc 500 */
+
+    /* Subtle fills: translucent so they sit on dark surfaces without glare */
+    --color-primary-subtle: rgba(229, 57, 53, 0.16);
+    --color-accent-subtle: rgba(250, 204, 21, 0.14);
+    --color-success-subtle: rgba(34, 197, 94, 0.14);
+    --color-warning-subtle: rgba(250, 204, 21, 0.14);
+    --color-error-subtle: rgba(239, 68, 68, 0.16);
+
+    /* Tone colors brightened one step for contrast on dark backgrounds */
+    --color-tone-1: #f59e0b;
+    --color-tone-2: #3b82f6;
+    --color-tone-3: #22c55e;
+    --color-tone-4: #ef4444;
+    --color-tone-0: #9ca3af;
+
+    /* Shadows tuned for dark surfaces */
+    --shadow-sm: rgba(0, 0, 0, 0.35) 0px 1px 2px 0px;
+    --shadow-md: rgba(0, 0, 0, 0.45) 0px 4px 12px 0px;
+    --shadow-lg: rgba(0, 0, 0, 0.6) 0px 16px 48px -8px;
+    --shadow-xl: rgba(0, 0, 0, 0.65) 0px 24px 48px -8px;
+    --shadow-product: rgba(0, 0, 0, 0.65) 0px 24px 48px -8px;
 }
 
 /* ============================================================================

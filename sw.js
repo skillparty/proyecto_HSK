@@ -1,4 +1,4 @@
-const SW_VERSION = "4.21.0";
+const SW_VERSION = "4.22.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -12,11 +12,11 @@ const PRECACHE_FILES = [
   "./",
   "./index.html",
   "./config/manifest.json",
-  "./assets/css/design-tokens.css",
-  "./assets/css/styles-professional.css?v=31",
+  "./assets/css/design-tokens.css?v=6",
+  "./assets/css/styles-professional.css?v=32",
   "./assets/css/matrix-game-styles.css?v=6",
   "./assets/css/leaderboard-styles.css",
-  "./assets/css/user-profile-styles.css",
+  "./assets/css/user-profile-styles.css?v=2",
   "./assets/css/quantifier-snake-styles.css?v=8",
   "./assets/css/tones-invaders-styles.css?v=3",
   "./assets/css/hanzi-builder-styles.css?v=2",
@@ -29,7 +29,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/practice-view-controller.js?v=6",
   "./assets/js/modules/audio-controller.js?v=3",
   "./assets/js/modules/quiz-engine.js?v=2",
-  "./assets/js/modules/ui-controller.js?v=6",
+  "./assets/js/modules/ui-controller.js?v=7",
   "./assets/js/modules/navigation-controller.js?v=4",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",
@@ -40,7 +40,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/culture/traditional-arts.js",
   "./assets/js/modules/language-controller.js?v=3",
   "./assets/js/modules/browse-controller.js?v=4",
-  "./assets/js/modules/interaction-controller.js?v=7",
+  "./assets/js/modules/interaction-controller.js?v=8",
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-controller.js?v=3",
   "./assets/js/modules/quantifier-snake-utils.js?v=1",
@@ -51,7 +51,7 @@ const PRECACHE_FILES = [
   "./assets/js/auth-backend.js",
   "./assets/js/user-progress-backend.js",
   "./assets/js/bg-data.js",
-  "./assets/js/app.js?v=36",
+  "./assets/js/app.js?v=37",
   "./assets/js/matrix-game.js?v=3",
   "./assets/js/matrix-game-ui.js",
   "./assets/js/tones-invaders-game.js?v=5",

@@ -379,12 +379,31 @@ class InteractionController {
             audioToggle.addEventListener('click', () => this.app.toggleAudio());
         }
 
-        const mobileSettingsToggle = document.getElementById('mobile-settings-toggle');
-        if (mobileSettingsToggle) {
-            mobileSettingsToggle.addEventListener('click', () => {
+        const settingsToggle = document.getElementById('mobile-settings-toggle');
+        if (settingsToggle) {
+            const setSettingsOpen = (isOpen) => {
                 const headerActions = document.querySelector('.header-actions');
-                if (headerActions) {
-                    headerActions.classList.toggle('settings-open');
+                if (!headerActions) return;
+                headerActions.classList.toggle('settings-open', isOpen);
+                settingsToggle.setAttribute('aria-expanded', String(isOpen));
+            };
+
+            settingsToggle.addEventListener('click', () => {
+                const headerActions = document.querySelector('.header-actions');
+                const isOpen = headerActions ? headerActions.classList.contains('settings-open') : false;
+                setSettingsOpen(!isOpen);
+            });
+
+            // Cerrar al hacer click fuera del panel o con Escape
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.header-settings-group') || e.target.closest('#mobile-settings-toggle')) {
+                    return;
+                }
+                setSettingsOpen(false);
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    setSettingsOpen(false);
                 }
             });
         }
@@ -494,142 +513,44 @@ class InteractionController {
     }
 
     setupSidebarInteractions() {
-        // 1. Level Quick-selector (Left Sidebar)
-        const leftNavBtns = document.querySelectorAll('.hsk-nav-btn');
-        const levelSelect = document.getElementById('level-select');
-        
-        const updateSidebarActiveLevel = (currentLevel) => {
-            leftNavBtns.forEach(btn => {
-                const lvl = btn.getAttribute('data-level');
-                if (lvl === String(currentLevel)) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-        };
-
-        if (leftNavBtns.length > 0) {
-            // Initial state
-            updateSidebarActiveLevel(this.app.currentLevel);
-            
-            // Listen to level dropdown changes to sync sidebar active state
-            if (levelSelect) {
-                levelSelect.addEventListener('change', (e) => {
-                    updateSidebarActiveLevel(e.target.value);
-                });
-            }
-            
-            // Listen to click on HSK Level badges in left sidebar
-            leftNavBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const level = btn.getAttribute('data-level');
-                    if (levelSelect) {
-                        levelSelect.value = level;
-                        levelSelect.dispatchEvent(new Event('change'));
-                    } else {
-                        // Fallback if level select doesn't exist
-                        this.app.currentLevel = level;
-                        try {
-                            localStorage.setItem('hsk-last-level', level);
-                        } catch (e) {}
-                        this.app.flashcardManager.setupSession();
-                        updateSidebarActiveLevel(level);
-                    }
-                    
-                    // Simple animation effect on click
-                    btn.classList.add('clicked');
-                    setTimeout(() => btn.classList.remove('clicked'), 300);
-                });
-            });
-        }
-
-        // 2. Scroll-driven animations for swinging lanterns and rotating coins
+        // Animaciones de scroll para los pilares decorativos (linternas y monedas).
+        // El scroll real ocurre dentro de .tab-panel (no en window), así que se
+        // escucha en fase de captura para atrapar el scroll de cualquier contenedor.
         let lastKnownScrollPosition = 0;
+        let lastScrollableHeight = 1;
         let ticking = false;
-        
-        const handleScrollEffects = (scrollPos) => {
-            const scrollPercent = scrollPos / Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-            
+
+        const handleScrollEffects = (scrollPos, scrollableHeight) => {
+            const scrollPercent = scrollPos / Math.max(1, scrollableHeight);
+
             // Swing angle follows scroll change (oscillates with scroll position)
             const swingAngle = Math.sin(scrollPos * 0.01) * 8; // swing range [-8deg, +8deg]
             const lanterns = document.querySelectorAll('.lantern-top');
             lanterns.forEach(lantern => {
                 lantern.style.transform = `rotate(${swingAngle}deg)`;
             });
-            
+
             // Rotate the coins 3D on scroll
             const coinRotation = scrollPercent * 360 * 2.5; // rotate up to 2.5 full circles
             const coins = document.querySelectorAll('.coin-bottom');
             coins.forEach(coin => {
                 coin.style.transform = `rotate(${coinRotation}deg)`;
             });
-            
-            // Bouncing/tilting fire streak icon on scroll
-            const fireIcon = document.querySelector('.fire-bottom .fire-icon');
-            if (fireIcon) {
-                const fireRotate = Math.cos(scrollPos * 0.015) * 12;
-                fireIcon.style.transform = `rotate(${fireRotate}deg) scale(${1 + Math.sin(scrollPos * 0.01) * 0.1})`;
-            }
         };
 
-        window.addEventListener('scroll', () => {
-            lastKnownScrollPosition = window.scrollY;
+        document.addEventListener('scroll', (e) => {
+            const target = e.target === document ? document.documentElement : e.target;
+            if (!target || typeof target.scrollTop !== 'number') return;
+            lastKnownScrollPosition = target.scrollTop;
+            lastScrollableHeight = target.scrollHeight - target.clientHeight;
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    handleScrollEffects(lastKnownScrollPosition);
+                    handleScrollEffects(lastKnownScrollPosition, lastScrollableHeight);
                     ticking = false;
                 });
                 ticking = true;
             }
-        });
-
-        // 3. Daily Goal Progress updates (Right Sidebar)
-        this.updateSidebarProgress();
-    }
-
-    updateSidebarProgress() {
-        const stats = this.app.stats;
-        if (!stats) return;
-        
-        const goal = stats.dailyGoal || 20;
-        const done = stats.todayCards || 0;
-        const percent = Math.min(100, Math.round((done / goal) * 100));
-        
-        const progressFill = document.getElementById('sidebar-progress-fill');
-        const progressText = document.getElementById('sidebar-progress-text');
-        
-        if (progressFill) {
-            progressFill.style.height = `${percent}%`;
-            
-            const pillar = progressFill.closest('.hsk-progress-pillar');
-            if (pillar) {
-                if (percent >= 100) {
-                    pillar.classList.add('completed');
-                } else {
-                    pillar.classList.remove('completed');
-                }
-            }
-        }
-        if (progressText) {
-            progressText.textContent = `${percent}%`;
-        }
-
-        // 4. Update streak count
-        const streakCount = document.getElementById('sidebar-streak-count');
-        const fireStreak = document.getElementById('sidebar-fire-streak');
-        const currentStreak = stats.currentStreak || 0;
-        
-        if (streakCount) {
-            streakCount.textContent = currentStreak;
-        }
-        if (fireStreak) {
-            if (currentStreak > 0) {
-                fireStreak.classList.add('has-streak');
-            } else {
-                fireStreak.classList.remove('has-streak');
-            }
-        }
+        }, { capture: true, passive: true });
     }
 }
 

@@ -21,16 +21,34 @@
     <link rel="icon" type="image/png" href="assets/images/logo05.png" id="app-favicon">
     <link rel="apple-touch-icon" href="assets/images/logo05.png" id="app-touch-icon">
 
+    <!-- Theme pre-paint: set data-theme before any CSS loads so there is no
+         flash of the wrong theme. ThemeController keeps it in sync afterwards. -->
+    <script>
+        (function () {
+            var theme = 'dark';
+            var lastTab = 'practice';
+            try {
+                theme = localStorage.getItem('hsk-theme') || 'dark';
+                lastTab = localStorage.getItem('hsk-last-tab') || 'practice';
+            } catch (e) { /* storage blocked */ }
+            var root = document.documentElement;
+            root.setAttribute('data-theme', theme);
+            root.setAttribute('data-active-tab', lastTab);
+            root.classList.add(theme === 'dark' ? 'dark-theme' : 'light-theme');
+        })();
+    </script>
+
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/design-tokens.css?v=5" id="design-tokens">
-    <link rel="stylesheet" href="assets/css/styles-professional.css?v=31" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/design-tokens.css?v=6" id="design-tokens">
+    <link rel="stylesheet" href="assets/css/styles-professional.css?v=32" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=2" id="auth-stylesheet">
 
     <!-- Game/leaderboard CSS injected on demand by ui-controller.js (see loadStylesheet) -->
     <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;600;700&display=swap"
         rel="stylesheet" id="fonts-stylesheet">
 
     <!-- Three.js loaded on-demand by home-controller.js when 3D canvas enters view -->
@@ -143,29 +161,15 @@
 </head>
 
 <body>
-    <!-- Pilares laterales chinos mejorados con controles interactivos -->
-    <div class="vertical-pillar-left">
+    <!-- Pilares laterales decorativos (identidad sino-boliviana, solo escritorio amplio).
+         Sin controles: el nivel HSK se elige en Estudiar/Browse y la racha vive en el header. -->
+    <div class="vertical-pillar-left" aria-hidden="true">
         <div class="lantern-top" title="¡Farol de la suerte! Balancea al desplazar la página"></div>
-        <div class="hsk-level-nav">
-            <button class="hsk-nav-btn" data-level="1" title="Nivel HSK 1" aria-label="Seleccionar HSK Nivel 1">H1</button>
-            <button class="hsk-nav-btn" data-level="2" title="Nivel HSK 2" aria-label="Seleccionar HSK Nivel 2">H2</button>
-            <button class="hsk-nav-btn" data-level="3" title="Nivel HSK 3" aria-label="Seleccionar HSK Nivel 3">H3</button>
-            <button class="hsk-nav-btn" data-level="4" title="Nivel HSK 4" aria-label="Seleccionar HSK Nivel 4">H4</button>
-            <button class="hsk-nav-btn" data-level="5" title="Nivel HSK 5" aria-label="Seleccionar HSK Nivel 5">H5</button>
-            <button class="hsk-nav-btn" data-level="6" title="Nivel HSK 6" aria-label="Seleccionar HSK Nivel 6">H6</button>
-        </div>
         <div class="coin-bottom" title="Moneda Imperial. Gira al desplazar la página"></div>
     </div>
-    <div class="vertical-pillar-right">
+    <div class="vertical-pillar-right" aria-hidden="true">
         <div class="lantern-top" title="¡Farol de la suerte! Balancea al desplazar la página"></div>
-        <div class="hsk-progress-pillar" title="Progreso de tu meta diaria" aria-label="Barra de progreso de meta de estudio diaria">
-            <div class="hsk-progress-fill-vertical" id="sidebar-progress-fill"></div>
-            <div class="hsk-progress-text" id="sidebar-progress-text">0%</div>
-        </div>
-        <div class="fire-bottom" id="sidebar-fire-streak" title="Tu racha de estudio activa" aria-label="Contador de racha diaria de estudio">
-            <span class="fire-icon" aria-hidden="true">🔥</span>
-            <span class="streak-count" id="sidebar-streak-count">0</span>
-        </div>
+        <div class="coin-bottom" title="Moneda Imperial. Gira al desplazar la página"></div>
     </div>
 
     <div class="app-container">
@@ -181,59 +185,20 @@
                         </div>
                     </div>
 
-                    <!-- Stats Section -->
+                    <!-- Stats Section: solo racha + tarjetas vencidas (el resto vive en Inicio/Progreso) -->
                     <div class="header-stats">
-                        <div class="header-stat">
-                            <div class="header-stat-value" id="header-studied">0</div>
-                            <div class="header-stat-label" data-i18n="totalStudied">Studied</div>
-                        </div>
                         <div class="header-stat" id="header-streak-stat" title="Racha de estudio">
                             <span class="header-streak-icon" id="header-streak-icon" aria-hidden="true">🔥</span>
                             <div class="header-stat-value" id="header-streak">0</div>
                             <div class="header-stat-label" data-i18n="currentStreak">Streak</div>
                             <span class="header-due-badge" id="header-due-badge" style="display:none;" aria-label="tarjetas vencidas"></span>
                         </div>
-                        <div class="header-stat">
-                            <div class="header-progress">
-                                <div class="header-progress-fill" id="header-progress" style="width: 0%"></div>
-                            </div>
-                            <div class="header-stat-label" data-i18n="progress">Progress</div>
-                        </div>
                     </div>
 
                     <!-- Controls Section -->
                     <div class="header-actions">
-                        <div id="auth-container" class="auth-container">
-                            <!-- Authentication UI will be inserted here -->
-                        </div>
-
                         <input type="text" id="header-search" placeholder="Search vocabulary..."
                             data-i18n-placeholder="searchPlaceholder">
-
-                        <div class="header-settings-group">
-                            <select id="language-select" class="header-control" title="Language"
-                                data-i18n-title="languageSelectorTitle" data-tooltip="Change interface language" data-i18n-tooltip="languageSelectorTooltip">
-                                <option value="en">EN</option>
-                                <option value="es">ES</option>
-                            </select>
-
-                            <select id="voice-select" class="header-control" title="Voice"
-                                data-i18n-title="voiceSelectorTitle" data-tooltip="Select voice for pronunciation" data-i18n-tooltip="voiceSelectorTooltip">
-                                <option value="auto">Auto</option>
-                                <option value="male">Masculino</option>
-                                <option value="female">Femenino</option>
-                            </select>
-                        </div>
-
-                        <!-- Mobile Settings Toggle Button -->
-                        <button id="mobile-settings-toggle" class="header-control mobile-only" title="Settings"
-                            data-tooltip="Configure language and voice settings">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                            </svg>
-                        </button>
 
                         <!-- Theme Toggle -->
                         <button id="theme-toggle" class="header-control" title="Toggle Theme"
@@ -244,14 +209,53 @@
                             </svg>
                         </button>
 
-                        <button id="audio-toggle" class="header-control" title="Toggle Audio"
-                            data-i18n-title="audioToggleTitle" data-tooltip="Toggle pronunciation audio">
+                        <!-- Settings (idioma, voz, audio) -->
+                        <button id="mobile-settings-toggle" class="header-control" title="Settings"
+                            data-tooltip="Configure language, voice and audio" aria-haspopup="true" aria-expanded="false">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                             </svg>
                         </button>
+
+                        <!-- Settings dropdown panel -->
+                        <div class="header-settings-group" role="menu" aria-label="Ajustes">
+                            <label class="settings-row">
+                                <span class="settings-row-label" data-i18n="languageSelectorTitle">Idioma</span>
+                                <select id="language-select" title="Language"
+                                    data-i18n-title="languageSelectorTitle">
+                                    <option value="en">EN</option>
+                                    <option value="es">ES</option>
+                                </select>
+                            </label>
+
+                            <label class="settings-row">
+                                <span class="settings-row-label" data-i18n="voiceSelectorTitle">Voz</span>
+                                <select id="voice-select" title="Voice"
+                                    data-i18n-title="voiceSelectorTitle">
+                                    <option value="auto">Auto</option>
+                                    <option value="male">Masculino</option>
+                                    <option value="female">Femenino</option>
+                                </select>
+                            </label>
+
+                            <div class="settings-row">
+                                <span class="settings-row-label" data-i18n="audioToggleTitle">Audio</span>
+                                <button id="audio-toggle" class="header-control" title="Toggle Audio"
+                                    data-i18n-title="audioToggleTitle" data-tooltip="Toggle pronunciation audio">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="auth-container" class="auth-container">
+                            <!-- Authentication UI will be inserted here -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1630,7 +1634,7 @@
     <script src="assets/js/modules/quiz-engine.js?v=2" defer></script>
     <script src="assets/js/modules/quiz-legacy-controller.js?v=1" defer></script>
     <script src="assets/js/modules/stats-controller.js?v=2" defer></script>
-    <script src="assets/js/modules/theme-controller.js?v=3" defer></script>
+    <script src="assets/js/modules/theme-controller.js?v=4" defer></script>
     <script src="assets/js/modules/audio-controller.js?v=3" defer></script>
     <script src="assets/js/modules/browse-controller.js?v=4" defer></script>
     <script src="assets/js/modules/strokes-radicals-controller.js?v=4" defer></script>
@@ -1643,7 +1647,7 @@
     <script src="assets/js/modules/search-controller.js?v=1" defer></script>
     <script src="assets/js/modules/practice-view-controller.js?v=6" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=3" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=7" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=8" defer></script>
     <script src="assets/js/modules/past-exams-controller.js?v=3" defer></script>
     <script src="assets/js/modules/quantifier-snake-utils.js?v=1" defer></script>
     <script src="assets/js/modules/quantifier-snake-canvas.js?v=4" defer></script>
@@ -1651,7 +1655,7 @@
     <script src="assets/js/modules/vocabulary-controller.js?v=3" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=6" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=7" defer></script>
     <script src="assets/js/modules/home-controller.js?v=7" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=2" defer></script>
 
@@ -1671,7 +1675,7 @@
     <!-- Background Data (Base64 Fallback) -->
     <script src="assets/js/logger.js?v=1" defer></script>
     <script src="assets/js/bg-data.js" defer></script>
-    <script src="assets/js/app.js?v=36" defer></script>
+    <script src="assets/js/app.js?v=37" defer></script>
     <!-- matrix-game.js, tones-invaders-game.js, leaderboard.js loaded on demand by ui-controller.js -->
 
     <!-- Background Image Integration -->
