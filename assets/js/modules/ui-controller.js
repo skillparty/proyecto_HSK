@@ -233,7 +233,7 @@ class UIController {
       case "matrix":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/matrix-game-styles.css?v=6");
+            await this.loadStylesheet("assets/css/matrix-game-styles.css?v=7");
             if (!window.GameStateManager) {
               await this.loadScript("assets/js/modules/game-engine.js");
             }
