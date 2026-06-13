@@ -3,6 +3,19 @@ class StatsController {
         this.app = app;
     }
 
+    /**
+     * Resolve a CSS custom property to a concrete color string.
+     * Canvas fillStyle cannot parse "var(--x)", so charts must read the
+     * computed token value (which already reflects the active theme).
+     * @param {string} name CSS variable name, e.g. "--color-primary"
+     * @param {string} fallback color used if the variable is empty
+     * @returns {string}
+     */
+    cssVar(name, fallback) {
+        const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        return v || fallback;
+    }
+
     async updateStats() {
         this.app.logDebug('[stats] Updating stats');
 
@@ -201,14 +214,24 @@ class StatsController {
         const width = canvas.width;
         const height = canvas.height;
 
+        const isLight = document.body.classList.contains('light-theme');
+        // Paleta resuelta por tema (canvas no entiende var())
+        const panelBg = isLight ? 'rgba(255, 248, 240, 0.6)' : 'rgba(15, 23, 42, 0.42)';
+        const panelBorder = isLight ? 'rgba(139, 0, 0, 0.12)' : 'rgba(148, 163, 184, 0.1)';
+        const gridLine = isLight ? 'rgba(0, 0, 0, 0.07)' : 'rgba(148, 163, 184, 0.08)';
+        const axisText = this.cssVar('--color-text-dim', isLight ? '#71717a' : '#64748b');
+        const labelText = this.cssVar('--color-text-muted', isLight ? '#52525b' : '#94a3b8');
+        const valueText = this.cssVar('--color-text-main', isLight ? '#18181b' : '#e2e8f0');
+        const barTrack = isLight ? 'rgba(0, 0, 0, 0.05)' : 'rgba(148, 163, 184, 0.09)';
+
         // Limpiar lienzo
         ctx.clearRect(0, 0, width, height);
 
-        // Fondo redondeado con gradiente oscuro suave y borde translúcido
-        ctx.fillStyle = 'rgba(15, 23, 42, 0.42)';
+        // Fondo redondeado con borde translúcido (adaptado al tema)
+        ctx.fillStyle = panelBg;
         this.drawCanvasRoundedRect(ctx, 0, 0, width, height, 16);
         ctx.fill();
-        ctx.strokeStyle = 'rgba(148, 163, 184, 0.1)';
+        ctx.strokeStyle = panelBorder;
         ctx.lineWidth = 1;
         ctx.stroke();
 
@@ -218,9 +241,9 @@ class StatsController {
         const chartHeight = height - margin.top - margin.bottom;
 
         // Dibujar líneas guía horizontales
-        ctx.strokeStyle = 'rgba(148, 163, 184, 0.08)';
+        ctx.strokeStyle = gridLine;
         ctx.lineWidth = 1;
-        ctx.fillStyle = '#64748b';
+        ctx.fillStyle = axisText;
         ctx.font = '500 10px Inter, sans-serif';
         ctx.textAlign = 'right';
         ctx.textBaseline = 'middle';
@@ -252,8 +275,8 @@ class StatsController {
             const yBg = margin.top;
             const yActive = margin.top + chartHeight - activeHeight;
 
-            // 1. Barra de fondo (gris translúcido)
-            ctx.fillStyle = 'rgba(148, 163, 184, 0.09)';
+            // 1. Barra de fondo (track)
+            ctx.fillStyle = barTrack;
             this.drawCanvasRoundedRect(ctx, x, yBg, barWidth, bgHeight, barWidth * 0.35);
             ctx.fill();
 
@@ -277,14 +300,14 @@ class StatsController {
             }
 
             // 3. Etiquetas de nivel HSK (Eje X)
-            ctx.fillStyle = '#94a3b8';
+            ctx.fillStyle = labelText;
             ctx.font = '600 11px Inter, sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'top';
             ctx.fillText(`HSK ${data.hsk_level}`, x + barWidth / 2, margin.top + chartHeight + 8);
 
             // 4. Cantidad de palabras estudiadas (Encima de la barra)
-            ctx.fillStyle = percentage > 0.05 ? '#e2e8f0' : '#64748b';
+            ctx.fillStyle = percentage > 0.05 ? valueText : axisText;
             ctx.font = 'bold 9px Inter, sans-serif';
             ctx.textBaseline = 'bottom';
             ctx.fillText(data.total_words_studied, x + barWidth / 2, yActive - 4);
@@ -409,8 +432,13 @@ class StatsController {
         const activeDays = (this.app.dailyProgress && this.app.dailyProgress.activeDays) || new Set();
         
         const isLight = document.body.classList.contains('light-theme');
-        
-        // Fondo redondeado con gradiente oscuro suave y borde translúcido
+        // Colores resueltos por tema (canvas no entiende var())
+        const labelText = this.cssVar('--color-text-muted', isLight ? '#52525b' : '#94a3b8');
+        const monthText = this.cssVar('--color-text-dim', isLight ? '#71717a' : '#64748b');
+        const activeCell = this.cssVar(isLight ? '--color-primary' : '--color-accent', isLight ? '#e53935' : '#facc15');
+        const emptyCell = isLight ? '#e5e3df' : 'rgba(255, 255, 255, 0.08)';
+
+        // Fondo redondeado con borde translúcido (adaptado al tema)
         ctx.fillStyle = isLight ? 'rgba(255, 248, 240, 0.5)' : 'rgba(15, 23, 42, 0.42)';
         this.drawCanvasRoundedRect(ctx, 0, 0, width, height, 16);
         ctx.fill();
@@ -421,9 +449,9 @@ class StatsController {
         // Parámetros de margen
         const leftOffset = 40;
         const topOffset = 25;
-        
+
         // Dibujar etiquetas de días de la semana
-        ctx.fillStyle = isLight ? 'var(--color-text-muted)' : '#94a3b8';
+        ctx.fillStyle = labelText;
         ctx.font = '500 9px Inter, sans-serif';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'middle';
@@ -458,7 +486,7 @@ class StatsController {
                 const monthNamesEs = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
                 const monthNamesEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 const mName = this.app.currentLanguage === 'es' ? monthNamesEs[month] : monthNamesEn[month];
-                ctx.fillStyle = isLight ? 'var(--color-text-dim)' : '#64748b';
+                ctx.fillStyle = monthText;
                 ctx.font = '500 9px Inter, sans-serif';
                 ctx.fillText(mName, leftOffset + col * (squareSize + gap), 14);
             }
@@ -477,11 +505,7 @@ class StatsController {
                 const x = leftOffset + col * (squareSize + gap);
                 const y = topOffset + row * (squareSize + gap);
 
-                if (isActive) {
-                    ctx.fillStyle = isLight ? 'var(--color-primary)' : 'var(--accent)';
-                } else {
-                    ctx.fillStyle = isLight ? '#e5e3df' : 'rgba(255, 255, 255, 0.08)';
-                }
+                ctx.fillStyle = isActive ? activeCell : emptyCell;
 
                 this.drawCanvasRoundedRect(ctx, x, y, squareSize, squareSize, 2);
                 ctx.fill();
