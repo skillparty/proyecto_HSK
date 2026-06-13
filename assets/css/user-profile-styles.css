@@ -257,52 +257,37 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Perfil compacto en móvil: solo avatar + logout, sin nombre ni estado */
     .user-profile {
-        gap: 8px;
-        padding: 6px 8px;
+        gap: 6px;
+        padding: 0;
+        background: transparent;
+        border: none;
+        backdrop-filter: none;
     }
-    
+
     .user-avatar {
-        width: 32px;
-        height: 32px;
+        width: 34px;
+        height: 34px;
     }
-    
+
+    .user-info,
     .user-status {
-        width: 12px;
-        height: 12px;
-        font-size: 8px;
+        display: none;
     }
-    
-    .user-name {
-        font-size: 13px;
-    }
-    
-    .user-login {
-        font-size: 11px;
-    }
-    
+
     .btn-logout span {
         display: none;
     }
-    
+
     .btn-logout {
-        padding: 6px 8px;
-    }
-    
-    .auth-guest-mode {
-        gap: 8px;
-        padding: 6px 8px;
+        padding: 8px;
     }
 
-    /* En móvil el pill guest queda solo con icono + botón de login */
+    /* El pill guest se reduce a icono de login (ver styles-professional.css) */
     .guest-text,
     .sync-status {
         display: none;
-    }
-    
-    .auth-login-btn {
-        padding: 6px 8px;
-        font-size: 11px;
     }
 }
 
@@ -420,36 +405,22 @@
     justify-content: center;
 }
 
-/* Responsive Design */
+/* Mobile: compactar el logout (icono solo) y el botón de login GitHub */
 @media (max-width: 768px) {
-    .user-profile {
-        gap: 8px;
-        padding: 6px 10px;
-    }
-    
-    .user-avatar {
-        width: 32px;
-        height: 32px;
-    }
-    
-    .user-info {
-        font-size: 12px;
-    }
-    
-    .user-name {
-        font-size: 13px;
-    }
-    
     .logout-btn {
-        padding: 4px 8px;
+        padding: 8px;
         font-size: 11px;
     }
-    
-    .logout-btn svg {
-        width: 12px;
-        height: 12px;
+
+    .logout-btn span {
+        display: none;
     }
-    
+
+    .logout-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+
     .github-login-btn {
         padding: 8px 12px;
         font-size: 13px;

@@ -115,7 +115,11 @@ class PracticeViewController {
             pinyinInput.value = '';
             pinyinInput.disabled = false;
             pinyinInput.className = 'pinyin-input';
-            pinyinInput.focus();
+            // Autoenfocar solo en dispositivos con puntero fino (escritorio):
+            // en móvil dispara teclado + auto-scroll que oculta el header.
+            if (window.matchMedia('(pointer: fine)').matches) {
+                pinyinInput.focus();
+            }
         }
 
         if (feedbackMsg) {

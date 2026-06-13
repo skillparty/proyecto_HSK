@@ -276,7 +276,11 @@ class FlashcardManager {
       pinyinInput.value = "";
       pinyinInput.disabled = false;
       pinyinInput.className = "pinyin-input";
-      pinyinInput.focus();
+      // Autoenfocar solo en escritorio (puntero fino); en móvil el focus
+      // abre el teclado y provoca auto-scroll que oculta el header.
+      if (window.matchMedia("(pointer: fine)").matches) {
+        pinyinInput.focus();
+      }
     }
 
     if (feedbackMsg) {

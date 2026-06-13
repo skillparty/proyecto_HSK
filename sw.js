@@ -1,4 +1,4 @@
-const SW_VERSION = "4.22.0";
+const SW_VERSION = "4.23.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -13,10 +13,10 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css?v=6",
-  "./assets/css/styles-professional.css?v=32",
+  "./assets/css/styles-professional.css?v=33",
   "./assets/css/matrix-game-styles.css?v=6",
   "./assets/css/leaderboard-styles.css",
-  "./assets/css/user-profile-styles.css?v=2",
+  "./assets/css/user-profile-styles.css?v=3",
   "./assets/css/quantifier-snake-styles.css?v=8",
   "./assets/css/tones-invaders-styles.css?v=3",
   "./assets/css/hanzi-builder-styles.css?v=2",
@@ -25,8 +25,8 @@ const PRECACHE_FILES = [
   "./assets/js/firebase-client.js?v=5",
   "./assets/js/firebase-progress-sync.js",
   "./assets/js/modules/srs-engine.js?v=3",
-  "./assets/js/modules/flashcard-manager.js?v=6",
-  "./assets/js/modules/practice-view-controller.js?v=6",
+  "./assets/js/modules/flashcard-manager.js?v=7",
+  "./assets/js/modules/practice-view-controller.js?v=7",
   "./assets/js/modules/audio-controller.js?v=3",
   "./assets/js/modules/quiz-engine.js?v=2",
   "./assets/js/modules/ui-controller.js?v=7",

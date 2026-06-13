@@ -1923,19 +1923,73 @@ html[data-theme="light"] .achievement-item.lock {
 
     .app-header {
         height: 64px !important;
-        padding: 0 16px !important;
+        padding: 0 12px !important;
+    }
+
+    /* El header-container ya hereda el padding del app-header; quitar el suyo
+       evita padding doble que estrechaba el brand y truncaba el título */
+    .header-container {
+        padding: 0 !important;
+    }
+
+    /* La barra de navegación inferior es fija (60px): el footer reserva ese
+       espacio para no quedar oculto tras ella */
+    .app-footer {
+        padding-bottom: 72px !important;
+    }
+
+    /* El brand cede espacio solo si hace falta; con el título completo
+       (~120px) entra de sobra junto a los controles en 375px */
+    .header-brand {
+        min-width: 0;
+        flex-shrink: 1;
+        gap: 8px;
     }
 
     .header-brand .logo {
         height: 32px !important;
+        flex-shrink: 0;
+    }
+
+    .logo-text {
+        min-width: 0;
+        margin-left: 8px;
     }
 
     .app-title {
-        font-size: 1.1rem !important;
+        font-size: 1.05rem !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .app-subtitle {
         display: none !important;
+    }
+
+    .header-actions {
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    /* Auth compacto en móvil: solo icono, sin etiquetas ni botón de texto */
+    .auth-guest-mode {
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+    }
+
+    .auth-guest-mode .guest-info {
+        display: none !important;
+    }
+
+    .auth-login-btn {
+        font-size: 0 !important; /* oculta el texto, conserva el SVG */
+        padding: 8px !important;
+        min-width: 40px;
+        min-height: 40px;
+        justify-content: center;
+        border-radius: 50% !important;
     }
 
     button.header-control,
@@ -1978,11 +2032,20 @@ html[data-theme="light"] .achievement-item.lock {
         color: transparent;
     }
 
+    /* Evitar que el placeholder se filtre en el search colapsado */
+    #header-search::placeholder {
+        color: transparent;
+    }
+
     #header-search:focus {
         width: 140px;
         color: var(--text-main);
         background: var(--bg-panel);
         border: 1px solid var(--color-border);
+    }
+
+    #header-search:focus::placeholder {
+        color: var(--text-dim);
     }
 
     /* Mobile Bottom Navigation Bar */
@@ -2079,16 +2142,25 @@ html[data-theme="light"] .achievement-item.lock {
         padding-bottom: 74px !important; /* Avoid content clipping on mobile */
     }
 
+    /* Mantener serif y tinta oscura (la caja de papel es clara en ambos temas);
+       solo ajustar tamaño para móvil */
     .card-character {
-        font-size: var(--hanzi-hero);
-        font-family: var(--font-chinese);
-        font-weight: var(--hanzi-weight);
-        margin-bottom: 20px;
-        color: var(--color-text-charcoal);
+        font-size: 4rem;
+        margin-bottom: 16px;
     }
 
+    /* Altura fija menor para que la tarjeta no deje un hueco enorme antes
+       del input; las caras siguen absolutas para conservar el flip 3D */
     .flashcard {
-        height: 400px;
+        height: 360px;
+    }
+
+    .card-face {
+        padding: 24px 20px;
+    }
+
+    .flashcard-area {
+        margin: 12px 0;
     }
 }
 
