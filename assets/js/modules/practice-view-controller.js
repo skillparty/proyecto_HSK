@@ -172,19 +172,7 @@ class PracticeViewController {
                     </div>
                 </div>
 
-                <div class="details-grid">
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20.59 13.41 11 3H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"></path>
-                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                            </svg>
-                        </div>
-                        <div class="detail-info">
-                            <div class="detail-label">${this.app.getTranslation('wordTypeLabel')}</div>
-                            <div class="detail-value">${this.getWordTypeBadge(this.app.currentWord)}</div>
-                        </div>
-                    </div>
+                <div class="details-grid details-grid--single">
                     <div class="detail-card">
                         <div class="detail-icon">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -229,25 +217,6 @@ class PracticeViewController {
         }
 
         return '?';
-    }
-
-    getWordType(word) {
-        const character = word.character;
-        const english = (word.english || '').toLowerCase();
-
-        if (english.includes('verb') || english.includes('to ')) {
-            return this.app.getTranslation('wordTypeVerb') || 'Verb';
-        } else if (english.includes('adj') || english.includes('adjective')) {
-            return this.app.getTranslation('wordTypeAdjective') || 'Adjective';
-        } else if (english.includes('noun') || english.includes('person') || english.includes('thing')) {
-            return this.app.getTranslation('wordTypeNoun') || 'Noun';
-        } else if (english.includes('number') || /\d/.test(character)) {
-            return this.app.getTranslation('wordTypeNumber') || 'Number';
-        } else if (character.length === 1) {
-            return this.app.getTranslation('wordTypeCharacter') || 'Character';
-        }
-
-        return this.app.getTranslation('wordTypeWord') || 'Word';
     }
 
     normalizePinyin(text) {
@@ -318,26 +287,6 @@ class PracticeViewController {
                 </div>
             </div>
         `;
-    }
-
-    getWordTypeBadge(word) {
-        const type = this.getWordType(word);
-        let gemClass = 'word-type-word';
-        
-        const english = (word.english || '').toLowerCase();
-        if (english.includes('verb') || english.includes('to ')) {
-            gemClass = 'word-type-verb';
-        } else if (english.includes('adj') || english.includes('adjective')) {
-            gemClass = 'word-type-adj';
-        } else if (english.includes('noun') || english.includes('person') || english.includes('thing')) {
-            gemClass = 'word-type-noun';
-        } else if (english.includes('number') || /\d/.test(word.character)) {
-            gemClass = 'word-type-noun';
-        } else if (word.character && word.character.length === 1) {
-            gemClass = 'word-type-char';
-        }
-        
-        return `<span class="word-type-badge ${gemClass}">${type}</span>`;
     }
 
     getToneVisuals(pinyin) {

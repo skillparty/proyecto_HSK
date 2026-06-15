@@ -4023,6 +4023,11 @@ body.zen-mode .practice-container {
     flex-shrink: 0;
 }
 
+/* Una sola tarjeta de detalle (Tonos): ocupa el ancho completo */
+.details-grid--single {
+    grid-template-columns: 1fr;
+}
+
 .detail-card {
     display: flex;
     align-items: center;
