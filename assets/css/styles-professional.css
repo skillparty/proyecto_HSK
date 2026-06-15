@@ -1512,7 +1512,9 @@ html[data-theme="light"] .achievement-item.lock {
     background: transparent;
     border-radius: var(--radius-lg);
     width: 100%;
-    height: 520px;
+    height: 470px;
+    max-width: 560px;
+    margin: 0 auto;
     position: relative;
     cursor: pointer;
 }
@@ -1543,12 +1545,23 @@ html[data-theme="light"] .achievement-item.lock {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 32px;
 }
 
 .card-back {
     padding: 18px 22px;
     justify-content: flex-start;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+.card-back::-webkit-scrollbar {
+    width: 6px;
+}
+.card-back::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
 }
 
 .card-front {
@@ -1570,8 +1583,8 @@ html[data-theme="light"] .achievement-item.lock {
     align-items: center;
     gap: 12px;
     width: 100%;
-    margin: 0 auto 24px;
-    min-height: 130px;
+    margin: 0 auto 22px;
+    min-height: 160px;
 }
 
 /* Multi-character scaling for front face */
@@ -1651,14 +1664,14 @@ html[data-theme="light"] .achievement-item.lock {
 
 /* Card Content — Front Character (large calligraphy grid) */
 .card-character {
-    font-size: 5rem;
+    font-size: 6rem;
     font-family: var(--font-chinese-serif);
     font-weight: 600;
     /* Tinta fija: la caja de papel de arroz es clara en ambos temas */
     color: #1c1917;
     position: relative;
-    width: 130px;
-    height: 130px;
+    width: 160px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2145,8 +2158,14 @@ html[data-theme="light"] .achievement-item.lock {
     /* Mantener serif y tinta oscura (la caja de papel es clara en ambos temas);
        solo ajustar tamaño para móvil */
     .card-character {
-        font-size: 4rem;
+        font-size: 4.4rem;
+        width: 124px;
+        height: 124px;
         margin-bottom: 16px;
+    }
+
+    .card-character-container {
+        min-height: 124px;
     }
 
     /* Altura fija menor para que la tarjeta no deje un hueco enorme antes
@@ -2216,15 +2235,19 @@ html[data-theme="light"] .achievement-item.lock {
 
 .vocabulary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    align-items: stretch;
 }
 
 .vocab-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: var(--bg-card);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: 24px 20px;
+    padding: 22px 18px 14px;
     text-align: center;
     transition:
         transform var(--transition-fast),
@@ -2235,10 +2258,30 @@ html[data-theme="light"] .achievement-item.lock {
     overflow: hidden;
 }
 
+/* Lomo de tono: acento de color semántico en el borde izquierdo */
+.vocab-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-border-subtle);
+    transition: width var(--transition-fast), background var(--transition-fast);
+}
+.vocab-card.tone-spine-1::before { background: var(--color-tone-1); }
+.vocab-card.tone-spine-2::before { background: var(--color-tone-2); }
+.vocab-card.tone-spine-3::before { background: var(--color-tone-3); }
+.vocab-card.tone-spine-4::before { background: var(--color-tone-4); }
+.vocab-card.tone-spine-0::before { background: var(--color-tone-0); }
+
 .vocab-card:hover {
     transform: translateY(-4px);
     border-color: rgba(229, 57, 53, 0.45);
     box-shadow: var(--shadow-md);
+}
+.vocab-card:hover::before {
+    width: 5px;
 }
 
 .vocab-char,
@@ -2254,18 +2297,16 @@ html[data-theme="light"] .achievement-item.lock {
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-sm);
-    
-    /* Rejilla de Caligrafía Tradicional MiZiGe (米字格) en rojo suave */
-    background-color: rgba(254, 252, 251, 0.75); /* Papel de arroz cálido */
-    border: 1.5px solid rgba(220, 38, 38, 0.32); /* Borde rojo lacado */
-    background-image: 
-        linear-gradient(45deg, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%),
-        linear-gradient(-45deg, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%),
-        linear-gradient(to bottom, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%),
-        linear-gradient(to right, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%);
+
+    /* Rejilla de Caligrafía 田字格: cruz central limpia, sin diagonales */
+    background-color: rgba(254, 252, 251, 0.85); /* Papel de arroz cálido */
+    border: 1.5px solid rgba(220, 38, 38, 0.22); /* Borde rojo lacado suave */
+    background-image:
+        linear-gradient(to bottom, transparent calc(50% - 0.5px), rgba(220, 38, 38, 0.12) calc(50% - 0.5px), rgba(220, 38, 38, 0.12) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to right, transparent calc(50% - 0.5px), rgba(220, 38, 38, 0.12) calc(50% - 0.5px), rgba(220, 38, 38, 0.12) calc(50% + 0.5px), transparent calc(50% + 0.5px));
     background-size: 100% 100%;
-    box-shadow: 
-        inset 0 0 6px rgba(220, 38, 38, 0.04),
+    box-shadow:
+        inset 0 0 6px rgba(220, 38, 38, 0.03),
         0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
@@ -2290,18 +2331,16 @@ html[data-theme="light"] .achievement-item.lock {
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-sm);
-    
-    /* Rejilla de Caligrafía Tradicional MiZiGe (米字格) en rojo suave */
-    background-color: rgba(254, 252, 251, 0.75); /* Papel de arroz cálido */
-    border: 1.5px solid rgba(220, 38, 38, 0.32); /* Borde rojo lacado */
-    background-image: 
-        linear-gradient(45deg, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%),
-        linear-gradient(-45deg, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%),
-        linear-gradient(to bottom, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%),
-        linear-gradient(to right, transparent 49.5%, rgba(220, 38, 38, 0.16) 49.5%, rgba(220, 38, 38, 0.16) 50.5%, transparent 50.5%);
+
+    /* Rejilla de Caligrafía 田字格: cruz central limpia, sin diagonales */
+    background-color: rgba(254, 252, 251, 0.85); /* Papel de arroz cálido */
+    border: 1.5px solid rgba(220, 38, 38, 0.22); /* Borde rojo lacado suave */
+    background-image:
+        linear-gradient(to bottom, transparent calc(50% - 0.5px), rgba(220, 38, 38, 0.14) calc(50% - 0.5px), rgba(220, 38, 38, 0.14) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to right, transparent calc(50% - 0.5px), rgba(220, 38, 38, 0.14) calc(50% - 0.5px), rgba(220, 38, 38, 0.14) calc(50% + 0.5px), transparent calc(50% + 0.5px));
     background-size: 100% 100%;
-    box-shadow: 
-        inset 0 0 6px rgba(220, 38, 38, 0.04),
+    box-shadow:
+        inset 0 0 6px rgba(220, 38, 38, 0.03),
         0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
@@ -2319,8 +2358,9 @@ html[data-theme="dark"] .vocab-character-box {
 
 .vocab-pinyin {
     color: var(--primary);
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
     margin-bottom: 4px;
 }
 
@@ -2328,7 +2368,19 @@ html[data-theme="dark"] .vocab-character-box {
     color: var(--text-muted);
     font-size: 0.85rem;
     line-height: 1.4;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+}
+
+/* Pie de tarjeta: metadatos alineados al fondo para ritmo uniforme en la rejilla */
+.vocab-card-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-border-subtle);
 }
 
 /* Nivel como badge discreto: metadato, no protagonista */
@@ -2343,6 +2395,12 @@ html[data-theme="dark"] .vocab-character-box {
     border: 1px solid var(--color-border-subtle);
     border-radius: var(--radius-pill);
     padding: 2px 10px;
+}
+
+/* Botón de audio compacto en el pie */
+.vocab-card-footer .vocab-audio-btn {
+    width: 30px;
+    height: 30px;
 }
 
 /* ============================================================================
@@ -3771,9 +3829,7 @@ body.zen-mode .practice-container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
-    gap: 10px;
+    gap: 8px;
 }
 
 /* Header del Reverso — layout horizontal compacto */

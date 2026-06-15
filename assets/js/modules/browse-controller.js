@@ -264,18 +264,23 @@ class BrowseController {
             characterHtml = `<div class="vocab-character tone-${tone}">` + word.character + '</div>';
         }
 
+        const leadTone = tones[0] !== undefined ? tones[0] : 0;
+        card.classList.add('tone-spine-' + leadTone);
+
         card.innerHTML =
             characterHtml +
             '<div class="vocab-pinyin">' + this.app.colorPinyinByTone(word.pinyin) + '</div>' +
             '<div class="vocab-meaning">' + meaning + '</div>' +
-            '<div class="vocab-level">HSK ' + word.level + '</div>' +
-            '<button class="vocab-audio-btn" title="' + (this.app.getTranslation('playPronunciation') || 'Play pronunciation') + '">' +
-                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-                    '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>' +
-                    '<path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>' +
-                    '<path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>' +
-                '</svg>' +
-            '</button>';
+            '<div class="vocab-card-footer">' +
+                '<span class="vocab-level">HSK ' + word.level + '</span>' +
+                '<button class="vocab-audio-btn" title="' + (this.app.getTranslation('playPronunciation') || 'Play pronunciation') + '">' +
+                    '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+                        '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>' +
+                        '<path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>' +
+                        '<path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>' +
+                    '</svg>' +
+                '</button>' +
+            '</div>';
 
         card.addEventListener('click', (e) => {
             if (!e.target.closest('.vocab-audio-btn')) {
