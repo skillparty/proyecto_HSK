@@ -61,3 +61,6 @@ test-*.js
 # Legacy/deprecated files
 *.old
 *.deprecated
+
+# Tatoeba build cache (downloads, not shipped)
+scripts/build-data/.tatoeba-cache/

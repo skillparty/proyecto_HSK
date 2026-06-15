@@ -33,6 +33,7 @@
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "^1.59.1",
-    "jsdom": "^29.1.1"
+    "jsdom": "^29.1.1",
+    "pinyin-pro": "^3.28.1"
   }
 }
