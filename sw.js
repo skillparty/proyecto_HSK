@@ -1,4 +1,4 @@
-const SW_VERSION = "4.25.0";
+const SW_VERSION = "4.26.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [

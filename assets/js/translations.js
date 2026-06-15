@@ -2,8 +2,8 @@
 const translations = {
     es: {
         // Header
-        appTitle: "Confuc10 ++",
-        appSubtitle: "Aprende caracteres chinos, pinyin y traducciones",
+        appTitle: "Confuc10++",
+        appSubtitle: "Plataforma de aprendizaje de chino HSK",
         languageSelectorTitle: "Idioma",
         languageSelectorTooltip: "Cambiar idioma de la interfaz",
         voiceSelectorTitle: "Voz",
@@ -155,7 +155,7 @@ const translations = {
         strokesRadicalsPracticeIncorrect: "Incorrecto. Respuesta: {answer}",
 
         // Home
-        homeWelcomeTitle: "¡Bienvenido a Confuc10 ++!",
+        homeWelcomeTitle: "¡Bienvenido a Confuc10++!",
         homeWelcomeSubtitle: "La plataforma avanzada para dominar el chino mandarín",
         homeStatCharacters: "Caracteres",
         homeStatHskLevels: "Niveles HSK",
@@ -258,7 +258,7 @@ const translations = {
 
         // Footer
         developedBy: "Desarrollado con ♡ por",
-        version: "v3.0.1 | Plataforma Avanzada de Aprendizaje de Chino",
+        version: "v3.1.0 | Plataforma de aprendizaje de chino HSK",
         githubLink: "[>] GitHub",
         confuciusInspired: "[中] Instituto Confucio inspired",
         footer: "Hecho con ♡ para estudiantes de chino",
@@ -499,8 +499,8 @@ const translations = {
 
     en: {
         // Header
-        appTitle: "Confuc10 ++",
-        appSubtitle: "Learn Chinese characters, pinyin and translations",
+        appTitle: "Confuc10++",
+        appSubtitle: "HSK Chinese Learning Platform",
         languageSelectorTitle: "Language",
         languageSelectorTooltip: "Change interface language",
         voiceSelectorTitle: "Voice",
@@ -654,7 +654,7 @@ const translations = {
         strokesRadicalsPracticeIncorrect: "Incorrect. Answer: {answer}",
 
         // Home
-        homeWelcomeTitle: "Welcome to Confuc10 ++!",
+        homeWelcomeTitle: "Welcome to Confuc10++!",
         homeWelcomeSubtitle: "The advanced platform to master Mandarin Chinese",
         homeStatCharacters: "Characters",
         homeStatHskLevels: "HSK Levels",
@@ -757,7 +757,7 @@ const translations = {
 
         // Footer
         developedBy: "Developed with ♡ by",
-        version: "v3.0.1 | Advanced Chinese Learning Platform",
+        version: "v3.1.0 | HSK Chinese Learning Platform",
         githubLink: "[>] GitHub",
         confuciusInspired: "[中] Confucius Institute inspired",
         footer: "Made with ♡ for Chinese learners",

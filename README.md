@@ -1,4 +1,4 @@
-# Confuc10++ - HSK Learning Platform
+# Confuc10++ — HSK Chinese Learning Platform
 
 Aplicación web para aprendizaje de chino mandarín orientada al estándar HSK, con práctica diaria, evaluación y seguimiento de progreso.
 
