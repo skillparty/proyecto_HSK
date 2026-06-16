@@ -1329,8 +1329,15 @@ html[data-theme="light"] .char-mi-zi-ge {
 }
 
 .achievement-item.lock {
-    background: rgba(241, 243, 245, 0.4);
-    opacity: 0.75;
+    /* Tema oscuro: fondo translúcido oscuro (el gris claro previo arruinaba el
+       contraste del texto). El tema claro tiene su propio override abajo. */
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Estado bloqueado: atenuar solo el icono, no el texto (mantener contraste AA) */
+.achievement-item.lock .achievement-icon {
+    opacity: 0.45;
+    filter: grayscale(1);
 }
 
 html[data-theme="light"] .achievement-item.lock {
@@ -4472,7 +4479,7 @@ html[data-theme="light"] .dashboard-3d-portal {
 }
 
 .portal-badge {
-    background: var(--primary);
+    background: #c62828; /* darker red: white text ≈ 5.2:1 (WCAG AA) */
     color: white;
     padding: 3px 10px;
     border-radius: 20px;
@@ -4963,7 +4970,8 @@ html[data-theme="light"] .dashboard-3d-portal {
 
 .srs-btn-primary {
     background: var(--accent);
-    color: #fff;
+    color: #1a1a1a; /* dark text on yellow accent: ≈ 11:1 (white was 1.53:1) */
+    font-weight: 700;
 }
 
 .srs-btn-secondary {

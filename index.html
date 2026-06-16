@@ -310,7 +310,7 @@
         <main class="main-content" id="main-content">
             <div class="content-wrapper">
                 <!-- Home Tab -->
-                <div id="home" class="tab-panel">
+                <div id="home" class="tab-panel" tabindex="0">
                     <div class="dashboard-grid-container">
                         <!-- Left Side: 3D Chinese Cultural Portal -->
                         <div class="dashboard-3d-portal">
@@ -443,7 +443,7 @@
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
                                         <span data-i18n="dashAchievementsTitle">Logros recientes</span>
                                     </h3>
-                                    <div class="achievements-list" id="dash-achievements-list" style="max-height: 64px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 2px;">
+                                    <div class="achievements-list" id="dash-achievements-list" tabindex="0" aria-label="Logros" style="max-height: 64px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; padding-right: 2px;">
                                         <!-- Dynamic Badges go here -->
                                         <div class="achievement-item lock" style="padding: 3px 6px; font-size: 0.72rem; gap: 8px;">
                                             <div class="achievement-icon" style="font-size: 0.9rem;">🎓</div>
@@ -581,7 +581,7 @@
                 </div>
 
                 <!-- Strokes & Radicals Tab -->
-                <div id="strokes-radicals" class="tab-panel">
+                <div id="strokes-radicals" class="tab-panel" tabindex="0">
                     <div class="strokes-radicals-container">
                         <div class="strokes-radicals-header">
                             <h3 data-i18n="strokesRadicalsTitle">Trazos y Radicales</h3>
@@ -658,12 +658,12 @@
                             <div class="sr-reference-sections">
                                 <section id="strokes-radicals-strokes-section" class="sr-reference-section">
                                     <h5 data-i18n="strokesRadicalsSectionStrokes">Trazos</h5>
-                                    <div id="strokes-radicals-strokes-catalog" class="sr-reference-grid sr-reference-grid-strokes"></div>
+                                    <div id="strokes-radicals-strokes-catalog" class="sr-reference-grid sr-reference-grid-strokes" tabindex="0" aria-label="Catálogo de trazos"></div>
                                 </section>
 
                                 <section id="strokes-radicals-radicals-section" class="sr-reference-section">
                                     <h5 data-i18n="strokesRadicalsSectionRadicals">Radicales Kangxi (1-214)</h5>
-                                    <div id="strokes-radicals-radicals-catalog" class="sr-reference-grid sr-reference-grid-radicals"></div>
+                                    <div id="strokes-radicals-radicals-catalog" class="sr-reference-grid sr-reference-grid-radicals" tabindex="0" aria-label="Catálogo de radicales"></div>
                                 </section>
                             </div>
                         </div>
@@ -724,7 +724,7 @@
                 </div>
 
                 <!-- Quiz Tab -->
-                <div id="quiz" class="tab-panel">
+                <div id="quiz" class="tab-panel" tabindex="0">
                     <div class="quiz-setup" id="quiz-setup">
                         <h3 data-i18n="configureQuiz">Configure Quiz</h3>
                         <div class="quiz-options">
@@ -797,7 +797,7 @@
                 </div>
 
                 <!-- Past Exams Tab -->
-                <div id="past-exams" class="tab-panel">
+                <div id="past-exams" class="tab-panel" tabindex="0">
                     <div class="quiz-setup" id="past-exams-setup">
                         <h3 data-i18n="pastExamsTitle">Exámenes pasados HSK</h3>
                         <p class="past-exams-note" data-i18n="pastExamsNoAudioNotice">Esta versión no incluye ejercicios de audio (listening).</p>

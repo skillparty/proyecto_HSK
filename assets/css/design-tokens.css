@@ -316,3 +316,13 @@ html[data-theme="dark"] {
 html[data-theme="dark"] :is(#culture-characters, #culture-medicine, #culture-opera, #culture-technology, #culture-clothing, #culture-arts) h3 {
     color: #ef4444;
 }
+
+/* Mismo motivo: textos rojos pequeños sobre superficies oscuras necesitan rojo
+   más claro. Los valores de catálogo van sobre una tarjeta más clara (#1e1e21),
+   así que usan un rojo aún más brillante para alcanzar 4.5:1. */
+html[data-theme="dark"] .char-pinyin {
+    color: #ef4444;
+}
+html[data-theme="dark"] .sr-reference-stat-value {
+    color: #f87171;
+}
