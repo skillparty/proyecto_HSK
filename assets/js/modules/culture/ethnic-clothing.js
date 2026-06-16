@@ -182,9 +182,9 @@ class EthnicClothingModule extends (window.CultureModuleBase || CultureModuleBas
           color: var(--color-primary, #10b981);
         }
         .clothing-filter-btn.active {
-          background: var(--color-primary, #10b981);
+          background: #c62828; /* darker red: white text ≈ 5.2:1 (WCAG AA) */
           color: #fff;
-          border-color: var(--color-primary, #10b981);
+          border-color: #c62828;
         }
         .clothing-grid {
           display: grid;

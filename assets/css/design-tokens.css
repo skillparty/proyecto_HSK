@@ -216,7 +216,7 @@ html[data-theme="dark"] {
     --color-text-main: #fafafa; /* Zinc 50 — softer than pure white */
     --color-text-charcoal: #f4f4f5;
     --color-text-muted: #a1a1aa; /* Zinc 400 */
-    --color-text-dim: #71717a; /* Zinc 500 */
+    --color-text-dim: #9ca3af; /* Zinc 400/500 — lightened to meet 4.5:1 on dark cards */
 
     /* Subtle fills: translucent so they sit on dark surfaces without glare */
     --color-primary-subtle: rgba(229, 57, 53, 0.16);
@@ -308,4 +308,11 @@ html[data-theme="dark"] {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+}
+
+/* Accesibilidad: en tema oscuro, aclarar los títulos rojos de Cultura para
+   alcanzar 4.5:1 sobre las tarjetas oscuras. (Los botones blanco-sobre-rojo usan
+   el rojo más oscuro #c62828 por separado: una sola --color-primary no cubre ambos.) */
+html[data-theme="dark"] :is(#culture-characters, #culture-medicine, #culture-opera, #culture-technology, #culture-clothing, #culture-arts) h3 {
+    color: #ef4444;
 }
