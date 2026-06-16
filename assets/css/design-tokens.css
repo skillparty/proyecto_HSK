@@ -295,3 +295,17 @@ html[data-theme="dark"] {
 .tone-3 { color: var(--color-tone-3) !important; }
 .tone-4 { color: var(--color-tone-4) !important; }
 .tone-0 { color: var(--color-tone-0) !important; }
+
+/* Accesibilidad: respetar la preferencia de movimiento reducido (WCAG 2.3.3).
+   Neutraliza transiciones/animaciones CSS para usuarios sensibles al movimiento.
+   (Las animaciones de canvas de los juegos usan rAF y se controlan aparte.) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
