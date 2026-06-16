@@ -76,7 +76,7 @@ body::before {
     z-index: -1;
     background-image:
         linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.92)),
-        url("../images/background01.png");
+        url("../images/background01.webp");
     background-size: cover;
     background-position: center;
     opacity: 0;
@@ -87,7 +87,7 @@ body::before {
 html[data-theme="dark"] body::before {
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)),
-        url("../images/background01.png");
+        url("../images/background01.webp");
 }
 
 html[data-active-tab="home"] body::before {

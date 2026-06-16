@@ -1,4 +1,4 @@
-const SW_VERSION = "4.29.0";
+const SW_VERSION = "4.30.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -83,7 +83,7 @@ const PRECACHE_FILES = [
   "./assets/images/logoICUMSSAPP.png",
   "./assets/images/logo05.png",
   "./assets/images/logo06.png",
-  "./assets/images/background01.png",
+  "./assets/images/background01.webp",
   "./assets/videos/snakeGame.mp4",
   "./assets/videos/toneInvader.mp4",
 ];
