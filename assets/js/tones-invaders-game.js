@@ -45,12 +45,12 @@ class TonesInvadersGame {
         
         this.isInitialized = false;
         
-        // Tone colors (Pedagogical Standard)
+        // Tone colors (Pedagogical Standard, scheme A — matches --color-tone-N + study UI)
         this.toneColors = {
-            1: '#d97706', // Tone 1: Amarillo
-            2: '#2563eb', // Tone 2: Azul
-            3: '#16a34a', // Tone 3: Verde
-            4: '#dc2626', // Tone 4: Rojo
+            1: '#dc2626', // Tone 1: Rojo
+            2: '#16a34a', // Tone 2: Verde
+            3: '#2563eb', // Tone 3: Azul
+            4: '#7c3aed', // Tone 4: Morado
             5: '#6b7280'  // Tone 5: Gris (Neutro)
         };
         

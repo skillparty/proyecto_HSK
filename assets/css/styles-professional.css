@@ -2349,11 +2349,11 @@ html[data-theme="light"] .achievement-item.lock {
    superficies oscuras */
 html[data-theme="dark"] .vocab-character,
 html[data-theme="dark"] .vocab-character-box {
-    --color-tone-1: #d97706;
-    --color-tone-2: #2563eb;
-    --color-tone-3: #16a34a;
-    --color-tone-4: #dc2626;
-    --color-tone-0: #6b7280;
+    --color-tone-1: #dc2626; /* Rojo */
+    --color-tone-2: #16a34a; /* Verde */
+    --color-tone-3: #2563eb; /* Azul */
+    --color-tone-4: #7c3aed; /* Morado */
+    --color-tone-0: #6b7280; /* Gris */
 }
 
 .vocab-pinyin {

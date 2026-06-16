@@ -64,11 +64,11 @@ Architecture: CSS Custom Properties.
     --color-error: #ef4444; /* Vibrant Red */
     --color-error-subtle: #fee2e2;
 
-    /* ---- TONE COLORS (Pedagogical Standard) ---- */
-    --color-tone-1: #d97706; /* Amarillo - 1er Tono (mā) */
-    --color-tone-2: #2563eb; /* Azul - 2do Tono (má) */
-    --color-tone-3: #16a34a; /* Verde - 3er Tono (mǎ) */
-    --color-tone-4: #dc2626; /* Rojo - 4to Tono (mà) */
+    /* ---- TONE COLORS (Pedagogical Standard, single source of truth) ---- */
+    --color-tone-1: #dc2626; /* Rojo - 1er Tono (mā) */
+    --color-tone-2: #16a34a; /* Verde - 2do Tono (má) */
+    --color-tone-3: #2563eb; /* Azul - 3er Tono (mǎ) */
+    --color-tone-4: #7c3aed; /* Morado - 4to Tono (mà) */
     --color-tone-0: #6b7280; /* Gris - Tono Neutro/Ligero (ma) */
 
     /* ---- COMPATIBILITY ALIASES ---- */
@@ -225,12 +225,12 @@ html[data-theme="dark"] {
     --color-warning-subtle: rgba(250, 204, 21, 0.14);
     --color-error-subtle: rgba(239, 68, 68, 0.16);
 
-    /* Tone colors brightened one step for contrast on dark backgrounds */
-    --color-tone-1: #f59e0b;
-    --color-tone-2: #3b82f6;
-    --color-tone-3: #22c55e;
-    --color-tone-4: #ef4444;
-    --color-tone-0: #9ca3af;
+    /* Tone colors brightened one step for contrast on dark backgrounds (scheme A) */
+    --color-tone-1: #ef4444; /* Rojo */
+    --color-tone-2: #22c55e; /* Verde */
+    --color-tone-3: #3b82f6; /* Azul */
+    --color-tone-4: #a78bfa; /* Morado */
+    --color-tone-0: #9ca3af; /* Gris */
 
     /* Shadows tuned for dark surfaces */
     --shadow-sm: rgba(0, 0, 0, 0.35) 0px 1px 2px 0px;
