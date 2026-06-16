@@ -10,8 +10,8 @@ function renderMatrixGameInterface() {
             
             <div class="matrix-settings">
                 <div class="setting-group">
-                    <label class="setting-label" data-i18n="levelLabel">HSK Level:</label>
-                    <select id="matrix-level-select" class="matrix-select">
+                    <label class="setting-label" for="matrix-level-select" data-i18n="levelLabel">HSK Level:</label>
+                    <select id="matrix-level-select" class="matrix-select" aria-label="HSK Level">
                         <option value="1">HSK 1</option>
                         <option value="2">HSK 2</option>
                         <option value="3">HSK 3</option>

@@ -1120,7 +1120,8 @@
 
 .matrix-start-btn,
 .action-btn.primary {
-    background: var(--primary, #D94E3B);
+    /* Rojo más oscuro: white sobre #c62828 ≈ 5.2:1 (WCAG AA) */
+    background: #c62828;
     border: 1px solid transparent;
     color: #fff;
     border-radius: var(--radius-md, 12px);
@@ -1129,7 +1130,7 @@
 
 .matrix-start-btn:hover,
 .action-btn.primary:hover {
-    background: var(--primary-hover, #B93D2B);
+    background: #b71c1c;
     transform: translateY(-1px);
     box-shadow: 0 8px 18px rgba(217, 78, 59, 0.33);
 }

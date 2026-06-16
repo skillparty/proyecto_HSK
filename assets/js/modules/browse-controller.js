@@ -242,9 +242,6 @@ class BrowseController {
     createVocabularyCard(word) {
         const card = document.createElement('div');
         card.className = 'vocab-card';
-        card.setAttribute('role', 'button');
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('aria-label', word.character + ' ' + word.pinyin);
 
         const meaning = this.getMeaningForLanguage(word);
         
@@ -267,13 +264,17 @@ class BrowseController {
         const leadTone = tones[0] !== undefined ? tones[0] : 0;
         card.classList.add('tone-spine-' + leadTone);
 
+        const ariaLabel = (word.character + ' ' + word.pinyin).replace(/"/g, '');
+
         card.innerHTML =
-            characterHtml +
-            '<div class="vocab-pinyin">' + this.app.colorPinyinByTone(word.pinyin) + '</div>' +
-            '<div class="vocab-meaning">' + meaning + '</div>' +
+            '<button type="button" class="vocab-card-main" aria-label="' + ariaLabel + '">' +
+                characterHtml +
+                '<div class="vocab-pinyin">' + this.app.colorPinyinByTone(word.pinyin) + '</div>' +
+                '<div class="vocab-meaning">' + meaning + '</div>' +
+            '</button>' +
             '<div class="vocab-card-footer">' +
                 '<span class="vocab-level">HSK ' + word.level + '</span>' +
-                '<button class="vocab-audio-btn" title="' + (this.app.getTranslation('playPronunciation') || 'Play pronunciation') + '">' +
+                '<button type="button" class="vocab-audio-btn" title="' + (this.app.getTranslation('playPronunciation') || 'Play pronunciation') + '" aria-label="' + (this.app.getTranslation('playPronunciation') || 'Play pronunciation') + '">' +
                     '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
                         '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>' +
                         '<path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>' +
@@ -282,22 +283,10 @@ class BrowseController {
                 '</button>' +
             '</div>';
 
-        card.addEventListener('click', (e) => {
-            if (!e.target.closest('.vocab-audio-btn')) {
-                this.app.selectVocabWord(word);
-            }
-        });
-
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                if (e.target.closest('.vocab-audio-btn')) {
-                    return;
-                }
-
-                e.preventDefault();
-                this.app.selectVocabWord(word);
-            }
-        });
+        const mainBtn = card.querySelector('.vocab-card-main');
+        if (mainBtn) {
+            mainBtn.addEventListener('click', () => this.app.selectVocabWord(word));
+        }
 
         const audioBtn = card.querySelector('.vocab-audio-btn');
         if (audioBtn) {

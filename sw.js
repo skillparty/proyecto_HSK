@@ -1,4 +1,4 @@
-const SW_VERSION = "4.30.0";
+const SW_VERSION = "4.33.0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -42,7 +42,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/culture/ethnic-clothing.js",
   "./assets/js/modules/culture/traditional-arts.js",
   "./assets/js/modules/language-controller.js?v=3",
-  "./assets/js/modules/browse-controller.js?v=4",
+  "./assets/js/modules/browse-controller.js?v=5",
   "./assets/js/modules/interaction-controller.js?v=8",
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-controller.js?v=3",

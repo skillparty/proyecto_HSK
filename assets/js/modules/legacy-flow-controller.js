@@ -23,22 +23,10 @@ class LegacyFlowController {
             });
         });
 
-        const flashcard = document.getElementById('flashcard');
-        if (flashcard) {
-            flashcard.setAttribute('role', 'button');
-            flashcard.setAttribute('tabindex', '0');
-
-            flashcard.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    if (event.target.closest('button, input, textarea, select')) {
-                        return;
-                    }
-
-                    event.preventDefault();
-                    this.app.flipCard();
-                }
-            });
-        }
+        // Flashcard flip is handled by mouse click (interaction-controller) and a
+        // global Space shortcut on the practice tab; we intentionally do NOT mark
+        // #flashcard as role="button"/tabindex, because it contains its own buttons
+        // (audio) and nesting interactive controls is an accessibility violation.
     }
 
     handleUpdate(registration) {
