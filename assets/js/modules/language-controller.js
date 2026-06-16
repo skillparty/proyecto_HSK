@@ -91,10 +91,6 @@ class LanguageController {
 
         return key;
     }
-
-    changeLanguage(lang) {
-        this.app.logDebug('Language changed to: ' + lang);
-    }
 }
 
 window.LanguageController = LanguageController;

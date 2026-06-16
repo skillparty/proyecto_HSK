@@ -318,7 +318,6 @@ class HSKApp {
     toggleTheme() { return this.themeController.toggleTheme(); }
     applyTheme() { return this.themeController.applyTheme(); }
     updateThemeButton() { return this.themeController.updateThemeButton(); }
-    changeLanguage(lang) { return this.languageController.changeLanguage(lang); }
     loadStats() { return this.storageController.loadStats(); }
     saveStats() { return this.storageController.saveStats(); }
     loadSettings() { return this.storageController.loadSettings(); }
