@@ -254,6 +254,316 @@
           { "hanzi": "中国", "pinyin": "zhōngguó", "meaning": "China", "gloss": "centro + país" }
         ] }
       ]
+    },
+    {
+      "id": "B-3",
+      "theme": "Del suelo",
+      "icon": "土",
+      "chars": [
+        { "hanzi": "土", "pinyin": "tǔ", "meaning": "tierra, suelo", "etymology": "Forma parte de un gran número de caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "土地", "pinyin": "tǔdì", "meaning": "tierra, suelo", "gloss": "tierra + tierra" },
+          { "hanzi": "土著", "pinyin": "tǔzhù", "meaning": "nativo, aborigen", "gloss": "tierra + arraigado" }
+        ] },
+        { "hanzi": "上", "pinyin": "shàng", "meaning": "arriba; pasado", "etymology": "Significa arriba o pasado; sirve de base para muchas palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "上月", "pinyin": "shàngyuè", "meaning": "mes pasado", "gloss": "antes + mes" },
+          { "hanzi": "马上", "pinyin": "mǎshàng", "meaning": "enseguida", "gloss": "caballo + arriba" }
+        ] },
+        { "hanzi": "下", "pinyin": "xià", "meaning": "debajo", "etymology": "Todo lo que hay bajo la línea del suelo.", "components": [], "jp": true, "words": [
+          { "hanzi": "地下", "pinyin": "dìxià", "meaning": "sótano, subsuelo", "gloss": "tierra + bajo" },
+          { "hanzi": "下次", "pinyin": "xiàcì", "meaning": "la próxima vez", "gloss": "siguiente + vez" }
+        ] },
+        { "hanzi": "卞", "pinyin": "biàn", "meaning": "impetuoso", "etymology": "Presiona para bajar 下.", "components": [{ "char": "下", "gloss": "bajar" }], "jp": true, "words": [] },
+        { "hanzi": "卜", "pinyin": "bǔ", "meaning": "adivinar, predecir", "etymology": "Pictograma de una grieta en la concha de una tortuga que, calentada al fuego, se usaba para predecir el futuro.", "components": [], "jp": true, "words": [
+          { "hanzi": "占卜", "pinyin": "zhānbǔ", "meaning": "adivinar, predecir", "gloss": "adivinar + adivinar" }
+        ] },
+        { "hanzi": "卡", "pinyin": "kǎ", "meaning": "cerrar, detener; tarjeta", "etymology": "Resultado de una presión desde arriba 上 y otra desde abajo 下. Hoy es muy popular para traducir la palabra inglesa «card», tarjeta, por su sonido semejante.", "components": [{ "char": "上", "gloss": "arriba" }, { "char": "下", "gloss": "abajo" }], "jp": false, "words": [
+          { "hanzi": "信用卡", "pinyin": "xìnyòngkǎ", "meaning": "tarjeta de crédito", "gloss": "crédito + tarjeta" },
+          { "hanzi": "电话卡", "pinyin": "diànhuàkǎ", "meaning": "tarjeta telefónica", "gloss": "teléfono + tarjeta" }
+        ] },
+        { "hanzi": "长", "pinyin": "cháng", "meaning": "largo, duración, longitud", "etymology": "Evoluciona del pictograma de los largos cabellos de un anciano. No confundir con 卡.", "components": [], "jp": false, "words": [
+          { "hanzi": "长途", "pinyin": "chángtú", "meaning": "larga distancia", "gloss": "larga + ruta" }
+        ] },
+        { "hanzi": "在", "pinyin": "zài", "meaning": "existir, estar, en", "etymology": "La tierra 土 en la que brotan las hierbas 才, estilizadas, es buena para estar.", "components": [{ "char": "土", "gloss": "tierra" }, { "char": "才", "gloss": "hierbas que brotan" }], "jp": true, "words": [
+          { "hanzi": "存在", "pinyin": "cúnzài", "meaning": "existir", "gloss": "existir + estar" },
+          { "hanzi": "现在", "pinyin": "xiànzài", "meaning": "ahora", "gloss": "aparecer + estar" }
+        ] },
+        { "hanzi": "去", "pinyin": "qù", "meaning": "ir, marcharse", "etymology": "Una persona 厶 (se recalca la acción privada) sale de su tierra 土.", "components": [{ "char": "土", "gloss": "tierra" }, { "char": "厶", "gloss": "persona" }], "jp": true, "words": [
+          { "hanzi": "去年", "pinyin": "qùnián", "meaning": "año pasado", "gloss": "ir + año" },
+          { "hanzi": "去世", "pinyin": "qùshì", "meaning": "fallecer", "gloss": "irse + mundo" }
+        ] },
+        { "hanzi": "劫", "pinyin": "jié", "meaning": "catástrofe, saqueo", "etymology": "Fuerza 力 que obliga a irse 去.", "components": [{ "char": "去", "gloss": "irse" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "抢劫", "pinyin": "qiǎngjié", "meaning": "robo, atraco", "gloss": "arrebatar + saqueo" }
+        ] },
+        { "hanzi": "却", "pinyin": "què", "meaning": "repeler, retroceder; pero, sin embargo", "etymology": "La presencia de un oficial (se ve el cetro) fuerza a irse a alguien.", "components": [{ "char": "去", "gloss": "irse" }], "jp": false, "words": [
+          { "hanzi": "退却", "pinyin": "tuìquè", "meaning": "retroceder, retirarse", "gloss": "retirarse + retroceder" }
+        ] },
+        { "hanzi": "丢", "pinyin": "diū", "meaning": "perder", "etymology": "El que se va 去 deja algo, representado sólo por 丿.", "components": [{ "char": "去", "gloss": "irse" }], "jp": false, "words": [
+          { "hanzi": "丢脸", "pinyin": "diūliǎn", "meaning": "perder la cara, desprestigiarse", "gloss": "perder + cara" },
+          { "hanzi": "丢失", "pinyin": "diūshī", "meaning": "perder, extraviar", "gloss": "perder + desaparecer" }
+        ] },
+        { "hanzi": "罢", "pinyin": "bà", "meaning": "cesar, dimitir, acabar", "etymology": "El que marcha 去 es atrapado en una red 网 simplificada: acaba su marcha y su actividad.", "components": [{ "char": "网", "gloss": "red" }, { "char": "去", "gloss": "marchar" }], "jp": false, "words": [
+          { "hanzi": "罢工", "pinyin": "bàgōng", "meaning": "huelga", "gloss": "cesar + trabajo" },
+          { "hanzi": "作罢", "pinyin": "zuòbà", "meaning": "abandonar, abdicar", "gloss": "hacer + cesar" }
+        ] },
+        { "hanzi": "庄", "pinyin": "zhuāng", "meaning": "aldea, finca, comercio", "etymology": "Se representa por una cabaña 广 erigida sobre la tierra 土.", "components": [{ "char": "广", "gloss": "cabaña" }, { "char": "土", "gloss": "tierra" }], "jp": true, "words": [
+          { "hanzi": "庄园", "pinyin": "zhuāngyuán", "meaning": "finca, hacienda", "gloss": "aldea + jardín" },
+          { "hanzi": "村庄", "pinyin": "cūnzhuāng", "meaning": "aldea", "gloss": "aldea + aldea" }
+        ] },
+        { "hanzi": "压", "pinyin": "yā", "meaning": "presionar, controlar, intimidar", "etymology": "Aún se ve un risco 厂 presionando sobre la tierra 土, de la que se desprende alguna roca.", "components": [{ "char": "厂", "gloss": "risco" }, { "char": "土", "gloss": "tierra" }], "jp": false, "words": [
+          { "hanzi": "压力", "pinyin": "yālì", "meaning": "presión, coacción", "gloss": "presionar + fuerza" },
+          { "hanzi": "压迫", "pinyin": "yāpò", "meaning": "oprimir, subyugar", "gloss": "controlar + forzar" }
+        ] },
+        { "hanzi": "尘", "pinyin": "chén", "meaning": "polvo", "etymology": "Pequeño 小 más tierra 土: los pequeños fragmentos de tierra constituyen el polvo.", "components": [{ "char": "小", "gloss": "pequeño" }, { "char": "土", "gloss": "tierra" }], "jp": false, "words": [
+          { "hanzi": "尘土", "pinyin": "chéntǔ", "meaning": "polvo", "gloss": "polvo + tierra" },
+          { "hanzi": "灰尘", "pinyin": "huīchén", "meaning": "polvo", "gloss": "polvo + polvo" }
+        ] },
+        { "hanzi": "坐", "pinyin": "zuò", "meaning": "sentarse", "etymology": "Dos personas 人 sobre un montón de tierra 土 dan la idea de sentarse.", "components": [{ "char": "人", "gloss": "persona" }, { "char": "人", "gloss": "persona" }, { "char": "土", "gloss": "tierra" }], "jp": true, "words": [
+          { "hanzi": "坐标", "pinyin": "zuòbiāo", "meaning": "coordenada", "gloss": "sentar + objetivo" },
+          { "hanzi": "坐垫", "pinyin": "zuòdiàn", "meaning": "cojín, almohadón", "gloss": "sentar + colchón" }
+        ] },
+        { "hanzi": "座", "pinyin": "zuò", "meaning": "asiento", "etymology": "Viene del concepto de sentarse 坐 a cubierto 广.", "components": [{ "char": "广", "gloss": "cubierto" }, { "char": "坐", "gloss": "sentarse" }], "jp": true, "words": [
+          { "hanzi": "座谈", "pinyin": "zuòtán", "meaning": "charlar informalmente", "gloss": "asiento + charlar" },
+          { "hanzi": "座位", "pinyin": "zuòwèi", "meaning": "asiento", "gloss": "asiento + lugar" }
+        ] },
+        { "hanzi": "圣", "pinyin": "shèng", "meaning": "santo, sagrado", "etymology": "Era el que hablaba a la oreja del rey; ahora es el que con su mano 又 bendice la tierra 土.", "components": [{ "char": "又", "gloss": "mano" }, { "char": "土", "gloss": "tierra" }], "jp": false, "words": [
+          { "hanzi": "圣地", "pinyin": "shèngdì", "meaning": "tierra santa, lugar sagrado", "gloss": "sagrado + lugar" },
+          { "hanzi": "圣人", "pinyin": "shèngrén", "meaning": "santo, sabio", "gloss": "santo + hombre" }
+        ] },
+        { "hanzi": "寺", "pinyin": "sì", "meaning": "templo", "etymology": "Donde la mano 寸 lleva las ofrendas de la tierra 土.", "components": [{ "char": "土", "gloss": "tierra" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "寺院", "pinyin": "sìyuàn", "meaning": "templo, convento", "gloss": "templo + patio" },
+          { "hanzi": "寺庙", "pinyin": "sìmiào", "meaning": "templo", "gloss": "templo + templo" }
+        ] },
+        { "hanzi": "幸", "pinyin": "xìng", "meaning": "felicidad, afortunado", "etymology": "Tierra 土 en la que abundan los corderos 羊 es buena fortuna.", "components": [{ "char": "土", "gloss": "tierra" }, { "char": "羊", "gloss": "corderos" }], "jp": true, "words": [
+          { "hanzi": "幸福", "pinyin": "xìngfú", "meaning": "felicidad, feliz", "gloss": "afortunado + afortunado" },
+          { "hanzi": "幸运", "pinyin": "xìngyùn", "meaning": "fortuna, afortunado", "gloss": "afortunado + suerte" }
+        ] },
+        { "hanzi": "声", "pinyin": "shēng", "meaning": "sonido, ruido", "etymology": "Simplificado. Lo recordamos como un oficial 士 en la puerta 户 dando órdenes.", "components": [{ "char": "士", "gloss": "oficial" }, { "char": "户", "gloss": "puerta" }], "jp": false, "words": [
+          { "hanzi": "声音", "pinyin": "shēngyīn", "meaning": "sonido", "gloss": "sonido + sonido" },
+          { "hanzi": "声明", "pinyin": "shēngmíng", "meaning": "declaración", "gloss": "sonido + claro" }
+        ] },
+        { "hanzi": "垒", "pinyin": "lěi", "meaning": "construir; baluarte", "etymology": "Sobre la tierra 土 se han simplificado tres ladrillos, o tres capas de construcción.", "components": [{ "char": "土", "gloss": "tierra" }], "jp": false, "words": [
+          { "hanzi": "堡垒", "pinyin": "bǎolěi", "meaning": "fuerte, fortaleza", "gloss": "fuerte + construir" }
+        ] },
+        { "hanzi": "斗", "pinyin": "dòu", "meaning": "medida para áridos; pelear", "etymology": "Medida de capacidad. También pelear: no eran raras las peleas por las medidas.", "components": [], "jp": true, "words": [
+          { "hanzi": "战斗", "pinyin": "zhàndòu", "meaning": "lucha, combate", "gloss": "guerra + pelear" },
+          { "hanzi": "好斗", "pinyin": "hàodòu", "meaning": "belicoso", "gloss": "afición + lucha" }
+        ] },
+        { "hanzi": "丈", "pinyin": "zhàng", "meaning": "medida de longitud (3,3 m); marido", "etymology": "Equivalente a diez 十 palmos 又. También se usa para marido.", "components": [{ "char": "十", "gloss": "diez" }, { "char": "又", "gloss": "palmo (mano)" }], "jp": true, "words": [
+          { "hanzi": "丈夫", "pinyin": "zhàngfū", "meaning": "marido", "gloss": "marido + marido" },
+          { "hanzi": "丈量", "pinyin": "zhàngliáng", "meaning": "medir", "gloss": "medida + medir" }
+        ] },
+        { "hanzi": "升", "pinyin": "shēng", "meaning": "litro; ascender", "etymology": "Sólo diez 十 de entre mil 千. A algunos les recordará una de esas bombas por las que ascendía el aceite a granel.", "components": [{ "char": "十", "gloss": "diez" }, { "char": "千", "gloss": "mil" }], "jp": true, "words": [
+          { "hanzi": "升学", "pinyin": "shēngxué", "meaning": "pasar a escuela superior", "gloss": "ascender + escuela" },
+          { "hanzi": "升级", "pinyin": "shēngjí", "meaning": "subir de categoría", "gloss": "ascender + clase" }
+        ] },
+        { "hanzi": "千", "pinyin": "qiān", "meaning": "mil, muchos", "etymology": "Un cien 百 simplificado del que sólo queda un trazo, multiplicado por diez 十.", "components": [{ "char": "十", "gloss": "diez" }], "jp": true, "words": [
+          { "hanzi": "万千", "pinyin": "wànqiān", "meaning": "miríada", "gloss": "diez mil + mil" },
+          { "hanzi": "千万", "pinyin": "qiānwàn", "meaning": "por todos los medios", "gloss": "mil + diez mil" }
+        ] },
+        { "hanzi": "士", "pinyin": "shì", "meaning": "oficial, persona", "etymology": "De oficial, persona, se construyen palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "女士", "pinyin": "nǚshì", "meaning": "señora", "gloss": "mujer + persona" }
+        ] },
+        { "hanzi": "吉", "pinyin": "jí", "meaning": "afortunado, propicio", "etymology": "Palabras 口 del sabio 士.", "components": [{ "char": "士", "gloss": "sabio" }, { "char": "口", "gloss": "palabras" }], "jp": true, "words": [
+          { "hanzi": "吉日", "pinyin": "jírì", "meaning": "fecha propicia", "gloss": "propicio + fecha" }
+        ] },
+        { "hanzi": "周", "pinyin": "zhōu", "meaning": "perfecto, completo; semana", "etymology": "Tres paredes 几 protegen algo propicio 吉, modificado.", "components": [{ "char": "几", "gloss": "paredes" }, { "char": "吉", "gloss": "lo propicio" }], "jp": true, "words": [
+          { "hanzi": "周末", "pinyin": "zhōumò", "meaning": "fin de semana", "gloss": "semana + fin" },
+          { "hanzi": "周围", "pinyin": "zhōuwéi", "meaning": "alrededor", "gloss": "completo + rodear" }
+        ] },
+        { "hanzi": "凭", "pinyin": "píng", "meaning": "apoyarse, depender; prueba", "etymology": "Asumir un cargo 任 con derecho a una mesa 几 da idea de superar una prueba.", "components": [{ "char": "任", "gloss": "asumir un cargo" }, { "char": "几", "gloss": "mesa" }], "jp": false, "words": [
+          { "hanzi": "凭空", "pinyin": "píngkōng", "meaning": "sin fundamento", "gloss": "apoyarse + vacío" },
+          { "hanzi": "凭证", "pinyin": "píngzhèng", "meaning": "prueba, testimonio", "gloss": "prueba + probar" }
+        ] },
+        { "hanzi": "干", "pinyin": "gàn", "meaning": "hacer; seco", "etymology": "Es el mango de un mortero, lo que le añade el significado de destruir, coger, oponer.", "components": [], "jp": false, "words": [
+          { "hanzi": "干吗", "pinyin": "gànmá", "meaning": "¿qué hacer?, ¿por qué?", "gloss": "hacer + qué" },
+          { "hanzi": "饼干", "pinyin": "bǐnggān", "meaning": "galleta", "gloss": "torta + seca" }
+        ] },
+        { "hanzi": "平", "pinyin": "píng", "meaning": "llano, nivel; tranquilo", "etymology": "Es el esquema de una balanza equilibrada.", "components": [], "jp": true, "words": [
+          { "hanzi": "平常", "pinyin": "píngcháng", "meaning": "común, normal", "gloss": "nivel + frecuente" },
+          { "hanzi": "平时", "pinyin": "píngshí", "meaning": "tiempo normal", "gloss": "llano + tiempo" }
+        ] },
+        { "hanzi": "丁", "pinyin": "dīng", "meaning": "soldado, hombre fuerte", "etymology": "Imagen de un clavo, con su cabeza y su punta. Ahora significa soldado, tan sustituible como un clavo; para «clavo» se añade el radical de metal: 钉.", "components": [], "jp": true, "words": [
+          { "hanzi": "兵丁", "pinyin": "bīngdīng", "meaning": "soldado", "gloss": "soldado + soldado" }
+        ] },
+        { "hanzi": "宁", "pinyin": "níng", "meaning": "tranquilo", "etymology": "Es el hombre 丁 bajo techo 宀, en su casa.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "丁", "gloss": "hombre" }], "jp": false, "words": [
+          { "hanzi": "安宁", "pinyin": "ānníng", "meaning": "tranquilo", "gloss": "seguro + tranquilo" },
+          { "hanzi": "宁静", "pinyin": "níngjìng", "meaning": "sereno, calmado", "gloss": "tranquilo + tranquilo" }
+        ] },
+        { "hanzi": "工", "pinyin": "gōng", "meaning": "trabajar", "etymology": "Pictograma de una herramienta con la que trabajan los carpinteros.", "components": [], "jp": true, "words": [
+          { "hanzi": "工艺", "pinyin": "gōngyì", "meaning": "artesanía, tecnología", "gloss": "trabajo + arte" },
+          { "hanzi": "工作", "pinyin": "gōngzuò", "meaning": "trabajar, labor", "gloss": "trabajo + hacer" }
+        ] },
+        { "hanzi": "左", "pinyin": "zuǒ", "meaning": "izquierda", "etymology": "Es la mano que coge la escuadra 工.", "components": [{ "char": "工", "gloss": "escuadra" }], "jp": true, "words": [
+          { "hanzi": "左右", "pinyin": "zuǒyòu", "meaning": "aproximadamente", "gloss": "izquierda + derecha" },
+          { "hanzi": "相左", "pinyin": "xiāngzuǒ", "meaning": "desacuerdo", "gloss": "mutuo + izquierda" }
+        ] },
+        { "hanzi": "功", "pinyin": "gōng", "meaning": "mérito, logro", "etymology": "Es aplicarse con fuerza 力 al trabajo 工.", "components": [{ "char": "工", "gloss": "trabajo" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "功课", "pinyin": "gōngkè", "meaning": "tareas escolares", "gloss": "logro + lecciones" },
+          { "hanzi": "功劳", "pinyin": "gōngláo", "meaning": "servicio meritorio", "gloss": "mérito + labor" }
+        ] },
+        { "hanzi": "巩", "pinyin": "gǒng", "meaning": "consolidar", "etymology": "Resultado común 凡 del trabajo 工.", "components": [{ "char": "工", "gloss": "trabajo" }, { "char": "凡", "gloss": "común" }], "jp": false, "words": [
+          { "hanzi": "巩固", "pinyin": "gǒnggù", "meaning": "consolidar", "gloss": "consolidar + consolidar" }
+        ] },
+        { "hanzi": "空", "pinyin": "kōng", "meaning": "vaciar, vacío", "etymology": "Es trabajar 工 para cavar una cueva 穴.", "components": [{ "char": "穴", "gloss": "cueva" }, { "char": "工", "gloss": "trabajar" }], "jp": true, "words": [
+          { "hanzi": "空调", "pinyin": "kōngtiáo", "meaning": "aire acondicionado", "gloss": "vacío + mezclar" },
+          { "hanzi": "空心", "pinyin": "kōngxīn", "meaning": "en ayunas, hueco", "gloss": "vacío + corazón" }
+        ] },
+        { "hanzi": "巧", "pinyin": "qiǎo", "meaning": "ingenioso, hábil", "etymology": "Trabajo 工 capaz de parar el aire 丂.", "components": [{ "char": "工", "gloss": "trabajo" }], "jp": true, "words": [
+          { "hanzi": "巧妙", "pinyin": "qiǎomiào", "meaning": "ingenioso, hábil", "gloss": "ingenioso + ingenioso" },
+          { "hanzi": "技巧", "pinyin": "jìqiǎo", "meaning": "habilidad, técnica", "gloss": "hábil + ingenioso" }
+        ] },
+        { "hanzi": "亚", "pinyin": "yà", "meaning": "inferior, secundario; Asia", "etymology": "Es una herramienta 工 de inferior calidad, ya que salen astillas.", "components": [{ "char": "工", "gloss": "herramienta" }], "jp": true, "words": [] },
+        { "hanzi": "业", "pinyin": "yè", "meaning": "oficio, profesión, carrera", "etymology": "Simplificado. Dos puntas sujetan un poste al suelo: representa la construcción, uno de los primeros oficios.", "components": [], "jp": false, "words": [
+          { "hanzi": "专业", "pinyin": "zhuānyè", "meaning": "especialidad", "gloss": "especializado + profesión" },
+          { "hanzi": "业务", "pinyin": "yèwù", "meaning": "negocio, profesional", "gloss": "profesión + servicio" }
+        ] },
+        { "hanzi": "卫", "pinyin": "wèi", "meaning": "proteger", "etymology": "El que trabaja 工 con el bíceps 力.", "components": [{ "char": "工", "gloss": "trabajo" }, { "char": "力", "gloss": "bíceps" }], "jp": false, "words": [
+          { "hanzi": "卫生", "pinyin": "wèishēng", "meaning": "higiene, sanidad", "gloss": "proteger + vida" },
+          { "hanzi": "卫星", "pinyin": "wèixīng", "meaning": "satélite", "gloss": "proteger + estrellas" }
+        ] },
+        { "hanzi": "韦", "pinyin": "wéi", "meaning": "cuero", "etymology": "Simplificación de 革, cuero. Como se elaboraba tensando la piel en direcciones opuestas, da idea de oponerse a algo.", "components": [{ "char": "革", "gloss": "cuero" }], "jp": false, "words": [] },
+        { "hanzi": "围", "pinyin": "wéi", "meaning": "rodear, asediar", "etymology": "Encerrar 囗 a los que se oponen 韦.", "components": [{ "char": "囗", "gloss": "encerrar" }, { "char": "韦", "gloss": "los que se oponen" }], "jp": false, "words": [
+          { "hanzi": "围攻", "pinyin": "wéigōng", "meaning": "asediar y atacar", "gloss": "asediar + atacar" },
+          { "hanzi": "围巾", "pinyin": "wéijīn", "meaning": "bufanda", "gloss": "rodear + paño" }
+        ] }
+      ]
+    },
+    {
+      "id": "B-4",
+      "theme": "Del sol",
+      "icon": "日",
+      "chars": [
+        { "hanzi": "日", "pinyin": "rì", "meaning": "sol, día", "etymology": "De sol, día, se forman algunas palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "日期", "pinyin": "rìqī", "meaning": "fecha", "gloss": "día + fecha" },
+          { "hanzi": "生日", "pinyin": "shēngrì", "meaning": "cumpleaños", "gloss": "nacer + día" }
+        ] },
+        { "hanzi": "宣", "pinyin": "xuān", "meaning": "declarar, proclamar", "etymology": "Lo que se extiende 亘 desde el lugar cubierto 宀, casa o palacio.", "components": [{ "char": "宀", "gloss": "lugar cubierto" }, { "char": "亘", "gloss": "extenderse" }], "jp": true, "words": [
+          { "hanzi": "宣传", "pinyin": "xuānchuán", "meaning": "propagar, difundir", "gloss": "proclamar + difundir" },
+          { "hanzi": "宣言", "pinyin": "xuānyán", "meaning": "declaración, manifiesto", "gloss": "proclamar + palabra" }
+        ] },
+        { "hanzi": "时", "pinyin": "shí", "meaning": "tiempo", "etymology": "De tiempo se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "时候", "pinyin": "shíhòu", "meaning": "momento", "gloss": "tiempo + esperar" },
+          { "hanzi": "时间", "pinyin": "shíjiān", "meaning": "tiempo", "gloss": "tiempo + entre" }
+        ] },
+        { "hanzi": "旧", "pinyin": "jiù", "meaning": "pasado, antiguo, usado", "etymology": "Simplificado como la continuidad 丨 de los días 日.", "components": [{ "char": "日", "gloss": "días" }], "jp": true, "words": [
+          { "hanzi": "照旧", "pinyin": "zhàojiù", "meaning": "como antes", "gloss": "según + pasado" },
+          { "hanzi": "旧货", "pinyin": "jiùhuò", "meaning": "objetos usados", "gloss": "viejos + bienes" }
+        ] },
+        { "hanzi": "早", "pinyin": "zǎo", "meaning": "mañana, temprano", "etymology": "Es el momento en el que el sol 日 se eleva a la altura de la cruz 十 de un árbol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "十", "gloss": "altura del árbol" }], "jp": true, "words": [
+          { "hanzi": "早饭", "pinyin": "zǎofàn", "meaning": "desayuno", "gloss": "mañana + comida" },
+          { "hanzi": "早上", "pinyin": "zǎoshàng", "meaning": "mañana", "gloss": "mañana + encima" }
+        ] },
+        { "hanzi": "皂", "pinyin": "zào", "meaning": "jabón", "etymology": "No confundir con 早. La parte inferior 七 es el número siete; en los caracteres antiguos era un diez 十.", "components": [{ "char": "七", "gloss": "siete" }], "jp": false, "words": [] },
+        { "hanzi": "卓", "pinyin": "zhuó", "meaning": "eminente, sobresaliente", "etymology": "Adivinar 卜 temprano 早: sólo los adivinos eminentes tenían esa cualidad.", "components": [{ "char": "卜", "gloss": "adivinar" }, { "char": "早", "gloss": "temprano" }], "jp": true, "words": [
+          { "hanzi": "卓绝", "pinyin": "zhuójué", "meaning": "extraordinario", "gloss": "eminente + extremadamente" },
+          { "hanzi": "卓著", "pinyin": "zhuózhù", "meaning": "distinguido", "gloss": "eminente + notable" }
+        ] },
+        { "hanzi": "查", "pinyin": "chá", "meaning": "examinar, investigar", "etymology": "Uno 一 que se adentra en un misterio 杳 (el sol 日 bajo los árboles 木).", "components": [{ "char": "一", "gloss": "uno" }, { "char": "木", "gloss": "árbol" }, { "char": "日", "gloss": "sol" }], "jp": true, "words": [
+          { "hanzi": "检查", "pinyin": "jiǎnchá", "meaning": "examinar, comprobar", "gloss": "examinar + examinar" },
+          { "hanzi": "调查", "pinyin": "diàochá", "meaning": "investigar", "gloss": "investigar + examinar" }
+        ] },
+        { "hanzi": "旬", "pinyin": "xún", "meaning": "período de diez días; década", "etymology": "Envolver 勹 el tiempo de sol 日.", "components": [{ "char": "勹", "gloss": "envolver" }, { "char": "日", "gloss": "sol/tiempo" }], "jp": true, "words": [] },
+        { "hanzi": "昏", "pinyin": "hūn", "meaning": "oscuro, atardecer, desmayarse", "etymology": "El sol 日 bajando 氏 es el atardecer; de ahí los demás sentidos. Con los siglos desapareció la coma bajo 氏.", "components": [{ "char": "氏", "gloss": "bajar" }, { "char": "日", "gloss": "sol" }], "jp": true, "words": [
+          { "hanzi": "昏迷", "pinyin": "hūnmí", "meaning": "desmayo, coma", "gloss": "desmayarse + perderse" },
+          { "hanzi": "昏暗", "pinyin": "hūn'àn", "meaning": "oscuro, lóbrego", "gloss": "oscuro + oscuro" }
+        ] },
+        { "hanzi": "昆", "pinyin": "kūn", "meaning": "descendientes; hermano mayor", "etymology": "Dos hombres 比 bajo el sol 日.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "比", "gloss": "dos hombres" }], "jp": true, "words": [
+          { "hanzi": "昆虫", "pinyin": "kūnchóng", "meaning": "insecto", "gloss": "descendientes + insecto" }
+        ] },
+        { "hanzi": "冥", "pinyin": "míng", "meaning": "oscuro, profundo", "etymology": "Las seis 六 horas que el sol 日 está cubierto 冖. El día chino se divide en doce horas.", "components": [{ "char": "六", "gloss": "seis" }, { "char": "日", "gloss": "sol" }, { "char": "冖", "gloss": "cubierto" }], "jp": true, "words": [
+          { "hanzi": "冥想", "pinyin": "míngxiǎng", "meaning": "meditación profunda", "gloss": "profundo + pensar" },
+          { "hanzi": "幽冥", "pinyin": "yōumíng", "meaning": "oscuro, sombrío", "gloss": "profundo + oscuro" }
+        ] },
+        { "hanzi": "昊", "pinyin": "hào", "meaning": "vasto, extenso (el firmamento)", "etymology": "El sol 日 sobre el cielo 天 da idea de la inmensidad del universo.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "天", "gloss": "cielo" }], "jp": true, "words": [] },
+        { "hanzi": "昔", "pinyin": "xī", "meaning": "pasado, antaño", "etymology": "Representado por veinte 廿 soles 日, o veinte días.", "components": [{ "char": "廿", "gloss": "veinte" }, { "char": "日", "gloss": "soles/días" }], "jp": true, "words": [
+          { "hanzi": "古昔", "pinyin": "gǔxī", "meaning": "en tiempos antiguos", "gloss": "antiguo + pasado" },
+          { "hanzi": "今昔", "pinyin": "jīnxī", "meaning": "presente y pasado", "gloss": "hoy + pasado" }
+        ] },
+        { "hanzi": "莫", "pinyin": "mò", "meaning": "no, nadie, nada", "etymology": "Un hombre 大 ve al sol 日 ponerse tras las hierbas 艹: la negación del día le da el significado.", "components": [{ "char": "艹", "gloss": "hierbas" }, { "char": "日", "gloss": "sol" }, { "char": "大", "gloss": "hombre" }], "jp": true, "words": [
+          { "hanzi": "莫大", "pinyin": "mòdà", "meaning": "muy grande, enorme", "gloss": "nadie + grande" }
+        ] },
+        { "hanzi": "寞", "pinyin": "mò", "meaning": "solitario", "etymology": "Literalmente, nadie 莫 en casa 宀.", "components": [{ "char": "宀", "gloss": "casa" }, { "char": "莫", "gloss": "nadie" }], "jp": false, "words": [
+          { "hanzi": "寂寞", "pinyin": "jìmò", "meaning": "solitario", "gloss": "solo + solitario" }
+        ] },
+        { "hanzi": "摹", "pinyin": "mó", "meaning": "copiar, calcar", "etymology": "Mano 手 que no 莫 crea.", "components": [{ "char": "莫", "gloss": "no crear" }, { "char": "手", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "摹仿", "pinyin": "mófǎng", "meaning": "imitar, copiar", "gloss": "copiar + imitar" }
+        ] },
+        { "hanzi": "募", "pinyin": "mù", "meaning": "recoger, reclutar", "etymology": "Aplicar la fuerza 力 para traer el ganado cuando llega la noche 莫.", "components": [{ "char": "莫", "gloss": "noche" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [] },
+        { "hanzi": "春", "pinyin": "chūn", "meaning": "primavera", "etymology": "Dos manos orando agradecen a los dioses el regreso del sol 日.", "components": [{ "char": "日", "gloss": "sol" }], "jp": true, "words": [
+          { "hanzi": "春天", "pinyin": "chūntiān", "meaning": "primavera", "gloss": "primavera + estación" },
+          { "hanzi": "春节", "pinyin": "chūnjié", "meaning": "Año Nuevo chino", "gloss": "primavera + fiesta" }
+        ] },
+        { "hanzi": "舂", "pinyin": "chōng", "meaning": "machacar en el mortero", "etymology": "Dos manos que se esfuerzan sobre un mortero 臼. No confundir con primavera 春.", "components": [{ "char": "臼", "gloss": "mortero" }], "jp": true, "words": [] },
+        { "hanzi": "蠢", "pinyin": "chǔn", "meaning": "estúpido, torpe, tonto", "etymology": "Se evoca con el efecto de la primavera 春 sobre los insectos 虫.", "components": [{ "char": "春", "gloss": "primavera" }, { "char": "虫", "gloss": "insectos" }], "jp": true, "words": [
+          { "hanzi": "蠢动", "pinyin": "chǔndòng", "meaning": "reptar; provocar disturbios", "gloss": "torpe + moverse" },
+          { "hanzi": "蠢材", "pinyin": "chǔncái", "meaning": "idiota, bobo", "gloss": "estúpido + talento" }
+        ] },
+        { "hanzi": "白", "pinyin": "bái", "meaning": "blanco, claro", "etymology": "Con blanco, claro, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "白色", "pinyin": "báisè", "meaning": "color blanco", "gloss": "blanco + color" },
+          { "hanzi": "白天", "pinyin": "báitiān", "meaning": "día (horas de luz)", "gloss": "claro + día" }
+        ] },
+        { "hanzi": "的", "pinyin": "de", "meaning": "(posesivo); objetivo", "etymology": "Claro 白 y cuchara 勹: donde dirigimos la cuchara, indica poseer, ya que cada uno come de lo suyo. Se usa como la «s» del genitivo inglés.", "components": [{ "char": "白", "gloss": "claro" }, { "char": "勹", "gloss": "cuchara" }], "jp": true, "words": [
+          { "hanzi": "目的", "pinyin": "mùdì", "meaning": "propósito, objetivo", "gloss": "ojo + objetivo" },
+          { "hanzi": "你的", "pinyin": "nǐde", "meaning": "tuyo", "gloss": "tú + de" }
+        ] },
+        { "hanzi": "百", "pinyin": "bǎi", "meaning": "cien", "etymology": "Un 一 uno sobre blanco 白. Uno vestido de blanco, el color de los Shang que inventaron los caracteres, que dirige a cien.", "components": [{ "char": "一", "gloss": "uno" }, { "char": "白", "gloss": "blanco" }], "jp": true, "words": [
+          { "hanzi": "百万", "pinyin": "bǎiwàn", "meaning": "un millón", "gloss": "cien + diez mil" },
+          { "hanzi": "百姓", "pinyin": "bǎixìng", "meaning": "el pueblo, la gente común", "gloss": "cien + apellidos" }
+        ] },
+        { "hanzi": "舀", "pinyin": "yǎo", "meaning": "sacar con un cazo", "etymology": "Como una zarpa 爪 sobre el mortero 臼.", "components": [{ "char": "爪", "gloss": "zarpa" }, { "char": "臼", "gloss": "mortero" }], "jp": false, "words": [
+          { "hanzi": "舀子", "pinyin": "yǎozi", "meaning": "cucharón", "gloss": "cazo + sufijo" }
+        ] },
+        { "hanzi": "舅", "pinyin": "jiù", "meaning": "tío materno; cuñado", "etymology": "Hombre 男 que se encarga del mortero 臼.", "components": [{ "char": "臼", "gloss": "mortero" }, { "char": "男", "gloss": "hombre" }], "jp": true, "words": [
+          { "hanzi": "舅父", "pinyin": "jiùfù", "meaning": "tío materno", "gloss": "tío + padre" },
+          { "hanzi": "舅子", "pinyin": "jiùzi", "meaning": "cuñado", "gloss": "cuñado + joven" }
+        ] },
+        { "hanzi": "鼠", "pinyin": "shǔ", "meaning": "rata, ratón", "etymology": "La cabeza metida en el mortero 臼, y bajo ella las patas y la cola que se alarga. Girándolo 90 grados resulta más fácil de reconocer.", "components": [{ "char": "臼", "gloss": "mortero (cabeza)" }], "jp": true, "words": [
+          { "hanzi": "老鼠", "pinyin": "lǎoshǔ", "meaning": "rata", "gloss": "viejo + rata" },
+          { "hanzi": "鼠疫", "pinyin": "shǔyì", "meaning": "peste", "gloss": "rata + epidemia" }
+        ] },
+        { "hanzi": "曰", "pinyin": "yuē", "meaning": "decir", "etymology": "Usado como componente de otros caracteres, con el sentido de decir, o simplemente de boca.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "旨", "pinyin": "zhǐ", "meaning": "propósito; delicioso", "etymology": "La cuchara 匕 sobre la boca 曰 delata el propósito de comer.", "components": [{ "char": "匕", "gloss": "cuchara" }, { "char": "曰", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "意旨", "pinyin": "yìzhǐ", "meaning": "intención", "gloss": "idea + propósito" }
+        ] },
+        { "hanzi": "替", "pinyin": "tì", "meaning": "sustituir, reemplazar", "etymology": "Dos hombres 大 que hablan por la misma boca 曰: uno puede sustituir al otro.", "components": [{ "char": "大", "gloss": "hombre" }, { "char": "大", "gloss": "hombre" }, { "char": "曰", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "代替", "pinyin": "dàitì", "meaning": "reemplazar", "gloss": "reemplazar + reemplazar" },
+          { "hanzi": "交替", "pinyin": "jiāotì", "meaning": "alternar", "gloss": "relación + reemplazar" }
+        ] },
+        { "hanzi": "甘", "pinyin": "gān", "meaning": "dulce", "etymology": "De dulce se deriva vocabulario.", "components": [], "jp": true, "words": [
+          { "hanzi": "甘苦", "pinyin": "gānkǔ", "meaning": "alegrías y penas", "gloss": "dulce + amargo" }
+        ] },
+        { "hanzi": "某", "pinyin": "mǒu", "meaning": "cierto, un tal", "etymology": "Un árbol 木 con fruta dulce 甘 deja su posición determinada.", "components": [{ "char": "甘", "gloss": "dulce" }, { "char": "木", "gloss": "árbol" }], "jp": true, "words": [
+          { "hanzi": "某人", "pinyin": "mǒurén", "meaning": "cierta persona", "gloss": "cierto + persona" },
+          { "hanzi": "某天", "pinyin": "mǒutiān", "meaning": "cierto día", "gloss": "cierto + día" }
+        ] },
+        { "hanzi": "廿", "pinyin": "niàn", "meaning": "veinte", "etymology": "Por semejanza con 甘. Es diez 十 más diez 十.", "components": [{ "char": "十", "gloss": "diez" }, { "char": "十", "gloss": "diez" }], "jp": true, "words": [] },
+        { "hanzi": "共", "pinyin": "gòng", "meaning": "juntos, compartir", "etymology": "Veinte 廿 manos 廾 dan idea de trabajar juntos. Como componente aporta el sentido de numeroso.", "components": [{ "char": "廿", "gloss": "veinte" }, { "char": "廾", "gloss": "manos" }], "jp": true, "words": [
+          { "hanzi": "公共", "pinyin": "gōnggòng", "meaning": "público, comunal", "gloss": "público + compartir" },
+          { "hanzi": "共产党", "pinyin": "gòngchǎndǎng", "meaning": "Partido Comunista", "gloss": "compartir + producción + partido" }
+        ] },
+        { "hanzi": "庶", "pinyin": "shù", "meaning": "numeroso, abundante", "etymology": "Muchos 廿 reunidos alrededor del fuego 灬, en una casa 广.", "components": [{ "char": "广", "gloss": "casa" }, { "char": "廿", "gloss": "muchos" }, { "char": "灬", "gloss": "fuego" }], "jp": true, "words": [
+          { "hanzi": "庶民", "pinyin": "shùmín", "meaning": "plebe, gente común", "gloss": "abundante + personas" }
+        ] },
+        { "hanzi": "度", "pinyin": "dù", "meaning": "grado, medida", "etymology": "Mano 又 que mide numerosos 庶 objetos.", "components": [{ "char": "庶", "gloss": "numerosos" }, { "char": "又", "gloss": "mano que mide" }], "jp": true, "words": [
+          { "hanzi": "度量", "pinyin": "dùliáng", "meaning": "tolerancia", "gloss": "grado + medir" },
+          { "hanzi": "温度", "pinyin": "wēndù", "meaning": "temperatura", "gloss": "calor + grado" }
+        ] },
+        { "hanzi": "席", "pinyin": "xí", "meaning": "estera, asiento, banquete", "etymology": "Veinte 廿 personas reunidas bajo techo 广, sentadas en telas 巾.", "components": [{ "char": "广", "gloss": "techo" }, { "char": "廿", "gloss": "veinte personas" }, { "char": "巾", "gloss": "telas" }], "jp": true, "words": [
+          { "hanzi": "席位", "pinyin": "xíwèi", "meaning": "asiento", "gloss": "estera + sitio" },
+          { "hanzi": "宴席", "pinyin": "yànxí", "meaning": "banquete", "gloss": "banquete + banquete" }
+        ] },
+        { "hanzi": "暴", "pinyin": "bào", "meaning": "repentino, violento, cruel", "etymology": "Sol 日 tan excesivo 廿 que es capaz de separar 八 el agua 水.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "廿", "gloss": "exceso" }, { "char": "八", "gloss": "separar" }, { "char": "水", "gloss": "agua" }], "jp": true, "words": [
+          { "hanzi": "暴动", "pinyin": "bàodòng", "meaning": "insurrección, rebelión", "gloss": "repentino + movimiento" },
+          { "hanzi": "暴君", "pinyin": "bàojūn", "meaning": "tirano", "gloss": "cruel + señor" }
+        ] },
+        { "hanzi": "寒", "pinyin": "hán", "meaning": "frío, indigente", "etymology": "Frío, representado por los dos puntos de abajo, que obliga a la búsqueda común 共 de un refugio.", "components": [{ "char": "共", "gloss": "búsqueda común" }], "jp": true, "words": [
+          { "hanzi": "寒冷", "pinyin": "hánlěng", "meaning": "frío, glaciar", "gloss": "frío + helado" },
+          { "hanzi": "寒流", "pinyin": "hánliú", "meaning": "corriente fría", "gloss": "frío + fluido" }
+        ] },
+        { "hanzi": "寨", "pinyin": "zhài", "meaning": "empalizada, campamento", "etymology": "Uso común 共 de árboles 木 para conseguir un refugio.", "components": [{ "char": "共", "gloss": "uso común" }, { "char": "木", "gloss": "árboles" }], "jp": true, "words": [
+          { "hanzi": "山寨", "pinyin": "shānzhài", "meaning": "fortaleza de montaña", "gloss": "montaña + fortaleza" }
+        ] }
+      ]
     }
   ]
 }
