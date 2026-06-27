@@ -327,9 +327,9 @@ class UIController {
       case "etymology":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/etymology-styles.css?v=1");
+            await this.loadStylesheet("assets/css/etymology-styles.css?v=2");
             if (!window.EtymologyController) {
-              await this.loadScript("assets/js/modules/etymology-controller.js?v=1");
+              await this.loadScript("assets/js/modules/etymology-controller.js?v=2");
             }
             if (!window.etymologyController) {
               window.etymologyController = new EtymologyController(this.app);

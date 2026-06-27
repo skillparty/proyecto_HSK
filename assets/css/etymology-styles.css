@@ -42,6 +42,33 @@
   white-space: nowrap;
 }
 
+/* ---- section tabs ---- */
+.etym-section-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+  padding-bottom: 0.75rem;
+}
+.etym-section-tab {
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
+  background: var(--color-bg-panel, #fff);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #666);
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+}
+.etym-section-tab:hover { color: var(--color-text-main, #222); }
+.etym-section-tab.is-active {
+  background: var(--color-primary, #c62828);
+  border-color: var(--color-primary, #c62828);
+  color: #fff;
+}
+
 /* ---- view toggle ---- */
 .etym-toggle {
   display: inline-flex;
@@ -330,6 +357,48 @@
   font-size: 0.88rem;
   font-style: italic;
   color: var(--color-text-muted, #777);
+}
+
+/* ---- example words (Sección B) ---- */
+.etym-words { margin-top: 1.2rem; }
+.etym-word-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.etym-word {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: baseline;
+  gap: 0.5rem 0.7rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 9px;
+  background: var(--color-bg-card, rgba(0, 0, 0, 0.03));
+  border-left: 3px solid var(--color-primary, #c62828);
+}
+.etym-word-hanzi {
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+  font-size: 1.15rem;
+  color: var(--color-text-main, #222);
+  font-weight: 600;
+}
+.etym-word-pinyin {
+  font-size: 0.85rem;
+  color: var(--color-primary, #c62828);
+  font-weight: 600;
+}
+.etym-word-meaning {
+  font-size: 0.88rem;
+  color: var(--color-text-main, #333);
+}
+.etym-word-gloss {
+  grid-column: 1 / -1;
+  font-size: 0.76rem;
+  color: var(--color-text-muted, #888);
+  font-style: italic;
 }
 
 /* ---- footer ---- */

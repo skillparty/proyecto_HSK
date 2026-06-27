@@ -3,7 +3,8 @@
  * Top-level module inspired by Pedro Ceinos' «Manual de Escritura de los
  * Caracteres Chinos». Groups characters by theme/component and explains the
  * "why" of each grouping, with Pleco/KTdict-style animated stroke order
- * (powered by hanzi-writer) plus an etymological component breakdown.
+ * (powered by hanzi-writer) plus an etymological component breakdown and,
+ * in Sección B, example vocabulary built from each character.
  *
  * Content is Spanish-only for now; an English version is announced as coming
  * soon.
@@ -12,15 +13,17 @@ class EtymologyController {
   constructor(app) {
     this.app = app;
     this.containerId = "etymology-content";
-    this.dataUrl = "assets/data/etymology/seccion-a.json?v=2";
+    this.dataUrls = [
+      "assets/data/etymology/seccion-a.json?v=2",
+      "assets/data/etymology/seccion-b.json?v=1",
+    ];
     this.strokeBaseUrl = "assets/data/etymology/strokes/";
     this.hanziWriterUrl = "assets/vendor/hanzi-writer.min.js";
 
-    this.data = null;
-    this.charIndex = new Map(); // hanzi -> char entry
-    this.families = []; // [{ component, gloss, members: [hanzi] }]
+    this.sections = []; // [{ section, title, intro, source, lessons, families, charIndex }]
     this.isInitialized = false;
 
+    this.activeSectionId = "A";
     this.activeView = "lessons"; // "lessons" | "families"
     this.activeLessonId = null;
     this.activeFamily = null;
@@ -32,6 +35,13 @@ class EtymologyController {
     return document.getElementById(this.containerId);
   }
 
+  get section() {
+    return (
+      this.sections.find((s) => s.section === this.activeSectionId) ||
+      this.sections[0]
+    );
+  }
+
   async initialize() {
     if (this.isInitialized) {
       this.render();
@@ -40,12 +50,8 @@ class EtymologyController {
     this.renderLoading();
     try {
       await Promise.all([this.loadData(), this.loadHanziWriter()]);
-      this.buildIndexes();
-      this.activeLessonId = this.data.lessons[0] ? this.data.lessons[0].id : null;
-      this.selectedHanzi =
-        this.data.lessons[0] && this.data.lessons[0].chars[0]
-          ? this.data.lessons[0].chars[0].hanzi
-          : null;
+      this.sections.forEach((s) => this.buildIndexes(s));
+      this.resetSelection();
       this.isInitialized = true;
       this.render();
     } catch (err) {
@@ -55,9 +61,14 @@ class EtymologyController {
   }
 
   async loadData() {
-    const res = await fetch(this.dataUrl);
-    if (!res.ok) throw new Error(`No se pudo cargar el contenido (${res.status})`);
-    this.data = await res.json();
+    const results = await Promise.all(
+      this.dataUrls.map(async (url) => {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`No se pudo cargar el contenido (${res.status})`);
+        return res.json();
+      })
+    );
+    this.sections = results;
   }
 
   loadHanziWriter() {
@@ -81,15 +92,17 @@ class EtymologyController {
     });
   }
 
-  buildIndexes() {
-    this.charIndex.clear();
-    const familyMap = new Map(); // component -> { gloss, members: Set }
+  buildIndexes(section) {
+    const charIndex = new Map();
+    const familyMap = new Map();
 
-    this.data.lessons.forEach((lesson) => {
+    section.lessons.forEach((lesson) => {
       lesson.chars.forEach((entry) => {
-        const withLesson = { ...entry, lessonId: lesson.id, theme: lesson.theme };
-        this.charIndex.set(entry.hanzi, withLesson);
-
+        charIndex.set(entry.hanzi, {
+          ...entry,
+          lessonId: lesson.id,
+          theme: lesson.theme,
+        });
         (entry.components || []).forEach((comp) => {
           if (!comp || !comp.char) return;
           if (!familyMap.has(comp.char)) {
@@ -102,8 +115,8 @@ class EtymologyController {
       });
     });
 
-    // A family is meaningful when its component is shared by 2+ characters.
-    this.families = Array.from(familyMap.entries())
+    section.charIndex = charIndex;
+    section.families = Array.from(familyMap.entries())
       .map(([component, info]) => ({
         component,
         gloss: info.gloss,
@@ -111,10 +124,15 @@ class EtymologyController {
       }))
       .filter((fam) => fam.members.length >= 2)
       .sort((a, b) => b.members.length - a.members.length);
+  }
 
-    if (!this.activeFamily && this.families.length) {
-      this.activeFamily = this.families[0].component;
-    }
+  resetSelection() {
+    const s = this.section;
+    this.activeView = "lessons";
+    this.activeLessonId = s.lessons[0] ? s.lessons[0].id : null;
+    this.activeFamily = s.families[0] ? s.families[0].component : null;
+    this.selectedHanzi =
+      s.lessons[0] && s.lessons[0].chars[0] ? s.lessons[0].chars[0].hanzi : null;
   }
 
   /* ---------- rendering ---------- */
@@ -148,18 +166,16 @@ class EtymologyController {
 
   render() {
     if (!this.container) return;
+    const s = this.section;
 
     this.container.innerHTML = `
       <section class="etym-wrap" aria-label="Etimología de caracteres">
-        ${this.renderHeader()}
+        ${this.renderHeader(s)}
+        ${this.renderSectionTabs()}
         ${this.renderViewToggle()}
         <div class="etym-body">
           <div class="etym-left">
-            ${
-              this.activeView === "lessons"
-                ? this.renderLessonsNav()
-                : this.renderFamiliesNav()
-            }
+            ${this.activeView === "lessons" ? this.renderLessonsNav(s) : this.renderFamiliesNav(s)}
             <div class="etym-grid" id="etym-grid">
               ${this.renderGrid()}
             </div>
@@ -168,24 +184,45 @@ class EtymologyController {
             ${this.renderDetail()}
           </aside>
         </div>
-        ${this.renderFooter()}
+        ${this.renderFooter(s)}
       </section>`;
 
     this.bindEvents();
     this.mountWriter();
   }
 
-  renderHeader() {
+  renderHeader(s) {
     return `
       <header class="etym-header">
         <div class="etym-header-text">
-          <h2 class="etym-title">${this.escape(this.data.title)}</h2>
-          <p class="etym-intro">${this.escape(this.data.intro)}</p>
+          <h2 class="etym-title">${this.escape(s.title)}</h2>
+          <p class="etym-intro">${this.escape(s.intro)}</p>
         </div>
         <span class="etym-lang-badge" title="Próximamente en inglés">
           🌐 English coming soon
         </span>
       </header>`;
+  }
+
+  renderSectionTabs() {
+    const labels = {
+      A: "Sección A · Pictográficos",
+      B: "Sección B · Compuestos",
+    };
+    return `
+      <div class="etym-section-tabs" role="tablist" aria-label="Secciones del libro">
+        ${this.sections
+          .map(
+            (s) => `
+            <button class="etym-section-tab ${
+              s.section === this.activeSectionId ? "is-active" : ""
+            }" role="tab" aria-selected="${s.section === this.activeSectionId}"
+              data-section="${s.section}" type="button">
+              ${labels[s.section] || "Sección " + s.section}
+            </button>`
+          )
+          .join("")}
+      </div>`;
   }
 
   renderViewToggle() {
@@ -194,46 +231,38 @@ class EtymologyController {
         <button class="etym-toggle-btn ${
           this.activeView === "lessons" ? "is-active" : ""
         }" role="tab" aria-selected="${this.activeView === "lessons"}"
-          data-view="lessons" type="button">
-          Lecciones por tema
-        </button>
+          data-view="lessons" type="button">Lecciones por tema</button>
         <button class="etym-toggle-btn ${
           this.activeView === "families" ? "is-active" : ""
         }" role="tab" aria-selected="${this.activeView === "families"}"
-          data-view="families" type="button">
-          Familias por componente
-        </button>
+          data-view="families" type="button">Familias por componente</button>
       </div>`;
   }
 
-  renderLessonsNav() {
-    const chips = this.data.lessons
+  renderLessonsNav(s) {
+    const chips = s.lessons
       .map(
         (lesson) => `
           <button class="etym-chip ${
             lesson.id === this.activeLessonId ? "is-active" : ""
           }" data-lesson="${lesson.id}" type="button">
             <span class="etym-chip-icon">${lesson.icon}</span>
-            <span class="etym-chip-label">${lesson.id} · ${this.escape(
-          lesson.theme
-        )}</span>
+            <span class="etym-chip-label">${lesson.id} · ${this.escape(lesson.theme)}</span>
           </button>`
       )
       .join("");
     return `<nav class="etym-chips" aria-label="Lecciones">${chips}</nav>`;
   }
 
-  renderFamiliesNav() {
-    const chips = this.families
+  renderFamiliesNav(s) {
+    const chips = s.families
       .map(
         (fam) => `
           <button class="etym-chip ${
             fam.component === this.activeFamily ? "is-active" : ""
           }" data-family="${fam.component}" type="button">
             <span class="etym-chip-icon">${fam.component}</span>
-            <span class="etym-chip-label">${this.escape(
-              fam.gloss || fam.component
-            )} · ${fam.members.length}</span>
+            <span class="etym-chip-label">${this.escape(fam.gloss || fam.component)} · ${fam.members.length}</span>
           </button>`
       )
       .join("");
@@ -243,15 +272,14 @@ class EtymologyController {
   }
 
   currentChars() {
+    const s = this.section;
     if (this.activeView === "lessons") {
-      const lesson = this.data.lessons.find((l) => l.id === this.activeLessonId);
+      const lesson = s.lessons.find((l) => l.id === this.activeLessonId);
       return lesson ? lesson.chars : [];
     }
-    const fam = this.families.find((f) => f.component === this.activeFamily);
+    const fam = s.families.find((f) => f.component === this.activeFamily);
     if (!fam) return [];
-    return fam.members
-      .map((h) => this.charIndex.get(h))
-      .filter(Boolean);
+    return fam.members.map((h) => s.charIndex.get(h)).filter(Boolean);
   }
 
   renderGrid() {
@@ -277,9 +305,8 @@ class EtymologyController {
   }
 
   renderDetail() {
-    const entry = this.selectedHanzi
-      ? this.charIndex.get(this.selectedHanzi)
-      : null;
+    const s = this.section;
+    const entry = this.selectedHanzi ? s.charIndex.get(this.selectedHanzi) : null;
     if (!entry) {
       return `<p class="etym-empty">Selecciona un carácter para ver su orden de trazos y descomposición.</p>`;
     }
@@ -294,9 +321,9 @@ class EtymologyController {
               .map(
                 (c) => `
                 <span class="etym-decomp-chip ${
-                  this.charIndex.has(c.char) ? "is-link" : ""
+                  s.charIndex.has(c.char) ? "is-link" : ""
                 }" ${
-                  this.charIndex.has(c.char)
+                  s.charIndex.has(c.char)
                     ? `data-goto="${c.char}" role="button" tabindex="0"`
                     : ""
                 }>
@@ -308,6 +335,26 @@ class EtymologyController {
           </div>
         </div>`
       : `<p class="etym-decomp-none">Carácter pictográfico básico: no se descompone en componentes con significado propio.</p>`;
+
+    const words = entry.words && entry.words.length
+      ? `
+        <div class="etym-words">
+          <h4 class="etym-section-title">Palabras de ejemplo</h4>
+          <ul class="etym-word-list">
+            ${entry.words
+              .map(
+                (w) => `
+                <li class="etym-word">
+                  <span class="etym-word-hanzi">${w.hanzi}</span>
+                  <span class="etym-word-pinyin">${this.escape(w.pinyin)}</span>
+                  <span class="etym-word-meaning">${this.escape(w.meaning)}</span>
+                  ${w.gloss ? `<span class="etym-word-gloss">${this.escape(w.gloss)}</span>` : ""}
+                </li>`
+              )
+              .join("")}
+          </ul>
+        </div>`
+      : "";
 
     return `
       <div class="etym-detail-head">
@@ -330,18 +377,17 @@ class EtymologyController {
         <button class="etym-btn etym-secondary etym-quiz" type="button">✎ Practicar</button>
       </div>
       <div class="etym-why">
-        <h4 class="etym-section-title">El porqué (${entry.lessonId} · ${this.escape(
-      entry.theme
-    )})</h4>
+        <h4 class="etym-section-title">El porqué (${entry.lessonId} · ${this.escape(entry.theme)})</h4>
         <p class="etym-why-text">${this.highlightComponents(entry.etymology)}</p>
       </div>
-      ${decomposition}`;
+      ${decomposition}
+      ${words}`;
   }
 
-  renderFooter() {
+  renderFooter(s) {
     return `
       <footer class="etym-footer">
-        <p class="etym-source">Fuente: ${this.escape(this.data.source)}</p>
+        <p class="etym-source">Fuente: ${this.escape(s.source)}</p>
         <p class="etym-credit">Orden de trazos: <a href="https://github.com/chanind/hanzi-writer" target="_blank" rel="noopener">Hanzi Writer</a> · datos de Make Me a Hanzi (LGPL/Arphic).</p>
       </footer>`;
   }
@@ -364,9 +410,10 @@ class EtymologyController {
         showCharacter: true,
         strokeAnimationSpeed: 1,
         delayBetweenStrokes: 180,
-        strokeColor: getComputedStyle(document.documentElement)
-          .getPropertyValue("--color-primary")
-          .trim() || "#d32f2f",
+        strokeColor:
+          getComputedStyle(document.documentElement)
+            .getPropertyValue("--color-primary")
+            .trim() || "#d32f2f",
         outlineColor: "rgba(128,128,128,0.28)",
         radicalColor: "#2e7d32",
         charDataLoader: (char, onComplete) => this.loadStroke(char, onComplete),
@@ -408,6 +455,15 @@ class EtymologyController {
     const root = this.container;
     if (!root) return;
 
+    root.querySelectorAll("[data-section]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.section === this.activeSectionId) return;
+        this.activeSectionId = btn.dataset.section;
+        this.resetSelection();
+        this.render();
+      });
+    });
+
     root.querySelectorAll(".etym-toggle-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         this.activeView = btn.dataset.view;
@@ -418,7 +474,7 @@ class EtymologyController {
     root.querySelectorAll("[data-lesson]").forEach((btn) => {
       btn.addEventListener("click", () => {
         this.activeLessonId = btn.dataset.lesson;
-        const lesson = this.data.lessons.find((l) => l.id === this.activeLessonId);
+        const lesson = this.section.lessons.find((l) => l.id === this.activeLessonId);
         if (lesson && lesson.chars[0]) this.selectedHanzi = lesson.chars[0].hanzi;
         this.render();
       });
@@ -427,19 +483,26 @@ class EtymologyController {
     root.querySelectorAll("[data-family]").forEach((btn) => {
       btn.addEventListener("click", () => {
         this.activeFamily = btn.dataset.family;
-        const fam = this.families.find((f) => f.component === this.activeFamily);
+        const fam = this.section.families.find((f) => f.component === this.activeFamily);
         if (fam && fam.members[0]) this.selectedHanzi = fam.members[0];
         this.render();
       });
     });
 
     root.querySelectorAll("[data-hanzi]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        this.selectHanzi(btn.dataset.hanzi);
-      });
+      btn.addEventListener("click", () => this.selectHanzi(btn.dataset.hanzi));
     });
 
-    root.querySelectorAll("[data-goto]").forEach((el) => {
+    this.bindGoto(root);
+
+    const replay = root.querySelector(".etym-replay");
+    if (replay) replay.addEventListener("click", () => this.animateStrokes());
+    const quiz = root.querySelector(".etym-quiz");
+    if (quiz) quiz.addEventListener("click", () => this.startQuiz());
+  }
+
+  bindGoto(scope) {
+    scope.querySelectorAll("[data-goto]").forEach((el) => {
       const go = () => this.gotoChar(el.dataset.goto);
       el.addEventListener("click", go);
       el.addEventListener("keydown", (e) => {
@@ -449,17 +512,11 @@ class EtymologyController {
         }
       });
     });
-
-    const replay = root.querySelector(".etym-replay");
-    if (replay) replay.addEventListener("click", () => this.animateStrokes());
-    const quiz = root.querySelector(".etym-quiz");
-    if (quiz) quiz.addEventListener("click", () => this.startQuiz());
   }
 
   selectHanzi(hanzi) {
-    if (!this.charIndex.has(hanzi)) return;
+    if (!this.section.charIndex.has(hanzi)) return;
     this.selectedHanzi = hanzi;
-    // Update only the detail + selection highlight to avoid full re-render flicker.
     const detail = document.getElementById("etym-detail");
     if (detail) detail.innerHTML = this.renderDetail();
     this.container.querySelectorAll(".etym-card").forEach((card) => {
@@ -473,16 +530,7 @@ class EtymologyController {
   bindDetailEvents() {
     const detail = document.getElementById("etym-detail");
     if (!detail) return;
-    detail.querySelectorAll("[data-goto]").forEach((el) => {
-      const go = () => this.gotoChar(el.dataset.goto);
-      el.addEventListener("click", go);
-      el.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          go();
-        }
-      });
-    });
+    this.bindGoto(detail);
     const replay = detail.querySelector(".etym-replay");
     if (replay) replay.addEventListener("click", () => this.animateStrokes());
     const quiz = detail.querySelector(".etym-quiz");
@@ -490,7 +538,7 @@ class EtymologyController {
   }
 
   gotoChar(hanzi) {
-    const entry = this.charIndex.get(hanzi);
+    const entry = this.section.charIndex.get(hanzi);
     if (!entry) return;
     if (this.activeView === "lessons") {
       this.activeLessonId = entry.lessonId;
@@ -502,10 +550,10 @@ class EtymologyController {
   /* ---------- helpers ---------- */
 
   highlightComponents(text) {
-    // Wrap CJK characters in a styled span so the breakdown reads like the book.
+    const idx = this.section.charIndex;
     const escaped = this.escape(text);
     return escaped.replace(/([一-鿿㐀-䶿]+)/g, (m) => {
-      const linkable = this.charIndex.has(m);
+      const linkable = idx.has(m);
       return `<span class="etym-inline-char ${
         linkable ? "is-link" : ""
       }" ${linkable ? `data-goto="${m}" role="button" tabindex="0"` : ""}>${m}</span>`;
