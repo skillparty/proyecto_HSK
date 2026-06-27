@@ -1,0 +1,444 @@
+{
+  "section": "A",
+  "title": "Sección A · Caracteres pictográficos",
+  "intro": "Los caracteres de esta sección, en su mayoría de origen pictográfico, agrupan signos que comparten un mismo tema o componente. Cada carácter se descompone en sus piezas para mostrar el porqué de su forma y de su significado. Basado en el «Manual de Escritura de los Caracteres Chinos» de Pedro Ceinos (Miraguano Ediciones).",
+  "source": "Pedro Ceinos, «Manual de Escritura de los Caracteres Chinos», Miraguano Ediciones, 11.ª ed. 2012.",
+  "lessons": [
+    {
+      "id": "A-1",
+      "theme": "De las personas",
+      "icon": "人",
+      "chars": [
+        { "hanzi": "人", "pinyin": "rén", "meaning": "hombre, persona", "etymology": "Pictograma de una persona de pie, con las piernas abiertas. Simplificado en dos trazos, desde cada uno de sus pies hasta la cabeza.", "components": [], "jp": true },
+        { "hanzi": "大", "pinyin": "dà", "meaning": "grande", "etymology": "Es una persona 人 con los brazos extendidos 一, un gesto común para expresar gran tamaño. Cuando forma parte de otro carácter lleva el sentido de «persona adulta».", "components": [{ "char": "人", "gloss": "persona" }, { "char": "一", "gloss": "brazos extendidos" }], "jp": true },
+        { "hanzi": "太", "pinyin": "tài", "meaning": "muy, demasiado, extremo", "etymology": "Una persona grande 大 sobre una piedra, representada sólo por un pequeño trazo: ya es demasiado grande.", "components": [{ "char": "大", "gloss": "persona grande" }, { "char": "丶", "gloss": "piedra" }], "jp": true },
+        { "hanzi": "天", "pinyin": "tiān", "meaning": "cielo; día, tiempo, naturaleza", "etymology": "Se preguntaban los antiguos: ¿qué es más grande que un hombre grande 大? El cielo. Un trazo 一 sobre 大.", "components": [{ "char": "一", "gloss": "lo que está por encima" }, { "char": "大", "gloss": "hombre grande" }], "jp": true },
+        { "hanzi": "夫", "pinyin": "fū", "meaning": "marido, hombre", "etymology": "Un hombre adulto 大 con un alfiler en el pelo 一 que corta su trazo vertical. Los varones chinos antiguamente se dejaban una coleta; recordarlo como lo que traspasa el cielo da idea de sabiduría.", "components": [{ "char": "大", "gloss": "hombre adulto" }, { "char": "一", "gloss": "alfiler del pelo" }], "jp": true },
+        { "hanzi": "夹", "pinyin": "jiā", "meaning": "pinzas; presionar desde ambos lados; llevar al brazo", "etymology": "Antiguamente era el pictograma de un hombre 大 con dos personas a sus lados —tal vez dos mujeres o dos niños— que, por la simplificación del idioma, quedaron representados por dos manos.", "components": [{ "char": "大", "gloss": "hombre" }], "jp": true },
+        { "hanzi": "从", "pinyin": "cóng", "meaning": "seguir; desde", "etymology": "Una persona 人 tras otra 人 es «seguir». También se usa para «desde».", "components": [{ "char": "人", "gloss": "persona" }, { "char": "人", "gloss": "persona que sigue" }], "jp": true },
+        { "hanzi": "众", "pinyin": "zhòng", "meaning": "multitud", "etymology": "Basta con tres personas 人 para representar a una multitud. Este recurso se repite en otros caracteres donde la repetición triple simboliza un gran número.", "components": [{ "char": "人", "gloss": "persona" }, { "char": "人", "gloss": "persona" }, { "char": "人", "gloss": "persona" }], "jp": true },
+        { "hanzi": "火", "pinyin": "huǒ", "meaning": "fuego, calor; ira; urgente", "etymology": "Deriva del pictograma de una llama. Aunque guarda gran semejanza visual con el carácter de persona 人, no tiene relación con él.", "components": [], "jp": true },
+        { "hanzi": "炎", "pinyin": "yán", "meaning": "llama, cálido, ardiente; inflamación", "etymology": "Dos fuegos 火 que refuerzan el mismo concepto del calor.", "components": [{ "char": "火", "gloss": "fuego" }, { "char": "火", "gloss": "fuego" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-2",
+      "theme": "Del universo",
+      "icon": "王",
+      "chars": [
+        { "hanzi": "一", "pinyin": "yī", "meaning": "uno", "etymology": "Es la unidad del universo que engloba todas las cosas. El principio de la numeración.", "components": [], "jp": true },
+        { "hanzi": "二", "pinyin": "èr", "meaning": "dos", "etymology": "Representa la dualidad del cielo 一 y la tierra 一: el yin y el yang, los dos principios que con su interacción generan cuanto existe.", "components": [{ "char": "一", "gloss": "cielo" }, { "char": "一", "gloss": "tierra" }], "jp": true },
+        { "hanzi": "三", "pinyin": "sān", "meaning": "tres", "etymology": "Los tres componentes del mundo: el cielo 一, la tierra 一 y los hombres 一, en medio.", "components": [{ "char": "一", "gloss": "cielo" }, { "char": "一", "gloss": "hombres" }, { "char": "一", "gloss": "tierra" }], "jp": true },
+        { "hanzi": "王", "pinyin": "wáng", "meaning": "rey", "etymology": "Es la unión 丨 entre el cielo, la tierra y los hombres 三. Para otros deriva del primitivo cetro usado por los soberanos de la China antigua.", "components": [{ "char": "三", "gloss": "cielo, tierra y hombres" }, { "char": "丨", "gloss": "unión" }], "jp": true },
+        { "hanzi": "丰", "pinyin": "fēng", "meaning": "abundante, rico", "etymology": "Deriva del pictograma de una rama con hojas; muestra la superioridad de la naturaleza sobre el hombre, no limitada como el rey 王 ni por el cielo ni por la tierra.", "components": [], "jp": true },
+        { "hanzi": "玉", "pinyin": "yù", "meaning": "jade", "etymology": "Simboliza el poder real: antes los reyes 王 llevaban piedrecillas de jade colgando del cinto, de las que sólo queda una coma 丶.", "components": [{ "char": "王", "gloss": "rey" }, { "char": "丶", "gloss": "piedra de jade" }], "jp": true },
+        { "hanzi": "国", "pinyin": "guó", "meaning": "estado, nación", "etymology": "Es el territorio 囗 donde el rey 王 ejerce su poder. Como no convenía representar al rey encerrado, se le sustituyó por el jade 玉, que simboliza su poder.", "components": [{ "char": "囗", "gloss": "territorio" }, { "char": "玉", "gloss": "poder real (jade)" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-3",
+      "theme": "Del suelo",
+      "icon": "土",
+      "chars": [
+        { "hanzi": "土", "pinyin": "tǔ", "meaning": "suelo, tierra", "etymology": "Representado por los dos niveles de suelo 一 y subsuelo 一, del que salen las plantas.", "components": [], "jp": true },
+        { "hanzi": "上", "pinyin": "shàng", "meaning": "arriba; primero, anterior, subir", "etymology": "Se representa por todo lo que hay sobre la línea 一 del suelo.", "components": [{ "char": "一", "gloss": "línea del suelo" }], "jp": true },
+        { "hanzi": "下", "pinyin": "xià", "meaning": "debajo; inferior, siguiente, bajar", "etymology": "Se representa por todo lo que hay bajo la línea 一 del suelo.", "components": [{ "char": "一", "gloss": "línea del suelo" }], "jp": true },
+        { "hanzi": "十", "pinyin": "shí", "meaning": "diez, completo", "etymology": "Es todo lo que hay sobre y bajo el suelo 一. Se puede pensar en una fusión de 上 y 下.", "components": [{ "char": "上", "gloss": "arriba" }, { "char": "下", "gloss": "abajo" }], "jp": true },
+        { "hanzi": "士", "pinyin": "shì", "meaning": "persona, intelectual, oficial", "etymology": "Viene de uno 一 entre diez 十: un oficial es alguien elegido entre muchos. Se diferencia de «tierra» 土 en que el trazo horizontal superior es mayor que el inferior.", "components": [{ "char": "一", "gloss": "uno" }, { "char": "十", "gloss": "diez (muchos)" }], "jp": true },
+        { "hanzi": "壬", "pinyin": "rén", "meaning": "carga; (9.º tronco celeste)", "etymology": "Pictograma de una persona llevando una carga con ayuda de una caña de bambú; para otros autores es una mujer embarazada (en el centro se ven sus redondeces).", "components": [], "jp": true },
+        { "hanzi": "任", "pinyin": "rèn", "meaning": "asumir un cargo; nombrar; permitir", "etymology": "Añade humanidad 亻 a ese hombre que lleva la carga 壬 de su puesto.", "components": [{ "char": "亻", "gloss": "persona" }, { "char": "壬", "gloss": "carga del puesto" }], "jp": true },
+        { "hanzi": "廷", "pinyin": "tíng", "meaning": "corte, palacio, audiencia", "etymology": "Andar 廴 cargado con los tributos 壬 se refiere, sin duda, a la corte.", "components": [{ "char": "廴", "gloss": "andar" }, { "char": "壬", "gloss": "tributos" }], "jp": true },
+        { "hanzi": "庭", "pinyin": "tíng", "meaning": "salón, tribunal de justicia", "etymology": "Un palacio 廷 cubierto 广.", "components": [{ "char": "广", "gloss": "techo, cubierto" }, { "char": "廷", "gloss": "palacio" }], "jp": true },
+        { "hanzi": "圭", "pinyin": "guī", "meaning": "tablilla de jade o marfil", "etymology": "Tierra 土 más tierra 土: era una medida antigua de tierra y un símbolo de los terrenos sobre los que se concedía dominio.", "components": [{ "char": "土", "gloss": "tierra" }, { "char": "土", "gloss": "tierra" }], "jp": true },
+        { "hanzi": "闺", "pinyin": "guī", "meaning": "tocador, habitaciones de las mujeres", "etymology": "Puerta 门 preciosa 圭, como insignia del emperador.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "圭", "gloss": "tablilla preciosa" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-4",
+      "theme": "Del sol",
+      "icon": "日",
+      "chars": [
+        { "hanzi": "日", "pinyin": "rì", "meaning": "sol; día", "etymology": "Se deriva de un pictograma del sol.", "components": [], "jp": true },
+        { "hanzi": "旦", "pinyin": "dàn", "meaning": "alba", "etymology": "Es el sol 日 sobre el horizonte 一, como sale al alba.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "一", "gloss": "horizonte" }], "jp": true },
+        { "hanzi": "亘", "pinyin": "gèn", "meaning": "extenderse", "etymology": "El sol 日 extiende su presencia entre el alba 一 y el ocaso 一.", "components": [{ "char": "一", "gloss": "alba" }, { "char": "日", "gloss": "sol" }, { "char": "一", "gloss": "ocaso" }], "jp": true },
+        { "hanzi": "时", "pinyin": "shí", "meaning": "tiempo", "etymology": "Muestra el movimiento del sol 日 que, medido por una mano 寸, da idea del paso del tiempo.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "寸", "gloss": "mano que mide" }], "jp": true },
+        { "hanzi": "昌", "pinyin": "chāng", "meaning": "próspero, floreciente, esplendor", "etymology": "Cada día 日, algo en el interior de la boca 日 representa la posibilidad de alimentarse: la prosperidad.", "components": [{ "char": "日", "gloss": "día/sol" }, { "char": "日", "gloss": "boca con alimento" }], "jp": true },
+        { "hanzi": "晶", "pinyin": "jīng", "meaning": "brillante, radiante", "etymology": "El efecto de tres soles 日.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "日", "gloss": "sol" }, { "char": "日", "gloss": "sol" }], "jp": true },
+        { "hanzi": "白", "pinyin": "bái", "meaning": "blanco, claro, puro", "etymology": "Es el primer rayo de sol 日 por el horizonte, que lleva la claridad al mundo.", "components": [{ "char": "日", "gloss": "sol" }], "jp": true },
+        { "hanzi": "臼", "pinyin": "jiù", "meaning": "mortero", "etymology": "A pesar de su semejanza con 白, es de hecho el desarrollo del pictograma de un mortero: los dos trazos superiores no llegan a unirse.", "components": [], "jp": true },
+        { "hanzi": "曰", "pinyin": "yuē", "meaning": "decir, llamar", "etymology": "Un poco más alargada que 日, muestra una boca 口 con la lengua 一 en su interior.", "components": [{ "char": "口", "gloss": "boca" }, { "char": "一", "gloss": "lengua" }], "jp": true },
+        { "hanzi": "甘", "pinyin": "gān", "meaning": "dulce, agradable", "etymology": "Otra representación de una boca 口 con algo 一 en su interior. El sabor agradable del dulce induce a mantenerlo dentro de la boca.", "components": [{ "char": "口", "gloss": "boca" }, { "char": "一", "gloss": "algo dulce" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-5",
+      "theme": "De la luna",
+      "icon": "月",
+      "chars": [
+        { "hanzi": "月", "pinyin": "yuè", "meaning": "luna, mes", "etymology": "Estilización del pictograma de la luna creciente. Cuando forma parte de otros caracteres, se confunde con la abreviatura de 肉 (ròu, carne), que es idéntica: 月.", "components": [], "jp": true },
+        { "hanzi": "朋", "pinyin": "péng", "meaning": "amistad, amigo", "etymology": "Representado por carne 月 más carne 月: un cuerpo junto a otro son dos amigos.", "components": [{ "char": "月", "gloss": "carne (cuerpo)" }, { "char": "月", "gloss": "carne (cuerpo)" }], "jp": true },
+        { "hanzi": "用", "pinyin": "yòng", "meaning": "usar, emplear, gastar", "etymology": "Un palo atravesando un trozo de carne 月 da idea de la inminencia de su uso.", "components": [{ "char": "月", "gloss": "carne" }], "jp": true },
+        { "hanzi": "角", "pinyin": "jiǎo", "meaning": "cuerno, asta; esquina", "etymology": "Cuchillo 刀 más usar 用: lo que usa el toro para rasgar, como un cuchillo.", "components": [{ "char": "刀", "gloss": "cuchillo" }, { "char": "用", "gloss": "usar" }], "jp": true },
+        { "hanzi": "夕", "pinyin": "xī", "meaning": "puesta de sol, ocaso", "etymology": "Pictograma de la luna creciente 月, girada unos 45 grados, cuando emerge en el horizonte al atardecer.", "components": [{ "char": "月", "gloss": "luna" }], "jp": true },
+        { "hanzi": "多", "pinyin": "duō", "meaning": "muchos, más, excesivo", "etymology": "Tarde 夕 más tarde 夕 da el sentido de contar los días, numerar, y con ello de cantidad.", "components": [{ "char": "夕", "gloss": "tarde" }, { "char": "夕", "gloss": "tarde" }], "jp": true },
+        { "hanzi": "歹", "pinyin": "dǎi", "meaning": "muerte; malo, vicioso", "etymology": "Semejante a tarde 夕: el crepúsculo de la vida de uno 一. En su origen mostraba la postura de los muertos al ser enterrados.", "components": [{ "char": "夕", "gloss": "crepúsculo" }, { "char": "一", "gloss": "uno" }], "jp": true },
+        { "hanzi": "死", "pinyin": "sǐ", "meaning": "morir, muerte; rígido", "etymology": "Muerte 歹 de un hombre 匕.", "components": [{ "char": "歹", "gloss": "muerte" }, { "char": "匕", "gloss": "hombre" }], "jp": true },
+        { "hanzi": "冬", "pinyin": "dōng", "meaning": "fin, final; invierno", "etymology": "Un pie sobre el hielo, representado por las dos comas.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-6",
+      "theme": "Del agua",
+      "icon": "水",
+      "chars": [
+        { "hanzi": "水", "pinyin": "shuǐ", "meaning": "agua", "etymology": "Pictograma de una corriente de agua.", "components": [], "jp": true },
+        { "hanzi": "永", "pinyin": "yǒng", "meaning": "perpetuo, eterno", "etymology": "Variante de 水 que enfatiza el continuo fluir del agua.", "components": [{ "char": "水", "gloss": "agua" }], "jp": true },
+        { "hanzi": "淼", "pinyin": "miǎo", "meaning": "vasta extensión de agua", "etymology": "Tres aguas 水 lo indican de forma evidente. Aunque fácil de aprender, su uso es poco corriente.", "components": [{ "char": "水", "gloss": "agua" }, { "char": "水", "gloss": "agua" }, { "char": "水", "gloss": "agua" }], "jp": false },
+        { "hanzi": "求", "pinyin": "qiú", "meaning": "pedir, demandar", "etymology": "El aspecto es de agua 水 escaseando, que llega a su fin 一.", "components": [{ "char": "水", "gloss": "agua escasa" }, { "char": "一", "gloss": "fin" }], "jp": true },
+        { "hanzi": "雨", "pinyin": "yǔ", "meaning": "llover; lluvia", "etymology": "Pictograma de la lluvia: cuatro gotas de agua cayendo de una cortina de nubes 巾 que cuelga del cielo 一.", "components": [{ "char": "一", "gloss": "cielo" }, { "char": "巾", "gloss": "cortina de nubes" }], "jp": true },
+        { "hanzi": "川", "pinyin": "chuān", "meaning": "río", "etymology": "Sobre la tierra se forman los ríos, compuestos en principio por tres corrientes de agua. Tres tiene aquí el sentido de «numerosas».", "components": [], "jp": true },
+        { "hanzi": "州", "pinyin": "zhōu", "meaning": "prefectura", "etymology": "Tierra entre las aguas 川, representada por los puntos. Muchas ciudades antiguas acaban en zhōu: Suzhōu 苏州, Hángzhōu 杭州, Guǎngzhōu 广州.", "components": [{ "char": "川", "gloss": "aguas" }], "jp": true },
+        { "hanzi": "卅", "pinyin": "sà", "meaning": "treinta", "etymology": "Sólo se menciona por su semejanza con 川. En realidad es multiplicar diez 十 por tres.", "components": [{ "char": "十", "gloss": "diez" }, { "char": "十", "gloss": "diez" }, { "char": "十", "gloss": "diez" }], "jp": true },
+        { "hanzi": "世", "pinyin": "shì", "meaning": "generación, época, mundo", "etymology": "Derivado de 卅 con un diez 十 modificado para acoger a los otros dos. Cada 30 años pasa una generación: una renovación del mundo y del tiempo.", "components": [{ "char": "卅", "gloss": "treinta" }, { "char": "十", "gloss": "diez" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-7",
+      "theme": "De los árboles",
+      "icon": "木",
+      "chars": [
+        { "hanzi": "木", "pinyin": "mù", "meaning": "árbol, madera", "etymology": "Pictograma de un árbol. Se ve mejor invertido.", "components": [], "jp": true },
+        { "hanzi": "术", "pinyin": "shù", "meaning": "arte, técnica, método", "etymology": "Sólo queda un dedo de la mano que en los caracteres antiguos trabajaba la madera 木.", "components": [{ "char": "木", "gloss": "madera" }], "jp": true },
+        { "hanzi": "末", "pinyin": "mò", "meaning": "fin, extremo; menos", "etymology": "Un corte 一 al final del árbol 木, para dar el sentido de «fin».", "components": [{ "char": "木", "gloss": "árbol" }, { "char": "一", "gloss": "corte en el extremo" }], "jp": true },
+        { "hanzi": "未", "pinyin": "wèi", "meaning": "no; todavía no", "etymology": "El corte 一, esta vez en mitad del árbol 木, da la idea de negación. Se distingue de 末 en que la línea superior es más corta.", "components": [{ "char": "木", "gloss": "árbol" }, { "char": "一", "gloss": "corte en mitad" }], "jp": true },
+        { "hanzi": "朱", "pinyin": "zhū", "meaning": "rojo brillante; especial", "etymology": "Por el nombre de un árbol 木 de dicho color.", "components": [{ "char": "木", "gloss": "árbol" }], "jp": true },
+        { "hanzi": "耒", "pinyin": "lěi", "meaning": "arado", "etymology": "De madera 木, y con suficiente lugar 三 para hacer fuerza.", "components": [{ "char": "木", "gloss": "madera" }, { "char": "三", "gloss": "lugar para hacer fuerza" }], "jp": true },
+        { "hanzi": "本", "pinyin": "běn", "meaning": "raíz, fundación, origen", "etymology": "Un árbol 木 del que se enfatiza su parte subterránea 一: es la raíz.", "components": [{ "char": "木", "gloss": "árbol" }, { "char": "一", "gloss": "parte subterránea" }], "jp": true },
+        { "hanzi": "束", "pinyin": "shù", "meaning": "ligar, atar, controlar", "etymology": "Una cuerda 口 que ata la leña 木 (fragmentos de árbol).", "components": [{ "char": "口", "gloss": "cuerda" }, { "char": "木", "gloss": "leña" }], "jp": true },
+        { "hanzi": "才", "pinyin": "cái", "meaning": "habilidad, talento", "etymology": "Unas hierbas saliendo de la tierra, invertidas, dan idea de su capacidad, comparable al talento de las personas.", "components": [], "jp": true },
+        { "hanzi": "禾", "pinyin": "hé", "meaning": "grano maduro, espiga", "etymology": "Era el pictograma de una espiga en la que se distinguía el borde superior un poco curvado por el peso del grano. Se ve mejor invertida.", "components": [], "jp": true },
+        { "hanzi": "米", "pinyin": "mǐ", "meaning": "arroz", "etymology": "Es un arbolito 木 del que cuelgan un par de granos.", "components": [{ "char": "木", "gloss": "arbolito" }], "jp": true },
+        { "hanzi": "竹", "pinyin": "zhú", "meaning": "bambú", "etymology": "Representación de dos ramas, con sendos nudos, de bambú.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-8",
+      "theme": "Del campo",
+      "icon": "田",
+      "chars": [
+        { "hanzi": "田", "pinyin": "tián", "meaning": "campo", "etymology": "Pictograma de un campo roturado. Muchos caracteres que describen un entramado semejante han evolucionado hasta parecerse a 田; se presentan en esta lección para aprender a distinguirlos.", "components": [], "jp": true },
+        { "hanzi": "由", "pinyin": "yóu", "meaning": "causa, razón, origen; desde", "etymology": "Es la germinación del grano en el campo 田, del cual surge un pequeño tallo.", "components": [{ "char": "田", "gloss": "campo" }], "jp": true },
+        { "hanzi": "甲", "pinyin": "jiǎ", "meaning": "caparazón, armadura; primero", "etymology": "Pictograma del cuerpo rayado de una tortuga 田 con la cabeza escondida y la cola recta. Da idea de duro, armadura.", "components": [{ "char": "田", "gloss": "cuerpo rayado" }], "jp": true },
+        { "hanzi": "电", "pinyin": "diàn", "meaning": "electricidad", "etymology": "Es un rayo que atraviesa los campos 田. Antes se veía claramente la nube de lluvia sobre el rayo (電).", "components": [{ "char": "田", "gloss": "campos" }], "jp": false },
+        { "hanzi": "龟", "pinyin": "guī", "meaning": "tortuga", "etymology": "Aunque semejante al anterior, evoluciona desde la representación de una tortuga con su concha.", "components": [], "jp": false },
+        { "hanzi": "申", "pinyin": "shēn", "meaning": "extenderse, expresar, explicar", "etymology": "Son los campos 田 cultivados que se extienden arriba y abajo. Hoy se usa con sentido de explicar; para «extenderse, alargar» se usa 伸.", "components": [{ "char": "田", "gloss": "campos" }], "jp": true },
+        { "hanzi": "审", "pinyin": "shěn", "meaning": "examinar, interrogar", "etymology": "Pedir explicaciones bajo techo 宀 da la idea de un tribunal que examina un asunto.", "components": [{ "char": "宀", "gloss": "techo" }], "jp": false },
+        { "hanzi": "里", "pinyin": "lǐ", "meaning": "dentro, interior; aldea", "etymology": "Se representa por una aldea, con los campos 田 cultivados en medio de la tierra 土.", "components": [{ "char": "田", "gloss": "campos" }, { "char": "土", "gloss": "tierra" }], "jp": true },
+        { "hanzi": "单", "pinyin": "dān", "meaning": "unidad, sólo", "etymology": "Los dos puntos superiores tienen sentido de separar 八, al primero 甲 que se presenta solo 一.", "components": [{ "char": "八", "gloss": "separar" }, { "char": "甲", "gloss": "primero" }, { "char": "一", "gloss": "uno" }], "jp": false },
+        { "hanzi": "鱼", "pinyin": "yú", "meaning": "pez, pescado", "etymology": "El entrecruzado de sus escamas guarda semejanza con los campos roturados 田. Arriba se ve el anzuelo.", "components": [{ "char": "田", "gloss": "escamas" }], "jp": true },
+        { "hanzi": "疆", "pinyin": "jiāng", "meaning": "límite, frontera", "etymology": "Es el resultado de medir 三 los campos 田 de la tierra 土 con un instrumento semejante a un arco 弓.", "components": [{ "char": "弓", "gloss": "arco (instrumento)" }, { "char": "三", "gloss": "medir" }, { "char": "田", "gloss": "campos" }, { "char": "土", "gloss": "tierra" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-9",
+      "theme": "De la boca",
+      "icon": "口",
+      "chars": [
+        { "hanzi": "口", "pinyin": "kǒu", "meaning": "boca, entrada, agujero", "etymology": "Pictograma de una boca abierta. También agujero, por el que se pasa.", "components": [], "jp": true },
+        { "hanzi": "只", "pinyin": "zhǐ", "meaning": "pero; simple, solo", "etymology": "Es una boca 口 de la que se bifurcan 八 dos rachas de aire. Se usaba al final de la frase.", "components": [{ "char": "口", "gloss": "boca" }, { "char": "八", "gloss": "aire que sale" }], "jp": true },
+        { "hanzi": "品", "pinyin": "pǐn", "meaning": "artículo, producto", "etymology": "Tres bocas 口, en realidad representación de tres objetos apilados.", "components": [{ "char": "口", "gloss": "objeto" }, { "char": "口", "gloss": "objeto" }, { "char": "口", "gloss": "objeto" }], "jp": true },
+        { "hanzi": "喿", "pinyin": "zào", "meaning": "(bocas de pájaros)", "etymology": "Son las bocas de tres pájaros cantando sobre un árbol 木. Sólo se utiliza formando parte de otros caracteres.", "components": [{ "char": "口", "gloss": "boca" }, { "char": "木", "gloss": "árbol" }], "jp": false },
+        { "hanzi": "器", "pinyin": "qì", "meaning": "utensilio, objeto, órgano", "etymology": "Las cuatro bocas 口 son las de cuatro vasijas con comida. Un perro 犬 protege esos utensilios.", "components": [{ "char": "口", "gloss": "vasijas" }, { "char": "犬", "gloss": "perro guardián" }], "jp": true },
+        { "hanzi": "嚣", "pinyin": "xiāo", "meaning": "algarabía, bulla", "etymology": "Cuatro bocas 口 alrededor de la cabeza 页.", "components": [{ "char": "口", "gloss": "bocas" }, { "char": "页", "gloss": "cabeza" }], "jp": true },
+        { "hanzi": "回", "pinyin": "huí", "meaning": "volver, responder", "etymology": "Aunque parece una boca 口 dentro de otra, se generó de una espiral que vuelve sobre sí misma.", "components": [{ "char": "口", "gloss": "espiral" }], "jp": true },
+        { "hanzi": "古", "pinyin": "gǔ", "meaning": "antiguo", "etymology": "Se forma con diez 十 más boca 口. La noticia que pasa por diez bocas es antigua, como la familia que ha visto diez generaciones.", "components": [{ "char": "十", "gloss": "diez generaciones" }, { "char": "口", "gloss": "boca" }], "jp": true },
+        { "hanzi": "舌", "pinyin": "shé", "meaning": "lengua", "etymology": "Es la lengua de una serpiente 千 saliendo de la boca 口.", "components": [{ "char": "千", "gloss": "lengua de serpiente" }, { "char": "口", "gloss": "boca" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-10",
+      "theme": "De los sentidos",
+      "icon": "目",
+      "chars": [
+        { "hanzi": "目", "pinyin": "mù", "meaning": "ojo; catálogo", "etymology": "Estilización del ojo de una persona que, girada 90 grados, quedó vertical.", "components": [], "jp": true },
+        { "hanzi": "且", "pinyin": "qiě", "meaning": "justo, por el momento, por ahora", "etymology": "Un trazo 一 bajo el ojo 目 parece muestra de actualidad.", "components": [{ "char": "目", "gloss": "ojo" }, { "char": "一", "gloss": "trazo" }], "jp": true },
+        { "hanzi": "直", "pinyin": "zhí", "meaning": "derecho, franco, directo", "etymology": "Lo que ven diez 十 ojos 目. Este ojo se representa por cinco trazos horizontales en vez de cuatro.", "components": [{ "char": "十", "gloss": "diez" }, { "char": "目", "gloss": "ojos" }], "jp": false },
+        { "hanzi": "臣", "pinyin": "chén", "meaning": "servidor", "etymology": "Deriva de la representación del ojo de una persona con la cabeza agachada: un servidor.", "components": [], "jp": true },
+        { "hanzi": "艮", "pinyin": "gèn", "meaning": "tenaz, perseverante", "etymology": "En ojo 目, de la cabeza de una persona que se gira para mirar desafiante a otra persona 比.", "components": [{ "char": "目", "gloss": "ojo" }, { "char": "比", "gloss": "persona" }], "jp": true },
+        { "hanzi": "自", "pinyin": "zì", "meaning": "uno mismo", "etymology": "A pesar de su parecido con el ojo 目, evolucionó desde el pictograma de una nariz, el órgano donde uno se señala para nombrarse a sí mismo.", "components": [], "jp": true },
+        { "hanzi": "首", "pinyin": "shǒu", "meaning": "cabeza, jefe, primero", "etymology": "Pictograma de una cabeza en la que destaca la nariz 自 y la frente 一, de la que se elevan dos cuernos.", "components": [{ "char": "自", "gloss": "nariz" }, { "char": "一", "gloss": "frente" }], "jp": true },
+        { "hanzi": "面", "pinyin": "miàn", "meaning": "cara, lado; harina", "etymology": "Una cara en la que destaca la nariz 自, la frente 一 y las mejillas a los dos lados.", "components": [{ "char": "自", "gloss": "nariz" }, { "char": "一", "gloss": "frente" }], "jp": true },
+        { "hanzi": "耳", "pinyin": "ěr", "meaning": "oreja, oído", "etymology": "Pictograma de una oreja con adornos. Curioso que ojo 目, nariz 自 y oreja 耳 hayan llevado a esta semejanza.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-11",
+      "theme": "De las manos",
+      "icon": "手",
+      "chars": [
+        { "hanzi": "手", "pinyin": "shǒu", "meaning": "mano", "etymology": "Pictograma de mano, en la que destacan tres dedos.", "components": [], "jp": true },
+        { "hanzi": "拜", "pinyin": "bài", "meaning": "rezar, postrarse", "etymology": "Dos manos 手 que se unen en la oración.", "components": [{ "char": "手", "gloss": "mano" }, { "char": "手", "gloss": "mano" }], "jp": true },
+        { "hanzi": "掰", "pinyin": "bāi", "meaning": "partir con las manos", "etymology": "Separar 分 con las manos 手.", "components": [{ "char": "手", "gloss": "mano" }, { "char": "分", "gloss": "separar" }, { "char": "手", "gloss": "mano" }], "jp": false },
+        { "hanzi": "又", "pinyin": "yòu", "meaning": "además, todavía, de nuevo", "etymology": "Representación de una mano derecha, con la que se toman las cosas que se añaden.", "components": [], "jp": true },
+        { "hanzi": "友", "pinyin": "yǒu", "meaning": "amigo, amistad", "etymology": "Dos manos (手 y 又) que se enlazan: la amistad.", "components": [{ "char": "手", "gloss": "mano" }, { "char": "又", "gloss": "mano" }], "jp": true },
+        { "hanzi": "受", "pinyin": "shòu", "meaning": "recibir, aceptar", "etymology": "Dos manos: una da y otra 又 recibe; en medio una barra que simboliza el objeto que se entrega y recibe en el comercio.", "components": [{ "char": "又", "gloss": "mano que recibe" }], "jp": true },
+        { "hanzi": "双", "pinyin": "shuāng", "meaning": "par, gemelos", "etymology": "Se representa por dos manos 又 iguales.", "components": [{ "char": "又", "gloss": "mano" }, { "char": "又", "gloss": "mano" }], "jp": false },
+        { "hanzi": "寸", "pinyin": "cùn", "meaning": "unidad de longitud, medir", "etymology": "Pictograma de una mano con el pulgar de protagonista: la parte de la mano que se usa para medir.", "components": [], "jp": true },
+        { "hanzi": "爪", "pinyin": "zhǎo", "meaning": "zarpa, garra, talón", "etymology": "Del pictograma de una mano apoyada en la muñeca. Se ven tres dedos.", "components": [], "jp": true },
+        { "hanzi": "瓜", "pinyin": "guā", "meaning": "melón, calabaza", "etymology": "Pictograma de esta fruta; por su semejanza con 爪, se recuerda como lo que uno lleva en la mano para comer.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-12",
+      "theme": "De los pies",
+      "icon": "止",
+      "chars": [
+        { "hanzi": "止", "pinyin": "zhǐ", "meaning": "parar, cesar", "etymology": "Pictograma de un pie parado con tres dedos. A la izquierda el talón, a la derecha los dedos, y subiendo, el tobillo.", "components": [], "jp": true },
+        { "hanzi": "步", "pinyin": "bù", "meaning": "paso, etapa", "etymology": "Evolución de un pictograma de pie derecho e izquierdo que se suceden en el paso.", "components": [{ "char": "止", "gloss": "pie" }, { "char": "止", "gloss": "pie" }], "jp": true },
+        { "hanzi": "肯", "pinyin": "kěn", "meaning": "seguro; querer, poder", "etymology": "Parar 止 de comer carne 月 es señal de que estamos saciados. Denota poder.", "components": [{ "char": "止", "gloss": "parar" }, { "char": "月", "gloss": "carne" }], "jp": true },
+        { "hanzi": "足", "pinyin": "zú", "meaning": "pie; satisfecho", "etymology": "Pictograma del dedo gordo del pie 止 con la uña representada por el cuadrado 口.", "components": [{ "char": "口", "gloss": "uña" }, { "char": "止", "gloss": "pie" }], "jp": true },
+        { "hanzi": "走", "pinyin": "zǒu", "meaning": "caminar, andar", "etymology": "Arriba está la tierra 土, y abajo el pie 止, que representa andar.", "components": [{ "char": "土", "gloss": "tierra" }, { "char": "止", "gloss": "pie" }], "jp": true },
+        { "hanzi": "正", "pinyin": "zhèng", "meaning": "correcto, derecho, honesto", "etymology": "Un pie 止 que se detiene 一 donde marcan las normas.", "components": [{ "char": "一", "gloss": "norma" }, { "char": "止", "gloss": "pie" }], "jp": true },
+        { "hanzi": "延", "pinyin": "yán", "meaning": "alargar, prolongar", "etymology": "Combinación de andar 廴 y no parar 止.", "components": [{ "char": "廴", "gloss": "andar" }, { "char": "止", "gloss": "pie" }], "jp": true },
+        { "hanzi": "疋", "pinyin": "pǐ", "meaning": "enrollar", "etymology": "El trazo superior parece representar una pieza de tela que cubre o enrolla al pie 止.", "components": [{ "char": "止", "gloss": "pie" }], "jp": false }
+      ]
+    },
+    {
+      "id": "A-13",
+      "theme": "Más sobre el hombre",
+      "icon": "比",
+      "chars": [
+        { "hanzi": "匕", "pinyin": "bǐ", "meaning": "cambio; puñal, cuchara", "etymology": "Es 人 invertido, por lo que representa una persona; al estar girada tiene sentido de cambio. También se usaba para puñal, daga y un tipo de cuchara.", "components": [{ "char": "人", "gloss": "persona invertida" }], "jp": true },
+        { "hanzi": "比", "pinyin": "bǐ", "meaning": "comparar", "etymology": "Son dos hombres de pie, inversos de 人, que comparan sus alturas.", "components": [{ "char": "匕", "gloss": "hombre" }, { "char": "匕", "gloss": "hombre" }], "jp": true },
+        { "hanzi": "北", "pinyin": "běi", "meaning": "norte; espalda", "etymology": "Un hombre de espaldas a otro. Cuando alguien está de espaldas al sol queda frente al Norte. Para «espalda» se añade carne 月: 背 [bèi].", "components": [{ "char": "匕", "gloss": "hombre" }, { "char": "匕", "gloss": "hombre de espaldas" }], "jp": true },
+        { "hanzi": "化", "pinyin": "huà", "meaning": "cambiar", "etymology": "Esta vez uno de los hombres 匕 está boca abajo: una transformación evidente.", "components": [{ "char": "亻", "gloss": "persona" }, { "char": "匕", "gloss": "persona invertida" }], "jp": true },
+        { "hanzi": "小", "pinyin": "xiǎo", "meaning": "pequeño, joven", "etymology": "Resulta de dividir 八 algo.", "components": [{ "char": "八", "gloss": "dividir" }], "jp": true },
+        { "hanzi": "立", "pinyin": "lì", "meaning": "estar de pie, erigir", "etymology": "Pictograma de un hombre 大, con cabeza, cuerpo y piernas, sobre un pedestal 一.", "components": [{ "char": "大", "gloss": "hombre" }, { "char": "一", "gloss": "pedestal" }], "jp": true },
+        { "hanzi": "身", "pinyin": "shēn", "meaning": "cuerpo", "etymology": "Representación del cuerpo de un hombre de perfil, con un buen vientre.", "components": [], "jp": true },
+        { "hanzi": "亦", "pinyin": "yì", "meaning": "también, igualmente, además", "etymology": "Representación de un hombre 大 con sus flancos enfatizados.", "components": [{ "char": "大", "gloss": "hombre" }], "jp": true },
+        { "hanzi": "赤", "pinyin": "chì", "meaning": "rojo; leal, honesto; desnudarse", "etymology": "Es un hombre 大 con fuego 火, modificado por el paso del tiempo. El rojo es el color de la honestidad.", "components": [{ "char": "大", "gloss": "hombre" }, { "char": "火", "gloss": "fuego" }], "jp": true },
+        { "hanzi": "赫", "pinyin": "hè", "meaning": "ilustre, resplandeciente", "etymology": "Persona doblemente honesta 赤 es ilustre. El rojo, color de la honestidad, resplandece.", "components": [{ "char": "赤", "gloss": "honesto" }, { "char": "赤", "gloss": "honesto" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-14",
+      "theme": "De la mujer",
+      "icon": "女",
+      "chars": [
+        { "hanzi": "女", "pinyin": "nǚ", "meaning": "mujer", "etymology": "Pictograma de una mujer que va andando y con los brazos extendidos.", "components": [], "jp": true },
+        { "hanzi": "安", "pinyin": "ān", "meaning": "seguro, tranquilo", "etymology": "La mujer 女 bajo el techo 宀 hace al hombre sentirse tranquilo.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "女", "gloss": "mujer" }], "jp": true },
+        { "hanzi": "要", "pinyin": "yào", "meaning": "querer, desear", "etymology": "Una mujer 女 para pasar la noche, cuando el sol se pone por el oeste 西.", "components": [{ "char": "西", "gloss": "oeste" }, { "char": "女", "gloss": "mujer" }], "jp": true },
+        { "hanzi": "妻", "pinyin": "qī", "meaning": "esposa", "etymology": "La mujer 女 que lleva una escoba en la mano 彐.", "components": [{ "char": "彐", "gloss": "mano con escoba" }, { "char": "女", "gloss": "mujer" }], "jp": true },
+        { "hanzi": "母", "pinyin": "mǔ", "meaning": "madre", "etymology": "Una mujer 女 girada unos 45 grados que exhibe los pechos para amamantar a su hijo.", "components": [{ "char": "女", "gloss": "mujer" }], "jp": true },
+        { "hanzi": "毒", "pinyin": "dú", "meaning": "veneno, toxina", "etymology": "Es la planta 丰 prohibida; la atracción de algunos tóxicos se refleja al cambiar la negación 毋 por la madre 母 que exhibe sus pechos.", "components": [{ "char": "丰", "gloss": "planta" }, { "char": "母", "gloss": "madre" }], "jp": false },
+        { "hanzi": "毋", "pinyin": "wú", "meaning": "no (prohibido)", "etymology": "Es una madre 女 girada 90 grados. Con los pechos cubiertos niega el alimento al hijo: prohibición, negación.", "components": [{ "char": "女", "gloss": "madre" }], "jp": true },
+        { "hanzi": "及", "pinyin": "jí", "meaning": "alcanzar", "etymology": "Mano 又 que agarra a una persona 人. Se ve que la mano no llega a cerrarse por arriba.", "components": [{ "char": "人", "gloss": "persona" }, { "char": "又", "gloss": "mano" }], "jp": true },
+        { "hanzi": "乃", "pinyin": "nǎi", "meaning": "ser; tú", "etymology": "Antiguamente una cuerda para designar a otro. Más fácil recordarlo como 及 sin nadie que le agarre 又.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-15",
+      "theme": "De los niños",
+      "icon": "子",
+      "chars": [
+        { "hanzi": "子", "pinyin": "zǐ", "meaning": "hijo, semilla, joven", "etymology": "Pictograma de un niño pequeño envuelto en pañales.", "components": [], "jp": true },
+        { "hanzi": "字", "pinyin": "zì", "meaning": "carácter chino", "etymology": "Como un niño 子 bajo techo 宀: da idea de la importancia de la escritura en la antigua China.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "子", "gloss": "niño" }], "jp": true },
+        { "hanzi": "孑", "pinyin": "jié", "meaning": "solitario", "etymology": "Deriva del pictograma de un niño 子 con un solo brazo.", "components": [{ "char": "子", "gloss": "niño" }], "jp": true },
+        { "hanzi": "予", "pinyin": "yǔ", "meaning": "dar, ofrecer", "etymology": "Evoluciona desde el pictograma de las palmas de dos manos, una da y otra recibe.", "components": [], "jp": true },
+        { "hanzi": "了", "pinyin": "le", "meaning": "terminar, acabar; comprender", "etymology": "Niño 子 con el cuerpo y los brazos envueltos, con lo que acababan sus posibilidades de moverse. Al final de la frase denota pasado.", "components": [{ "char": "子", "gloss": "niño envuelto" }], "jp": true },
+        { "hanzi": "儿", "pinyin": "ér", "meaning": "niño", "etymology": "Representación de las fontanelas de la cabeza, aún no cerradas, de un niño. Como parte de otros caracteres da sentido de «persona».", "components": [], "jp": true },
+        { "hanzi": "四", "pinyin": "sì", "meaning": "cuatro", "etymology": "Un niño 子 encerrado 口, ya que antiguamente los niños estaban en casa hasta los cuatro años.", "components": [{ "char": "口", "gloss": "encierro" }], "jp": true },
+        { "hanzi": "匹", "pinyin": "pǐ", "meaning": "igualarse, competir, emparejarse", "etymology": "Es la mitad de 四: una pareja.", "components": [{ "char": "四", "gloss": "cuatro" }], "jp": true },
+        { "hanzi": "西", "pinyin": "xī", "meaning": "Oeste", "etymology": "Al atardecer, los niños 子 rompen 一 su confinamiento 凵 y pasean. En realidad deriva del pictograma de nido, donde vuelven los pájaros cuando el sol se pone por el Oeste.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-16",
+      "theme": "Recipientes",
+      "icon": "皿",
+      "chars": [
+        { "hanzi": "皿", "pinyin": "mǐn", "meaning": "vasija", "etymology": "Pictograma de un sencillo recipiente usado antiguamente para sacrificios; también para cocer alimentos.", "components": [], "jp": true },
+        { "hanzi": "血", "pinyin": "xuè", "meaning": "sangre", "etymology": "Una gota 丿 sobre un recipiente 皿, como la sangre del animal sacrificado.", "components": [{ "char": "丿", "gloss": "gota" }, { "char": "皿", "gloss": "recipiente" }], "jp": true },
+        { "hanzi": "豆", "pinyin": "dòu", "meaning": "vasija sacrificial; legumbre", "etymology": "Pictograma de una vasija ceremonial, no muy distinta de donde se cocinaba la comida. De ahí «legumbre».", "components": [], "jp": true },
+        { "hanzi": "出", "pinyin": "chū", "meaning": "salir", "etymology": "Es una planta 屮 que sale 凵 de un tiesto.", "components": [{ "char": "屮", "gloss": "planta" }, { "char": "凵", "gloss": "tiesto" }], "jp": true },
+        { "hanzi": "山", "pinyin": "shān", "meaning": "montaña", "etymology": "Es lo que sale 屮 de la tierra 一, con los trazos laterales fundidos en uno.", "components": [{ "char": "屮", "gloss": "lo que brota" }, { "char": "一", "gloss": "tierra" }], "jp": true },
+        { "hanzi": "屯", "pinyin": "tún", "meaning": "almacenar, acumular", "etymology": "Representa una planta 屮 que brota y rompe la superficie 一.", "components": [{ "char": "屮", "gloss": "planta" }, { "char": "一", "gloss": "superficie" }], "jp": true },
+        { "hanzi": "缶", "pinyin": "fǒu", "meaning": "jarra como ánfora", "etymology": "Deriva del pictograma de la misma.", "components": [], "jp": true },
+        { "hanzi": "酉", "pinyin": "yǒu", "meaning": "ánfora (décima Rama Celeste)", "etymology": "La representación de un ánfora.", "components": [], "jp": true },
+        { "hanzi": "瓦", "pinyin": "wǎ", "meaning": "teja; objetos de barro cocido", "etymology": "Del pictograma de una teja que se coloca en un tejado 一.", "components": [{ "char": "一", "gloss": "tejado" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-17",
+      "theme": "Hebras de seda",
+      "icon": "丝",
+      "chars": [
+        { "hanzi": "厶", "pinyin": "sī", "meaning": "privado, personal", "etymology": "Representación de una hebra de seda. Su significado es privado, personal; hoy se usa 私.", "components": [], "jp": false },
+        { "hanzi": "私", "pinyin": "sī", "meaning": "personal, privado, egoísta, secreto", "etymology": "Grano 禾 más privado 厶. El grano que queda tras los impuestos es el de consumo privado.", "components": [{ "char": "禾", "gloss": "grano" }, { "char": "厶", "gloss": "privado" }], "jp": true },
+        { "hanzi": "公", "pinyin": "gōng", "meaning": "público", "etymology": "La división 八 de lo privado 厶.", "components": [{ "char": "八", "gloss": "división" }, { "char": "厶", "gloss": "privado" }], "jp": true },
+        { "hanzi": "幺", "pinyin": "yāo", "meaning": "pequeño", "etymology": "Dos hebras de seda 厶, sigue siendo algo insignificante. Para tejer un hilo se entrelazan al menos cuatro hebras.", "components": [{ "char": "厶", "gloss": "hebra" }, { "char": "厶", "gloss": "hebra" }], "jp": false },
+        { "hanzi": "丝", "pinyin": "sī", "meaning": "seda", "etymology": "Cuatro hebras 幺 de seda hacen un hilo para tejer.", "components": [{ "char": "幺", "gloss": "hebras" }, { "char": "幺", "gloss": "hebras" }], "jp": true },
+        { "hanzi": "己", "pinyin": "jǐ", "meaning": "uno mismo", "etymology": "Es el inicio de una hebra de seda: denota el origen del que habla.", "components": [], "jp": true },
+        { "hanzi": "已", "pinyin": "yǐ", "meaning": "parar, cesar; ya, antes", "etymology": "Es el fin de la hebra de seda, con el sentido de final.", "components": [], "jp": true },
+        { "hanzi": "巳", "pinyin": "sì", "meaning": "feto (sexta Rama Terrestre)", "etymology": "Representa a un feto. Sólo se utiliza formando parte de otros caracteres.", "components": [], "jp": true },
+        { "hanzi": "互", "pinyin": "hù", "meaning": "mutuo", "etymology": "Dos hebras entrelazadas dan la idea de una relación mutua.", "components": [], "jp": true },
+        { "hanzi": "五", "pinyin": "wǔ", "meaning": "cinco", "etymology": "Aunque se trae aquí por semejanza, su origen tiene cierta relación con 互.", "components": [{ "char": "互", "gloss": "hebras entrelazadas" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-18",
+      "theme": "Ropa",
+      "icon": "衣",
+      "chars": [
+        { "hanzi": "巾", "pinyin": "jīn", "meaning": "tela usada como paño", "etymology": "Pictograma de ropa colgada.", "components": [], "jp": true },
+        { "hanzi": "币", "pinyin": "bì", "meaning": "moneda", "etymology": "Aunque casi igual, 巾 aquí no es tela sino la representación de una balanza que cuelga de una vara 一. Se paga con monedas lo que marca la balanza.", "components": [{ "char": "巾", "gloss": "balanza" }, { "char": "一", "gloss": "vara" }], "jp": false },
+        { "hanzi": "再", "pinyin": "zài", "meaning": "de nuevo, otra vez", "etymology": "Sobre la balanza 币 vemos que se han realizado dos 二 pesadas: pesar de nuevo.", "components": [{ "char": "币", "gloss": "balanza" }, { "char": "二", "gloss": "dos pesadas" }], "jp": true },
+        { "hanzi": "衣", "pinyin": "yī", "meaning": "ropa", "etymology": "Pictograma de la parte superior de un traje, con dos anchas mangas y la caída del mismo.", "components": [], "jp": true },
+        { "hanzi": "农", "pinyin": "nóng", "meaning": "agricultura, campesino", "etymology": "Carácter simplificado, semejante a ropa 衣, tal vez más basto, como achacan los de la ciudad a los campesinos.", "components": [{ "char": "衣", "gloss": "ropa" }], "jp": false },
+        { "hanzi": "卒", "pinyin": "zú", "meaning": "soldado; morir, acabar", "etymology": "Representación de un peto de soldados, con un par de marcas en el pecho. Dos hombres 人 en un cruce de caminos 十 protegidos por una techumbre 亠.", "components": [{ "char": "亠", "gloss": "techumbre" }, { "char": "人", "gloss": "hombres" }, { "char": "十", "gloss": "cruce de caminos" }], "jp": true },
+        { "hanzi": "醉", "pinyin": "zuì", "meaning": "emborracharse, borracho", "etymology": "Soldado 卒 que bebe vino 酉.", "components": [{ "char": "酉", "gloss": "vino" }, { "char": "卒", "gloss": "soldado" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-19",
+      "theme": "De los cuchillos",
+      "icon": "刀",
+      "chars": [
+        { "hanzi": "刀", "pinyin": "dāo", "meaning": "cuchillo, espada", "etymology": "Pictograma de un cuchillo.", "components": [], "jp": true },
+        { "hanzi": "梁", "pinyin": "liáng", "meaning": "puente, viga", "etymology": "Un cuchillo 刀 que corta una madera 木 para cruzar un arroyo 氵.", "components": [{ "char": "氵", "gloss": "arroyo" }, { "char": "刀", "gloss": "cuchillo" }, { "char": "木", "gloss": "madera" }], "jp": true },
+        { "hanzi": "勹", "pinyin": "bāo", "meaning": "envolver", "etymology": "Es un hombre doblado sobre sí mismo, envolviendo algo, como en 包 [bāo] envolver.", "components": [], "jp": false },
+        { "hanzi": "勺", "pinyin": "sháo", "meaning": "cuchara", "etymology": "Del pictograma de una cuchara que, en cierta forma, envuelve los alimentos. Se ve mejor girándola 90 grados.", "components": [{ "char": "勹", "gloss": "envolver" }], "jp": true },
+        { "hanzi": "方", "pinyin": "fāng", "meaning": "dirección, lugar, cuadrado", "etymology": "Pictograma de un arado con la reja como un cuchillo, que sólo es útil si se usa en la dirección correcta.", "components": [], "jp": true },
+        { "hanzi": "万", "pinyin": "wàn", "meaning": "diez mil, incontables", "etymology": "Simplifica la esvástica, que simbolizaba las cuatro direcciones. Diez mil significa todos, infinito: al no marcar ninguna dirección 方, las abarca todas.", "components": [], "jp": false },
+        { "hanzi": "力", "pinyin": "lì", "meaning": "fuerza, habilidad", "etymology": "Pictograma de un brazo mostrando bíceps, símbolo de fuerza.", "components": [], "jp": true },
+        { "hanzi": "办", "pinyin": "bàn", "meaning": "arreglar, resolver", "etymology": "Un buen brazo 力, del que escapan algunas gotas de sudor, basta para arreglar cualquier asunto.", "components": [{ "char": "力", "gloss": "brazo" }], "jp": false },
+        { "hanzi": "为", "pinyin": "wèi", "meaning": "actuar, ser; para", "etymology": "Simplificado. El brazo, la fuerza 力, trabajando con un objetivo.", "components": [{ "char": "力", "gloss": "fuerza" }], "jp": false }
+      ]
+    },
+    {
+      "id": "A-20",
+      "theme": "Del hacha",
+      "icon": "斤",
+      "chars": [
+        { "hanzi": "斤", "pinyin": "jīn", "meaning": "hacha (unidad de peso, medio kilo)", "etymology": "Pictograma de un hacha; posiblemente se refiera al peso de los fragmentos que corta. Al convertirse en unidad de peso, el hacha se representó de otra forma.", "components": [], "jp": true },
+        { "hanzi": "斧", "pinyin": "fǔ", "meaning": "hacha", "etymology": "Literalmente hacha 斤 padre 父; evidentemente no es herramienta para niños.", "components": [{ "char": "父", "gloss": "padre" }, { "char": "斤", "gloss": "hacha" }], "jp": true },
+        { "hanzi": "斥", "pinyin": "chì", "meaning": "reprender, excluir", "etymology": "Un hacha 斤 con el mango roto es signo del guerrero excluido.", "components": [{ "char": "斤", "gloss": "hacha" }], "jp": false },
+        { "hanzi": "匠", "pinyin": "jiàng", "meaning": "artesano", "etymology": "El que es capaz de vaciar 匚 troncos de árboles con el hacha 斤.", "components": [{ "char": "匚", "gloss": "vaciar" }, { "char": "斤", "gloss": "hacha" }], "jp": true },
+        { "hanzi": "厂", "pinyin": "chǎng", "meaning": "factoría, fábrica; acantilado", "etymology": "Simplificado; originalmente significaba acantilado, precipicio o risco. «Fábrica» mostraba una cubierta donde se producía; sólo ha quedado la cubierta, modificada a 厂.", "components": [], "jp": true },
+        { "hanzi": "仄", "pinyin": "zè", "meaning": "estrecho", "etymology": "Una persona 人 en un acantilado 厂.", "components": [{ "char": "厂", "gloss": "acantilado" }, { "char": "人", "gloss": "persona" }], "jp": true },
+        { "hanzi": "广", "pinyin": "guǎng", "meaning": "ancho, extenso", "etymology": "Al ser simplificado, recordarlo como el tejado de la fábrica 厂. Las fábricas son extensos edificios al lado de las casas.", "components": [{ "char": "厂", "gloss": "fábrica" }], "jp": false },
+        { "hanzi": "丘", "pinyin": "qiū", "meaning": "montecillo, montaña", "etymology": "Antes pictograma de una montañita 厂; ahora parece que alguien trabaja 工 al pie de la misma.", "components": [{ "char": "工", "gloss": "trabajo" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-21",
+      "theme": "De las puertas",
+      "icon": "门",
+      "chars": [
+        { "hanzi": "门", "pinyin": "mén", "meaning": "puerta", "etymology": "Pictograma de una puerta con dos hojas.", "components": [], "jp": true },
+        { "hanzi": "户", "pinyin": "hù", "meaning": "puerta, familia", "etymology": "Pictograma de una puerta de una sola hoja.", "components": [], "jp": true },
+        { "hanzi": "尸", "pinyin": "shī", "meaning": "cadáver", "etymology": "La puerta sin el gozne, la del féretro que protege el cadáver. También designa actividades de la parte inferior del cuerpo, pues antiguamente se enterraba a los muertos sentados.", "components": [], "jp": true },
+        { "hanzi": "仓", "pinyin": "cāng", "meaning": "almacén, depósito", "etymology": "Un tejado 人 sobre una puerta, estilizada desde 户.", "components": [{ "char": "人", "gloss": "tejado" }, { "char": "户", "gloss": "puerta" }], "jp": false },
+        { "hanzi": "巷", "pinyin": "xiàng", "meaning": "callejuela, túnel", "etymology": "El lugar común 共 donde dan las puertas 仓.", "components": [{ "char": "共", "gloss": "lugar común" }, { "char": "仓", "gloss": "puertas" }], "jp": true },
+        { "hanzi": "卯", "pinyin": "mǎo", "meaning": "muesca, mortaja", "etymology": "Pictograma de una puerta abierta.", "components": [], "jp": true },
+        { "hanzi": "聊", "pinyin": "liáo", "meaning": "interés; charlar", "etymology": "Se manifiesta poniendo la oreja 耳 junto a la puerta 卯.", "components": [{ "char": "耳", "gloss": "oreja" }, { "char": "卯", "gloss": "puerta" }], "jp": true },
+        { "hanzi": "卵", "pinyin": "luǎn", "meaning": "óvulo, huevo", "etymology": "Deriva del pictograma de los ovarios y el oviducto. El huevo es la puerta 卯 a la reproducción.", "components": [{ "char": "卯", "gloss": "puerta" }], "jp": true },
+        { "hanzi": "孵", "pinyin": "fū", "meaning": "incubar, empollar", "etymology": "Dar confianza 孚 al huevo 卵.", "components": [{ "char": "孚", "gloss": "confianza" }, { "char": "卵", "gloss": "huevo" }], "jp": false }
+      ]
+    },
+    {
+      "id": "A-22",
+      "theme": "Arcos y flechas",
+      "icon": "弓",
+      "chars": [
+        { "hanzi": "弓", "pinyin": "gōng", "meaning": "arco; combarse, agacharse", "etymology": "Pictograma de un arco chino, con la empuñadura en el centro.", "components": [], "jp": true },
+        { "hanzi": "弟", "pinyin": "dì", "meaning": "hermano menor", "etymology": "Evoluciona de un hombre 人 que baja el arco 弓, acto de sumisión a los mayores. Otros: pictograma de un carrete de hilo.", "components": [{ "char": "弓", "gloss": "arco" }], "jp": true },
+        { "hanzi": "夷", "pinyin": "yí", "meaning": "extranjero; exterminar (tribus del Este)", "etymology": "El pueblo con grandes 大 arcos 弓.", "components": [{ "char": "大", "gloss": "grande" }, { "char": "弓", "gloss": "arco" }], "jp": true },
+        { "hanzi": "弗", "pinyin": "fú", "meaning": "no", "etymology": "Dos palos atados por una cuerda, similar a la del arco 弓, neutralizan su fuerza.", "components": [{ "char": "弓", "gloss": "arco" }], "jp": true },
+        { "hanzi": "矢", "pinyin": "shǐ", "meaning": "flecha", "etymology": "Pictograma de la misma.", "components": [], "jp": true },
+        { "hanzi": "失", "pinyin": "shī", "meaning": "perder, faltar", "etymology": "Es una flecha 矢 que ha traspasado su destino 一: perdida.", "components": [{ "char": "矢", "gloss": "flecha" }, { "char": "一", "gloss": "destino" }], "jp": true },
+        { "hanzi": "示", "pinyin": "shì", "meaning": "manifestar, mostrar, instruir", "etymology": "Pictograma de una tableta ancestral en la que se veneraba a los antepasados. Da el carácter de algo sagrado o relativo al culto.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-23",
+      "theme": "De las lanzas",
+      "icon": "戈",
+      "chars": [
+        { "hanzi": "弋", "pinyin": "yì", "meaning": "flecha recuperable", "etymology": "Pictograma de flecha recuperable. Da a otros caracteres el sentido de repetir una acción, y el sentido militar.", "components": [], "jp": false },
+        { "hanzi": "曳", "pinyin": "yè", "meaning": "arrastrar, tirar de", "etymology": "Tirar de la flecha recuperable 弋 que se ha clavado en algún animal, representado por su cabeza 田.", "components": [{ "char": "田", "gloss": "cabeza del animal" }, { "char": "弋", "gloss": "flecha" }], "jp": true },
+        { "hanzi": "必", "pinyin": "bì", "meaning": "necesariamente, inevitablemente", "etymology": "Una flecha recuperable 弋 que inevitablemente divide 八 el blanco que alcanza.", "components": [{ "char": "弋", "gloss": "flecha" }, { "char": "八", "gloss": "dividir" }], "jp": true },
+        { "hanzi": "心", "pinyin": "xīn", "meaning": "corazón", "etymology": "Aunque ha acabado parecido a 必, viene del pictograma de un corazón con sus partes esquematizadas. El ventrículo izquierdo se distingue con cierta claridad.", "components": [], "jp": true },
+        { "hanzi": "义", "pinyin": "yì", "meaning": "justicia, rectitud", "etymology": "Simplificado. La flecha 弋 girada 90 grados muestra que, donde prevalece la justicia, las armas pueden descansar.", "components": [{ "char": "弋", "gloss": "flecha" }], "jp": false },
+        { "hanzi": "戈", "pinyin": "gē", "meaning": "alabarda", "etymology": "Pictograma de la misma.", "components": [], "jp": true },
+        { "hanzi": "戋", "pinyin": "jiān", "meaning": "cortar; pequeño", "etymology": "Una alabarda 戈 más otra, fundidas en una. Sentido de pequeño porque lo que se corta repetidamente acaba pequeño.", "components": [{ "char": "戈", "gloss": "alabarda" }, { "char": "戈", "gloss": "alabarda" }], "jp": false },
+        { "hanzi": "戍", "pinyin": "shù", "meaning": "defender", "etymology": "Es una mano que toma un arma 戈.", "components": [{ "char": "戈", "gloss": "arma" }], "jp": true },
+        { "hanzi": "矛", "pinyin": "máo", "meaning": "lanza, pica, arpón", "etymology": "Pictograma de un antiguo arpón.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-24",
+      "theme": "El centro del mundo",
+      "icon": "中",
+      "chars": [
+        { "hanzi": "中", "pinyin": "zhōng", "meaning": "centro, medio", "etymology": "Una flecha que da en el blanco.", "components": [], "jp": true },
+        { "hanzi": "串", "pinyin": "chuàn", "meaning": "enlazar, unir; conspirar", "etymology": "Una cuerda que enlaza dos objetos.", "components": [], "jp": true },
+        { "hanzi": "虫", "pinyin": "chóng", "meaning": "insecto", "etymology": "Pictograma de un gusano, aunque parece un caracol.", "components": [], "jp": true },
+        { "hanzi": "史", "pinyin": "shǐ", "meaning": "historia", "etymology": "Mano 又 con una pluma que escribe sobre un papel en blanco 口.", "components": [{ "char": "口", "gloss": "papel en blanco" }, { "char": "又", "gloss": "mano con pluma" }], "jp": true },
+        { "hanzi": "吏", "pinyin": "lì", "meaning": "funcionario, mandarín", "etymology": "Sobre el carácter de historia 史 se ha añadido un uno 一, particularizando al que la estudia: el funcionario.", "components": [{ "char": "一", "gloss": "uno" }, { "char": "史", "gloss": "historia" }], "jp": true },
+        { "hanzi": "更", "pinyin": "gèng", "meaning": "más, aún más", "etymology": "Se parece al oficial 吏; con la tablilla de escribir ya usada, pide que le traigan más.", "components": [{ "char": "吏", "gloss": "oficial" }], "jp": true },
+        { "hanzi": "央", "pinyin": "yāng", "meaning": "central, centro", "etymology": "Es un hombre 大 en el centro 中.", "components": [{ "char": "大", "gloss": "hombre" }, { "char": "中", "gloss": "centro" }], "jp": true },
+        { "hanzi": "兔", "pinyin": "tù", "meaning": "liebre", "etymology": "Pictograma de una liebre: cabeza, cuerpo, patas y cola.", "components": [], "jp": true },
+        { "hanzi": "革", "pinyin": "gé", "meaning": "cuero; cambiar, reformar", "etymology": "Pictograma de la piel de un animal extendida para ser curtida; se distinguen las sujeciones arriba y abajo que la mantienen tensa.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-25",
+      "theme": "Animales domésticos",
+      "icon": "牛",
+      "chars": [
+        { "hanzi": "豕", "pinyin": "shǐ", "meaning": "cerdo", "etymology": "Pictograma de un cerdo con su cabeza, patas y cola.", "components": [], "jp": true },
+        { "hanzi": "象", "pinyin": "xiàng", "meaning": "elefante; apariencia, imitar, parecer", "etymology": "Pictograma de un elefante, que se parece al del cerdo 豕 (ambos tienen cabeza, cuerpo y cuatro patas). La trompa queda de manifiesto en la parte superior.", "components": [{ "char": "豕", "gloss": "cerdo (semejanza)" }], "jp": true },
+        { "hanzi": "亥", "pinyin": "hài", "meaning": "cerdo (duodécima Rama Terrestre)", "etymology": "Otro pictograma de cerdo, del que toma las características de asustadizo y exterior duro.", "components": [], "jp": true },
+        { "hanzi": "牛", "pinyin": "niú", "meaning": "toro, buey, vaca", "etymology": "Representa su cabeza, de la que se ha extraído un cuerno.", "components": [], "jp": true },
+        { "hanzi": "午", "pinyin": "wǔ", "meaning": "mediodía", "etymology": "Cuando el buey 牛 descansa por el calor, no se le ve la cabeza, que mantiene agachada.", "components": [{ "char": "牛", "gloss": "buey" }], "jp": true },
+        { "hanzi": "年", "pinyin": "nián", "meaning": "año", "etymology": "Antiguamente «cosecha anual», lo más importante del año, representada por mil 千 espigas 禾, hoy fundidas.", "components": [{ "char": "千", "gloss": "mil" }, { "char": "禾", "gloss": "espigas" }], "jp": true },
+        { "hanzi": "生", "pinyin": "shēng", "meaning": "nacer, crecer", "etymology": "Un ternero 牛 que se levanta del suelo 一; otros lo ven como hierbas que crecen de la tierra 土. Como parte de otros caracteres significa «hierbas que crecen».", "components": [{ "char": "牛", "gloss": "ternero" }, { "char": "一", "gloss": "suelo" }], "jp": true },
+        { "hanzi": "羊", "pinyin": "yáng", "meaning": "oveja", "etymology": "Pictograma de una oveja vista desde arriba, destacando sus orejas, cabeza, patas y cola.", "components": [], "jp": true },
+        { "hanzi": "毛", "pinyin": "máo", "meaning": "pelo, lana", "etymology": "Pictograma del pelo de un animal.", "components": [], "jp": true }
+      ]
+    },
+    {
+      "id": "A-26",
+      "theme": "Conchas y dinero",
+      "icon": "贝",
+      "chars": [
+        { "hanzi": "贝", "pinyin": "bèi", "meaning": "concha, moluscos; dinero", "etymology": "Pictograma de una concha caurí usada como dinero en la antigua China, y todavía hoy entre algunos pueblos del Pacífico. Su sentido es, por tanto, «dinero».", "components": [], "jp": true },
+        { "hanzi": "贞", "pinyin": "zhēn", "meaning": "lealtad, castidad", "etymology": "El salario 贝 del adivino 卜 garantiza la fidelidad de su pronóstico.", "components": [{ "char": "卜", "gloss": "adivino" }, { "char": "贝", "gloss": "salario" }], "jp": true },
+        { "hanzi": "贯", "pinyin": "guàn", "meaning": "atravesar", "etymology": "Arriba, un hilo atravesando de izquierda a derecha una cuenta de perlas; abajo, una concha 贝 para reforzar el sentido.", "components": [{ "char": "贝", "gloss": "concha (dinero)" }], "jp": true },
+        { "hanzi": "贵", "pinyin": "guì", "meaning": "caro, apreciado", "etymology": "Arriba una cesta de monedas, abajo dinero 贝.", "components": [{ "char": "贝", "gloss": "dinero" }], "jp": true },
+        { "hanzi": "责", "pinyin": "zé", "meaning": "responsabilidad", "etymology": "Dinero 贝 proveniente de la cría de animales 生 o del cultivo de los campos.", "components": [{ "char": "生", "gloss": "cría/cultivo" }, { "char": "贝", "gloss": "dinero" }], "jp": true },
+        { "hanzi": "负", "pinyin": "fù", "meaning": "llevar a cuestas, encargarse", "etymology": "Es un hombre 人 modificado, con dinero 贝 o algo a la espalda que le genera beneficio.", "components": [{ "char": "人", "gloss": "hombre" }, { "char": "贝", "gloss": "dinero" }], "jp": true },
+        { "hanzi": "赖", "pinyin": "lài", "meaning": "contar con, depender", "etymology": "Sentirse atado 束 a la tarea de la que uno se encarga 负.", "components": [{ "char": "束", "gloss": "atado" }, { "char": "负", "gloss": "encargarse" }], "jp": false },
+        { "hanzi": "见", "pinyin": "jiàn", "meaning": "ver, mirar", "etymology": "No confundir con 贝: es una simplificación de un carácter antiguo en el que se veía un ojo 目 y una persona 人 debajo.", "components": [{ "char": "目", "gloss": "ojo" }, { "char": "人", "gloss": "persona" }], "jp": true },
+        { "hanzi": "页", "pinyin": "yè", "meaning": "página, hoja", "etymology": "Deriva de la cabeza 页 del hombre 人; su representación más antigua es semejante a la que acabó en cara 面. Hoy, con el dinero de papel, puede recordarse como lo que supera 一 al dinero.", "components": [{ "char": "人", "gloss": "hombre" }], "jp": true }
+      ]
+    },
+    {
+      "id": "A-27",
+      "theme": "De los pájaros",
+      "icon": "鸟",
+      "chars": [
+        { "hanzi": "鸟", "pinyin": "niǎo", "meaning": "pájaro", "etymology": "Pictograma de pájaro de cola larga, ya que antiguamente los chinos distinguían entre pájaros de cola larga y de cola corta. Aparece en el nombre de muchos pájaros.", "components": [], "jp": true },
+        { "hanzi": "乌", "pinyin": "wū", "meaning": "cuervo, negro", "etymology": "Es el pictograma de un pájaro 鸟 cuyos ojos no se ven entre sus plumas negras.", "components": [{ "char": "鸟", "gloss": "pájaro" }], "jp": true },
+        { "hanzi": "马", "pinyin": "mǎ", "meaning": "caballo", "etymology": "Pictograma de caballo sin patas ni ojos, desaparecidos con la simplificación. Tanta simplificación ha hecho que del caballo 马 al cuervo 乌 haya muy poca diferencia.", "components": [], "jp": true },
+        { "hanzi": "写", "pinyin": "xiě", "meaning": "escribir, describir, pintar", "etymology": "Antiguamente era una urraca 乌 bajo un tejado 冖. Por su costumbre de tomar objetos brillantes y esconderlos, sugiere el orden necesario para escribir los caracteres.", "components": [{ "char": "冖", "gloss": "tejado" }, { "char": "乌", "gloss": "urraca" }], "jp": true },
+        { "hanzi": "与", "pinyin": "yǔ", "meaning": "dar, ofrecer, ayudar; y, con", "etymology": "Ahora los objetos no están bajo el techo, sólo se amontonan, se añaden. Es una contracción de 鸟.", "components": [{ "char": "鸟", "gloss": "pájaro" }], "jp": true },
+        { "hanzi": "隹", "pinyin": "zhuī", "meaning": "pájaro de cola corta", "etymology": "Pictograma de un pájaro de cola corta.", "components": [], "jp": true },
+        { "hanzi": "不", "pinyin": "bù", "meaning": "no", "etymology": "Pictograma de un pájaro volando con las alas extendidas hacia lo alto. Tropieza con un obstáculo 一 que no puede superar.", "components": [{ "char": "一", "gloss": "obstáculo" }], "jp": true },
+        { "hanzi": "非", "pinyin": "fēi", "meaning": "no, equivocado; censurar", "etymology": "Otra representación de un ave volando hacia arriba: no puede ser capturada.", "components": [], "jp": true },
+        { "hanzi": "飞", "pinyin": "fēi", "meaning": "volar", "etymology": "Pictograma del vuelo de la grulla, con el cuello estirado. Podría ser cualquier pájaro 乙 al que se añaden alas.", "components": [{ "char": "乙", "gloss": "pájaro" }], "jp": true }
+      ]
+    }
+  ]
+}

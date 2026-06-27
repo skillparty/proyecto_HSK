@@ -2,6 +2,7 @@ class NavigationController {
   static get ALLOWED_TABS() {
     return new Set([
       "home",
+      "etymology",
       "practice",
       "browse",
       "strokes-radicals",

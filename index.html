@@ -174,7 +174,18 @@
                     </svg>
                     <span data-i18n="homeTab">Home</span>
                 </button>
-                
+
+                <!-- Etimología (Direct link) -->
+                <button class="nav-tab" data-tab="etymology">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                        <path d="M12 3v18"></path>
+                        <path d="M5 8c2.5-2 4.5-2 7 0"></path>
+                        <path d="M19 8c-2.5-2-4.5-2-7 0"></path>
+                        <path d="M7 14h10"></path>
+                    </svg>
+                    <span data-i18n="etymologyTab">Etimología</span>
+                </button>
+
                 <!-- Estudiar (Dropdown) -->
                 <div class="nav-group" data-group="study">
                     <button class="nav-tab nav-group-trigger">
@@ -1371,6 +1382,11 @@
                     </div>
                 </div>
             </div>
+
+                <!-- Etymology Tab -->
+                <div id="etymology" class="tab-panel" tabindex="0">
+                    <div id="etymology-content"></div>
+                </div>
 
                 <!-- Culture: Character Evolution Tab -->
                 <div id="culture-characters" class="tab-panel" tabindex="0">

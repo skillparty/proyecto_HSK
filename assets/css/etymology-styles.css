@@ -1,0 +1,391 @@
+/* Etymology module — character families & stroke-order decomposition */
+
+.etym-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  color: var(--color-text-main, #2b2b2b);
+}
+
+/* ---- header ---- */
+.etym-header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.etym-header-text { flex: 1 1 420px; }
+.etym-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 2rem);
+  color: var(--color-primary, #c62828);
+  letter-spacing: -0.01em;
+}
+.etym-intro {
+  margin: 0;
+  line-height: 1.7;
+  font-size: 0.96rem;
+  color: var(--color-text-muted, #555);
+  max-width: 68ch;
+}
+.etym-lang-badge {
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: var(--color-bg-card, rgba(0, 0, 0, 0.04));
+  border: 1px dashed var(--color-border, rgba(0, 0, 0, 0.18));
+  color: var(--color-text-muted, #666);
+  white-space: nowrap;
+}
+
+/* ---- view toggle ---- */
+.etym-toggle {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 12px;
+  background: var(--color-bg-card, rgba(0, 0, 0, 0.05));
+  margin-bottom: 1.5rem;
+}
+.etym-toggle-btn {
+  border: none;
+  background: transparent;
+  padding: 0.55rem 1.1rem;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #666);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.etym-toggle-btn:hover { color: var(--color-text-main, #222); }
+.etym-toggle-btn.is-active {
+  background: var(--color-bg-panel, #fff);
+  color: var(--color-primary, #c62828);
+  box-shadow: var(--shadow-sm, 0 2px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* ---- body layout ---- */
+.etym-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .etym-body { grid-template-columns: 1fr; }
+}
+
+/* ---- chips nav ---- */
+.etym-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.etym-fam-hint {
+  flex: 1 0 100%;
+  margin: 0 0 0.25rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #666);
+}
+.etym-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem 0.4rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
+  background: var(--color-bg-panel, #fff);
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--color-text-main, #333);
+  transition: border-color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+}
+.etym-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.08));
+}
+.etym-chip.is-active {
+  border-color: var(--color-primary, #c62828);
+  box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.16);
+}
+.etym-chip-icon {
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--color-primary, #c62828);
+}
+.etym-chip-label { font-weight: 600; }
+
+/* ---- character grid ---- */
+.etym-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(94px, 1fr));
+  gap: 0.75rem;
+}
+.etym-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.85rem 0.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+  background: var(--color-bg-panel, #fff);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.etym-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 6px 16px rgba(0, 0, 0, 0.1));
+}
+.etym-card.is-selected {
+  border-color: var(--color-primary, #c62828);
+  box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.2);
+}
+.etym-card-hanzi {
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--color-text-main, #222);
+}
+.etym-card-pinyin {
+  font-size: 0.82rem;
+  color: var(--color-primary, #c62828);
+  font-weight: 600;
+}
+.etym-card-meaning {
+  font-size: 0.72rem;
+  color: var(--color-text-muted, #777);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ---- detail panel ---- */
+.etym-detail {
+  position: sticky;
+  top: 1rem;
+  padding: 1.4rem;
+  border-radius: 16px;
+  background: var(--color-bg-panel, #fff);
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+  box-shadow: var(--shadow-sm, 0 4px 14px rgba(0, 0, 0, 0.07));
+}
+@media (max-width: 860px) {
+  .etym-detail { position: static; }
+}
+.etym-detail-head {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.etym-stroke-box {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 14px;
+  background:
+    linear-gradient(var(--color-border, rgba(0, 0, 0, 0.08)) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border, rgba(0, 0, 0, 0.08)) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.etym-stroke-box::before,
+.etym-stroke-box::after {
+  content: "";
+  position: absolute;
+  background: var(--color-border, rgba(0, 0, 0, 0.12));
+}
+.etym-stroke-box::before { left: 0; right: 0; top: 50%; height: 1px; }
+.etym-stroke-box::after { top: 0; bottom: 0; left: 50%; width: 1px; }
+.etym-writer-target { position: relative; z-index: 1; }
+.etym-writer-fallback {
+  font-family: "Noto Serif SC", serif;
+  font-size: 6rem;
+  color: var(--color-text-main, #222);
+}
+.etym-detail-meta { min-width: 0; }
+.etym-detail-hanzi {
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--color-primary, #c62828);
+}
+.etym-detail-pinyin {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  color: var(--color-text-main, #333);
+}
+.etym-detail-meaning {
+  font-size: 0.95rem;
+  color: var(--color-text-muted, #555);
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+.etym-jp-tag {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(46, 125, 50, 0.1);
+  color: #2e7d32;
+}
+
+.etym-stroke-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+.etym-btn {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9px;
+  border: none;
+  background: var(--color-primary, #c62828);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+.etym-btn:hover { filter: brightness(1.06); }
+.etym-btn.etym-secondary {
+  background: var(--color-bg-card, rgba(0, 0, 0, 0.05));
+  color: var(--color-text-main, #333);
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
+}
+
+.etym-section-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted, #888);
+}
+.etym-why { margin-bottom: 1.2rem; }
+.etym-why-text {
+  margin: 0;
+  line-height: 1.75;
+  font-size: 0.96rem;
+  color: var(--color-text-main, #333);
+}
+
+.etym-inline-char,
+.etym-decomp-char {
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+}
+.etym-inline-char {
+  padding: 0 0.05em;
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--color-primary, #c62828);
+}
+.etym-inline-char.is-link {
+  cursor: pointer;
+  background: rgba(198, 40, 40, 0.08);
+}
+.etym-inline-char.is-link:hover { background: rgba(198, 40, 40, 0.18); }
+
+.etym-decomp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.etym-decomp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 9px;
+  background: var(--color-bg-card, rgba(0, 0, 0, 0.04));
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+}
+.etym-decomp-chip.is-link { cursor: pointer; }
+.etym-decomp-chip.is-link:hover { border-color: var(--color-primary, #c62828); }
+.etym-decomp-char {
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--color-text-main, #222);
+}
+.etym-decomp-gloss {
+  font-size: 0.78rem;
+  color: var(--color-text-muted, #666);
+}
+.etym-decomp-none {
+  margin: 0;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--color-text-muted, #777);
+}
+
+/* ---- footer ---- */
+.etym-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--color-border, rgba(0, 0, 0, 0.15));
+}
+.etym-source,
+.etym-credit {
+  margin: 0.25rem 0;
+  font-size: 0.78rem;
+  color: var(--color-text-muted, #888);
+}
+.etym-credit a { color: var(--color-primary, #c62828); }
+
+/* ---- states ---- */
+.etym-empty {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--color-text-muted, #888);
+  font-size: 0.9rem;
+}
+.etym-loading,
+.etym-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3rem 1rem;
+  color: var(--color-text-muted, #666);
+}
+.etym-spinner {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--color-primary, #c62828);
+  animation: etym-spin 1s linear infinite;
+}
+@keyframes etym-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .etym-spinner { animation: none; }
+  .etym-card, .etym-chip { transition: none; }
+}
+.etym-error-icon { font-size: 2.2rem; }
+.etym-error-title { font-weight: 700; margin: 0; }
+.etym-error-msg { font-size: 0.85rem; margin: 0; }
+.etym-retry {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1.4rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-primary, #c62828);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}

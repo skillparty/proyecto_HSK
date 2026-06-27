@@ -324,6 +324,22 @@ class UIController {
           }
         })();
         break;
+      case "etymology":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/etymology-styles.css?v=1");
+            if (!window.EtymologyController) {
+              await this.loadScript("assets/js/modules/etymology-controller.js?v=1");
+            }
+            if (!window.etymologyController) {
+              window.etymologyController = new EtymologyController(this.app);
+            }
+            await window.etymologyController.initialize();
+          } catch (err) {
+            this.logError("etymology init failed:", err);
+          }
+        })();
+        break;
       case "culture-characters":
         (async () => {
           try {
@@ -441,6 +457,7 @@ class UIController {
         ? NavigationController.ALLOWED_TABS
         : new Set([
             "home",
+            "etymology",
             "practice",
             "browse",
             "strokes-radicals",

@@ -17,6 +17,7 @@ const translations = {
 
         // Navigation
         homeTab: "Inicio",
+        etymologyTab: "Etimología",
         practiceTab: "Práctica",
         browseTab: "Explorar",
         strokesRadicalsTab: "Trazos & Radicales",
@@ -514,6 +515,7 @@ const translations = {
 
         // Navigation
         homeTab: "Home",
+        etymologyTab: "Etymology",
         practiceTab: "Practice",
         browseTab: "Browse",
         strokesRadicalsTab: "Strokes & Radicals",
