@@ -3375,6 +3375,136 @@
           { "hanzi": "乔木", "pinyin": "qiáomù", "meaning": "árbol alto", "gloss": "alto + árbol" }
         ] }
       ]
+    },
+    {
+      "id": "B-22",
+      "theme": "Arcos y flechas",
+      "icon": "弓",
+      "chars": [
+        { "hanzi": "弓", "pinyin": "gōng", "meaning": "arco", "etymology": "La representación de un arco forma parte de otros caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "弓箭", "pinyin": "gōngjiàn", "meaning": "arco y flechas", "gloss": "arco + flechas" }
+        ] },
+        { "hanzi": "引", "pinyin": "yǐn", "meaning": "guiar, dirigir, atraer", "etymology": "La cuerda del arco 弓 muestra ya un destino, una finalidad.", "components": [{ "char": "弓", "gloss": "arco" }], "jp": true, "words": [
+          { "hanzi": "引导", "pinyin": "yǐndǎo", "meaning": "conducir, guiar", "gloss": "guiar + guiar" },
+          { "hanzi": "勾引", "pinyin": "gōuyǐn", "meaning": "seducir, tentar", "gloss": "seducir + inducir" }
+        ] },
+        { "hanzi": "弘", "pinyin": "hóng", "meaning": "grande, magnífico", "etymology": "Arco 弓 adornado de seda 厶.", "components": [{ "char": "弓", "gloss": "arco" }, { "char": "厶", "gloss": "seda" }], "jp": true, "words": [
+          { "hanzi": "弘愿", "pinyin": "hóngyuàn", "meaning": "grandes aspiraciones", "gloss": "gran + deseo" },
+          { "hanzi": "恢弘", "pinyin": "huīhóng", "meaning": "generoso, magnánimo", "gloss": "extenso + magnífico" }
+        ] },
+        { "hanzi": "弦", "pinyin": "xián", "meaning": "cuerda", "etymology": "Es un arco 弓 en el que se enfatiza su cuerda, como una hebra de seda 玄.", "components": [{ "char": "弓", "gloss": "arco" }, { "char": "玄", "gloss": "hebra de seda" }], "jp": true, "words": [
+          { "hanzi": "弓弦", "pinyin": "gōngxián", "meaning": "cuerda de arco", "gloss": "arco + cuerda" }
+        ] },
+        { "hanzi": "弹", "pinyin": "tán", "meaning": "lanzar, elástico; (dàn) bola, bala", "etymology": "Es el proyectil 单 que dispara el arco 弓.", "components": [{ "char": "弓", "gloss": "arco" }, { "char": "单", "gloss": "proyectil" }], "jp": false, "words": [
+          { "hanzi": "弹力", "pinyin": "tánlì", "meaning": "fuerza elástica", "gloss": "lanzar + fuerza" },
+          { "hanzi": "弹药", "pinyin": "dànyào", "meaning": "municiones", "gloss": "balas + pólvora" }
+        ] },
+        { "hanzi": "张", "pinyin": "zhāng", "meaning": "abrir, desplegar", "etymology": "Extender 长 el arco 弓.", "components": [{ "char": "弓", "gloss": "arco" }, { "char": "长", "gloss": "extender" }], "jp": false, "words": [
+          { "hanzi": "开张", "pinyin": "kāizhāng", "meaning": "abrir un negocio", "gloss": "abrir + abrir" },
+          { "hanzi": "张望", "pinyin": "zhāngwàng", "meaning": "mirar a todos lados", "gloss": "desplegar + mirar" }
+        ] },
+        { "hanzi": "弥", "pinyin": "mí", "meaning": "extenderse, llenar", "etymology": "Hombre 尔 con un arco 弓 extiende su territorio de caza.", "components": [{ "char": "弓", "gloss": "arco" }, { "char": "尔", "gloss": "hombre" }], "jp": false, "words": [
+          { "hanzi": "弥漫", "pinyin": "mímàn", "meaning": "extenderse, difundirse", "gloss": "extender + extender" },
+          { "hanzi": "弥补", "pinyin": "míbǔ", "meaning": "remediar, subsanar", "gloss": "rellenar + reparar" }
+        ] },
+        { "hanzi": "穹", "pinyin": "qióng", "meaning": "cielo, bóveda", "etymology": "Bóveda 穴 arqueada 弓.", "components": [{ "char": "穴", "gloss": "bóveda" }, { "char": "弓", "gloss": "arqueada" }], "jp": true, "words": [
+          { "hanzi": "穹形", "pinyin": "qióngxíng", "meaning": "abovedado", "gloss": "bóveda + forma" }
+        ] },
+        { "hanzi": "弧", "pinyin": "hú", "meaning": "arco, curva", "etymology": "Es un arco 弓 cuya cuerda se forma con lianas de calabaza 瓜.", "components": [{ "char": "弓", "gloss": "arco" }, { "char": "瓜", "gloss": "lianas de calabaza" }], "jp": true, "words": [
+          { "hanzi": "弧形", "pinyin": "húxíng", "meaning": "arco, curva", "gloss": "arco + forma" }
+        ] },
+        { "hanzi": "弩", "pinyin": "nǔ", "meaning": "ballesta", "etymology": "El arco 弓 que llevan los esclavos 奴.", "components": [{ "char": "弓", "gloss": "arco" }, { "char": "奴", "gloss": "esclavos" }], "jp": true, "words": [
+          { "hanzi": "弩弓", "pinyin": "nǔgōng", "meaning": "ballesta", "gloss": "ballesta + arco" }
+        ] },
+        { "hanzi": "弯", "pinyin": "wān", "meaning": "curvado, doblado", "etymology": "También 亦 se parece a un arco 弓.", "components": [{ "char": "弓", "gloss": "arco" }], "jp": false, "words": [
+          { "hanzi": "弯曲", "pinyin": "wānqū", "meaning": "sinuoso, tortuoso", "gloss": "curvado + doblado" },
+          { "hanzi": "弯路", "pinyin": "wānlù", "meaning": "rodeo, recodo", "gloss": "curva + camino" }
+        ] },
+        { "hanzi": "弱", "pinyin": "ruò", "meaning": "débil, inferior", "etymology": "Pictograma de dos plumas, aunque con forma de arco 弓.", "components": [{ "char": "弓", "gloss": "arco" }], "jp": true, "words": [
+          { "hanzi": "弱点", "pinyin": "ruòdiǎn", "meaning": "punto débil", "gloss": "débil + punto" },
+          { "hanzi": "减弱", "pinyin": "jiǎnruò", "meaning": "debilitar, abatir", "gloss": "perder + débil" }
+        ] },
+        { "hanzi": "粥", "pinyin": "zhōu", "meaning": "sopa de arroz, gachas", "etymology": "Debe ser la comida de batalla: dejan los arcos 弓 y comen el arroz 米.", "components": [{ "char": "弓", "gloss": "arco" }, { "char": "米", "gloss": "arroz" }], "jp": true, "words": [] },
+        { "hanzi": "弼", "pinyin": "bì", "meaning": "ayudar", "etymology": "Viene del pictograma de dos arcos 弓 atados con bambú, que ayuda a que no se deformen.", "components": [{ "char": "弓", "gloss": "arcos" }], "jp": true, "words": [] },
+        { "hanzi": "矢", "pinyin": "shǐ", "meaning": "flecha", "etymology": "La flecha también forma parte de otros caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "矢石", "pinyin": "shǐshí", "meaning": "proyectiles", "gloss": "flechas + piedras" }
+        ] },
+        { "hanzi": "知", "pinyin": "zhī", "meaning": "conocer, saber", "etymology": "Flecha 矢 más boca 口: la boca del que conoce es tan certera como una flecha.", "components": [{ "char": "矢", "gloss": "flecha" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "知道", "pinyin": "zhīdào", "meaning": "conocer, saber", "gloss": "conocer + camino" },
+          { "hanzi": "无知", "pinyin": "wúzhī", "meaning": "ignorante", "gloss": "no + saber" }
+        ] },
+        { "hanzi": "智", "pinyin": "zhì", "meaning": "sabio, inteligente", "etymology": "El que conoce 知 y lo demuestra por su boca 日.", "components": [{ "char": "知", "gloss": "conocer" }, { "char": "日", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "智慧", "pinyin": "zhìhuì", "meaning": "sabiduría, inteligencia", "gloss": "sabiduría + sabiduría" },
+          { "hanzi": "智育", "pinyin": "zhìyù", "meaning": "desarrollo intelectual", "gloss": "sabiduría + cultivar" }
+        ] },
+        { "hanzi": "矣", "pinyin": "yǐ", "meaning": "acabar de hablar (partícula)", "etymology": "Acabar las palabras 厶 deja la frase tan fija como una flecha 矢 en el blanco.", "components": [{ "char": "矢", "gloss": "flecha" }, { "char": "厶", "gloss": "acabar las palabras" }], "jp": true, "words": [] },
+        { "hanzi": "短", "pinyin": "duǎn", "meaning": "corto, breve; faltar", "etymology": "Es una flecha 矢 de las usadas en los ritos, junto a una vasija 豆; por ser más corta de lo normal se usa para ese concepto.", "components": [{ "char": "矢", "gloss": "flecha" }, { "char": "豆", "gloss": "vasija" }], "jp": true, "words": [
+          { "hanzi": "短工", "pinyin": "duǎngōng", "meaning": "jornalero", "gloss": "breve + trabajo" },
+          { "hanzi": "短缺", "pinyin": "duǎnquē", "meaning": "faltar, carecer", "gloss": "faltar + carecer" }
+        ] },
+        { "hanzi": "矮", "pinyin": "ǎi", "meaning": "pequeño, de baja estatura", "etymology": "Como una flecha 矢 del tamaño de una mujer 女 agachada recogiendo grano 禾.", "components": [{ "char": "矢", "gloss": "flecha" }, { "char": "委", "gloss": "mujer recogiendo grano" }], "jp": true, "words": [
+          { "hanzi": "矮小", "pinyin": "ǎixiǎo", "meaning": "pequeño, bajo", "gloss": "pequeño + pequeño" },
+          { "hanzi": "高矮", "pinyin": "gāo'ǎi", "meaning": "altura", "gloss": "alto + bajo" }
+        ] },
+        { "hanzi": "矫", "pinyin": "jiǎo", "meaning": "fuerte; corregir", "etymology": "Es una flecha 矢 en manos de alguien alto 乔: da sentido de fuerza, lo que corrige al prójimo.", "components": [{ "char": "矢", "gloss": "flecha" }, { "char": "乔", "gloss": "alto" }], "jp": false, "words": [
+          { "hanzi": "矫健", "pinyin": "jiǎojiàn", "meaning": "fuerte, vigoroso", "gloss": "fuerte + saludable" },
+          { "hanzi": "矫正", "pinyin": "jiǎozhèng", "meaning": "corregir, rectificar", "gloss": "corregir + derecho" }
+        ] },
+        { "hanzi": "医", "pinyin": "yī", "meaning": "medicina, doctor, curar", "etymology": "Es una caja 匚 con flechas 矢, abierta por un lado: representa la caja con los bisturís.", "components": [{ "char": "匚", "gloss": "caja" }, { "char": "矢", "gloss": "flechas/bisturís" }], "jp": false, "words": [
+          { "hanzi": "医生", "pinyin": "yīshēng", "meaning": "médico", "gloss": "medicina + señor" },
+          { "hanzi": "医学", "pinyin": "yīxué", "meaning": "medicina", "gloss": "medicina + estudios" }
+        ] },
+        { "hanzi": "疑", "pinyin": "yí", "meaning": "dudar, duda", "etymology": "Animal que camina 走 bajo la amenaza de una flecha 矢. Arriba se ven la zarpa y la boca.", "components": [{ "char": "矢", "gloss": "flecha" }], "jp": true, "words": [
+          { "hanzi": "疑心", "pinyin": "yíxīn", "meaning": "sospecha", "gloss": "duda + corazón" },
+          { "hanzi": "无疑", "pinyin": "wúyí", "meaning": "indudablemente", "gloss": "no + dudar" }
+        ] },
+        { "hanzi": "肄", "pinyin": "yì", "meaning": "estudio, instrucción", "etymology": "Aprender a escribir 聿 y a disparar flechas 矢.", "components": [{ "char": "矢", "gloss": "flechas" }], "jp": true, "words": [
+          { "hanzi": "肄业", "pinyin": "yìyè", "meaning": "estudiar en una escuela", "gloss": "estudio + tarea" }
+        ] },
+        { "hanzi": "失", "pinyin": "shī", "meaning": "perder, faltar", "etymology": "De perder, faltar, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "失踪", "pinyin": "shīzōng", "meaning": "desaparecer", "gloss": "perder + desaparecer" },
+          { "hanzi": "失眠", "pinyin": "shīmián", "meaning": "desvelarse, insomnio", "gloss": "perder + sueño" }
+        ] },
+        { "hanzi": "示", "pinyin": "shì", "meaning": "mostrar; altar (religioso)", "etymology": "Con «mostrar» se forman caracteres, generalmente de sentido religioso.", "components": [], "jp": true, "words": [
+          { "hanzi": "表示", "pinyin": "biǎoshì", "meaning": "mostrar, indicar", "gloss": "mostrar + mostrar" }
+        ] },
+        { "hanzi": "宗", "pinyin": "zōng", "meaning": "antepasados, escuela, secta", "etymology": "Tablilla ancestral 示 bajo techo 宀: los primeros templos a los antepasados.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "示", "gloss": "tablilla ancestral" }], "jp": true, "words": [
+          { "hanzi": "宗教", "pinyin": "zōngjiào", "meaning": "religión", "gloss": "antepasados + enseñar" },
+          { "hanzi": "宗旨", "pinyin": "zōngzhǐ", "meaning": "propósito", "gloss": "escuela + propósito" }
+        ] },
+        { "hanzi": "祭", "pinyin": "jì", "meaning": "ofrecer sacrificios", "etymology": "La parte de arriba es la estilización de dos pies que llevan la ofrenda al altar 示.", "components": [{ "char": "示", "gloss": "altar" }], "jp": true, "words": [
+          { "hanzi": "祭坛", "pinyin": "jìtán", "meaning": "altar de sacrificios", "gloss": "sacrificios + altar" },
+          { "hanzi": "祭文", "pinyin": "jìwén", "meaning": "oración fúnebre", "gloss": "sacrificios + lenguaje" }
+        ] },
+        { "hanzi": "察", "pinyin": "chá", "meaning": "escrutar, escudriñar", "etymology": "Comprobar que los sacrificios 祭 realizados bajo el techo 宀 del templo se han llevado a cabo correctamente.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "祭", "gloss": "sacrificios" }], "jp": true, "words": [
+          { "hanzi": "察看", "pinyin": "chákàn", "meaning": "mirar detenidamente", "gloss": "escrutar + mirar" },
+          { "hanzi": "察觉", "pinyin": "chájué", "meaning": "darse cuenta", "gloss": "escrutar + percibir" }
+        ] },
+        { "hanzi": "禁", "pinyin": "jìn", "meaning": "prohibir, vedar; tabú", "etymology": "El bosquecillo 林 donde se encuentran los altares 示 de los antepasados.", "components": [{ "char": "林", "gloss": "bosquecillo" }, { "char": "示", "gloss": "altares" }], "jp": true, "words": [
+          { "hanzi": "禁令", "pinyin": "jìnlìng", "meaning": "prohibición", "gloss": "prohibir + orden" },
+          { "hanzi": "禁止", "pinyin": "jìnzhǐ", "meaning": "prohibir", "gloss": "prohibir + detener" }
+        ] },
+        { "hanzi": "奈", "pinyin": "nài", "meaning": "(cómo) hacer frente a", "etymology": "Adulto 大 que respeta a los antepasados 示: todo le parece posible.", "components": [{ "char": "大", "gloss": "adulto" }, { "char": "示", "gloss": "antepasados" }], "jp": true, "words": [
+          { "hanzi": "无奈", "pinyin": "wúnài", "meaning": "no haber más remedio", "gloss": "sin + posibilidad" }
+        ] },
+        { "hanzi": "票", "pinyin": "piào", "meaning": "billete, entrada", "etymology": "Viene del pictograma del fuego fatuo, que se manifestaba 示 generalmente al oeste 西.", "components": [{ "char": "示", "gloss": "manifestarse" }], "jp": true, "words": [
+          { "hanzi": "门票", "pinyin": "ménpiào", "meaning": "entrada", "gloss": "puerta + entrada" },
+          { "hanzi": "票子", "pinyin": "piàozi", "meaning": "billete, papel moneda", "gloss": "billete + sufijo" }
+        ] },
+        { "hanzi": "飘", "pinyin": "piāo", "meaning": "ondear, flotar", "etymology": "Flotar 漂 al viento 风.", "components": [{ "char": "票", "gloss": "flotar" }, { "char": "风", "gloss": "viento" }], "jp": false, "words": [
+          { "hanzi": "飘荡", "pinyin": "piāodàng", "meaning": "ir a la deriva", "gloss": "ondear + ondear" },
+          { "hanzi": "飘扬", "pinyin": "piāoyáng", "meaning": "ondear, flamear", "gloss": "ondear + aventar" }
+        ] },
+        { "hanzi": "瓢", "pinyin": "piáo", "meaning": "cucharón (de calabaza)", "etymology": "Calabaza 瓜 que flota 漂 en la sopa y se usa para coger cosas.", "components": [{ "char": "票", "gloss": "flotar" }, { "char": "瓜", "gloss": "calabaza" }], "jp": true, "words": [] },
+        { "hanzi": "祟", "pinyin": "suì", "meaning": "fantasma, espíritu maligno", "etymology": "Antepasados 示 que salen 出. Para evitarlo se hacen ceremonias que les muestran el camino a la tierra de los antepasados.", "components": [{ "char": "出", "gloss": "salir" }, { "char": "示", "gloss": "antepasados" }], "jp": true, "words": [
+          { "hanzi": "作祟", "pinyin": "zuòsuì", "meaning": "dar problemas", "gloss": "hacer + espíritu maligno" },
+          { "hanzi": "鬼祟", "pinyin": "guǐsuì", "meaning": "furtivo, tramposo", "gloss": "diablo + fantasma" }
+        ] },
+        { "hanzi": "款", "pinyin": "kuǎn", "meaning": "agasajar; cláusula; dinero", "etymology": "Un caballero 士 que nos muestra 示 su casa y pierde la respiración 欠 por atendernos.", "components": [{ "char": "示", "gloss": "mostrar" }, { "char": "欠", "gloss": "perder la respiración" }], "jp": true, "words": [
+          { "hanzi": "罚款", "pinyin": "fákuǎn", "meaning": "multa", "gloss": "castigar + dinero" },
+          { "hanzi": "款待", "pinyin": "kuǎndài", "meaning": "agasajar", "gloss": "agasajar + recibir" }
+        ] }
+      ]
     }
   ]
 }
