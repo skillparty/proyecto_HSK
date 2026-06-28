@@ -2997,6 +2997,173 @@
           { "hanzi": "协作", "pinyin": "xiézuò", "meaning": "cooperar", "gloss": "conjunto + hacer" }
         ] }
       ]
+    },
+    {
+      "id": "B-20",
+      "theme": "Del hacha",
+      "icon": "斤",
+      "chars": [
+        { "hanzi": "斤", "pinyin": "jīn", "meaning": "hacha; medio kilo (jin)", "etymology": "Con hacha, medio kilo, se forman numerosos derivados.", "components": [], "jp": true, "words": [
+          { "hanzi": "斤两", "pinyin": "jīnliǎng", "meaning": "peso", "gloss": "medio kilo + dos" },
+          { "hanzi": "公斤", "pinyin": "gōngjīn", "meaning": "kilogramo", "gloss": "público + medio kilo" }
+        ] },
+        { "hanzi": "厅", "pinyin": "tīng", "meaning": "salón, oficina, departamento", "etymology": "Simplificado. Se recuerda como un edificio 厂 donde se reúne la gente 丁.", "components": [{ "char": "厂", "gloss": "edificio" }], "jp": false, "words": [
+          { "hanzi": "餐厅", "pinyin": "cāntīng", "meaning": "restaurante", "gloss": "comida + salón" },
+          { "hanzi": "舞厅", "pinyin": "wǔtīng", "meaning": "discoteca", "gloss": "baile + salón" }
+        ] },
+        { "hanzi": "析", "pinyin": "xī", "meaning": "analizar, separar", "etymology": "Un hacha 斤 con un árbol 木 es muestra de la separación del mismo en fragmentos. Por extensión, «analizar».", "components": [{ "char": "木", "gloss": "árbol" }, { "char": "斤", "gloss": "hacha" }], "jp": true, "words": [
+          { "hanzi": "分析", "pinyin": "fēnxī", "meaning": "analizar", "gloss": "dividir + analizar" }
+        ] },
+        { "hanzi": "斩", "pinyin": "zhǎn", "meaning": "cortar, tajar, decapitar", "etymology": "Uso de un hacha 斤 desde un carro 车.", "components": [{ "char": "车", "gloss": "carro" }, { "char": "斤", "gloss": "hacha" }], "jp": false, "words": [
+          { "hanzi": "斩首", "pinyin": "zhǎnshǒu", "meaning": "decapitar", "gloss": "cortar + cabeza" },
+          { "hanzi": "腰斩", "pinyin": "yāozhǎn", "meaning": "cortar en dos", "gloss": "cintura + cortar" }
+        ] },
+        { "hanzi": "斯", "pinyin": "sī", "meaning": "este, estos", "etymology": "Romper madera con un hacha 斤 y recogerla en un cesto 其.", "components": [{ "char": "其", "gloss": "cesto" }, { "char": "斤", "gloss": "hacha" }], "jp": true, "words": [
+          { "hanzi": "如斯", "pinyin": "rúsī", "meaning": "tal, así", "gloss": "como + este" },
+          { "hanzi": "斯文", "pinyin": "sīwén", "meaning": "culto, refinado", "gloss": "esta + cultura" }
+        ] },
+        { "hanzi": "所", "pinyin": "suǒ", "meaning": "lugar, puesto; por", "etymology": "Puerta 户 que se defiende con un hacha 斤.", "components": [{ "char": "户", "gloss": "puerta" }, { "char": "斤", "gloss": "hacha" }], "jp": true, "words": [
+          { "hanzi": "所以", "pinyin": "suǒyǐ", "meaning": "por eso", "gloss": "lugar + causa" },
+          { "hanzi": "所谓", "pinyin": "suǒwèi", "meaning": "lo que se llama", "gloss": "lugar + llamada" }
+        ] },
+        { "hanzi": "新", "pinyin": "xīn", "meaning": "nuevo", "etymology": "Cortar 斤 pequeñas ramas 木 para que surjan 立 nuevas.", "components": [{ "char": "斤", "gloss": "cortar" }], "jp": true, "words": [
+          { "hanzi": "新年", "pinyin": "xīnnián", "meaning": "Año Nuevo", "gloss": "nuevo + año" },
+          { "hanzi": "新生", "pinyin": "xīnshēng", "meaning": "recién nacido", "gloss": "nuevo + nacer" }
+        ] },
+        { "hanzi": "欣", "pinyin": "xīn", "meaning": "alegre, contento", "etymology": "Resultado de la ausencia 欠 de armas 斤.", "components": [{ "char": "斤", "gloss": "armas" }, { "char": "欠", "gloss": "ausencia" }], "jp": true, "words": [
+          { "hanzi": "欣喜", "pinyin": "xīnxǐ", "meaning": "alegre, contento", "gloss": "alegre + alegría" },
+          { "hanzi": "欢欣", "pinyin": "huānxīn", "meaning": "jubiloso", "gloss": "alegre + alegre" }
+        ] },
+        { "hanzi": "折", "pinyin": "zhé", "meaning": "romper, quebrar; convencer", "etymology": "Una mano 扌 que coge un hacha 斤.", "components": [{ "char": "扌", "gloss": "mano" }, { "char": "斤", "gloss": "hacha" }], "jp": true, "words": [
+          { "hanzi": "折扣", "pinyin": "zhékòu", "meaning": "descuento, rebaja", "gloss": "romper + reducir" },
+          { "hanzi": "折磨", "pinyin": "zhémó", "meaning": "tormento", "gloss": "romper + molestar" }
+        ] },
+        { "hanzi": "哲", "pinyin": "zhé", "meaning": "sabio, filósofo", "etymology": "El que convence 折 con la boca 口.", "components": [{ "char": "折", "gloss": "convencer" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "哲学", "pinyin": "zhéxué", "meaning": "filosofía", "gloss": "sabio + estudio" },
+          { "hanzi": "哲理", "pinyin": "zhélǐ", "meaning": "teoría filosófica", "gloss": "sabio + lógica" }
+        ] },
+        { "hanzi": "誓", "pinyin": "shì", "meaning": "jurar", "etymology": "Convencer 折 con la palabra 言.", "components": [{ "char": "折", "gloss": "convencer" }, { "char": "言", "gloss": "palabra" }], "jp": true, "words": [
+          { "hanzi": "誓言", "pinyin": "shìyán", "meaning": "juramento", "gloss": "jurar + palabras" },
+          { "hanzi": "发誓", "pinyin": "fāshì", "meaning": "jurar", "gloss": "lanzar + jurar" }
+        ] },
+        { "hanzi": "兵", "pinyin": "bīng", "meaning": "armas, soldados", "etymology": "Dos manos 廾 cogiendo un hacha 斤 parecen suficiente muestra bélica.", "components": [{ "char": "斤", "gloss": "hacha" }, { "char": "廾", "gloss": "dos manos" }], "jp": true, "words": [
+          { "hanzi": "兵法", "pinyin": "bīngfǎ", "meaning": "arte militar", "gloss": "ejército + ley" },
+          { "hanzi": "兵马", "pinyin": "bīngmǎ", "meaning": "ejército", "gloss": "soldados + caballos" }
+        ] },
+        { "hanzi": "宾", "pinyin": "bīn", "meaning": "huésped", "etymology": "Un soldado 兵 al que acogemos bajo techo 宀.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "兵", "gloss": "soldado" }], "jp": false, "words": [
+          { "hanzi": "宾馆", "pinyin": "bīnguǎn", "meaning": "hotel", "gloss": "huésped + edificio" },
+          { "hanzi": "外宾", "pinyin": "wàibīn", "meaning": "huésped extranjero", "gloss": "exterior + huésped" }
+        ] },
+        { "hanzi": "质", "pinyin": "zhì", "meaning": "valor, cualidad, sustancia", "etymology": "Fijar, como con un hacha 斤, el precio 贝 de algo.", "components": [{ "char": "斤", "gloss": "hacha" }, { "char": "贝", "gloss": "precio" }], "jp": true, "words": [
+          { "hanzi": "质量", "pinyin": "zhìliàng", "meaning": "masa, cualidad", "gloss": "sustancia + medida" },
+          { "hanzi": "质问", "pinyin": "zhìwèn", "meaning": "interrogar", "gloss": "cualidad + pregunta" }
+        ] },
+        { "hanzi": "后", "pinyin": "hòu", "meaning": "detrás, luego; reina", "etymology": "Tiene un origen semejante a 君, un noble, un hombre que habla. Con el tiempo pasó a referirse a la princesa que llegaba tras el príncipe, de ahí «detrás, luego».", "components": [], "jp": true, "words": [
+          { "hanzi": "后来", "pinyin": "hòulái", "meaning": "después", "gloss": "luego + venir" },
+          { "hanzi": "后悔", "pinyin": "hòuhuǐ", "meaning": "arrepentirse", "gloss": "luego + arrepentirse" }
+        ] },
+        { "hanzi": "司", "pinyin": "sī", "meaning": "gobierno, administración; asunto", "etymology": "Es el reverso de 后, porque el gobierno era la tarea de los nobles.", "components": [], "jp": true, "words": [
+          { "hanzi": "公司", "pinyin": "gōngsī", "meaning": "compañía, sociedad", "gloss": "público + asunto" },
+          { "hanzi": "司机", "pinyin": "sījī", "meaning": "conductor, chófer", "gloss": "gobierno + máquina" }
+        ] },
+        { "hanzi": "嗣", "pinyin": "sì", "meaning": "heredar, suceder", "etymology": "Presentar 口 ante el gobierno 司 los títulos 册 de sucesión.", "components": [{ "char": "司", "gloss": "gobierno" }, { "char": "册", "gloss": "títulos" }], "jp": true, "words": [
+          { "hanzi": "后嗣", "pinyin": "hòusì", "meaning": "descendientes", "gloss": "posterior + heredar" }
+        ] },
+        { "hanzi": "厂", "pinyin": "chǎng", "meaning": "fábrica", "etymology": "De fábrica se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "工厂", "pinyin": "gōngchǎng", "meaning": "fábrica", "gloss": "trabajo + fábrica" },
+          { "hanzi": "酒厂", "pinyin": "jiǔchǎng", "meaning": "destilería", "gloss": "vino + fábrica" }
+        ] },
+        { "hanzi": "产", "pinyin": "chǎn", "meaning": "producir, parir, crear", "etymology": "Son los productos apilados 立 sobre la fábrica 厂.", "components": [{ "char": "厂", "gloss": "fábrica" }, { "char": "立", "gloss": "productos apilados" }], "jp": false, "words": [
+          { "hanzi": "产品", "pinyin": "chǎnpǐn", "meaning": "producto", "gloss": "producto + producto" },
+          { "hanzi": "土产", "pinyin": "tǔchǎn", "meaning": "producto local", "gloss": "tierra + producto" }
+        ] },
+        { "hanzi": "严", "pinyin": "yán", "meaning": "cerrado, estricto, severo", "etymology": "Simplificado. Un techo 一 tapando los productos 产, quedan cerrados.", "components": [{ "char": "产", "gloss": "productos" }], "jp": false, "words": [
+          { "hanzi": "严禁", "pinyin": "yánjìn", "meaning": "estrictamente prohibido", "gloss": "severo + prohibido" },
+          { "hanzi": "严厉", "pinyin": "yánlì", "meaning": "severo, riguroso", "gloss": "severo + serio" }
+        ] },
+        { "hanzi": "彦", "pinyin": "yàn", "meaning": "hombre de virtud y habilidad", "etymology": "Aquel cuyas creaciones 产 llaman la atención 彡.", "components": [{ "char": "产", "gloss": "creaciones" }, { "char": "彡", "gloss": "llamar la atención" }], "jp": true, "words": [] },
+        { "hanzi": "石", "pinyin": "shí", "meaning": "piedra, roca", "etymology": "Es una piedra 口 que cae de un precipicio 厂.", "components": [{ "char": "厂", "gloss": "precipicio" }, { "char": "口", "gloss": "piedra" }], "jp": true, "words": [
+          { "hanzi": "石头", "pinyin": "shítou", "meaning": "piedra", "gloss": "piedra + cabeza" },
+          { "hanzi": "石油", "pinyin": "shíyóu", "meaning": "petróleo", "gloss": "piedra + aceite" }
+        ] },
+        { "hanzi": "危", "pinyin": "wēi", "meaning": "peligro, riesgo; arriesgar", "etymology": "Un hombre 人 sobre un precipicio 厂 andando con cuidado.", "components": [{ "char": "厂", "gloss": "precipicio" }], "jp": true, "words": [
+          { "hanzi": "危险", "pinyin": "wēixiǎn", "meaning": "peligro, riesgo", "gloss": "peligro + peligro" },
+          { "hanzi": "危亡", "pinyin": "wēiwáng", "meaning": "en peligro de muerte", "gloss": "peligro + muerte" }
+        ] },
+        { "hanzi": "詹", "pinyin": "zhān", "meaning": "delirar; hablar mucho", "etymology": "Esparcir 八 imprudentemente 危 las palabras 言. Hoy se usa con el radical 讠 «palabra».", "components": [{ "char": "危", "gloss": "imprudente" }, { "char": "言", "gloss": "palabras" }], "jp": true, "words": [
+          { "hanzi": "詹妄", "pinyin": "zhānwàng", "meaning": "delirio, desvarío", "gloss": "delirar + absurdo" }
+        ] },
+        { "hanzi": "广", "pinyin": "guǎng", "meaning": "ancho, extenso", "etymology": "Con ancho se forman otros caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "广场", "pinyin": "guǎngchǎng", "meaning": "plaza", "gloss": "ancho + lugar" },
+          { "hanzi": "广播", "pinyin": "guǎngbō", "meaning": "radiotransmitir", "gloss": "ampliar + transmitir" }
+        ] },
+        { "hanzi": "庐", "pinyin": "lú", "meaning": "cabaña, choza", "etymology": "Una construcción que apenas es un techo 广 y una puerta 户.", "components": [{ "char": "广", "gloss": "techo" }, { "char": "户", "gloss": "puerta" }], "jp": false, "words": [
+          { "hanzi": "茅庐", "pinyin": "máolú", "meaning": "cabaña", "gloss": "paja + cabaña" }
+        ] },
+        { "hanzi": "库", "pinyin": "kù", "meaning": "almacén, depósito", "etymology": "Lugar 广 donde se guardan los carros 车.", "components": [{ "char": "广", "gloss": "lugar" }, { "char": "车", "gloss": "carros" }], "jp": true, "words": [
+          { "hanzi": "库房", "pinyin": "kùfáng", "meaning": "almacén", "gloss": "almacén + cuarto" },
+          { "hanzi": "仓库", "pinyin": "cāngkù", "meaning": "almacén, depósito", "gloss": "almacén + almacén" }
+        ] },
+        { "hanzi": "车", "pinyin": "chē", "meaning": "coche, carro", "etymology": "Pictograma de un coche; se ven dos 二 ruedas, arriba y abajo, y el eje entre ellas.", "components": [], "jp": true, "words": [
+          { "hanzi": "汽车", "pinyin": "qìchē", "meaning": "automóvil", "gloss": "vapor + coche" },
+          { "hanzi": "车库", "pinyin": "chēkù", "meaning": "garaje", "gloss": "coche + almacén" }
+        ] },
+        { "hanzi": "军", "pinyin": "jūn", "meaning": "ejército, tropas", "etymology": "Representado por los carros 车 cubiertos 冖 que usaban los nobles de la dinastía Shang.", "components": [{ "char": "冖", "gloss": "cubierto" }, { "char": "车", "gloss": "carros" }], "jp": true, "words": [
+          { "hanzi": "军备", "pinyin": "jūnbèi", "meaning": "armamento", "gloss": "tropas + preparar" },
+          { "hanzi": "军区", "pinyin": "jūnqū", "meaning": "zona militar", "gloss": "ejército + zona" }
+        ] },
+        { "hanzi": "辉", "pinyin": "huī", "meaning": "esplendor, resplandor", "etymology": "La tropa 军 que lleva antorchas 光.", "components": [{ "char": "光", "gloss": "antorchas" }, { "char": "军", "gloss": "tropa" }], "jp": true, "words": [
+          { "hanzi": "辉煌", "pinyin": "huīhuáng", "meaning": "brillante, luminoso", "gloss": "esplendor + resplandor" },
+          { "hanzi": "光辉", "pinyin": "guānghuī", "meaning": "gloria, brillo", "gloss": "luz + esplendor" }
+        ] },
+        { "hanzi": "皲", "pinyin": "jūn", "meaning": "agrietarse (la piel)", "etymology": "La piel 皮 de los soldados 军.", "components": [{ "char": "军", "gloss": "soldados" }, { "char": "皮", "gloss": "piel" }], "jp": true, "words": [
+          { "hanzi": "皲裂", "pinyin": "jūnliè", "meaning": "agrietarse la piel", "gloss": "agrietarse + rajar" }
+        ] },
+        { "hanzi": "轰", "pinyin": "hōng", "meaning": "estruendo; bombardear", "etymology": "Son dos manos 又 conduciendo un coche 车 que hace ruido al pasar.", "components": [{ "char": "车", "gloss": "coche" }, { "char": "又", "gloss": "manos" }], "jp": false, "words": [
+          { "hanzi": "轰动", "pinyin": "hōngdòng", "meaning": "causar sensación", "gloss": "estruendo + movimiento" },
+          { "hanzi": "轰击", "pinyin": "hōngjī", "meaning": "bombardear", "gloss": "bombardear + atacar" }
+        ] },
+        { "hanzi": "东", "pinyin": "dōng", "meaning": "este, oriente", "etymology": "Es el sol 日, abreviado a un simple rayo 一, al salir sobre la copa de un árbol 木.", "components": [{ "char": "木", "gloss": "árbol" }], "jp": false, "words": [
+          { "hanzi": "东方", "pinyin": "dōngfāng", "meaning": "oriente", "gloss": "este + lado" },
+          { "hanzi": "东西", "pinyin": "dōngxī", "meaning": "cosa", "gloss": "este + oeste" }
+        ] },
+        { "hanzi": "专", "pinyin": "zhuān", "meaning": "exclusivo, especial", "etymology": "Abreviatura de un carácter que se extiende arriba y abajo del suelo.", "components": [], "jp": false, "words": [
+          { "hanzi": "专家", "pinyin": "zhuānjiā", "meaning": "especialista", "gloss": "especializado + especialista" },
+          { "hanzi": "专利", "pinyin": "zhuānlì", "meaning": "patente", "gloss": "exclusivo + beneficio" }
+        ] },
+        { "hanzi": "乐", "pinyin": "lè", "meaning": "alegría, júbilo; (yuè) música", "etymology": "Antes era una madera con unas cuerdas, un instrumento musical. Se recuerda por semejanza con 东.", "components": [], "jp": false, "words": [
+          { "hanzi": "快乐", "pinyin": "kuàilè", "meaning": "feliz", "gloss": "alegre + alegre" },
+          { "hanzi": "音乐", "pinyin": "yīnyuè", "meaning": "música", "gloss": "sonido + música" }
+        ] },
+        { "hanzi": "虎", "pinyin": "hǔ", "meaning": "tigre", "etymology": "Deriva del pictograma de un tigre: lomo enorme como la ladera de un risco 厂, patas recogidas representadas como una mesa 几, y boca amenazadora.", "components": [], "jp": true, "words": [
+          { "hanzi": "老虎", "pinyin": "lǎohǔ", "meaning": "tigre", "gloss": "viejo + tigre" }
+        ] },
+        { "hanzi": "虚", "pinyin": "xū", "meaning": "vacío, hueco; falso", "etymology": "Es un tigre 虎 hecho por un artesano 业: de artificio.", "components": [{ "char": "虎", "gloss": "tigre" }], "jp": true, "words": [
+          { "hanzi": "虚伪", "pinyin": "xūwěi", "meaning": "falso, hipócrita", "gloss": "falso + falso" },
+          { "hanzi": "虚荣", "pinyin": "xūróng", "meaning": "vanidad", "gloss": "vacío + gloria" }
+        ] },
+        { "hanzi": "虑", "pinyin": "lǜ", "meaning": "reflexionar, meditar", "etymology": "El corazón 心 ante la presencia de un tigre 虎.", "components": [{ "char": "虎", "gloss": "tigre" }, { "char": "心", "gloss": "corazón" }], "jp": false, "words": [
+          { "hanzi": "考虑", "pinyin": "kǎolǜ", "meaning": "pensar, reflexionar", "gloss": "examinar + reflexionar" }
+        ] },
+        { "hanzi": "虏", "pinyin": "lǔ", "meaning": "hacer prisioneros", "etymology": "Con la fuerza 力 del tigre 虎.", "components": [{ "char": "虎", "gloss": "tigre" }, { "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "虏获", "pinyin": "lǔhuò", "meaning": "hacer prisioneros", "gloss": "hacer prisioneros + capturar" }
+        ] },
+        { "hanzi": "虐", "pinyin": "nüè", "meaning": "cruel", "etymology": "Se ve la zarpa 彐 bajo el tigre 虎.", "components": [{ "char": "虎", "gloss": "tigre" }], "jp": true, "words": [
+          { "hanzi": "虐待", "pinyin": "nüèdài", "meaning": "maltratar", "gloss": "cruel + tratar" },
+          { "hanzi": "虐政", "pinyin": "nüèzhèng", "meaning": "tiranía", "gloss": "cruel + gobierno" }
+        ] },
+        { "hanzi": "彪", "pinyin": "biāo", "meaning": "tigrecito; rayas del tigre", "etymology": "Algo vistoso 彡 que se ve entre las patas del tigre 虎.", "components": [{ "char": "虎", "gloss": "tigre" }, { "char": "彡", "gloss": "vistoso" }], "jp": false, "words": [] },
+        { "hanzi": "鹿", "pinyin": "lù", "meaning": "ciervo, venado", "etymology": "Pictograma de un ciervo: su lomo, una oreja que sobresale 广, el moteado de su cuerpo y las dos patas 比 traseras. Forma el nombre de las distintas especies de cérvidos.", "components": [], "jp": true, "words": [
+          { "hanzi": "马鹿", "pinyin": "mǎlù", "meaning": "ciervo rojo", "gloss": "caballo + ciervo" },
+          { "hanzi": "驼鹿", "pinyin": "tuólù", "meaning": "alce", "gloss": "camello + ciervo" }
+        ] },
+        { "hanzi": "麇", "pinyin": "qún", "meaning": "congregarse", "etymology": "Ciervos 鹿 tan juntos como las espigas 禾.", "components": [{ "char": "鹿", "gloss": "ciervos" }, { "char": "禾", "gloss": "espigas" }], "jp": false, "words": [
+          { "hanzi": "麇集", "pinyin": "qúnjí", "meaning": "congregarse, agolparse", "gloss": "congregarse + reunirse" }
+        ] },
+        { "hanzi": "麝", "pinyin": "shè", "meaning": "ciervo almizclero", "etymology": "El ciervo 鹿 que dispara 射 almizcle.", "components": [{ "char": "鹿", "gloss": "ciervo" }, { "char": "射", "gloss": "disparar" }], "jp": true, "words": [
+          { "hanzi": "麝香", "pinyin": "shèxiāng", "meaning": "almizcle", "gloss": "almizclero + olor" }
+        ] }
+      ]
     }
   ]
 }
