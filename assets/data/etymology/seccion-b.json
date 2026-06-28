@@ -2534,6 +2534,179 @@
         { "hanzi": "鬲", "pinyin": "gé", "meaning": "vasija ceremonial de tres pies", "etymology": "Vasija ceremonial con los tres pies separados.", "components": [], "jp": true, "words": [] },
         { "hanzi": "鼎", "pinyin": "dǐng", "meaning": "vasija antigua para guisar; trípode", "etymology": "Pictograma de una vasija antigua usada para guisar.", "components": [], "jp": true, "words": [] }
       ]
+    },
+    {
+      "id": "B-17",
+      "theme": "Hebras de seda",
+      "icon": "丝",
+      "chars": [
+        { "hanzi": "私", "pinyin": "sī", "meaning": "personal, privado, egoísta", "etymology": "De personal, privado, egoísta, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "自私", "pinyin": "zìsī", "meaning": "egoísta", "gloss": "uno mismo + egoísta" },
+          { "hanzi": "私有", "pinyin": "sīyǒu", "meaning": "propiedad privada", "gloss": "privado + tener" }
+        ] },
+        { "hanzi": "公", "pinyin": "gōng", "meaning": "público", "etymology": "De público se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "公安", "pinyin": "gōng'ān", "meaning": "policía", "gloss": "público + seguridad" },
+          { "hanzi": "公共", "pinyin": "gōnggòng", "meaning": "público", "gloss": "público + juntos" }
+        ] },
+        { "hanzi": "宏", "pinyin": "hóng", "meaning": "grande, magno", "etymology": "Mano que coge seda 厶 en una casa 宀: actividad de los adultos, de los grandes.", "components": [{ "char": "宀", "gloss": "casa" }, { "char": "厶", "gloss": "seda" }], "jp": true, "words": [
+          { "hanzi": "宏大", "pinyin": "hóngdà", "meaning": "grande, ingente", "gloss": "grande + grande" },
+          { "hanzi": "宏观", "pinyin": "hóngguān", "meaning": "macroscópico", "gloss": "gran + mirada" }
+        ] },
+        { "hanzi": "么", "pinyin": "me", "meaning": "¿qué? (partícula)", "etymology": "Simplificado. Parece preguntar por lo privado 厶, lo que pertenece a uno.", "components": [{ "char": "厶", "gloss": "lo privado" }], "jp": false, "words": [
+          { "hanzi": "什么", "pinyin": "shénme", "meaning": "¿qué?", "gloss": "¿qué? + ¿qué?" },
+          { "hanzi": "怎么", "pinyin": "zěnme", "meaning": "cómo", "gloss": "¿cómo? + ¿qué?" }
+        ] },
+        { "hanzi": "幺", "pinyin": "yāo", "meaning": "pequeño; uno (al dictar números)", "etymology": "Hebra de seda. Se usa también para decir el número «1» al dictar números.", "components": [], "jp": false, "words": [
+          { "hanzi": "幺麼", "pinyin": "yāomó", "meaning": "insignificante", "gloss": "pequeño + pequeño" }
+        ] },
+        { "hanzi": "幼", "pinyin": "yòu", "meaning": "niño, infante, de tierna edad", "etymology": "De poca 幺 fuerza 力.", "components": [{ "char": "幺", "gloss": "poca" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "幼小", "pinyin": "yòuxiǎo", "meaning": "pequeño, infantil", "gloss": "niño + pequeño" },
+          { "hanzi": "幼年", "pinyin": "yòunián", "meaning": "infancia", "gloss": "niño + años" }
+        ] },
+        { "hanzi": "幻", "pinyin": "huàn", "meaning": "imaginario, irreal", "etymology": "Al niño 幼 le falta algo para llegar a ser real.", "components": [{ "char": "幺", "gloss": "niño" }], "jp": true, "words": [
+          { "hanzi": "幻觉", "pinyin": "huànjué", "meaning": "alucinación", "gloss": "imaginario + sensación" },
+          { "hanzi": "幻想", "pinyin": "huànxiǎng", "meaning": "ilusión, fantasía", "gloss": "imaginario + pensar" }
+        ] },
+        { "hanzi": "幽", "pinyin": "yōu", "meaning": "tranquilo, sereno; recóndito", "etymology": "Hebras de seda 幺 producidas por el gusano en una caja, invertida 山: lugar tranquilo y sereno.", "components": [{ "char": "幺", "gloss": "hebras de seda" }, { "char": "山", "gloss": "caja invertida" }], "jp": true, "words": [
+          { "hanzi": "幽默", "pinyin": "yōumò", "meaning": "humor", "gloss": "tranquilo + silencioso" },
+          { "hanzi": "幽静", "pinyin": "yōujìng", "meaning": "tranquilo, silencioso", "gloss": "tranquilo + tranquilo" }
+        ] },
+        { "hanzi": "糸", "pinyin": "mì", "meaning": "seda fina; pequeño", "etymology": "Es la representación de una hebra de seda.", "components": [], "jp": false, "words": [] },
+        { "hanzi": "累", "pinyin": "lěi", "meaning": "acumular; cansado", "etymology": "Seda fina 糸 más campo 田: producir mucha seda en los campos significa acumular, y uno acaba cansado.", "components": [{ "char": "田", "gloss": "campo" }, { "char": "糸", "gloss": "seda fina" }], "jp": true, "words": [
+          { "hanzi": "累积", "pinyin": "lěijī", "meaning": "acumular", "gloss": "acumular + acumular" },
+          { "hanzi": "累计", "pinyin": "lěijì", "meaning": "totalizar", "gloss": "acumular + contar" }
+        ] },
+        { "hanzi": "兹", "pinyin": "zī", "meaning": "este, esto; ahora", "etymology": "Mano 廾 que toma dos hebras de seda 幺. Da el sentido del presente.", "components": [{ "char": "幺", "gloss": "hebras de seda" }], "jp": true, "words": [
+          { "hanzi": "今兹", "pinyin": "jīnzī", "meaning": "este año", "gloss": "presente + ahora" }
+        ] },
+        { "hanzi": "孳", "pinyin": "zī", "meaning": "multiplicarse, propagarse", "etymology": "Hijos 子 tan numerosos como los hilos de seda 幺.", "components": [{ "char": "子", "gloss": "hijos" }, { "char": "幺", "gloss": "hilos de seda" }], "jp": true, "words": [
+          { "hanzi": "孳生", "pinyin": "zīshēng", "meaning": "multiplicarse, propagarse", "gloss": "multiplicarse + nacer" }
+        ] },
+        { "hanzi": "玄", "pinyin": "xuán", "meaning": "negro; misterioso", "etymology": "Seda 幺 tapada 亠 en la tina de teñir.", "components": [{ "char": "幺", "gloss": "seda" }], "jp": true, "words": [
+          { "hanzi": "玄虚", "pinyin": "xuánxū", "meaning": "misterio, treta", "gloss": "misterio + falso" },
+          { "hanzi": "玄妙", "pinyin": "xuánmiào", "meaning": "misterioso", "gloss": "misterio + maravilla" }
+        ] },
+        { "hanzi": "畜", "pinyin": "xù", "meaning": "criar animales; bestia, ganado", "etymology": "Una cuerda 玄 arrastra al animal por el campo 田.", "components": [{ "char": "玄", "gloss": "cuerda" }, { "char": "田", "gloss": "campo" }], "jp": false, "words": [
+          { "hanzi": "畜产", "pinyin": "xùchǎn", "meaning": "producto ganadero", "gloss": "criar + producto" },
+          { "hanzi": "畜牧", "pinyin": "xùmù", "meaning": "ganadería", "gloss": "criar + ganado" }
+        ] },
+        { "hanzi": "系", "pinyin": "xì", "meaning": "sistema; ser; depender", "etymology": "Enrollar la seda fina 糸 para conseguir un hilo da idea de una forma o sistema.", "components": [{ "char": "糸", "gloss": "seda fina" }], "jp": true, "words": [
+          { "hanzi": "系统", "pinyin": "xìtǒng", "meaning": "sistema, sistemático", "gloss": "sistema + junto" },
+          { "hanzi": "星系", "pinyin": "xīngxì", "meaning": "galaxia", "gloss": "estrella + sistema" }
+        ] },
+        { "hanzi": "素", "pinyin": "sù", "meaning": "natural, blanco, uniforme", "etymology": "Son las plantas 丰 y la seda 糸 como reflejo de la naturaleza.", "components": [{ "char": "糸", "gloss": "seda" }], "jp": true, "words": [
+          { "hanzi": "素描", "pinyin": "sùmiáo", "meaning": "croquis, apunte", "gloss": "natural + calcar" },
+          { "hanzi": "素质", "pinyin": "sùzhì", "meaning": "cualidad, característica", "gloss": "natural + cualidad" }
+        ] },
+        { "hanzi": "索", "pinyin": "suǒ", "meaning": "cuerda larga; pedir, exigir", "etymology": "Se hace enrollando las hebras finas 糸 en la tierra 土.", "components": [{ "char": "糸", "gloss": "hebras finas" }, { "char": "土", "gloss": "tierra" }], "jp": false, "words": [
+          { "hanzi": "索取", "pinyin": "suǒqǔ", "meaning": "pedir, exigir", "gloss": "pedir + pedir" },
+          { "hanzi": "索性", "pinyin": "suǒxìng", "meaning": "simplemente", "gloss": "cuerda + naturaleza" }
+        ] },
+        { "hanzi": "奚", "pinyin": "xī", "meaning": "por qué, cómo, dónde", "etymology": "Las preguntas que uno se hace al descubrir a un adulto 大 atado por una cuerda 幺 que otro lleva en la mano 爪.", "components": [{ "char": "幺", "gloss": "cuerda" }, { "char": "大", "gloss": "adulto" }], "jp": false, "words": [] },
+        { "hanzi": "率", "pinyin": "shuài", "meaning": "dirigir, franco; (lǜ) tasa", "etymology": "Una red 网 sujeta abajo 十 y arriba 亠, dirigida por un hilo de seda 幺 para cerrarla.", "components": [{ "char": "幺", "gloss": "hilo de seda" }], "jp": true, "words": [
+          { "hanzi": "率领", "pinyin": "shuàilǐng", "meaning": "encabezar", "gloss": "dirigir + cabeza" }
+        ] },
+        { "hanzi": "辔", "pinyin": "pèi", "meaning": "brida", "etymology": "Las dos cuerdas 纟 en la boca 口 del caballo que dirigen el coche 车.", "components": [{ "char": "车", "gloss": "coche" }], "jp": true, "words": [
+          { "hanzi": "辔头", "pinyin": "pèitóu", "meaning": "brida", "gloss": "brida + cabeza" }
+        ] },
+        { "hanzi": "乡", "pinyin": "xiāng", "meaning": "campo, zona rural; hogar", "etymology": "Simplificado; se recuerda como seda 幺 en bruto, como está en la zona rural.", "components": [], "jp": false, "words": [
+          { "hanzi": "故乡", "pinyin": "gùxiāng", "meaning": "lugar de nacimiento", "gloss": "antiguo + hogar" },
+          { "hanzi": "思乡", "pinyin": "sīxiāng", "meaning": "sentir nostalgia", "gloss": "pensar + casa" }
+        ] },
+        { "hanzi": "云", "pinyin": "yún", "meaning": "nube; decir", "etymology": "Vapores 厶 que se elevan a diferentes niveles 二. Nube, y «decir» por las que se forman en invierno al hablar.", "components": [{ "char": "厶", "gloss": "vapores" }, { "char": "二", "gloss": "niveles" }], "jp": true, "words": [
+          { "hanzi": "云彩", "pinyin": "yúncǎi", "meaning": "nube", "gloss": "nube + variedad" },
+          { "hanzi": "云集", "pinyin": "yúnjí", "meaning": "reunirse, congregar", "gloss": "nube + reunir" }
+        ] },
+        { "hanzi": "会", "pinyin": "huì", "meaning": "reunirse; saber, poder", "etymology": "Unidos 合 los alientos de los hombres forman nubes 云. Saber por las reuniones de los gremios.", "components": [{ "char": "合", "gloss": "unir" }, { "char": "云", "gloss": "nubes" }], "jp": true, "words": [
+          { "hanzi": "开会", "pinyin": "kāihuì", "meaning": "asistir a una reunión", "gloss": "abrir + reunión" },
+          { "hanzi": "社会", "pinyin": "shèhuì", "meaning": "sociedad", "gloss": "colectividad + reunir" }
+        ] },
+        { "hanzi": "动", "pinyin": "dòng", "meaning": "moverse", "etymology": "Simplificado. La fuerza 力 generada por un motor saca humo 云 y produce movimiento.", "components": [{ "char": "云", "gloss": "humo" }, { "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "活动", "pinyin": "huódòng", "meaning": "actividad, moverse", "gloss": "vivir + moverse" },
+          { "hanzi": "动物", "pinyin": "dòngwù", "meaning": "animal", "gloss": "moverse + cosa" }
+        ] },
+        { "hanzi": "令", "pinyin": "lìng", "meaning": "orden, mandar; excelente", "etymology": "Arriba 合 es reunir; abajo, el sello 卩 denota autoridad: reunir a la gente y ordenar.", "components": [{ "char": "卩", "gloss": "sello (autoridad)" }], "jp": true, "words": [
+          { "hanzi": "命令", "pinyin": "mìnglìng", "meaning": "orden", "gloss": "orden + orden" },
+          { "hanzi": "政令", "pinyin": "zhènglìng", "meaning": "decreto", "gloss": "gobierno + orden" }
+        ] },
+        { "hanzi": "囹", "pinyin": "líng", "meaning": "cárcel, encarcelar", "etymology": "Orden 令 de encerrar 囗 a alguien.", "components": [{ "char": "囗", "gloss": "encerrar" }, { "char": "令", "gloss": "orden" }], "jp": true, "words": [
+          { "hanzi": "囹圄", "pinyin": "língyǔ", "meaning": "cárcel, prisión", "gloss": "cárcel + prisión" }
+        ] },
+        { "hanzi": "命", "pinyin": "mìng", "meaning": "orden; vida, destino", "etymology": "Es dar una orden 令 oral 口. Son las que configuran la vida de un hombre.", "components": [{ "char": "令", "gloss": "orden" }, { "char": "口", "gloss": "oral" }], "jp": true, "words": [
+          { "hanzi": "命运", "pinyin": "mìngyùn", "meaning": "suerte, destino", "gloss": "destino + destino" },
+          { "hanzi": "革命", "pinyin": "gémìng", "meaning": "revolución", "gloss": "cambiar + destino" }
+        ] },
+        { "hanzi": "今", "pinyin": "jīn", "meaning": "momento actual, hoy", "etymology": "Unión 合 y contacto privado 厶.", "components": [{ "char": "厶", "gloss": "contacto privado" }], "jp": true, "words": [
+          { "hanzi": "今天", "pinyin": "jīntiān", "meaning": "hoy", "gloss": "presente + día" },
+          { "hanzi": "今年", "pinyin": "jīnnián", "meaning": "este año", "gloss": "presente + año" }
+        ] },
+        { "hanzi": "佥", "pinyin": "qiān", "meaning": "unánime, todos", "etymology": "La unión 合 de tres hombres 三 girado 90 grados, en un lugar 一.", "components": [{ "char": "合", "gloss": "unión" }], "jp": false, "words": [] },
+        { "hanzi": "巳", "pinyin": "sì", "meaning": "feto; serpiente (6.ª rama)", "etymology": "Semeja a un feto, y a la representación esquemática de una serpiente.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "包", "pinyin": "bāo", "meaning": "envolver, empaquetar; incluso", "etymology": "Un feto 巳 envuelto por un cuerpo 勹.", "components": [{ "char": "巳", "gloss": "feto" }, { "char": "勹", "gloss": "cuerpo que envuelve" }], "jp": true, "words": [
+          { "hanzi": "包括", "pinyin": "bāokuò", "meaning": "incluir", "gloss": "incluir + incluir" },
+          { "hanzi": "钱包", "pinyin": "qiánbāo", "meaning": "monedero, cartera", "gloss": "dinero + bolso" }
+        ] },
+        { "hanzi": "异", "pinyin": "yì", "meaning": "diferencia, extraño", "etymology": "Dos manos 廾 sujetan al recién nacido 巳; el que no le abracen delata que es extraño.", "components": [{ "char": "巳", "gloss": "recién nacido" }, { "char": "廾", "gloss": "dos manos" }], "jp": false, "words": [
+          { "hanzi": "异议", "pinyin": "yìyì", "meaning": "disidencia, objeción", "gloss": "extraño + opinión" },
+          { "hanzi": "异常", "pinyin": "yìcháng", "meaning": "anormal, extraño", "gloss": "extraño + normal" }
+        ] },
+        { "hanzi": "导", "pinyin": "dǎo", "meaning": "dirigir, guiar", "etymology": "Una mano 寸 que dirige al niño 巳.", "components": [{ "char": "巳", "gloss": "niño" }, { "char": "寸", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "领导", "pinyin": "lǐngdǎo", "meaning": "dirigente", "gloss": "mandar + dirigir" },
+          { "hanzi": "导演", "pinyin": "dǎoyǎn", "meaning": "director (cine)", "gloss": "dirigir + actor" }
+        ] },
+        { "hanzi": "巴", "pinyin": "bā", "meaning": "esperar, cerca; pegarse", "etymology": "Viene del pictograma de una boa elevada sobre su cola.", "components": [], "jp": true, "words": [
+          { "hanzi": "巴结", "pinyin": "bājié", "meaning": "adular", "gloss": "esperar + unirse" },
+          { "hanzi": "尾巴", "pinyin": "wěiba", "meaning": "cola", "gloss": "cola + boa" }
+        ] },
+        { "hanzi": "琶", "pinyin": "pá", "meaning": "instrumento musical (pipa)", "etymology": "Joya que merece dos jades 王, hecha con piel de boa 巴.", "components": [{ "char": "王", "gloss": "jade" }, { "char": "巴", "gloss": "boa" }], "jp": true, "words": [] },
+        { "hanzi": "色", "pinyin": "sè", "meaning": "color", "etymology": "Era un hombre con un sello 卩; su sello es como su cara.", "components": [], "jp": true, "words": [
+          { "hanzi": "颜色", "pinyin": "yánsè", "meaning": "color", "gloss": "color + color" },
+          { "hanzi": "彩色", "pinyin": "cǎisè", "meaning": "multicolor", "gloss": "variedad + color" }
+        ] },
+        { "hanzi": "艳", "pinyin": "yàn", "meaning": "espléndido, amoroso", "etymology": "El aspecto 色 de la prosperidad 丰.", "components": [{ "char": "色", "gloss": "aspecto" }, { "char": "丰", "gloss": "prosperidad" }], "jp": false, "words": [
+          { "hanzi": "艳丽", "pinyin": "yànlì", "meaning": "resplandeciente", "gloss": "espléndido + bello" }
+        ] },
+        { "hanzi": "邑", "pinyin": "yì", "meaning": "capital, distrito", "etymology": "Lugar 口 de gobierno; vemos el sello 卩. Se simplifica como 阝.", "components": [{ "char": "口", "gloss": "lugar" }], "jp": true, "words": [] },
+        { "hanzi": "号", "pinyin": "hào", "meaning": "lamentarse; número", "etymology": "Aire 丂 expulsado por la boca 口.", "components": [{ "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "号码", "pinyin": "hàomǎ", "meaning": "número", "gloss": "número + número" },
+          { "hanzi": "字号", "pinyin": "zìhào", "meaning": "nombre de tienda", "gloss": "nombre + número" }
+        ] },
+        { "hanzi": "兮", "pinyin": "xī", "meaning": "pausa en música o versos", "etymology": "Lo que separa 八 el ritmo del aire 丂. Usado muy escasamente.", "components": [{ "char": "八", "gloss": "separar" }], "jp": true, "words": [] },
+        { "hanzi": "亏", "pinyin": "kuī", "meaning": "perder, carecer; afortunadamente", "etymology": "Aire que sube y se encuentra con un obstáculo 二.", "components": [], "jp": false, "words": [
+          { "hanzi": "亏损", "pinyin": "kuīsǔn", "meaning": "perder, pérdida", "gloss": "perder + estropear" },
+          { "hanzi": "幸亏", "pinyin": "xìngkuī", "meaning": "afortunadamente", "gloss": "afortunado + fortuna" }
+        ] },
+        { "hanzi": "夸", "pinyin": "kuā", "meaning": "exagerar", "etymology": "Asegurar que se posee gran 大 fortuna 亏.", "components": [{ "char": "大", "gloss": "gran" }, { "char": "亏", "gloss": "fortuna" }], "jp": true, "words": [
+          { "hanzi": "夸大", "pinyin": "kuādà", "meaning": "exagerar", "gloss": "exagerar + grande" },
+          { "hanzi": "浮夸", "pinyin": "fúkuā", "meaning": "fanfarrón", "gloss": "flotar + exagerar" }
+        ] },
+        { "hanzi": "乎", "pinyin": "hū", "meaning": "(partícula interrogativa)", "etymology": "Signo que no pasa la pausa; es por tanto interrogativo.", "components": [], "jp": true, "words": [
+          { "hanzi": "几乎", "pinyin": "jīhū", "meaning": "casi", "gloss": "varios + interrogante" },
+          { "hanzi": "合乎", "pinyin": "héhū", "meaning": "conforme a", "gloss": "acuerdo + interrogante" }
+        ] },
+        { "hanzi": "于", "pinyin": "yú", "meaning": "en, a, para, por; más", "etymology": "Conecta frases. Simplificado, se recuerda como dos 二 personas 丁 unidas.", "components": [], "jp": true, "words": [
+          { "hanzi": "关于", "pinyin": "guānyú", "meaning": "acerca de", "gloss": "concernir + a" },
+          { "hanzi": "对于", "pinyin": "duìyú", "meaning": "hacia, con", "gloss": "hacia + a" }
+        ] },
+        { "hanzi": "可", "pinyin": "kě", "meaning": "poder, aprobar; pero", "etymology": "El que ordena con la boca 口 a los soldados 丁. Con capacidad o valor.", "components": [{ "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "可能", "pinyin": "kěnéng", "meaning": "posible", "gloss": "poder + capacidad" },
+          { "hanzi": "可是", "pinyin": "kěshì", "meaning": "pero", "gloss": "pero + ser" }
+        ] },
+        { "hanzi": "哥", "pinyin": "gē", "meaning": "hermano mayor", "etymology": "El doble poder 可 da una buena idea de su papel en la sociedad china.", "components": [{ "char": "可", "gloss": "poder" }, { "char": "可", "gloss": "poder" }], "jp": true, "words": [
+          { "hanzi": "哥哥", "pinyin": "gēge", "meaning": "hermano mayor", "gloss": "hermano + hermano" }
+        ] },
+        { "hanzi": "歌", "pinyin": "gē", "meaning": "canción, cantar", "etymology": "Antiguamente 哥 era canción, por eso tiene dos bocas 口 y dos representaciones del aire. Tras convertirse en «hermano mayor», se añadió 欠, ya que para cantar hay que hacer el vacío en la boca.", "components": [{ "char": "哥", "gloss": "canción" }, { "char": "欠", "gloss": "boca abierta" }], "jp": true, "words": [
+          { "hanzi": "唱歌", "pinyin": "chànggē", "meaning": "cantar", "gloss": "cantar + canción" },
+          { "hanzi": "歌舞", "pinyin": "gēwǔ", "meaning": "cantos y danzas", "gloss": "cantar + bailar" }
+        ] },
+        { "hanzi": "奇", "pinyin": "qí", "meaning": "extraño, raro", "etymology": "Adulto 大 que ejerce el poder 可; los funcionarios eran enviados lejos de su tierra natal, a lugares extraños.", "components": [{ "char": "大", "gloss": "adulto" }, { "char": "可", "gloss": "poder" }], "jp": true, "words": [
+          { "hanzi": "奇怪", "pinyin": "qíguài", "meaning": "extraño, sorprendente", "gloss": "raro + extraño" },
+          { "hanzi": "神奇", "pinyin": "shénqí", "meaning": "mágico, milagroso", "gloss": "espíritu + extraño" }
+        ] },
+        { "hanzi": "寄", "pinyin": "jì", "meaning": "depositar; enviar por correo", "etymology": "Dejar algo en casa 宀 de un extraño 奇.", "components": [{ "char": "宀", "gloss": "casa" }, { "char": "奇", "gloss": "extraño" }], "jp": true, "words": [
+          { "hanzi": "寄生", "pinyin": "jìshēng", "meaning": "parásito", "gloss": "adoptivo + ser" }
+        ] }
+      ]
     }
   ]
 }
