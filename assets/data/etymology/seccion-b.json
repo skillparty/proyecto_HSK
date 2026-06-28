@@ -2189,6 +2189,171 @@
           { "hanzi": "秀气", "pinyin": "xiùqi", "meaning": "elegante, refinado", "gloss": "hermoso + aire" }
         ] }
       ]
+    },
+    {
+      "id": "B-15",
+      "theme": "De los niños",
+      "icon": "子",
+      "chars": [
+        { "hanzi": "子", "pinyin": "zǐ", "meaning": "hijo, semilla", "etymology": "Con hijo, semilla, se componen palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "子孙", "pinyin": "zǐsūn", "meaning": "descendientes", "gloss": "hijo + nieto" },
+          { "hanzi": "子弟", "pinyin": "zǐdì", "meaning": "hijos y hermanos", "gloss": "hijos + hermanos pequeños" }
+        ] },
+        { "hanzi": "孩", "pinyin": "hái", "meaning": "niño, chico", "etymology": "Es un niño 子 al que se trata con el mismo amor que a un cerdo 亥, animal apreciado en la familia.", "components": [{ "char": "子", "gloss": "niño" }, { "char": "亥", "gloss": "cerdo" }], "jp": true, "words": [
+          { "hanzi": "孩子", "pinyin": "háizi", "meaning": "niño", "gloss": "niño + sufijo" },
+          { "hanzi": "女孩", "pinyin": "nǚhái", "meaning": "niña", "gloss": "niño + mujer" }
+        ] },
+        { "hanzi": "学", "pinyin": "xué", "meaning": "estudiar, imitar", "etymology": "Se ve la mano 爪 que lleva al niño 子 a la escuela bajo techo 宀.", "components": [{ "char": "宀", "gloss": "escuela" }, { "char": "子", "gloss": "niño" }], "jp": true, "words": [
+          { "hanzi": "学习", "pinyin": "xuéxí", "meaning": "estudiar", "gloss": "estudiar + ejercitar" },
+          { "hanzi": "上学", "pinyin": "shàngxué", "meaning": "asistir a clase", "gloss": "empezar + estudios" }
+        ] },
+        { "hanzi": "囝", "pinyin": "nān", "meaning": "niño pequeño", "etymology": "Niño 子 encerrado 囗 en casa.", "components": [{ "char": "囗", "gloss": "encerrado" }, { "char": "子", "gloss": "niño" }], "jp": false, "words": [] },
+        { "hanzi": "孚", "pinyin": "fú", "meaning": "inspirar confianza", "etymology": "La pata 爪 de una gallina protegiendo a un polluelo 子.", "components": [{ "char": "爪", "gloss": "pata" }, { "char": "子", "gloss": "polluelo" }], "jp": true, "words": [] },
+        { "hanzi": "孔", "pinyin": "kǒng", "meaning": "agujero, hueco, ojo", "etymology": "La parte derecha evoluciona de una golondrina volando 乙: donde la golondrina 乙 cuida a su hijo 子.", "components": [{ "char": "子", "gloss": "hijo" }, { "char": "乙", "gloss": "golondrina" }], "jp": true, "words": [
+          { "hanzi": "打孔", "pinyin": "dǎkǒng", "meaning": "perforar", "gloss": "hacer + agujero" },
+          { "hanzi": "鼻孔", "pinyin": "bíkǒng", "meaning": "fosa nasal", "gloss": "nariz + agujero" }
+        ] },
+        { "hanzi": "乳", "pinyin": "rǔ", "meaning": "criar, alimentar, mamar", "etymology": "Una golondrina 乙 protege con su pata 爪 al polluelo 子 en el nido.", "components": [{ "char": "爪", "gloss": "pata" }, { "char": "子", "gloss": "polluelo" }, { "char": "乙", "gloss": "golondrina" }], "jp": true, "words": [
+          { "hanzi": "乳房", "pinyin": "rǔfáng", "meaning": "pecho", "gloss": "mamar + lugar" },
+          { "hanzi": "乳猪", "pinyin": "rǔzhū", "meaning": "lechón", "gloss": "mamar + cerdo" }
+        ] },
+        { "hanzi": "乱", "pinyin": "luàn", "meaning": "desorden", "etymology": "Las lenguas 舌 de los polluelos que esperan la llegada de la golondrina 乙.", "components": [{ "char": "舌", "gloss": "lenguas" }, { "char": "乙", "gloss": "golondrina" }], "jp": true, "words": [
+          { "hanzi": "混乱", "pinyin": "hùnluàn", "meaning": "desorden", "gloss": "confundir + desorden" },
+          { "hanzi": "叛乱", "pinyin": "pànluàn", "meaning": "rebelión", "gloss": "traicionar + desorden" }
+        ] },
+        { "hanzi": "殍", "pinyin": "piǎo", "meaning": "morirse de hambre", "etymology": "La muerte 歹 sobre el polluelo 子 a pesar de los cuidados de la madre 爪.", "components": [{ "char": "歹", "gloss": "muerte" }, { "char": "子", "gloss": "polluelo" }], "jp": true, "words": [
+          { "hanzi": "饿殍", "pinyin": "èpiǎo", "meaning": "morirse de hambre", "gloss": "hambre + morirse de hambre" }
+        ] },
+        { "hanzi": "存", "pinyin": "cún", "meaning": "ser, existir; balance", "etymology": "Capacidad 才 de tener hijos 子.", "components": [{ "char": "才", "gloss": "capacidad" }, { "char": "子", "gloss": "hijos" }], "jp": true, "words": [
+          { "hanzi": "存在", "pinyin": "cúnzài", "meaning": "existir, ser", "gloss": "existir + estar" },
+          { "hanzi": "存折", "pinyin": "cúnzhé", "meaning": "cuenta corriente", "gloss": "balance + cuaderno" }
+        ] },
+        { "hanzi": "李", "pinyin": "lǐ", "meaning": "ciruelo", "etymology": "Árbol 木 repleto de frutos 子.", "components": [{ "char": "木", "gloss": "árbol" }, { "char": "子", "gloss": "frutos" }], "jp": true, "words": [
+          { "hanzi": "桃李", "pinyin": "táolǐ", "meaning": "discípulos", "gloss": "melocotones + ciruelas" },
+          { "hanzi": "行李", "pinyin": "xíngli", "meaning": "equipaje", "gloss": "llevar + ciruelas" }
+        ] },
+        { "hanzi": "季", "pinyin": "jì", "meaning": "estación, temporada", "etymology": "Por el otoño, cuando la semilla 子 se transforma en espiga 禾.", "components": [{ "char": "禾", "gloss": "espiga" }, { "char": "子", "gloss": "semilla" }], "jp": false, "words": [
+          { "hanzi": "四季", "pinyin": "sìjì", "meaning": "cuatro estaciones", "gloss": "cuatro + estaciones" }
+        ] },
+        { "hanzi": "孤", "pinyin": "gū", "meaning": "huérfano, solo, solitario", "etymology": "Niño 子 que llora «gu» 瓜.", "components": [{ "char": "子", "gloss": "niño" }, { "char": "瓜", "gloss": "sonido del llanto" }], "jp": true, "words": [
+          { "hanzi": "孤独", "pinyin": "gūdú", "meaning": "solo, solitario", "gloss": "solo + solo" },
+          { "hanzi": "孤儿", "pinyin": "gū'ér", "meaning": "huérfano", "gloss": "huérfano + hijo" }
+        ] },
+        { "hanzi": "孛", "pinyin": "bó", "meaning": "procreación humana", "etymology": "Niños 子 que se multiplican 十 en la casa 冖. Muy poco usado, aunque importante por los caracteres que forma.", "components": [{ "char": "十", "gloss": "multiplicar" }, { "char": "子", "gloss": "niños" }], "jp": false, "words": [] },
+        { "hanzi": "勃", "pinyin": "bó", "meaning": "de repente, de pronto", "etymology": "Fuerza 力 capaz de extenderse 孛.", "components": [{ "char": "孛", "gloss": "extenderse" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "勃然", "pinyin": "bórán", "meaning": "vigorosamente", "gloss": "de repente + correcto" }
+        ] },
+        { "hanzi": "孱", "pinyin": "chán", "meaning": "débil", "etymology": "Mujer (se ve su vientre 尸) que ha tenido trillizos 子: fácil imaginar que está débil.", "components": [{ "char": "尸", "gloss": "vientre" }, { "char": "子", "gloss": "niños" }], "jp": true, "words": [
+          { "hanzi": "孱弱", "pinyin": "chánruò", "meaning": "débil", "gloss": "débil + débil" }
+        ] },
+        { "hanzi": "厚", "pinyin": "hòu", "meaning": "generoso, espeso, profundo", "etymology": "Bienes que se deslizan por una pendiente 厂, del que ordena 曰 al que obedece como un niño 子.", "components": [{ "char": "厂", "gloss": "pendiente" }, { "char": "子", "gloss": "el que obedece" }], "jp": true, "words": [
+          { "hanzi": "厚度", "pinyin": "hòudù", "meaning": "espesor", "gloss": "espeso + medida" },
+          { "hanzi": "宽厚", "pinyin": "kuānhòu", "meaning": "generoso", "gloss": "ancho + espeso" }
+        ] },
+        { "hanzi": "孢", "pinyin": "bāo", "meaning": "espora", "etymology": "Semilla que está envuelta 包 por algo.", "components": [{ "char": "子", "gloss": "semilla" }], "jp": false, "words": [
+          { "hanzi": "孢子", "pinyin": "bāozǐ", "meaning": "espora", "gloss": "espora + sufijo" }
+        ] },
+        { "hanzi": "了", "pinyin": "le", "meaning": "terminar, acabar, resolver", "etymology": "Con terminar, acabar, resolver, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "了解", "pinyin": "liǎojiě", "meaning": "conocer", "gloss": "completar + explicar" },
+          { "hanzi": "明了", "pinyin": "míngliǎo", "meaning": "conocer claramente", "gloss": "claramente + resolver" }
+        ] },
+        { "hanzi": "予", "pinyin": "yǔ", "meaning": "dar", "etymology": "De dar se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "给予", "pinyin": "gěiyǔ", "meaning": "dar, otorgar", "gloss": "dar + dar" }
+        ] },
+        { "hanzi": "序", "pinyin": "xù", "meaning": "orden, prólogo", "etymology": "Eran las partes de la casa 广 donde se daban 予 las órdenes.", "components": [{ "char": "广", "gloss": "casa" }, { "char": "予", "gloss": "dar órdenes" }], "jp": true, "words": [
+          { "hanzi": "序列", "pinyin": "xùliè", "meaning": "orden, formación", "gloss": "orden + fila" },
+          { "hanzi": "序言", "pinyin": "xùyán", "meaning": "prólogo", "gloss": "prólogo + palabras" }
+        ] },
+        { "hanzi": "舒", "pinyin": "shū", "meaning": "extenderse, sin prisa", "etymology": "Dar 予 en la casa 舍.", "components": [{ "char": "舍", "gloss": "casa" }, { "char": "予", "gloss": "dar" }], "jp": true, "words": [
+          { "hanzi": "舒展", "pinyin": "shūzhǎn", "meaning": "desenvolverse", "gloss": "extenderse + desplegarse" },
+          { "hanzi": "舒服", "pinyin": "shūfu", "meaning": "cómodo, confortable", "gloss": "extenderse + servicio" }
+        ] },
+        { "hanzi": "豫", "pinyin": "yù", "meaning": "confortable, alegre; dubitativo", "etymology": "Entregar 予 un elefante 象.", "components": [{ "char": "予", "gloss": "entregar" }, { "char": "象", "gloss": "elefante" }], "jp": false, "words": [
+          { "hanzi": "犹豫", "pinyin": "yóuyù", "meaning": "dubitativo, vacilar", "gloss": "aún + dubitativo" }
+        ] },
+        { "hanzi": "孝", "pinyin": "xiào", "meaning": "piedad filial, luto", "etymology": "Es un niño 子 bajo un anciano: hombre 人 con barba 毛 fundida.", "components": [{ "char": "子", "gloss": "niño" }], "jp": true, "words": [
+          { "hanzi": "孝顺", "pinyin": "xiàoshùn", "meaning": "piedad filial", "gloss": "piedad filial + obedecer" },
+          { "hanzi": "孝服", "pinyin": "xiàofú", "meaning": "traje de luto", "gloss": "luto + ropa" }
+        ] },
+        { "hanzi": "老", "pinyin": "lǎo", "meaning": "anciano, viejo", "etymology": "Deriva del pictograma de un anciano: persona 人 con barba 毛.", "components": [], "jp": true, "words": [
+          { "hanzi": "老家", "pinyin": "lǎojiā", "meaning": "pueblo natal", "gloss": "anciano + casa" },
+          { "hanzi": "老师", "pinyin": "lǎoshī", "meaning": "maestro, profesor", "gloss": "anciano + profesor" }
+        ] },
+        { "hanzi": "耆", "pinyin": "qí", "meaning": "sexagenario, anciano", "etymology": "Anciano 老 cuyas palabras 曰 se escuchan.", "components": [{ "char": "老", "gloss": "anciano" }, { "char": "曰", "gloss": "palabras" }], "jp": true, "words": [] },
+        { "hanzi": "耄", "pinyin": "mào", "meaning": "octogenario", "etymology": "Anciano 老 de largas barbas 毛.", "components": [{ "char": "老", "gloss": "anciano" }, { "char": "毛", "gloss": "barbas" }], "jp": true, "words": [] },
+        { "hanzi": "者", "pinyin": "zhě", "meaning": "(sufijo: el que…); creyente", "etymology": "Es un viejo 老 que habla 口.", "components": [{ "char": "老", "gloss": "viejo" }, { "char": "口", "gloss": "habla" }], "jp": true, "words": [
+          { "hanzi": "使者", "pinyin": "shǐzhě", "meaning": "emisario, enviado", "gloss": "enviar + el que" },
+          { "hanzi": "作者", "pinyin": "zuòzhě", "meaning": "autor, el que hace", "gloss": "hacer + el que" }
+        ] },
+        { "hanzi": "考", "pinyin": "kǎo", "meaning": "examinar", "etymology": "Es el momento en que el anciano 老 profesor nos hace contener la respiración 丂.", "components": [{ "char": "老", "gloss": "anciano" }], "jp": true, "words": [
+          { "hanzi": "考试", "pinyin": "kǎoshì", "meaning": "examen", "gloss": "examinar + examen" },
+          { "hanzi": "考虑", "pinyin": "kǎolǜ", "meaning": "considerar, pensar", "gloss": "examinar + reflexionar" }
+        ] },
+        { "hanzi": "儿", "pinyin": "ér", "meaning": "niño", "etymology": "De niño se derivan palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "儿童", "pinyin": "értóng", "meaning": "niños", "gloss": "niño + niño" }
+        ] },
+        { "hanzi": "允", "pinyin": "yǔn", "meaning": "permitir, consentir; justo", "etymology": "Un hombre 儿 con la boca abierta 厶 afirma.", "components": [{ "char": "儿", "gloss": "hombre" }, { "char": "厶", "gloss": "boca abierta" }], "jp": true, "words": [
+          { "hanzi": "允许", "pinyin": "yǔnxǔ", "meaning": "permitir, autorizar", "gloss": "permitir + permitir" }
+        ] },
+        { "hanzi": "充", "pinyin": "chōng", "meaning": "suficiente, lleno; pasar por", "etymology": "Crecer de niño 子 invertido a hombre 儿.", "components": [{ "char": "儿", "gloss": "hombre" }], "jp": true, "words": [
+          { "hanzi": "充足", "pinyin": "chōngzú", "meaning": "abundante", "gloss": "suficiente + satisfecho" },
+          { "hanzi": "充满", "pinyin": "chōngmǎn", "meaning": "lleno", "gloss": "lleno + lleno" }
+        ] },
+        { "hanzi": "弃", "pinyin": "qì", "meaning": "abandonar, dejar, tirar", "etymology": "Dos manos 廾 que abandonan a un niño 子. Reflejo del infanticidio primitivo.", "components": [{ "char": "子", "gloss": "niño" }, { "char": "廾", "gloss": "dos manos" }], "jp": false, "words": [
+          { "hanzi": "遗弃", "pinyin": "yíqì", "meaning": "abandonar", "gloss": "perder + abandonar" },
+          { "hanzi": "废弃", "pinyin": "fèiqì", "meaning": "abandonar, descartar", "gloss": "abandonar + descartar" }
+        ] },
+        { "hanzi": "兀", "pinyin": "wù", "meaning": "elevado, calvo", "etymology": "Era el pictograma de un taburete, algo elevado.", "components": [], "jp": true, "words": [
+          { "hanzi": "突兀", "pinyin": "tūwù", "meaning": "inesperado", "gloss": "repentino + elevado" }
+        ] },
+        { "hanzi": "冗", "pinyin": "rǒng", "meaning": "superfluo, redundante", "etymology": "Imagen de un hombre 儿 cuyos extremos superiores se han unido; bajo techo 冖, está desocupado, inactivo.", "components": [{ "char": "冖", "gloss": "techo" }, { "char": "儿", "gloss": "hombre" }], "jp": true, "words": [
+          { "hanzi": "冗长", "pinyin": "rǒngcháng", "meaning": "prolijo, redundante", "gloss": "redundante + extenso" },
+          { "hanzi": "冗杂", "pinyin": "rǒngzá", "meaning": "abigarrado, mezclado", "gloss": "redundante + complicado" }
+        ] },
+        { "hanzi": "元", "pinyin": "yuán", "meaning": "primero, principal; origen; yuan", "etymology": "Lo que está arriba 二 del hombre 儿.", "components": [{ "char": "二", "gloss": "lo de arriba" }, { "char": "儿", "gloss": "hombre" }], "jp": true, "words": [
+          { "hanzi": "元月", "pinyin": "yuányuè", "meaning": "enero", "gloss": "primero + mes" },
+          { "hanzi": "公元", "pinyin": "gōngyuán", "meaning": "era cristiana", "gloss": "común + primero" }
+        ] },
+        { "hanzi": "完", "pinyin": "wán", "meaning": "cumplir, completar, concluir", "etymology": "Poner el techo 宀 sobre el fundamento 元 de un edificio.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "元", "gloss": "fundamento" }], "jp": true, "words": [
+          { "hanzi": "完成", "pinyin": "wánchéng", "meaning": "cumplir, completar", "gloss": "acabar + realizar" },
+          { "hanzi": "完全", "pinyin": "wánquán", "meaning": "completo", "gloss": "completar + todo" }
+        ] },
+        { "hanzi": "冠", "pinyin": "guàn", "meaning": "gorro, corona; el mejor", "etymology": "Lo que pone una mano 寸 cubriendo 冖 la cabeza 元.", "components": [{ "char": "冖", "gloss": "cubrir" }, { "char": "元", "gloss": "cabeza" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "冠军", "pinyin": "guànjūn", "meaning": "campeón", "gloss": "mejor + tropa" },
+          { "hanzi": "王冠", "pinyin": "wángguān", "meaning": "corona", "gloss": "rey + corona" }
+        ] },
+        { "hanzi": "寇", "pinyin": "kòu", "meaning": "bandido, invasor", "etymology": "El que llega con un palo en la mano 又 a atacar a los que están en sus hogares, con la cabeza 元 a cubierto 宀.", "components": [{ "char": "宀", "gloss": "hogar" }, { "char": "元", "gloss": "cabeza" }], "jp": false, "words": [
+          { "hanzi": "敌寇", "pinyin": "díkòu", "meaning": "enemigo", "gloss": "enemigo + bandido" }
+        ] },
+        { "hanzi": "园", "pinyin": "yuán", "meaning": "huerto, jardín", "etymology": "El primer lugar que el hombre encierra 囗.", "components": [{ "char": "囗", "gloss": "encerrar" }], "jp": false, "words": [
+          { "hanzi": "花园", "pinyin": "huāyuán", "meaning": "jardín", "gloss": "flores + jardín" },
+          { "hanzi": "园艺", "pinyin": "yuányì", "meaning": "horticultura", "gloss": "huerto + arte" }
+        ] },
+        { "hanzi": "无", "pinyin": "wú", "meaning": "nada, no, negar", "etymology": "Simplificado; a pesar de su semejanza con 元, se clasifica como derivado de 尤 (perro con la oreja doblada): el perro, pese a su esfuerzo, no consigue traspasar el trazo superior 一.", "components": [], "jp": false, "words": [
+          { "hanzi": "无知", "pinyin": "wúzhī", "meaning": "ignorante", "gloss": "no + saber" },
+          { "hanzi": "无聊", "pinyin": "wúliáo", "meaning": "aburrido", "gloss": "no + interés" }
+        ] },
+        { "hanzi": "兄", "pinyin": "xiōng", "meaning": "hermano mayor", "etymology": "Niño 儿 más boca 口: el niño que manda, o el que come primero.", "components": [{ "char": "儿", "gloss": "niño" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "兄弟", "pinyin": "xiōngdì", "meaning": "hermanos", "gloss": "hermano mayor + hermano menor" }
+        ] },
+        { "hanzi": "兑", "pinyin": "duì", "meaning": "cumplir, efectuar; cambiar", "etymology": "División 八 de los bienes entre los hermanos 兄.", "components": [{ "char": "八", "gloss": "división" }, { "char": "兄", "gloss": "hermanos" }], "jp": true, "words": [
+          { "hanzi": "兑换", "pinyin": "duìhuàn", "meaning": "cambiar (divisas)", "gloss": "cumplir + cambiar" },
+          { "hanzi": "兑现", "pinyin": "duìxiàn", "meaning": "hacer efectivo", "gloss": "cumplir + manifestarse" }
+        ] },
+        { "hanzi": "克", "pinyin": "kè", "meaning": "poder, superar, vencer; gramo", "etymology": "La actividad del hermano mayor 兄 valorada con un diez 十.", "components": [{ "char": "兄", "gloss": "hermano mayor" }, { "char": "十", "gloss": "diez" }], "jp": true, "words": [
+          { "hanzi": "克服", "pinyin": "kèfú", "meaning": "superar", "gloss": "superar + desempeñar" },
+          { "hanzi": "克制", "pinyin": "kèzhì", "meaning": "contenerse, reprimirse", "gloss": "poder + sistema" }
+        ] },
+        { "hanzi": "光", "pinyin": "guāng", "meaning": "brillante, luminoso; rayo", "etymology": "Una persona 儿 llevando una antorcha 火.", "components": [{ "char": "火", "gloss": "antorcha" }, { "char": "儿", "gloss": "persona" }], "jp": true, "words": [
+          { "hanzi": "光明", "pinyin": "guāngmíng", "meaning": "brillante, luminoso", "gloss": "brillante + claro" },
+          { "hanzi": "目光", "pinyin": "mùguāng", "meaning": "vista, mirada", "gloss": "ojo + rayo" }
+        ] },
+        { "hanzi": "先", "pinyin": "xiān", "meaning": "antes, primero, antepasado", "etymology": "Una persona 儿 subida a un buey 牛: llega antes que los que van andando.", "components": [{ "char": "牛", "gloss": "buey" }, { "char": "儿", "gloss": "persona" }], "jp": true, "words": [
+          { "hanzi": "先辈", "pinyin": "xiānbèi", "meaning": "antepasados, precursores", "gloss": "primero + generación" },
+          { "hanzi": "先生", "pinyin": "xiānsheng", "meaning": "maestro, señor", "gloss": "primero + nacer" }
+        ] },
+        { "hanzi": "兆", "pinyin": "zhào", "meaning": "adivinar, predecir; presagio", "etymology": "Pictograma de una concha de tortuga resquebrajada tras ser calentada con fines adivinatorios. Semejante a 儿.", "components": [], "jp": true, "words": [] }
+      ]
     }
   ]
 }
