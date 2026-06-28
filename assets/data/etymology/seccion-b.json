@@ -1247,6 +1247,166 @@
           { "hanzi": "耕作", "pinyin": "gēngzuò", "meaning": "labranza", "gloss": "arar + hacer" }
         ] }
       ]
+    },
+    {
+      "id": "B-9",
+      "theme": "De la boca",
+      "icon": "口",
+      "chars": [
+        { "hanzi": "口", "pinyin": "kǒu", "meaning": "boca, entrada, agujero", "etymology": "De boca, entrada, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "人口", "pinyin": "rénkǒu", "meaning": "población, habitantes", "gloss": "hombres + bocas" },
+          { "hanzi": "门口", "pinyin": "ménkǒu", "meaning": "puerta, entrada", "gloss": "puerta + entrada" }
+        ] },
+        { "hanzi": "台", "pinyin": "tái", "meaning": "plataforma, terraza, mesa", "etymology": "Semeja el perfil de una pequeña plataforma preparada para algún personaje importante.", "components": [{ "char": "口", "gloss": "base" }], "jp": true, "words": [
+          { "hanzi": "站台", "pinyin": "zhàntái", "meaning": "andén", "gloss": "estar de pie + plataforma" },
+          { "hanzi": "电台", "pinyin": "diàntái", "meaning": "estación de radio o TV", "gloss": "electricidad + estación" }
+        ] },
+        { "hanzi": "宫", "pinyin": "gōng", "meaning": "palacio, templo", "etymology": "Dos bocas 口, en realidad dos salas, bajo un techo 宀, representan el lugar donde se reúnen las personas.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "口", "gloss": "salas" }], "jp": true, "words": [
+          { "hanzi": "宫廷", "pinyin": "gōngtíng", "meaning": "corte, palacio", "gloss": "palacio + corte" },
+          { "hanzi": "子宫", "pinyin": "zǐgōng", "meaning": "útero", "gloss": "niño + palacio" }
+        ] },
+        { "hanzi": "官", "pinyin": "guān", "meaning": "oficial, órgano", "etymology": "Las bocas no están separadas: son dos cuartos de las oficinas del gobierno, comunicados, bajo techo 宀.", "components": [{ "char": "宀", "gloss": "techo" }], "jp": true, "words": [
+          { "hanzi": "法官", "pinyin": "fǎguān", "meaning": "juez", "gloss": "ley + oficial" },
+          { "hanzi": "官员", "pinyin": "guānyuán", "meaning": "funcionario", "gloss": "oficial + persona" }
+        ] },
+        { "hanzi": "营", "pinyin": "yíng", "meaning": "campamento, cuartel; administrar", "etymology": "Evoluciona de un campamento con dos tiendas 口 y dos fuegos 火, transformados en hierbas 艹 con las que se hacen antorchas.", "components": [{ "char": "艹", "gloss": "antorchas" }, { "char": "口", "gloss": "tiendas" }], "jp": true, "words": [
+          { "hanzi": "营房", "pinyin": "yíngfáng", "meaning": "cuartel", "gloss": "cuartel + casa" },
+          { "hanzi": "营业", "pinyin": "yíngyè", "meaning": "hacer negocio", "gloss": "administrar + oficio" }
+        ] },
+        { "hanzi": "回", "pinyin": "huí", "meaning": "volver, responder", "etymology": "De volver, responder, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "回答", "pinyin": "huídá", "meaning": "responder, contestar", "gloss": "responder + responder" },
+          { "hanzi": "来回", "pinyin": "láihuí", "meaning": "ida y vuelta", "gloss": "venir + volver" }
+        ] },
+        { "hanzi": "骨", "pinyin": "gǔ", "meaning": "hueso", "etymology": "Se representa como un hueso abierto; se ve la médula 回. Es parte del cuerpo 月.", "components": [{ "char": "回", "gloss": "médula" }, { "char": "月", "gloss": "cuerpo" }], "jp": true, "words": [
+          { "hanzi": "骨头", "pinyin": "gǔtou", "meaning": "hueso", "gloss": "hueso + cabeza" }
+        ] },
+        { "hanzi": "叵", "pinyin": "pǒ", "meaning": "imposible", "etymology": "Es el regreso 回 que no se completa.", "components": [{ "char": "回", "gloss": "regreso" }], "jp": false, "words": [] },
+        { "hanzi": "禀", "pinyin": "bǐng", "meaning": "informar, dar parte", "etymology": "Arriba un silo, un almacén bien cerrado 回 y techado 亠. Abajo es mostrar 示: mostrar a un superior el estado de los graneros, cuando todos se preocupan por la escasez.", "components": [{ "char": "回", "gloss": "almacén" }, { "char": "示", "gloss": "mostrar" }], "jp": true, "words": [
+          { "hanzi": "禀告", "pinyin": "bǐnggào", "meaning": "informar", "gloss": "informar + decir" },
+          { "hanzi": "禀报", "pinyin": "bǐngbào", "meaning": "informar", "gloss": "informar + informar" }
+        ] },
+        { "hanzi": "啬", "pinyin": "sè", "meaning": "avaro, mezquino", "etymology": "El que almacena sus bienes 回 debajo de la tierra 土.", "components": [{ "char": "回", "gloss": "almacén" }, { "char": "土", "gloss": "tierra" }], "jp": true, "words": [
+          { "hanzi": "吝啬", "pinyin": "lìnsè", "meaning": "tacaño", "gloss": "tacaño + avaro" }
+        ] },
+        { "hanzi": "问", "pinyin": "wèn", "meaning": "preguntar", "etymology": "Una boca 口 desde una puerta 门.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "问题", "pinyin": "wèntí", "meaning": "pregunta, cuestión", "gloss": "preguntar + tema" },
+          { "hanzi": "提问", "pinyin": "tíwèn", "meaning": "preguntar", "gloss": "elevar + pregunta" }
+        ] },
+        { "hanzi": "同", "pinyin": "tóng", "meaning": "mismo, similar", "etymology": "Una boca 口 en común 凡: dos personas que hablan por la misma boca.", "components": [{ "char": "凡", "gloss": "común" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "同事", "pinyin": "tóngshì", "meaning": "colega", "gloss": "mismo + asunto" },
+          { "hanzi": "同意", "pinyin": "tóngyì", "meaning": "estar de acuerdo", "gloss": "misma + idea" }
+        ] },
+        { "hanzi": "向", "pinyin": "xiàng", "meaning": "dirección, hacia; siempre", "etymology": "Simplifica los rayos del sol sobre la casa: una ventana 口 de un edificio 冂.", "components": [{ "char": "口", "gloss": "ventana" }], "jp": true, "words": [
+          { "hanzi": "向往", "pinyin": "xiàngwǎng", "meaning": "desear, ansiar", "gloss": "siempre + dirección" },
+          { "hanzi": "方向", "pinyin": "fāngxiàng", "meaning": "dirección", "gloss": "lugar + dirección" }
+        ] },
+        { "hanzi": "尚", "pinyin": "shàng", "meaning": "valorar, apreciar; añadir", "etymology": "Antiguamente significaba elevado: los trazos superiores forman el tejado, con la división 八 de aguas típica de China, y los inferiores la casa.", "components": [{ "char": "八", "gloss": "división de aguas" }], "jp": false, "words": [
+          { "hanzi": "高尚", "pinyin": "gāoshàng", "meaning": "noble", "gloss": "alto + apreciado" },
+          { "hanzi": "风尚", "pinyin": "fēngshàng", "meaning": "costumbre, hábito", "gloss": "viento + valorar" }
+        ] },
+        { "hanzi": "党", "pinyin": "dǎng", "meaning": "partido político, pandilla", "etymology": "Lugar bajo techo 尚 donde se reúnen los representantes de cada familia 兄.", "components": [{ "char": "尚", "gloss": "techo" }, { "char": "兄", "gloss": "representantes" }], "jp": true, "words": [
+          { "hanzi": "党派", "pinyin": "dǎngpài", "meaning": "partidos y grupos políticos", "gloss": "partidos + escuelas" },
+          { "hanzi": "党员", "pinyin": "dǎngyuán", "meaning": "miembro del partido", "gloss": "partido + miembro" }
+        ] },
+        { "hanzi": "堂", "pinyin": "táng", "meaning": "salón", "etymology": "Una casa 尚 elevada sobre la tierra 土, como eran las primeras salas comunes descubiertas en las excavaciones arqueológicas.", "components": [{ "char": "尚", "gloss": "casa" }, { "char": "土", "gloss": "tierra" }], "jp": false, "words": [] },
+        { "hanzi": "尝", "pinyin": "cháng", "meaning": "gustar, paladear", "etymology": "Nube de aroma 云 que sentimos bajo techo 尚, el de la comida.", "components": [{ "char": "尚", "gloss": "techo" }, { "char": "云", "gloss": "aroma" }], "jp": false, "words": [
+          { "hanzi": "尝试", "pinyin": "chángshì", "meaning": "intentar", "gloss": "probar + probar" },
+          { "hanzi": "品尝", "pinyin": "pǐncháng", "meaning": "prueba, muestra", "gloss": "artículo + prueba" }
+        ] },
+        { "hanzi": "赏", "pinyin": "shǎng", "meaning": "recompensa, premio; conceder", "etymology": "Dinero 贝 que se recibe como muestra de aprecio 尚.", "components": [{ "char": "尚", "gloss": "aprecio" }, { "char": "贝", "gloss": "dinero" }], "jp": true, "words": [
+          { "hanzi": "观赏", "pinyin": "guānshǎng", "meaning": "disfrutar la vista", "gloss": "vista + recompensa" },
+          { "hanzi": "奖赏", "pinyin": "jiǎngshǎng", "meaning": "premio, recompensa", "gloss": "premio + premio" }
+        ] },
+        { "hanzi": "古", "pinyin": "gǔ", "meaning": "antiguo", "etymology": "De antiguo se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "古老", "pinyin": "gǔlǎo", "meaning": "viejo", "gloss": "antiguo + viejo" },
+          { "hanzi": "古代", "pinyin": "gǔdài", "meaning": "época antigua", "gloss": "antiguo + época" }
+        ] },
+        { "hanzi": "固", "pinyin": "gù", "meaning": "sólido", "etymology": "Algo encerrado 囗 desde antiguo 古 parece estar sólidamente establecido.", "components": [{ "char": "囗", "gloss": "encerrado" }, { "char": "古", "gloss": "antiguo" }], "jp": true, "words": [
+          { "hanzi": "巩固", "pinyin": "gǒnggù", "meaning": "consolidar", "gloss": "consolidar + sólido" }
+        ] },
+        { "hanzi": "胡", "pinyin": "hú", "meaning": "barba, bigote; salvaje", "etymology": "Característica del cuerpo 月 de los ancianos 古. Salvajes porque se dejaban barba.", "components": [{ "char": "古", "gloss": "ancianos" }, { "char": "月", "gloss": "cuerpo" }], "jp": true, "words": [
+          { "hanzi": "胡说", "pinyin": "húshuō", "meaning": "decir tonterías", "gloss": "salvaje + hablar" },
+          { "hanzi": "胡同", "pinyin": "hútòng", "meaning": "callejuela", "gloss": "huno + similar" }
+        ] },
+        { "hanzi": "占", "pinyin": "zhàn", "meaning": "adivinar; ocupar, tomar", "etymology": "Es adivinar 卜 con la boca 口.", "components": [{ "char": "卜", "gloss": "adivinar" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "占有", "pinyin": "zhànyǒu", "meaning": "ocupar, tomar", "gloss": "tomar + tener" },
+          { "hanzi": "占用", "pinyin": "zhànyòng", "meaning": "tomar y usar algo", "gloss": "tomar + usar" }
+        ] },
+        { "hanzi": "站", "pinyin": "zhàn", "meaning": "estar de pie; parada, estación", "etymology": "Lugar que ocupa 占 un hombre 立.", "components": [{ "char": "立", "gloss": "hombre" }, { "char": "占", "gloss": "ocupar" }], "jp": true, "words": [
+          { "hanzi": "车站", "pinyin": "chēzhàn", "meaning": "estación", "gloss": "coche + parada" },
+          { "hanzi": "站住", "pinyin": "zhànzhù", "meaning": "detenerse", "gloss": "parar + parar" }
+        ] },
+        { "hanzi": "店", "pinyin": "diàn", "meaning": "tienda, posada", "etymology": "Lugar que uno ocupa 占 bajo techo 广.", "components": [{ "char": "广", "gloss": "techo" }, { "char": "占", "gloss": "ocupar" }], "jp": true, "words": [
+          { "hanzi": "商店", "pinyin": "shāngdiàn", "meaning": "tienda", "gloss": "comercio + tienda" },
+          { "hanzi": "饭店", "pinyin": "fàndiàn", "meaning": "hotel, restaurante", "gloss": "comida + posada" }
+        ] },
+        { "hanzi": "合", "pinyin": "hé", "meaning": "unir, cerrar; paz", "etymology": "Los tres trazos de arriba simbolizan unidad. Con la boca 口 es la unión armónica.", "components": [{ "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "合同", "pinyin": "hétóng", "meaning": "contrato", "gloss": "unir + mismo" },
+          { "hanzi": "合作", "pinyin": "hézuò", "meaning": "colaborar, cooperar", "gloss": "unir + hacer" }
+        ] },
+        { "hanzi": "含", "pinyin": "hán", "meaning": "tener en la boca, contener", "etymology": "Ahora 今 en la boca 口.", "components": [{ "char": "今", "gloss": "ahora" }, { "char": "口", "gloss": "boca" }], "jp": false, "words": [
+          { "hanzi": "含量", "pinyin": "hánliàng", "meaning": "contenido", "gloss": "contener + cantidad" },
+          { "hanzi": "含义", "pinyin": "hányì", "meaning": "significado, sentido", "gloss": "contenido + justo" }
+        ] },
+        { "hanzi": "谷", "pinyin": "gǔ", "meaning": "valle; cereal, mijo", "etymology": "La parte de arriba es el agua resbalando por la ladera de una montaña. La boca 口, en este caso, es la del valle.", "components": [{ "char": "口", "gloss": "boca del valle" }], "jp": true, "words": [] },
+        { "hanzi": "容", "pinyin": "róng", "meaning": "contener; aspecto", "etymology": "Un techo 宀 sobre el valle 谷 indica ese espacio reducido que se puede techar, una cabaña que contiene nuestras cosas.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "谷", "gloss": "valle" }], "jp": false, "words": [] },
+        { "hanzi": "各", "pinyin": "gè", "meaning": "cada uno, todo", "etymology": "Cada persona tiene su boca 口. Se ve mejor con la boca arriba.", "components": [{ "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "各个", "pinyin": "gègè", "meaning": "cada", "gloss": "cada + clasificador" },
+          { "hanzi": "各自", "pinyin": "gèzì", "meaning": "cada uno", "gloss": "cada + uno mismo" }
+        ] },
+        { "hanzi": "客", "pinyin": "kè", "meaning": "huésped, invitado, cliente", "etymology": "Pasar la noche bajo un techo 宀 que no es el de cada uno 各.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "各", "gloss": "cada uno" }], "jp": true, "words": [
+          { "hanzi": "客人", "pinyin": "kèrén", "meaning": "huésped, visita", "gloss": "huésped + persona" },
+          { "hanzi": "旅客", "pinyin": "lǚkè", "meaning": "viajero", "gloss": "viaje + huésped" }
+        ] },
+        { "hanzi": "咎", "pinyin": "jiù", "meaning": "culpar, censurar", "etymology": "Hombre 人 deformado en 卜 que sólo se preocupa de sus propios asuntos 各.", "components": [{ "char": "各", "gloss": "asuntos propios" }], "jp": true, "words": [
+          { "hanzi": "自咎", "pinyin": "zìjiù", "meaning": "autoculparse", "gloss": "uno mismo + culpa" }
+        ] },
+        { "hanzi": "略", "pinyin": "lüè", "meaning": "breve, simple", "etymology": "La porción de tierra 田 que tiene cada 各 campesino, a veces sólo un sexto de hectárea.", "components": [{ "char": "田", "gloss": "tierra" }, { "char": "各", "gloss": "cada uno" }], "jp": false, "words": [
+          { "hanzi": "略微", "pinyin": "lüèwēi", "meaning": "ligeramente", "gloss": "breve + poco" }
+        ] },
+        { "hanzi": "名", "pinyin": "míng", "meaning": "nombre; fama, famoso", "etymology": "Atardecer 夕 más boca 口: al anochecer, sin luz, una persona sólo se identifica diciendo su nombre.", "components": [{ "char": "夕", "gloss": "atardecer" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "名字", "pinyin": "míngzì", "meaning": "nombre", "gloss": "nombre + carácter" },
+          { "hanzi": "名片", "pinyin": "míngpiàn", "meaning": "tarjeta de visita", "gloss": "nombre + tarjeta" }
+        ] },
+        { "hanzi": "右", "pinyin": "yòu", "meaning": "derecha", "etymology": "La mano con la que se come 口.", "components": [{ "char": "口", "gloss": "boca/comer" }], "jp": true, "words": [
+          { "hanzi": "右边", "pinyin": "yòubian", "meaning": "lado derecho", "gloss": "derecho + lado" }
+        ] },
+        { "hanzi": "言", "pinyin": "yán", "meaning": "decir, palabra", "etymology": "Una pluma 亠 arriba que escribe las líneas 二 que salen de la boca 口.", "components": [{ "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "语言", "pinyin": "yǔyán", "meaning": "lenguaje", "gloss": "lenguaje + decir" },
+          { "hanzi": "前言", "pinyin": "qiányán", "meaning": "prólogo", "gloss": "delante + palabras" }
+        ] },
+        { "hanzi": "商", "pinyin": "shāng", "meaning": "deliberar; comercio", "etymology": "Las palabras 言 que se discuten en el interior 入. El 入 se convirtió en 冂 y los dos trazos centrales 二 se rompieron.", "components": [{ "char": "言", "gloss": "palabras" }], "jp": false, "words": [
+          { "hanzi": "商量", "pinyin": "shāngliáng", "meaning": "deliberar, consultar", "gloss": "deliberar + cantidad" },
+          { "hanzi": "商业", "pinyin": "shāngyè", "meaning": "comercio", "gloss": "comercio + profesión" }
+        ] },
+        { "hanzi": "舌", "pinyin": "shé", "meaning": "lengua", "etymology": "De lengua se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "舌头", "pinyin": "shétóu", "meaning": "lengua", "gloss": "lengua + cabeza" },
+          { "hanzi": "舌战", "pinyin": "shézhàn", "meaning": "batalla verbal", "gloss": "lengua + guerra" }
+        ] },
+        { "hanzi": "舔", "pinyin": "tiǎn", "meaning": "lamer", "etymology": "Agregar 添 la lengua 舌 donde se lame.", "components": [{ "char": "舌", "gloss": "lengua" }], "jp": false, "words": [] },
+        { "hanzi": "舍", "pinyin": "shě", "meaning": "casa; abandonar", "etymology": "Como la lengua 舌 en el interior de cada persona 人.", "components": [{ "char": "舌", "gloss": "lengua" }, { "char": "人", "gloss": "persona" }], "jp": true, "words": [
+          { "hanzi": "舍弃", "pinyin": "shěqì", "meaning": "abandonar", "gloss": "abandonar + abandonar" },
+          { "hanzi": "舍得", "pinyin": "shěde", "meaning": "estar dispuesto a", "gloss": "abandonar + conseguir" }
+        ] },
+        { "hanzi": "余", "pinyin": "yú", "meaning": "excedente, sobrante", "etymology": "No debe confundirse con 舍.", "components": [], "jp": true, "words": [
+          { "hanzi": "余地", "pinyin": "yúdì", "meaning": "margen", "gloss": "exceder + tierra" },
+          { "hanzi": "余数", "pinyin": "yúshù", "meaning": "resto", "gloss": "exceder + número" }
+        ] },
+        { "hanzi": "叙", "pinyin": "xù", "meaning": "narrar, relatar", "etymology": "Sobran 余 las manos 又.", "components": [{ "char": "余", "gloss": "sobrar" }, { "char": "又", "gloss": "manos" }], "jp": false, "words": [
+          { "hanzi": "叙述", "pinyin": "xùshù", "meaning": "narrar, relatar", "gloss": "narrar + narrar" },
+          { "hanzi": "叙事", "pinyin": "xùshì", "meaning": "narrar, contar", "gloss": "narrar + asunto" }
+        ] },
+        { "hanzi": "斜", "pinyin": "xié", "meaning": "inclinado, ladeado", "etymology": "El resultado de excederse 余 en la pelea 斗.", "components": [{ "char": "余", "gloss": "excederse" }, { "char": "斗", "gloss": "pelea" }], "jp": true, "words": [
+          { "hanzi": "斜坡", "pinyin": "xiépō", "meaning": "cuesta, pendiente", "gloss": "inclinada + ladera" },
+          { "hanzi": "斜眼", "pinyin": "xiéyǎn", "meaning": "bizco", "gloss": "inclinado + ojos" }
+        ] },
+        { "hanzi": "凹", "pinyin": "āo", "meaning": "cóncavo", "etymology": "Describe claramente una concavidad.", "components": [], "jp": false, "words": [
+          { "hanzi": "凹面", "pinyin": "āomiàn", "meaning": "concavidad", "gloss": "cóncavo + lado" }
+        ] },
+        { "hanzi": "凸", "pinyin": "tū", "meaning": "convexo", "etymology": "Describe igualmente una convexidad.", "components": [], "jp": false, "words": [
+          { "hanzi": "凸出", "pinyin": "tūchū", "meaning": "convexo, sobresalir", "gloss": "convexo + salir" }
+        ] }
+      ]
     }
   ]
 }
