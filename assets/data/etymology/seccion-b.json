@@ -3164,6 +3164,217 @@
           { "hanzi": "麝香", "pinyin": "shèxiāng", "meaning": "almizcle", "gloss": "almizclero + olor" }
         ] }
       ]
+    },
+    {
+      "id": "B-21",
+      "theme": "De las puertas",
+      "icon": "门",
+      "chars": [
+        { "hanzi": "门", "pinyin": "mén", "meaning": "puerta", "etymology": "Con puerta se forman otros caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "部门", "pinyin": "bùmén", "meaning": "departamento", "gloss": "sección + puerta" }
+        ] },
+        { "hanzi": "闩", "pinyin": "shuān", "meaning": "cerrojo", "etymology": "La barra 一 que cruza la puerta 门.", "components": [{ "char": "门", "gloss": "puerta" }], "jp": true, "words": [
+          { "hanzi": "门闩", "pinyin": "ménshuān", "meaning": "barra de la puerta", "gloss": "puerta + cerrojo" }
+        ] },
+        { "hanzi": "间", "pinyin": "jiān", "meaning": "entre; habitación", "etymology": "El sol 日 que se cuela entre las rendijas de una puerta 门.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "日", "gloss": "sol" }], "jp": true, "words": [
+          { "hanzi": "中间", "pinyin": "zhōngjiān", "meaning": "entre, en medio", "gloss": "medio + entre" },
+          { "hanzi": "房间", "pinyin": "fángjiān", "meaning": "habitación", "gloss": "habitación + habitación" }
+        ] },
+        { "hanzi": "闸", "pinyin": "zhá", "meaning": "compuerta, esclusa", "etymology": "Puerta 门 fuerte como una armadura 甲.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "甲", "gloss": "armadura" }], "jp": true, "words": [
+          { "hanzi": "水闸", "pinyin": "shuǐzhá", "meaning": "esclusa", "gloss": "agua + esclusa" }
+        ] },
+        { "hanzi": "阐", "pinyin": "chǎn", "meaning": "explicar, aclarar", "etymology": "Llegar a la única 单 puerta 门 que aclara un asunto.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "单", "gloss": "única" }], "jp": false, "words": [
+          { "hanzi": "阐明", "pinyin": "chǎnmíng", "meaning": "aclarar", "gloss": "explicar + claro" }
+        ] },
+        { "hanzi": "阅", "pinyin": "yuè", "meaning": "inspeccionar, leer", "etymology": "Controlar los intercambios 兑 desde la puerta 门.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "兑", "gloss": "intercambios" }], "jp": true, "words": [
+          { "hanzi": "阅读", "pinyin": "yuèdú", "meaning": "leer", "gloss": "leer + leer" }
+        ] },
+        { "hanzi": "阎", "pinyin": "yán", "meaning": "puerta del infierno", "etymology": "Puerta 门 de un foso 臽.", "components": [{ "char": "门", "gloss": "puerta" }], "jp": true, "words": [
+          { "hanzi": "阎王", "pinyin": "yánwang", "meaning": "Rey del Infierno (Yama)", "gloss": "infierno + rey" }
+        ] },
+        { "hanzi": "阔", "pinyin": "kuò", "meaning": "extenso", "etymology": "Puerta 门 tras la que se realizan las actividades 活, implica un lugar extenso.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "活", "gloss": "actividades" }], "jp": true, "words": [
+          { "hanzi": "广阔", "pinyin": "guǎngkuò", "meaning": "extenso", "gloss": "ancho + extenso" }
+        ] },
+        { "hanzi": "闷", "pinyin": "mèn", "meaning": "nervioso, intranquilo; sofocante", "etymology": "Con el corazón 心 pendiente de la puerta 门.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "心", "gloss": "corazón" }], "jp": true, "words": [
+          { "hanzi": "沉闷", "pinyin": "chénmèn", "meaning": "deprimido", "gloss": "hundido + nervioso" }
+        ] },
+        { "hanzi": "闾", "pinyin": "lǘ", "meaning": "puerta de un callejón", "etymology": "Puerta 门 tras la que se encuentran dos casas 吕.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "吕", "gloss": "dos casas" }], "jp": true, "words": [
+          { "hanzi": "里闾", "pinyin": "lǐlǘ", "meaning": "puerta de una aldea", "gloss": "aldea + puerta" }
+        ] },
+        { "hanzi": "阁", "pinyin": "gé", "meaning": "gabinete, pabellón", "etymology": "Puerta 门 tras la que cada uno hace lo suyo 各.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "各", "gloss": "cada uno" }], "jp": true, "words": [
+          { "hanzi": "内阁", "pinyin": "nèigé", "meaning": "gabinete del gobierno", "gloss": "interior + gabinete" }
+        ] },
+        { "hanzi": "户", "pinyin": "hù", "meaning": "puerta, familia", "etymology": "De puerta, familia, tenemos derivados.", "components": [], "jp": true, "words": [
+          { "hanzi": "大户", "pinyin": "dàhù", "meaning": "familia poderosa", "gloss": "gran + puerta" }
+        ] },
+        { "hanzi": "启", "pinyin": "qǐ", "meaning": "abrir; inspirar, ilustrar", "etymology": "La boca 口 decide que se abra la puerta 户.", "components": [{ "char": "户", "gloss": "puerta" }, { "char": "口", "gloss": "boca" }], "jp": false, "words": [
+          { "hanzi": "启发", "pinyin": "qǐfā", "meaning": "ilustrar, inspirar", "gloss": "inspirar + mostrar" },
+          { "hanzi": "开启", "pinyin": "kāiqǐ", "meaning": "abrir", "gloss": "abrir + abrir" }
+        ] },
+        { "hanzi": "雇", "pinyin": "gù", "meaning": "contratar, emplear", "etymology": "A alguien tan preparado como un pájaro 隹 en la puerta 户.", "components": [{ "char": "户", "gloss": "puerta" }, { "char": "隹", "gloss": "pájaro" }], "jp": true, "words": [
+          { "hanzi": "雇佣", "pinyin": "gùyōng", "meaning": "emplear", "gloss": "contratar + contratar" },
+          { "hanzi": "雇工", "pinyin": "gùgōng", "meaning": "asalariado", "gloss": "contratar + trabajo" }
+        ] },
+        { "hanzi": "尸", "pinyin": "shī", "meaning": "cadáver; parte inferior del cuerpo", "etymology": "Con su sentido de cadáver o de parte inferior del cuerpo es muy utilizado. Sustituye a 户 en algunos caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "尸体", "pinyin": "shītǐ", "meaning": "cadáver", "gloss": "cadáver + cuerpo" },
+          { "hanzi": "死尸", "pinyin": "sǐshī", "meaning": "cadáver", "gloss": "muerto + cadáver" }
+        ] },
+        { "hanzi": "屠", "pinyin": "tú", "meaning": "sacrificar, masacrar", "etymology": "El que causa 者 la muerte 尸. Originalmente, sacrificar reses para el consumo.", "components": [{ "char": "尸", "gloss": "muerte" }, { "char": "者", "gloss": "el que causa" }], "jp": true, "words": [
+          { "hanzi": "屠杀", "pinyin": "túshā", "meaning": "masacrar", "gloss": "masacrar + matar" },
+          { "hanzi": "屠场", "pinyin": "túcháng", "meaning": "matadero", "gloss": "masacrar + lugar" }
+        ] },
+        { "hanzi": "尿", "pinyin": "niào", "meaning": "orina", "etymology": "Agua 水 de la parte inferior del cuerpo 尸.", "components": [{ "char": "尸", "gloss": "parte inferior del cuerpo" }, { "char": "水", "gloss": "agua" }], "jp": true, "words": [
+          { "hanzi": "撒尿", "pinyin": "sāniào", "meaning": "orinar", "gloss": "esparcir + orina" }
+        ] },
+        { "hanzi": "屎", "pinyin": "shǐ", "meaning": "excremento, heces; secreción", "etymology": "Grano 米 al llegar a la parte inferior del cuerpo 尸.", "components": [{ "char": "尸", "gloss": "parte inferior del cuerpo" }, { "char": "米", "gloss": "grano" }], "jp": true, "words": [
+          { "hanzi": "耳屎", "pinyin": "ěrshǐ", "meaning": "cerumen", "gloss": "oreja + secreción" },
+          { "hanzi": "牛屎", "pinyin": "niúshǐ", "meaning": "boñiga", "gloss": "vaca + heces" }
+        ] },
+        { "hanzi": "屁", "pinyin": "pì", "meaning": "ventosidad", "etymology": "La razón 比 de la parte inferior 尸 del cuerpo.", "components": [{ "char": "尸", "gloss": "parte inferior" }, { "char": "比", "gloss": "razón" }], "jp": true, "words": [
+          { "hanzi": "屁股", "pinyin": "pìgu", "meaning": "nalgas, culo", "gloss": "pedo + muslo" },
+          { "hanzi": "狗屁", "pinyin": "gǒupì", "meaning": "tontería", "gloss": "perro + pedo" }
+        ] },
+        { "hanzi": "尾", "pinyin": "wěi", "meaning": "cola, fin", "etymology": "Pelos 毛 en la parte inferior del cuerpo 尸.", "components": [{ "char": "尸", "gloss": "parte inferior" }, { "char": "毛", "gloss": "pelos" }], "jp": true, "words": [
+          { "hanzi": "尾随", "pinyin": "wěisuí", "meaning": "seguir de cerca", "gloss": "cola + seguir" },
+          { "hanzi": "首尾", "pinyin": "shǒuwěi", "meaning": "del principio al fin", "gloss": "cabeza + cola" }
+        ] },
+        { "hanzi": "犀", "pinyin": "xī", "meaning": "rinoceronte", "etymology": "Toro 牛 que orina 尿.", "components": [{ "char": "尾", "gloss": "parte inferior" }, { "char": "牛", "gloss": "toro" }], "jp": true, "words": [
+          { "hanzi": "犀牛", "pinyin": "xīniú", "meaning": "rinoceronte", "gloss": "rinoceronte + toro" }
+        ] },
+        { "hanzi": "展", "pinyin": "zhǎn", "meaning": "extender; desarrollar", "etymology": "Su significado viene de la ropa 衣 que, colgando de la cintura, se extiende por la parte inferior del cuerpo 尸.", "components": [{ "char": "尸", "gloss": "parte inferior del cuerpo" }], "jp": true, "words": [
+          { "hanzi": "发展", "pinyin": "fāzhǎn", "meaning": "desarrollar, desenvolver", "gloss": "mostrar + extender" },
+          { "hanzi": "展览", "pinyin": "zhǎnlǎn", "meaning": "exhibir, mostrar", "gloss": "extender + mirar" }
+        ] },
+        { "hanzi": "层", "pinyin": "céng", "meaning": "piso; nivel, estrato", "etymology": "Puerta 尸 con nubes, vapores 云.", "components": [{ "char": "尸", "gloss": "puerta" }, { "char": "云", "gloss": "vapores" }], "jp": false, "words": [
+          { "hanzi": "阶层", "pinyin": "jiēcéng", "meaning": "estratos sociales", "gloss": "rango + nivel" },
+          { "hanzi": "土层", "pinyin": "tǔcéng", "meaning": "niveles del suelo", "gloss": "suelo + niveles" }
+        ] },
+        { "hanzi": "屉", "pinyin": "tì", "meaning": "cajón", "etymology": "Usado en casa 尸 durante generaciones 世.", "components": [{ "char": "尸", "gloss": "casa" }, { "char": "世", "gloss": "generaciones" }], "jp": false, "words": [
+          { "hanzi": "抽屉", "pinyin": "chōuti", "meaning": "cajón", "gloss": "tirar + cajón" }
+        ] },
+        { "hanzi": "辰", "pinyin": "chén", "meaning": "tiempo, fecha (5.ª rama)", "etymology": "Tiene origen común con 后: una mujer que oculta algo entre sus ropas 衣. Por ser un fenómeno periódico, tiene sentido de tiempo, día.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "辱", "pinyin": "rǔ", "meaning": "deshonrar, humillar", "etymology": "Una mano 寸 que muestra algo vergonzoso, lo que la mujer oculta entre sus ropas 辰.", "components": [{ "char": "辰", "gloss": "lo que se oculta" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "辱骂", "pinyin": "rǔmà", "meaning": "insultar, injuriar", "gloss": "humillar + insultar" },
+          { "hanzi": "耻辱", "pinyin": "chǐrǔ", "meaning": "humillación, desgracia", "gloss": "avergonzar + humillar" }
+        ] },
+        { "hanzi": "尺", "pinyin": "chǐ", "meaning": "regla; unidad de medida (chi)", "etymology": "Pictograma de una regla con una cuerda.", "components": [], "jp": true, "words": [
+          { "hanzi": "尺度", "pinyin": "chǐdù", "meaning": "norma, criterio", "gloss": "regla + grado" },
+          { "hanzi": "尺寸", "pinyin": "chǐcun", "meaning": "medidas, tamaño", "gloss": "una medida + otra medida" }
+        ] },
+        { "hanzi": "尽", "pinyin": "jìn", "meaning": "agotado; todo; al máximo", "etymology": "Tras medir 尺 para dos 二 litigantes.", "components": [{ "char": "尺", "gloss": "medir" }], "jp": true, "words": [
+          { "hanzi": "尽力", "pinyin": "jìnlì", "meaning": "hacer todo lo posible", "gloss": "agotar + fuerza" },
+          { "hanzi": "尽头", "pinyin": "jìntóu", "meaning": "fin, término, extremo", "gloss": "agotar + cabeza" }
+        ] },
+        { "hanzi": "局", "pinyin": "jú", "meaning": "oficina; situación", "etymology": "Regla 尺 y frase 句: el lugar donde se miden los campos y se discuten los negocios.", "components": [{ "char": "尺", "gloss": "regla" }], "jp": true, "words": [
+          { "hanzi": "局部", "pinyin": "júbù", "meaning": "parte", "gloss": "sección + parte" },
+          { "hanzi": "局势", "pinyin": "júshì", "meaning": "situación", "gloss": "situación + tendencia" }
+        ] },
+        { "hanzi": "居", "pinyin": "jū", "meaning": "residir, ocupar", "etymology": "La casa 尸 en la que uno se hace viejo 古.", "components": [{ "char": "尸", "gloss": "casa" }, { "char": "古", "gloss": "hacerse viejo" }], "jp": true, "words": [
+          { "hanzi": "居民", "pinyin": "jūmín", "meaning": "habitante, residente", "gloss": "habitar + pueblo" },
+          { "hanzi": "邻居", "pinyin": "línjū", "meaning": "vecino", "gloss": "vecino + residir" }
+        ] },
+        { "hanzi": "屋", "pinyin": "wū", "meaning": "casa, habitación", "etymology": "La puerta 尸 a la que se llega 至.", "components": [{ "char": "尸", "gloss": "puerta" }, { "char": "至", "gloss": "llegar" }], "jp": false, "words": [
+          { "hanzi": "屋顶", "pinyin": "wūdǐng", "meaning": "tejado", "gloss": "casa + techo" },
+          { "hanzi": "房屋", "pinyin": "fángwū", "meaning": "casa, edificio", "gloss": "casa + casa" }
+        ] },
+        { "hanzi": "尉", "pinyin": "wèi", "meaning": "oficial subalterno", "etymology": "El que protege con su mano 寸 la puerta 尸 de un altar 示 a cubierto.", "components": [{ "char": "尸", "gloss": "puerta" }, { "char": "示", "gloss": "altar" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "尉官", "pinyin": "wèiguān", "meaning": "oficial subalterno", "gloss": "oficial + palacio" },
+          { "hanzi": "上尉", "pinyin": "shàngwèi", "meaning": "capitán, teniente", "gloss": "arriba + oficial" }
+        ] },
+        { "hanzi": "开", "pinyin": "kāi", "meaning": "abrir, levantar, empezar", "etymology": "Antes circunscrito en una puerta de dos hojas 開: dos manos 廾 levantando el cerrojo 一.", "components": [{ "char": "廾", "gloss": "dos manos" }], "jp": false, "words": [
+          { "hanzi": "开车", "pinyin": "kāichē", "meaning": "conducir un coche", "gloss": "conducir + coche" },
+          { "hanzi": "开心", "pinyin": "kāixīn", "meaning": "contento, alegre", "gloss": "abierto + corazón" }
+        ] },
+        { "hanzi": "形", "pinyin": "xíng", "meaning": "forma, apariencia", "etymology": "Abrirse 开 a la luz 彡 da la idea.", "components": [{ "char": "开", "gloss": "abrirse" }, { "char": "彡", "gloss": "luz" }], "jp": true, "words": [
+          { "hanzi": "形式", "pinyin": "xíngshì", "meaning": "forma, estructura", "gloss": "forma + tipo" },
+          { "hanzi": "球形", "pinyin": "qiúxíng", "meaning": "esférico", "gloss": "bola + forma" }
+        ] },
+        { "hanzi": "并", "pinyin": "bìng", "meaning": "juntar, unir; junto a", "etymology": "Dos manos 廾 empujan un cerrojo 一 y otras dos otro, quedan juntos. En realidad viene de dos hombres de pie 立 fundidos.", "components": [], "jp": true, "words": [
+          { "hanzi": "并且", "pinyin": "bìngqiě", "meaning": "y, además", "gloss": "unir + y" },
+          { "hanzi": "并存", "pinyin": "bìngcún", "meaning": "coexistir", "gloss": "unir + vivir" }
+        ] },
+        { "hanzi": "屏", "pinyin": "píng", "meaning": "biombo; pantalla", "etymology": "Es una puerta 尸 que une 并.", "components": [{ "char": "尸", "gloss": "puerta" }, { "char": "并", "gloss": "unir" }], "jp": true, "words": [
+          { "hanzi": "屏障", "pinyin": "píngzhàng", "meaning": "pantalla protectora", "gloss": "biombo + obstruir" },
+          { "hanzi": "屏幕", "pinyin": "píngmù", "meaning": "pantalla", "gloss": "biombo + telón" }
+        ] },
+        { "hanzi": "晋", "pinyin": "jìn", "meaning": "ascender, promover", "etymology": "El discurso 曰 del segundo 亚 intentando ascender.", "components": [{ "char": "曰", "gloss": "discurso" }], "jp": true, "words": [
+          { "hanzi": "晋升", "pinyin": "jìnshēng", "meaning": "ascender, promover", "gloss": "ascender + medir" }
+        ] },
+        { "hanzi": "普", "pinyin": "pǔ", "meaning": "común, ordinario, general", "etymology": "Sucesión o unión 并 de los días 日.", "components": [{ "char": "并", "gloss": "unión" }, { "char": "日", "gloss": "días" }], "jp": true, "words": [
+          { "hanzi": "普通", "pinyin": "pǔtōng", "meaning": "corriente, común", "gloss": "común + corriente" },
+          { "hanzi": "普及", "pinyin": "pǔjí", "meaning": "popularizar, difundir", "gloss": "general + ser" }
+        ] },
+        { "hanzi": "几", "pinyin": "jǐ", "meaning": "¿cuántos?, varios; mesita", "etymology": "Simplificado. Es el perfil de una mesita, como en el colegio; cada mesa es una persona. Pregunta por las mesas.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "凡", "pinyin": "fán", "meaning": "ordinario, común", "etymology": "De origen oscuro, parece la sombra de un alumno sobre su mesa 几.", "components": [{ "char": "几", "gloss": "mesa" }], "jp": false, "words": [] },
+        { "hanzi": "亢", "pinyin": "kàng", "meaning": "alto; excesivo", "etymology": "Imagen de una persona firmemente asentada sobre sus piernas; resistir las adversidades. También parece algo que se coloca sobre la mesa 几.", "components": [{ "char": "几", "gloss": "mesa" }], "jp": true, "words": [
+          { "hanzi": "高亢", "pinyin": "gāokàng", "meaning": "alto y sonoro", "gloss": "alto + alto" }
+        ] },
+        { "hanzi": "朵", "pinyin": "duǒ", "meaning": "flor; clasificador para flores", "etymology": "Es la parte del árbol 木 que se pone sobre la mesa 几.", "components": [{ "char": "木", "gloss": "árbol" }, { "char": "几", "gloss": "mesa" }], "jp": false, "words": [
+          { "hanzi": "花朵", "pinyin": "huāduǒ", "meaning": "flor", "gloss": "flor + flor" },
+          { "hanzi": "耳朵", "pinyin": "ěrduo", "meaning": "oreja", "gloss": "oreja + flor" }
+        ] },
+        { "hanzi": "机", "pinyin": "jī", "meaning": "máquina; ingenio; oportunidad", "etymology": "Lo que se construye con maderas 木 sobre una mesa 几.", "components": [{ "char": "木", "gloss": "madera" }, { "char": "几", "gloss": "mesa" }], "jp": false, "words": [
+          { "hanzi": "机器", "pinyin": "jīqì", "meaning": "máquina, aparato", "gloss": "máquina + utensilio" },
+          { "hanzi": "机场", "pinyin": "jīchǎng", "meaning": "aeropuerto", "gloss": "máquina + plaza" }
+        ] },
+        { "hanzi": "风", "pinyin": "fēng", "meaning": "viento; costumbre", "etymology": "Como dos grandes aves 乙 cruzándose.", "components": [], "jp": false, "words": [
+          { "hanzi": "风味", "pinyin": "fēngwèi", "meaning": "gusto especial", "gloss": "viento + gusto" },
+          { "hanzi": "风气", "pinyin": "fēngqì", "meaning": "costumbre, práctica general", "gloss": "viento + aire" }
+        ] },
+        { "hanzi": "凤", "pinyin": "fèng", "meaning": "fénix", "etymology": "Simplificado; antes se veía un pájaro volando en medio del viento.", "components": [], "jp": false, "words": [
+          { "hanzi": "凤凰", "pinyin": "fènghuáng", "meaning": "fénix", "gloss": "fénix + fénix" }
+        ] },
+        { "hanzi": "凰", "pinyin": "huáng", "meaning": "fénix (hembra)", "etymology": "Ave imperial (se relaciona con la emperatriz) volando al viento 风 simplificado.", "components": [], "jp": false, "words": [] },
+        { "hanzi": "囱", "pinyin": "cōng", "meaning": "chimenea, ventana", "etymology": "Es una ventana 口 por la que se ve salir un hilo de humo hacia arriba.", "components": [{ "char": "口", "gloss": "ventana" }], "jp": false, "words": [
+          { "hanzi": "烟囱", "pinyin": "yāncōng", "meaning": "chimenea", "gloss": "humo + chimenea" }
+        ] },
+        { "hanzi": "窗", "pinyin": "chuāng", "meaning": "ventana", "etymology": "Tras quedarse 囱 para chimenea, 穴 (cueva) refuerza el sentido de ventana.", "components": [{ "char": "穴", "gloss": "cueva" }, { "char": "囱", "gloss": "ventana" }], "jp": true, "words": [
+          { "hanzi": "窗户", "pinyin": "chuānghù", "meaning": "ventana", "gloss": "ventana + puerta" },
+          { "hanzi": "窗帘", "pinyin": "chuānglián", "meaning": "cortina", "gloss": "ventana + cortina" }
+        ] },
+        { "hanzi": "高", "pinyin": "gāo", "meaning": "alto", "etymology": "Una torre sobre una sala. Se distingue el techo 亠, el piso primero 口 y el bajo 冂 con una ventana 口.", "components": [{ "char": "口", "gloss": "pisos/ventana" }], "jp": true, "words": [
+          { "hanzi": "高兴", "pinyin": "gāoxìng", "meaning": "contento, alegre", "gloss": "alto + interés" },
+          { "hanzi": "提高", "pinyin": "tígāo", "meaning": "elevar", "gloss": "elevar + alto" }
+        ] },
+        { "hanzi": "享", "pinyin": "xiǎng", "meaning": "disfrutar", "etymology": "Un niño 子 bajo techo 亠 que ríe con la boca abierta 口.", "components": [{ "char": "口", "gloss": "boca abierta" }], "jp": true, "words": [
+          { "hanzi": "享乐", "pinyin": "xiǎnglè", "meaning": "disfrutar", "gloss": "disfrutar + alegre" },
+          { "hanzi": "享受", "pinyin": "xiǎngshòu", "meaning": "disfrutar, gozar", "gloss": "disfrutar + recibir" }
+        ] },
+        { "hanzi": "亨", "pinyin": "hēng", "meaning": "suavemente, sin trabas", "etymology": "Con el mismo origen que 享. El niño desnudo 了.", "components": [], "jp": true, "words": [
+          { "hanzi": "亨通", "pinyin": "hēngtōng", "meaning": "marchar viento en popa", "gloss": "suavemente + marchar" }
+        ] },
+        { "hanzi": "亭", "pinyin": "tíng", "meaning": "pabellón, quiosco", "etymology": "Una persona 丁 a cubierto 冖 con un techo alto 高.", "components": [{ "char": "高", "gloss": "techo alto" }], "jp": true, "words": [
+          { "hanzi": "岗亭", "pinyin": "gǎngtíng", "meaning": "garita", "gloss": "guardia + pabellón" },
+          { "hanzi": "亭亭", "pinyin": "tíngtíng", "meaning": "erecto, esbelto", "gloss": "pabellón + pabellón" }
+        ] },
+        { "hanzi": "京", "pinyin": "jīng", "meaning": "capital", "etymology": "Elevadas 高 construcciones de madera 木: en la capital se ven los edificios más altos.", "components": [{ "char": "高", "gloss": "elevadas" }], "jp": true, "words": [
+          { "hanzi": "北京", "pinyin": "běijīng", "meaning": "Pekín, capital de China", "gloss": "norte + capital" },
+          { "hanzi": "京剧", "pinyin": "jīngjù", "meaning": "ópera de Pekín", "gloss": "Pekín + ópera" }
+        ] },
+        { "hanzi": "景", "pinyin": "jǐng", "meaning": "panorama, paisaje", "etymology": "La capital 京 a la luz del sol 日.", "components": [{ "char": "京", "gloss": "capital" }, { "char": "日", "gloss": "sol" }], "jp": true, "words": [
+          { "hanzi": "景象", "pinyin": "jǐngxiàng", "meaning": "aspecto, cuadro", "gloss": "panorama + parecer" },
+          { "hanzi": "景色", "pinyin": "jǐngsè", "meaning": "paisaje", "gloss": "panorama + color" }
+        ] },
+        { "hanzi": "影", "pinyin": "yǐng", "meaning": "reflejo, sombra, impresión", "etymology": "El paisaje 景 como un reclamo 彡 para la vista.", "components": [{ "char": "景", "gloss": "paisaje" }, { "char": "彡", "gloss": "reclamo" }], "jp": true, "words": [
+          { "hanzi": "电影", "pinyin": "diànyǐng", "meaning": "cine", "gloss": "electricidad + fotografía" },
+          { "hanzi": "影子", "pinyin": "yǐngzi", "meaning": "sombra, reflejo", "gloss": "sombra + sufijo" }
+        ] },
+        { "hanzi": "就", "pinyin": "jiù", "meaning": "acercarse; entonces; precisamente", "etymology": "Es admirarse 尤 ante la vista de la capital 京. Enfatiza lo que viene seguidamente.", "components": [{ "char": "京", "gloss": "capital" }, { "char": "尤", "gloss": "admirarse" }], "jp": true, "words": [
+          { "hanzi": "就是", "pinyin": "jiùshì", "meaning": "aunque, si bien", "gloss": "según + ser" },
+          { "hanzi": "就地", "pinyin": "jiùdì", "meaning": "en el lugar", "gloss": "según + lugar" }
+        ] },
+        { "hanzi": "亮", "pinyin": "liàng", "meaning": "mostrar; brillante, luminoso", "etymology": "Mostrar es colocar algo alto 高 sobre una mesa 几.", "components": [{ "char": "高", "gloss": "algo alto" }, { "char": "几", "gloss": "mesa" }], "jp": true, "words": [
+          { "hanzi": "月亮", "pinyin": "yuèliàng", "meaning": "luna", "gloss": "luna + brillante" },
+          { "hanzi": "亮度", "pinyin": "liàngdù", "meaning": "brillo", "gloss": "brillante + medida" }
+        ] },
+        { "hanzi": "毫", "pinyin": "háo", "meaning": "pelo fino; minúsculo, milésima", "etymology": "Pelo 毛 de alta calidad 高.", "components": [{ "char": "高", "gloss": "alta calidad" }, { "char": "毛", "gloss": "pelo" }], "jp": true, "words": [
+          { "hanzi": "毫米", "pinyin": "háomǐ", "meaning": "milímetro", "gloss": "minúsculo + metro" },
+          { "hanzi": "毫毛", "pinyin": "háomáo", "meaning": "vello fino del cuerpo", "gloss": "pelo fino + pelo" }
+        ] },
+        { "hanzi": "乔", "pinyin": "qiáo", "meaning": "alto", "etymology": "Un hombre mirando al cielo 天 subido en un edificio alto 高, que se ha contraído.", "components": [], "jp": false, "words": [
+          { "hanzi": "乔木", "pinyin": "qiáomù", "meaning": "árbol alto", "gloss": "alto + árbol" }
+        ] }
+      ]
     }
   ]
 }
