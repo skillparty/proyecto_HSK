@@ -1588,6 +1588,204 @@
           { "hanzi": "甚至", "pinyin": "shènzhì", "meaning": "incluso, al extremo de", "gloss": "muy + llegar" }
         ] }
       ]
+    },
+    {
+      "id": "B-11",
+      "theme": "De las manos",
+      "icon": "手",
+      "chars": [
+        { "hanzi": "手", "pinyin": "shǒu", "meaning": "mano", "etymology": "Con mano se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "手巧", "pinyin": "shǒuqiǎo", "meaning": "hábil", "gloss": "mano + hábil" },
+          { "hanzi": "手表", "pinyin": "shǒubiǎo", "meaning": "reloj de pulsera", "gloss": "mano + reloj" }
+        ] },
+        { "hanzi": "拿", "pinyin": "ná", "meaning": "tomar, coger, capturar", "etymology": "Unir 合 la mano 手.", "components": [{ "char": "合", "gloss": "unir" }, { "char": "手", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "捉拿", "pinyin": "zhuōná", "meaning": "arrestar, coger", "gloss": "coger + capturar" },
+          { "hanzi": "擒拿", "pinyin": "qínná", "meaning": "arrestar, coger", "gloss": "apresar + capturar" }
+        ] },
+        { "hanzi": "掌", "pinyin": "zhǎng", "meaning": "palma de la mano; administrar", "etymology": "La mano 手 de la persona valiosa 尚.", "components": [{ "char": "尚", "gloss": "persona valiosa" }, { "char": "手", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "掌柜", "pinyin": "zhǎngguì", "meaning": "tendero", "gloss": "administrar + armarios" },
+          { "hanzi": "掌管", "pinyin": "zhǎngguǎn", "meaning": "administrar", "gloss": "administrar + administrar" }
+        ] },
+        { "hanzi": "友", "pinyin": "yǒu", "meaning": "amigo", "etymology": "De amigo se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "友好", "pinyin": "yǒuhǎo", "meaning": "amistad, amistoso", "gloss": "amistad + bueno" },
+          { "hanzi": "友谊", "pinyin": "yǒuyí", "meaning": "amistad", "gloss": "amistad + amistad" }
+        ] },
+        { "hanzi": "受", "pinyin": "shòu", "meaning": "recibir, sufrir, aguantar", "etymology": "De recibir, sufrir, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "受害", "pinyin": "shòuhài", "meaning": "sufrir perjuicio", "gloss": "sufrir + daño" },
+          { "hanzi": "受益", "pinyin": "shòuyì", "meaning": "beneficiarse", "gloss": "recibir + beneficio" }
+        ] },
+        { "hanzi": "爱", "pinyin": "ài", "meaning": "amar, gustar", "etymology": "La mano 爪 toma al amigo 友 y le lleva bajo un techo 冖.", "components": [{ "char": "爪", "gloss": "mano" }, { "char": "冖", "gloss": "techo" }, { "char": "友", "gloss": "amigo" }], "jp": true, "words": [
+          { "hanzi": "爱护", "pinyin": "àihù", "meaning": "cuidar, proteger", "gloss": "amar + proteger" },
+          { "hanzi": "爱情", "pinyin": "àiqíng", "meaning": "amor", "gloss": "amar + sentimiento" }
+        ] },
+        { "hanzi": "爰", "pinyin": "yuán", "meaning": "equilibrio; pausa", "etymology": "Acción de dos manos 爪 y 友 tirando en dos direcciones que se equilibran 一.", "components": [{ "char": "爪", "gloss": "mano" }], "jp": true, "words": [] },
+        { "hanzi": "反", "pinyin": "fǎn", "meaning": "contrario, opuesto, volver", "etymology": "Una mano 又 que se opone 厂.", "components": [{ "char": "厂", "gloss": "oponerse" }, { "char": "又", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "反复", "pinyin": "fǎnfù", "meaning": "repetir", "gloss": "volver + repetir" },
+          { "hanzi": "反感", "pinyin": "fǎngǎn", "meaning": "antipatía", "gloss": "opuesto + sentimiento" }
+        ] },
+        { "hanzi": "版", "pinyin": "bǎn", "meaning": "plancha de imprenta; edición", "etymology": "Una plancha de madera 片 en la que se graban los caracteres en sentido inverso 反 para imprimirlos sobre seda o papel.", "components": [{ "char": "片", "gloss": "plancha de madera" }, { "char": "反", "gloss": "inverso" }], "jp": false, "words": [
+          { "hanzi": "出版", "pinyin": "chūbǎn", "meaning": "publicar", "gloss": "salir + edición" }
+        ] },
+        { "hanzi": "发", "pinyin": "fā", "meaning": "enviar, expresar; lanzar", "etymology": "Mano 又 que lanza una flecha 弋 invertida.", "components": [{ "char": "又", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "发表", "pinyin": "fābiǎo", "meaning": "publicar", "gloss": "expresar + expresar" },
+          { "hanzi": "发现", "pinyin": "fāxiàn", "meaning": "descubrir", "gloss": "mostrar + ahora" }
+        ] },
+        { "hanzi": "废", "pinyin": "fèi", "meaning": "descartar", "etymology": "Soltar 发 algo en el ancho campo 广.", "components": [{ "char": "广", "gloss": "ancho campo" }, { "char": "发", "gloss": "soltar" }], "jp": false, "words": [
+          { "hanzi": "废除", "pinyin": "fèichú", "meaning": "abolir", "gloss": "descartar + sobrar" },
+          { "hanzi": "废料", "pinyin": "fèiliào", "meaning": "residuos", "gloss": "descartar + material" }
+        ] },
+        { "hanzi": "权", "pinyin": "quán", "meaning": "poder, autoridad; derecho", "etymology": "Es una mano 又 que agarra un palo 木.", "components": [{ "char": "木", "gloss": "palo" }, { "char": "又", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "权力", "pinyin": "quánlì", "meaning": "poder", "gloss": "poder + fuerza" },
+          { "hanzi": "人权", "pinyin": "rénquán", "meaning": "derechos humanos", "gloss": "hombre + derecho" }
+        ] },
+        { "hanzi": "欢", "pinyin": "huān", "meaning": "alegre", "etymology": "La mano 又 de un hombre que con la boca abierta 欠 recibe a otro.", "components": [{ "char": "又", "gloss": "mano" }, { "char": "欠", "gloss": "boca abierta" }], "jp": false, "words": [
+          { "hanzi": "欢迎", "pinyin": "huānyíng", "meaning": "bienvenida", "gloss": "alegre + bienvenida" },
+          { "hanzi": "欢乐", "pinyin": "huānlè", "meaning": "alegre", "gloss": "alegre + alegre" }
+        ] },
+        { "hanzi": "支", "pinyin": "zhī", "meaning": "rama, sucursal; pagar; sostener", "etymology": "Es una mano 又 con una rama 十.", "components": [{ "char": "十", "gloss": "rama" }, { "char": "又", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "支付", "pinyin": "zhīfù", "meaning": "pagar", "gloss": "pagar + pagar" },
+          { "hanzi": "支柱", "pinyin": "zhīzhù", "meaning": "puntal, pilar", "gloss": "rama + columna" }
+        ] },
+        { "hanzi": "艰", "pinyin": "jiān", "meaning": "difícil", "etymology": "Asunto al que se aplica tenazmente 艮 la mano 又.", "components": [{ "char": "艮", "gloss": "tenazmente" }, { "char": "又", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "艰难", "pinyin": "jiānnán", "meaning": "difícil", "gloss": "difícil + difícil" },
+          { "hanzi": "艰苦", "pinyin": "jiānkǔ", "meaning": "duro, arduo", "gloss": "difícil + amargo" }
+        ] },
+        { "hanzi": "叟", "pinyin": "sǒu", "meaning": "anciano", "etymology": "El que investiga con la mano 又 en el mortero 臼.", "components": [{ "char": "臼", "gloss": "mortero" }, { "char": "又", "gloss": "mano" }], "jp": true, "words": [] },
+        { "hanzi": "文", "pinyin": "wén", "meaning": "lenguaje, escritura", "etymology": "De la mano 又 sale una pluma.", "components": [], "jp": true, "words": [
+          { "hanzi": "文化", "pinyin": "wénhuà", "meaning": "cultura", "gloss": "lenguaje + cambios" },
+          { "hanzi": "文明", "pinyin": "wénmíng", "meaning": "civilización", "gloss": "lenguaje + brillante" }
+        ] },
+        { "hanzi": "齐", "pinyin": "qí", "meaning": "ordenado, uniforme, completo", "etymology": "Es la escritura 文 fluida, como la corriente 川 de un río.", "components": [{ "char": "文", "gloss": "escritura" }], "jp": false, "words": [
+          { "hanzi": "齐全", "pinyin": "qíquán", "meaning": "completo", "gloss": "completo + completo" },
+          { "hanzi": "齐心", "pinyin": "qíxīn", "meaning": "al unísono", "gloss": "unánime + corazón" }
+        ] },
+        { "hanzi": "吝", "pinyin": "lìn", "meaning": "miserable, avaro", "etymology": "Engulle 口 todo cuanto puede abarcar con su mano 又.", "components": [{ "char": "口", "gloss": "engullir" }], "jp": true, "words": [
+          { "hanzi": "吝啬", "pinyin": "lìnsè", "meaning": "avaro, tacaño", "gloss": "avaro + avaro" }
+        ] },
+        { "hanzi": "叉", "pinyin": "chā", "meaning": "tenedor, pinchar; cruzar", "etymology": "En la palma de la mano 又 se ve un punto, la proyección del tenedor.", "components": [{ "char": "又", "gloss": "mano" }], "jp": true, "words": [] },
+        { "hanzi": "蚤", "pinyin": "zǎo", "meaning": "pulga", "etymology": "Insecto 虫 que pincha como un tenedor.", "components": [{ "char": "虫", "gloss": "insecto" }], "jp": false, "words": [
+          { "hanzi": "跳蚤", "pinyin": "tiàozǎo", "meaning": "pulga", "gloss": "salta + pulga" }
+        ] },
+        { "hanzi": "皮", "pinyin": "pí", "meaning": "piel, corteza", "etymology": "Una mano 又 desuella una piel 厂 con un cuchillo 丨.", "components": [{ "char": "厂", "gloss": "piel" }, { "char": "又", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "皮肤", "pinyin": "pífū", "meaning": "piel", "gloss": "piel + piel" },
+          { "hanzi": "皮带", "pinyin": "pídài", "meaning": "cinturón", "gloss": "piel + cinturón" }
+        ] },
+        { "hanzi": "曼", "pinyin": "màn", "meaning": "prolongar, alargar", "etymology": "Una mano 又 extiende una red 网 al sol 日.", "components": [{ "char": "网", "gloss": "red" }, { "char": "日", "gloss": "sol" }, { "char": "又", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "曼延", "pinyin": "mànyán", "meaning": "extenderse", "gloss": "prolongar + extender" }
+        ] },
+        { "hanzi": "变", "pinyin": "biàn", "meaning": "cambio, cambiar", "etymology": "Resultado de la acción de la mano 又 de una persona.", "components": [{ "char": "又", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "变化", "pinyin": "biànhuà", "meaning": "cambio, cambiar", "gloss": "cambiar + cambiar" },
+          { "hanzi": "改变", "pinyin": "gǎibiàn", "meaning": "cambiar, transformar", "gloss": "cambiar + cambiar" }
+        ] },
+        { "hanzi": "父", "pinyin": "fù", "meaning": "padre", "etymology": "Deriva de una mano 又 con un palo 一 roto. Símbolo de la autoridad del padre.", "components": [{ "char": "又", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "父母", "pinyin": "fùmǔ", "meaning": "padres", "gloss": "padre + madre" },
+          { "hanzi": "父亲", "pinyin": "fùqīn", "meaning": "padre", "gloss": "padre + familia" }
+        ] },
+        { "hanzi": "爸", "pinyin": "bà", "meaning": "padre, papá", "etymology": "Por el sonido 巴 y el sentido de padre 父.", "components": [{ "char": "父", "gloss": "padre" }, { "char": "巴", "gloss": "sonido bā" }], "jp": false, "words": [
+          { "hanzi": "爸爸", "pinyin": "bàba", "meaning": "papá", "gloss": "papá + papá" }
+        ] },
+        { "hanzi": "爹", "pinyin": "diē", "meaning": "padre, papá", "etymology": "Padre 父 por mucho 多 tiempo.", "components": [{ "char": "父", "gloss": "padre" }, { "char": "多", "gloss": "mucho tiempo" }], "jp": false, "words": [
+          { "hanzi": "爹爹", "pinyin": "diēdie", "meaning": "papá", "gloss": "papá + papá" }
+        ] },
+        { "hanzi": "爷", "pinyin": "yé", "meaning": "padre, abuelo", "etymology": "Padre 父 de integridad moral 节.", "components": [{ "char": "父", "gloss": "padre" }], "jp": false, "words": [
+          { "hanzi": "爷爷", "pinyin": "yéye", "meaning": "abuelo", "gloss": "padre + padre" }
+        ] },
+        { "hanzi": "尹", "pinyin": "yǐn", "meaning": "oficial", "etymology": "Una mano 彐 que coge un cetro.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "君", "pinyin": "jūn", "meaning": "caballero, monarca, soberano", "etymology": "Es la boca 口 que manda 尹.", "components": [{ "char": "尹", "gloss": "mandar" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "国君", "pinyin": "guójūn", "meaning": "monarca", "gloss": "país + monarca" },
+          { "hanzi": "君子", "pinyin": "jūnzǐ", "meaning": "noble, caballero", "gloss": "noble + hijo" }
+        ] },
+        { "hanzi": "群", "pinyin": "qún", "meaning": "muchedumbre, multitud; rebaño", "etymology": "Los que son dirigidos, como ovejas 羊, por un caballero 君.", "components": [{ "char": "君", "gloss": "caballero" }, { "char": "羊", "gloss": "ovejas" }], "jp": true, "words": [
+          { "hanzi": "群岛", "pinyin": "qúndǎo", "meaning": "archipiélago", "gloss": "multitud + islas" },
+          { "hanzi": "群众", "pinyin": "qúnzhòng", "meaning": "masas", "gloss": "muchedumbre + multitud" }
+        ] },
+        { "hanzi": "窘", "pinyin": "jiǒng", "meaning": "en un apuro", "etymology": "Un caballero 君 en una cueva 穴.", "components": [{ "char": "穴", "gloss": "cueva" }, { "char": "君", "gloss": "caballero" }], "jp": true, "words": [
+          { "hanzi": "窘境", "pinyin": "jiǒngjìng", "meaning": "apuro, aprieto", "gloss": "apuro + situación" },
+          { "hanzi": "窘迫", "pinyin": "jiǒngpò", "meaning": "miserable, apurado", "gloss": "apurado + urgente" }
+        ] },
+        { "hanzi": "录", "pinyin": "lù", "meaning": "grabar, registrar", "etymology": "Mano 彐 que anota el reparto del agua 水.", "components": [{ "char": "水", "gloss": "agua" }], "jp": false, "words": [
+          { "hanzi": "录音", "pinyin": "lùyīn", "meaning": "grabación, grabar", "gloss": "grabar + sonido" },
+          { "hanzi": "记录", "pinyin": "jìlù", "meaning": "notas, actas", "gloss": "recordar + grabar" }
+        ] },
+        { "hanzi": "建", "pinyin": "jiàn", "meaning": "construir, establecer", "etymology": "Una mano que toma una pluma 聿 proyectando 二, para erigir un lugar adonde la gente irá 廴.", "components": [{ "char": "聿", "gloss": "pluma" }, { "char": "廴", "gloss": "ir" }], "jp": true, "words": [
+          { "hanzi": "建筑", "pinyin": "jiànzhù", "meaning": "construir, edificio", "gloss": "construir + construir" },
+          { "hanzi": "建议", "pinyin": "jiànyì", "meaning": "propuesta", "gloss": "construir + deliberar" }
+        ] },
+        { "hanzi": "印", "pinyin": "yìn", "meaning": "sello, marca, imprimir", "etymology": "Es una mano 彐 en dirección contraria que coge un sello oficial.", "components": [], "jp": true, "words": [
+          { "hanzi": "印刷", "pinyin": "yìnshuā", "meaning": "imprimir, impreso", "gloss": "imprimir + cepillar" },
+          { "hanzi": "印象", "pinyin": "yìnxiàng", "meaning": "impresión", "gloss": "imprimir + parecerse" }
+        ] },
+        { "hanzi": "寸", "pinyin": "cùn", "meaning": "pulgada, cun", "etymology": "Es parte de muchos otros caracteres; vemos algunos de ellos.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "对", "pinyin": "duì", "meaning": "correcto, responder; mutuo", "etymology": "Son dos manos, 又 y 寸, que se estrechan en señal de acuerdo. Una frente a otra le dan un sentido nuevo.", "components": [{ "char": "又", "gloss": "mano" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "对面", "pinyin": "duìmiàn", "meaning": "enfrente", "gloss": "hacia + cara" },
+          { "hanzi": "对抗", "pinyin": "duìkàng", "meaning": "resistir", "gloss": "correcto + resistir" }
+        ] },
+        { "hanzi": "寻", "pinyin": "xún", "meaning": "buscar", "etymology": "Dos manos 彐 y 寸 enfatizan la búsqueda.", "components": [{ "char": "寸", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "寻找", "pinyin": "xúnzhǎo", "meaning": "buscar, rebuscar", "gloss": "buscar + buscar" },
+          { "hanzi": "追寻", "pinyin": "zhuīxún", "meaning": "perseguir", "gloss": "perseguir + buscar" }
+        ] },
+        { "hanzi": "守", "pinyin": "shǒu", "meaning": "defender, esperar, guardar", "etymology": "Una mano 寸 bajo techo 宀.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "守护", "pinyin": "shǒuhù", "meaning": "defender, cuidar", "gloss": "defender + proteger" },
+          { "hanzi": "守卫", "pinyin": "shǒuwèi", "meaning": "defender, guardar", "gloss": "defender + proteger" }
+        ] },
+        { "hanzi": "夺", "pinyin": "duó", "meaning": "tomar por fuerza, arrebatar", "etymology": "La mano 寸 del grande 大, o la ley del más fuerte.", "components": [{ "char": "大", "gloss": "el grande" }, { "char": "寸", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "夺取", "pinyin": "duóqǔ", "meaning": "conquistar, tomar", "gloss": "arrebatar + coger" },
+          { "hanzi": "夺目", "pinyin": "duómù", "meaning": "deslumbrar", "gloss": "arrebatar + ojo" }
+        ] },
+        { "hanzi": "封", "pinyin": "fēng", "meaning": "conferir un título; cerrar", "etymology": "Entregar en mano 寸 la posesión de unas tierras 土, que quedan cerradas al prójimo.", "components": [{ "char": "土", "gloss": "tierras" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "封建", "pinyin": "fēngjiàn", "meaning": "feudalismo", "gloss": "conferir títulos + establecer" },
+          { "hanzi": "封闭", "pinyin": "fēngbì", "meaning": "cerrar herméticamente", "gloss": "cerrar + cerrar" }
+        ] },
+        { "hanzi": "寿", "pinyin": "shòu", "meaning": "longevidad", "etymology": "Es una mano 寸 que prospera 丰, ya que la mejor prosperidad es larga vida.", "components": [{ "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "长寿", "pinyin": "chángshòu", "meaning": "longevidad", "gloss": "larga + vida" }
+        ] },
+        { "hanzi": "付", "pinyin": "fù", "meaning": "entregar, dar; pagar", "etymology": "Acción de la mano 寸 de una persona 人.", "components": [{ "char": "人", "gloss": "persona" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "付款", "pinyin": "fùkuǎn", "meaning": "pagar", "gloss": "pagar + cantidad de dinero" },
+          { "hanzi": "付帐", "pinyin": "fùzhàng", "meaning": "pagar una cuenta", "gloss": "pagar + cuenta" }
+        ] },
+        { "hanzi": "府", "pinyin": "fǔ", "meaning": "residencia oficial", "etymology": "La casa 广 donde se pagan 付 impuestos.", "components": [{ "char": "广", "gloss": "casa" }, { "char": "付", "gloss": "pagar" }], "jp": true, "words": [
+          { "hanzi": "政府", "pinyin": "zhèngfǔ", "meaning": "gobierno", "gloss": "gobernar + residencia oficial" },
+          { "hanzi": "王府", "pinyin": "wángfǔ", "meaning": "residencia de un príncipe", "gloss": "rey + residencia oficial" }
+        ] },
+        { "hanzi": "腐", "pinyin": "fǔ", "meaning": "podrido", "etymology": "La carne 肉 en la residencia oficial 府 es tan abundante que sobra y se pudre.", "components": [{ "char": "府", "gloss": "residencia oficial" }, { "char": "肉", "gloss": "carne" }], "jp": false, "words": [
+          { "hanzi": "腐烂", "pinyin": "fǔlàn", "meaning": "podrirse, corromperse", "gloss": "podrido + podrido" },
+          { "hanzi": "腐化", "pinyin": "fǔhuà", "meaning": "degenerado, corromper", "gloss": "podrido + cambiar" }
+        ] },
+        { "hanzi": "奏", "pinyin": "zòu", "meaning": "tocar un instrumento; lograr", "etymology": "Son dos manos que nos llevan al cielo 天.", "components": [{ "char": "天", "gloss": "cielo" }], "jp": true, "words": [
+          { "hanzi": "奏乐", "pinyin": "zòuyuè", "meaning": "tocar un instrumento musical", "gloss": "tocar + música" },
+          { "hanzi": "伴奏", "pinyin": "bànzòu", "meaning": "acompañamiento", "gloss": "acompañante + tocar" }
+        ] },
+        { "hanzi": "泰", "pinyin": "tài", "meaning": "sano y salvo, pacífico", "etymology": "Dos brazos que nadan en el agua 水.", "components": [{ "char": "水", "gloss": "agua" }], "jp": true, "words": [
+          { "hanzi": "安泰", "pinyin": "āntài", "meaning": "seguro", "gloss": "seguro + sano y salvo" },
+          { "hanzi": "康泰", "pinyin": "kāngtài", "meaning": "con buena salud", "gloss": "sano + sano y salvo" }
+        ] },
+        { "hanzi": "拳", "pinyin": "quán", "meaning": "puño", "etymology": "La parte de arriba es seleccionar lo mejor; abajo, mano 手. El puño es lo mejor de la mano.", "components": [{ "char": "手", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "拳击", "pinyin": "quánjī", "meaning": "boxeo", "gloss": "puño + golpear" },
+          { "hanzi": "拳头", "pinyin": "quántóu", "meaning": "puño", "gloss": "puño + cabeza" }
+        ] },
+        { "hanzi": "卷", "pinyin": "juǎn", "meaning": "enrollar, rollo; libro", "etymology": "Gráficamente se ven dos manos enrollando algo.", "components": [], "jp": true, "words": [
+          { "hanzi": "春卷", "pinyin": "chūnjuǎn", "meaning": "rollo de primavera", "gloss": "primavera + rollo" },
+          { "hanzi": "案卷", "pinyin": "ànjuàn", "meaning": "archivos", "gloss": "archivos + rollos" }
+        ] },
+        { "hanzi": "圈", "pinyin": "juàn", "meaning": "corral, acorralar", "etymology": "Enrollar 卷 en un lugar cerrado 囗.", "components": [{ "char": "囗", "gloss": "lugar cerrado" }, { "char": "卷", "gloss": "enrollar" }], "jp": true, "words": [
+          { "hanzi": "马圈", "pinyin": "mǎjuàn", "meaning": "establo", "gloss": "caballo + corral" }
+        ] },
+        { "hanzi": "眷", "pinyin": "juàn", "meaning": "familiares, parientes", "etymology": "A los que se cuida con el ojo 目 y las manos.", "components": [{ "char": "目", "gloss": "ojo" }], "jp": true, "words": [
+          { "hanzi": "眷属", "pinyin": "juànshǔ", "meaning": "familiares, parientes", "gloss": "familiares + categoría" },
+          { "hanzi": "家眷", "pinyin": "jiājuàn", "meaning": "familia", "gloss": "familia + familia" }
+        ] },
+        { "hanzi": "紧", "pinyin": "jǐn", "meaning": "tenso, apretar, urgente", "etymology": "Es la mano 又 de un funcionario 臣 simplificado, tirando de un trozo de seda 系.", "components": [{ "char": "臣", "gloss": "funcionario" }, { "char": "又", "gloss": "mano" }, { "char": "系", "gloss": "seda" }], "jp": false, "words": [
+          { "hanzi": "紧急", "pinyin": "jǐnjí", "meaning": "urgente", "gloss": "urgente + urgente" },
+          { "hanzi": "紧张", "pinyin": "jǐnzhāng", "meaning": "nervioso, tirante", "gloss": "tenso + mirar a todos lados" }
+        ] },
+        { "hanzi": "坚", "pinyin": "jiān", "meaning": "sólido, firme", "etymology": "La mano 又 de un funcionario 臣 que decide sobre un asunto de tierra 土. Su decisión es firme.", "components": [{ "char": "臣", "gloss": "funcionario" }, { "char": "又", "gloss": "mano" }, { "char": "土", "gloss": "tierra" }], "jp": false, "words": [
+          { "hanzi": "坚定", "pinyin": "jiāndìng", "meaning": "firme, sólido", "gloss": "firme + seguro" },
+          { "hanzi": "坚固", "pinyin": "jiāngù", "meaning": "sólido", "gloss": "sólido + sólido" }
+        ] },
+        { "hanzi": "爬", "pinyin": "pá", "meaning": "escalar, arrastrarse", "etymology": "Subir donde una serpiente 巴 con ayuda de las manos 爪.", "components": [{ "char": "爪", "gloss": "manos" }, { "char": "巴", "gloss": "serpiente" }], "jp": false, "words": [
+          { "hanzi": "爬山", "pinyin": "páshān", "meaning": "escalar", "gloss": "escalar + montaña" }
+        ] }
+      ]
     }
   ]
 }
