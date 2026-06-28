@@ -2834,6 +2834,169 @@
           { "hanzi": "丧事", "pinyin": "sāngshì", "meaning": "funeral", "gloss": "duelo + asuntos" }
         ] }
       ]
+    },
+    {
+      "id": "B-19",
+      "theme": "De los cuchillos",
+      "icon": "刀",
+      "chars": [
+        { "hanzi": "刀", "pinyin": "dāo", "meaning": "cuchillo, espada", "etymology": "Cuchillo, espada; da lugar a varios caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "刀子", "pinyin": "dāozi", "meaning": "navaja, cuchillo", "gloss": "cuchillo + sufijo" }
+        ] },
+        { "hanzi": "刁", "pinyin": "diāo", "meaning": "astuto, taimado", "etymology": "Es un cuchillo 刀 con la hoja oculta. Poco usado actualmente.", "components": [{ "char": "刀", "gloss": "cuchillo" }], "jp": false, "words": [] },
+        { "hanzi": "刃", "pinyin": "rèn", "meaning": "filo", "etymology": "Es el cuchillo 刀 con su filo marcado 丶.", "components": [{ "char": "刀", "gloss": "cuchillo" }], "jp": true, "words": [
+          { "hanzi": "刀刃", "pinyin": "dāorèn", "meaning": "filo", "gloss": "cuchillo + filo" }
+        ] },
+        { "hanzi": "召", "pinyin": "zhào", "meaning": "reunir, llamar a la corte", "etymology": "La presencia del cuchillo 刀 que corta junto a la boca 口 que llama hace pensar en una reunión forzosa.", "components": [{ "char": "刀", "gloss": "cuchillo" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "召集", "pinyin": "zhàojí", "meaning": "convocar, congregar", "gloss": "llamar + reunir" },
+          { "hanzi": "召见", "pinyin": "zhàojiàn", "meaning": "citar", "gloss": "llamar + ver" }
+        ] },
+        { "hanzi": "初", "pinyin": "chū", "meaning": "inicio, principio", "etymology": "Donde la tela 衣 ha sido cortada por el cuchillo 刀.", "components": [{ "char": "衣", "gloss": "tela" }, { "char": "刀", "gloss": "cuchillo" }], "jp": false, "words": [
+          { "hanzi": "初步", "pinyin": "chūbù", "meaning": "preliminar, rudimentario", "gloss": "inicio + paso" },
+          { "hanzi": "月初", "pinyin": "yuèchū", "meaning": "principio de mes", "gloss": "mes + principio" }
+        ] },
+        { "hanzi": "分", "pinyin": "fēn", "meaning": "dividir, separar, repartir", "etymology": "Un cuchillo 刀 separa al ocho 八, que ya tiene significado de separar.", "components": [{ "char": "八", "gloss": "separar" }, { "char": "刀", "gloss": "cuchillo" }], "jp": true, "words": [
+          { "hanzi": "分开", "pinyin": "fēnkāi", "meaning": "separarse", "gloss": "dividir + abrir" },
+          { "hanzi": "部分", "pinyin": "bùfen", "meaning": "parte, sección", "gloss": "sección + separar" }
+        ] },
+        { "hanzi": "韧", "pinyin": "rèn", "meaning": "tenaz, correoso", "etymology": "Cuero 韦 usado para afilar 刃 el cuchillo.", "components": [{ "char": "韦", "gloss": "cuero" }, { "char": "刃", "gloss": "filo" }], "jp": false, "words": [
+          { "hanzi": "韧性", "pinyin": "rènxìng", "meaning": "tenacidad", "gloss": "tenaz + carácter" }
+        ] },
+        { "hanzi": "剪", "pinyin": "jiǎn", "meaning": "tijeras, cortar, aniquilar", "etymology": "Cuchillo 刀 que corta hacia adelante 前.", "components": [{ "char": "前", "gloss": "hacia adelante" }, { "char": "刀", "gloss": "cuchillo" }], "jp": true, "words": [
+          { "hanzi": "剪刀", "pinyin": "jiǎndāo", "meaning": "tijeras", "gloss": "tijeras + cuchillo" },
+          { "hanzi": "剪除", "pinyin": "jiǎnchú", "meaning": "aniquilar", "gloss": "aniquilar + eliminar" }
+        ] },
+        { "hanzi": "切", "pinyin": "qiē", "meaning": "cortar, tajar", "etymology": "Es el cuchillo 刀 junto a otro instrumento punzante que refuerza su sentido.", "components": [{ "char": "刀", "gloss": "cuchillo" }], "jp": true, "words": [
+          { "hanzi": "切除", "pinyin": "qiēchú", "meaning": "extirpación", "gloss": "cortar + eliminar" },
+          { "hanzi": "切实", "pinyin": "qièshí", "meaning": "efectivo, práctico", "gloss": "cuadrar + asunto" }
+        ] },
+        { "hanzi": "窃", "pinyin": "qiè", "meaning": "hurtar, robar", "etymology": "Cortar 切 algo y llevárselo a un refugio 穴.", "components": [{ "char": "穴", "gloss": "refugio" }, { "char": "切", "gloss": "cortar" }], "jp": true, "words": [
+          { "hanzi": "窃取", "pinyin": "qièqǔ", "meaning": "usurpar, hurtar", "gloss": "hurtar + coger" },
+          { "hanzi": "窃贼", "pinyin": "qièzéi", "meaning": "ladrón, ratero", "gloss": "hurtar + ladrón" }
+        ] },
+        { "hanzi": "勿", "pinyin": "wù", "meaning": "no (prohibitivo)", "etymology": "Es un cuchillo que pela un vegetal, del que se ven algunas tiras, posiblemente una cebolla.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "匆", "pinyin": "cōng", "meaning": "deprisa, precipitadamente", "etymology": "El cuchillo que va a cortar la cebolla corta la punta del dedo (se ve entre las capas); de ahí el sentido de alarma.", "components": [{ "char": "勿", "gloss": "cuchillo que pela" }], "jp": true, "words": [
+          { "hanzi": "匆促", "pinyin": "cōngcù", "meaning": "con prisa", "gloss": "deprisa + urgente" },
+          { "hanzi": "匆忙", "pinyin": "cōngmáng", "meaning": "precipitadamente", "gloss": "precipitadamente + ocupado" }
+        ] },
+        { "hanzi": "物", "pinyin": "wù", "meaning": "cosa, objeto", "etymology": "Queda definido por la suma del componente de ganado 牛 más el vegetal pelado 勿: los bienes más comunes en una sociedad agrícola, animales y vegetales.", "components": [{ "char": "牛", "gloss": "ganado" }, { "char": "勿", "gloss": "vegetal" }], "jp": true, "words": [
+          { "hanzi": "物品", "pinyin": "wùpǐn", "meaning": "artículo", "gloss": "objeto + objeto" },
+          { "hanzi": "万物", "pinyin": "wànwù", "meaning": "todas las cosas del mundo", "gloss": "diez mil + objetos" }
+        ] },
+        { "hanzi": "易", "pinyin": "yì", "meaning": "fácil; cambiar", "etymology": "Originalmente representación de un camaleón, simbolizaba cambio. Hoy, el sol 日 del que se descuelgan los rayos como una cortina sobre la tierra 勿 da idea de vida fácil.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "勿", "gloss": "rayos sobre la tierra" }], "jp": true, "words": [
+          { "hanzi": "贸易", "pinyin": "màoyì", "meaning": "comercio", "gloss": "comercio + cambiar" },
+          { "hanzi": "容易", "pinyin": "róngyì", "meaning": "fácil", "gloss": "tolerar + fácil" }
+        ] },
+        { "hanzi": "约", "pinyin": "yuē", "meaning": "convenir, reducir; aproximadamente", "etymology": "Seda 纟 más cuchara 勺: dos objetos que convienen a la vida de la persona.", "components": [{ "char": "勺", "gloss": "cuchara" }], "jp": true, "words": [
+          { "hanzi": "约定", "pinyin": "yuēdìng", "meaning": "acordar, convenir", "gloss": "convenir + seguro" },
+          { "hanzi": "约会", "pinyin": "yuēhuì", "meaning": "citarse", "gloss": "acordar + reunión" }
+        ] },
+        { "hanzi": "匀", "pinyin": "yún", "meaning": "uniforme, igual; repartir", "etymology": "El cuchillo 刀 que divide en dos 二 partes.", "components": [{ "char": "刀", "gloss": "cuchillo" }, { "char": "二", "gloss": "dos partes" }], "jp": false, "words": [
+          { "hanzi": "均匀", "pinyin": "jūnyún", "meaning": "bien distribuido, parejo", "gloss": "uniforme + repartir" },
+          { "hanzi": "匀称", "pinyin": "yúnchèn", "meaning": "simétrico, bien equilibrado", "gloss": "uniforme + llamar" }
+        ] },
+        { "hanzi": "句", "pinyin": "jù", "meaning": "frase, oración", "etymology": "Cuchillo 刀 y boca 口, por el corte en la corriente de aire que supone la modulación de las palabras.", "components": [{ "char": "刀", "gloss": "cuchillo" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "句号", "pinyin": "jùhào", "meaning": "punto", "gloss": "frase + punto" },
+          { "hanzi": "字句", "pinyin": "zìjù", "meaning": "escritura, redacción", "gloss": "palabras + frases" }
+        ] },
+        { "hanzi": "勾", "pinyin": "gōu", "meaning": "evocar, inducir", "etymology": "Usar las palabras (se ve la boca abierta 厶) como un cuchillo 刀 que induce a hacer algo.", "components": [{ "char": "刀", "gloss": "cuchillo" }, { "char": "厶", "gloss": "boca abierta" }], "jp": true, "words": [
+          { "hanzi": "勾引", "pinyin": "gōuyǐn", "meaning": "seducir, tentar", "gloss": "inducir + atraer" },
+          { "hanzi": "勾结", "pinyin": "gōujié", "meaning": "confabularse", "gloss": "inducir + atar" }
+        ] },
+        { "hanzi": "敬", "pinyin": "jìng", "meaning": "respetar, venerar", "etymology": "Son frases 句 simples, como la hierba 艹, pero con la fuerza de una mano con un palo 攵.", "components": [{ "char": "句", "gloss": "frases" }, { "char": "攵", "gloss": "mano con palo" }], "jp": true, "words": [
+          { "hanzi": "敬爱", "pinyin": "jìng'ài", "meaning": "respetar y amar", "gloss": "respetar + amar" },
+          { "hanzi": "敬礼", "pinyin": "jìnglǐ", "meaning": "saludar", "gloss": "respetar + rito" }
+        ] },
+        { "hanzi": "警", "pinyin": "jǐng", "meaning": "advertir, policía", "etymology": "Palabras 言 que hay que respetar 敬.", "components": [{ "char": "敬", "gloss": "respetar" }, { "char": "言", "gloss": "palabras" }], "jp": true, "words": [
+          { "hanzi": "警察", "pinyin": "jǐngchá", "meaning": "policía", "gloss": "policía + investigar" },
+          { "hanzi": "警戒", "pinyin": "jǐngjiè", "meaning": "advertir, amonestar", "gloss": "advertir + advertir" }
+        ] },
+        { "hanzi": "擎", "pinyin": "qíng", "meaning": "alzar, levantar", "etymology": "Mano 手 del que se respeta 敬.", "components": [{ "char": "敬", "gloss": "respetar" }, { "char": "手", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "高擎", "pinyin": "gāoqíng", "meaning": "elevar", "gloss": "alto + levantar" }
+        ] },
+        { "hanzi": "蜀", "pinyin": "shǔ", "meaning": "gusano de seda; Sichuan", "etymology": "Es un insecto 虫 del que se ve el ojo 目 y el cuerpo curvado 勹. Se usa como sobrenombre de la provincia de Sichuan.", "components": [{ "char": "目", "gloss": "ojo" }, { "char": "虫", "gloss": "insecto" }], "jp": false, "words": [] },
+        { "hanzi": "属", "pinyin": "shǔ", "meaning": "género, pertenecer a", "etymology": "Es un gusano 蜀 y la cola 尾 del mismo. Sentido de apéndice, juntar, categoría.", "components": [{ "char": "尾", "gloss": "cola" }, { "char": "蜀", "gloss": "gusano" }], "jp": true, "words": [
+          { "hanzi": "属性", "pinyin": "shǔxìng", "meaning": "atributo, propiedad", "gloss": "categoría + propiedad" },
+          { "hanzi": "属于", "pinyin": "shǔyú", "meaning": "pertenecer", "gloss": "pertenecer + a" }
+        ] },
+        { "hanzi": "方", "pinyin": "fāng", "meaning": "dirección, lugar, método, cuadrado", "etymology": "Da lugar a un buen número de caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "方式", "pinyin": "fāngshì", "meaning": "modo, manera", "gloss": "método + modo" },
+          { "hanzi": "地方", "pinyin": "dìfang", "meaning": "lugar", "gloss": "suelo + lugar" }
+        ] },
+        { "hanzi": "房", "pinyin": "fáng", "meaning": "casa, cuarto", "etymology": "Se representa por el lugar 方 que está tras la puerta 户.", "components": [{ "char": "户", "gloss": "puerta" }, { "char": "方", "gloss": "lugar" }], "jp": true, "words": [
+          { "hanzi": "房间", "pinyin": "fángjiān", "meaning": "cuarto", "gloss": "cuarto + cuarto" },
+          { "hanzi": "房子", "pinyin": "fángzi", "meaning": "casa", "gloss": "casa + sufijo" }
+        ] },
+        { "hanzi": "旁", "pinyin": "páng", "meaning": "lado, costado", "etymology": "Es un hombre 立 sobre un lugar 方.", "components": [{ "char": "立", "gloss": "hombre" }, { "char": "方", "gloss": "lugar" }], "jp": true, "words": [
+          { "hanzi": "旁边", "pinyin": "pángbiān", "meaning": "al lado", "gloss": "lado + lado" },
+          { "hanzi": "近旁", "pinyin": "jìnpáng", "meaning": "cerca", "gloss": "cerca + lado" }
+        ] },
+        { "hanzi": "旗", "pinyin": "qí", "meaning": "bandera, estandarte", "etymology": "Esto 其 que el hombre 人 coloca en su lugar 方.", "components": [{ "char": "其", "gloss": "esto" }, { "char": "方", "gloss": "lugar" }], "jp": true, "words": [
+          { "hanzi": "旗子", "pinyin": "qízi", "meaning": "bandera", "gloss": "bandera + sufijo" },
+          { "hanzi": "红旗", "pinyin": "hóngqí", "meaning": "bandera roja", "gloss": "roja + bandera" }
+        ] },
+        { "hanzi": "族", "pinyin": "zú", "meaning": "clan, raza", "etymology": "Banderas 旗 y flechas 矢, ya que en la dinastía Shang los clanes eran unidades militares.", "components": [{ "char": "方", "gloss": "bandera" }, { "char": "矢", "gloss": "flecha" }], "jp": true, "words": [
+          { "hanzi": "种族", "pinyin": "zhǒngzú", "meaning": "raza", "gloss": "tipo + raza" },
+          { "hanzi": "贵族", "pinyin": "guìzú", "meaning": "aristócratas, nobles", "gloss": "valiosos + clan" }
+        ] },
+        { "hanzi": "旅", "pinyin": "lǚ", "meaning": "viajar; brigada", "etymology": "Familia 氏 que se mueve unida bajo una bandera 旗.", "components": [{ "char": "方", "gloss": "bandera" }], "jp": true, "words": [
+          { "hanzi": "旅行", "pinyin": "lǚxíng", "meaning": "viajar", "gloss": "viajar + viajar" },
+          { "hanzi": "旅游", "pinyin": "lǚyóu", "meaning": "turismo", "gloss": "viajar + turismo" }
+        ] },
+        { "hanzi": "力", "pinyin": "lì", "meaning": "fuerza, habilidad", "etymology": "De fuerza, habilidad, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "智力", "pinyin": "zhìlì", "meaning": "inteligencia", "gloss": "sabiduría + fuerza" },
+          { "hanzi": "无力", "pinyin": "wúlì", "meaning": "incapaz", "gloss": "no + fuerza" }
+        ] },
+        { "hanzi": "加", "pinyin": "jiā", "meaning": "sumar, añadir, más", "etymology": "Fuerza 力 más boca 口: sumar la fuerza de varias personas.", "components": [{ "char": "力", "gloss": "fuerza" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "加入", "pinyin": "jiārù", "meaning": "ingresar, alistarse", "gloss": "añadir + entrar" },
+          { "hanzi": "加快", "pinyin": "jiākuài", "meaning": "acelerar", "gloss": "añadir + deprisa" }
+        ] },
+        { "hanzi": "劣", "pinyin": "liè", "meaning": "inferior, malo", "etymology": "De poca 少 fuerza 力.", "components": [{ "char": "少", "gloss": "poca" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "劣势", "pinyin": "lièshì", "meaning": "inferioridad", "gloss": "inferior + situación" },
+          { "hanzi": "低劣", "pinyin": "dīliè", "meaning": "inferior", "gloss": "bajo + inferior" }
+        ] },
+        { "hanzi": "夯", "pinyin": "hāng", "meaning": "maza apisonadora", "etymology": "De gran 大 fuerza 力.", "components": [{ "char": "大", "gloss": "gran" }, { "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "夯具", "pinyin": "hāngjù", "meaning": "maza apisonadora", "gloss": "maza + herramienta" }
+        ] },
+        { "hanzi": "历", "pinyin": "lì", "meaning": "pasar, experimentar; histórico", "etymology": "Con fuerza 力 para superar lo que se opone 厂.", "components": [{ "char": "厂", "gloss": "lo que se opone" }, { "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "历史", "pinyin": "lìshǐ", "meaning": "historia", "gloss": "pasado + historia" },
+          { "hanzi": "历法", "pinyin": "lìfǎ", "meaning": "calendario", "gloss": "calendario + leyes" }
+        ] },
+        { "hanzi": "厉", "pinyin": "lì", "meaning": "estricto, riguroso", "etymology": "El orden en que diez mil 万 pasan un precipicio 厂.", "components": [{ "char": "厂", "gloss": "precipicio" }, { "char": "万", "gloss": "diez mil" }], "jp": false, "words": [
+          { "hanzi": "厉害", "pinyin": "lìhài", "meaning": "estricto, riguroso", "gloss": "serio + perjudicar" },
+          { "hanzi": "严厉", "pinyin": "yánlì", "meaning": "serio, severo", "gloss": "serio + serio" }
+        ] },
+        { "hanzi": "励", "pinyin": "lì", "meaning": "animar, urgir", "etymology": "Aplicar la fuerza 力 a asuntos serios 厉.", "components": [{ "char": "厉", "gloss": "asuntos serios" }, { "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "鼓励", "pinyin": "gǔlì", "meaning": "animar, urgir", "gloss": "tambor + animar" },
+          { "hanzi": "激励", "pinyin": "jīlì", "meaning": "animar, estimular", "gloss": "alentar + estimular" }
+        ] },
+        { "hanzi": "趸", "pinyin": "dǔn", "meaning": "mayorista, comprar al por mayor", "etymology": "万 significa diez mil; diez mil pies 足 es mayorista, o comprar al por mayor.", "components": [{ "char": "万", "gloss": "diez mil" }, { "char": "足", "gloss": "pies" }], "jp": false, "words": [] },
+        { "hanzi": "劲", "pinyin": "jìn", "meaning": "fuerza, energía", "etymology": "La fuerza 力 que permite seguir un camino.", "components": [{ "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "使劲", "pinyin": "shǐjìn", "meaning": "con todas las fuerzas", "gloss": "usar + fuerza" }
+        ] },
+        { "hanzi": "穷", "pinyin": "qióng", "meaning": "pobre, necesitado, indigente", "etymology": "Con su fuerza 力 encerrada 穴.", "components": [{ "char": "穴", "gloss": "encerrada" }, { "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "穷人", "pinyin": "qióngrén", "meaning": "pobre", "gloss": "pobre + persona" },
+          { "hanzi": "穷苦", "pinyin": "qióngkǔ", "meaning": "menesteroso", "gloss": "pobre + amargo" }
+        ] },
+        { "hanzi": "勘", "pinyin": "kān", "meaning": "reconocer; leer y corregir", "etymology": "Donde se necesita un uso excesivo 甚 de la fuerza 力.", "components": [{ "char": "甚", "gloss": "excesivo" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "勘探", "pinyin": "kāntàn", "meaning": "exploración", "gloss": "reconocer + explorar" },
+          { "hanzi": "勘察", "pinyin": "kānchá", "meaning": "reconocimiento", "gloss": "reconocer + investigar" }
+        ] },
+        { "hanzi": "劳", "pinyin": "láo", "meaning": "trabajar, labor", "etymology": "El artesano aplica la fuerza 力 a las hierbas 艹 bajo techo. Simplificado.", "components": [{ "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "劳动", "pinyin": "láodòng", "meaning": "trabajar", "gloss": "trabajar + moverse" },
+          { "hanzi": "劳力", "pinyin": "láolì", "meaning": "fuerza de trabajo, mano de obra", "gloss": "trabajo + fuerza" }
+        ] },
+        { "hanzi": "另", "pinyin": "lìng", "meaning": "otro, separar", "etymology": "Separar a la fuerza 力 al que habla 口.", "components": [{ "char": "口", "gloss": "el que habla" }, { "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "另外", "pinyin": "lìngwài", "meaning": "otro, aparte", "gloss": "otro + exterior" }
+        ] },
+        { "hanzi": "别", "pinyin": "bié", "meaning": "otro, diferencia; no", "etymology": "La alteridad y la diferencia 另, acentuadas por la presencia del cuchillo 刀 simplificado.", "components": [{ "char": "另", "gloss": "otro" }, { "char": "刀", "gloss": "cuchillo" }], "jp": true, "words": [
+          { "hanzi": "别人", "pinyin": "biérén", "meaning": "otro", "gloss": "otro + hombre" },
+          { "hanzi": "特别", "pinyin": "tèbié", "meaning": "particular, extraordinario", "gloss": "especial + diferencia" }
+        ] },
+        { "hanzi": "协", "pinyin": "xié", "meaning": "conjunto, unido, cooperar", "etymology": "Diez 十 que se esfuerzan en arreglar un asunto 办.", "components": [{ "char": "十", "gloss": "diez (muchos)" }], "jp": false, "words": [
+          { "hanzi": "协作", "pinyin": "xiézuò", "meaning": "cooperar", "gloss": "conjunto + hacer" }
+        ] }
+      ]
     }
   ]
 }
