@@ -2092,6 +2092,103 @@
           { "hanzi": "身躯", "pinyin": "shēnqū", "meaning": "cuerpo, estatura", "gloss": "cuerpo + cuerpo" }
         ] }
       ]
+    },
+    {
+      "id": "B-14",
+      "theme": "De la mujer",
+      "icon": "女",
+      "chars": [
+        { "hanzi": "女", "pinyin": "nǚ", "meaning": "mujer", "etymology": "De mujer se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "女儿", "pinyin": "nǚ'ér", "meaning": "hija", "gloss": "mujer + hijo" },
+          { "hanzi": "女人", "pinyin": "nǚrén", "meaning": "mujer", "gloss": "mujer + persona" }
+        ] },
+        { "hanzi": "好", "pinyin": "hǎo", "meaning": "bueno, bien", "etymology": "Mujer 女 que tiene un niño 子.", "components": [{ "char": "女", "gloss": "mujer" }, { "char": "子", "gloss": "niño" }], "jp": true, "words": [
+          { "hanzi": "好看", "pinyin": "hǎokàn", "meaning": "guapo", "gloss": "bueno + ver" },
+          { "hanzi": "好吃", "pinyin": "hǎochī", "meaning": "sabroso, delicioso", "gloss": "bueno + comer" }
+        ] },
+        { "hanzi": "孬", "pinyin": "nāo", "meaning": "mal, cobardemente", "etymology": "No 不 bueno 好.", "components": [{ "char": "不", "gloss": "no" }, { "char": "好", "gloss": "bueno" }], "jp": false, "words": [
+          { "hanzi": "孬种", "pinyin": "nāozhǒng", "meaning": "cobarde", "gloss": "cobarde + tipo" }
+        ] },
+        { "hanzi": "安", "pinyin": "ān", "meaning": "seguro, tranquilo, instalar", "etymology": "De seguro, tranquilo, instalar, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "安定", "pinyin": "āndìng", "meaning": "estable, apacible", "gloss": "tranquilo + seguro" },
+          { "hanzi": "安排", "pinyin": "ānpái", "meaning": "arreglar, disponer", "gloss": "instalar + colocar" }
+        ] },
+        { "hanzi": "案", "pinyin": "àn", "meaning": "archivo, expediente; mesa", "etymology": "Instalar 安 en madera 木 las cosas de importancia.", "components": [{ "char": "安", "gloss": "instalar" }, { "char": "木", "gloss": "madera" }], "jp": true, "words": [
+          { "hanzi": "案件", "pinyin": "ànjiàn", "meaning": "causa, proceso", "gloss": "archivo + asunto" },
+          { "hanzi": "案卷", "pinyin": "ànjuàn", "meaning": "archivos, expediente", "gloss": "archivo + libro" }
+        ] },
+        { "hanzi": "奴", "pinyin": "nú", "meaning": "esclavo, esclavizar", "etymology": "Es una mujer 女 sujeta con una mano 又.", "components": [{ "char": "女", "gloss": "mujer" }, { "char": "又", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "奴隶", "pinyin": "núlì", "meaning": "esclavo, siervo", "gloss": "esclavo + subordinado" },
+          { "hanzi": "农奴", "pinyin": "nóngnú", "meaning": "siervo", "gloss": "campesino + esclavo" }
+        ] },
+        { "hanzi": "努", "pinyin": "nǔ", "meaning": "esforzarse, resaltar", "etymology": "El esclavo 奴 utilizando su fuerza 力.", "components": [{ "char": "奴", "gloss": "esclavo" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "努力", "pinyin": "nǔlì", "meaning": "esforzarse", "gloss": "esforzarse + fuerza" }
+        ] },
+        { "hanzi": "妇", "pinyin": "fù", "meaning": "mujer, esposa", "etymology": "Mujer 女 con una escoba en la mano, de la que sólo queda la mano 彐.", "components": [{ "char": "女", "gloss": "mujer" }], "jp": false, "words": [
+          { "hanzi": "妇女", "pinyin": "fùnǚ", "meaning": "mujer", "gloss": "mujer + mujer" },
+          { "hanzi": "主妇", "pinyin": "zhǔfù", "meaning": "ama de casa", "gloss": "ama + mujer" }
+        ] },
+        { "hanzi": "妥", "pinyin": "tuǒ", "meaning": "arreglado, apropiado, adecuado", "etymology": "Una mano 爪 sobre una mujer 女.", "components": [{ "char": "爪", "gloss": "mano" }, { "char": "女", "gloss": "mujer" }], "jp": true, "words": [
+          { "hanzi": "妥当", "pinyin": "tuǒdàng", "meaning": "apropiado, adecuado", "gloss": "apropiado + igual" },
+          { "hanzi": "妥善", "pinyin": "tuǒshàn", "meaning": "apropiado", "gloss": "apropiado + bueno" }
+        ] },
+        { "hanzi": "如", "pinyin": "rú", "meaning": "según, como", "etymology": "Hablar 口 como una mujer 女, de forma adecuada a las circunstancias.", "components": [{ "char": "女", "gloss": "mujer" }, { "char": "口", "gloss": "hablar" }], "jp": true, "words": [
+          { "hanzi": "如此", "pinyin": "rúcǐ", "meaning": "así, tal cual", "gloss": "según + así" },
+          { "hanzi": "如果", "pinyin": "rúguǒ", "meaning": "si (condicional)", "gloss": "según + resultado" }
+        ] },
+        { "hanzi": "耍", "pinyin": "shuǎ", "meaning": "jugar, mostrar", "etymology": "Una mujer 女 disfrazada con una barba 而.", "components": [{ "char": "而", "gloss": "barba" }, { "char": "女", "gloss": "mujer" }], "jp": false, "words": [
+          { "hanzi": "玩耍", "pinyin": "wánshuǎ", "meaning": "jugar, divertirse", "gloss": "jugar + jugar" },
+          { "hanzi": "杂耍", "pinyin": "záshuǎ", "meaning": "espectáculo de variedades", "gloss": "varios + jugar" }
+        ] },
+        { "hanzi": "妾", "pinyin": "qiè", "meaning": "concubina", "etymology": "La mujer 女 situada debajo del hombre 立.", "components": [{ "char": "立", "gloss": "hombre" }, { "char": "女", "gloss": "mujer" }], "jp": true, "words": [
+          { "hanzi": "纳妾", "pinyin": "nàqiè", "meaning": "tomar una concubina", "gloss": "tomar + concubina" }
+        ] },
+        { "hanzi": "妃", "pinyin": "fēi", "meaning": "esposa; concubina imperial", "etymology": "Mujer 女 que se arrodilla 己 ante el rey.", "components": [{ "char": "女", "gloss": "mujer" }, { "char": "己", "gloss": "arrodillarse" }], "jp": true, "words": [
+          { "hanzi": "妃子", "pinyin": "fēizi", "meaning": "concubina imperial", "gloss": "concubina + sufijo" },
+          { "hanzi": "王妃", "pinyin": "wángfēi", "meaning": "princesa consorte", "gloss": "rey + concubina" }
+        ] },
+        { "hanzi": "奸", "pinyin": "jiān", "meaning": "relación ilícita; malvado", "etymology": "Hacer 干 algo a una mujer 女. Simplificado; antes se veían tres mujeres.", "components": [{ "char": "女", "gloss": "mujer" }, { "char": "干", "gloss": "hacer" }], "jp": false, "words": [
+          { "hanzi": "强奸", "pinyin": "qiángjiān", "meaning": "violar", "gloss": "fuerza + ilícito" },
+          { "hanzi": "鸡奸", "pinyin": "jījiān", "meaning": "sodomía", "gloss": "gallo + ilícito" }
+        ] },
+        { "hanzi": "宴", "pinyin": "yàn", "meaning": "banquete, fiesta", "etymology": "Bajo un techo 宀, estar charlando 曰 con las mujeres 女.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "曰", "gloss": "charlar" }, { "char": "女", "gloss": "mujeres" }], "jp": true, "words": [
+          { "hanzi": "宴会", "pinyin": "yànhuì", "meaning": "banquete", "gloss": "banquete + reunión" },
+          { "hanzi": "宴席", "pinyin": "yànxí", "meaning": "banquete, festín", "gloss": "banquete + fiesta" }
+        ] },
+        { "hanzi": "婪", "pinyin": "lán", "meaning": "avaricioso, codicioso", "etymology": "Se lleva una mujer 女 al bosque 林.", "components": [{ "char": "林", "gloss": "bosque" }, { "char": "女", "gloss": "mujer" }], "jp": false, "words": [
+          { "hanzi": "贪婪", "pinyin": "tānlán", "meaning": "avaricioso", "gloss": "avaricioso + avaricioso" }
+        ] },
+        { "hanzi": "囡", "pinyin": "nān", "meaning": "niña pequeña", "etymology": "La madre 女 encerrada 囗 en casa porque hay una niña pequeña.", "components": [{ "char": "囗", "gloss": "encerrada en casa" }, { "char": "女", "gloss": "madre" }], "jp": false, "words": [] },
+        { "hanzi": "母", "pinyin": "mǔ", "meaning": "madre", "etymology": "De madre se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "母亲", "pinyin": "mǔqīn", "meaning": "madre", "gloss": "madre + familia" },
+          { "hanzi": "母语", "pinyin": "mǔyǔ", "meaning": "lengua materna", "gloss": "madre + lengua" }
+        ] },
+        { "hanzi": "每", "pinyin": "měi", "meaning": "cada, todos", "etymology": "Cada persona 人 tiene su madre 母. Con sentido de exuberancia.", "components": [{ "char": "母", "gloss": "madre" }], "jp": true, "words": [
+          { "hanzi": "每每", "pinyin": "měiměi", "meaning": "frecuentemente", "gloss": "todos + todos" }
+        ] },
+        { "hanzi": "敏", "pinyin": "mǐn", "meaning": "ágil, perspicaz", "etymology": "Capaz de hacer 攵 de todo cada 每.", "components": [{ "char": "每", "gloss": "cada" }, { "char": "攵", "gloss": "hacer" }], "jp": true, "words": [
+          { "hanzi": "敏感", "pinyin": "mǐngǎn", "meaning": "sensible", "gloss": "ágil + sentimientos" },
+          { "hanzi": "灵敏", "pinyin": "língmǐn", "meaning": "despierto, agudo", "gloss": "alma + perspicaz" }
+        ] },
+        { "hanzi": "繁", "pinyin": "fán", "meaning": "variado, exuberante", "etymology": "Plantas numerosas 敏 como los hilos de seda 系.", "components": [{ "char": "敏", "gloss": "numerosas" }, { "char": "系", "gloss": "hilos de seda" }], "jp": true, "words": [
+          { "hanzi": "繁多", "pinyin": "fánduō", "meaning": "variado", "gloss": "variado + muchos" },
+          { "hanzi": "繁华", "pinyin": "fánhuá", "meaning": "próspero", "gloss": "exuberante + magnífico" }
+        ] },
+        { "hanzi": "乃", "pinyin": "nǎi", "meaning": "ser; tú", "etymology": "Algunos autores dicen que es el pictograma de una mujer embarazada, y tal vez tengan razón.", "components": [], "jp": false, "words": [
+          { "hanzi": "乃至", "pinyin": "nǎizhì", "meaning": "incluso, hasta", "gloss": "ser + concluir" }
+        ] },
+        { "hanzi": "奶", "pinyin": "nǎi", "meaning": "pecho, leche", "etymology": "Ser 乃 más mujer 女.", "components": [{ "char": "乃", "gloss": "ser" }, { "char": "女", "gloss": "mujer" }], "jp": false, "words": [
+          { "hanzi": "牛奶", "pinyin": "niúnǎi", "meaning": "leche", "gloss": "vaca + leche" },
+          { "hanzi": "奶油", "pinyin": "nǎiyóu", "meaning": "mantequilla, nata", "gloss": "leche + aceite" }
+        ] },
+        { "hanzi": "孕", "pinyin": "yùn", "meaning": "embarazo, gravidez", "etymology": "Mujer 乃 con el niño 子 dentro.", "components": [{ "char": "乃", "gloss": "mujer" }, { "char": "子", "gloss": "niño" }], "jp": true, "words": [
+          { "hanzi": "孕育", "pinyin": "yùnyù", "meaning": "concebir", "gloss": "embarazo + engendrar" }
+        ] },
+        { "hanzi": "秀", "pinyin": "xiù", "meaning": "hermoso, esbelto, auspicioso", "etymology": "Espigas 禾 para alimentar a una mujer embarazada 乃.", "components": [{ "char": "禾", "gloss": "espigas" }, { "char": "乃", "gloss": "embarazada" }], "jp": true, "words": [
+          { "hanzi": "秀丽", "pinyin": "xiùlì", "meaning": "bonito", "gloss": "esbelto + bello" },
+          { "hanzi": "秀气", "pinyin": "xiùqi", "meaning": "elegante, refinado", "gloss": "hermoso + aire" }
+        ] }
+      ]
     }
   ]
 }
