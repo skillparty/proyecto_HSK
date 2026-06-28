@@ -2354,6 +2354,186 @@
         ] },
         { "hanzi": "兆", "pinyin": "zhào", "meaning": "adivinar, predecir; presagio", "etymology": "Pictograma de una concha de tortuga resquebrajada tras ser calentada con fines adivinatorios. Semejante a 儿.", "components": [], "jp": true, "words": [] }
       ]
+    },
+    {
+      "id": "B-16",
+      "theme": "Recipientes",
+      "icon": "皿",
+      "chars": [
+        { "hanzi": "皿", "pinyin": "mǐn", "meaning": "vasija", "etymology": "Está en el origen de otros caracteres.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "衅", "pinyin": "xìn", "meaning": "riña, pelea", "etymology": "Contienda entre dos mitades 半 en la que acaba por brotar sangre 皿.", "components": [{ "char": "半", "gloss": "dos mitades" }, { "char": "皿", "gloss": "sangre" }], "jp": false, "words": [
+          { "hanzi": "挑衅", "pinyin": "tiǎoxìn", "meaning": "provocar", "gloss": "escoger + pelea" },
+          { "hanzi": "寻衅", "pinyin": "xúnxìn", "meaning": "provocar peleas", "gloss": "buscar + pelea" }
+        ] },
+        { "hanzi": "盟", "pinyin": "méng", "meaning": "alianza", "etymology": "Cuando las dos partes ven claro 明 lo que hay en la vasija 皿.", "components": [{ "char": "明", "gloss": "ver claro" }, { "char": "皿", "gloss": "vasija" }], "jp": true, "words": [
+          { "hanzi": "联盟", "pinyin": "liánméng", "meaning": "alianza", "gloss": "unir + alianza" },
+          { "hanzi": "盟军", "pinyin": "méngjūn", "meaning": "ejército aliado", "gloss": "alianza + ejército" }
+        ] },
+        { "hanzi": "益", "pinyin": "yì", "meaning": "beneficio, ventaja", "etymology": "Es el agua 水 que se derrama de un recipiente 皿 lleno.", "components": [{ "char": "水", "gloss": "agua" }, { "char": "皿", "gloss": "recipiente" }], "jp": true, "words": [
+          { "hanzi": "利益", "pinyin": "lìyì", "meaning": "beneficio", "gloss": "beneficio + beneficio" },
+          { "hanzi": "有益", "pinyin": "yǒuyì", "meaning": "benéfico", "gloss": "haber + beneficio" }
+        ] },
+        { "hanzi": "兴", "pinyin": "xīng", "meaning": "próspero, floreciente; promover", "etymology": "Carácter simplificado que se recuerda por el gran beneficio 益 que parece aportar.", "components": [], "jp": false, "words": [
+          { "hanzi": "兴建", "pinyin": "xīngjiàn", "meaning": "construir, edificar", "gloss": "promover + establecer" },
+          { "hanzi": "兴起", "pinyin": "xīngqǐ", "meaning": "surgir, prosperar", "gloss": "próspero + elevarse" }
+        ] },
+        { "hanzi": "举", "pinyin": "jǔ", "meaning": "alzar, levantar; elegir; enumerar", "etymology": "Las plantas 丰 que prosperan 兴 elevan el nivel de vida de las personas.", "components": [{ "char": "兴", "gloss": "prosperar" }], "jp": true, "words": [
+          { "hanzi": "举动", "pinyin": "jǔdòng", "meaning": "acción, acto", "gloss": "levantar + mover" },
+          { "hanzi": "举手", "pinyin": "jǔshǒu", "meaning": "levantar la mano", "gloss": "levantar + mano" }
+        ] },
+        { "hanzi": "誉", "pinyin": "yù", "meaning": "reputación", "etymology": "La prosperidad 兴 expresada en palabras 言.", "components": [{ "char": "兴", "gloss": "prosperidad" }, { "char": "言", "gloss": "palabras" }], "jp": true, "words": [
+          { "hanzi": "名誉", "pinyin": "míngyù", "meaning": "fama", "gloss": "nombre + reputación" },
+          { "hanzi": "信誉", "pinyin": "xìnyù", "meaning": "crédito, reputación", "gloss": "creer + reputación" }
+        ] },
+        { "hanzi": "温", "pinyin": "wēn", "meaning": "cálido, calentar", "etymology": "Es el sol 日 que calienta el agua 水 en un recipiente 皿.", "components": [{ "char": "水", "gloss": "agua" }, { "char": "日", "gloss": "sol" }, { "char": "皿", "gloss": "recipiente" }], "jp": true, "words": [
+          { "hanzi": "温度", "pinyin": "wēndù", "meaning": "temperatura", "gloss": "cálido + medir" },
+          { "hanzi": "温柔", "pinyin": "wēnróu", "meaning": "tierno, ternura", "gloss": "cálido + suave" }
+        ] },
+        { "hanzi": "监", "pinyin": "jiān", "meaning": "controlar, supervisar; cárcel", "etymology": "Es un funcionario 臣 que se agacha a ver qué se cuece en el recipiente 皿.", "components": [{ "char": "臣", "gloss": "funcionario" }, { "char": "皿", "gloss": "recipiente" }], "jp": true, "words": [
+          { "hanzi": "太监", "pinyin": "tàijiān", "meaning": "eunuco", "gloss": "demasiado + controlar" },
+          { "hanzi": "监视", "pinyin": "jiānshì", "meaning": "controlar, vigilar", "gloss": "controlar + ver" }
+        ] },
+        { "hanzi": "孟", "pinyin": "mèng", "meaning": "hermano mayor; primero", "etymology": "Niño 子 junto al recipiente 皿: es el niño que come primero, y por tanto come más.", "components": [{ "char": "子", "gloss": "niño" }, { "char": "皿", "gloss": "recipiente" }], "jp": true, "words": [] },
+        { "hanzi": "盐", "pinyin": "yán", "meaning": "sal", "etymology": "Viene de la tierra 土, la trae el servidor 卜, y acaba en el recipiente 皿.", "components": [{ "char": "土", "gloss": "tierra" }, { "char": "卜", "gloss": "servidor" }, { "char": "皿", "gloss": "recipiente" }], "jp": false, "words": [
+          { "hanzi": "精盐", "pinyin": "jīngyán", "meaning": "sal refinada", "gloss": "refinar + sal" },
+          { "hanzi": "食盐", "pinyin": "shíyán", "meaning": "sal de cocina", "gloss": "comer + sal" }
+        ] },
+        { "hanzi": "盘", "pinyin": "pán", "meaning": "plato, bandeja; brújula", "etymology": "La brújula es la vasija que se usaba en los barcos 舟, con una varilla metálica encima. De ahí «plato» y «construir».", "components": [{ "char": "舟", "gloss": "barco" }, { "char": "皿", "gloss": "vasija" }], "jp": false, "words": [
+          { "hanzi": "盘子", "pinyin": "pánzi", "meaning": "plato, bandeja", "gloss": "plato + sufijo" },
+          { "hanzi": "罗盘", "pinyin": "luópán", "meaning": "brújula", "gloss": "red + plato" }
+        ] },
+        { "hanzi": "盒", "pinyin": "hé", "meaning": "caja, estuche", "etymology": "El recipiente 皿 donde se juntan 合 las cosas.", "components": [{ "char": "合", "gloss": "juntar" }, { "char": "皿", "gloss": "recipiente" }], "jp": true, "words": [
+          { "hanzi": "盒子", "pinyin": "hézi", "meaning": "caja, estuche", "gloss": "caja + sufijo" }
+        ] },
+        { "hanzi": "而", "pinyin": "ér", "meaning": "y, hasta", "etymology": "Pictograma de una larga barba cuyos pelos caen de la boca. Prestado para simbolizar la «y» conjuntiva: hay que seguir prestando atención al que habla.", "components": [], "jp": true, "words": [
+          { "hanzi": "而且", "pinyin": "érqiě", "meaning": "y además", "gloss": "hasta + por el momento" },
+          { "hanzi": "而已", "pinyin": "éryǐ", "meaning": "y nada más", "gloss": "hasta + ya" }
+        ] },
+        { "hanzi": "耐", "pinyin": "nài", "meaning": "resistir, aguantar", "etymology": "Una mano 寸 mesando la barba 而.", "components": [{ "char": "而", "gloss": "barba" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "耐久", "pinyin": "nàijiǔ", "meaning": "duradero", "gloss": "resistente + largo tiempo" },
+          { "hanzi": "耐心", "pinyin": "nàixīn", "meaning": "paciencia", "gloss": "resistente + corazón" }
+        ] },
+        { "hanzi": "端", "pinyin": "duān", "meaning": "extremo, punta", "etymology": "Donde empieza o acaba una planta que se desarrolla sobre 山 y bajo 而 el suelo.", "components": [{ "char": "山", "gloss": "sobre el suelo" }, { "char": "而", "gloss": "bajo el suelo" }], "jp": true, "words": [
+          { "hanzi": "极端", "pinyin": "jíduān", "meaning": "extremo", "gloss": "extremo + extremo" },
+          { "hanzi": "端详", "pinyin": "duānxiáng", "meaning": "mirar atentamente", "gloss": "extremo + detalles" }
+        ] },
+        { "hanzi": "豆", "pinyin": "dòu", "meaning": "vasija; legumbre", "etymology": "Con vasija se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "豆子", "pinyin": "dòuzi", "meaning": "judía, alubia", "gloss": "legumbre + sufijo" }
+        ] },
+        { "hanzi": "登", "pinyin": "dēng", "meaning": "ascender", "etymology": "Los pies (parte de arriba) más la vasija 豆 representan la ascensión de una ofrenda al altar.", "components": [{ "char": "豆", "gloss": "vasija (ofrenda)" }], "jp": true, "words": [
+          { "hanzi": "登记", "pinyin": "dēngjì", "meaning": "registrarse, inscribirse", "gloss": "ascender + recordar" },
+          { "hanzi": "登陆", "pinyin": "dēnglù", "meaning": "desembarcar, tomar tierra", "gloss": "ascender + tierra" }
+        ] },
+        { "hanzi": "凳", "pinyin": "dèng", "meaning": "taburete", "etymology": "Compuesto del pictograma de un taburete 几 con el sentido añadido de ascender 登.", "components": [{ "char": "登", "gloss": "ascender" }, { "char": "几", "gloss": "taburete" }], "jp": false, "words": [] },
+        { "hanzi": "鼓", "pinyin": "gǔ", "meaning": "tambor", "etymology": "A la derecha el tambor con patas 豆 y un adorno arriba 士; a la izquierda la mano 又 que lo bate.", "components": [{ "char": "豆", "gloss": "tambor con patas" }, { "char": "又", "gloss": "mano que bate" }], "jp": false, "words": [
+          { "hanzi": "鼓动", "pinyin": "gǔdòng", "meaning": "agitar, estimular", "gloss": "tambor + moverse" },
+          { "hanzi": "鼓励", "pinyin": "gǔlì", "meaning": "animar", "gloss": "tambor + animar" }
+        ] },
+        { "hanzi": "喜", "pinyin": "xǐ", "meaning": "alegría", "etymology": "El ritmo del tambor 鼓 y los cantos de la boca 口.", "components": [{ "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "喜欢", "pinyin": "xǐhuān", "meaning": "gustar", "gloss": "alegría + alegre" },
+          { "hanzi": "喜悦", "pinyin": "xǐyuè", "meaning": "alegre, gozoso", "gloss": "alegría + alegría" }
+        ] },
+        { "hanzi": "嘉", "pinyin": "jiā", "meaning": "excelente, alabar", "etymology": "Añadir 加 alegría 喜.", "components": [{ "char": "喜", "gloss": "alegría" }], "jp": false, "words": [
+          { "hanzi": "嘉奖", "pinyin": "jiājiǎng", "meaning": "alabanza, premio", "gloss": "alabar + premiar" },
+          { "hanzi": "嘉宾", "pinyin": "jiābīn", "meaning": "invitado de honor", "gloss": "excelente + huésped" }
+        ] },
+        { "hanzi": "厨", "pinyin": "chú", "meaning": "cocina", "etymology": "Lugar de la casa 厂 donde la mano 寸 cuida el puchero 豆.", "components": [{ "char": "厂", "gloss": "casa" }, { "char": "豆", "gloss": "puchero" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "厨房", "pinyin": "chúfáng", "meaning": "cocina", "gloss": "cocina + cuarto" },
+          { "hanzi": "厨师", "pinyin": "chúshī", "meaning": "cocinero", "gloss": "cocina + maestro" }
+        ] },
+        { "hanzi": "出", "pinyin": "chū", "meaning": "salir", "etymology": "Con salir se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "出去", "pinyin": "chūqù", "meaning": "salir", "gloss": "salir + irse" },
+          { "hanzi": "出口", "pinyin": "chūkǒu", "meaning": "salida; exportar", "gloss": "salir + puerta" }
+        ] },
+        { "hanzi": "屈", "pinyin": "qū", "meaning": "curvar, someterse", "etymology": "Hacer que sobresalga 出 la parte baja 尸 del cuerpo.", "components": [{ "char": "尸", "gloss": "cuerpo" }, { "char": "出", "gloss": "sobresalir" }], "jp": true, "words": [
+          { "hanzi": "屈服", "pinyin": "qūfú", "meaning": "someterse, rendirse", "gloss": "someterse + servir" },
+          { "hanzi": "屈辱", "pinyin": "qūrǔ", "meaning": "humillación", "gloss": "someterse + humillación" }
+        ] },
+        { "hanzi": "窟", "pinyin": "kū", "meaning": "cueva, guarida, nido", "etymology": "Cueva 穴 en la que hay que estar doblado 屈.", "components": [{ "char": "穴", "gloss": "cueva" }, { "char": "屈", "gloss": "doblado" }], "jp": false, "words": [
+          { "hanzi": "石窟", "pinyin": "shíkū", "meaning": "gruta", "gloss": "piedra + cueva" },
+          { "hanzi": "窟窿", "pinyin": "kūlong", "meaning": "agujero", "gloss": "cueva + agujero" }
+        ] },
+        { "hanzi": "黜", "pinyin": "chù", "meaning": "destituir, deponer", "etymology": "Hacer que alguien salga 出 a la negra oscuridad 黑.", "components": [{ "char": "黑", "gloss": "oscuridad" }, { "char": "出", "gloss": "salir" }], "jp": true, "words": [
+          { "hanzi": "罢黜", "pinyin": "bàchù", "meaning": "destituir", "gloss": "cesar + destituir" }
+        ] },
+        { "hanzi": "屯", "pinyin": "tún", "meaning": "almacenar, acumular", "etymology": "Con almacenar se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "屯兵", "pinyin": "túnbīng", "meaning": "estacionar tropas", "gloss": "almacenar + soldados" }
+        ] },
+        { "hanzi": "囤", "pinyin": "dùn", "meaning": "granero, silo; almacenar", "etymology": "Almacenar 屯 bien cerrado 囗.", "components": [{ "char": "屯", "gloss": "almacenar" }, { "char": "囗", "gloss": "bien cerrado" }], "jp": true, "words": [
+          { "hanzi": "囤积", "pinyin": "túnjī", "meaning": "acaparar", "gloss": "almacenar + acumular" },
+          { "hanzi": "囤货", "pinyin": "túnhuò", "meaning": "almacenar mercancías", "gloss": "almacenar + mercancía" }
+        ] },
+        { "hanzi": "逆", "pinyin": "nì", "meaning": "ir en contra de, oponerse", "etymology": "A la derecha, una planta 屮 que encuentra oposición 一 para crecer; a la izquierda, movimiento 辶.", "components": [{ "char": "辶", "gloss": "movimiento" }], "jp": true, "words": [
+          { "hanzi": "叛逆", "pinyin": "pànnì", "meaning": "rebelarse", "gloss": "rebelarse + oponerse" },
+          { "hanzi": "逆流", "pinyin": "nìliú", "meaning": "contra corriente", "gloss": "oponerse + corriente" }
+        ] },
+        { "hanzi": "朔", "pinyin": "shuò", "meaning": "luna nueva", "etymology": "Cuando la luna 月 brillante se opone 逆 al sol.", "components": [{ "char": "月", "gloss": "luna" }, { "char": "逆", "gloss": "oponerse" }], "jp": true, "words": [
+          { "hanzi": "朔月", "pinyin": "shuòyuè", "meaning": "luna nueva", "gloss": "luna nueva + luna" }
+        ] },
+        { "hanzi": "厥", "pinyin": "jué", "meaning": "desmayarse, perder la consciencia", "etymology": "A la subida de un precipicio 厂 se opone la falta de aire 欠.", "components": [{ "char": "厂", "gloss": "precipicio" }, { "char": "欠", "gloss": "falta de aire" }], "jp": true, "words": [] },
+        { "hanzi": "缶", "pinyin": "fǒu", "meaning": "vasija de barro", "etymology": "Muy poco usado actualmente; sin embargo, se forman numerosos caracteres con él.", "components": [], "jp": false, "words": [] },
+        { "hanzi": "窑", "pinyin": "yáo", "meaning": "horno, mina, casa-cueva", "etymology": "Cueva 穴 donde la gente tiene sus vasijas 缶.", "components": [{ "char": "穴", "gloss": "cueva" }, { "char": "缶", "gloss": "vasijas" }], "jp": false, "words": [
+          { "hanzi": "窑洞", "pinyin": "yáodòng", "meaning": "cueva habitable", "gloss": "casa-cueva + cueva" },
+          { "hanzi": "瓦窑", "pinyin": "wǎyáo", "meaning": "horno de tejas", "gloss": "tejas + horno" }
+        ] },
+        { "hanzi": "缺", "pinyin": "quē", "meaning": "faltar, vacante, incompleto", "etymology": "Es una vasija 缶 que se ve abierta 夬: resulta fácil que falte su contenido.", "components": [{ "char": "缶", "gloss": "vasija" }], "jp": true, "words": [
+          { "hanzi": "缺德", "pinyin": "quēdé", "meaning": "inmoral", "gloss": "falta + moral" },
+          { "hanzi": "缺乏", "pinyin": "quēfá", "meaning": "faltar, escasear", "gloss": "faltar + faltar" }
+        ] },
+        { "hanzi": "缸", "pinyin": "gāng", "meaning": "tinaja, cántaro", "etymology": "Una vasija 缶 que se fabrica con mucho trabajo 工.", "components": [{ "char": "缶", "gloss": "vasija" }, { "char": "工", "gloss": "trabajo" }], "jp": true, "words": [
+          { "hanzi": "水缸", "pinyin": "shuǐgāng", "meaning": "tinaja, cántaro", "gloss": "agua + cántaro" },
+          { "hanzi": "缸子", "pinyin": "gāngzi", "meaning": "vasija, taza", "gloss": "vasija + sufijo" }
+        ] },
+        { "hanzi": "罐", "pinyin": "guàn", "meaning": "vasija, bote", "etymology": "Vasija utilizada para regar 灌.", "components": [{ "char": "缶", "gloss": "vasija" }], "jp": false, "words": [
+          { "hanzi": "罐头", "pinyin": "guàntóu", "meaning": "lata, bote", "gloss": "vasija + cabeza" }
+        ] },
+        { "hanzi": "击", "pinyin": "jī", "meaning": "golpear, atacar", "etymology": "Por semejanza al toque de tambor que anuncia el ataque.", "components": [], "jp": false, "words": [
+          { "hanzi": "击败", "pinyin": "jībài", "meaning": "vencer, derrotar", "gloss": "atacar + derrotar" },
+          { "hanzi": "打击", "pinyin": "dǎjī", "meaning": "golpear", "gloss": "dar + golpear" }
+        ] },
+        { "hanzi": "酉", "pinyin": "yǒu", "meaning": "ánfora (vino o licor)", "etymology": "Representación de un ánfora; hoy se le añade el radical de agua para dar el sentido de vino.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "酒", "pinyin": "jiǔ", "meaning": "vino, licor, alcohol", "etymology": "Ánfora 酉 con un líquido 水.", "components": [{ "char": "酉", "gloss": "ánfora" }, { "char": "水", "gloss": "líquido" }], "jp": true, "words": [
+          { "hanzi": "酒窖", "pinyin": "jiǔjiào", "meaning": "bodega", "gloss": "vino + bodega" },
+          { "hanzi": "啤酒", "pinyin": "píjiǔ", "meaning": "cerveza", "gloss": "humilde + vino" }
+        ] },
+        { "hanzi": "酋", "pinyin": "qiú", "meaning": "cabecilla, jefe", "etymology": "Son dos manos 廾 (parte superior) que toman una vasija 酉 de vino.", "components": [{ "char": "酉", "gloss": "vasija de vino" }], "jp": true, "words": [
+          { "hanzi": "酋长", "pinyin": "qiúzhǎng", "meaning": "jefe de tribu, cacique", "gloss": "jefe + grande" }
+        ] },
+        { "hanzi": "尊", "pinyin": "zūn", "meaning": "respeto, señor", "etymology": "Una mano 寸 bajo el jefe 酋: respetarlo, ensalzarlo.", "components": [{ "char": "酋", "gloss": "jefe" }, { "char": "寸", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "尊敬", "pinyin": "zūnjìng", "meaning": "respetar, acatar", "gloss": "respetar + respetar" },
+          { "hanzi": "自尊", "pinyin": "zìzūn", "meaning": "autorrespeto", "gloss": "uno mismo + respetar" }
+        ] },
+        { "hanzi": "奠", "pinyin": "diàn", "meaning": "establecer, fundar", "etymology": "Se considera gran 大 jefe 酋 al fundador de una ciudad o estado.", "components": [{ "char": "大", "gloss": "gran" }, { "char": "酋", "gloss": "jefe" }], "jp": true, "words": [
+          { "hanzi": "奠定", "pinyin": "diàndìng", "meaning": "establecer, asentar", "gloss": "establecer + seguro" },
+          { "hanzi": "奠基", "pinyin": "diànjī", "meaning": "poner las bases", "gloss": "establecer + base" }
+        ] },
+        { "hanzi": "配", "pinyin": "pèi", "meaning": "distribuir, emparejar", "etymology": "Una persona agachada 己 junto al ánfora de vino 酉 evoca la idea de servirlo, distribuirlo.", "components": [{ "char": "酉", "gloss": "ánfora de vino" }, { "char": "己", "gloss": "persona agachada" }], "jp": false, "words": [
+          { "hanzi": "分配", "pinyin": "fēnpèi", "meaning": "distribuir", "gloss": "dividir + distribuir" },
+          { "hanzi": "配备", "pinyin": "pèibèi", "meaning": "proveer, equipar", "gloss": "distribuir + preparar" }
+        ] },
+        { "hanzi": "南", "pinyin": "nán", "meaning": "sur; vasija ceremonial", "etymology": "Mitad 半 del mundo donde la vegetación que contiene 冂 la tierra 土 es más abundante.", "components": [{ "char": "土", "gloss": "tierra" }], "jp": true, "words": [] },
+        { "hanzi": "献", "pinyin": "xiàn", "meaning": "ofrecer, presentar", "etymology": "Carne de perro 犬 que se ofrece en una vasija 南 a los ancestros.", "components": [{ "char": "南", "gloss": "vasija" }, { "char": "犬", "gloss": "perro" }], "jp": true, "words": [
+          { "hanzi": "献礼", "pinyin": "xiànlǐ", "meaning": "obsequiar", "gloss": "ofrecer + regalo" },
+          { "hanzi": "献身", "pinyin": "xiànshēn", "meaning": "entregarse, consagrarse", "gloss": "ofrecer + cuerpo" }
+        ] },
+        { "hanzi": "也", "pinyin": "yě", "meaning": "también", "etymology": "Pictograma de un útero; da idea de aumentar los miembros de la familia, y el sentido de también.", "components": [], "jp": true, "words": [
+          { "hanzi": "也许", "pinyin": "yěxǔ", "meaning": "tal vez, quizá", "gloss": "también + prometer" }
+        ] },
+        { "hanzi": "瓦", "pinyin": "wǎ", "meaning": "objetos de barro cocido; teja", "etymology": "Con objetos de barro cocido se forman palabras.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "瓷", "pinyin": "cí", "meaning": "porcelana", "etymology": "Objetos de barro 瓦 que se fabrican con un orden 次 muy preciso.", "components": [{ "char": "瓦", "gloss": "barro" }, { "char": "次", "gloss": "orden" }], "jp": true, "words": [
+          { "hanzi": "瓷器", "pinyin": "cíqì", "meaning": "objeto de porcelana", "gloss": "porcelana + objeto" },
+          { "hanzi": "瓷砖", "pinyin": "cízhuān", "meaning": "baldosa", "gloss": "porcelana + ladrillo" }
+        ] },
+        { "hanzi": "瓶", "pinyin": "píng", "meaning": "botella, frasco", "etymology": "Objeto de barro 瓦 que une 并 a las personas.", "components": [{ "char": "瓦", "gloss": "barro" }, { "char": "并", "gloss": "unir" }], "jp": true, "words": [
+          { "hanzi": "瓶子", "pinyin": "píngzi", "meaning": "botella", "gloss": "botella + sufijo" },
+          { "hanzi": "花瓶", "pinyin": "huāpíng", "meaning": "florero", "gloss": "flores + frasco" }
+        ] },
+        { "hanzi": "瓮", "pinyin": "wèng", "meaning": "cántaro, tinaja", "etymology": "Objeto de barro 瓦 de uso público 公. Poco usado.", "components": [{ "char": "公", "gloss": "público" }, { "char": "瓦", "gloss": "barro" }], "jp": true, "words": [
+          { "hanzi": "水瓮", "pinyin": "shuǐwèng", "meaning": "jarra de agua", "gloss": "agua + tinaja" }
+        ] },
+        { "hanzi": "鬲", "pinyin": "gé", "meaning": "vasija ceremonial de tres pies", "etymology": "Vasija ceremonial con los tres pies separados.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "鼎", "pinyin": "dǐng", "meaning": "vasija antigua para guisar; trípode", "etymology": "Pictograma de una vasija antigua usada para guisar.", "components": [], "jp": true, "words": [] }
+      ]
     }
   ]
 }
