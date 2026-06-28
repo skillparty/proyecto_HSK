@@ -1084,6 +1084,169 @@
           { "hanzi": "熟悉", "pinyin": "shúxī", "meaning": "conocer bien", "gloss": "experto + conocer" }
         ] }
       ]
+    },
+    {
+      "id": "B-8",
+      "theme": "Del campo",
+      "icon": "田",
+      "chars": [
+        { "hanzi": "田", "pinyin": "tián", "meaning": "campo", "etymology": "De campo se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "田地", "pinyin": "tiándì", "meaning": "campos", "gloss": "campo + tierra" },
+          { "hanzi": "心田", "pinyin": "xīntián", "meaning": "intención", "gloss": "corazón + campo" }
+        ] },
+        { "hanzi": "亩", "pinyin": "mǔ", "meaning": "mu (unidad de superficie, 1/15 ha)", "etymology": "Es el campo 田 limitado 亠 y medido.", "components": [{ "char": "亠", "gloss": "límite" }, { "char": "田", "gloss": "campo" }], "jp": false, "words": [] },
+        { "hanzi": "男", "pinyin": "nán", "meaning": "hombre (masculino)", "etymology": "La persona encargada de aplicar su fuerza 力 al cultivo de los campos 田.", "components": [{ "char": "田", "gloss": "campo" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "男人", "pinyin": "nánrén", "meaning": "hombre", "gloss": "hombre + persona" },
+          { "hanzi": "男性", "pinyin": "nánxìng", "meaning": "sexo masculino", "gloss": "hombre + sexo" }
+        ] },
+        { "hanzi": "界", "pinyin": "jiè", "meaning": "frontera, límite", "etymology": "Marca la separación entre 介 los campos 田.", "components": [{ "char": "田", "gloss": "campos" }, { "char": "介", "gloss": "separación" }], "jp": true, "words": [
+          { "hanzi": "界限", "pinyin": "jièxiàn", "meaning": "línea fronteriza", "gloss": "frontera + línea" },
+          { "hanzi": "分界", "pinyin": "fēnjiè", "meaning": "demarcar", "gloss": "dividir + frontera" }
+        ] },
+        { "hanzi": "奋", "pinyin": "fèn", "meaning": "levantarse, esforzarse", "etymology": "Un hombre 大 trabaja sobre el campo 田. En los caracteres antiguos había un pájaro que levanta el vuelo ante la presencia humana.", "components": [{ "char": "大", "gloss": "hombre" }, { "char": "田", "gloss": "campo" }], "jp": false, "words": [
+          { "hanzi": "奋斗", "pinyin": "fèndòu", "meaning": "luchar, combatir", "gloss": "esforzarse + lucha" },
+          { "hanzi": "勤奋", "pinyin": "qínfèn", "meaning": "diligente", "gloss": "diligente + esforzarse" }
+        ] },
+        { "hanzi": "画", "pinyin": "huà", "meaning": "dibujar, pintar", "etymology": "Una pintura 田 en su marco 凵.", "components": [{ "char": "田", "gloss": "pintura" }, { "char": "凵", "gloss": "marco" }], "jp": false, "words": [
+          { "hanzi": "画家", "pinyin": "huàjiā", "meaning": "pintor", "gloss": "pintura + especialista" },
+          { "hanzi": "绘画", "pinyin": "huìhuà", "meaning": "pintar", "gloss": "pintar + pintar" }
+        ] },
+        { "hanzi": "黄", "pinyin": "huáng", "meaning": "amarillo", "etymology": "El color 光 de los campos 田 de loess: el campo colocado en medio de luz, color.", "components": [{ "char": "田", "gloss": "campos" }], "jp": true, "words": [
+          { "hanzi": "黄金", "pinyin": "huángjīn", "meaning": "oro", "gloss": "amarillo + metal" },
+          { "hanzi": "黄色", "pinyin": "huángsè", "meaning": "amarillo; obsceno", "gloss": "amarillo + color" }
+        ] },
+        { "hanzi": "畀", "pinyin": "bì", "meaning": "subir, elevar; dar", "etymology": "Un objeto 田 sobre un pequeño pedestal 丌.", "components": [{ "char": "田", "gloss": "objeto" }, { "char": "丌", "gloss": "pedestal" }], "jp": false, "words": [] },
+        { "hanzi": "备", "pinyin": "bèi", "meaning": "preparar", "etymology": "Los pies 夂 del campesino sobre la tierra 田, preparando el campo para el cultivo.", "components": [{ "char": "夂", "gloss": "pies" }, { "char": "田", "gloss": "tierra" }], "jp": false, "words": [
+          { "hanzi": "准备", "pinyin": "zhǔnbèi", "meaning": "preparado", "gloss": "preparado + preparado" },
+          { "hanzi": "备用", "pinyin": "bèiyòng", "meaning": "de reserva, de repuesto", "gloss": "preparado + usar" }
+        ] },
+        { "hanzi": "留", "pinyin": "liú", "meaning": "guardar, permanecer, quedarse", "etymology": "Simplificado. Arriba son dos hojas de una puerta entreabierta 卯. El que se queda en casa ve el campo 田 desde una puerta entreabierta.", "components": [{ "char": "卯", "gloss": "puerta entreabierta" }, { "char": "田", "gloss": "campo" }], "jp": true, "words": [
+          { "hanzi": "留言", "pinyin": "liúyán", "meaning": "dejar un mensaje", "gloss": "dejar + palabras" },
+          { "hanzi": "留神", "pinyin": "liúshén", "meaning": "poner atención", "gloss": "dejar + espíritu" }
+        ] },
+        { "hanzi": "里", "pinyin": "lǐ", "meaning": "dentro, interior; li (medida)", "etymology": "De dentro, interior, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "心里", "pinyin": "xīnlǐ", "meaning": "en la mente", "gloss": "corazón + interior" },
+          { "hanzi": "里面", "pinyin": "lǐmiàn", "meaning": "dentro", "gloss": "interior + cara" }
+        ] },
+        { "hanzi": "童", "pinyin": "tóng", "meaning": "niño", "etymology": "Es el hombre 立 que está dentro 里 del hogar.", "components": [{ "char": "立", "gloss": "hombre" }, { "char": "里", "gloss": "dentro del hogar" }], "jp": true, "words": [
+          { "hanzi": "童年", "pinyin": "tóngnián", "meaning": "infancia", "gloss": "niño + años" },
+          { "hanzi": "童心", "pinyin": "tóngxīn", "meaning": "inocencia", "gloss": "niño + corazón" }
+        ] },
+        { "hanzi": "重", "pinyin": "zhòng", "meaning": "grave, importante, pesado; repetir", "etymology": "Medir mil 千 lis 里 resulta una tarea repetitiva, y su resultado es importante.", "components": [{ "char": "千", "gloss": "mil" }, { "char": "里", "gloss": "lis" }], "jp": true, "words": [
+          { "hanzi": "重大", "pinyin": "zhòngdà", "meaning": "grande, importante", "gloss": "importante + grande" },
+          { "hanzi": "重要", "pinyin": "zhòngyào", "meaning": "importante", "gloss": "importante + importante" }
+        ] },
+        { "hanzi": "垂", "pinyin": "chuí", "meaning": "colgar, pender", "etymology": "Es alguien que lleva dos cargas en los brazos. Origen semejante a 壬.", "components": [], "jp": false, "words": [] },
+        { "hanzi": "量", "pinyin": "liàng", "meaning": "medida, capacidad", "etymology": "Se construye con una boca 曰 para contar, una vara 一 para medir, lo que hay en el interior 里 de algo.", "components": [{ "char": "曰", "gloss": "contar" }, { "char": "一", "gloss": "vara de medir" }, { "char": "里", "gloss": "interior" }], "jp": true, "words": [
+          { "hanzi": "计量", "pinyin": "jìliàng", "meaning": "medir, calcular", "gloss": "calcular + medida" },
+          { "hanzi": "数量", "pinyin": "shùliàng", "meaning": "cantidad", "gloss": "número + medida" }
+        ] },
+        { "hanzi": "野", "pinyin": "yě", "meaning": "salvaje, silvestre; campo", "etymology": "Habla de la frontera, lugar en el interior 里 donde se reciben y dan 予 regalos para apaciguar a los nómadas.", "components": [{ "char": "里", "gloss": "interior/frontera" }, { "char": "予", "gloss": "dar regalos" }], "jp": true, "words": [
+          { "hanzi": "野兽", "pinyin": "yěshòu", "meaning": "fiera, animal salvaje", "gloss": "salvaje + animal" },
+          { "hanzi": "野心", "pinyin": "yěxīn", "meaning": "ambicioso", "gloss": "salvaje + corazón" }
+        ] },
+        { "hanzi": "由", "pinyin": "yóu", "meaning": "causa, razón, desde", "etymology": "Con causa, razón, desde, se construyen palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "由来", "pinyin": "yóulái", "meaning": "origen, raíz", "gloss": "causa + venir" },
+          { "hanzi": "自由", "pinyin": "zìyóu", "meaning": "libertad", "gloss": "uno mismo + razón" }
+        ] },
+        { "hanzi": "庙", "pinyin": "miào", "meaning": "templo", "etymology": "Lugar bajo techo 广 donde se veneraban los antepasados que dieron origen 由 a la familia.", "components": [{ "char": "广", "gloss": "techo" }, { "char": "由", "gloss": "origen" }], "jp": false, "words": [
+          { "hanzi": "寺庙", "pinyin": "sìmiào", "meaning": "templo", "gloss": "templo + templo" }
+        ] },
+        { "hanzi": "宙", "pinyin": "zhòu", "meaning": "universo, cosmos", "etymology": "Es el techo 宀 que cubre todo lo que se origina 由 en este mundo.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "由", "gloss": "origen" }], "jp": true, "words": [
+          { "hanzi": "宇宙", "pinyin": "yǔzhòu", "meaning": "universo, cosmos", "gloss": "universo + universo" }
+        ] },
+        { "hanzi": "电", "pinyin": "diàn", "meaning": "electricidad", "etymology": "Está presente en el nombre de numerosos aparatos eléctricos.", "components": [], "jp": false, "words": [
+          { "hanzi": "电话", "pinyin": "diànhuà", "meaning": "teléfono", "gloss": "electricidad + palabra" },
+          { "hanzi": "电视", "pinyin": "diànshì", "meaning": "televisión", "gloss": "electricidad + mirar" }
+        ] },
+        { "hanzi": "甩", "pinyin": "shuǎi", "meaning": "agitarse, menearse, lanzar", "etymology": "Está formado por usar 用 y rayo 电; sus significados derivan de esa idea.", "components": [{ "char": "用", "gloss": "usar" }, { "char": "电", "gloss": "rayo" }], "jp": false, "words": [
+          { "hanzi": "甩手", "pinyin": "shuǎishǒu", "meaning": "mover los brazos", "gloss": "menear + manos" }
+        ] },
+        { "hanzi": "黾", "pinyin": "mǐn", "meaning": "esforzarse", "etymology": "Es la evolución del pictograma de una rana. Como camina con esfuerzo, acabó dando esta idea.", "components": [], "jp": false, "words": [] },
+        { "hanzi": "奄", "pinyin": "yǎn", "meaning": "cubrir; de repente", "etymology": "Es algo grande 大 que sucede con la rapidez del rayo 电.", "components": [{ "char": "大", "gloss": "grande" }, { "char": "电", "gloss": "rayo" }], "jp": true, "words": [
+          { "hanzi": "奄忽", "pinyin": "yǎnhū", "meaning": "de repente", "gloss": "de repente + apresuradamente" }
+        ] },
+        { "hanzi": "庵", "pinyin": "ān", "meaning": "choza, convento", "etymology": "Construcción 广 bajo la que uno se halla a cubierto 奄.", "components": [{ "char": "广", "gloss": "construcción" }, { "char": "奄", "gloss": "cubierto" }], "jp": true, "words": [
+          { "hanzi": "草庵", "pinyin": "cǎo'ān", "meaning": "choza", "gloss": "paja + choza" },
+          { "hanzi": "尼庵", "pinyin": "ní'ān", "meaning": "convento budista", "gloss": "monja + convento" }
+        ] },
+        { "hanzi": "鱼", "pinyin": "yú", "meaning": "pez, pescado", "etymology": "Forma parte de muchos caracteres relativos a los peces.", "components": [], "jp": true, "words": [
+          { "hanzi": "钓鱼", "pinyin": "diàoyú", "meaning": "ir de pesca", "gloss": "pescar + peces" }
+        ] },
+        { "hanzi": "鲠", "pinyin": "gěng", "meaning": "espina (de pez)", "etymology": "Lo duro 更 del pez 鱼. Forma literaria; popularmente se usa 鱼刺.", "components": [{ "char": "鱼", "gloss": "pez" }, { "char": "更", "gloss": "lo duro" }], "jp": false, "words": [] },
+        { "hanzi": "鳃", "pinyin": "sāi", "meaning": "agallas", "etymology": "Situadas en las mejillas 思 de los peces 鱼.", "components": [{ "char": "鱼", "gloss": "pez" }, { "char": "思", "gloss": "mejillas" }], "jp": true, "words": [] },
+        { "hanzi": "鳔", "pinyin": "biào", "meaning": "vejiga natatoria", "etymology": "Lo que permite a un pez 鱼 flotar 漂.", "components": [{ "char": "鱼", "gloss": "pez" }], "jp": true, "words": [
+          { "hanzi": "鱼鳔", "pinyin": "yúbiào", "meaning": "vejiga natatoria", "gloss": "pez + vejiga natatoria" }
+        ] },
+        { "hanzi": "鲸", "pinyin": "jīng", "meaning": "ballena", "etymology": "Pez 鱼 capital 京: por su tamaño.", "components": [{ "char": "鱼", "gloss": "pez" }, { "char": "京", "gloss": "capital (grande)" }], "jp": true, "words": [
+          { "hanzi": "鲸鱼", "pinyin": "jīngyú", "meaning": "ballena", "gloss": "ballena + pez" }
+        ] },
+        { "hanzi": "鲨", "pinyin": "shā", "meaning": "tiburón", "etymology": "Gran pez 鱼 que a veces ataca en la arena 沙.", "components": [{ "char": "沙", "gloss": "arena" }, { "char": "鱼", "gloss": "pez" }], "jp": true, "words": [
+          { "hanzi": "鲨鱼", "pinyin": "shāyú", "meaning": "tiburón", "gloss": "tiburón + pez" }
+        ] },
+        { "hanzi": "鳊", "pinyin": "biān", "meaning": "brema", "etymology": "El pez 鱼 plano 扁.", "components": [{ "char": "鱼", "gloss": "pez" }, { "char": "扁", "gloss": "plano" }], "jp": false, "words": [
+          { "hanzi": "鳊鱼", "pinyin": "biānyú", "meaning": "brema", "gloss": "brema + pez" }
+        ] },
+        { "hanzi": "鳗", "pinyin": "mán", "meaning": "anguila", "etymology": "El pez que prolonga 曼 su cuerpo.", "components": [{ "char": "鱼", "gloss": "pez" }], "jp": true, "words": [
+          { "hanzi": "鳗鱼", "pinyin": "mányú", "meaning": "anguila", "gloss": "anguila + pez" }
+        ] },
+        { "hanzi": "鲤", "pinyin": "lǐ", "meaning": "carpa", "etymology": "El pez 鱼 del interior 里, por criarse en los estanques de las casas.", "components": [{ "char": "鱼", "gloss": "pez" }, { "char": "里", "gloss": "interior" }], "jp": true, "words": [
+          { "hanzi": "鲤鱼", "pinyin": "lǐyú", "meaning": "carpa", "gloss": "carpa + pez" }
+        ] },
+        { "hanzi": "鲁", "pinyin": "lǔ", "meaning": "tonto, rudo", "etymology": "El pez 鱼 que con su boca 口 muerde el anzuelo.", "components": [{ "char": "鱼", "gloss": "pez" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "鲁莽", "pinyin": "lǔmǎng", "meaning": "imprudente, temerario", "gloss": "tonto + imprudente" },
+          { "hanzi": "粗鲁", "pinyin": "cūlǔ", "meaning": "rudo, grosero", "gloss": "grueso + tonto" }
+        ] },
+        { "hanzi": "富", "pinyin": "fù", "meaning": "rico, abundante", "etymology": "Bajo un techo 宀 se apilan 一 los productos 口 de los campos 田.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "田", "gloss": "campos" }], "jp": true, "words": [
+          { "hanzi": "富有", "pinyin": "fùyǒu", "meaning": "rico", "gloss": "rico + tener" },
+          { "hanzi": "富农", "pinyin": "fùnóng", "meaning": "burguesía rural", "gloss": "rico + campesino" }
+        ] },
+        { "hanzi": "胃", "pinyin": "wèi", "meaning": "estómago", "etymology": "Aunque puede pensarse en la carne 月 criada en el campo 田, evoluciona de la representación de un estómago.", "components": [{ "char": "田", "gloss": "estómago" }, { "char": "月", "gloss": "carne" }], "jp": true, "words": [
+          { "hanzi": "胃病", "pinyin": "wèibìng", "meaning": "gastritis", "gloss": "estómago + enfermedad" },
+          { "hanzi": "胃口", "pinyin": "wèikǒu", "meaning": "apetito", "gloss": "estómago + boca" }
+        ] },
+        { "hanzi": "鬼", "pinyin": "guǐ", "meaning": "aparición, demonio; astuto", "etymology": "Es una persona 儿 con una máscara 田 y garras 厶.", "components": [{ "char": "田", "gloss": "máscara" }, { "char": "儿", "gloss": "persona" }, { "char": "厶", "gloss": "garras" }], "jp": true, "words": [
+          { "hanzi": "鬼话", "pinyin": "guǐhuà", "meaning": "mentira, diablura", "gloss": "demonio + palabra" },
+          { "hanzi": "恶鬼", "pinyin": "èguǐ", "meaning": "diablo", "gloss": "malo + diablo" }
+        ] },
+        { "hanzi": "魂", "pinyin": "hún", "meaning": "alma, espíritu", "etymology": "Aparición 鬼 como una nube 云.", "components": [{ "char": "云", "gloss": "nube" }, { "char": "鬼", "gloss": "aparición" }], "jp": true, "words": [
+          { "hanzi": "灵魂", "pinyin": "línghún", "meaning": "alma, espíritu", "gloss": "alma + alma" },
+          { "hanzi": "亡魂", "pinyin": "wánghún", "meaning": "fantasma, espectro", "gloss": "muerto + alma" }
+        ] },
+        { "hanzi": "畏", "pinyin": "wèi", "meaning": "cauteloso, miedo, respeto", "etymology": "Antiguamente era también la representación de un demonio, con su cabeza 田 y garras 爪.", "components": [{ "char": "田", "gloss": "cabeza" }], "jp": true, "words": [
+          { "hanzi": "畏惧", "pinyin": "wèijù", "meaning": "temer", "gloss": "miedo + temor" },
+          { "hanzi": "畏罪", "pinyin": "wèizuì", "meaning": "miedo al castigo", "gloss": "cauteloso + castigo" }
+        ] },
+        { "hanzi": "思", "pinyin": "sī", "meaning": "pensar", "etymology": "Corazón 心 y cabeza 田, donde radica el pensamiento.", "components": [{ "char": "田", "gloss": "cabeza" }, { "char": "心", "gloss": "corazón" }], "jp": true, "words": [
+          { "hanzi": "思想", "pinyin": "sīxiǎng", "meaning": "pensar, pensamiento", "gloss": "pensar + pensar" },
+          { "hanzi": "意思", "pinyin": "yìsi", "meaning": "sentido, significado", "gloss": "idea + pensar" }
+        ] },
+        { "hanzi": "细", "pinyin": "xì", "meaning": "fino, delgado", "etymology": "Como es el pelo, abundante y fino como la seda 纟, de la cabeza 田.", "components": [{ "char": "纟", "gloss": "seda" }, { "char": "田", "gloss": "cabeza" }], "jp": false, "words": [
+          { "hanzi": "仔细", "pinyin": "zǐxì", "meaning": "cuidadoso", "gloss": "cría + fina" },
+          { "hanzi": "详细", "pinyin": "xiángxì", "meaning": "detallado", "gloss": "detallado + fino" }
+        ] },
+        { "hanzi": "禺", "pinyin": "yú", "meaning": "mono", "etymology": "La parte superior es la cabeza, y la inferior las patas traseras y la cola.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "寓", "pinyin": "yù", "meaning": "residir, vivir; implicar", "etymology": "La casa 宀 del mono 禺, pariente del hombre.", "components": [{ "char": "宀", "gloss": "casa" }, { "char": "禺", "gloss": "mono" }], "jp": true, "words": [
+          { "hanzi": "寓所", "pinyin": "yùsuǒ", "meaning": "domicilio", "gloss": "residir + lugar" },
+          { "hanzi": "寓言", "pinyin": "yùyán", "meaning": "fábula, parábola", "gloss": "implicar + palabras" }
+        ] },
+        { "hanzi": "卑", "pinyin": "bēi", "meaning": "bajo, inferior, humilde", "etymology": "Es un vaso de vino 田 que toma la mano izquierda 十. Inferior porque se usa para beber, en oposición al de los sacrificios 尊.", "components": [{ "char": "田", "gloss": "vaso de vino" }, { "char": "十", "gloss": "mano izquierda" }], "jp": true, "words": [
+          { "hanzi": "卑劣", "pinyin": "bēiliè", "meaning": "despreciable, vil", "gloss": "inferior + inferior" },
+          { "hanzi": "谦卑", "pinyin": "qiānbēi", "meaning": "humilde", "gloss": "humilde + humilde" }
+        ] },
+        { "hanzi": "牌", "pinyin": "pái", "meaning": "tablero, placa, letrero; marca", "etymology": "Una madera 片 de inferior calidad 卑; sólo muestra el nombre de la tienda.", "components": [{ "char": "片", "gloss": "madera" }, { "char": "卑", "gloss": "inferior" }], "jp": true, "words": [
+          { "hanzi": "车牌", "pinyin": "chēpái", "meaning": "matrícula", "gloss": "coche + placa" },
+          { "hanzi": "牌子", "pinyin": "páizi", "meaning": "tablero, placa, marca", "gloss": "placa + sufijo" }
+        ] },
+        { "hanzi": "井", "pinyin": "jǐng", "meaning": "pozo", "etymology": "Deriva del pictograma de un pozo excavado en medio de ocho campos, como era costumbre.", "components": [], "jp": true, "words": [
+          { "hanzi": "油井", "pinyin": "yóujǐng", "meaning": "pozo petrolífero", "gloss": "petróleo + pozo" },
+          { "hanzi": "水井", "pinyin": "shuǐjǐng", "meaning": "pozo", "gloss": "agua + pozo" }
+        ] },
+        { "hanzi": "耕", "pinyin": "gēng", "meaning": "arar, labrar", "etymology": "Arar 耒 pozos 井 ha sustituido definitivamente al pictograma del arado 耒. Al fin y al cabo, arar es abrir surcos.", "components": [{ "char": "耒", "gloss": "arado" }, { "char": "井", "gloss": "pozos" }], "jp": true, "words": [
+          { "hanzi": "耕地", "pinyin": "gēngdì", "meaning": "arar", "gloss": "arar + tierra" },
+          { "hanzi": "耕作", "pinyin": "gēngzuò", "meaning": "labranza", "gloss": "arar + hacer" }
+        ] }
+      ]
     }
   ]
 }
