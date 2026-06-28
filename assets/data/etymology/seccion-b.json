@@ -1786,6 +1786,124 @@
           { "hanzi": "爬山", "pinyin": "páshān", "meaning": "escalar", "gloss": "escalar + montaña" }
         ] }
       ]
+    },
+    {
+      "id": "B-12",
+      "theme": "De los pies",
+      "icon": "止",
+      "chars": [
+        { "hanzi": "止", "pinyin": "zhǐ", "meaning": "parar, cesar", "etymology": "Este concepto simple de pie da lugar a la mayoría de los caracteres relacionados con el pie y sus funciones.", "components": [], "jp": true, "words": [
+          { "hanzi": "停止", "pinyin": "tíngzhǐ", "meaning": "parar", "gloss": "parar + parar" },
+          { "hanzi": "止步", "pinyin": "zhǐbù", "meaning": "detenerse", "gloss": "parar + paso" }
+        ] },
+        { "hanzi": "企", "pinyin": "qǐ", "meaning": "ansiar; intentar", "etymology": "Una persona 人 sobre tres dedos 止, de puntillas, da una idea de ansiedad.", "components": [{ "char": "人", "gloss": "persona" }, { "char": "止", "gloss": "pie" }], "jp": true, "words": [
+          { "hanzi": "企图", "pinyin": "qǐtú", "meaning": "intentar, pretender", "gloss": "ansiar + planear" },
+          { "hanzi": "企业", "pinyin": "qǐyè", "meaning": "empresa", "gloss": "ansiar + profesión" }
+        ] },
+        { "hanzi": "此", "pinyin": "cǐ", "meaning": "éste, aquí", "etymology": "Pies 止 más hombre 匕: el hombre que está aquí.", "components": [{ "char": "止", "gloss": "pie" }, { "char": "匕", "gloss": "hombre" }], "jp": true, "words": [
+          { "hanzi": "如此", "pinyin": "rúcǐ", "meaning": "así", "gloss": "como + este" },
+          { "hanzi": "因此", "pinyin": "yīncǐ", "meaning": "por esta razón", "gloss": "por + esto" }
+        ] },
+        { "hanzi": "些", "pinyin": "xiē", "meaning": "algunos", "etymology": "Este 此 más dos 二: uno más dos son tres, varios, algunos.", "components": [{ "char": "此", "gloss": "este" }, { "char": "二", "gloss": "dos" }], "jp": true, "words": [
+          { "hanzi": "好些", "pinyin": "hǎoxiē", "meaning": "unos cuantos", "gloss": "bien + algunos" },
+          { "hanzi": "这些", "pinyin": "zhèxiē", "meaning": "estos", "gloss": "este + algunos" }
+        ] },
+        { "hanzi": "柴", "pinyin": "chái", "meaning": "leña", "etymology": "Este 此 madera 木: la que se encuentra por cualquier lado.", "components": [{ "char": "此", "gloss": "este" }, { "char": "木", "gloss": "madera" }], "jp": true, "words": [
+          { "hanzi": "火柴", "pinyin": "huǒchái", "meaning": "cerilla", "gloss": "fuego + leña" },
+          { "hanzi": "打柴", "pinyin": "dǎchái", "meaning": "hacer leña", "gloss": "hacer + leña" }
+        ] },
+        { "hanzi": "龇", "pinyin": "zī", "meaning": "mostrar (los dientes)", "etymology": "Estos 此 dientes 齿.", "components": [{ "char": "此", "gloss": "estos" }, { "char": "齿", "gloss": "dientes" }], "jp": false, "words": [] },
+        { "hanzi": "齿", "pinyin": "chǐ", "meaning": "diente, edad, años", "etymology": "Pictograma de un diente. Se ve la parte externa, parecida al pie, y la raíz, que semeja a un hombre encerrado 囚.", "components": [], "jp": false, "words": [
+          { "hanzi": "齿轮", "pinyin": "chǐlún", "meaning": "engranaje, rueda dentada", "gloss": "diente + rueda" },
+          { "hanzi": "牙齿", "pinyin": "yáchǐ", "meaning": "diente", "gloss": "diente + diente" }
+        ] },
+        { "hanzi": "龄", "pinyin": "líng", "meaning": "edad, años", "etymology": "Orden 令 de los dientes 齿 que permite saber la edad.", "components": [{ "char": "齿", "gloss": "dientes" }, { "char": "令", "gloss": "orden" }], "jp": false, "words": [
+          { "hanzi": "工龄", "pinyin": "gōnglíng", "meaning": "años de servicio", "gloss": "trabajo + años" },
+          { "hanzi": "年龄", "pinyin": "niánlíng", "meaning": "edad", "gloss": "años + edad" }
+        ] },
+        { "hanzi": "牙", "pinyin": "yá", "meaning": "diente, muela", "etymology": "Otro pictograma de diente.", "components": [], "jp": true, "words": [
+          { "hanzi": "牙膏", "pinyin": "yágāo", "meaning": "pasta de dientes", "gloss": "dientes + pasta" },
+          { "hanzi": "牙医", "pinyin": "yáyī", "meaning": "dentista", "gloss": "diente + médico" }
+        ] },
+        { "hanzi": "穿", "pinyin": "chuān", "meaning": "perforar, pasar; vestirse", "etymology": "Es un diente 牙 que hace un agujero 穴.", "components": [{ "char": "穴", "gloss": "agujero" }, { "char": "牙", "gloss": "diente" }], "jp": true, "words": [
+          { "hanzi": "穿孔", "pinyin": "chuānkǒng", "meaning": "perforar, hacer un agujero", "gloss": "perforar + agujero" },
+          { "hanzi": "穿戴", "pinyin": "chuāndài", "meaning": "indumentaria", "gloss": "vestirse + llevar" }
+        ] },
+        { "hanzi": "雅", "pinyin": "yǎ", "meaning": "correcto, elegante", "etymology": "Era la imagen del diente de un perro 牙 clavado en un ave 隹, por la elegancia de los perros de caza.", "components": [{ "char": "牙", "gloss": "diente" }, { "char": "隹", "gloss": "ave" }], "jp": false, "words": [
+          { "hanzi": "高雅", "pinyin": "gāoyǎ", "meaning": "elegante", "gloss": "alto + elegante" },
+          { "hanzi": "文雅", "pinyin": "wényǎ", "meaning": "cultivado", "gloss": "culto + refinado" }
+        ] },
+        { "hanzi": "疋", "pinyin": "pǐ", "meaning": "enrollar", "etymology": "Tiene dos derivados de uso frecuente.", "components": [], "jp": false, "words": [] },
+        { "hanzi": "蛋", "pinyin": "dàn", "meaning": "huevo", "etymology": "Donde se enrolla 疋 el insecto 虫.", "components": [{ "char": "疋", "gloss": "enrollar" }, { "char": "虫", "gloss": "insecto" }], "jp": true, "words": [
+          { "hanzi": "蛋糕", "pinyin": "dàngāo", "meaning": "pastel, torta", "gloss": "huevo + pastel" },
+          { "hanzi": "鸡蛋", "pinyin": "jīdàn", "meaning": "huevo", "gloss": "gallina + huevo" }
+        ] },
+        { "hanzi": "楚", "pinyin": "chǔ", "meaning": "claro, limpio", "etymology": "Como debe estar el bosque 林 para no enredarse 疋 con las ramas esparcidas por el suelo.", "components": [{ "char": "林", "gloss": "bosque" }, { "char": "疋", "gloss": "enredarse" }], "jp": true, "words": [
+          { "hanzi": "清楚", "pinyin": "qīngchu", "meaning": "claro, limpio", "gloss": "claro + claro" }
+        ] },
+        { "hanzi": "走", "pinyin": "zǒu", "meaning": "caminar, andar", "etymology": "De caminar se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "走路", "pinyin": "zǒulù", "meaning": "caminar, andar", "gloss": "andar + calle" },
+          { "hanzi": "行走", "pinyin": "xíngzǒu", "meaning": "caminar", "gloss": "andar + caminar" }
+        ] },
+        { "hanzi": "起", "pinyin": "qǐ", "meaning": "levantarse, subir", "etymology": "Un hombre que se encorva 己 para empezar a caminar 走.", "components": [{ "char": "走", "gloss": "caminar" }, { "char": "己", "gloss": "encorvarse" }], "jp": true, "words": [
+          { "hanzi": "起来", "pinyin": "qǐlái", "meaning": "ponerse en pie, alzarse", "gloss": "levantarse + venir" },
+          { "hanzi": "起床", "pinyin": "qǐchuáng", "meaning": "levantarse", "gloss": "levantarse + cama" }
+        ] },
+        { "hanzi": "越", "pinyin": "yuè", "meaning": "atravesar, pasar", "etymology": "Andar 走 con una lanza 戊.", "components": [{ "char": "走", "gloss": "andar" }, { "char": "戊", "gloss": "lanza" }], "jp": true, "words": [
+          { "hanzi": "越过", "pinyin": "yuèguò", "meaning": "pasar, cruzar", "gloss": "pasar + pasar" },
+          { "hanzi": "越发", "pinyin": "yuèfā", "meaning": "cada vez más", "gloss": "atravesar + desplegar" }
+        ] },
+        { "hanzi": "超", "pinyin": "chāo", "meaning": "exceder, sobrepasar; súper", "etymology": "Caminar 走 cuando te llaman 口 con un cuchillo 刀: puedes excederte en velocidad.", "components": [{ "char": "走", "gloss": "caminar" }, { "char": "召", "gloss": "llamada" }], "jp": true, "words": [
+          { "hanzi": "超市", "pinyin": "chāoshì", "meaning": "supermercado", "gloss": "súper + mercado" },
+          { "hanzi": "超车", "pinyin": "chāochē", "meaning": "adelantar", "gloss": "sobrepasar + coche" }
+        ] },
+        { "hanzi": "赳", "pinyin": "jiū", "meaning": "valiente, gallardo", "etymology": "Camina 走 con un gancho o arma de esa forma.", "components": [{ "char": "走", "gloss": "caminar" }], "jp": true, "words": [
+          { "hanzi": "赳赳", "pinyin": "jiūjiū", "meaning": "valiente, gallardo", "gloss": "valiente + valiente" }
+        ] },
+        { "hanzi": "赶", "pinyin": "gǎn", "meaning": "expulsar; alcanzar; apresurar", "etymology": "Andar 走 con un palo 干.", "components": [{ "char": "走", "gloss": "andar" }, { "char": "干", "gloss": "palo" }], "jp": false, "words": [
+          { "hanzi": "赶走", "pinyin": "gǎnzǒu", "meaning": "expulsar, espantar", "gloss": "expulsar + andar" },
+          { "hanzi": "赶快", "pinyin": "gǎnkuài", "meaning": "deprisa, enseguida", "gloss": "apresurar + rápido" }
+        ] },
+        { "hanzi": "趁", "pinyin": "chèn", "meaning": "aprovecharse", "etymology": "Andar 走 a unirse 参 a algo: se espera un provecho.", "components": [{ "char": "走", "gloss": "andar" }], "jp": true, "words": [
+          { "hanzi": "趁机", "pinyin": "chènjī", "meaning": "aprovechar la ocasión", "gloss": "aprovechar + ocasión" },
+          { "hanzi": "趁早", "pinyin": "chènzǎo", "meaning": "cuanto antes", "gloss": "aprovechar + temprano" }
+        ] },
+        { "hanzi": "趣", "pinyin": "qù", "meaning": "interés, interesante", "etymology": "Caminar 走 a coger 取 algo debe parecernos interesante.", "components": [{ "char": "走", "gloss": "caminar" }, { "char": "取", "gloss": "coger" }], "jp": true, "words": [
+          { "hanzi": "趣味", "pinyin": "qùwèi", "meaning": "interés, gusto", "gloss": "interés + gusto" },
+          { "hanzi": "兴趣", "pinyin": "xìngqù", "meaning": "interés", "gloss": "estimular + interés" }
+        ] },
+        { "hanzi": "趋", "pinyin": "qū", "meaning": "darse prisa; tendencia", "etymology": "Caminar 走 con prisa.", "components": [{ "char": "走", "gloss": "caminar" }], "jp": false, "words": [
+          { "hanzi": "日趋", "pinyin": "rìqū", "meaning": "gradualmente, día a día", "gloss": "día + tendencia" },
+          { "hanzi": "趋势", "pinyin": "qūshì", "meaning": "tendencia", "gloss": "tendencia + tendencia" }
+        ] },
+        { "hanzi": "正", "pinyin": "zhèng", "meaning": "recto, derecho, honesto", "etymology": "De recto, derecho, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "改正", "pinyin": "gǎizhèng", "meaning": "corregirse, enmendarse", "gloss": "cambiar + recto" },
+          { "hanzi": "正经", "pinyin": "zhèngjing", "meaning": "decente, honesto", "gloss": "honesto + pasar por" }
+        ] },
+        { "hanzi": "整", "pinyin": "zhěng", "meaning": "completo, entero; ordenar", "etymology": "Es una mano 攵 que ata 束 un asunto para hacer que funcione correctamente 正.", "components": [{ "char": "束", "gloss": "atar" }, { "char": "攵", "gloss": "mano" }, { "char": "正", "gloss": "correctamente" }], "jp": true, "words": [
+          { "hanzi": "整齐", "pinyin": "zhěngqí", "meaning": "uniforme", "gloss": "regular + uniforme" },
+          { "hanzi": "整理", "pinyin": "zhěnglǐ", "meaning": "ordenar, arreglar", "gloss": "ordenar + administrar" }
+        ] },
+        { "hanzi": "歪", "pinyin": "wāi", "meaning": "torcido, ladeado", "etymology": "No 不 derecho 正.", "components": [{ "char": "不", "gloss": "no" }, { "char": "正", "gloss": "derecho" }], "jp": false, "words": [
+          { "hanzi": "歪曲", "pinyin": "wāiqū", "meaning": "desfigurar, deformar", "gloss": "torcido + torcido" },
+          { "hanzi": "歪斜", "pinyin": "wāixié", "meaning": "ladeado, torcido", "gloss": "torcido + inclinado" }
+        ] },
+        { "hanzi": "丐", "pinyin": "gài", "meaning": "pedir; pobre", "etymology": "Encorvado ante la gente honesta 正.", "components": [], "jp": false, "words": [
+          { "hanzi": "乞丐", "pinyin": "qǐgài", "meaning": "mendigo", "gloss": "pedir + pobre" }
+        ] },
+        { "hanzi": "定", "pinyin": "dìng", "meaning": "fijar, decidir", "etymology": "Andar 走 a un lugar cubierto 宀. Denota estar en una posición fija.", "components": [{ "char": "宀", "gloss": "lugar cubierto" }], "jp": false, "words": [
+          { "hanzi": "一定", "pinyin": "yīdìng", "meaning": "seguro, fijo", "gloss": "uno + fijo" },
+          { "hanzi": "决定", "pinyin": "juédìng", "meaning": "decidir, resolver", "gloss": "decidir + decidir" }
+        ] },
+        { "hanzi": "是", "pinyin": "shì", "meaning": "sí; este; correcto", "etymology": "Una boca y un pie definen la palabra y la acción afirmativa «sí». El sentido de correcto se expresa como caminar 走 por donde le ordenan 曰.", "components": [{ "char": "曰", "gloss": "ordenar" }], "jp": true, "words": [
+          { "hanzi": "总是", "pinyin": "zǒngshì", "meaning": "siempre", "gloss": "siempre + es" },
+          { "hanzi": "还是", "pinyin": "háishì", "meaning": "todavía; o", "gloss": "aún + es" }
+        ] },
+        { "hanzi": "旋", "pinyin": "xuán", "meaning": "girar, regresar, círculo", "etymology": "Lo que envuelve 疋 la bandera 旗.", "components": [{ "char": "疋", "gloss": "envolver" }], "jp": true, "words": [
+          { "hanzi": "旋转", "pinyin": "xuánzhuǎn", "meaning": "girar, dar vueltas", "gloss": "girar + volver" },
+          { "hanzi": "回旋", "pinyin": "huíxuán", "meaning": "dar vueltas", "gloss": "volver + girar" }
+        ] }
+      ]
     }
   ]
 }

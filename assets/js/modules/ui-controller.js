@@ -329,7 +329,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/etymology-styles.css?v=2");
             if (!window.EtymologyController) {
-              await this.loadScript("assets/js/modules/etymology-controller.js?v=9");
+              await this.loadScript("assets/js/modules/etymology-controller.js?v=10");
             }
             if (!window.etymologyController) {
               window.etymologyController = new EtymologyController(this.app);
