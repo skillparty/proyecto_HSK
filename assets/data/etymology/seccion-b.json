@@ -1407,6 +1407,187 @@
           { "hanzi": "凸出", "pinyin": "tūchū", "meaning": "convexo, sobresalir", "gloss": "convexo + salir" }
         ] }
       ]
+    },
+    {
+      "id": "B-10",
+      "theme": "De los sentidos",
+      "icon": "目",
+      "chars": [
+        { "hanzi": "目", "pinyin": "mù", "meaning": "ojo; catálogo", "etymology": "Con ojo se componen gran número de caracteres relacionados con acciones o partes del ojo y la visión.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "看", "pinyin": "kàn", "meaning": "mirar, ver", "etymology": "Una mano 手 sobre el ojo 目, como ponemos cuando queremos ver algo lejano.", "components": [{ "char": "手", "gloss": "mano" }, { "char": "目", "gloss": "ojo" }], "jp": true, "words": [
+          { "hanzi": "好看", "pinyin": "hǎokàn", "meaning": "bello, hermoso", "gloss": "bueno + ver" },
+          { "hanzi": "看法", "pinyin": "kànfǎ", "meaning": "opinión", "gloss": "ver + método" }
+        ] },
+        { "hanzi": "冒", "pinyin": "mào", "meaning": "arriesgado; emitir", "etymology": "Una gorra sobre el ojo 目 no nos deja ver: cualquier actividad será arriesgada.", "components": [{ "char": "目", "gloss": "ojo" }], "jp": true, "words": [
+          { "hanzi": "冒险", "pinyin": "màoxiǎn", "meaning": "arriesgarse", "gloss": "arriesgar + peligro" },
+          { "hanzi": "感冒", "pinyin": "gǎnmào", "meaning": "constiparse", "gloss": "sentimiento + emitir" }
+        ] },
+        { "hanzi": "盲", "pinyin": "máng", "meaning": "ciego", "etymology": "Con el ojo 目 muerto 亡.", "components": [{ "char": "亡", "gloss": "muerto" }, { "char": "目", "gloss": "ojo" }], "jp": true, "words": [
+          { "hanzi": "文盲", "pinyin": "wénmáng", "meaning": "analfabeto", "gloss": "cultura + ciego" },
+          { "hanzi": "盲目", "pinyin": "mángmù", "meaning": "ciego", "gloss": "ciego + ojo" }
+        ] },
+        { "hanzi": "眉", "pinyin": "méi", "meaning": "ceja", "etymology": "Lo que está sobre el ojo 目. Si se gira 90 grados se distingue mejor.", "components": [{ "char": "目", "gloss": "ojo" }], "jp": true, "words": [
+          { "hanzi": "眉毛", "pinyin": "méimáo", "meaning": "ceja", "gloss": "ceja + pelo" }
+        ] },
+        { "hanzi": "省", "pinyin": "shěng", "meaning": "examinar; ahorrar; provincia", "etymology": "Ojo 目 que controla hasta las menores cantidades 少 significa examinar al detalle, por lo que puede ahorrar.", "components": [{ "char": "少", "gloss": "menores cantidades" }, { "char": "目", "gloss": "ojo" }], "jp": true, "words": [
+          { "hanzi": "节省", "pinyin": "jiéshěng", "meaning": "ahorrar", "gloss": "ahorrar + ahorrar" }
+        ] },
+        { "hanzi": "罚", "pinyin": "fá", "meaning": "castigar", "etymology": "La palabra 讠 que sentencia, el ojo 目 que observa y el cuchillo 刂 que ejecuta forman parte del castigo.", "components": [{ "char": "讠", "gloss": "palabra" }, { "char": "目", "gloss": "ojo que observa" }, { "char": "刂", "gloss": "cuchillo" }], "jp": true, "words": [
+          { "hanzi": "罚款", "pinyin": "fákuǎn", "meaning": "multar", "gloss": "castigar + suma de dinero" },
+          { "hanzi": "罚球", "pinyin": "fáqiú", "meaning": "penalti", "gloss": "castigo + balón" }
+        ] },
+        { "hanzi": "德", "pinyin": "dé", "meaning": "moral, virtud", "etymology": "Es caminar 彳 con el corazón 心 de uno 一, como si diez 十 ojos 目 te observaran. O sea, de acuerdo a la moral.", "components": [{ "char": "彳", "gloss": "caminar" }, { "char": "十", "gloss": "diez" }, { "char": "目", "gloss": "ojos" }, { "char": "一", "gloss": "uno" }, { "char": "心", "gloss": "corazón" }], "jp": true, "words": [
+          { "hanzi": "美德", "pinyin": "měidé", "meaning": "virtud", "gloss": "bella + moral" }
+        ] },
+        { "hanzi": "且", "pinyin": "qiě", "meaning": "justo; por ahora", "etymology": "También tiene sus derivados.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "助", "pinyin": "zhù", "meaning": "ayudar, asistir", "etymology": "Aplicar la fuerza 力 para hacer algo justo 且.", "components": [{ "char": "且", "gloss": "justo" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "帮助", "pinyin": "bāngzhù", "meaning": "ayudar, asistir", "gloss": "ayudar + ayudar" },
+          { "hanzi": "助理", "pinyin": "zhùlǐ", "meaning": "asistente", "gloss": "ayudar + administrar" }
+        ] },
+        { "hanzi": "县", "pinyin": "xiàn", "meaning": "distrito, condado", "etymology": "Era una cabeza 首 invertida: un criminal colgado boca abajo, la administración de justicia en las primeras administraciones locales.", "components": [], "jp": false, "words": [
+          { "hanzi": "县长", "pinyin": "xiànzhǎng", "meaning": "jefe de distrito", "gloss": "distrito + jefe" }
+        ] },
+        { "hanzi": "宜", "pinyin": "yí", "meaning": "apropiado, adecuado", "etymology": "Orden de las cosas que se ven 目 entre el suelo 一 y el techo 宀.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "且", "gloss": "orden" }], "jp": true, "words": [
+          { "hanzi": "便宜", "pinyin": "piányí", "meaning": "barato", "gloss": "cómodo + apropiado" },
+          { "hanzi": "不宜", "pinyin": "bùyí", "meaning": "inapropiado", "gloss": "no + apropiado" }
+        ] },
+        { "hanzi": "具", "pinyin": "jù", "meaning": "poseer, tener; herramienta", "etymology": "Dos manos 廾 que sujetan justo 且 lo que se tiene.", "components": [{ "char": "且", "gloss": "lo que se tiene" }, { "char": "廾", "gloss": "dos manos" }], "jp": true, "words": [
+          { "hanzi": "玩具", "pinyin": "wánjù", "meaning": "juguete", "gloss": "jugar + herramienta" },
+          { "hanzi": "工具", "pinyin": "gōngjù", "meaning": "herramienta", "gloss": "trabajar + herramienta" }
+        ] },
+        { "hanzi": "飓", "pinyin": "jù", "meaning": "huracán", "etymology": "Viento 风 que posee 具 todo.", "components": [{ "char": "风", "gloss": "viento" }, { "char": "具", "gloss": "poseer" }], "jp": false, "words": [] },
+        { "hanzi": "直", "pinyin": "zhí", "meaning": "derecho, franco, directo", "etymology": "Tiene dos derivados frecuentes.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "置", "pinyin": "zhì", "meaning": "colocar, poner; comprar", "etymology": "La red 网 derecha 直 es como debe colocarse.", "components": [{ "char": "网", "gloss": "red" }, { "char": "直", "gloss": "derecho" }], "jp": true, "words": [
+          { "hanzi": "置身", "pinyin": "zhìshēn", "meaning": "permanecer", "gloss": "colocar + cuerpo" },
+          { "hanzi": "置信", "pinyin": "zhìxìn", "meaning": "creer", "gloss": "colocar + creer" }
+        ] },
+        { "hanzi": "真", "pinyin": "zhēn", "meaning": "verdadero, auténtico, real", "etymology": "Dos manos 廾 que soportan la evidencia que ven diez 十 ojos 目.", "components": [{ "char": "十", "gloss": "diez" }, { "char": "目", "gloss": "ojos" }, { "char": "廾", "gloss": "manos" }], "jp": true, "words": [
+          { "hanzi": "真的", "pinyin": "zhēnde", "meaning": "de verdad", "gloss": "verdadero + de" },
+          { "hanzi": "真心", "pinyin": "zhēnxīn", "meaning": "sincero", "gloss": "verdadero + corazón" }
+        ] },
+        { "hanzi": "盾", "pinyin": "dùn", "meaning": "escudo", "etymology": "Lo que nos permite oponernos 厂 a diez 十 ojos 目 de enemigos.", "components": [{ "char": "厂", "gloss": "oponerse" }, { "char": "十", "gloss": "diez" }, { "char": "目", "gloss": "ojos" }], "jp": true, "words": [
+          { "hanzi": "盾牌", "pinyin": "dùnpái", "meaning": "escudo, pretexto", "gloss": "escudo + tabla" },
+          { "hanzi": "矛盾", "pinyin": "máodùn", "meaning": "contradicción", "gloss": "lanza + escudo" }
+        ] },
+        { "hanzi": "算", "pinyin": "suàn", "meaning": "calcular, contar, planear", "etymology": "En el centro la parrilla de un ábaco. Arriba está hecho de bambú 竹 y abajo lo mueven las manos 廾.", "components": [{ "char": "竹", "gloss": "bambú" }, { "char": "目", "gloss": "ábaco" }, { "char": "廾", "gloss": "manos" }], "jp": true, "words": [
+          { "hanzi": "打算", "pinyin": "dǎsuàn", "meaning": "planear", "gloss": "hacer + planear" },
+          { "hanzi": "计算", "pinyin": "jìsuàn", "meaning": "calcular", "gloss": "contar + calcular" }
+        ] },
+        { "hanzi": "篡", "pinyin": "cuàn", "meaning": "usurpar, apoderarse", "etymology": "Hombre 大 que calcula 算 para sí mismo 厶.", "components": [{ "char": "算", "gloss": "calcular" }, { "char": "厶", "gloss": "para sí" }], "jp": false, "words": [] },
+        { "hanzi": "纂", "pinyin": "zuǎn", "meaning": "compilar", "etymology": "Hombre 大 que suma 算 hasta las hebras de seda 糸, hasta lo menor.", "components": [{ "char": "算", "gloss": "sumar" }, { "char": "糸", "gloss": "hebras de seda" }], "jp": true, "words": [] },
+        { "hanzi": "艮", "pinyin": "gèn", "meaning": "tenaz, perseverante", "etymology": "No hay que confundirlo con 良.", "components": [], "jp": false, "words": [] },
+        { "hanzi": "良", "pinyin": "liáng", "meaning": "bueno", "etymology": "Hombre 人 al que debemos mirar 目.", "components": [{ "char": "目", "gloss": "mirar" }], "jp": true, "words": [
+          { "hanzi": "良心", "pinyin": "liángxīn", "meaning": "conciencia", "gloss": "bueno + corazón" },
+          { "hanzi": "良好", "pinyin": "liánghǎo", "meaning": "bueno, excelente", "gloss": "bueno + bueno" }
+        ] },
+        { "hanzi": "食", "pinyin": "shí", "meaning": "comida", "etymology": "Bueno 良 para el hombre 人.", "components": [{ "char": "良", "gloss": "bueno" }, { "char": "人", "gloss": "hombre" }], "jp": true, "words": [
+          { "hanzi": "食品", "pinyin": "shípǐn", "meaning": "comestibles", "gloss": "comer + artículos" }
+        ] },
+        { "hanzi": "即", "pinyin": "jí", "meaning": "acercarse; enseguida; ser", "etymology": "La parte izquierda evoluciona de una cuchara 匕 bajo una vasija 豆: representa comida. La derecha es el cetro 卩 que el funcionario deja para comer. Su significado es acercarse a la comida.", "components": [{ "char": "豆", "gloss": "vasija/comida" }, { "char": "卩", "gloss": "cetro" }], "jp": true, "words": [
+          { "hanzi": "即日", "pinyin": "jírì", "meaning": "en el día de hoy", "gloss": "acercarse + hoy" }
+        ] },
+        { "hanzi": "既", "pinyin": "jì", "meaning": "ya, ya que, tanto", "etymology": "La comida 即 ya se está comiendo; de hecho se ve un diente 牙.", "components": [{ "char": "即", "gloss": "comida" }, { "char": "牙", "gloss": "diente" }], "jp": true, "words": [] },
+        { "hanzi": "厩", "pinyin": "jiù", "meaning": "establo", "etymology": "Lugar 厂 donde comen 既 los animales.", "components": [{ "char": "厂", "gloss": "lugar" }, { "char": "既", "gloss": "comer" }], "jp": true, "words": [] },
+        { "hanzi": "臣", "pinyin": "chén", "meaning": "servidor", "etymology": "Con servidor se crean una serie de derivados.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "宦", "pinyin": "huàn", "meaning": "funcionario, oficial", "etymology": "Servidor 臣 de palacio, trabaja bajo techo 宀.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "臣", "gloss": "servidor" }], "jp": true, "words": [
+          { "hanzi": "宦官", "pinyin": "huànguān", "meaning": "eunuco", "gloss": "oficial + palacio" }
+        ] },
+        { "hanzi": "卧", "pinyin": "wò", "meaning": "acostarse, reposar", "etymology": "Los servidores 臣 dedicados a la adivinación 卜 realizan poca actividad, reposan.", "components": [{ "char": "臣", "gloss": "servidor" }, { "char": "卜", "gloss": "adivinación" }], "jp": false, "words": [
+          { "hanzi": "卧室", "pinyin": "wòshì", "meaning": "dormitorio", "gloss": "acostarse + cuarto" }
+        ] },
+        { "hanzi": "臧", "pinyin": "zāng", "meaning": "bueno, correcto", "etymology": "Es el oficial 臣 que con su lanza 戈 protege al rey que duerme en la cama 爿.", "components": [{ "char": "臣", "gloss": "oficial" }, { "char": "戈", "gloss": "lanza" }, { "char": "爿", "gloss": "cama" }], "jp": true, "words": [] },
+        { "hanzi": "藏", "pinyin": "cáng", "meaning": "ocultar, guardar", "etymology": "El oficial 臣 que con su lanza 戈 guarda tras una tabla 爿 la cosecha 艹 del rey.", "components": [{ "char": "艹", "gloss": "cosecha" }, { "char": "臣", "gloss": "oficial" }, { "char": "戈", "gloss": "lanza" }, { "char": "爿", "gloss": "tabla" }], "jp": false, "words": [
+          { "hanzi": "藏身", "pinyin": "cángshēn", "meaning": "esconderse", "gloss": "ocultar + cuerpo" },
+          { "hanzi": "隐藏", "pinyin": "yǐncáng", "meaning": "ocultar", "gloss": "esconder + ocultar" }
+        ] },
+        { "hanzi": "巨", "pinyin": "jù", "meaning": "enorme, inmenso", "etymology": "Era el pictograma de una gran herramienta de carpintero; hoy muestra gran similitud con 臣.", "components": [], "jp": false, "words": [
+          { "hanzi": "巨大", "pinyin": "jùdà", "meaning": "enorme", "gloss": "enorme + grande" },
+          { "hanzi": "巨人", "pinyin": "jùrén", "meaning": "gigante", "gloss": "enorme + hombre" }
+        ] },
+        { "hanzi": "柜", "pinyin": "guì", "meaning": "armario", "etymology": "Mueble de madera 木 enorme 巨.", "components": [{ "char": "木", "gloss": "madera" }, { "char": "巨", "gloss": "enorme" }], "jp": true, "words": [
+          { "hanzi": "柜子", "pinyin": "guìzi", "meaning": "armario", "gloss": "armario + sufijo" }
+        ] },
+        { "hanzi": "自", "pinyin": "zì", "meaning": "uno mismo", "etymology": "De uno mismo se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "自发", "pinyin": "zìfā", "meaning": "espontáneo", "gloss": "uno mismo + expresar" },
+          { "hanzi": "自然", "pinyin": "zìrán", "meaning": "naturaleza", "gloss": "uno mismo + correcto" }
+        ] },
+        { "hanzi": "鼻", "pinyin": "bí", "meaning": "nariz", "etymology": "Reemplaza a 自, utilizado para «uno mismo». Literalmente significa elevar 畀 la nariz 自 para oler.", "components": [{ "char": "自", "gloss": "nariz" }, { "char": "畀", "gloss": "elevar" }], "jp": false, "words": [
+          { "hanzi": "鼻子", "pinyin": "bízi", "meaning": "nariz", "gloss": "nariz + sufijo" }
+        ] },
+        { "hanzi": "鼾", "pinyin": "hān", "meaning": "roncar", "etymology": "La nariz 鼻 seca 干.", "components": [{ "char": "鼻", "gloss": "nariz" }, { "char": "干", "gloss": "seca" }], "jp": false, "words": [
+          { "hanzi": "鼾声", "pinyin": "hānshēng", "meaning": "ronquido", "gloss": "roncar + sonido" }
+        ] },
+        { "hanzi": "臭", "pinyin": "xiù", "meaning": "olor", "etymology": "La nariz 自 del perro 犬, famoso por su olfato. Hoy se usa sobre todo para olores desagradables (chòu); sumándole una boca recupera su sentido original 嗅.", "components": [{ "char": "自", "gloss": "nariz" }, { "char": "犬", "gloss": "perro" }], "jp": true, "words": [] },
+        { "hanzi": "臬", "pinyin": "niè", "meaning": "objetivo, blanco", "etymology": "La nariz 自 del blanco sobre un árbol 木. Utilizado sólo en los libros.", "components": [{ "char": "自", "gloss": "nariz/blanco" }, { "char": "木", "gloss": "árbol" }], "jp": false, "words": [] },
+        { "hanzi": "息", "pinyin": "xī", "meaning": "respirar; descansar; noticias", "etymology": "Nariz 自 y corazón 心. Respirar es la función principal de la nariz; de ahí «noticias» (lo que se respira) y «descansar» (recuperar la respiración).", "components": [{ "char": "自", "gloss": "nariz" }, { "char": "心", "gloss": "corazón" }], "jp": true, "words": [
+          { "hanzi": "休息", "pinyin": "xiūxī", "meaning": "descansar", "gloss": "descansar + descansar" }
+        ] },
+        { "hanzi": "夏", "pinyin": "xià", "meaning": "verano", "etymology": "Un pie 夂 y una cabeza 首 representan andar: el tiempo de los viajes, el verano.", "components": [{ "char": "首", "gloss": "cabeza" }, { "char": "夂", "gloss": "pie" }], "jp": true, "words": [
+          { "hanzi": "夏天", "pinyin": "xiàtiān", "meaning": "verano", "gloss": "verano + estación" }
+        ] },
+        { "hanzi": "厦", "pinyin": "shà", "meaning": "mansión, edificio", "etymology": "Lugar amplio 厂 donde combatir el calor del verano 夏.", "components": [{ "char": "厂", "gloss": "lugar amplio" }, { "char": "夏", "gloss": "verano" }], "jp": true, "words": [
+          { "hanzi": "大厦", "pinyin": "dàshà", "meaning": "mansión", "gloss": "gran + mansión" }
+        ] },
+        { "hanzi": "复", "pinyin": "fù", "meaning": "repetir, contestar, recobrar", "etymology": "No confundir con 夏. Es una persona 人 que indica 曰 por dónde ir 夂.", "components": [{ "char": "夂", "gloss": "ir" }], "jp": false, "words": [
+          { "hanzi": "重复", "pinyin": "zhòngfù", "meaning": "repetir", "gloss": "repetir + repetir" },
+          { "hanzi": "复活", "pinyin": "fùhuó", "meaning": "resucitar", "gloss": "repetir + vivir" }
+        ] },
+        { "hanzi": "履", "pinyin": "lǚ", "meaning": "calzado; caminar", "etymology": "Lo que se lleva en la parte baja del cuerpo 尸 para andar 彳 repetidamente 复.", "components": [{ "char": "尸", "gloss": "cuerpo" }, { "char": "复", "gloss": "repetidamente" }], "jp": true, "words": [
+          { "hanzi": "步履", "pinyin": "bùlǚ", "meaning": "andar", "gloss": "pasos + caminar" }
+        ] },
+        { "hanzi": "耳", "pinyin": "ěr", "meaning": "oído, oreja", "etymology": "Con oído se forman bastantes caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "耳朵", "pinyin": "ěrduo", "meaning": "oreja", "gloss": "oreja + sufijo" }
+        ] },
+        { "hanzi": "耸", "pinyin": "sǒng", "meaning": "alarmarse, levantarse", "etymology": "Dos personas 人 aguzando el oído 耳 ante un posible peligro.", "components": [{ "char": "人", "gloss": "personas" }, { "char": "耳", "gloss": "oído" }], "jp": false, "words": [
+          { "hanzi": "耸立", "pinyin": "sǒnglì", "meaning": "levantarse, erguirse", "gloss": "levantarse + ponerse de pie" }
+        ] },
+        { "hanzi": "闻", "pinyin": "wén", "meaning": "oír; noticia; oler", "etymology": "La oreja 耳 tras la puerta 门 parece la forma más antigua de conseguir noticias.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "耳", "gloss": "oreja" }], "jp": true, "words": [
+          { "hanzi": "新闻", "pinyin": "xīnwén", "meaning": "noticias", "gloss": "nuevas + noticias" },
+          { "hanzi": "见闻", "pinyin": "jiànwén", "meaning": "información", "gloss": "ver + oír" }
+        ] },
+        { "hanzi": "职", "pinyin": "zhí", "meaning": "deber, trabajo; cargo", "etymology": "Sólo 只 oídos 耳 para la labor que hay que realizar.", "components": [{ "char": "耳", "gloss": "oídos" }, { "char": "只", "gloss": "sólo" }], "jp": false, "words": [
+          { "hanzi": "职业", "pinyin": "zhíyè", "meaning": "profesión, oficio", "gloss": "trabajo + profesión" },
+          { "hanzi": "职工", "pinyin": "zhígōng", "meaning": "empleados", "gloss": "trabajo + trabajar" }
+        ] },
+        { "hanzi": "取", "pinyin": "qǔ", "meaning": "tomar, coger, seleccionar", "etymology": "Una mano 又 que coge la oreja 耳 de una persona.", "components": [{ "char": "耳", "gloss": "oreja" }, { "char": "又", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "取消", "pinyin": "qǔxiāo", "meaning": "abolir", "gloss": "tomar + desaparecer" }
+        ] },
+        { "hanzi": "聚", "pinyin": "jù", "meaning": "reunir, agrupar, congregar", "etymology": "Tomar 取 una multitud 众, aunque un poco modificada.", "components": [{ "char": "取", "gloss": "tomar" }, { "char": "众", "gloss": "multitud" }], "jp": true, "words": [
+          { "hanzi": "聚集", "pinyin": "jùjí", "meaning": "congregarse", "gloss": "reunirse + congregar" }
+        ] },
+        { "hanzi": "最", "pinyin": "zuì", "meaning": "el más", "etymology": "Coger 取 el sol 日.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "取", "gloss": "coger" }], "jp": true, "words": [
+          { "hanzi": "最好", "pinyin": "zuìhǎo", "meaning": "el mejor", "gloss": "el más + bueno" }
+        ] },
+        { "hanzi": "耻", "pinyin": "chǐ", "meaning": "vergüenza, humillación", "etymology": "Parado 止 por las críticas que uno oye por sus oídos 耳.", "components": [{ "char": "耳", "gloss": "oídos" }, { "char": "止", "gloss": "parado" }], "jp": false, "words": [
+          { "hanzi": "耻笑", "pinyin": "chǐxiào", "meaning": "burlarse", "gloss": "humillación + reírse" }
+        ] },
+        { "hanzi": "耿", "pinyin": "gěng", "meaning": "honrado, justo, recto", "etymology": "Con fuego 火 en las orejas 耳.", "components": [{ "char": "耳", "gloss": "orejas" }, { "char": "火", "gloss": "fuego" }], "jp": true, "words": [
+          { "hanzi": "耿耿", "pinyin": "gěnggěng", "meaning": "brillante, leal", "gloss": "honrado + honrado" }
+        ] },
+        { "hanzi": "联", "pinyin": "lián", "meaning": "unir, unidad", "etymology": "Cerrar 关 las orejas 耳 a las críticas de fuera.", "components": [{ "char": "耳", "gloss": "orejas" }, { "char": "关", "gloss": "cerrar" }], "jp": false, "words": [
+          { "hanzi": "联合", "pinyin": "liánhé", "meaning": "unirse, aliarse", "gloss": "unirse + unir" }
+        ] },
+        { "hanzi": "聪", "pinyin": "cōng", "meaning": "oído fino, inteligente", "etymology": "El que escucha 耳 los asuntos completos 总 se considera inteligente.", "components": [{ "char": "耳", "gloss": "oído" }, { "char": "总", "gloss": "asuntos completos" }], "jp": true, "words": [
+          { "hanzi": "聪明", "pinyin": "cōngmíng", "meaning": "listo, inteligente", "gloss": "oído fino + brillante" }
+        ] },
+        { "hanzi": "耷", "pinyin": "dā", "meaning": "orejudo, de orejas caídas", "etymology": "De orejas 耳 grandes 大.", "components": [{ "char": "大", "gloss": "grandes" }, { "char": "耳", "gloss": "orejas" }], "jp": false, "words": [] },
+        { "hanzi": "聆", "pinyin": "líng", "meaning": "escuchar", "etymology": "Las órdenes 令 en la oreja 耳.", "components": [{ "char": "耳", "gloss": "oreja" }, { "char": "令", "gloss": "órdenes" }], "jp": true, "words": [] },
+        { "hanzi": "聒", "pinyin": "guō", "meaning": "ruidoso, estrepitoso", "etymology": "Una lengua 舌 en la oreja 耳.", "components": [{ "char": "耳", "gloss": "oreja" }, { "char": "舌", "gloss": "lengua" }], "jp": false, "words": [] },
+        { "hanzi": "聂", "pinyin": "niè", "meaning": "susurrar, tramar, conspirar", "etymology": "Hablar con la mano 又 en la oreja 耳 del otro, como contando secretos. Da sentido de algo suave.", "components": [{ "char": "耳", "gloss": "oreja" }, { "char": "又", "gloss": "mano" }], "jp": false, "words": [] },
+        { "hanzi": "其", "pinyin": "qí", "meaning": "suyo; él, ella, ese; otro", "etymology": "Dos manos elevan 廾 la oreja 耳 cortada de un enemigo. Originalmente era de otro, pero ahora se puede decir que es suya.", "components": [{ "char": "耳", "gloss": "oreja" }, { "char": "廾", "gloss": "dos manos" }], "jp": true, "words": [
+          { "hanzi": "其他", "pinyin": "qítā", "meaning": "otro, demás", "gloss": "otro + él" }
+        ] },
+        { "hanzi": "期", "pinyin": "qī", "meaning": "tiempo, plazo", "etymology": "Otra 其 luna 月: la forma antigua de medir el paso del tiempo.", "components": [{ "char": "其", "gloss": "otra" }, { "char": "月", "gloss": "luna" }], "jp": true, "words": [
+          { "hanzi": "星期", "pinyin": "xīngqī", "meaning": "semana", "gloss": "estrella + tiempo" }
+        ] },
+        { "hanzi": "欺", "pinyin": "qī", "meaning": "embaucar, engañar", "etymology": "Dejar al otro 其 con la boca abierta 欠.", "components": [{ "char": "其", "gloss": "otro" }, { "char": "欠", "gloss": "boca abierta" }], "jp": true, "words": [
+          { "hanzi": "欺负", "pinyin": "qīfù", "meaning": "afrentar, abusar", "gloss": "embaucar + perder" },
+          { "hanzi": "欺骗", "pinyin": "qīpiàn", "meaning": "timar", "gloss": "embaucar + engañar" }
+        ] },
+        { "hanzi": "甚", "pinyin": "shèn", "meaning": "muy, extremadamente", "etymology": "Afición, representada por algo en la boca 曰 (un poco modificado), por la que es nuestra pareja 匹.", "components": [{ "char": "曰", "gloss": "boca" }, { "char": "匹", "gloss": "pareja" }], "jp": true, "words": [
+          { "hanzi": "甚至", "pinyin": "shènzhì", "meaning": "incluso, al extremo de", "gloss": "muy + llegar" }
+        ] }
+      ]
     }
   ]
 }
