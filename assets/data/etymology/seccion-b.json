@@ -3505,6 +3505,140 @@
           { "hanzi": "款待", "pinyin": "kuǎndài", "meaning": "agasajar", "gloss": "agasajar + recibir" }
         ] }
       ]
+    },
+    {
+      "id": "B-23",
+      "theme": "De las lanzas",
+      "icon": "戈",
+      "chars": [
+        { "hanzi": "弋", "pinyin": "yì", "meaning": "flecha recuperable", "etymology": "Hoy sólo se usa en algunos términos relacionados con la armada, pero forma parte de caracteres importantes.", "components": [], "jp": false, "words": [] },
+        { "hanzi": "代", "pinyin": "dài", "meaning": "sustituir, generación", "etymology": "Un hombre 亻 con una flecha 弋, un guerrero, es fácilmente sustituible por otro.", "components": [{ "char": "亻", "gloss": "hombre" }, { "char": "弋", "gloss": "flecha" }], "jp": true, "words": [
+          { "hanzi": "当代", "pinyin": "dāngdài", "meaning": "tiempo presente", "gloss": "igual + generación" },
+          { "hanzi": "时代", "pinyin": "shídài", "meaning": "era, época", "gloss": "tiempo + generación" }
+        ] },
+        { "hanzi": "黛", "pinyin": "dài", "meaning": "pigmento negro (para cejas)", "etymology": "Sustituye 代 al negro 黑.", "components": [{ "char": "代", "gloss": "sustituir" }, { "char": "黑", "gloss": "negro" }], "jp": true, "words": [
+          { "hanzi": "粉黛", "pinyin": "fěndài", "meaning": "maquillarse", "gloss": "polvos + pigmentos" }
+        ] },
+        { "hanzi": "式", "pinyin": "shì", "meaning": "fórmula, estilo, tipo", "etymology": "Trabajo 工 que se repite como la flecha recuperable 弋 que se vuelve a tirar.", "components": [{ "char": "工", "gloss": "trabajo" }, { "char": "弋", "gloss": "flecha recuperable" }], "jp": true, "words": [
+          { "hanzi": "式样", "pinyin": "shìyàng", "meaning": "estilo, tipo", "gloss": "estilo + igual" },
+          { "hanzi": "方式", "pinyin": "fāngshì", "meaning": "forma, modelo", "gloss": "dirección + estilo" }
+        ] },
+        { "hanzi": "武", "pinyin": "wǔ", "meaning": "militar, valiente", "etymology": "El que acostumbra a parar 止 los problemas con las armas 弋.", "components": [{ "char": "止", "gloss": "parar" }, { "char": "弋", "gloss": "armas" }], "jp": true, "words": [
+          { "hanzi": "武器", "pinyin": "wǔqì", "meaning": "arma, armamento", "gloss": "militar + utensilios" },
+          { "hanzi": "武力", "pinyin": "wǔlì", "meaning": "fuerzas armadas", "gloss": "militar + fuerza" }
+        ] },
+        { "hanzi": "必", "pinyin": "bì", "meaning": "ciertamente, inevitablemente", "etymology": "Con «ciertamente, inevitablemente» se construyen palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "必定", "pinyin": "bìdìng", "meaning": "ciertamente", "gloss": "ciertamente + cierto" },
+          { "hanzi": "必然", "pinyin": "bìrán", "meaning": "lógico, inevitable", "gloss": "inevitable + correcto" }
+        ] },
+        { "hanzi": "宓", "pinyin": "mì", "meaning": "tranquilo, sereno", "etymology": "Inevitablemente 必 está bajo techo 宀. Se usa en los libros y con escasa frecuencia.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "必", "gloss": "inevitablemente" }], "jp": false, "words": [] },
+        { "hanzi": "心", "pinyin": "xīn", "meaning": "corazón, centro", "etymology": "Con corazón, centro, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "心理", "pinyin": "xīnlǐ", "meaning": "psicología", "gloss": "corazón + razón" },
+          { "hanzi": "心思", "pinyin": "xīnsī", "meaning": "idea, pensamiento", "gloss": "corazón + idea" }
+        ] },
+        { "hanzi": "义", "pinyin": "yì", "meaning": "justicia, justo", "etymology": "Con justicia, justo, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "义务", "pinyin": "yìwù", "meaning": "moral, deber", "gloss": "justicia + asunto" },
+          { "hanzi": "主义", "pinyin": "zhǔyì", "meaning": "doctrina, -ismo", "gloss": "opinión + justa" }
+        ] },
+        { "hanzi": "交", "pinyin": "jiāo", "meaning": "intersección, relación, cruce", "etymology": "Antes pictograma de un hombre con las piernas cruzadas; también se memoriza como seis 六 cortes, que ya es un buen cruce.", "components": [{ "char": "六", "gloss": "cortes/cruce" }], "jp": true, "words": [
+          { "hanzi": "交通", "pinyin": "jiāotōng", "meaning": "comunicación, tráfico", "gloss": "comunicar + comunicar" },
+          { "hanzi": "外交", "pinyin": "wàijiāo", "meaning": "diplomacia", "gloss": "exterior + relación" }
+        ] },
+        { "hanzi": "戈", "pinyin": "gē", "meaning": "arpón, lanza, alabarda", "etymology": "Arpón, lanza, alabarda; lo encontramos en otros caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "兵戈", "pinyin": "bīnggē", "meaning": "luchar, guerra", "gloss": "soldados + lanzas" }
+        ] },
+        { "hanzi": "戎", "pinyin": "róng", "meaning": "tropa, ejército", "etymology": "Mano 寸 que coge la alabarda 戈.", "components": [{ "char": "戈", "gloss": "alabarda" }], "jp": true, "words": [
+          { "hanzi": "戎装", "pinyin": "róngzhuāng", "meaning": "uniforme", "gloss": "ejército + traje" },
+          { "hanzi": "从戎", "pinyin": "cóngróng", "meaning": "alistarse", "gloss": "seguir + ejército" }
+        ] },
+        { "hanzi": "戒", "pinyin": "jiè", "meaning": "prevenirse, vigilar; abstenerse", "etymology": "Dos manos 廾 tomando la alabarda 戈.", "components": [{ "char": "戈", "gloss": "alabarda" }, { "char": "廾", "gloss": "dos manos" }], "jp": true, "words": [
+          { "hanzi": "戒严", "pinyin": "jièyán", "meaning": "toque de queda", "gloss": "vigilar + severa" },
+          { "hanzi": "戒心", "pinyin": "jièxīn", "meaning": "precaución", "gloss": "prevenirse + corazón" }
+        ] },
+        { "hanzi": "战", "pinyin": "zhàn", "meaning": "guerra, batalla", "etymology": "Ocupar 占 por las armas 戈.", "components": [{ "char": "占", "gloss": "ocupar" }, { "char": "戈", "gloss": "armas" }], "jp": false, "words": [
+          { "hanzi": "战斗", "pinyin": "zhàndòu", "meaning": "combate", "gloss": "guerra + luchar" },
+          { "hanzi": "战胜", "pinyin": "zhànshèng", "meaning": "vencer, triunfar", "gloss": "guerra + victoria" }
+        ] },
+        { "hanzi": "我", "pinyin": "wǒ", "meaning": "yo", "etymology": "Una mano 扌 con una lanza 戈 es la aseveración de la personalidad.", "components": [{ "char": "戈", "gloss": "lanza" }], "jp": true, "words": [
+          { "hanzi": "我们", "pinyin": "wǒmen", "meaning": "nosotros", "gloss": "yo + plural" },
+          { "hanzi": "忘我", "pinyin": "wàngwǒ", "meaning": "generoso, abnegado", "gloss": "olvidarse + yo" }
+        ] },
+        { "hanzi": "尧", "pinyin": "yáo", "meaning": "lleno, pleno; (emperador Yao)", "etymology": "El momento de dejar la lanza 戈 sobre un taburete 几.", "components": [{ "char": "戈", "gloss": "lanza" }, { "char": "几", "gloss": "taburete" }], "jp": false, "words": [] },
+        { "hanzi": "戡", "pinyin": "kān", "meaning": "sofocar (una rebelión)", "etymology": "Excesivo 甚 uso de las armas 戈.", "components": [{ "char": "甚", "gloss": "excesivo" }, { "char": "戈", "gloss": "armas" }], "jp": true, "words": [
+          { "hanzi": "戡定", "pinyin": "kāndìng", "meaning": "suprimir, pacificar", "gloss": "sofocar + tranquilo" }
+        ] },
+        { "hanzi": "或", "pinyin": "huò", "meaning": "quizás; o", "etymology": "Hay armas 戈 y hay palabras 口; el combate por el terreno 一 aún no es seguro. De ahí «quizás».", "components": [{ "char": "戈", "gloss": "armas" }, { "char": "口", "gloss": "palabras" }], "jp": true, "words": [
+          { "hanzi": "或者", "pinyin": "huòzhě", "meaning": "o", "gloss": "quizás + este" },
+          { "hanzi": "或许", "pinyin": "huòxǔ", "meaning": "quizás, acaso", "gloss": "quizás + quizás" }
+        ] },
+        { "hanzi": "戏", "pinyin": "xì", "meaning": "jugar, bromear, representar", "etymology": "Mano 又 con lanza 戈. Se origina en los juegos militares.", "components": [{ "char": "戈", "gloss": "lanza" }, { "char": "又", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "马戏", "pinyin": "mǎxì", "meaning": "circo", "gloss": "caballo + representar" },
+          { "hanzi": "听戏", "pinyin": "tīngxì", "meaning": "ir a la ópera", "gloss": "escuchar + ópera" }
+        ] },
+        { "hanzi": "戗", "pinyin": "qiāng", "meaning": "chocar, estar en desacuerdo", "etymology": "Ir al almacén 仓 con una lanza 戈.", "components": [{ "char": "仓", "gloss": "almacén" }, { "char": "戈", "gloss": "lanza" }], "jp": false, "words": [
+          { "hanzi": "戗风", "pinyin": "qiāngfēng", "meaning": "ir contra el viento", "gloss": "chocar + viento" }
+        ] },
+        { "hanzi": "找", "pinyin": "zhǎo", "meaning": "buscar", "etymology": "Una mano 扌 sobre la lanza 戈 parece representar la búsqueda entre los matorrales.", "components": [{ "char": "戈", "gloss": "lanza/matorrales" }], "jp": false, "words": [
+          { "hanzi": "寻找", "pinyin": "xúnzhǎo", "meaning": "buscar", "gloss": "buscar + buscar" },
+          { "hanzi": "找工作", "pinyin": "zhǎogōngzuò", "meaning": "buscar trabajo", "gloss": "buscar + trabajo" }
+        ] },
+        { "hanzi": "残", "pinyin": "cán", "meaning": "dañar, incompleto, cruel", "etymology": "Cortar repetidamente 戈 algo acaba por dañarlo 歹.", "components": [{ "char": "歹", "gloss": "dañar" }, { "char": "戈", "gloss": "cortar" }], "jp": false, "words": [
+          { "hanzi": "残害", "pinyin": "cánhài", "meaning": "dañar", "gloss": "dañar + dañar" },
+          { "hanzi": "残杀", "pinyin": "cánshā", "meaning": "masacrar, matar a sangre fría", "gloss": "cruel + matar" }
+        ] },
+        { "hanzi": "戊", "pinyin": "wù", "meaning": "arma (5.º tronco celeste)", "etymology": "Es una alabarda en forma de media luna. El quinto de los Diez Troncos Celestes con los que se computan los años en China.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "戚", "pinyin": "qī", "meaning": "pariente", "etymology": "Aquel con el que se comparte la defensa 戊 de la familia.", "components": [{ "char": "戊", "gloss": "defensa" }], "jp": true, "words": [
+          { "hanzi": "亲戚", "pinyin": "qīnqī", "meaning": "pariente", "gloss": "familia + pariente" }
+        ] },
+        { "hanzi": "成", "pinyin": "chéng", "meaning": "completar, lograr, llegar a ser", "etymology": "El triunfo que da la posesión de un arma 戊.", "components": [{ "char": "戊", "gloss": "arma" }], "jp": true, "words": [
+          { "hanzi": "成长", "pinyin": "chéngzhǎng", "meaning": "crecer", "gloss": "convertirse + grande" },
+          { "hanzi": "成为", "pinyin": "chéngwéi", "meaning": "llegar a ser", "gloss": "convertirse + llegar a ser" }
+        ] },
+        { "hanzi": "盛", "pinyin": "shèng", "meaning": "lleno, floreciente, próspero", "etymology": "La plenitud 成 del recipiente 皿.", "components": [{ "char": "成", "gloss": "plenitud" }, { "char": "皿", "gloss": "recipiente" }], "jp": false, "words": [
+          { "hanzi": "盛产", "pinyin": "shèngchǎn", "meaning": "abundar, ser rico en", "gloss": "lleno + productos" },
+          { "hanzi": "盛情", "pinyin": "shèngqíng", "meaning": "profundo afecto", "gloss": "lleno + sentimiento" }
+        ] },
+        { "hanzi": "戌", "pinyin": "xū", "meaning": "destruir (11.ª rama terrestre)", "etymology": "Cortar 一 con lanza 戊. Sólo se usa para nombrar la undécima de las Ramas Terrestres del calendario chino.", "components": [{ "char": "戊", "gloss": "lanza" }], "jp": true, "words": [] },
+        { "hanzi": "咸", "pinyin": "xián", "meaning": "morder; salado, salobre", "etymology": "Herir 戊 con la boca 口. Como se tiende a morder para comer los alimentos salados, acabó usándose para «salado».", "components": [{ "char": "戊", "gloss": "herir" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "咸菜", "pinyin": "xiáncài", "meaning": "verdura salada, encurtido", "gloss": "salada + verdura" }
+        ] },
+        { "hanzi": "威", "pinyin": "wēi", "meaning": "orgulloso, imponente, poder", "etymology": "El que trae una mujer 女 por la fuerza de su lanza 戊.", "components": [{ "char": "戊", "gloss": "lanza" }, { "char": "女", "gloss": "mujer" }], "jp": false, "words": [
+          { "hanzi": "威力", "pinyin": "wēilì", "meaning": "poderío, fuerza", "gloss": "imponente + fuerza" },
+          { "hanzi": "威严", "pinyin": "wēiyán", "meaning": "solemne, majestuoso", "gloss": "imponente + serio" }
+        ] },
+        { "hanzi": "裁", "pinyin": "cái", "meaning": "cortar, reducir, disminuir", "etymology": "Vemos una alabarda 戈 con mango 土 actuando sobre un tejido 衣.", "components": [{ "char": "戈", "gloss": "alabarda" }, { "char": "衣", "gloss": "tejido" }], "jp": true, "words": [
+          { "hanzi": "裁缝", "pinyin": "cáiféng", "meaning": "sastre, modista", "gloss": "cortar + coser" },
+          { "hanzi": "裁军", "pinyin": "cáijūn", "meaning": "desarme", "gloss": "disminuir + tropas" }
+        ] },
+        { "hanzi": "载", "pinyin": "zǎi", "meaning": "cargar; registrar", "etymology": "Las alabardas 戈 cargadas en un carro 车.", "components": [{ "char": "戈", "gloss": "alabardas" }, { "char": "车", "gloss": "carro" }], "jp": true, "words": [
+          { "hanzi": "记载", "pinyin": "jìzǎi", "meaning": "registros", "gloss": "recordar + registrar" },
+          { "hanzi": "登载", "pinyin": "dēngzǎi", "meaning": "publicar", "gloss": "publicar + registros" }
+        ] },
+        { "hanzi": "栽", "pinyin": "zāi", "meaning": "plantar, cultivar, clavar", "etymology": "Una lanza 戈 hace un agujero donde se planta un árbol 木.", "components": [{ "char": "戈", "gloss": "lanza" }, { "char": "木", "gloss": "árbol" }], "jp": true, "words": [
+          { "hanzi": "栽培", "pinyin": "zāipéi", "meaning": "plantar, cultivar", "gloss": "plantar + cultivo" },
+          { "hanzi": "栽种", "pinyin": "zāizhòng", "meaning": "plantar, cultivar", "gloss": "plantar + plantar" }
+        ] },
+        { "hanzi": "戴", "pinyin": "dài", "meaning": "llevar, ponerse (puesto)", "etymology": "Prendas que se cortan 戈 para ir juntos 共 a una ceremonia en el campo 田.", "components": [{ "char": "戈", "gloss": "cortar" }, { "char": "共", "gloss": "juntos" }, { "char": "田", "gloss": "campo" }], "jp": true, "words": [
+          { "hanzi": "穿戴", "pinyin": "chuāndài", "meaning": "vestido, indumentaria", "gloss": "vestir + ponerse" }
+        ] },
+        { "hanzi": "截", "pinyin": "jié", "meaning": "cortar, interrumpir, cerrar", "etymology": "Es una alabarda 戈 sobre un pájaro 隹.", "components": [{ "char": "戈", "gloss": "alabarda" }, { "char": "隹", "gloss": "pájaro" }], "jp": true, "words": [
+          { "hanzi": "截断", "pinyin": "jiéduàn", "meaning": "interrumpir", "gloss": "cortar + cortar" },
+          { "hanzi": "截止", "pinyin": "jiézhǐ", "meaning": "concluir, cerrar (plazo)", "gloss": "cortar + parar" }
+        ] },
+        { "hanzi": "矛", "pinyin": "máo", "meaning": "arpón, lanza", "etymology": "De arpón se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "矛头", "pinyin": "máotóu", "meaning": "punta de lanza", "gloss": "arpón + cabeza" }
+        ] },
+        { "hanzi": "柔", "pinyin": "róu", "meaning": "suave, blando", "etymology": "Arpón 矛 de madera 木: se queda blando ante el invento de los metales.", "components": [{ "char": "矛", "gloss": "arpón" }, { "char": "木", "gloss": "madera" }], "jp": true, "words": [
+          { "hanzi": "温柔", "pinyin": "wēnróu", "meaning": "tierno, ternura", "gloss": "cálido + suave" },
+          { "hanzi": "柔软", "pinyin": "róuruǎn", "meaning": "suave, flexible", "gloss": "suave + blando" }
+        ] },
+        { "hanzi": "矜", "pinyin": "jīn", "meaning": "presumido, precavido", "etymology": "Ahora 今 con un arpón 矛.", "components": [{ "char": "今", "gloss": "ahora" }, { "char": "矛", "gloss": "arpón" }], "jp": true, "words": [
+          { "hanzi": "骄矜", "pinyin": "jiāojīn", "meaning": "orgulloso", "gloss": "altivo + presumido" }
+        ] },
+        { "hanzi": "蟊", "pinyin": "máo", "meaning": "insecto dañino", "etymology": "Insectos 虫 (hay dos) que hacen daño como las armas 矛.", "components": [{ "char": "矛", "gloss": "armas" }, { "char": "虫", "gloss": "insectos" }], "jp": false, "words": [
+          { "hanzi": "蟊贼", "pinyin": "máozéi", "meaning": "elemento nocivo", "gloss": "insecto dañino + ladrón" }
+        ] }
+      ]
     }
   ]
 }
