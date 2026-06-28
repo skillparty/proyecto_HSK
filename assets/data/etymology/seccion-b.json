@@ -3639,6 +3639,132 @@
           { "hanzi": "蟊贼", "pinyin": "máozéi", "meaning": "elemento nocivo", "gloss": "insecto dañino + ladrón" }
         ] }
       ]
+    },
+    {
+      "id": "B-24",
+      "theme": "Del centro del mundo",
+      "icon": "中",
+      "chars": [
+        { "hanzi": "中", "pinyin": "zhōng", "meaning": "centro, medio", "etymology": "Es el carácter que se usa para China.", "components": [], "jp": true, "words": [
+          { "hanzi": "中国", "pinyin": "zhōngguó", "meaning": "China", "gloss": "centro + país" },
+          { "hanzi": "中医", "pinyin": "zhōngyī", "meaning": "medicina china", "gloss": "China + medicina" }
+        ] },
+        { "hanzi": "串", "pinyin": "chuàn", "meaning": "enlazar, unir; conspirar", "etymology": "Con enlazar, unir, conspirar, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "串联", "pinyin": "chuànlián", "meaning": "establecer vínculos", "gloss": "unir + unir" },
+          { "hanzi": "串通", "pinyin": "chuàntōng", "meaning": "conspirar", "gloss": "conspirar + comunicar" }
+        ] },
+        { "hanzi": "窜", "pinyin": "cuàn", "meaning": "huir, escapar", "etymology": "Antes era una rata 鼠 saliendo de una cueva 穴; con la simplificación, alguien que atraviesa la boca 口 de una cueva 穴.", "components": [{ "char": "穴", "gloss": "cueva" }], "jp": false, "words": [
+          { "hanzi": "逃窜", "pinyin": "táocuàn", "meaning": "huir en desbandada", "gloss": "huir + huir" }
+        ] },
+        { "hanzi": "虫", "pinyin": "chóng", "meaning": "insecto", "etymology": "De insecto se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "虫子", "pinyin": "chóngzi", "meaning": "insecto", "gloss": "insecto + sufijo" }
+        ] },
+        { "hanzi": "虽", "pinyin": "suī", "meaning": "aunque, a pesar de", "etymology": "A pesar de los insectos 虫, queda alimento que llevarse a la boca 口.", "components": [{ "char": "虫", "gloss": "insectos" }, { "char": "口", "gloss": "boca" }], "jp": false, "words": [
+          { "hanzi": "虽然", "pinyin": "suīrán", "meaning": "aunque, a pesar de", "gloss": "a pesar de + correcto" }
+        ] },
+        { "hanzi": "强", "pinyin": "qiáng", "meaning": "fuerte, poderoso", "etymology": "A pesar 虽 del arco 弓: indica que la fuerza va más allá de las armas.", "components": [{ "char": "弓", "gloss": "arco" }, { "char": "虽", "gloss": "a pesar de" }], "jp": true, "words": [
+          { "hanzi": "强壮", "pinyin": "qiángzhuàng", "meaning": "fuerte, robusto", "gloss": "fuerte + fuerte" },
+          { "hanzi": "强权", "pinyin": "qiángquán", "meaning": "poder, fuerza", "gloss": "fuerza + poder" }
+        ] },
+        { "hanzi": "央", "pinyin": "yāng", "meaning": "central, centro", "etymology": "Con central se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "央求", "pinyin": "yāngqiú", "meaning": "suplicar, rogar", "gloss": "suplicar + pedir" },
+          { "hanzi": "中央", "pinyin": "zhōngyāng", "meaning": "centro, medio", "gloss": "centro + centro" }
+        ] },
+        { "hanzi": "快", "pinyin": "kuài", "meaning": "feliz; rápido", "etymology": "La parte derecha 夬 significa «abrir», mitad de central 央. La izquierda, 忄 corazón. El corazón abierto da sentido de felicidad; cuando uno está feliz hace las cosas deprisa.", "components": [{ "char": "忄", "gloss": "corazón" }, { "char": "央", "gloss": "abrir" }], "jp": false, "words": [
+          { "hanzi": "快速", "pinyin": "kuàisù", "meaning": "rápido, veloz", "gloss": "rápido + rápido" },
+          { "hanzi": "快乐", "pinyin": "kuàilè", "meaning": "feliz", "gloss": "feliz + alegre" }
+        ] },
+        { "hanzi": "吏", "pinyin": "lì", "meaning": "funcionario, mandarín", "etymology": "De funcionario se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "官吏", "pinyin": "guānlì", "meaning": "funcionario del gobierno", "gloss": "palacio + funcionario" },
+          { "hanzi": "墨吏", "pinyin": "mòlì", "meaning": "oficial corrupto", "gloss": "tinta + oficial" }
+        ] },
+        { "hanzi": "书", "pinyin": "shū", "meaning": "escribir, libro", "etymology": "Pluma 丨 que escribe 丶 hasta formar un libro. Se ven las tapas.", "components": [], "jp": false, "words": [
+          { "hanzi": "读书", "pinyin": "dúshū", "meaning": "estudiar, leer", "gloss": "leer + libros" }
+        ] },
+        { "hanzi": "更", "pinyin": "gèng", "meaning": "más, aún más; (gēng) cambiar", "etymology": "De «más, aún más» se forman palabras.", "components": [], "jp": false, "words": [
+          { "hanzi": "更加", "pinyin": "gèngjiā", "meaning": "más, aún más", "gloss": "más + añadir" },
+          { "hanzi": "变更", "pinyin": "biàngēng", "meaning": "cambiar, modificar", "gloss": "cambiar + cambiar" }
+        ] },
+        { "hanzi": "夬", "pinyin": "guài", "meaning": "abundante, numeroso", "etymology": "Representa un hombre 大 con las piernas abiertas y abundante vientre 口.", "components": [{ "char": "大", "gloss": "hombre" }], "jp": false, "words": [] },
+        { "hanzi": "兔", "pinyin": "tù", "meaning": "conejo, liebre", "etymology": "De conejo, liebre, se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "家兔", "pinyin": "jiātù", "meaning": "conejo", "gloss": "casa + conejo" },
+          { "hanzi": "野兔", "pinyin": "yětù", "meaning": "liebre", "gloss": "salvaje + conejo" }
+        ] },
+        { "hanzi": "冤", "pinyin": "yuān", "meaning": "injusticia, agravio", "etymology": "Una liebre 兔 encerrada 冖.", "components": [{ "char": "冖", "gloss": "encerrada" }, { "char": "兔", "gloss": "liebre" }], "jp": true, "words": [
+          { "hanzi": "冤案", "pinyin": "yuān'àn", "meaning": "veredicto injusto", "gloss": "injusticia + veredicto" },
+          { "hanzi": "冤枉", "pinyin": "yuānwang", "meaning": "injusticia", "gloss": "injusticia + tratar injustamente" }
+        ] },
+        { "hanzi": "免", "pinyin": "miǎn", "meaning": "evitar, eximir; escaso", "etymology": "Un hombre con las piernas abiertas para evitar ser atacado. Se recuerda como liebre 兔 que pierde la cola para evitar ser capturada.", "components": [], "jp": true, "words": [
+          { "hanzi": "免费", "pinyin": "miǎnfèi", "meaning": "gratis", "gloss": "evitar + pagar" },
+          { "hanzi": "免除", "pinyin": "miǎnchú", "meaning": "evitar, eximirse", "gloss": "evitar + excluir" }
+        ] },
+        { "hanzi": "勉", "pinyin": "miǎn", "meaning": "esforzarse, animar", "etymology": "Un hombre con las piernas abiertas 免 aplica su fuerza 力.", "components": [{ "char": "免", "gloss": "hombre" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "勉励", "pinyin": "miǎnlì", "meaning": "estimular", "gloss": "esforzarse + animar" },
+          { "hanzi": "勉强", "pinyin": "miǎnqiǎng", "meaning": "forzar, obligar", "gloss": "animar + fuerza" }
+        ] },
+        { "hanzi": "冕", "pinyin": "miǎn", "meaning": "corona", "etymology": "Una corona sobre un hombre gordo abierto de piernas 免.", "components": [{ "char": "免", "gloss": "hombre" }], "jp": true, "words": [
+          { "hanzi": "冠冕", "pinyin": "guānmiǎn", "meaning": "corona real", "gloss": "sombrero + corona" }
+        ] },
+        { "hanzi": "馋", "pinyin": "chán", "meaning": "goloso", "etymology": "Come 饣 como dos hombres gordos 免. La parte derecha se representaba como una liebre sobre otro animal semejante, dando idea de roedores.", "components": [{ "char": "饣", "gloss": "comer" }], "jp": false, "words": [] },
+        { "hanzi": "革", "pinyin": "gé", "meaning": "cuero; cambiar, reformar", "etymology": "Con cuero se forman muchos caracteres relativos al cuero o a los objetos que se hacen con él.", "components": [], "jp": true, "words": [
+          { "hanzi": "改革", "pinyin": "gǎigé", "meaning": "reformar, transformar", "gloss": "corregir + cambiar" },
+          { "hanzi": "革新", "pinyin": "géxīn", "meaning": "innovación", "gloss": "cambiar + nuevo" }
+        ] },
+        { "hanzi": "勒", "pinyin": "lè", "meaning": "refrenar, obligar", "etymology": "Es aplicar 力 la fuerza sobre el freno de cuero 革.", "components": [{ "char": "革", "gloss": "freno de cuero" }, { "char": "力", "gloss": "fuerza" }], "jp": true, "words": [
+          { "hanzi": "勒索", "pinyin": "lèsuǒ", "meaning": "extorsionar", "gloss": "obligar + pedir" },
+          { "hanzi": "勒逼", "pinyin": "lèbī", "meaning": "obligar, forzar", "gloss": "obligar + obligar" }
+        ] },
+        { "hanzi": "鞋", "pinyin": "xié", "meaning": "zapatos", "etymology": "Cuero 革 que se utiliza para andar sobre la tierra 土.", "components": [{ "char": "革", "gloss": "cuero" }, { "char": "土", "gloss": "tierra" }], "jp": true, "words": [
+          { "hanzi": "鞋匠", "pinyin": "xiéjiàng", "meaning": "zapatero", "gloss": "zapatos + artesano" },
+          { "hanzi": "鞋油", "pinyin": "xiéyóu", "meaning": "betún", "gloss": "zapatos + grasa" }
+        ] },
+        { "hanzi": "靴", "pinyin": "xuē", "meaning": "botas", "etymology": "Cuero 革 transformado 化.", "components": [{ "char": "革", "gloss": "cuero" }, { "char": "化", "gloss": "transformado" }], "jp": true, "words": [
+          { "hanzi": "靴子", "pinyin": "xuēzi", "meaning": "botas", "gloss": "botas + sufijo" },
+          { "hanzi": "马靴", "pinyin": "mǎxuē", "meaning": "botas de montar", "gloss": "caballo + botas" }
+        ] },
+        { "hanzi": "鞭", "pinyin": "biān", "meaning": "látigo", "etymology": "Cuero 革 de uso conveniente 便.", "components": [{ "char": "革", "gloss": "cuero" }, { "char": "便", "gloss": "conveniente" }], "jp": true, "words": [
+          { "hanzi": "鞭子", "pinyin": "biānzi", "meaning": "látigo", "gloss": "látigo + sufijo" },
+          { "hanzi": "鞭打", "pinyin": "biāndǎ", "meaning": "azotar, fustigar", "gloss": "látigo + dar" }
+        ] },
+        { "hanzi": "鞍", "pinyin": "ān", "meaning": "silla de montar", "etymology": "Objeto de cuero 革 que nos hace sentirnos seguros 安.", "components": [{ "char": "革", "gloss": "cuero" }, { "char": "安", "gloss": "seguros" }], "jp": true, "words": [
+          { "hanzi": "马鞍", "pinyin": "mǎ'ān", "meaning": "silla de montar", "gloss": "caballo + silla de montar" }
+        ] },
+        { "hanzi": "鞣", "pinyin": "róu", "meaning": "curtir pieles", "etymology": "Suavizar 柔 el cuero 革.", "components": [{ "char": "革", "gloss": "cuero" }, { "char": "柔", "gloss": "suavizar" }], "jp": true, "words": [
+          { "hanzi": "鞣料", "pinyin": "róuliào", "meaning": "material para curtir", "gloss": "curtir + material" }
+        ] },
+        { "hanzi": "羁", "pinyin": "jī", "meaning": "brida; ceñirse", "etymology": "Cuero 革 que forma una especie de red 网 para sujetar al caballo 马.", "components": [{ "char": "革", "gloss": "cuero" }, { "char": "网", "gloss": "red" }, { "char": "马", "gloss": "caballo" }], "jp": true, "words": [
+          { "hanzi": "羁留", "pinyin": "jīliú", "meaning": "quedarse, arrestar", "gloss": "ceñirse + quedarse" },
+          { "hanzi": "羁绊", "pinyin": "jībàn", "meaning": "traba, yugo", "gloss": "ceñirse + estorbo" }
+        ] },
+        { "hanzi": "区", "pinyin": "qū", "meaning": "zona, región, sector", "etymology": "Antiguamente los productos 品 de una zona, sustituidos por una cruz que, como en algunos mapas, marca un lugar.", "components": [], "jp": true, "words": [
+          { "hanzi": "区分", "pinyin": "qūfēn", "meaning": "discernir, distinguir", "gloss": "zona + distinguir" },
+          { "hanzi": "郊区", "pinyin": "jiāoqū", "meaning": "suburbios", "gloss": "suburbano + distrito" }
+        ] },
+        { "hanzi": "冈", "pinyin": "gāng", "meaning": "montañita, colina", "etymology": "Simplificación de 岗, donde el concepto de montaña 山 es más visible; ahora se usa para puesto de guardia o centinela.", "components": [], "jp": false, "words": [
+          { "hanzi": "山冈", "pinyin": "shāngāng", "meaning": "montañita", "gloss": "montaña + colina" },
+          { "hanzi": "岗哨", "pinyin": "gǎngshào", "meaning": "puesto de guardia", "gloss": "centinela + centinela" }
+        ] },
+        { "hanzi": "网", "pinyin": "wǎng", "meaning": "red; capturar con red", "etymology": "Es el pictograma de la misma.", "components": [], "jp": true, "words": [
+          { "hanzi": "网罗", "pinyin": "wǎngluó", "meaning": "red, reclutar", "gloss": "red + red" },
+          { "hanzi": "网球", "pinyin": "wǎngqiú", "meaning": "tenis", "gloss": "red + pelota" }
+        ] },
+        { "hanzi": "罔", "pinyin": "wǎng", "meaning": "ausencia, negación; timar", "etymology": "Desaparecido 亡 en la red 网.", "components": [{ "char": "网", "gloss": "red" }, { "char": "亡", "gloss": "desaparecido" }], "jp": true, "words": [] },
+        { "hanzi": "凶", "pinyin": "xiōng", "meaning": "terrible, feroz", "etymology": "Deriva del pictograma de un hombre 人 que cae a un pozo 凵 con las piernas hacia arriba: la situación es terrible.", "components": [{ "char": "凵", "gloss": "pozo" }], "jp": true, "words": [
+          { "hanzi": "凶狠", "pinyin": "xiōnghěn", "meaning": "cruel, feroz", "gloss": "terrible + cruel" },
+          { "hanzi": "凶恶", "pinyin": "xiōng'è", "meaning": "atroz, feroz", "gloss": "terrible + maligno" }
+        ] },
+        { "hanzi": "匈", "pinyin": "xiōng", "meaning": "los hunos", "etymology": "Terrible 凶 más cuchillo 刀: ese era el espanto que producía a los chinos este pueblo.", "components": [{ "char": "凶", "gloss": "terrible" }], "jp": true, "words": [
+          { "hanzi": "匈奴", "pinyin": "xiōngnú", "meaning": "hunos", "gloss": "hunos + esclavo" }
+        ] },
+        { "hanzi": "离", "pinyin": "lí", "meaning": "separarse, distar; partir", "etymology": "Un animal en una trampa 凶, cerrada 亠, y abajo sus patas traseras. Como debe ser feroz, mejor alejarse.", "components": [{ "char": "凶", "gloss": "trampa" }], "jp": false, "words": [
+          { "hanzi": "离开", "pinyin": "líkāi", "meaning": "partir, irse", "gloss": "partir + empezar" },
+          { "hanzi": "离婚", "pinyin": "líhūn", "meaning": "divorciarse", "gloss": "separarse + matrimonio" }
+        ] },
+        { "hanzi": "禽", "pinyin": "qín", "meaning": "aves", "etymology": "Animales de los que no hace falta alejarse 离 porque con ellos se puede vivir en paz 合.", "components": [{ "char": "离", "gloss": "no hace falta alejarse" }, { "char": "合", "gloss": "vivir en paz" }], "jp": true, "words": [
+          { "hanzi": "禽兽", "pinyin": "qínshòu", "meaning": "pájaros y bestias", "gloss": "aves + bestias" },
+          { "hanzi": "家禽", "pinyin": "jiāqín", "meaning": "aves domésticas", "gloss": "casa + aves" }
+        ] }
+      ]
     }
   ]
 }
