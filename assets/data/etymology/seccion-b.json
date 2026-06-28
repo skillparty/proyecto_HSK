@@ -2707,6 +2707,133 @@
           { "hanzi": "寄生", "pinyin": "jìshēng", "meaning": "parásito", "gloss": "adoptivo + ser" }
         ] }
       ]
+    },
+    {
+      "id": "B-18",
+      "theme": "Ropa",
+      "icon": "衣",
+      "chars": [
+        { "hanzi": "巾", "pinyin": "jīn", "meaning": "tela, paño", "etymology": "De tela surgen varios caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "毛巾", "pinyin": "máojīn", "meaning": "toalla", "gloss": "pelo + tela" }
+        ] },
+        { "hanzi": "布", "pinyin": "bù", "meaning": "paño, tela", "etymology": "Tela 巾 en la mano.", "components": [{ "char": "巾", "gloss": "tela" }], "jp": true, "words": [
+          { "hanzi": "布景", "pinyin": "bùjǐng", "meaning": "decoración", "gloss": "tela + paisaje" },
+          { "hanzi": "花布", "pinyin": "huābù", "meaning": "lienzo estampado", "gloss": "pintar + tela" }
+        ] },
+        { "hanzi": "希", "pinyin": "xī", "meaning": "raro, escaso; desear", "etymology": "El paño 布 con una marca de forma especial se hace raro de encontrar.", "components": [{ "char": "布", "gloss": "paño" }], "jp": true, "words": [
+          { "hanzi": "希望", "pinyin": "xīwàng", "meaning": "deseo, aspiración", "gloss": "deseo + esperar" },
+          { "hanzi": "希奇", "pinyin": "xīqí", "meaning": "extraño", "gloss": "raro + extraño" }
+        ] },
+        { "hanzi": "杀", "pinyin": "shā", "meaning": "matar", "etymology": "No confundir con 布. Su sentido se forma por las lanzas 乂 que cortan un árbol 木.", "components": [{ "char": "木", "gloss": "árbol" }], "jp": false, "words": [
+          { "hanzi": "杀害", "pinyin": "shāhài", "meaning": "asesinar", "gloss": "matar + daño" },
+          { "hanzi": "杀死", "pinyin": "shāsǐ", "meaning": "matar", "gloss": "matar + morir" }
+        ] },
+        { "hanzi": "市", "pinyin": "shì", "meaning": "mercado, ciudad", "etymology": "Una tela 巾 con la que los comerciantes cubren 亠 sus puestos.", "components": [{ "char": "巾", "gloss": "tela" }], "jp": true, "words": [
+          { "hanzi": "城市", "pinyin": "chéngshì", "meaning": "ciudad", "gloss": "muralla + mercado" },
+          { "hanzi": "市场", "pinyin": "shìchǎng", "meaning": "mercado", "gloss": "mercado + plaza" }
+        ] },
+        { "hanzi": "帅", "pinyin": "shuài", "meaning": "comandante en jefe; bello", "etymology": "Es una bandera 巾 que dirige a los soldados. Se ven dos.", "components": [{ "char": "巾", "gloss": "bandera" }], "jp": true, "words": [
+          { "hanzi": "元帅", "pinyin": "yuánshuài", "meaning": "mariscal", "gloss": "primero + comandante" },
+          { "hanzi": "统帅", "pinyin": "tǒngshuài", "meaning": "comandante", "gloss": "todo + comandante" }
+        ] },
+        { "hanzi": "师", "pinyin": "shī", "meaning": "maestro, modelo", "etymology": "Dirige 帅 a los alumnos bajo techo 一.", "components": [{ "char": "帅", "gloss": "dirigir" }], "jp": true, "words": [
+          { "hanzi": "老师", "pinyin": "lǎoshī", "meaning": "maestro", "gloss": "maestro + maestro" },
+          { "hanzi": "导师", "pinyin": "dǎoshī", "meaning": "tutor, maestro", "gloss": "guía + maestro" }
+        ] },
+        { "hanzi": "闹", "pinyin": "nào", "meaning": "ruidoso, bullicioso", "etymology": "Puerta 门 del mercado 市.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "市", "gloss": "mercado" }], "jp": true, "words": [
+          { "hanzi": "热闹", "pinyin": "rènao", "meaning": "animado, bullicioso", "gloss": "caliente + bullicioso" },
+          { "hanzi": "别闹", "pinyin": "biénào", "meaning": "¡quieto!", "gloss": "no + alboroto" }
+        ] },
+        { "hanzi": "吊", "pinyin": "diào", "meaning": "colgar, pender", "etymology": "Ventana 口 de donde cuelga la ropa 巾.", "components": [{ "char": "口", "gloss": "ventana" }, { "char": "巾", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "吊桥", "pinyin": "diàoqiáo", "meaning": "puente colgante", "gloss": "colgar + puente" },
+          { "hanzi": "吊死", "pinyin": "diàosǐ", "meaning": "ahorcarse", "gloss": "colgarse + morir" }
+        ] },
+        { "hanzi": "帛", "pinyin": "bó", "meaning": "tela de seda", "etymology": "Tela 巾 blanca o pura 白.", "components": [{ "char": "白", "gloss": "blanca" }, { "char": "巾", "gloss": "tela" }], "jp": false, "words": [
+          { "hanzi": "布帛", "pinyin": "bùbó", "meaning": "textiles", "gloss": "paño + seda" }
+        ] },
+        { "hanzi": "帘", "pinyin": "lián", "meaning": "cortina", "etymology": "Paño 巾 que cubre el agujero 穴 de la ventana.", "components": [{ "char": "穴", "gloss": "agujero" }, { "char": "巾", "gloss": "paño" }], "jp": true, "words": [
+          { "hanzi": "窗帘", "pinyin": "chuānglián", "meaning": "cortina", "gloss": "ventana + cortina" }
+        ] },
+        { "hanzi": "常", "pinyin": "cháng", "meaning": "común, constante, frecuentemente", "etymology": "Paño 巾 que se lleva bajo techo 尚, en casa.", "components": [{ "char": "尚", "gloss": "techo" }, { "char": "巾", "gloss": "paño" }], "jp": true, "words": [
+          { "hanzi": "非常", "pinyin": "fēicháng", "meaning": "especialmente", "gloss": "no + común" },
+          { "hanzi": "经常", "pinyin": "jīngcháng", "meaning": "frecuentemente", "gloss": "experiencia + constante" }
+        ] },
+        { "hanzi": "匝", "pinyin": "zā", "meaning": "círculo, circunferencia", "etymology": "Donde se limita 匚 al paño 巾.", "components": [{ "char": "匚", "gloss": "limitar" }, { "char": "巾", "gloss": "paño" }], "jp": true, "words": [
+          { "hanzi": "匝地", "pinyin": "zādì", "meaning": "por todas partes", "gloss": "círculo + lugar" }
+        ] },
+        { "hanzi": "帚", "pinyin": "zhǒu", "meaning": "escoba", "etymology": "Es una mano 彐 que coge una escoba de tela 巾.", "components": [{ "char": "巾", "gloss": "tela" }], "jp": true, "words": [
+          { "hanzi": "扫帚", "pinyin": "sàozhou", "meaning": "escoba", "gloss": "barrer + escoba" }
+        ] },
+        { "hanzi": "帝", "pinyin": "dì", "meaning": "emperador, ser supremo", "etymology": "El señor 立 del mercado 市, y de la ciudad surgida en torno a él.", "components": [{ "char": "立", "gloss": "señor" }, { "char": "巾", "gloss": "mercado" }], "jp": true, "words": [
+          { "hanzi": "帝国", "pinyin": "dìguó", "meaning": "imperio", "gloss": "emperador + país" },
+          { "hanzi": "上帝", "pinyin": "shàngdì", "meaning": "Dios", "gloss": "arriba + ser supremo" }
+        ] },
+        { "hanzi": "带", "pinyin": "dài", "meaning": "cinturón, llevar, guiar", "etymology": "En la parte superior se distingue el esquema del cinturón; debajo, la ropa 巾 que cuelga.", "components": [{ "char": "巾", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "磁带", "pinyin": "cídài", "meaning": "cinta magnética", "gloss": "magnética + cinta" },
+          { "hanzi": "带领", "pinyin": "dàilǐng", "meaning": "dirigir, guiar", "gloss": "dirigir + dirigir" }
+        ] },
+        { "hanzi": "敝", "pinyin": "bì", "meaning": "desgastado, estropeado", "etymology": "Una mano 攵 que rompe una prenda de ropa 巾; se ven los agujeros. Usado antaño para referirse humildemente a uno mismo.", "components": [{ "char": "巾", "gloss": "ropa" }, { "char": "攵", "gloss": "mano que rompe" }], "jp": true, "words": [
+          { "hanzi": "敝国", "pinyin": "bìguó", "meaning": "mi (humilde) país", "gloss": "mi humilde + país" }
+        ] },
+        { "hanzi": "弊", "pinyin": "bì", "meaning": "fraude, perjuicio", "etymology": "Manos 廾 que entregan algo deteriorado 敝.", "components": [{ "char": "敝", "gloss": "deteriorado" }, { "char": "廾", "gloss": "manos" }], "jp": true, "words": [
+          { "hanzi": "作弊", "pinyin": "zuòbì", "meaning": "timar, hacer trampa", "gloss": "hacer + timo" },
+          { "hanzi": "私弊", "pinyin": "sībì", "meaning": "práctica corrupta", "gloss": "privado + fraude" }
+        ] },
+        { "hanzi": "衣", "pinyin": "yī", "meaning": "ropa", "etymology": "De ropa se componen caracteres, y forma parte de muchos otros como radical de ropa.", "components": [], "jp": true, "words": [
+          { "hanzi": "衣服", "pinyin": "yīfu", "meaning": "ropa", "gloss": "ropa + vestido" },
+          { "hanzi": "睡衣", "pinyin": "shuìyī", "meaning": "pijama", "gloss": "dormir + ropa" }
+        ] },
+        { "hanzi": "表", "pinyin": "biǎo", "meaning": "superficie, externo; expresar", "etymology": "Pelo 毛 y ropa 衣, ya que se usaba para designar el exterior de las ropas de piel.", "components": [{ "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "表达", "pinyin": "biǎodá", "meaning": "expresar", "gloss": "expresar + llegar" },
+          { "hanzi": "表演", "pinyin": "biǎoyǎn", "meaning": "actuar", "gloss": "expresar + representar" }
+        ] },
+        { "hanzi": "装", "pinyin": "zhuāng", "meaning": "ropa; aparentar, fingir", "etymology": "Ponerse ropa 衣 para parecer fuerte 壮.", "components": [{ "char": "壮", "gloss": "fuerte" }, { "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "西装", "pinyin": "xīzhuāng", "meaning": "traje", "gloss": "Occidente + vestido" },
+          { "hanzi": "服装", "pinyin": "fúzhuāng", "meaning": "ropa, vestido", "gloss": "ropa + ropa" }
+        ] },
+        { "hanzi": "衰", "pinyin": "shuāi", "meaning": "decaer, debilitarse", "etymology": "Manifestado por ropa 衣 con una paja en el centro: da idea de ropa ya gastada.", "components": [{ "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "衰老", "pinyin": "shuāilǎo", "meaning": "envejecer", "gloss": "decaer + viejo" },
+          { "hanzi": "衰亡", "pinyin": "shuāiwáng", "meaning": "debilitarse hasta la muerte", "gloss": "decaer + morir" }
+        ] },
+        { "hanzi": "哀", "pinyin": "āi", "meaning": "pena, aflicción", "etymology": "Un boquete 口 en la ropa 衣.", "components": [{ "char": "口", "gloss": "boquete" }, { "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "哀求", "pinyin": "āiqiú", "meaning": "suplicar, implorar", "gloss": "pena + pedir" },
+          { "hanzi": "哀思", "pinyin": "āisī", "meaning": "pesar, congoja", "gloss": "pena + pensar" }
+        ] },
+        { "hanzi": "衷", "pinyin": "zhōng", "meaning": "intimidad, fuero interno", "etymology": "Lo que está en el centro 中 de lo que envuelve la ropa 衣 es lo íntimo.", "components": [{ "char": "中", "gloss": "centro" }, { "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "衷心", "pinyin": "zhōngxīn", "meaning": "sincero", "gloss": "íntimo + corazón" },
+          { "hanzi": "衷情", "pinyin": "zhōngqíng", "meaning": "sentimientos íntimos", "gloss": "íntimo + sentimiento" }
+        ] },
+        { "hanzi": "裹", "pinyin": "guǒ", "meaning": "envolver", "etymology": "Una fruta 果 envuelta en una tela 衣.", "components": [{ "char": "果", "gloss": "fruta" }, { "char": "衣", "gloss": "tela" }], "jp": true, "words": [
+          { "hanzi": "包裹", "pinyin": "bāoguǒ", "meaning": "paquete, fardo", "gloss": "envolver + envolver" }
+        ] },
+        { "hanzi": "袋", "pinyin": "dài", "meaning": "bolsillo, saco, bolsa", "etymology": "Parte de la ropa 衣 que sustituye 代 a la mano para llevar cosas.", "components": [{ "char": "代", "gloss": "sustituir" }, { "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "衣袋", "pinyin": "yīdài", "meaning": "bolsillo", "gloss": "ropa + bolsillo" },
+          { "hanzi": "袋鼠", "pinyin": "dàishǔ", "meaning": "canguro", "gloss": "saco + rata" }
+        ] },
+        { "hanzi": "裂", "pinyin": "liè", "meaning": "rajar, hender, rasgar", "etymology": "Hacer un agujero alargado como una fila 列 en la ropa 衣.", "components": [{ "char": "列", "gloss": "fila" }, { "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "裂口", "pinyin": "lièkǒu", "meaning": "boquete, brecha", "gloss": "hender + agujero" },
+          { "hanzi": "裂纹", "pinyin": "lièwén", "meaning": "raja, grieta", "gloss": "hender + arruga" }
+        ] },
+        { "hanzi": "襄", "pinyin": "xiāng", "meaning": "ayudar, asistir", "etymology": "Quitarse la ropa 衣 y unirse en los cantos 口 de los que trabajan en común 共.", "components": [{ "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "襄助", "pinyin": "xiāngzhù", "meaning": "ayudar, asistir", "gloss": "ayudar + asistir" },
+          { "hanzi": "襄理", "pinyin": "xiānglǐ", "meaning": "subdirector", "gloss": "asistir + director" }
+        ] },
+        { "hanzi": "褒", "pinyin": "bāo", "meaning": "elogiar, alabar", "etymology": "Proteger 保 hasta la ropa 衣 de alguien.", "components": [{ "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "褒奖", "pinyin": "bāojiǎng", "meaning": "elogiar y premiar", "gloss": "elogiar + premiar" }
+        ] },
+        { "hanzi": "亵", "pinyin": "xiè", "meaning": "ser irrespetuoso, desnudar", "etymology": "Tirar 执 de la ropa 衣.", "components": [{ "char": "衣", "gloss": "ropa" }], "jp": false, "words": [
+          { "hanzi": "猥亵", "pinyin": "wěixiè", "meaning": "obsceno", "gloss": "obsceno + irrespetuoso" }
+        ] },
+        { "hanzi": "襞", "pinyin": "bì", "meaning": "pliegue", "etymology": "Tela 衣 que hace como que se aleja 辟. Poco usado.", "components": [{ "char": "辟", "gloss": "alejarse" }, { "char": "衣", "gloss": "tela" }], "jp": true, "words": [
+          { "hanzi": "皱襞", "pinyin": "zhòubì", "meaning": "arrugas, pliegues", "gloss": "arrugas + pliegues" }
+        ] },
+        { "hanzi": "衮", "pinyin": "gǔn", "meaning": "ropa imperial", "etymology": "Ropa 衣 pública 公 del emperador.", "components": [{ "char": "公", "gloss": "pública" }, { "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "衮服", "pinyin": "gǔnfú", "meaning": "ropa imperial", "gloss": "ropa imperial + ropa" }
+        ] },
+        { "hanzi": "丧", "pinyin": "sāng", "meaning": "duelo, luto", "etymology": "Nos muestra las lágrimas (sólo dos) de diez 十 personas, y el cambio en la ropa 衣.", "components": [{ "char": "衣", "gloss": "ropa" }], "jp": true, "words": [
+          { "hanzi": "丧事", "pinyin": "sāngshì", "meaning": "funeral", "gloss": "duelo + asuntos" }
+        ] }
+      ]
     }
   ]
 }
