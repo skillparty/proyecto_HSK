@@ -3765,6 +3765,156 @@
           { "hanzi": "家禽", "pinyin": "jiāqín", "meaning": "aves domésticas", "gloss": "casa + aves" }
         ] }
       ]
+    },
+    {
+      "id": "B-25",
+      "theme": "Animales domésticos",
+      "icon": "牛",
+      "chars": [
+        { "hanzi": "豕", "pinyin": "shǐ", "meaning": "cerdo", "etymology": "Aunque ha quedado obsoleto para «cerdo» (se usa 猪 en su lugar), forma parte de otros caracteres importantes.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "家", "pinyin": "jiā", "meaning": "familia, hogar; experto", "etymology": "Un cerdo 豕 bajo techo 宀 da el sentido de hogar.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "豕", "gloss": "cerdo" }], "jp": true, "words": [
+          { "hanzi": "家庭", "pinyin": "jiātíng", "meaning": "familia, hogar", "gloss": "familia + familia" },
+          { "hanzi": "专家", "pinyin": "zhuānjiā", "meaning": "especialista, experto", "gloss": "especializado + experto" }
+        ] },
+        { "hanzi": "蒙", "pinyin": "méng", "meaning": "cubrir; ignorante; timar", "etymology": "Unas hierbas 艹 cubren 冖 el lugar donde está un cerdo 豕.", "components": [{ "char": "艹", "gloss": "hierbas" }, { "char": "豕", "gloss": "cerdo" }], "jp": true, "words": [
+          { "hanzi": "蒙骗", "pinyin": "méngpiàn", "meaning": "engañar", "gloss": "timar + engañar" },
+          { "hanzi": "蒙昧", "pinyin": "méngmèi", "meaning": "inculto, ignorante", "gloss": "ignorante + ignorar" }
+        ] },
+        { "hanzi": "豪", "pinyin": "háo", "meaning": "magnánimo, generoso; despótico", "etymology": "El que eleva 高 su poder desde los cerdos 豕, ya que poseer cerdos era la primera forma de riqueza.", "components": [{ "char": "豕", "gloss": "cerdos" }], "jp": true, "words": [
+          { "hanzi": "豪华", "pinyin": "háohuá", "meaning": "lujoso", "gloss": "magnánimo + floreciente" },
+          { "hanzi": "豪强", "pinyin": "háoqiáng", "meaning": "despótico", "gloss": "despótico + fuerza" }
+        ] },
+        { "hanzi": "冢", "pinyin": "zhǒng", "meaning": "tumba, sepultura", "etymology": "Un cerdo 豕 con los pies atados y encerrado 冖.", "components": [{ "char": "冖", "gloss": "encerrado" }, { "char": "豕", "gloss": "cerdo" }], "jp": true, "words": [
+          { "hanzi": "土冢", "pinyin": "tǔzhǒng", "meaning": "tumba, túmulo", "gloss": "tierra + tumba" }
+        ] },
+        { "hanzi": "豢", "pinyin": "huàn", "meaning": "dar de comer, alimentar", "etymology": "Dos manos que dan de comer a un cerdo 豕.", "components": [{ "char": "豕", "gloss": "cerdo" }], "jp": true, "words": [] },
+        { "hanzi": "牛", "pinyin": "niú", "meaning": "buey, vaca; ganado", "etymology": "Forma parte de muchos caracteres, aportando el sentido de ganado.", "components": [], "jp": true, "words": [
+          { "hanzi": "牛奶", "pinyin": "niúnǎi", "meaning": "leche", "gloss": "vaca + leche" },
+          { "hanzi": "吹牛", "pinyin": "chuīniú", "meaning": "jactarse, fanfarronear", "gloss": "resoplar + buey" }
+        ] },
+        { "hanzi": "牢", "pinyin": "láo", "meaning": "establo; prisión; sólido", "etymology": "Las vacas 牛 bajo techo 宀.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "牛", "gloss": "vacas" }], "jp": true, "words": [
+          { "hanzi": "牢房", "pinyin": "láofáng", "meaning": "cárcel", "gloss": "cárcel + habitación" },
+          { "hanzi": "牢固", "pinyin": "láogù", "meaning": "sólido, seguro", "gloss": "sólido + firme" }
+        ] },
+        { "hanzi": "牵", "pinyin": "qiān", "meaning": "llevar de la mano, influir", "etymology": "Pictograma de un hombre 大 que lleva el ganado al establo 牢.", "components": [{ "char": "牛", "gloss": "ganado" }], "jp": false, "words": [
+          { "hanzi": "牵涉", "pinyin": "qiānshè", "meaning": "afectar, influir", "gloss": "llevar de la mano + afectar" },
+          { "hanzi": "牵连", "pinyin": "qiānlián", "meaning": "involucrar, implicar", "gloss": "llevar de la mano + conectar" }
+        ] },
+        { "hanzi": "牟", "pinyin": "móu", "meaning": "buscar ganancia, procurar beneficio", "etymology": "Es el ganado 牛 privado 厶, de uno mismo.", "components": [{ "char": "牛", "gloss": "ganado" }, { "char": "厶", "gloss": "privado" }], "jp": true, "words": [
+          { "hanzi": "牟利", "pinyin": "móulì", "meaning": "procurar beneficios", "gloss": "buscar + beneficio" },
+          { "hanzi": "牟取", "pinyin": "móuqǔ", "meaning": "procurar ganancias", "gloss": "buscar + coger" }
+        ] },
+        { "hanzi": "告", "pinyin": "gào", "meaning": "acusar, decir, informar", "etymology": "La boca 口 informa el sacrificio de un buey 牛.", "components": [{ "char": "牛", "gloss": "buey" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "告诉", "pinyin": "gàosu", "meaning": "decir, contar", "gloss": "decir + decir" },
+          { "hanzi": "广告", "pinyin": "guǎnggào", "meaning": "publicidad", "gloss": "extender + decir" }
+        ] },
+        { "hanzi": "靠", "pinyin": "kào", "meaning": "apoyar, depender, confiar", "etymology": "El que niega 非 una acusación 告 está apoyando al acusado.", "components": [{ "char": "告", "gloss": "acusación" }, { "char": "非", "gloss": "negar" }], "jp": true, "words": [
+          { "hanzi": "依靠", "pinyin": "yīkào", "meaning": "depender", "gloss": "apoyarse + depender" },
+          { "hanzi": "可靠", "pinyin": "kěkào", "meaning": "fidedigno, fiable", "gloss": "poder + apoyarse" }
+        ] },
+        { "hanzi": "特", "pinyin": "tè", "meaning": "especial, particular", "etymology": "El toro 牛 que se sacrifica en el templo 寺.", "components": [{ "char": "牛", "gloss": "toro" }, { "char": "寺", "gloss": "templo" }], "jp": true, "words": [
+          { "hanzi": "特别", "pinyin": "tèbié", "meaning": "particular, extraordinario", "gloss": "especial + otro" },
+          { "hanzi": "特产", "pinyin": "tèchǎn", "meaning": "especialidad, producto típico", "gloss": "especial + producir" }
+        ] },
+        { "hanzi": "牡", "pinyin": "mǔ", "meaning": "macho (de animales)", "etymology": "Toro 牛 más tierra 土.", "components": [{ "char": "牛", "gloss": "toro" }, { "char": "土", "gloss": "tierra" }], "jp": false, "words": [
+          { "hanzi": "牡牛", "pinyin": "mǔniú", "meaning": "toro", "gloss": "macho + bovino" }
+        ] },
+        { "hanzi": "牝", "pinyin": "pìn", "meaning": "hembra (de animales)", "etymology": "Vaca 牛 más hombre que cambia, mujer 匕.", "components": [{ "char": "牛", "gloss": "vaca" }, { "char": "匕", "gloss": "mujer" }], "jp": false, "words": [] },
+        { "hanzi": "牲", "pinyin": "shēng", "meaning": "animal doméstico, res", "etymology": "Vaca 牛 que nace 生 en nuestra casa.", "components": [{ "char": "牛", "gloss": "vaca" }, { "char": "生", "gloss": "nacer" }], "jp": false, "words": [
+          { "hanzi": "牺牲", "pinyin": "xīshēng", "meaning": "sacrificar(se)", "gloss": "sacrificar + sacrificar" }
+        ] },
+        { "hanzi": "犁", "pinyin": "lí", "meaning": "arar; arado", "etymology": "El beneficio 利 que proporciona un buey 牛.", "components": [{ "char": "牛", "gloss": "buey" }], "jp": false, "words": [
+          { "hanzi": "犁铧", "pinyin": "líhuá", "meaning": "reja del arado", "gloss": "arado + reja" }
+        ] },
+        { "hanzi": "午", "pinyin": "wǔ", "meaning": "mediodía", "etymology": "De mediodía se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "中午", "pinyin": "zhōngwǔ", "meaning": "mediodía", "gloss": "centro + mediodía" },
+          { "hanzi": "午饭", "pinyin": "wǔfàn", "meaning": "almuerzo", "gloss": "mediodía + comida" }
+        ] },
+        { "hanzi": "卸", "pinyin": "xiè", "meaning": "descargar, desmontar; eludir", "etymology": "El buey baja la cabeza 午 y para 止 donde le indica el oficial 卩: se desmonta o descarga.", "components": [{ "char": "午", "gloss": "buey" }, { "char": "止", "gloss": "parar" }], "jp": false, "words": [] },
+        { "hanzi": "半", "pinyin": "bàn", "meaning": "medio, mitad", "etymology": "La división 八 de un buey 牛 por la mitad.", "components": [{ "char": "八", "gloss": "división" }, { "char": "牛", "gloss": "buey" }], "jp": true, "words": [
+          { "hanzi": "半岛", "pinyin": "bàndǎo", "meaning": "península", "gloss": "mitad + isla" },
+          { "hanzi": "半路", "pinyin": "bànlù", "meaning": "a mitad de camino", "gloss": "mitad + camino" }
+        ] },
+        { "hanzi": "叛", "pinyin": "pàn", "meaning": "traicionar, rebelarse", "etymology": "Pasarse a la mitad 半 que son nuestros oponentes 反.", "components": [{ "char": "半", "gloss": "mitad" }, { "char": "反", "gloss": "oponentes" }], "jp": true, "words": [
+          { "hanzi": "叛变", "pinyin": "pànbiàn", "meaning": "traicionar", "gloss": "traicionar + cambiar" },
+          { "hanzi": "叛乱", "pinyin": "pànluàn", "meaning": "rebelión", "gloss": "rebelión + desorden" }
+        ] },
+        { "hanzi": "畔", "pinyin": "pàn", "meaning": "lado, orilla, ribera", "etymology": "La mitad 半 de un campo 田.", "components": [{ "char": "半", "gloss": "mitad" }, { "char": "田", "gloss": "campo" }], "jp": true, "words": [
+          { "hanzi": "河畔", "pinyin": "hépàn", "meaning": "orilla del río", "gloss": "río + orilla" }
+        ] },
+        { "hanzi": "羊", "pinyin": "yáng", "meaning": "oveja", "etymology": "Lo encontramos como componente de muchos otros caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "山羊", "pinyin": "shānyáng", "meaning": "cabra", "gloss": "montaña + oveja" },
+          { "hanzi": "绵羊", "pinyin": "miányáng", "meaning": "oveja", "gloss": "algodón + oveja" }
+        ] },
+        { "hanzi": "鲜", "pinyin": "xiān", "meaning": "delicioso, fresco, vivo", "etymology": "Pescado 鱼 más oveja 羊: se usa para calificar los mejores alimentos.", "components": [{ "char": "鱼", "gloss": "pescado" }, { "char": "羊", "gloss": "oveja" }], "jp": true, "words": [
+          { "hanzi": "海鲜", "pinyin": "hǎixiān", "meaning": "marisco", "gloss": "mar + delicias" },
+          { "hanzi": "鲜美", "pinyin": "xiānměi", "meaning": "delicioso, sabroso", "gloss": "delicioso + bello" }
+        ] },
+        { "hanzi": "养", "pinyin": "yǎng", "meaning": "criar, alimentar", "etymology": "Antiguamente era darle comida 食 a una oveja 羊; con las simplificaciones queda algo como «en medio 介 de las ovejas 羊».", "components": [{ "char": "羊", "gloss": "oveja" }], "jp": false, "words": [
+          { "hanzi": "养活", "pinyin": "yǎnghuo", "meaning": "alimentar, mantener", "gloss": "alimentar + vida" },
+          { "hanzi": "养料", "pinyin": "yǎngliào", "meaning": "alimento, nutriente", "gloss": "alimentar + materia" }
+        ] },
+        { "hanzi": "美", "pinyin": "měi", "meaning": "hermoso, bonito; bueno", "etymology": "Una oveja 羊 grande 大.", "components": [{ "char": "羊", "gloss": "oveja" }, { "char": "大", "gloss": "grande" }], "jp": true, "words": [
+          { "hanzi": "完美", "pinyin": "wánměi", "meaning": "perfecto", "gloss": "completar + bonito" },
+          { "hanzi": "美丽", "pinyin": "měilì", "meaning": "bonito, bello", "gloss": "hermoso + bello" }
+        ] },
+        { "hanzi": "羹", "pinyin": "gēng", "meaning": "sopa espesa, potaje", "etymology": "Se hace con un buen 美 cordero 羔.", "components": [{ "char": "美", "gloss": "buen" }], "jp": false, "words": [
+          { "hanzi": "调羹", "pinyin": "tiáogēng", "meaning": "cuchara", "gloss": "remover + sopa" }
+        ] },
+        { "hanzi": "差", "pinyin": "chā", "meaning": "faltar, diferencia", "etymology": "Oveja 羊 sin una pata, sustituida por una escuadra de carpintero 工.", "components": [{ "char": "羊", "gloss": "oveja" }, { "char": "工", "gloss": "escuadra" }], "jp": true, "words": [
+          { "hanzi": "差异", "pinyin": "chāyì", "meaning": "diferencia", "gloss": "faltar + diferente" },
+          { "hanzi": "误差", "pinyin": "wùchā", "meaning": "error, margen", "gloss": "error + diferencia" }
+        ] },
+        { "hanzi": "着", "pinyin": "zhuó", "meaning": "enviar; tocar; (partícula durativa zhe)", "etymology": "Uno de los caracteres más difíciles, con varias pronunciaciones y significados. Se recuerda como la oveja 羊 que el ojo 目 ha visto.", "components": [{ "char": "羊", "gloss": "oveja" }, { "char": "目", "gloss": "ojo" }], "jp": false, "words": [
+          { "hanzi": "着手", "pinyin": "zhuóshǒu", "meaning": "emprender, acometer", "gloss": "enviar + mano" },
+          { "hanzi": "着想", "pinyin": "zhuóxiǎng", "meaning": "tener en cuenta", "gloss": "enviar + pensar" }
+        ] },
+        { "hanzi": "善", "pinyin": "shàn", "meaning": "bueno, benévolo", "etymology": "Boca 口 que ordena un sacrificio (oveja 羊 sobre bandeja 一).", "components": [{ "char": "羊", "gloss": "oveja" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "善良", "pinyin": "shànliáng", "meaning": "bondadoso", "gloss": "bueno + bueno" },
+          { "hanzi": "善意", "pinyin": "shànyì", "meaning": "buena voluntad", "gloss": "buena + idea" }
+        ] },
+        { "hanzi": "羞", "pinyin": "xiū", "meaning": "vergonzoso; vergüenza", "etymology": "Una oveja 羊 fea, con las patas atadas 丑.", "components": [{ "char": "羊", "gloss": "oveja" }, { "char": "丑", "gloss": "patas atadas" }], "jp": true, "words": [
+          { "hanzi": "害羞", "pinyin": "hàixiū", "meaning": "avergonzarse, tímido", "gloss": "mal + avergonzarse" },
+          { "hanzi": "羞耻", "pinyin": "xiūchǐ", "meaning": "vergüenza, deshonra", "gloss": "vergüenza + vergüenza" }
+        ] },
+        { "hanzi": "羡", "pinyin": "xiàn", "meaning": "admirar, envidiar", "etymology": "La boca se queda abierta y con saliva 次 ante la vista de una oveja 羊.", "components": [{ "char": "羊", "gloss": "oveja" }], "jp": true, "words": [
+          { "hanzi": "羡慕", "pinyin": "xiànmù", "meaning": "admirar, envidiar", "gloss": "admirar + anhelar" },
+          { "hanzi": "艳羡", "pinyin": "yànxiàn", "meaning": "admirar", "gloss": "espléndido + admirar" }
+        ] },
+        { "hanzi": "羌", "pinyin": "qiāng", "meaning": "Qiang (pueblo pastor)", "etymology": "Oveja 羊 más hombre 儿.", "components": [{ "char": "羊", "gloss": "oveja" }, { "char": "儿", "gloss": "hombre" }], "jp": true, "words": [
+          { "hanzi": "羌族", "pinyin": "qiāngzú", "meaning": "pueblo Qiang", "gloss": "Qiang + pueblo" }
+        ] },
+        { "hanzi": "毛", "pinyin": "máo", "meaning": "pelo, lana", "etymology": "De pelo se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "皮毛", "pinyin": "pímáo", "meaning": "pieles, pelaje", "gloss": "piel + pelo" },
+          { "hanzi": "羊毛", "pinyin": "yángmáo", "meaning": "lana", "gloss": "oveja + pelo" }
+        ] },
+        { "hanzi": "牦", "pinyin": "máo", "meaning": "yak", "etymology": "Vaca 牛 peluda 毛.", "components": [{ "char": "牛", "gloss": "vaca" }, { "char": "毛", "gloss": "pelo" }], "jp": false, "words": [
+          { "hanzi": "牦牛", "pinyin": "máoniú", "meaning": "yak", "gloss": "yak + vaca" }
+        ] },
+        { "hanzi": "毳", "pinyin": "cuì", "meaning": "vello, pelo fino", "etymology": "Abundantes pelos 毛.", "components": [{ "char": "毛", "gloss": "pelo" }], "jp": true, "words": [] },
+        { "hanzi": "毯", "pinyin": "tǎn", "meaning": "manta, alfombra", "etymology": "Es el pelo 毛 que calienta, como dos fuegos 火.", "components": [{ "char": "毛", "gloss": "pelo" }, { "char": "火", "gloss": "fuegos" }], "jp": true, "words": [
+          { "hanzi": "地毯", "pinyin": "dìtǎn", "meaning": "alfombra", "gloss": "suelo + alfombra" },
+          { "hanzi": "毯子", "pinyin": "tǎnzi", "meaning": "manta", "gloss": "manta + sufijo" }
+        ] },
+        { "hanzi": "毡", "pinyin": "zhān", "meaning": "fieltro, tapiz", "etymology": "Lana 毛 sobre la que se coloca 占 uno.", "components": [{ "char": "毛", "gloss": "lana" }, { "char": "占", "gloss": "colocarse" }], "jp": false, "words": [
+          { "hanzi": "毛毡", "pinyin": "máozhān", "meaning": "fieltro", "gloss": "lana + fieltro" }
+        ] },
+        { "hanzi": "耗", "pinyin": "hào", "meaning": "gastar, consumir", "etymology": "Un arado y lana 毛: el consumo en productos alimenticios y prendas de vestir son los usos básicos del dinero.", "components": [{ "char": "毛", "gloss": "lana" }], "jp": true, "words": [
+          { "hanzi": "耗费", "pinyin": "hàofèi", "meaning": "gastar, consumir", "gloss": "gastar + gastar" },
+          { "hanzi": "消耗", "pinyin": "xiāohào", "meaning": "consumir, gastar", "gloss": "comprar + gastar" }
+        ] },
+        { "hanzi": "参", "pinyin": "cān", "meaning": "visitar, consultar; participar", "etymology": "Un adulto 大 con ropas llamativas 彡 y boca abierta 厶. Es el brujo al que se consulta, al que primero se visita, o en cuya ceremonia se participa.", "components": [{ "char": "厶", "gloss": "boca abierta" }], "jp": true, "words": [
+          { "hanzi": "参加", "pinyin": "cānjiā", "meaning": "ingresar, participar", "gloss": "ingresar + añadir" },
+          { "hanzi": "参观", "pinyin": "cānguān", "meaning": "visitar", "gloss": "visitar + ver" }
+        ] },
+        { "hanzi": "兽", "pinyin": "shòu", "meaning": "animal, bestia", "etymology": "Representación de su cabeza, con los cuernos, la nariz y la boca.", "components": [], "jp": false, "words": [
+          { "hanzi": "兽医", "pinyin": "shòuyī", "meaning": "veterinario", "gloss": "bestia + médico" },
+          { "hanzi": "兽性", "pinyin": "shòuxìng", "meaning": "bestialidad", "gloss": "bestia + naturaleza" }
+        ] },
+        { "hanzi": "曾", "pinyin": "céng", "meaning": "antes, ya; (zēng) bisabuelo", "etymology": "Pictograma de una máscara que representa a los antepasados. Se distingue la boca 曰 y las mejillas con los ojos y cuernos.", "components": [{ "char": "曰", "gloss": "boca" }], "jp": false, "words": [
+          { "hanzi": "曾经", "pinyin": "céngjīng", "meaning": "(haber) ya, en otro tiempo", "gloss": "antes + pasado" }
+        ] }
+      ]
     }
   ]
 }
