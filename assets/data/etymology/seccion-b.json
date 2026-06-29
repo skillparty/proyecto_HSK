@@ -4053,6 +4053,199 @@
           { "hanzi": "顾客", "pinyin": "gùkè", "meaning": "cliente", "gloss": "atender + cliente" }
         ] }
       ]
+    },
+    {
+      "id": "B-27",
+      "theme": "De los pájaros",
+      "icon": "鸟",
+      "chars": [
+        { "hanzi": "鸟", "pinyin": "niǎo", "meaning": "pájaro", "etymology": "Numerosos caracteres tienen entre sus componentes el pájaro.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "鸡", "pinyin": "jī", "meaning": "pollo, gallina", "etymology": "El pájaro 鸟 que se puede coger con la mano 又.", "components": [{ "char": "鸟", "gloss": "pájaro" }], "jp": false, "words": [
+          { "hanzi": "母鸡", "pinyin": "mǔjī", "meaning": "gallina", "gloss": "madre + pollo" }
+        ] },
+        { "hanzi": "鸢", "pinyin": "yuān", "meaning": "milano", "etymology": "El pájaro 鸟 que caza como un arpón recuperable 弋.", "components": [{ "char": "弋", "gloss": "arpón recuperable" }, { "char": "鸟", "gloss": "pájaro" }], "jp": true, "words": [
+          { "hanzi": "纸鸢", "pinyin": "zhǐyuān", "meaning": "cometa", "gloss": "papel + milano" }
+        ] },
+        { "hanzi": "岛", "pinyin": "dǎo", "meaning": "isla", "etymology": "Montaña 山 más pájaro 鸟, por las islas cercanas a la costa donde anidan numerosos pájaros.", "components": [{ "char": "山", "gloss": "montaña" }, { "char": "鸟", "gloss": "pájaro" }], "jp": true, "words": [
+          { "hanzi": "岛屿", "pinyin": "dǎoyǔ", "meaning": "islas", "gloss": "isla + isleta" }
+        ] },
+        { "hanzi": "枭", "pinyin": "xiāo", "meaning": "valiente, intrépido; mochuelo", "etymology": "Un pájaro 鸟 sobre un árbol 木.", "components": [{ "char": "鸟", "gloss": "pájaro" }, { "char": "木", "gloss": "árbol" }], "jp": true, "words": [
+          { "hanzi": "枭首", "pinyin": "xiāoshǒu", "meaning": "decapitar", "gloss": "valiente + cabeza" }
+        ] },
+        { "hanzi": "袅", "pinyin": "niǎo", "meaning": "esbelto, grácil", "etymology": "Como es el plumaje (vestido 衣) de un pájaro 鸟.", "components": [{ "char": "鸟", "gloss": "pájaro" }, { "char": "衣", "gloss": "plumaje" }], "jp": false, "words": [
+          { "hanzi": "袅袅", "pinyin": "niǎoniǎo", "meaning": "mecerse al viento", "gloss": "esbelto + esbelto" }
+        ] },
+        { "hanzi": "马", "pinyin": "mǎ", "meaning": "caballo", "etymology": "Con caballo también se forman bastantes caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "马路", "pinyin": "mǎlù", "meaning": "calle, calzada", "gloss": "caballo + calle" },
+          { "hanzi": "跑马", "pinyin": "pǎomǎ", "meaning": "carreras de caballos", "gloss": "correr + caballos" }
+        ] },
+        { "hanzi": "闯", "pinyin": "chuǎng", "meaning": "abalanzarse, lanzarse", "etymology": "Un caballo 马 por la puerta 门.", "components": [{ "char": "门", "gloss": "puerta" }, { "char": "马", "gloss": "caballo" }], "jp": true, "words": [
+          { "hanzi": "闯祸", "pinyin": "chuǎnghuò", "meaning": "causar un accidente", "gloss": "abalanzarse + desastre" }
+        ] },
+        { "hanzi": "驮", "pinyin": "duò", "meaning": "llevar a cuestas", "etymology": "Un gran 大 caballo 马.", "components": [{ "char": "马", "gloss": "caballo" }, { "char": "大", "gloss": "gran" }], "jp": false, "words": [
+          { "hanzi": "驮子", "pinyin": "duòzi", "meaning": "carga que lleva un animal", "gloss": "carga + sufijo" }
+        ] },
+        { "hanzi": "驭", "pinyin": "yù", "meaning": "conducir, gobernar", "etymology": "La mano 又 que dirige al caballo 马.", "components": [{ "char": "马", "gloss": "caballo" }, { "char": "又", "gloss": "mano" }], "jp": true, "words": [
+          { "hanzi": "驾驭", "pinyin": "jiàyù", "meaning": "conducir, dominar", "gloss": "conducir + conducir" }
+        ] },
+        { "hanzi": "妈", "pinyin": "mā", "meaning": "mamá", "etymology": "La mujer 女 que lleva al niño de pequeño, como el caballo 马 al adulto.", "components": [{ "char": "女", "gloss": "mujer" }, { "char": "马", "gloss": "caballo" }], "jp": false, "words": [
+          { "hanzi": "妈妈", "pinyin": "māma", "meaning": "mamá", "gloss": "mamá + mamá" }
+        ] },
+        { "hanzi": "驾", "pinyin": "jià", "meaning": "enganchar; conducir", "etymology": "Añadirle 加 al coche un caballo 马.", "components": [{ "char": "加", "gloss": "añadir" }, { "char": "马", "gloss": "caballo" }], "jp": true, "words": [
+          { "hanzi": "驾驶", "pinyin": "jiàshǐ", "meaning": "conducir, pilotar", "gloss": "conducir + conducir" }
+        ] },
+        { "hanzi": "隹", "pinyin": "zhuī", "meaning": "pájaro de cola corta", "etymology": "No se utiliza en la actualidad, pero forma parte de numerosos caracteres.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "集", "pinyin": "jí", "meaning": "recoger, reunir, coleccionar", "etymology": "Pájaro 隹 más árbol 木, ya que los pájaros se reúnen en los árboles.", "components": [{ "char": "隹", "gloss": "pájaro" }, { "char": "木", "gloss": "árbol" }], "jp": true, "words": [
+          { "hanzi": "集市", "pinyin": "jíshì", "meaning": "feria, mercado", "gloss": "reunir + mercado" },
+          { "hanzi": "集团", "pinyin": "jítuán", "meaning": "grupo, unión", "gloss": "reunir + grupo" }
+        ] },
+        { "hanzi": "雀", "pinyin": "què", "meaning": "gorrión", "etymology": "Pájaro 隹 pequeño 少.", "components": [{ "char": "少", "gloss": "pequeño" }, { "char": "隹", "gloss": "pájaro" }], "jp": true, "words": [
+          { "hanzi": "孔雀", "pinyin": "kǒngquè", "meaning": "pavo real", "gloss": "agujero + gorrión" },
+          { "hanzi": "麻雀", "pinyin": "máquè", "meaning": "gorrión", "gloss": "enredadera + gorrión" }
+        ] },
+        { "hanzi": "难", "pinyin": "nán", "meaning": "difícil; desastre", "etymology": "Una mano 又 sobre un pájaro 隹 representa un pájaro capturado: una situación realmente difícil, casi un desastre.", "components": [{ "char": "隹", "gloss": "pájaro" }, { "char": "又", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "难看", "pinyin": "nánkàn", "meaning": "feo", "gloss": "difícil + ver" },
+          { "hanzi": "难过", "pinyin": "nánguò", "meaning": "penoso, triste", "gloss": "difícil + pasar" }
+        ] },
+        { "hanzi": "售", "pinyin": "shòu", "meaning": "vender", "etymology": "Pájaro 隹 más boca 口: el que lo captura grita anunciando su venta.", "components": [{ "char": "隹", "gloss": "pájaro" }, { "char": "口", "gloss": "boca" }], "jp": false, "words": [
+          { "hanzi": "销售", "pinyin": "xiāoshòu", "meaning": "vender, comercializar", "gloss": "vender + vender" },
+          { "hanzi": "出售", "pinyin": "chūshòu", "meaning": "vender", "gloss": "salir + venta" }
+        ] },
+        { "hanzi": "隼", "pinyin": "sǔn", "meaning": "halcón", "etymology": "Pájaro 隹 sobre una percha 十, por usarse para cetrería.", "components": [{ "char": "隹", "gloss": "pájaro" }, { "char": "十", "gloss": "percha" }], "jp": true, "words": [
+          { "hanzi": "鹰隼", "pinyin": "yīngsǔn", "meaning": "aves rapaces", "gloss": "águilas + halcones" }
+        ] },
+        { "hanzi": "雁", "pinyin": "yàn", "meaning": "oca salvaje, ganso", "etymology": "El pájaro 隹 que vive en riscos 厂 y vuela en forma de «V» 人.", "components": [{ "char": "厂", "gloss": "riscos" }, { "char": "隹", "gloss": "pájaro" }], "jp": true, "words": [
+          { "hanzi": "大雁", "pinyin": "dàyàn", "meaning": "oca salvaje", "gloss": "gran + oca salvaje" }
+        ] },
+        { "hanzi": "鹰", "pinyin": "yīng", "meaning": "halcón, águila", "etymology": "El ave 鸟 que vuela en el vasto 广 cielo y caza otras aves 隹 para el hombre 亻.", "components": [{ "char": "广", "gloss": "vasto cielo" }, { "char": "隹", "gloss": "aves" }, { "char": "鸟", "gloss": "ave" }], "jp": true, "words": [
+          { "hanzi": "猎鹰", "pinyin": "lièyīng", "meaning": "halcón de caza", "gloss": "cazar + halcón" }
+        ] },
+        { "hanzi": "雕", "pinyin": "diāo", "meaning": "buitre, águila; esculpir", "etymology": "Completar 周 un trabajo como el pico de un pájaro (buitre) 隹.", "components": [{ "char": "周", "gloss": "completar" }, { "char": "隹", "gloss": "pájaro" }], "jp": true, "words": [
+          { "hanzi": "雕刻", "pinyin": "diāokè", "meaning": "esculpir, cincelar", "gloss": "esculpir + grabar" },
+          { "hanzi": "雕塑", "pinyin": "diāosù", "meaning": "escultura", "gloss": "cincelar + molde" }
+        ] },
+        { "hanzi": "雄", "pinyin": "xióng", "meaning": "masculino; poderoso", "etymology": "Un pájaro enorme 宏, levemente modificado.", "components": [{ "char": "隹", "gloss": "pájaro" }], "jp": false, "words": [
+          { "hanzi": "英雄", "pinyin": "yīngxióng", "meaning": "héroe", "gloss": "héroe + poderoso" },
+          { "hanzi": "雄伟", "pinyin": "xióngwěi", "meaning": "magnífico, grandioso", "gloss": "grande + poderoso" }
+        ] },
+        { "hanzi": "不", "pinyin": "bù", "meaning": "no", "etymology": "De «no» se forman derivados.", "components": [], "jp": true, "words": [
+          { "hanzi": "不错", "pinyin": "bùcuò", "meaning": "bueno, aceptable", "gloss": "no + malo" },
+          { "hanzi": "不行", "pinyin": "bùxíng", "meaning": "no poder, no estar permitido", "gloss": "no + posible" }
+        ] },
+        { "hanzi": "否", "pinyin": "fǒu", "meaning": "negar, rechazar", "etymology": "Decir no 不 con la boca 口.", "components": [{ "char": "不", "gloss": "no" }, { "char": "口", "gloss": "boca" }], "jp": true, "words": [
+          { "hanzi": "否定", "pinyin": "fǒudìng", "meaning": "negar", "gloss": "negar + seguro" },
+          { "hanzi": "否认", "pinyin": "fǒurèn", "meaning": "desconocer, desmentir", "gloss": "negar + conocer" }
+        ] },
+        { "hanzi": "丕", "pinyin": "pī", "meaning": "grande, enorme", "etymology": "Un pájaro volando con las alas abiertas entre el cielo 一 y la tierra 一: un espacio enorme.", "components": [{ "char": "不", "gloss": "pájaro volando" }], "jp": true, "words": [] },
+        { "hanzi": "至", "pinyin": "zhì", "meaning": "concluir; hasta, llegar", "etymology": "Es un ave que vuela de regreso a la tierra 土: concluye su vuelo.", "components": [{ "char": "土", "gloss": "tierra" }], "jp": true, "words": [] },
+        { "hanzi": "室", "pinyin": "shì", "meaning": "cuarto, habitación", "etymology": "Lugar bajo techo 宀 hasta el que se llega 至.", "components": [{ "char": "宀", "gloss": "techo" }, { "char": "至", "gloss": "llegar" }], "jp": true, "words": [
+          { "hanzi": "温室", "pinyin": "wēnshì", "meaning": "invernadero", "gloss": "cálido + cuarto" },
+          { "hanzi": "浴室", "pinyin": "yùshì", "meaning": "cuarto de baño", "gloss": "baño + cuarto" }
+        ] },
+        { "hanzi": "非", "pinyin": "fēi", "meaning": "error, mal; censurar", "etymology": "De error, mal, censurar, se construyen palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "非法", "pinyin": "fēifǎ", "meaning": "ilegal", "gloss": "mal + legal" }
+        ] },
+        { "hanzi": "罪", "pinyin": "zuì", "meaning": "crimen, falta, culpa", "etymology": "Un ojo 目 ve cómo alguien comete una mala 非 acción.", "components": [{ "char": "非", "gloss": "mala acción" }], "jp": false, "words": [
+          { "hanzi": "罪证", "pinyin": "zuìzhèng", "meaning": "prueba del crimen", "gloss": "crimen + probar" },
+          { "hanzi": "定罪", "pinyin": "dìngzuì", "meaning": "condenar", "gloss": "seguro + criminal" }
+        ] },
+        { "hanzi": "匪", "pinyin": "fěi", "meaning": "bandido", "etymology": "Los que se reúnen en un lugar 匚 para cometer maldades 非.", "components": [{ "char": "匚", "gloss": "lugar" }, { "char": "非", "gloss": "maldades" }], "jp": true, "words": [
+          { "hanzi": "土匪", "pinyin": "tǔfěi", "meaning": "bandido", "gloss": "tierra + bandido" }
+        ] },
+        { "hanzi": "扉", "pinyin": "fēi", "meaning": "hoja de una puerta", "etymology": "Una puerta 户 con decoración que le da la forma 非.", "components": [{ "char": "户", "gloss": "puerta" }, { "char": "非", "gloss": "decoración" }], "jp": true, "words": [] },
+        { "hanzi": "霏", "pinyin": "fēi", "meaning": "lluvia copiosa", "etymology": "Lluvia 雨 que no 非 para.", "components": [{ "char": "雨", "gloss": "lluvia" }, { "char": "非", "gloss": "no parar" }], "jp": true, "words": [
+          { "hanzi": "霏霏", "pinyin": "fēifēi", "meaning": "lluvia copiosa", "gloss": "copiosa + copiosa" }
+        ] },
+        { "hanzi": "翡", "pinyin": "fěi", "meaning": "jadeíta", "etymology": "Con vetas, como plumas 羽 bien ordenadas 非.", "components": [{ "char": "非", "gloss": "ordenadas" }, { "char": "羽", "gloss": "plumas" }], "jp": true, "words": [
+          { "hanzi": "翡翠", "pinyin": "fěicuì", "meaning": "jadeíta", "gloss": "jadeíta + verde" }
+        ] },
+        { "hanzi": "辈", "pinyin": "bèi", "meaning": "generación, orden de generaciones", "etymology": "Por el orden 排 en que una familia sube a un coche 车.", "components": [{ "char": "非", "gloss": "orden" }, { "char": "车", "gloss": "coche" }], "jp": true, "words": [] },
+        { "hanzi": "乙", "pinyin": "yǐ", "meaning": "segundo (2.º tronco celeste)", "etymology": "Por el segundo de los Troncos Celestiales. Es un pájaro saliendo de la tierra. Se usa en la enumeración como la letra «B».", "components": [], "jp": true, "words": [] },
+        { "hanzi": "飞", "pinyin": "fēi", "meaning": "volar", "etymology": "De volar se forman palabras.", "components": [], "jp": true, "words": [
+          { "hanzi": "飞机", "pinyin": "fēijī", "meaning": "avión", "gloss": "volar + aparato" },
+          { "hanzi": "起飞", "pinyin": "qǐfēi", "meaning": "despegar", "gloss": "elevar + volar" }
+        ] },
+        { "hanzi": "丸", "pinyin": "wán", "meaning": "píldora; bola", "etymology": "Del perfil de un pájaro que aletea en el aire. La cola a la derecha y el cuerpo en el centro.", "components": [], "jp": true, "words": [
+          { "hanzi": "丸药", "pinyin": "wányào", "meaning": "bola de medicina", "gloss": "píldora + medicina" },
+          { "hanzi": "弹丸", "pinyin": "dànwán", "meaning": "bala, proyectil", "gloss": "bola + píldora" }
+        ] },
+        { "hanzi": "执", "pinyin": "zhí", "meaning": "tomar en la mano; administrar", "etymology": "Una mano 扌 que coge una bola 丸.", "components": [{ "char": "丸", "gloss": "bola" }], "jp": false, "words": [
+          { "hanzi": "执政", "pinyin": "zhízhèng", "meaning": "administrar, gobernar", "gloss": "administrar + gobernar" },
+          { "hanzi": "执行", "pinyin": "zhíxíng", "meaning": "realizar, ejecutar", "gloss": "administrar + hacer" }
+        ] },
+        { "hanzi": "挚", "pinyin": "zhì", "meaning": "sincero, honesto", "etymology": "Tomar en la mano 执 la mano de otro 手.", "components": [{ "char": "执", "gloss": "tomar en la mano" }, { "char": "手", "gloss": "mano" }], "jp": false, "words": [
+          { "hanzi": "真挚", "pinyin": "zhēnzhì", "meaning": "sincero", "gloss": "verdad + sincero" }
+        ] },
+        { "hanzi": "势", "pinyin": "shì", "meaning": "poder, influencia; situación", "etymology": "Aplicar la fuerza 力 a la tarea de administrar 执.", "components": [{ "char": "执", "gloss": "administrar" }, { "char": "力", "gloss": "fuerza" }], "jp": false, "words": [
+          { "hanzi": "势力", "pinyin": "shìlì", "meaning": "fuerza, poder", "gloss": "poder + fuerza" },
+          { "hanzi": "势必", "pinyin": "shìbì", "meaning": "inevitablemente", "gloss": "situación + inevitable" }
+        ] },
+        { "hanzi": "虱", "pinyin": "shī", "meaning": "piojo", "etymology": "Antes era «mosquito»: el insecto 虫 que se queda aleteando en el aire 凡. Luego pasó a representar otros insectos que pican, y acabó en piojo.", "components": [{ "char": "虫", "gloss": "insecto" }], "jp": true, "words": [] },
+        { "hanzi": "九", "pinyin": "jiǔ", "meaning": "nueve", "etymology": "Es un vuelo cortado. El mayor de los números terrenales, el número del emperador.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "究", "pinyin": "jiū", "meaning": "estudiar a fondo, examinar", "etymology": "Nueve 九 hombres en una cueva 穴 tienen oportunidad de hacerlo.", "components": [{ "char": "穴", "gloss": "cueva" }, { "char": "九", "gloss": "nueve hombres" }], "jp": true, "words": [
+          { "hanzi": "研究", "pinyin": "yánjiū", "meaning": "investigación", "gloss": "investigar + estudiar a fondo" }
+        ] },
+        { "hanzi": "染", "pinyin": "rǎn", "meaning": "teñir", "etymology": "Meter nueve 九 veces algo en un líquido 氵 con colorante vegetal 木.", "components": [{ "char": "氵", "gloss": "líquido" }, { "char": "九", "gloss": "nueve veces" }, { "char": "木", "gloss": "colorante vegetal" }], "jp": true, "words": [
+          { "hanzi": "染料", "pinyin": "rǎnliào", "meaning": "tinte", "gloss": "teñir + material" },
+          { "hanzi": "染色", "pinyin": "rǎnsè", "meaning": "teñir", "gloss": "teñir + color" }
+        ] },
+        { "hanzi": "之", "pinyin": "zhī", "meaning": "él, ella, esto; (genitivo «de»)", "etymology": "Aunque semejante a 乙, se origina del dibujo de un pie parado 止; hoy su uso es gramatical, para el genitivo «de».", "components": [{ "char": "止", "gloss": "pie parado" }], "jp": true, "words": [] },
+        { "hanzi": "乏", "pinyin": "fá", "meaning": "faltar, carecer; cansado", "etymology": "Es un pie 止 girado a la izquierda que no alcanza la línea 一.", "components": [{ "char": "止", "gloss": "pie" }], "jp": true, "words": [] },
+        { "hanzi": "乞", "pinyin": "qǐ", "meaning": "pedir, mendigar", "etymology": "Antiguamente era «aire», tal vez por los lamentos del mendigo.", "components": [], "jp": true, "words": [
+          { "hanzi": "乞丐", "pinyin": "qǐgài", "meaning": "mendigo", "gloss": "pedir + mendigar" },
+          { "hanzi": "乞求", "pinyin": "qǐqiú", "meaning": "suplicar, implorar", "gloss": "pedir + pedir" }
+        ] },
+        { "hanzi": "气", "pinyin": "qì", "meaning": "aire, gas; energía", "etymology": "Origen semejante a 乞. Parece que el aire vuela 飞 y se eleva a diferentes niveles 二. Se usa para los distintos gases.", "components": [], "jp": false, "words": [
+          { "hanzi": "气力", "pinyin": "qìlì", "meaning": "energía, fuerza", "gloss": "aire + fuerza" },
+          { "hanzi": "气味", "pinyin": "qìwèi", "meaning": "olor", "gloss": "aire + sabor" }
+        ] },
+        { "hanzi": "氛", "pinyin": "fēn", "meaning": "atmósfera, ambiente", "etymology": "La división 分 del aire 气.", "components": [{ "char": "气", "gloss": "aire" }, { "char": "分", "gloss": "división" }], "jp": true, "words": [
+          { "hanzi": "气氛", "pinyin": "qìfēn", "meaning": "atmósfera, ambiente", "gloss": "aire + atmósfera" }
+        ] },
+        { "hanzi": "氧", "pinyin": "yǎng", "meaning": "oxígeno", "etymology": "Gas 气 tan benigno como una oveja 羊.", "components": [{ "char": "气", "gloss": "gas" }, { "char": "羊", "gloss": "oveja" }], "jp": false, "words": [
+          { "hanzi": "氧气", "pinyin": "yǎngqì", "meaning": "oxígeno", "gloss": "oxígeno + gas" }
+        ] },
+        { "hanzi": "氮", "pinyin": "dàn", "meaning": "nitrógeno", "etymology": "Gas 气 que se inflama 炎.", "components": [{ "char": "气", "gloss": "gas" }, { "char": "炎", "gloss": "inflamarse" }], "jp": false, "words": [
+          { "hanzi": "氮肥", "pinyin": "dànféi", "meaning": "abono nitrogenado", "gloss": "nitrógeno + engordar" }
+        ] },
+        { "hanzi": "氨", "pinyin": "ān", "meaning": "amoníaco", "etymology": "Gas 气 cuyo nombre suena «ān» 安.", "components": [{ "char": "气", "gloss": "gas" }, { "char": "安", "gloss": "sonido ān" }], "jp": false, "words": [] },
+        { "hanzi": "氟", "pinyin": "fú", "meaning": "flúor", "etymology": "Gas 气 cuyo nombre suena «fú» 弗.", "components": [{ "char": "气", "gloss": "gas" }, { "char": "弗", "gloss": "sonido fú" }], "jp": false, "words": [] },
+        { "hanzi": "羽", "pinyin": "yǔ", "meaning": "pluma", "etymology": "Pictograma de un par de alas con plumas.", "components": [], "jp": true, "words": [
+          { "hanzi": "羽毛", "pinyin": "yǔmáo", "meaning": "pluma, plumaje", "gloss": "pluma + pelo" },
+          { "hanzi": "羽毛球", "pinyin": "yǔmáoqiú", "meaning": "bádminton", "gloss": "pluma + pelota" }
+        ] },
+        { "hanzi": "习", "pinyin": "xí", "meaning": "practicar; acostumbrarse", "etymology": "Es sólo una pluma 羽. Denota el estado anterior al vuelo: practicar antes de volar.", "components": [{ "char": "羽", "gloss": "pluma" }], "jp": false, "words": [
+          { "hanzi": "学习", "pinyin": "xuéxí", "meaning": "estudiar", "gloss": "estudiar + practicar" },
+          { "hanzi": "习惯", "pinyin": "xíguàn", "meaning": "acostumbrarse, hábito", "gloss": "practicar + costumbre" }
+        ] },
+        { "hanzi": "翻", "pinyin": "fān", "meaning": "volver, volcar, cambiar", "etymology": "Son las plumas 羽 que se dirigen a un lado y a otro 番.", "components": [{ "char": "番", "gloss": "a un lado y a otro" }, { "char": "羽", "gloss": "plumas" }], "jp": true, "words": [
+          { "hanzi": "翻译", "pinyin": "fānyì", "meaning": "traducir", "gloss": "cambiar + traducir" },
+          { "hanzi": "翻动", "pinyin": "fāndòng", "meaning": "remover, dar la vuelta", "gloss": "volver + mover" }
+        ] },
+        { "hanzi": "扇", "pinyin": "shàn", "meaning": "abanico", "etymology": "Las plumas 羽 que se usan en la puerta de casa 户.", "components": [{ "char": "户", "gloss": "puerta" }, { "char": "羽", "gloss": "plumas" }], "jp": true, "words": [
+          { "hanzi": "扇子", "pinyin": "shànzi", "meaning": "abanico", "gloss": "abanico + sufijo" },
+          { "hanzi": "电扇", "pinyin": "diànshàn", "meaning": "ventilador", "gloss": "eléctrico + abanico" }
+        ] },
+        { "hanzi": "翅", "pinyin": "chì", "meaning": "ala", "etymology": "Una rama del cuerpo 支 con plumas 羽.", "components": [{ "char": "支", "gloss": "rama del cuerpo" }, { "char": "羽", "gloss": "plumas" }], "jp": true, "words": [
+          { "hanzi": "翅膀", "pinyin": "chìbǎng", "meaning": "ala", "gloss": "ala + lado" }
+        ] },
+        { "hanzi": "翁", "pinyin": "wēng", "meaning": "anciano", "etymology": "Un anciano 公 con largas barbas, representadas como plumas 羽.", "components": [{ "char": "公", "gloss": "anciano" }, { "char": "羽", "gloss": "barbas/plumas" }], "jp": true, "words": [
+          { "hanzi": "老翁", "pinyin": "lǎowēng", "meaning": "anciano", "gloss": "anciano + anciano" }
+        ] },
+        { "hanzi": "翕", "pinyin": "xī", "meaning": "cerrar, doblar, plegar", "etymology": "Unir 合 las dos alas 羽.", "components": [{ "char": "合", "gloss": "unir" }, { "char": "羽", "gloss": "alas" }], "jp": false, "words": [
+          { "hanzi": "翕动", "pinyin": "xīdòng", "meaning": "abrir y cerrar", "gloss": "cerrar + mover" }
+        ] },
+        { "hanzi": "翟", "pinyin": "dí", "meaning": "faisán", "etymology": "Pájaro 隹 de vistosas plumas 羽.", "components": [{ "char": "羽", "gloss": "plumas" }, { "char": "隹", "gloss": "pájaro" }], "jp": false, "words": [] },
+        { "hanzi": "翔", "pinyin": "xiáng", "meaning": "revolotear, planear", "etymology": "Las plumas 羽 tan bellas como una oveja 羊.", "components": [{ "char": "羊", "gloss": "oveja" }, { "char": "羽", "gloss": "plumas" }], "jp": true, "words": [
+          { "hanzi": "飞翔", "pinyin": "fēixiáng", "meaning": "revolotear", "gloss": "volar + revolotear" }
+        ] },
+        { "hanzi": "翎", "pinyin": "líng", "meaning": "pluma (larga)", "etymology": "Pluma 羽 en orden 令.", "components": [{ "char": "令", "gloss": "orden" }, { "char": "羽", "gloss": "pluma" }], "jp": false, "words": [
+          { "hanzi": "翎毛", "pinyin": "língmáo", "meaning": "pluma", "gloss": "pluma + pelo" }
+        ] },
+        { "hanzi": "燕", "pinyin": "yàn", "meaning": "golondrina", "etymology": "Ave que vuela al norte 北. Se ven su boca, cuerpo y cola.", "components": [{ "char": "北", "gloss": "norte" }], "jp": false, "words": [
+          { "hanzi": "燕子", "pinyin": "yànzi", "meaning": "golondrina", "gloss": "golondrina + sufijo" }
+        ] }
+      ]
     }
   ]
 }
