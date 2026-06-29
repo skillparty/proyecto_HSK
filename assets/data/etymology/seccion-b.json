@@ -3915,6 +3915,144 @@
           { "hanzi": "曾经", "pinyin": "céngjīng", "meaning": "(haber) ya, en otro tiempo", "gloss": "antes + pasado" }
         ] }
       ]
+    },
+    {
+      "id": "B-26",
+      "theme": "Conchas y dinero",
+      "icon": "贝",
+      "chars": [
+        { "hanzi": "贝", "pinyin": "bèi", "meaning": "concha; dinero", "etymology": "Con concha se componen muchos caracteres, la mayor parte relacionados con el dinero y la riqueza.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "员", "pinyin": "yuán", "meaning": "miembro, empleado", "etymology": "Hay una boca 口 que ordena y alguien que paga dinero 贝.", "components": [{ "char": "口", "gloss": "boca" }, { "char": "贝", "gloss": "dinero" }], "jp": true, "words": [
+          { "hanzi": "会员", "pinyin": "huìyuán", "meaning": "miembro, socio", "gloss": "sociedad + miembro" },
+          { "hanzi": "人员", "pinyin": "rényuán", "meaning": "personal, plantilla", "gloss": "hombre + miembro" }
+        ] },
+        { "hanzi": "圆", "pinyin": "yuán", "meaning": "redondo, esférico", "etymology": "Donde se encierra 口 el que hace algo 员.", "components": [{ "char": "口", "gloss": "encierro" }, { "char": "员", "gloss": "el que hace algo" }], "jp": true, "words": [
+          { "hanzi": "圆周", "pinyin": "yuánzhōu", "meaning": "circunferencia, periferia", "gloss": "redondo + alrededor" },
+          { "hanzi": "圆满", "pinyin": "yuánmǎn", "meaning": "completo, satisfactorio", "gloss": "redondo + lleno" }
+        ] },
+        { "hanzi": "勋", "pinyin": "xūn", "meaning": "mérito", "etymology": "El que se aplica 员 poniendo sus fuerzas 力.", "components": [{ "char": "员", "gloss": "el que se aplica" }, { "char": "力", "gloss": "fuerzas" }], "jp": true, "words": [
+          { "hanzi": "勋章", "pinyin": "xūnzhāng", "meaning": "condecoración", "gloss": "mérito + medalla" },
+          { "hanzi": "功勋", "pinyin": "gōngxūn", "meaning": "servicio meritorio", "gloss": "mérito + mérito" }
+        ] },
+        { "hanzi": "殒", "pinyin": "yǔn", "meaning": "fallecer", "etymology": "Uno 员 que muere 歹. Poco usado.", "components": [{ "char": "歹", "gloss": "muerte" }, { "char": "员", "gloss": "uno" }], "jp": true, "words": [
+          { "hanzi": "殒命", "pinyin": "yǔnmìng", "meaning": "morir, perecer", "gloss": "morir + vida" }
+        ] },
+        { "hanzi": "贡", "pinyin": "gòng", "meaning": "tributos", "etymology": "El dinero 贝 que nos retiran de nuestro trabajo 工.", "components": [{ "char": "工", "gloss": "trabajo" }, { "char": "贝", "gloss": "dinero" }], "jp": true, "words": [
+          { "hanzi": "贡品", "pinyin": "gòngpǐn", "meaning": "artículos de tributo", "gloss": "tributo + objetos" },
+          { "hanzi": "朝贡", "pinyin": "cháogòng", "meaning": "tributo imperial", "gloss": "emperador + tributo" }
+        ] },
+        { "hanzi": "贱", "pinyin": "jiàn", "meaning": "barato; vil", "etymology": "El valor de la concha 贝 rota por dos lanzas 戋.", "components": [{ "char": "贝", "gloss": "concha" }, { "char": "戋", "gloss": "dos lanzas" }], "jp": true, "words": [
+          { "hanzi": "下贱", "pinyin": "xiàjiàn", "meaning": "bajo, vil", "gloss": "bajo + barato" }
+        ] },
+        { "hanzi": "购", "pinyin": "gòu", "meaning": "comprar", "etymology": "Se utilizan las palabras (勾 sustituye a 句) y el dinero 贝.", "components": [{ "char": "贝", "gloss": "dinero" }], "jp": false, "words": [
+          { "hanzi": "购买", "pinyin": "gòumǎi", "meaning": "comprar, adquirir", "gloss": "comprar + comprar" }
+        ] },
+        { "hanzi": "财", "pinyin": "cái", "meaning": "riqueza", "etymology": "Habilidad 才 para conseguir dinero 贝.", "components": [{ "char": "贝", "gloss": "dinero" }, { "char": "才", "gloss": "habilidad" }], "jp": true, "words": [
+          { "hanzi": "财产", "pinyin": "cáichǎn", "meaning": "riqueza, bienes, fortuna", "gloss": "riqueza + productos" },
+          { "hanzi": "财团", "pinyin": "cáituán", "meaning": "consorcio financiero", "gloss": "riqueza + grupo" }
+        ] },
+        { "hanzi": "贴", "pinyin": "tiē", "meaning": "pegar, engomar; subsidiar", "etymology": "Un lugar ocupado 占 por riquezas 贝 atrae a la gente. De ahí «pegar» y «subsidio».", "components": [{ "char": "贝", "gloss": "riquezas" }, { "char": "占", "gloss": "ocupar" }], "jp": true, "words": [
+          { "hanzi": "贴金", "pinyin": "tiējīn", "meaning": "dorar, embellecer", "gloss": "pegar + oro" },
+          { "hanzi": "贴心", "pinyin": "tiēxīn", "meaning": "íntimo", "gloss": "pegado + corazón" }
+        ] },
+        { "hanzi": "货", "pinyin": "huò", "meaning": "mercancías", "etymology": "Lo que se transforma 化 en dinero 贝.", "components": [{ "char": "化", "gloss": "transformar" }, { "char": "贝", "gloss": "dinero" }], "jp": true, "words": [
+          { "hanzi": "货车", "pinyin": "huòchē", "meaning": "vagón de mercancías", "gloss": "mercancía + coche" },
+          { "hanzi": "货运", "pinyin": "huòyùn", "meaning": "transporte de mercancías", "gloss": "mercancía + transporte" }
+        ] },
+        { "hanzi": "费", "pinyin": "fèi", "meaning": "costar, gastar; gasto", "etymology": "Gastar viene de quedarse sin 弗 dinero 贝.", "components": [{ "char": "弗", "gloss": "sin" }, { "char": "贝", "gloss": "dinero" }], "jp": true, "words": [
+          { "hanzi": "费力", "pinyin": "fèilì", "meaning": "costar trabajo", "gloss": "costar + fuerza" },
+          { "hanzi": "费用", "pinyin": "fèiyòng", "meaning": "gastos, costo", "gloss": "gastar + usar" }
+        ] },
+        { "hanzi": "资", "pinyin": "zī", "meaning": "gastar, inversión; capital", "etymology": "Quedarse con carencia 欠 de dinero 贝.", "components": [{ "char": "贝", "gloss": "dinero" }], "jp": true, "words": [
+          { "hanzi": "资本", "pinyin": "zīběn", "meaning": "capital, fondo", "gloss": "dinero + raíz" },
+          { "hanzi": "资产", "pinyin": "zīchǎn", "meaning": "bienes, capital", "gloss": "inversión + producción" }
+        ] },
+        { "hanzi": "贫", "pinyin": "pín", "meaning": "pobre", "etymology": "La división 分 del dinero 贝 hace la pobreza.", "components": [{ "char": "分", "gloss": "división" }, { "char": "贝", "gloss": "dinero" }], "jp": true, "words": [
+          { "hanzi": "贫乏", "pinyin": "pínfá", "meaning": "pobre, escaso", "gloss": "pobre + pobre" },
+          { "hanzi": "贫血", "pinyin": "pínxuè", "meaning": "anemia", "gloss": "pobre + sangre" }
+        ] },
+        { "hanzi": "婴", "pinyin": "yīng", "meaning": "bebé", "etymology": "El tesoro (dos conchas 贝) de la mujer 女.", "components": [{ "char": "贝", "gloss": "tesoro" }, { "char": "女", "gloss": "mujer" }], "jp": true, "words": [
+          { "hanzi": "婴儿", "pinyin": "yīng'ér", "meaning": "recién nacido", "gloss": "bebé + niño" }
+        ] },
+        { "hanzi": "贲", "pinyin": "bēn", "meaning": "ornamento", "etymology": "Flores 艹 y conchas 贝 son los adornos más simples.", "components": [{ "char": "贝", "gloss": "conchas" }], "jp": false, "words": [
+          { "hanzi": "虎贲", "pinyin": "hǔbēn", "meaning": "fuerte y valiente", "gloss": "tigre + decorado" }
+        ] },
+        { "hanzi": "赞", "pinyin": "zàn", "meaning": "alabar, ayudar", "etymology": "Presentar 先 dinero 贝.", "components": [{ "char": "贝", "gloss": "dinero" }], "jp": true, "words": [
+          { "hanzi": "赞美", "pinyin": "zànměi", "meaning": "alabar", "gloss": "alabar + bonito" },
+          { "hanzi": "赞助", "pinyin": "zànzhù", "meaning": "ayudar, patrocinar", "gloss": "ayudar + ayudar" }
+        ] },
+        { "hanzi": "见", "pinyin": "jiàn", "meaning": "ver", "etymology": "También forma parte de algunos caracteres.", "components": [], "jp": true, "words": [
+          { "hanzi": "看见", "pinyin": "kànjian", "meaning": "ver", "gloss": "ver + ver" }
+        ] },
+        { "hanzi": "觉", "pinyin": "jué", "meaning": "sentir, despertar", "etymology": "Como en estudiar 学. Dos manos animan al ojo 见 a mirar al interior 冖.", "components": [{ "char": "见", "gloss": "ojo" }], "jp": true, "words": [
+          { "hanzi": "感觉", "pinyin": "gǎnjué", "meaning": "sensación, sentimiento", "gloss": "sentir + sentir" },
+          { "hanzi": "幻觉", "pinyin": "huànjué", "meaning": "alucinación", "gloss": "imaginar + sentir" }
+        ] },
+        { "hanzi": "观", "pinyin": "guān", "meaning": "mirar, observar; vista", "etymology": "Al igual que 看, se compone de la mano 又 sobre el ojo 见, como colocamos para ver a distancia.", "components": [{ "char": "又", "gloss": "mano" }, { "char": "见", "gloss": "ojo" }], "jp": false, "words": [
+          { "hanzi": "观看", "pinyin": "guānkàn", "meaning": "observar, presenciar", "gloss": "mirar + mirar" },
+          { "hanzi": "观众", "pinyin": "guānzhòng", "meaning": "espectador, público", "gloss": "observar + multitud" }
+        ] },
+        { "hanzi": "觅", "pinyin": "mì", "meaning": "buscar", "etymology": "Una mano 爪 sobre el ojo 见 ayuda a buscar.", "components": [{ "char": "爪", "gloss": "mano" }, { "char": "见", "gloss": "ojo" }], "jp": true, "words": [
+          { "hanzi": "寻觅", "pinyin": "xúnmì", "meaning": "buscar", "gloss": "buscar + buscar" }
+        ] },
+        { "hanzi": "规", "pinyin": "guī", "meaning": "regla, ley", "etymology": "Actuar bajo la mirada 见 del sabio 夫.", "components": [{ "char": "夫", "gloss": "sabio" }, { "char": "见", "gloss": "mirada" }], "jp": true, "words": [
+          { "hanzi": "规定", "pinyin": "guīdìng", "meaning": "reglamento; fijar", "gloss": "regla + fijo" },
+          { "hanzi": "规则", "pinyin": "guīzé", "meaning": "regla, reglamento", "gloss": "regla + norma" }
+        ] },
+        { "hanzi": "宽", "pinyin": "kuān", "meaning": "ancho, amplio", "etymology": "Desde la casa 宀 hasta donde el ojo 见 ve plantas 艹.", "components": [{ "char": "宀", "gloss": "casa" }, { "char": "见", "gloss": "ojo" }], "jp": true, "words": [
+          { "hanzi": "宽大", "pinyin": "kuāndà", "meaning": "ancho, amplio", "gloss": "ancho + grande" },
+          { "hanzi": "宽广", "pinyin": "kuānguǎng", "meaning": "espacioso, vasto", "gloss": "ancho + ancho" }
+        ] },
+        { "hanzi": "览", "pinyin": "lǎn", "meaning": "mirar, ver, contemplar", "etymology": "La parte superior abrevia a un funcionario 臣 que se agacha para mirar 见.", "components": [{ "char": "见", "gloss": "mirar" }], "jp": false, "words": [
+          { "hanzi": "展览", "pinyin": "zhǎnlǎn", "meaning": "exposición, exhibir", "gloss": "exhibir + mirar" },
+          { "hanzi": "游览", "pinyin": "yóulǎn", "meaning": "visitar, recorrer", "gloss": "viajar + mirar" }
+        ] },
+        { "hanzi": "临", "pinyin": "lín", "meaning": "cercano; estar a punto de", "etymology": "Un funcionario que se agacha para ver dos objetos.", "components": [], "jp": false, "words": [
+          { "hanzi": "临近", "pinyin": "línjìn", "meaning": "cercano, próximo", "gloss": "cercano + cerca" },
+          { "hanzi": "临时", "pinyin": "línshí", "meaning": "en el momento, provisional", "gloss": "cercano + tiempo" }
+        ] },
+        { "hanzi": "鉴", "pinyin": "jiàn", "meaning": "espejo de bronce; examinar", "etymology": "Metal 金 en el que un funcionario se agacha a mirarse.", "components": [{ "char": "金", "gloss": "metal" }], "jp": false, "words": [
+          { "hanzi": "鉴定", "pinyin": "jiàndìng", "meaning": "valorar, evaluar", "gloss": "examinar + seguro" },
+          { "hanzi": "鉴赏", "pinyin": "jiànshǎng", "meaning": "apreciar", "gloss": "examinar + valorar" }
+        ] },
+        { "hanzi": "贤", "pinyin": "xián", "meaning": "virtuoso, sabio", "etymology": "Un funcionario 臣 (reducido a dos sombras) en cuya mano 又 se puede confiar el dinero 贝.", "components": [{ "char": "又", "gloss": "mano" }, { "char": "贝", "gloss": "dinero" }], "jp": false, "words": [
+          { "hanzi": "贤惠", "pinyin": "xiánhuì", "meaning": "virtuoso (de una mujer)", "gloss": "virtuoso + gracia" },
+          { "hanzi": "贤明", "pinyin": "xiánmíng", "meaning": "clarividente, sabio", "gloss": "virtuoso + brillante" }
+        ] },
+        { "hanzi": "觑", "pinyin": "qù", "meaning": "mirar detenidamente", "etymology": "Un ojo pendiente de las actividades del tigre.", "components": [{ "char": "见", "gloss": "ojo" }], "jp": false, "words": [] },
+        { "hanzi": "页", "pinyin": "yè", "meaning": "cabeza; hoja, página", "etymology": "Sufre cambios a lo largo de la historia: ya no se usa para «cabeza», sino para «hoja», pero como parte de otros caracteres mantiene su sentido original de cabeza.", "components": [], "jp": true, "words": [] },
+        { "hanzi": "领", "pinyin": "lǐng", "meaning": "dirigir, guiar; cuello", "etymology": "Mandar 令 con la cabeza 页.", "components": [{ "char": "令", "gloss": "mandar" }, { "char": "页", "gloss": "cabeza" }], "jp": true, "words": [
+          { "hanzi": "领导", "pinyin": "lǐngdǎo", "meaning": "dirección, mando", "gloss": "dirigir + guiar" },
+          { "hanzi": "领队", "pinyin": "lǐngduì", "meaning": "jefe de grupo", "gloss": "dirigir + grupo" }
+        ] },
+        { "hanzi": "题", "pinyin": "tí", "meaning": "título; escribir", "etymology": "Ser 是 la cabeza 页 de una cosa.", "components": [{ "char": "是", "gloss": "ser" }, { "char": "页", "gloss": "cabeza" }], "jp": true, "words": [
+          { "hanzi": "题名", "pinyin": "tímíng", "meaning": "inscripción, firma", "gloss": "escribir + nombre" },
+          { "hanzi": "题目", "pinyin": "tímù", "meaning": "título, tema", "gloss": "título + materia" }
+        ] },
+        { "hanzi": "顶", "pinyin": "dǐng", "meaning": "cima, tope, cumbre", "etymology": "La 页 cabeza del clavo 丁.", "components": [{ "char": "丁", "gloss": "clavo" }, { "char": "页", "gloss": "cabeza" }], "jp": true, "words": [
+          { "hanzi": "顶点", "pinyin": "dǐngdiǎn", "meaning": "vértice, cima", "gloss": "cima + punto" },
+          { "hanzi": "顶端", "pinyin": "dǐngduān", "meaning": "ápice, punta", "gloss": "cima + extremo" }
+        ] },
+        { "hanzi": "顺", "pinyin": "shùn", "meaning": "fluido, ordenado, favorable", "etymology": "Cabeza 页 que sigue la dirección del agua 川.", "components": [{ "char": "川", "gloss": "agua" }, { "char": "页", "gloss": "cabeza" }], "jp": true, "words": [
+          { "hanzi": "顺从", "pinyin": "shùncóng", "meaning": "obedecer, someterse", "gloss": "ordenado + seguir" },
+          { "hanzi": "顺风", "pinyin": "shùnfēng", "meaning": "viento a favor", "gloss": "misma dirección + viento" }
+        ] },
+        { "hanzi": "颁", "pinyin": "bān", "meaning": "promulgar, editar", "etymology": "Dividir 分 las hojas 页 de papel escritas.", "components": [{ "char": "分", "gloss": "dividir" }, { "char": "页", "gloss": "hojas" }], "jp": true, "words": [
+          { "hanzi": "颁布", "pinyin": "bānbù", "meaning": "promulgar, emitir", "gloss": "promulgar + paño" },
+          { "hanzi": "颁发", "pinyin": "bānfā", "meaning": "publicar, proclamar", "gloss": "editar + mostrar" }
+        ] },
+        { "hanzi": "颂", "pinyin": "sòng", "meaning": "elogio, loar", "etymology": "Al que pone su cabeza 页 al servicio de lo público 公.", "components": [{ "char": "公", "gloss": "público" }, { "char": "页", "gloss": "cabeza" }], "jp": true, "words": [
+          { "hanzi": "颂词", "pinyin": "sòngcí", "meaning": "elogio, apología", "gloss": "elogio + frase" },
+          { "hanzi": "颂歌", "pinyin": "sònggē", "meaning": "canto, oda", "gloss": "elogio + canto" }
+        ] },
+        { "hanzi": "须", "pinyin": "xū", "meaning": "barba; deber, tener que", "etymology": "Son los pelos 彡 de la cabeza 页.", "components": [{ "char": "彡", "gloss": "pelos" }, { "char": "页", "gloss": "cabeza" }], "jp": true, "words": [
+          { "hanzi": "须要", "pinyin": "xūyào", "meaning": "deber, tener que", "gloss": "deber + tener" },
+          { "hanzi": "须知", "pinyin": "xūzhī", "meaning": "aviso, instrucciones", "gloss": "deber + saber" }
+        ] },
+        { "hanzi": "顾", "pinyin": "gù", "meaning": "atender; volver la cabeza", "etymology": "La parte derecha es una abreviatura de 雇 [gù] «contratar». Con la cabeza 页 en el empleo.", "components": [{ "char": "页", "gloss": "cabeza" }], "jp": false, "words": [
+          { "hanzi": "顾客", "pinyin": "gùkè", "meaning": "cliente", "gloss": "atender + cliente" }
+        ] }
+      ]
     }
   ]
 }
