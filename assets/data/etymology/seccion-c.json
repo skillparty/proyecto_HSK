@@ -458,6 +458,52 @@
         { "hanzi": "堍", "pinyin": "tù", "meaning": "rampa de un puente", "etymology": "Ya sin 免 tierra.", "components": [{ "char": "土", "gloss": "tierra" }, { "char": "免", "gloss": "sin" }], "jp": false },
         { "hanzi": "坤", "pinyin": "kūn", "meaning": "femenino (principio yin)", "etymology": "La parte de la que se extiende 申 la tierra en yinyang.", "components": [{ "char": "土", "gloss": "tierra" }, { "char": "申", "gloss": "extender" }], "jp": true }
       ]
+    },
+    {
+      "id": "C-7",
+      "theme": "Sol (日)",
+      "icon": "日",
+      "intro": "日 se utiliza en caracteres relativos al sol, a sus movimientos y características, como su luz o su brillo.",
+      "chars": [
+        { "hanzi": "晚", "pinyin": "wǎn", "meaning": "noche", "etymology": "Evita 免 al sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "免", "gloss": "evitar" }], "jp": true },
+        { "hanzi": "晌", "pinyin": "shǎng", "meaning": "periodo de tiempo", "etymology": "Se mide por la dirección 向 del sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "向", "gloss": "dirección" }], "jp": false },
+        { "hanzi": "暗", "pinyin": "àn", "meaning": "oscuro", "etymology": "Era el sonido 音 en la puerta 门. Se pregunta quién viene cuando se ha puesto el sol; es oscuro.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "音", "gloss": "sonido" }], "jp": true },
+        { "hanzi": "映", "pinyin": "yìng", "meaning": "reflejo, espejo", "etymology": "Sol en el centro 央.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "央", "gloss": "centro" }], "jp": true },
+        { "hanzi": "昨", "pinyin": "zuó", "meaning": "ayer", "etymology": "El sol que ya extendió 乍 su periodo.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "乍", "gloss": "extender" }], "jp": true },
+        { "hanzi": "暖", "pinyin": "nuǎn", "meaning": "tibio, calentar", "etymology": "Dos manos 爰 se ponen al sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "爰", "gloss": "manos" }], "jp": true },
+        { "hanzi": "晓", "pinyin": "xiǎo", "meaning": "alba, aurora", "etymology": "Exuberancia 尧 del sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "尧", "gloss": "exuberancia" }], "jp": true },
+        { "hanzi": "晃", "pinyin": "huǎng", "meaning": "deslumbrar", "etymology": "La luz 光 del sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "光", "gloss": "luz" }], "jp": true },
+        { "hanzi": "暂", "pinyin": "zàn", "meaning": "por poco tiempo", "etymology": "El tiempo que se tarda en cortar 斩 algo.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "斩", "gloss": "cortar" }], "jp": true },
+        { "hanzi": "晴", "pinyin": "qíng", "meaning": "claro (el tiempo)", "etymology": "El sol claro 青.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "青", "gloss": "claro" }], "jp": true },
+        { "hanzi": "昧", "pinyin": "mèi", "meaning": "esconder, ignorar", "etymology": "No 未 se ve la luz del asunto.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "未", "gloss": "no" }], "jp": true },
+        { "hanzi": "晰", "pinyin": "xī", "meaning": "claro, distinto", "etymology": "Analizar 析 a la luz del sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "析", "gloss": "analizar" }], "jp": true },
+        { "hanzi": "星", "pinyin": "xīng", "meaning": "estrella", "etymology": "Sol que nace 生.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "生", "gloss": "nacer" }], "jp": true },
+        { "hanzi": "昙", "pinyin": "tán", "meaning": "nublado", "etymology": "Sol sobre las nubes 云.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "云", "gloss": "nube" }], "jp": false },
+        { "hanzi": "显", "pinyin": "xiǎn", "meaning": "claro, evidente, mostrar", "etymology": "Luz sobre la ocupación de uno 业.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "业", "gloss": "ocupación" }], "jp": true },
+        { "hanzi": "晔", "pinyin": "yè", "meaning": "brillante", "etymology": "Sol magnífico 华.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "华", "gloss": "magnífico" }], "jp": false },
+        { "hanzi": "旺", "pinyin": "wàng", "meaning": "próspero", "etymology": "Rey 王 como el sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "王", "gloss": "rey" }], "jp": true },
+        { "hanzi": "晨", "pinyin": "chén", "meaning": "amanecer", "etymology": "El tiempo 辰 en que sale el sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "辰", "gloss": "momento" }], "jp": true },
+        { "hanzi": "暑", "pinyin": "shǔ", "meaning": "calor, tiempo cálido", "etymology": "Lo que produce 者 el sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "者", "gloss": "el que" }], "jp": true },
+        { "hanzi": "曙", "pinyin": "shǔ", "meaning": "alba", "etymology": "Tiempo de audiencia en las oficinas del gobierno 署.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "署", "gloss": "oficina" }], "jp": true },
+        { "hanzi": "旷", "pinyin": "kuàng", "meaning": "vasto, espacioso", "etymology": "Ancho 广 como el sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "广", "gloss": "ancho" }], "jp": true },
+        { "hanzi": "旱", "pinyin": "hàn", "meaning": "sequía", "etymology": "Sol que seca 干 la tierra.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "干", "gloss": "secar" }], "jp": true },
+        { "hanzi": "暧", "pinyin": "ài", "meaning": "oscuro", "etymology": "El tiempo del amor 爱.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "爱", "gloss": "amor" }], "jp": true },
+        { "hanzi": "晒", "pinyin": "shài", "meaning": "brillar / iluminar", "etymology": "Cuando el sol está al Oeste 西.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "西", "gloss": "oeste" }], "jp": true },
+        { "hanzi": "晖", "pinyin": "huī", "meaning": "brillo solar", "etymology": "El sol sobre las armas de las tropas 军.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "军", "gloss": "tropa" }], "jp": true },
+        { "hanzi": "晕", "pinyin": "yūn", "meaning": "vértigo, mareos, desmayo", "etymology": "La tropa 军 al sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "军", "gloss": "tropa" }], "jp": true },
+        { "hanzi": "暇", "pinyin": "xiá", "meaning": "tiempo libre, ocio", "etymology": "Tiempo falso 假, sin trabajo.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "叚", "gloss": "falso" }], "jp": true },
+        { "hanzi": "昀", "pinyin": "yún", "meaning": "brillo solar", "etymology": "Igual 匀 al sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "匀", "gloss": "igual" }], "jp": false },
+        { "hanzi": "暮", "pinyin": "mù", "meaning": "atardecer", "etymology": "Ausencia 莫 de sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "莫", "gloss": "ausencia" }], "jp": true },
+        { "hanzi": "晤", "pinyin": "wù", "meaning": "encontrarse", "etymology": "Nosotros 吾 bajo el sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "吾", "gloss": "nosotros" }], "jp": true },
+        { "hanzi": "昭", "pinyin": "zhāo", "meaning": "obvio", "etymology": "Llamado 召 a la luz del sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "召", "gloss": "llamar" }], "jp": true },
+        { "hanzi": "暝", "pinyin": "míng", "meaning": "atardecer", "etymology": "Sol que oscurece 冥.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "冥", "gloss": "oscurecer" }], "jp": false },
+        { "hanzi": "曝", "pinyin": "pù", "meaning": "insolación", "etymology": "Efecto violento 暴 del sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "暴", "gloss": "violento" }], "jp": true },
+        { "hanzi": "昱", "pinyin": "yù", "meaning": "luz del sol", "etymology": "El sol sobre un hombre 立.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "立", "gloss": "de pie" }], "jp": false },
+        { "hanzi": "晏", "pinyin": "yàn", "meaning": "tarde, ocioso", "etymology": "Tranquilo 安 durante el día. Se trabaja por la mañana.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "安", "gloss": "tranquilo" }], "jp": false },
+        { "hanzi": "昂", "pinyin": "áng", "meaning": "elevar la cabeza", "etymology": "Cuando nos hablan 曰 desde la puerta.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "卬", "gloss": "alzar" }], "jp": true },
+        { "hanzi": "旭", "pinyin": "xù", "meaning": "aurora", "etymology": "Cuando nueve 九 campesinos se dirigen a sus parcelas bajo la luz del sol.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "九", "gloss": "nueve" }], "jp": true },
+        { "hanzi": "晾", "pinyin": "liàng", "meaning": "airear, secar al sol", "etymology": "Al sol y en lugar elevado 京.", "components": [{ "char": "日", "gloss": "sol" }, { "char": "京", "gloss": "elevado" }], "jp": false }
+      ]
     }
   ]
 }

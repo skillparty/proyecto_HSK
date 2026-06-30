@@ -16,7 +16,7 @@ class EtymologyController {
     this.dataUrls = [
       "assets/data/etymology/seccion-a.json?v=2",
       "assets/data/etymology/seccion-b.json?v=24",
-      "assets/data/etymology/seccion-c.json?v=3",
+      "assets/data/etymology/seccion-c.json?v=4",
     ];
     this.strokeBaseUrl = "assets/data/etymology/strokes/";
     this.hanziWriterUrl = "assets/vendor/hanzi-writer.min.js";
