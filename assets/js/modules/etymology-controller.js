@@ -16,6 +16,7 @@ class EtymologyController {
     this.dataUrls = [
       "assets/data/etymology/seccion-a.json?v=2",
       "assets/data/etymology/seccion-b.json?v=24",
+      "assets/data/etymology/seccion-c.json?v=1",
     ];
     this.strokeBaseUrl = "assets/data/etymology/strokes/";
     this.hanziWriterUrl = "assets/vendor/hanzi-writer.min.js";
@@ -176,6 +177,7 @@ class EtymologyController {
         <div class="etym-body">
           <div class="etym-left">
             ${this.activeView === "lessons" ? this.renderLessonsNav(s) : this.renderFamiliesNav(s)}
+            ${this.renderLessonIntro(s)}
             <div class="etym-grid" id="etym-grid">
               ${this.renderGrid()}
             </div>
@@ -208,6 +210,7 @@ class EtymologyController {
     const labels = {
       A: "Sección A · Pictográficos",
       B: "Sección B · Compuestos",
+      C: "Sección C · Por radical",
     };
     return `
       <div class="etym-section-tabs" role="tablist" aria-label="Secciones del libro">
@@ -269,6 +272,13 @@ class EtymologyController {
     return `<nav class="etym-chips" aria-label="Familias por componente">
       <p class="etym-fam-hint">Caracteres que comparten un mismo componente y el porqué de esa relación.</p>
       ${chips}</nav>`;
+  }
+
+  renderLessonIntro(s) {
+    if (this.activeView !== "lessons") return "";
+    const lesson = s.lessons.find((l) => l.id === this.activeLessonId);
+    if (!lesson || !lesson.intro) return "";
+    return `<p class="etym-lesson-intro">${this.escape(lesson.intro)}</p>`;
   }
 
   currentChars() {

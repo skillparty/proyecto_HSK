@@ -120,6 +120,16 @@
   font-size: 0.85rem;
   color: var(--color-text-muted, #666);
 }
+.etym-lesson-intro {
+  margin: 0 0 0.75rem;
+  padding: 0.6rem 0.85rem;
+  border-left: 3px solid #c62828;
+  background: var(--color-surface-alt, rgba(198, 40, 40, 0.06));
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text, #333);
+}
 .etym-chip {
   display: inline-flex;
   align-items: center;
