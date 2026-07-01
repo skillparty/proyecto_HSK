@@ -114,6 +114,14 @@ class QuantifierSnakeController {
 
       this.cacheElements();
       await this.loadData();
+
+      if (
+        !this.versus &&
+        typeof QuantifierSnakeVersusController === "function"
+      ) {
+        this.versus = new QuantifierSnakeVersusController(this.app, this);
+      }
+
       this.bindEvents();
       this.syncCanvasSize();
 
@@ -136,6 +144,12 @@ class QuantifierSnakeController {
     this.setupPanel = document.getElementById("snakeq-setup");
     this.gamePanel = document.getElementById("snakeq-game");
     this.difficultySelect = document.getElementById("snakeq-difficulty");
+    this.playersSelect = document.getElementById("snakeq-players");
+    this.versusModeSelect = document.getElementById("snakeq-versus-mode");
+    this.versusOptions = document.getElementById("snakeq-versus-options");
+    this.soloHud = document.getElementById("snakeq-solo-hud");
+    this.versusHud = document.getElementById("snakeq-versus-hud");
+    this.controlsHint = document.getElementById("snakeq-controls-hint");
     this.startButton = document.getElementById("snakeq-start");
     this.restartButton = document.getElementById("snakeq-restart");
     this.pauseButton = document.getElementById("snakeq-pause");
@@ -158,19 +172,29 @@ class QuantifierSnakeController {
 
     if (this.startButton) {
       this.startButton.addEventListener("click", () => {
-        this.startGame();
+        this.handleStartRequest();
       });
     }
 
     if (this.restartButton) {
       this.restartButton.addEventListener("click", () => {
-        this.startGame();
+        this.handleStartRequest();
       });
     }
 
     if (this.pauseButton) {
       this.pauseButton.addEventListener("click", () => {
+        if (this.isVersusActive()) {
+          this.versus.togglePause();
+          return;
+        }
         this.togglePause();
+      });
+    }
+
+    if (this.playersSelect) {
+      this.playersSelect.addEventListener("change", () => {
+        this.updateVersusOptionsVisibility();
       });
     }
 
@@ -199,6 +223,11 @@ class QuantifierSnakeController {
       if (!element) return;
       const handler = (e) => {
         e.preventDefault();
+        if (this.isVersusActive()) {
+          // On touch devices the D-pad steers player 1 in versus mode.
+          this.versus.addDirectionInput(0, dir);
+          return;
+        }
         this.addDirectionInput(dir);
       };
       element.addEventListener("click", handler);
@@ -217,14 +246,14 @@ class QuantifierSnakeController {
       let touchStartY = 0;
 
       canvasWrap.addEventListener("touchstart", (e) => {
-        if (!this.state.isRunning || this.state.isPaused) return;
+        if (!this.isBoardInputActive()) return;
         const touch = e.touches[0];
         touchStartX = touch.clientX;
         touchStartY = touch.clientY;
       }, { passive: true });
 
       canvasWrap.addEventListener("touchend", (e) => {
-        if (!this.state.isRunning || this.state.isPaused) return;
+        if (!this.isBoardInputActive()) return;
         const touch = e.changedTouches[0];
         const diffX = touch.clientX - touchStartX;
         const diffY = touch.clientY - touchStartY;
@@ -241,7 +270,11 @@ class QuantifierSnakeController {
           nextDirection = diffY > 0 ? { x: 0, y: 1 } : { x: 0, y: -1 };
         }
 
-        this.addDirectionInput(nextDirection);
+        if (this.isVersusActive()) {
+          this.versus.addDirectionInput(0, nextDirection);
+        } else {
+          this.addDirectionInput(nextDirection);
+        }
       }, { passive: true });
     }
 
@@ -296,6 +329,98 @@ class QuantifierSnakeController {
     return selected;
   }
 
+  isVersusActive() {
+    return Boolean(this.versus && this.versus.isActive);
+  }
+
+  isBoardInputActive() {
+    if (this.isVersusActive()) {
+      return this.versus.state.isRunning && !this.versus.state.isPaused;
+    }
+    return this.state.isRunning && !this.state.isPaused;
+  }
+
+  getSelectedPlayers() {
+    return this.playersSelect && this.playersSelect.value === "versus"
+      ? "versus"
+      : "solo";
+  }
+
+  getSelectedVersusMode() {
+    const value = this.versusModeSelect ? this.versusModeSelect.value : "";
+    return ["timed3", "timed5", "lives"].includes(value) ? value : "timed3";
+  }
+
+  updateVersusOptionsVisibility() {
+    if (!this.versusOptions) {
+      return;
+    }
+    this.versusOptions.style.display =
+      this.getSelectedPlayers() === "versus" ? "" : "none";
+  }
+
+  setVersusHudVisible(showVersus) {
+    if (this.soloHud) {
+      this.soloHud.style.display = showVersus ? "none" : "";
+    }
+    if (this.versusHud) {
+      this.versusHud.style.display = showVersus ? "" : "none";
+    }
+  }
+
+  updateControlsHint() {
+    if (!this.controlsHint) {
+      return;
+    }
+    const key = this.isVersusActive()
+      ? "snakeQuantifierVersusControlsHint"
+      : "snakeQuantifierControlsHint";
+    this.controlsHint.textContent = this.app.getTranslation(key);
+  }
+
+  handleStartRequest() {
+    if (this.getSelectedPlayers() !== "versus" || !this.versus) {
+      if (this.versus) {
+        this.versus.deactivate();
+      }
+      this.setVersusHudVisible(false);
+      this.startGame();
+      this.updateControlsHint();
+      return;
+    }
+
+    if (!this.isDataReady) {
+      this.setFeedback("snakeQuantifierLoadRetrying", {}, "warning");
+      this.renderFeedback();
+
+      this.loadData().then(() => {
+        if (this.isDataReady) {
+          this.handleStartRequest();
+          return;
+        }
+        this.setFeedback("snakeQuantifierLoadError", {}, "danger");
+        this.renderFeedback();
+      });
+      return;
+    }
+
+    this.stopLoop();
+    this.state.isRunning = false;
+    this.state.isPaused = false;
+
+    const started = this.versus.startGame(
+      this.getSelectedDifficulty(),
+      this.getSelectedVersusMode(),
+    );
+
+    if (started) {
+      this.setVersusHudVisible(true);
+      this.showGame();
+      this.updateControlsHint();
+      this.updatePauseButtonLabel();
+    }
+  }
+
   startGame() {
     if (!this.isDataReady) {
       this.setFeedback("snakeQuantifierLoadRetrying", {}, "warning");
@@ -335,6 +460,12 @@ class QuantifierSnakeController {
 
   showSetup() {
     this.stopLoop();
+
+    if (this.versus) {
+      this.versus.deactivate();
+    }
+    this.setVersusHudVisible(false);
+    this.updateVersusOptionsVisibility();
 
     this.state.isRunning = false;
     this.state.isPaused = false;
@@ -604,6 +735,11 @@ class QuantifierSnakeController {
       return;
     }
 
+    if (this.isVersusActive() && this.versus.state.isRunning) {
+      // The versus controller owns keyboard input while a match runs.
+      return;
+    }
+
     const key = String(event.key || "");
 
     if (!this.state.isRunning) {
@@ -613,7 +749,7 @@ class QuantifierSnakeController {
         this.setupPanel.style.display !== "none"
       ) {
         event.preventDefault();
-        this.startGame();
+        this.handleStartRequest();
       }
       return;
     }
@@ -842,6 +978,12 @@ class QuantifierSnakeController {
   }
 
   render() {
+    if (this.isVersusActive()) {
+      this.versus.render();
+      this.renderFeedback();
+      return;
+    }
+
     this.updateHud();
     this.renderFeedback();
 
@@ -969,9 +1111,10 @@ class QuantifierSnakeController {
       return;
     }
 
-    const key = this.state.isPaused
-      ? "snakeQuantifierResume"
-      : "snakeQuantifierPause";
+    const isPaused = this.isVersusActive()
+      ? this.versus.state.isPaused
+      : this.state.isPaused;
+    const key = isPaused ? "snakeQuantifierResume" : "snakeQuantifierPause";
     this.pauseButton.textContent = this.app.getTranslation(key);
   }
 
@@ -981,12 +1124,18 @@ class QuantifierSnakeController {
     }
 
     this.updatePauseButtonLabel();
+    this.updateControlsHint();
     this.updateHud();
     this.renderFeedback();
     this.render();
   }
 
   onTabActivated() {
+    if (this.isVersusActive()) {
+      this.versus.onTabActivated();
+      return;
+    }
+
     if (!this.state.isRunning) {
       return;
     }

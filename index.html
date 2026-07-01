@@ -907,12 +907,29 @@
                                         <option value="normal" data-i18n="snakeQuantifierDifficultyNormal">Normal</option>
                                         <option value="hard" data-i18n="snakeQuantifierDifficultyHard">Difícil</option>
                                     </select>
+
+                                    <label class="snakeq-select-label" for="snakeq-players" style="margin-top: 0.75rem;" data-i18n="snakeQuantifierPlayersLabel">Jugadores</label>
+                                    <select id="snakeq-players" class="snakeq-select">
+                                        <option value="solo" data-i18n="snakeQuantifierPlayersSolo">1 jugador</option>
+                                        <option value="versus" data-i18n="snakeQuantifierPlayersVersus">2 jugadores (mismo teclado)</option>
+                                    </select>
+
+                                    <div id="snakeq-versus-options" style="display: none;">
+                                        <label class="snakeq-select-label" for="snakeq-versus-mode" style="margin-top: 0.75rem;" data-i18n="snakeQuantifierVersusModeLabel">Modo versus</label>
+                                        <select id="snakeq-versus-mode" class="snakeq-select">
+                                            <option value="timed3" data-i18n="snakeQuantifierVersusTimed3">Contrarreloj · 3 min</option>
+                                            <option value="timed5" data-i18n="snakeQuantifierVersusTimed5">Contrarreloj · 5 min</option>
+                                            <option value="lives" data-i18n="snakeQuantifierVersusLives">Por vidas · 3 cada uno</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <ul class="snakeq-rules">
                                     <li data-i18n="snakeQuantifierRuleLives">Tienes 3 vidas por partida.</li>
                                     <li data-i18n="snakeQuantifierRuleColorEasyNormal">En fácil/normal, las palabras correctas comparten color con el cuantificador.</li>
                                     <li data-i18n="snakeQuantifierRuleColorHard">En difícil no hay pistas de color.</li>
+                                    <li data-i18n="snakeQuantifierVersusRuleControls">Versus: J1 (verde) usa WASD y J2 (azul) usa flechas.</li>
+                                    <li data-i18n="snakeQuantifierVersusRulePowerups">Versus: recoge ⚡ para acelerar 6 s y 🌀 para invertir los controles del rival 6 s.</li>
                                 </ul>
                             </div>
 
@@ -937,7 +954,7 @@
 
                             <!-- Right Column: HUD & Controls Sidebar -->
                             <div class="snakeq-sidebar">
-                                <div class="snakeq-hud">
+                                <div id="snakeq-solo-hud" class="snakeq-hud">
                                     <div class="snakeq-metric">
                                         <span class="snakeq-metric-label" data-i18n="snakeQuantifierScore">Puntaje</span>
                                         <strong id="snakeq-score" class="snakeq-metric-value">0</strong>
@@ -949,6 +966,25 @@
                                     <div class="snakeq-metric">
                                         <span class="snakeq-metric-label" data-i18n="snakeQuantifierMode">Modo</span>
                                         <strong id="snakeq-mode" class="snakeq-metric-value">Fácil</strong>
+                                    </div>
+                                </div>
+
+                                <div id="snakeq-versus-hud" class="snakeq-versus-hud" style="display: none;">
+                                    <div class="snakeq-vs-player snakeq-vs-player--p1">
+                                        <span class="snakeq-vs-name" data-i18n="snakeQuantifierVersusP1">Jugador 1</span>
+                                        <strong id="snakeq-p1-score" class="snakeq-vs-score">0</strong>
+                                        <span id="snakeq-p1-lives" class="snakeq-vs-lives"></span>
+                                        <span id="snakeq-p1-fx" class="snakeq-vs-fx"></span>
+                                    </div>
+                                    <div class="snakeq-vs-timer-box">
+                                        <span class="snakeq-metric-label" data-i18n="snakeQuantifierVersusTimer">Tiempo</span>
+                                        <strong id="snakeq-vs-timer" class="snakeq-vs-timer">3:00</strong>
+                                    </div>
+                                    <div class="snakeq-vs-player snakeq-vs-player--p2">
+                                        <span class="snakeq-vs-name" data-i18n="snakeQuantifierVersusP2">Jugador 2</span>
+                                        <strong id="snakeq-p2-score" class="snakeq-vs-score">0</strong>
+                                        <span id="snakeq-p2-lives" class="snakeq-vs-lives"></span>
+                                        <span id="snakeq-p2-fx" class="snakeq-vs-fx"></span>
                                     </div>
                                 </div>
 
@@ -986,7 +1022,7 @@
                                     <button id="snakeq-back" class="snakeq-btn-neutral" data-i18n="snakeQuantifierBackToSetup">Cambiar dificultad</button>
                                 </div>
 
-                                <p class="snakeq-controls-hint" data-i18n="snakeQuantifierControlsHint">Controles: flechas o WASD para mover, barra espaciadora para pausar.</p>
+                                <p id="snakeq-controls-hint" class="snakeq-controls-hint" data-i18n="snakeQuantifierControlsHint">Controles: flechas o WASD para mover, barra espaciadora para pausar.</p>
                             </div>
                         </div>
                     </div>
@@ -1500,7 +1536,8 @@
     <script src="assets/js/modules/past-exams-controller.js?v=3" defer></script>
     <script src="assets/js/modules/quantifier-snake-utils.js?v=1" defer></script>
     <script src="assets/js/modules/quantifier-snake-canvas.js?v=4" defer></script>
-    <script src="assets/js/modules/quantifier-snake-controller.js?v=6" defer></script>
+    <script src="assets/js/modules/quantifier-snake-controller.js?v=7" defer></script>
+    <script src="assets/js/modules/quantifier-snake-versus.js?v=1" defer></script>
     <script src="assets/js/modules/vocabulary-controller.js?v=3" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=1" defer></script>

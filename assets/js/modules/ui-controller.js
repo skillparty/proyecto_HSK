@@ -192,13 +192,13 @@ class UIController {
         break;
       case "past-exams":
         (async () => {
-          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=8");
+          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=9");
           this.app.initializePastExams();
         })();
         break;
       case "snake-quantifiers":
         (async () => {
-          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=8");
+          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=9");
           if (!this.app.snakeQuantifierInitialized) {
             const initResult = this.app.initializeQuantifierSnake();
             if (initResult && typeof initResult.then === "function") {

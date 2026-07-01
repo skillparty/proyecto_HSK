@@ -661,3 +661,101 @@
     }
 }
 
+
+/* ---- Versus (2 jugadores) HUD ---- */
+.snakeq-versus-hud {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.snakeq-vs-player {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.snakeq-vs-player--p1 {
+    border-color: rgba(16, 185, 129, 0.35);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.08);
+}
+
+.snakeq-vs-player--p2 {
+    border-color: rgba(59, 130, 246, 0.35);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.08);
+}
+
+.snakeq-vs-name {
+    color: rgba(148, 163, 184, 0.85);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.snakeq-vs-player--p1 .snakeq-vs-name {
+    color: #34d399;
+}
+
+.snakeq-vs-player--p2 .snakeq-vs-name {
+    color: #60a5fa;
+}
+
+.snakeq-vs-score {
+    color: #f8fafc;
+    font-size: 1.3rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.snakeq-vs-lives {
+    color: #ef4444;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    min-height: 1em;
+}
+
+.snakeq-vs-fx {
+    font-size: 0.95rem;
+    min-height: 1.2em;
+}
+
+.snakeq-vs-timer-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 12px 16px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(251, 191, 36, 0.30);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.snakeq-vs-timer {
+    color: #fbbf24;
+    font-size: 1.35rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 480px) {
+    .snakeq-versus-hud {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .snakeq-vs-timer-box {
+        grid-column: 1 / -1;
+        order: -1;
+        flex-direction: row;
+    }
+}
