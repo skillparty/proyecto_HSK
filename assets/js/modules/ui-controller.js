@@ -179,7 +179,19 @@ class UIController {
         }
         break;
       case "strokes-radicals":
-        this.app.initializeStrokesRadicals();
+        (async () => {
+          try {
+            if (!window.StrokesRadicalsController) {
+              await this.loadScript("assets/js/modules/strokes-radicals-controller.js?v=4");
+            }
+            if (!this.app.strokesRadicalsController) {
+              this.app.strokesRadicalsController = new window.StrokesRadicalsController(this.app);
+            }
+            this.app.initializeStrokesRadicals();
+          } catch (err) {
+            this.logError("Failed to lazy load strokes-radicals", err);
+          }
+        })();
         break;
       case "quiz":
         if (!this.app.quizInitialized) {
@@ -192,13 +204,42 @@ class UIController {
         break;
       case "past-exams":
         (async () => {
-          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=9");
-          this.app.initializePastExams();
+          try {
+            await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=9");
+            if (!window.PastExamsController) {
+              await this.loadScript("assets/js/modules/past-exams-controller.js?v=3");
+            }
+            if (!this.app.pastExamsController) {
+              this.app.pastExamsController = new window.PastExamsController(this.app);
+            }
+            this.app.initializePastExams();
+          } catch (err) {
+            this.logError("Failed to lazy load past-exams", err);
+          }
         })();
         break;
       case "snake-quantifiers":
         (async () => {
           await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=9");
+          try {
+            if (!window.QuantifierSnakeUtils) {
+              await this.loadScript("assets/js/modules/quantifier-snake-utils.js?v=1");
+            }
+            if (!window.QuantifierSnakeCanvasRenderer) {
+              await this.loadScript("assets/js/modules/quantifier-snake-canvas.js?v=4");
+            }
+            if (!window.QuantifierSnakeController) {
+              await this.loadScript("assets/js/modules/quantifier-snake-controller.js?v=7");
+            }
+            if (!window.QuantifierSnakeVersusController) {
+              await this.loadScript("assets/js/modules/quantifier-snake-versus.js?v=1");
+            }
+            if (!this.app.quantifierSnakeController) {
+              this.app.quantifierSnakeController = new window.QuantifierSnakeController(this.app);
+            }
+          } catch (err) {
+            this.logError("Failed to lazy load quantifier snake scripts", err);
+          }
           if (!this.app.snakeQuantifierInitialized) {
             const initResult = this.app.initializeQuantifierSnake();
             if (initResult && typeof initResult.then === "function") {

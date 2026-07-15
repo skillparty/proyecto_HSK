@@ -110,7 +110,8 @@ class HSKApp {
         this.themeController = new ThemeController(this);
         this.audioController = new AudioController(this);
         this.browseController = new BrowseController(this);
-        this.strokesRadicalsController = new StrokesRadicalsController(this);
+        // strokesRadicalsController: lazy — instantiated by ui-controller.js
+        // on first "strokes-radicals" tab open (script isn't loaded until then).
         this.modalController = new ModalController(this);
         this.healthController = new HealthController(this);
         this.storageController = new StorageController(this);
@@ -121,8 +122,8 @@ class HSKApp {
         this.practiceViewController = new PracticeViewController(this);
         this.feedbackController = new FeedbackController(this);
         this.interactionController = new InteractionController(this);
-        this.pastExamsController = new PastExamsController(this);
-        this.quantifierSnakeController = new QuantifierSnakeController(this);
+        // pastExamsController, quantifierSnakeController: lazy — instantiated
+        // by ui-controller.js on first tab open (scripts aren't loaded until then).
         this.vocabularyController = new VocabularyController(this);
         this.legacyFlowController = new LegacyFlowController(this);
         this.startupController = new StartupController(this);
@@ -271,8 +272,8 @@ class HSKApp {
         this.updateCard();
         this.logDebug('[BROWSE] Redirigido a práctica con palabra: ' + word.character);
     }
-    initializeStrokesRadicals() { return this.strokesRadicalsController.initialize(); }
-    refreshStrokesRadicals() { return this.strokesRadicalsController.refresh(); }
+    initializeStrokesRadicals() { return this.strokesRadicalsController && this.strokesRadicalsController.initialize(); }
+    refreshStrokesRadicals() { return this.strokesRadicalsController && this.strokesRadicalsController.refresh(); }
     setupInfiniteScroll() { return this.browseController.setupInfiniteScroll(); }
     loadMoreVocabulary() { return this.browseController.loadMoreVocabulary(); }
     filterVocabulary() { return this.browseController.filterVocabulary(); }
@@ -321,11 +322,11 @@ class HSKApp {
     loadStats() { return this.storageController.loadStats(); }
     saveStats() { return this.storageController.saveStats(); }
     loadSettings() { return this.storageController.loadSettings(); }
-    initializePastExams() { return this.pastExamsController.initialize(); }
-    refreshPastExamsLanguage() { return this.pastExamsController.refreshLanguage(); }
-    initializeQuantifierSnake() { return this.quantifierSnakeController.initialize(); }
-    refreshQuantifierSnakeLanguage() { return this.quantifierSnakeController.refreshLanguage(); }
-    resumeQuantifierSnakeIfNeeded() { return this.quantifierSnakeController.onTabActivated(); }
+    initializePastExams() { return this.pastExamsController && this.pastExamsController.initialize(); }
+    refreshPastExamsLanguage() { return this.pastExamsController && this.pastExamsController.refreshLanguage(); }
+    initializeQuantifierSnake() { return this.quantifierSnakeController && this.quantifierSnakeController.initialize(); }
+    refreshQuantifierSnakeLanguage() { return this.quantifierSnakeController && this.quantifierSnakeController.refreshLanguage(); }
+    resumeQuantifierSnakeIfNeeded() { return this.quantifierSnakeController && this.quantifierSnakeController.onTabActivated(); }
     initializeQuiz() { return this.legacyFlowController.initializeQuiz(); }
     setupQuizEventListeners() { return this.legacyFlowController.setupQuizEventListeners(); }
 
