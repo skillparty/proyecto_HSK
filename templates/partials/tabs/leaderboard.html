@@ -1,0 +1,90 @@
+                <!-- Leaderboard Tab -->
+            <div id="leaderboard" class="tab-panel">
+                <div class="leaderboard-section">
+                    <div class="leaderboard-header">
+                        <h2 class="leaderboard-title" data-i18n="leaderboard">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: -4px;">
+                                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                                <path d="M4 22h16"></path>
+                                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                            </svg>
+                            Leaderboard
+                        </h2>
+                        <p class="leaderboard-subtitle" data-i18n="leaderboardSubtitle">Compete with other Chinese
+                            learners</p>
+                    </div>
+
+                    <!-- Leaderboard Controls -->
+                    <div class="leaderboard-controls">
+                        <div class="control-group">
+                            <label class="control-label" data-i18n="rankingType">Ranking Type:</label>
+                            <select id="leaderboard-type" class="control-select">
+                                <option value="total_studied" data-i18n="totalStudied">Total Studied</option>
+                                <option value="accuracy" data-i18n="accuracy">Accuracy</option>
+                                <option value="streak" data-i18n="bestStreak">Best Streak</option>
+                                <option value="study_streak" data-i18n="studyStreak">Study Streak</option>
+                                <option value="time_spent" data-i18n="timeSpent">Time Spent</option>
+                                <option value="achievements" data-i18n="achievements">Achievements</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" data-i18n="timePeriod">Time Period:</label>
+                            <select id="leaderboard-period" class="control-select">
+                                <option value="all_time" data-i18n="allTime">All Time</option>
+                                <option value="weekly" data-i18n="thisWeek">This Week</option>
+                                <option value="monthly" data-i18n="thisMonth">This Month</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" data-i18n="hskLevelFilter">HSK Level:</label>
+                            <select id="leaderboard-hsk-level" class="control-select">
+                                <option value="all" data-i18n="allLevels">All Levels</option>
+                                <option value="1">HSK 1</option>
+                                <option value="2">HSK 2</option>
+                                <option value="3">HSK 3</option>
+                                <option value="4">HSK 4</option>
+                                <option value="5">HSK 5</option>
+                                <option value="6">HSK 6</option>
+                            </select>
+                        </div>
+
+                        <button id="leaderboard-refresh" class="refresh-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <polyline points="1 20 1 14 7 14"></polyline>
+                                <path d="M3.51 9a9 9 0 0 1 14.13-3.36L23 10"></path>
+                                <path d="M20.49 15a9 9 0 0 1-14.13 3.36L1 14"></path>
+                            </svg>
+                            <span data-i18n="refresh">Refresh</span>
+                        </button>
+                    </div>
+
+                    <!-- User Position -->
+                    <div id="user-position" class="user-position">
+                        <!-- User position will be displayed here -->
+                    </div>
+
+                    <!-- Leaderboard Statistics -->
+                    <div id="leaderboard-stats" class="leaderboard-stats">
+                        <!-- Statistics will be displayed here -->
+                    </div>
+
+                    <!-- Loading Indicator -->
+                    <div id="leaderboard-loader" class="leaderboard-loader">
+                        <div class="loader-spinner"></div>
+                        <p data-i18n="loadingLeaderboard">Loading leaderboard...</p>
+                    </div>
+
+                    <!-- Leaderboard Content -->
+                    <div id="leaderboard-content" class="leaderboard-content">
+                        <div id="leaderboard-list" class="leaderboard-list">
+                            <!-- Leaderboard entries will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+            </div>

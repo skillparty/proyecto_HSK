@@ -1,0 +1,69 @@
+            <!-- Hanzi Builder Tab -->
+            <div id="hanzi-builder" class="tab-panel" style="display: none;">
+                <div class="hanzi-build-shell">
+                    <h2 class="hanzi-build-title" data-i18n="hanziBuildTitle">Hanzi Builder 🧩</h2>
+                    <p class="hanzi-build-subtitle" data-i18n="hanziBuildSubtitle">Crea caracteres chinos a partir de sus radicales y partes básicas.</p>
+                    
+                    <!-- Setup Screen -->
+                    <div id="hanzi-build-setup" class="hanzi-build-setup">
+                        <div class="hanzi-build-setup-grid">
+                            <div>
+                                <label class="hanzi-build-select-label" for="hanzi-build-level" data-i18n="hanziBuildLevelLabel">Nivel HSK</label>
+                                <select id="hanzi-build-level" class="hanzi-build-select">
+                                    <option value="all" data-i18n="hanziBuildLevelAll">Todos los niveles</option>
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                </select>
+                            </div>
+                            <ul class="hanzi-build-rules">
+                                <li data-i18n="hanziBuildRule1">Se te mostrará el pinyin y el significado de una palabra.</li>
+                                <li data-i18n="hanziBuildRule2">Selecciona las partes de la paleta en el orden correcto para armar el carácter.</li>
+                                <li data-i18n="hanziBuildRule3">Tienes 60 segundos para armar tantos como puedas. ¡Evita errores!</li>
+                            </ul>
+                        </div>
+                        <div class="hanzi-build-start-row">
+                            <button id="hanzi-build-start-btn" class="hanzi-build-btn-primary" data-i18n="hanziBuildStartBtn">Iniciar Puzzle de Hanzi</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Screen -->
+                    <div id="hanzi-build-game-area" class="hanzi-build-game" style="display: none;">
+                        <div class="hanzi-build-hud">
+                            <div class="hanzi-build-metric">
+                                <span class="hanzi-build-metric-label" data-i18n="hanziBuildHudScore">PUNTOS</span>
+                                <span id="hanzi-build-score" class="hanzi-build-metric-value">0</span>
+                            </div>
+                            <div class="hanzi-build-metric">
+                                <span class="hanzi-build-metric-label" data-i18n="hanziBuildHudTimer">TIEMPO</span>
+                                <span id="hanzi-build-timer" class="hanzi-build-metric-value">1:00</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Target Card -->
+                        <div id="hanzi-build-target" class="hanzi-build-target-card">
+                            <span class="hanzi-build-target-hint" data-i18n="hanziBuildTargetHint">Construye la palabra:</span>
+                            <span id="hanzi-build-translation" class="hanzi-build-target-meaning">-</span>
+                            <span id="hanzi-build-pinyin" class="hanzi-build-target-pinyin">-</span>
+                        </div>
+                        
+                        <!-- Assembly Zone -->
+                        <div id="hanzi-build-slots" class="hanzi-build-assembly-zone">
+                            <!-- Assembly slots go here -->
+                        </div>
+                        
+                        <!-- Components Palette -->
+                        <div id="hanzi-build-palette-container" class="hanzi-build-palette">
+                            <!-- Clickable components go here -->
+                        </div>
+                        
+                        <div class="hanzi-build-actions">
+                            <button id="hanzi-build-pause-btn" class="hanzi-build-btn-secondary" data-i18n="hanziBuildPauseBtn">Pausar</button>
+                            <button id="hanzi-build-quit-btn" class="hanzi-build-btn-neutral" data-i18n="hanziBuildQuitBtn">Salir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>

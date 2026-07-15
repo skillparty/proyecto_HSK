@@ -1,0 +1,65 @@
+            <!-- Word Linker Tab -->
+            <div id="word-linker" class="tab-panel" style="display: none;">
+                <div class="word-link-shell">
+                    <h2 class="word-link-title" data-i18n="wordLinkLabel">Word Linker 🔗</h2>
+                    <p class="word-link-subtitle" data-i18n="wordLinkSubtitle">Conecta caracteres en la cuadrícula para formar palabras HSK de 2 sílabas.</p>
+                    
+                    <!-- Setup Screen -->
+                    <div id="word-link-setup" class="word-link-setup">
+                        <div class="word-link-setup-grid">
+                            <div>
+                                <label class="word-link-select-label" for="word-link-level" data-i18n="wordLinkLevelLabel">Nivel HSK</label>
+                                <select id="word-link-level" class="word-link-select">
+                                    <option value="all" data-i18n="wordLinkLevelAll">Todos los niveles</option>
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                </select>
+                            </div>
+                            <ul class="word-link-rules">
+                                <li data-i18n="wordLinkRule1">Se te mostrará la definición y pinyin de la palabra a buscar.</li>
+                                <li data-i18n="wordLinkRule2">Haz clic en los 2 caracteres correspondientes en la cuadrícula en orden.</li>
+                                <li data-i18n="wordLinkRule3">Encuentra todas las palabras de la sopa de letras antes de que acabe el tiempo.</li>
+                            </ul>
+                        </div>
+                        <div class="word-link-start-row">
+                            <button id="word-link-start-btn" class="word-link-btn-primary" data-i18n="wordLinkStartBtn">Iniciar Sopa de Letras</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Screen -->
+                    <div id="word-link-game-area" class="word-link-game" style="display: none;">
+                        <div class="word-link-hud">
+                            <div class="word-link-metric">
+                                <span class="word-link-metric-label" data-i18n="wordLinkHudScore">PUNTOS</span>
+                                <span id="word-link-score" class="word-link-metric-value">0</span>
+                            </div>
+                            <div class="word-link-metric">
+                                <span class="word-link-metric-label" data-i18n="wordLinkHudTimer">TIEMPO</span>
+                                <span id="word-link-timer" class="word-link-metric-value">1:30</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Clue Display -->
+                        <div class="word-link-clue-card">
+                            <div class="word-link-clue-label" data-i18n="wordLinkClueLabel">Encuentra la palabra:</div>
+                            <div id="word-link-clue" class="word-link-clue-text">-</div>
+                        </div>
+                        
+                        <!-- Grid Board -->
+                        <div class="word-link-grid-container">
+                            <div id="word-link-grid-board" class="word-link-grid">
+                                <!-- 16 cells will be generated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="word-link-actions">
+                            <button id="word-link-pause-btn" class="word-link-btn-secondary" data-i18n="wordLinkPauseBtn">Pausar</button>
+                            <button id="word-link-quit-btn" class="word-link-btn-neutral" data-i18n="wordLinkQuitBtn">Salir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>

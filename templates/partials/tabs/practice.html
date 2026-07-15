@@ -1,0 +1,91 @@
+                <!-- Practice Tab -->
+                <div id="practice" class="tab-panel active">
+                    <div class="practice-container">
+                        <div class="study-progress">
+                            <div class="study-progress-header">
+                                <span class="study-progress-title" data-i18n="todayProgress">Today's Progress</span>
+                                <span class="study-progress-value" id="today-progress">0 / 20</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="study-streak">
+                                <div class="streak-day" data-day="M">M</div>
+                                <div class="streak-day" data-day="T">T</div>
+                                <div class="streak-day" data-day="W">W</div>
+                                <div class="streak-day active" data-day="T">T</div>
+                                <div class="streak-day active" data-day="F">F</div>
+                                <div class="streak-day active" data-day="S">S</div>
+                                <div class="streak-day today" data-day="S">S</div>
+                            </div>
+                        </div>
+
+                        <div class="level-selector">
+                            <label for="level-select" data-i18n="levelLabel">HSK Level</label>
+                            <select id="level-select" class="select-input"
+                                data-tooltip="Choose your HSK level to start practicing">
+                                <option value="" data-i18n="selectLevel">Select level...</option>
+                                <option value="1" selected>HSK 1</option>
+                                <option value="2">HSK 2</option>
+                                <option value="3">HSK 3</option>
+                                <option value="4">HSK 4</option>
+                                <option value="5">HSK 5</option>
+                                <option value="6">HSK 6</option>
+                            </select>
+                        </div>
+
+                        <div class="level-selector">
+                            <label for="practice-order-mode" data-i18n="practiceOrderLabel">Orden de estudio</label>
+                            <select id="practice-order-mode" class="select-input"
+                                data-tooltip="Choose lesson sequence order or mixed order">
+                                <option value="srs" data-i18n="practiceOrderSrs">Repaso inteligente (SRS)</option>
+                                <option value="lesson" data-i18n="practiceOrderLesson">Lección (recomendado)</option>
+                                <option value="mixed" data-i18n="practiceOrderMixed">Mezclado aleatorio</option>
+                            </select>
+                        </div>
+
+                        <div class="level-selector">
+                            <label for="tone-check-select" data-i18n="toneCheckLabel">Validación de tonos</label>
+                            <select id="tone-check-select" class="select-input"
+                                data-tooltip="Enforce strict tone verification for pinyin input">
+                                <option value="standard" data-i18n="toneCheckStandard">Estándar (sin tonos)</option>
+                                <option value="strict" data-i18n="toneCheckStrict">Estricto (requiere tonos, ej: hao3)</option>
+                            </select>
+                        </div>
+
+                        <!-- Flashcard Display -->
+                        <div class="flashcard-area">
+                            <div id="flashcard" class="flashcard">
+                                <div class="flashcard-inner">
+                                    <div class="card-face card-front">
+                                        <div class="hsk-academic-seal">学</div>
+                                        <div class="card-character-container" id="question-text"></div>
+                                        <div class="card-front-meta" id="lesson-meta-front" style="display: none;"></div>
+                                        <div class="card-hint" id="hint-text"></div>
+                                    </div>
+                                    <div class="card-face card-back">
+                                        <div class="hsk-academic-seal">德</div>
+                                        <div class="card-answer" id="answer-text"></div>
+                                        <div class="card-details" id="full-info"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Flashcard Controls Removed (replaced by Pinyin Input) -->
+
+                        <!-- Pinyin Input Section -->
+                        <div class="pinyin-input-container">
+                            <input type="text" id="pinyin-input" class="pinyin-input" data-i18n-placeholder="typePinyin" placeholder="Type Pinyin..."
+                                autocomplete="off" autocapitalize="off" spellcheck="false">
+                            <div id="feedback-message" class="feedback-message"></div>
+                            <button id="check-btn" class="action-btn" style="display: none;" data-i18n="submit">Submit</button>
+                            <button id="next-card-next-btn" class="action-btn next-btn-hidden"
+                                style="display: none;" data-i18n="next">Next</button>
+                        </div>
+
+                        <!-- Hidden legacy buttons (just in case) -->
+                        <div class="difficulty-buttons" style="display: none !important;"></div>
+                        <div id="simple-buttons" style="display: none !important;"></div>
+                    </div>
+                </div>

@@ -1,0 +1,84 @@
+                <!-- Past Exams Tab -->
+                <div id="past-exams" class="tab-panel" tabindex="0">
+                    <div class="quiz-setup" id="past-exams-setup">
+                        <h3 data-i18n="pastExamsTitle">Exámenes pasados HSK</h3>
+                        <p class="past-exams-note" data-i18n="pastExamsNoAudioNotice">Esta versión no incluye ejercicios de audio (listening).</p>
+                        <div class="quiz-options">
+                            <div class="control-group">
+                                <label for="past-exam-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
+                                <select id="past-exam-level" class="select-input">
+                                    <option value="all" data-i18n="allLevels">All levels</option>
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="past-exam-section" class="control-label" data-i18n="pastExamsSectionLabel">Sección</label>
+                                <select id="past-exam-section" class="select-input">
+                                    <option value="all" data-i18n="pastExamsSectionAll">Todas</option>
+                                    <option value="reading" data-i18n="pastExamsSectionReading">Lectura</option>
+                                    <option value="writing" data-i18n="pastExamsSectionWriting">Escritura</option>
+                                    <option value="grammar" data-i18n="pastExamsSectionGrammar">Gramática</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="past-exam-questions" class="control-label" data-i18n="numberOfQuestions">Number of questions</label>
+                                <select id="past-exam-questions" class="select-input">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </div>
+                            <div class="control-group control-group-checkbox">
+                                <label class="control-checkbox-label" for="past-exam-official-only">
+                                    <input id="past-exam-official-only" type="checkbox" class="control-checkbox-input">
+                                    <span data-i18n="pastExamsOfficialOnly">Solo preguntas de banco oficial (sin generadas)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button id="start-past-exam" class="btn btn-primary" data-i18n="pastExamsStart">Comenzar examen</button>
+                    </div>
+
+                    <div class="quiz-container" id="past-exams-container" style="display: none;">
+                        <div class="quiz-header">
+                            <div class="quiz-progress">
+                                <span data-i18n="question">Question</span>
+                                <span id="past-exam-current">1</span>
+                                <span data-i18n="of">of</span>
+                                <span id="past-exam-total">10</span>
+                            </div>
+                            <div class="quiz-score-display">
+                                <span data-i18n="score">Score</span>:
+                                <span id="past-exam-score">0</span>
+                            </div>
+                        </div>
+                        <div id="past-exam-pool-summary" class="past-exams-pool-summary" style="display: none;"></div>
+                        <div class="quiz-content" id="past-exam-content">
+                            <div class="question-text" id="past-exam-question"></div>
+                            <div class="quiz-options" id="past-exam-options"></div>
+                            <div class="quiz-actions">
+                                <button id="past-exam-submit" class="btn btn-primary" disabled data-i18n="submit">Enviar</button>
+                                <button id="past-exam-next" class="btn btn-primary" style="display: none;" data-i18n="next">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-results" id="past-exams-results" style="display: none;">
+                        <h3 data-i18n="pastExamsCompleted">Examen completado</h3>
+                        <div class="results-summary">
+                            <div>
+                                <span data-i18n="finalScore">Final Score</span>:
+                                <strong id="past-exam-final-score">0/0</strong>
+                                (<span id="past-exam-final-percentage">0%</span>)
+                            </div>
+                        </div>
+                        <div class="results-actions">
+                            <button id="restart-past-exam" class="btn btn-primary" data-i18n="tryAgain">Reintentar</button>
+                            <button id="new-past-exam" class="btn btn-secondary" data-i18n="newQuiz">Nuevo set</button>
+                        </div>
+                    </div>
+                </div>

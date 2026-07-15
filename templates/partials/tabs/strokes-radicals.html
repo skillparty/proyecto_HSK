@@ -1,0 +1,142 @@
+                <!-- Strokes & Radicals Tab -->
+                <div id="strokes-radicals" class="tab-panel" tabindex="0">
+                    <div class="strokes-radicals-container">
+                        <div class="strokes-radicals-header">
+                            <h3 data-i18n="strokesRadicalsTitle">Trazos y Radicales</h3>
+                            <p data-i18n="strokesRadicalsSubtitle">Explora solo términos que incluyen radicales Kangxi o descripciones de trazos.</p>
+                        </div>
+
+                        <div class="strokes-radicals-stats">
+                            <div class="sr-stat-card">
+                                <div id="strokes-radicals-total-radicals" class="sr-stat-value">0</div>
+                                <div class="sr-stat-label" data-i18n="strokesRadicalsTotalRadicals">Radicales detectados</div>
+                            </div>
+                            <div class="sr-stat-card">
+                                <div id="strokes-radicals-total-strokes" class="sr-stat-value">0</div>
+                                <div class="sr-stat-label" data-i18n="strokesRadicalsTotalStrokes">Trazos detectados</div>
+                            </div>
+                            <div class="sr-stat-card">
+                                <div id="strokes-radicals-total-results" class="sr-stat-value">0</div>
+                                <div class="sr-stat-label" data-i18n="strokesRadicalsTotalResults">Resultados</div>
+                            </div>
+                        </div>
+
+                        <div class="strokes-radicals-controls">
+                            <div class="control-group">
+                                <label for="strokes-radicals-type" class="control-label" data-i18n="strokesRadicalsTypeLabel">Tipo</label>
+                                <select id="strokes-radicals-type" class="select-input">
+                                    <option value="all" data-i18n="strokesRadicalsTypeAll">Todo</option>
+                                    <option value="radicals" data-i18n="strokesRadicalsTypeRadicals">Solo radicales</option>
+                                    <option value="strokes" data-i18n="strokesRadicalsTypeStrokes">Solo trazos</option>
+                                </select>
+                            </div>
+
+                            <div class="control-group">
+                                <label for="strokes-radicals-level" class="control-label" data-i18n="levelLabel">Nivel HSK</label>
+                                <select id="strokes-radicals-level" class="select-input">
+                                    <option value="all" data-i18n="allLevels">Todos los niveles</option>
+                                    <option value="1">HSK 1</option>
+                                    <option value="2">HSK 2</option>
+                                    <option value="3">HSK 3</option>
+                                    <option value="4">HSK 4</option>
+                                    <option value="5">HSK 5</option>
+                                    <option value="6">HSK 6</option>
+                                </select>
+                            </div>
+
+                            <div class="control-group sr-search-group">
+                                <label for="strokes-radicals-search" class="control-label" data-i18n="strokesRadicalsSearchLabel">Buscar</label>
+                                <input
+                                    type="text"
+                                    id="strokes-radicals-search"
+                                    class="search-input"
+                                    data-i18n-placeholder="strokesRadicalsSearchPlaceholder"
+                                    placeholder="Buscar en radicales y trazos..."
+                                >
+                            </div>
+                        </div>
+
+                        <div class="strokes-radicals-reference" id="strokes-radicals-reference">
+                            <div class="sr-reference-header">
+                                <h4 data-i18n="strokesRadicalsReferenceTitle">Catalogo completo</h4>
+                                <p data-i18n="strokesRadicalsReferenceSubtitle">Incluye trazos base/extendidos y los 214 radicales Kangxi.</p>
+                            </div>
+
+                            <div class="sr-reference-stats">
+                                <div class="sr-reference-stat-card">
+                                    <div id="strokes-radicals-catalog-strokes" class="sr-reference-stat-value">0/0</div>
+                                    <div class="sr-reference-stat-label" data-i18n="strokesRadicalsCatalogStrokes">Trazos del catalogo</div>
+                                </div>
+                                <div class="sr-reference-stat-card">
+                                    <div id="strokes-radicals-catalog-radicals" class="sr-reference-stat-value">0/0</div>
+                                    <div class="sr-reference-stat-label" data-i18n="strokesRadicalsCatalogRadicals">Radicales del catalogo</div>
+                                </div>
+                            </div>
+
+                            <div class="sr-reference-sections">
+                                <section id="strokes-radicals-strokes-section" class="sr-reference-section">
+                                    <h5 data-i18n="strokesRadicalsSectionStrokes">Trazos</h5>
+                                    <div id="strokes-radicals-strokes-catalog" class="sr-reference-grid sr-reference-grid-strokes" tabindex="0" aria-label="Catálogo de trazos"></div>
+                                </section>
+
+                                <section id="strokes-radicals-radicals-section" class="sr-reference-section">
+                                    <h5 data-i18n="strokesRadicalsSectionRadicals">Radicales Kangxi (1-214)</h5>
+                                    <div id="strokes-radicals-radicals-catalog" class="sr-reference-grid sr-reference-grid-radicals" tabindex="0" aria-label="Catálogo de radicales"></div>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div class="strokes-radicals-practice" id="strokes-radicals-practice">
+                            <div class="sr-practice-header">
+                                <h4 data-i18n="strokesRadicalsPracticeTitle">Práctica rápida</h4>
+                                <div class="sr-practice-score-wrap">
+                                    <span data-i18n="strokesRadicalsPracticeScore">Puntuación</span>
+                                    <strong id="sr-practice-score">0/0</strong>
+                                </div>
+                            </div>
+
+                            <div class="sr-practice-toolbar">
+                                <div class="control-group sr-practice-difficulty-group">
+                                    <label for="sr-practice-difficulty" class="control-label" data-i18n="strokesRadicalsPracticeDifficultyLabel">Dificultad</label>
+                                    <select id="sr-practice-difficulty" class="select-input">
+                                        <option value="auto" data-i18n="strokesRadicalsPracticeDifficultyAuto">Auto</option>
+                                        <option value="easy" data-i18n="strokesRadicalsPracticeDifficultyEasy">Fácil</option>
+                                        <option value="normal" data-i18n="strokesRadicalsPracticeDifficultyNormal">Normal</option>
+                                        <option value="hard" data-i18n="strokesRadicalsPracticeDifficultyHard">Difícil</option>
+                                    </select>
+                                </div>
+
+                                <button id="sr-practice-reset-session" class="btn btn-secondary" type="button" data-i18n="strokesRadicalsPracticeResetSession">Reiniciar sesión</button>
+                            </div>
+
+                            <div class="sr-practice-metrics">
+                                <div class="sr-practice-metric">
+                                    <span data-i18n="strokesRadicalsPracticeStreak">Racha</span>
+                                    <strong id="sr-practice-streak">0</strong>
+                                </div>
+                                <div class="sr-practice-metric">
+                                    <span data-i18n="strokesRadicalsPracticeBestStreak">Mejor racha</span>
+                                    <strong id="sr-practice-best-streak">0</strong>
+                                </div>
+                                <div class="sr-practice-metric">
+                                    <span data-i18n="strokesRadicalsPracticeAccuracy">Precisión</span>
+                                    <strong id="sr-practice-accuracy">0%</strong>
+                                </div>
+                                <div class="sr-practice-metric">
+                                    <span data-i18n="strokesRadicalsPracticeCurrentDifficulty">Dificultad activa</span>
+                                    <strong id="sr-practice-current-difficulty">Fácil</strong>
+                                </div>
+                            </div>
+
+                            <p id="sr-practice-question" class="sr-practice-question" data-i18n="strokesRadicalsPracticePrompt">Clasifica este término.</p>
+                            <div id="sr-practice-character" class="sr-practice-character">-</div>
+                            <div id="sr-practice-hint" class="sr-practice-hint"></div>
+                            <div id="sr-practice-options" class="sr-practice-options"></div>
+                            <div id="sr-practice-feedback" class="sr-practice-feedback" role="status" aria-live="polite" aria-atomic="true"></div>
+                            <button id="sr-practice-next" class="btn btn-primary" data-i18n="next" style="display: none;">Siguiente</button>
+                        </div>
+
+                        <div id="strokes-radicals-grid" class="strokes-radicals-grid"></div>
+                        <div id="strokes-radicals-empty" class="strokes-radicals-empty" style="display: none;"></div>
+                    </div>
+                </div>
