@@ -858,7 +858,7 @@ class StrokesRadicalsController {
 
         emptyState.innerHTML = '';
 
-        const title = document.createElement('h4');
+        const title = document.createElement('h3');
         title.textContent = this.app.getTranslation(titleKey);
 
         const hint = document.createElement('p');

@@ -2447,7 +2447,7 @@ html[data-theme="dark"] .vocab-character-box {
     margin-bottom: 20px;
 }
 
-.strokes-radicals-header h3 {
+.strokes-radicals-header h2 {
     color: var(--text-main);
     font-size: 1.5rem;
     margin-bottom: 8px;
@@ -2516,7 +2516,7 @@ html[data-theme="dark"] .vocab-character-box {
     margin-bottom: 10px;
 }
 
-.sr-reference-header h4 {
+.sr-reference-header h3 {
     color: var(--text-main);
     font-size: 1rem;
     margin-bottom: 4px;
@@ -2560,7 +2560,7 @@ html[data-theme="dark"] .vocab-character-box {
     gap: 10px;
 }
 
-.sr-reference-section h5 {
+.sr-reference-section h4 {
     color: var(--text-main);
     font-size: 0.85rem;
     margin-bottom: 6px;
@@ -2653,7 +2653,7 @@ html[data-theme="dark"] .vocab-character-box {
     margin-bottom: 10px;
 }
 
-.sr-practice-header h4 {
+.sr-practice-header h3 {
     color: var(--text-main);
     font-size: 1rem;
     margin: 0;
@@ -2900,7 +2900,7 @@ html[data-theme="dark"] .vocab-character-box {
     background: rgba(255, 255, 255, 0.02);
 }
 
-.strokes-radicals-empty h4 {
+.strokes-radicals-empty h3 {
     color: var(--text-main);
     margin-bottom: 4px;
     font-size: 1rem;
@@ -2961,7 +2961,8 @@ html[data-theme="dark"] .vocab-character-box {
     text-align: center;
 }
 
-.quiz-setup h3 {
+.quiz-setup h2,
+.quiz-results h2 {
     margin-bottom: 30px;
     color: var(--text-main);
     font-size: 1.8rem;
@@ -3210,6 +3211,11 @@ html[data-theme="dark"] .vocab-character-box {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.stats-overview h2 {
+    margin: 0 0 20px;
+    font-size: 1.3rem;
+}
+
 .leaderboard-header {
     text-align: center;
     margin-bottom: 30px;
@@ -3333,7 +3339,7 @@ html[data-theme="dark"] .vocab-character-box {
     color: var(--text-muted);
 }
 
-.stats-empty-state h4 {
+.stats-empty-state h3 {
     color: var(--text-main);
     font-size: 1.1rem;
 }
@@ -3372,9 +3378,9 @@ html[data-theme="light"] .level-progress {
     box-shadow: 0 10px 30px rgba(139, 0, 0, 0.05);
 }
 
-.stats-chart-card h4,
-.stats-achievements-card h4,
-.level-progress h4 {
+.stats-chart-card h3,
+.stats-achievements-card h3,
+.level-progress h3 {
     margin-top: 0;
     margin-bottom: 18px;
     font-size: 1.15rem;
@@ -4663,7 +4669,8 @@ html[data-theme="light"] .dashboard-3d-portal {
         padding: 24px !important;
     }
 
-    .quiz-setup h3 {
+    .quiz-setup h2,
+    .quiz-results h2 {
         margin-bottom: 16px !important;
         font-size: 1.5rem !important;
     }
@@ -4759,7 +4766,7 @@ html[data-theme="light"] .dashboard-3d-portal {
         margin-top: 0 !important;
     }
 
-    .stats-overview h3 {
+    .stats-overview h2 {
         margin: 0 !important;
         font-size: 1.3rem !important;
         flex-shrink: 0;

@@ -64,8 +64,9 @@
 }
 .etym-section-tab:hover { color: var(--color-text-main, #222); }
 .etym-section-tab.is-active {
-  background: var(--color-primary, #c62828);
-  border-color: var(--color-primary, #c62828);
+  /* #c62828 (no --color-primary, que es #e53935 y falla WCAG con blanco encima) */
+  background: #c62828;
+  border-color: #c62828;
   color: #fff;
 }
 

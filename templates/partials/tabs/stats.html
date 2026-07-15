@@ -1,7 +1,7 @@
             <!-- Statistics Tab -->
             <div id="stats" class="tab-panel">
                 <div class="stats-overview">
-                    <h3 data-i18n="learningStatistics">Learning Statistics</h3>
+                    <h2 data-i18n="learningStatistics">Learning Statistics</h2>
                     <div class="stats-cards">
                         <div class="stat-card">
                             <div class="stat-value" id="total-studied">0</div>
@@ -31,25 +31,25 @@
 
                     <div id="stats-dashboard-row" class="stats-dashboard-row" style="display: none;">
                         <div class="stats-heatmap-card" style="grid-column: span 2;">
-                            <h4 data-i18n="activityHeatmapTitle">Mapa de Actividad (Últimos 90 Días)</h4>
+                            <h3 data-i18n="activityHeatmapTitle">Mapa de Actividad (Últimos 90 Días)</h3>
                             <div class="heatmap-container" style="overflow-x: auto; width: 100%;">
                                 <canvas id="stats-heatmap-canvas" width="660" height="110" style="display: block; width: 100%; max-width: 660px; margin: 0 auto;"></canvas>
                             </div>
                         </div>
                         <div class="stats-chart-card">
-                            <h4 data-i18n="progressByLevelChart">Progreso de Vocabulario HSK</h4>
+                            <h3 data-i18n="progressByLevelChart">Progreso de Vocabulario HSK</h3>
                             <div class="canvas-chart-wrap">
                                 <canvas id="stats-canvas-chart" width="480" height="230"></canvas>
                             </div>
                         </div>
                         <div class="stats-achievements-card">
-                            <h4 data-i18n="hskAchievements">Logros HSK</h4>
+                            <h3 data-i18n="hskAchievements">Logros HSK</h3>
                             <div class="stats-achievements-grid" id="stats-achievements-grid">
                                 <!-- Los logros se renderizarán dinámicamente aquí -->
                             </div>
                         </div>
                         <div class="level-progress">
-                            <h4 data-i18n="progressByLevel">Progress by HSK Level</h4>
+                            <h3 data-i18n="progressByLevel">Progress by HSK Level</h3>
                             <div class="stats-rings-grid" id="stats-rings-grid">
                                 <!-- SVG progress rings will be dynamically populated here -->
                             </div>
@@ -60,7 +60,7 @@
                         <div class="stats-empty-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="m18 20-6-6-6 6"></path><path d="M12 4v2"></path></svg>
                         </div>
-                        <h4 data-i18n="noStatsYet">No progress to show yet</h4>
+                        <h3 data-i18n="noStatsYet">No progress to show yet</h3>
                         <p data-i18n="startWithPracticeToSeeStats">Start with Practice to see your stats here</p>
                         <button class="btn btn-primary" id="go-to-practice-btn" data-i18n="goToPractice">Go to Practice</button>
                     </div>

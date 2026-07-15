@@ -325,7 +325,7 @@ class EtymologyController {
     const decomposition = components.length
       ? `
         <div class="etym-decomp">
-          <h4 class="etym-section-title">Descomposición</h4>
+          <h3 class="etym-section-title">Descomposición</h3>
           <div class="etym-decomp-chips">
             ${components
               .map(
@@ -349,7 +349,7 @@ class EtymologyController {
     const words = entry.words && entry.words.length
       ? `
         <div class="etym-words">
-          <h4 class="etym-section-title">Palabras de ejemplo</h4>
+          <h3 class="etym-section-title">Palabras de ejemplo</h3>
           <ul class="etym-word-list">
             ${entry.words
               .map(
@@ -387,7 +387,7 @@ class EtymologyController {
         <button class="etym-btn etym-secondary etym-quiz" type="button">✎ Practicar</button>
       </div>
       <div class="etym-why">
-        <h4 class="etym-section-title">El porqué (${entry.lessonId} · ${this.escape(entry.theme)})</h4>
+        <h3 class="etym-section-title">El porqué (${entry.lessonId} · ${this.escape(entry.theme)})</h3>
         <p class="etym-why-text">${this.highlightComponents(entry.etymology)}</p>
       </div>
       ${decomposition}

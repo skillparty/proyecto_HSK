@@ -326,3 +326,6 @@ html[data-theme="dark"] .char-pinyin {
 html[data-theme="dark"] .sr-reference-stat-value {
     color: #f87171;
 }
+html[data-theme="dark"] .etym-toggle-btn.is-active {
+    color: #ef4444;
+}

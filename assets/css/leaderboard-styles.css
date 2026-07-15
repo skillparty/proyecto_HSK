@@ -79,7 +79,8 @@
 
 .refresh-btn {
     padding: 0.75rem 1.5rem;
-    background: var(--primary-color);
+    /* #c62828 (no --primary-color/--color-primary, que es #e53935 y falla WCAG con blanco encima) */
+    background: #c62828;
     color: white;
     border: none;
     border-radius: 8px;
@@ -97,7 +98,7 @@
 }
 
 .refresh-btn:hover {
-    background: var(--primary-hover);
+    background: #b71c1c;
     transform: translateY(-1px);
 }
 
