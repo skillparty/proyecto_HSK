@@ -52,7 +52,7 @@ class BackendUserProgress {
             }
             
             this.startSession();
-            console.log('👤 User progress system initialized');
+            (window.hskLogger || console).debug('👤 User progress system initialized');
         } catch (error) {
             console.error('Progress initialization error:', error);
             this.loadGuestProfile();
@@ -91,7 +91,7 @@ class BackendUserProgress {
                 
                 // Aggregate global statistics from level data
                 this.updateStatistics();
-                console.log('✅ User progress loaded from Firebase');
+                (window.hskLogger || console).debug('✅ User progress loaded from Firebase');
             }
         } catch (error) {
             console.error('Failed to load user progress:', error);
@@ -109,7 +109,7 @@ class BackendUserProgress {
                 console.warn('Failed to load guest profile:', error);
             }
         }
-        console.log('🎭 Guest profile loaded');
+        (window.hskLogger || console).debug('🎭 Guest profile loaded');
     }
     
     // Merge profile data
@@ -147,7 +147,7 @@ class BackendUserProgress {
             this.profile.progress.totalTimeSpent += sessionTime;
             this.sessionStartTime = null;
             
-            console.log(`📊 Session ended: ${sessionTime} minutes`);
+            (window.hskLogger || console).debug(`📊 Session ended: ${sessionTime} minutes`);
         }
         
         await this.saveProfile();
@@ -219,7 +219,7 @@ class BackendUserProgress {
         // Save profile
         await this.saveProfile();
         
-        console.log(`📈 Recorded study: ${word.character} (${isCorrect ? 'correct' : 'incorrect'})`);
+        (window.hskLogger || console).debug(`📈 Recorded study: ${word.character} (${isCorrect ? 'correct' : 'incorrect'})`);
     }
     
     // Record quiz completion
@@ -227,7 +227,7 @@ class BackendUserProgress {
         this.profile.progress.quizzesCompleted++;
         
         const accuracy = (score / totalQuestions) * 100;
-        console.log(`🎯 Quiz completed: ${score}/${totalQuestions} (${accuracy.toFixed(1)}%)`);
+        (window.hskLogger || console).debug(`🎯 Quiz completed: ${score}/${totalQuestions} (${accuracy.toFixed(1)}%)`);
         
         this.updateStatistics();
         this.checkAchievements();
@@ -434,7 +434,7 @@ class BackendUserProgress {
             // Process pending updates
             await this.processPendingUpdates();
             
-            console.log('💾 Profile synced to Firebase');
+            (window.hskLogger || console).debug('💾 Profile synced to Firebase');
             this.updateSyncIndicator('synced');
             
         } catch (error) {
@@ -526,7 +526,7 @@ class BackendUserProgress {
         if (this.profile.preferences.hasOwnProperty(key)) {
             this.profile.preferences[key] = value;
             this.saveProfile();
-            console.log(`⚙️ Updated preference: ${key} = ${value}`);
+            (window.hskLogger || console).debug(`⚙️ Updated preference: ${key} = ${value}`);
         }
     }
     

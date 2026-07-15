@@ -15,7 +15,7 @@ class LeaderboardManager {
 
   init() {
     this.setupEventListeners();
-    console.log("🏆 Leaderboard Manager initialized");
+    (window.hskLogger || console).debug("🏆 Leaderboard Manager initialized");
   }
 
   setupEventListeners() {
@@ -58,7 +58,7 @@ class LeaderboardManager {
     this.showLoading(true);
 
     try {
-      console.log("🔍 Loading leaderboard from Firebase...", {
+      (window.hskLogger || console).debug("🔍 Loading leaderboard from Firebase...", {
         type: this.currentType,
       });
 
@@ -85,7 +85,7 @@ class LeaderboardManager {
         50,
       );
 
-      console.log("📊 Leaderboard response:", leaderboardData.length, "users");
+      (window.hskLogger || console).debug("📊 Leaderboard response:", leaderboardData.length, "users");
 
       this.currentLeaderboard = leaderboardData || [];
       this.renderLeaderboard();

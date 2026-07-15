@@ -28,7 +28,7 @@ class FirebaseClient {
   // Initialize Firebase client
   async initialize() {
     try {
-      console.log("🔧 Initializing Firebase client...");
+      (window.hskLogger || console).debug("🔧 Initializing Firebase client...");
 
       // Check if Firebase instances are available from config
       if (!window.firebaseAuth || !window.firebaseDb) {
@@ -36,7 +36,7 @@ class FirebaseClient {
         if (!this._retryCount) this._retryCount = 0;
         if (this._retryCount < 10) {
           this._retryCount++;
-          console.log(
+          (window.hskLogger || console).debug(
             `⏳ Firebase not ready (retry ${this._retryCount}), retrying...`,
           );
           setTimeout(() => this.initialize(), 200);
@@ -53,7 +53,7 @@ class FirebaseClient {
 
       // Listen for auth changes
       sdk.onAuthStateChanged(this.auth, (user) => {
-        console.log(
+        (window.hskLogger || console).debug(
           "🔐 Auth state changed:",
           user ? "Logged in" : "Logged out",
         );
@@ -70,7 +70,7 @@ class FirebaseClient {
       });
 
       this.initialized = true;
-      console.log("✅ Firebase client initialized successfully");
+      (window.hskLogger || console).debug("✅ Firebase client initialized successfully");
 
       // Update UI immediately after initialization
       setTimeout(() => this.updateAuthUI(), 100);
@@ -186,14 +186,14 @@ class FirebaseClient {
   // Authentication methods
   async signInWithGitHub() {
     try {
-      console.log("🔐 Signing in with GitHub (Firebase)...");
+      (window.hskLogger || console).debug("🔐 Signing in with GitHub (Firebase)...");
       const sdk = window.FirebaseSDK;
       const provider = new sdk.GithubAuthProvider();
 
       const result = await sdk.signInWithPopup(this.auth, provider);
       this.user = result.user;
 
-      console.log("✅ GitHub sign-in successful");
+      (window.hskLogger || console).debug("✅ GitHub sign-in successful");
       return { user: this.user };
     } catch (error) {
       console.error("❌ GitHub sign-in failed:", error);
@@ -203,11 +203,11 @@ class FirebaseClient {
 
   async signOut() {
     try {
-      console.log("🔐 Signing out (Firebase)...");
+      (window.hskLogger || console).debug("🔐 Signing out (Firebase)...");
       const sdk = window.FirebaseSDK;
       await sdk.signOut(this.auth);
       this.user = null;
-      console.log("✅ Signed out successfully");
+      (window.hskLogger || console).debug("✅ Signed out successfully");
     } catch (error) {
       console.error("❌ Sign-out failed:", error);
       throw error;
@@ -250,7 +250,7 @@ class FirebaseClient {
 
       await sdk.setDoc(docRef, dataToSave, { merge: true });
 
-      console.log("✅ User profile updated in Firestore");
+      (window.hskLogger || console).debug("✅ User profile updated in Firestore");
       return dataToSave;
     } catch (error) {
       console.error("❌ Error updating user profile:", error);
@@ -375,7 +375,7 @@ class FirebaseClient {
         });
       }
 
-      console.log(
+      (window.hskLogger || console).debug(
         "✅ Progress updated atomically in Firestore for HSK",
         hskLevel,
       );
@@ -444,7 +444,7 @@ class FirebaseClient {
         { merge: true },
       );
 
-      console.log("✅ Word progress saved to Firestore");
+      (window.hskLogger || console).debug("✅ Word progress saved to Firestore");
     } catch (error) {
       console.error("❌ Error saving word progress:", error);
       throw error;
@@ -454,7 +454,7 @@ class FirebaseClient {
   // Leaderboard methods
   async getLeaderboard(type = "total_words", limitNum = 50) {
     try {
-      console.log("📊 Fetching leaderboard (Firestore):", { type, limitNum });
+      (window.hskLogger || console).debug("📊 Fetching leaderboard (Firestore):", { type, limitNum });
       const sdk = window.FirebaseSDK;
 
       // Map type to Firestore field

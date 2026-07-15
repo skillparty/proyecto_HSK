@@ -41,11 +41,11 @@ class BackendAuth {
 
   async init() {
     try {
-      console.log("🔍 Initializing BackendAuth...");
+      (window.hskLogger || console).debug("🔍 Initializing BackendAuth...");
 
       // Check if Firebase client is ready, retry if not
       if (!window.firebaseClient || !window.firebaseClient.initialized) {
-        console.log("⏳ Firebase client not ready, retrying in 500ms...");
+        (window.hskLogger || console).debug("⏳ Firebase client not ready, retrying in 500ms...");
         setTimeout(() => this.init(), 500);
         return;
       }
@@ -69,10 +69,10 @@ class BackendAuth {
   // Fetch current user from Firebase auth state
   async fetchCurrentUser() {
     try {
-      console.log("🔍 Fetching current user from Firebase...");
+      (window.hskLogger || console).debug("🔍 Fetching current user from Firebase...");
 
       if (!window.firebaseClient || !window.firebaseClient.initialized) {
-        console.log("⏳ Waiting for Firebase client...");
+        (window.hskLogger || console).debug("⏳ Waiting for Firebase client...");
         return false;
       }
 
@@ -90,15 +90,15 @@ class BackendAuth {
             user.photoURL ||
             `https://github.com/${user.displayName || "github"}.png`,
         };
-        console.log("✅ User authenticated:", this.currentUser.username);
+        (window.hskLogger || console).debug("✅ User authenticated:", this.currentUser.username);
 
         // Initialize sync with user data
         if (window.firebaseSync) {
-          console.log("🔥 Syncing user to Firebase...");
+          (window.hskLogger || console).debug("🔥 Syncing user to Firebase...");
           // In Firebase, the client handles much of the sync prep
           if (window.progressIntegrator) {
             await window.progressIntegrator.initializeForUser(user);
-            console.log("🔗 Progress integration initialized");
+            (window.hskLogger || console).debug("🔗 Progress integration initialized");
           }
         }
 
@@ -109,7 +109,7 @@ class BackendAuth {
 
         return true;
       } else {
-        console.log("👤 No authenticated user found");
+        (window.hskLogger || console).debug("👤 No authenticated user found");
         return false;
       }
     } catch (error) {
@@ -121,7 +121,7 @@ class BackendAuth {
   // Initiate GitHub OAuth login
   async login() {
     try {
-      console.log("🔐 Initiating GitHub login via Firebase...");
+      (window.hskLogger || console).debug("🔐 Initiating GitHub login via Firebase...");
 
       if (!window.firebaseClient || !window.firebaseClient.initialized) {
         console.error("❌ Firebase client not available");
@@ -139,7 +139,7 @@ class BackendAuth {
   // Logout user
   async logout() {
     try {
-      console.log("🔐 Logging out via Firebase...");
+      (window.hskLogger || console).debug("🔐 Logging out via Firebase...");
 
       if (window.firebaseClient) {
         await window.firebaseClient.signOut();
@@ -162,7 +162,7 @@ class BackendAuth {
         : "Successfully logged out";
     this.showMessage(logoutText);
 
-    console.log("👋 User logged out");
+    (window.hskLogger || console).debug("👋 User logged out");
   }
 
   // Check if user is authenticated
@@ -171,7 +171,7 @@ class BackendAuth {
       this.currentUser &&
       (this.accessToken || this.currentUser.id)
     );
-    console.log("🔍 Authentication check:", {
+    (window.hskLogger || console).debug("🔍 Authentication check:", {
       hasUser: !!this.currentUser,
       hasToken: !!this.accessToken,
       hasUserId: !!(this.currentUser && this.currentUser.id),
@@ -194,7 +194,7 @@ class BackendAuth {
   async apiCall(endpoint, options = {}) {
     if (endpoint.startsWith("/api/") && !this.legacyBackendApiEnabled) {
       if (!this.backendApiDisabledLogged) {
-        console.info(
+        (window.hskLogger || console).info(
           "ℹ️ Legacy backend API disabled; using local/Firebase flow.",
         );
         this.backendApiDisabledLogged = true;
@@ -250,7 +250,7 @@ class BackendAuth {
       return;
     }
 
-    console.log("🔄 Updating UI - Auth state:", {
+    (window.hskLogger || console).debug("🔄 Updating UI - Auth state:", {
       isAuthenticated: this.isAuthenticated(),
       hasUser: !!this.currentUser,
       hasToken: !!this.accessToken,
@@ -258,10 +258,10 @@ class BackendAuth {
     });
 
     if (this.isAuthenticated()) {
-      console.log("✅ Showing user profile");
+      (window.hskLogger || console).debug("✅ Showing user profile");
       this.showUserProfile();
     } else {
-      console.log("👤 Showing guest mode");
+      (window.hskLogger || console).debug("👤 Showing guest mode");
       this.showGuestMode();
     }
   }
@@ -414,7 +414,7 @@ class BackendAuth {
 
   // Debug method to check auth state
   debugAuthState() {
-    console.log("🔍 Auth Debug State:", {
+    (window.hskLogger || console).debug("🔍 Auth Debug State:", {
       currentUser: this.currentUser,
       accessToken: this.accessToken ? "SET" : "NOT SET",
       isAuthenticated: this.isAuthenticated(),
@@ -487,6 +487,6 @@ window.debugAuth = function () {
   if (window.backendAuth) {
     window.backendAuth.debugAuthState();
   } else {
-    console.log("❌ BackendAuth instance not found");
+    (window.hskLogger || console).debug("❌ BackendAuth instance not found");
   }
 };

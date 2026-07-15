@@ -3,7 +3,7 @@
 
 // Validate critical resources on load
 window.addEventListener('load', function () {
-    console.log('🔍 Validating critical resources...');
+    (window.hskLogger || console).debug('🔍 Validating critical resources...');
 
     // Check if main stylesheet loaded
     const mainStylesheet = document.getElementById('main-stylesheet');
@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
         document.head.appendChild(fallbackCSS);
     }
 
-    console.log('[✓] Resource validation complete');
+    (window.hskLogger || console).debug('[✓] Resource validation complete');
 });
 
 // Error handler for missing resources

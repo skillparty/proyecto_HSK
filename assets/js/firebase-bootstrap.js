@@ -32,13 +32,13 @@ window.firebaseApp = app;
 window.firebaseAuth = auth;
 window.firebaseDb = db;
 
-console.log('🔥 Firebase Modular Bridge & Instances initialized');
+(window.hskLogger || console).debug('🔥 Firebase Modular Bridge & Instances initialized');
 
 // Robust bootstrap: wait until HSKApp is loaded before instantiation.
 const initApp = () => {
     if (window.app) return true;
     if (typeof window.HSKApp === 'function') {
-        console.log('🚀 Initializing HSKApp...');
+        (window.hskLogger || console).debug('🚀 Initializing HSKApp...');
         window.app = new window.HSKApp();
         return true;
     }

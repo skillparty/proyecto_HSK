@@ -77,7 +77,7 @@ class GameAudioManager {
             osc.start();
             osc.stop(ctx.currentTime + duration);
         } catch (e) {
-            console.debug('GameAudioManager: playSynth blocked or failed', e);
+            (window.hskLogger || console).debug('GameAudioManager: playSynth blocked or failed', e);
         }
     }
 
@@ -125,7 +125,7 @@ class GameAudioManager {
 
             noiseNode.start();
         } catch (e) {
-            console.debug('GameAudioManager: playNoise failed', e);
+            (window.hskLogger || console).debug('GameAudioManager: playNoise failed', e);
         }
     }
 
@@ -320,7 +320,7 @@ class GameProgressReporter {
      * @param {string} [difficulty] - Game difficulty ('easy', 'normal', 'hard').
      */
     static reportGameResult(gameId, result, level = 'all', difficulty = 'normal') {
-        console.log(`📊 GameProgressReporter: Reporting result for ${gameId}`, result);
+        (window.hskLogger || console).debug(`📊 GameProgressReporter: Reporting result for ${gameId}`, result);
 
         // 1. Save highscore locally
         const hsKey = `${gameId}-highscore-${level}-${difficulty}`;

@@ -14,7 +14,7 @@ class QuizEngine {
       correctAnswer: null,
     };
 
-    console.log("📝 QuizEngine module initialized");
+    (window.hskLogger || console).debug("📝 QuizEngine module initialized");
   }
 
   // Method to link existing quiz data from app if needed
@@ -152,7 +152,7 @@ class QuizEngine {
     this.state.selectedAnswer = null;
     this.saveSession();
 
-    console.log(
+    (window.hskLogger || console).debug(
       `❓ Quiz question ${this.state.currentQuestion + 1}: ${question.character} (${correctAnswer})`,
     );
   }

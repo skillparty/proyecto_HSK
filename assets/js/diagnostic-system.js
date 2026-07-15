@@ -14,7 +14,7 @@ class HSKDiagnosticSystem {
         // Configurar monitoreo de errores
         this.setupErrorMonitoring();
         
-        console.log('🔍 HSK Diagnostic System initialized');
+        (window.hskLogger || console).debug('🔍 HSK Diagnostic System initialized');
     }
 
     /**
@@ -68,7 +68,7 @@ class HSKDiagnosticSystem {
      * Ejecutar diagnóstico completo de la aplicación
      */
     async runFullDiagnostic() {
-        console.log('🚀 Starting full diagnostic...');
+        (window.hskLogger || console).debug('🚀 Starting full diagnostic...');
         
         const diagnosticStart = performance.now();
         
@@ -95,7 +95,7 @@ class HSKDiagnosticSystem {
             // Generar reporte
             const report = this.generateDiagnosticReport();
             
-            console.log('✅ Full diagnostic completed in', diagnosticTime.toFixed(2), 'ms');
+            (window.hskLogger || console).debug('✅ Full diagnostic completed in', diagnosticTime.toFixed(2), 'ms');
             return report;
             
         } catch (error) {
@@ -109,7 +109,7 @@ class HSKDiagnosticSystem {
      * Verificar estructura DOM básica
      */
     async checkDOMStructure() {
-        console.log('🔍 Checking DOM structure...');
+        (window.hskLogger || console).debug('🔍 Checking DOM structure...');
         
         const requiredElements = [
             'app-container',
@@ -139,9 +139,9 @@ class HSKDiagnosticSystem {
         };
         
         if (missingElements === 0) {
-            console.log('✅ DOM structure check passed');
+            (window.hskLogger || console).debug('✅ DOM structure check passed');
         } else {
-            console.log(`❌ DOM structure check failed: ${missingElements} missing elements`);
+            (window.hskLogger || console).debug(`❌ DOM structure check failed: ${missingElements} missing elements`);
         }
     }
 
@@ -149,7 +149,7 @@ class HSKDiagnosticSystem {
      * Validar CSS y estilos
      */
     async validateCSS() {
-        console.log('🎨 Validating CSS...');
+        (window.hskLogger || console).debug('🎨 Validating CSS...');
         
         const cssIssues = [];
         
@@ -192,9 +192,9 @@ class HSKDiagnosticSystem {
         };
         
         if (cssIssues.length === 0) {
-            console.log('✅ CSS validation passed');
+            (window.hskLogger || console).debug('✅ CSS validation passed');
         } else {
-            console.log(`⚠️ CSS validation found ${cssIssues.length} issues`);
+            (window.hskLogger || console).debug(`⚠️ CSS validation found ${cssIssues.length} issues`);
         }
     }
 
@@ -202,7 +202,7 @@ class HSKDiagnosticSystem {
      * Probar funcionalidad JavaScript básica
      */
     async testJavaScriptFunctionality() {
-        console.log('⚙️ Testing JavaScript functionality...');
+        (window.hskLogger || console).debug('⚙️ Testing JavaScript functionality...');
         
         const jsIssues = [];
         
@@ -233,9 +233,9 @@ class HSKDiagnosticSystem {
         };
         
         if (jsIssues.length === 0) {
-            console.log('✅ JavaScript functionality test passed');
+            (window.hskLogger || console).debug('✅ JavaScript functionality test passed');
         } else {
-            console.log(`❌ JavaScript functionality test found ${jsIssues.length} issues`);
+            (window.hskLogger || console).debug(`❌ JavaScript functionality test found ${jsIssues.length} issues`);
         }
     }
 
@@ -243,7 +243,7 @@ class HSKDiagnosticSystem {
      * Validar navegación entre tabs
      */
     async validateNavigation() {
-        console.log('🧭 Validating navigation...');
+        (window.hskLogger || console).debug('🧭 Validating navigation...');
         
         const navIssues = [];
         const tabs = ['practice', 'browse', 'quiz', 'stats'];
@@ -270,9 +270,9 @@ class HSKDiagnosticSystem {
         };
         
         if (navIssues.length === 0) {
-            console.log('✅ Navigation validation passed');
+            (window.hskLogger || console).debug('✅ Navigation validation passed');
         } else {
-            console.log(`⚠️ Navigation validation found ${navIssues.length} issues`);
+            (window.hskLogger || console).debug(`⚠️ Navigation validation found ${navIssues.length} issues`);
         }
     }
 
@@ -280,7 +280,7 @@ class HSKDiagnosticSystem {
      * Probar sistema de flashcards
      */
     async testFlashcards() {
-        console.log('🃏 Testing flashcard system...');
+        (window.hskLogger || console).debug('🃏 Testing flashcard system...');
         
         const flashcardIssues = [];
         
@@ -315,9 +315,9 @@ class HSKDiagnosticSystem {
         };
         
         if (flashcardIssues.length === 0) {
-            console.log('✅ Flashcard system test passed');
+            (window.hskLogger || console).debug('✅ Flashcard system test passed');
         } else {
-            console.log(`⚠️ Flashcard system test found ${flashcardIssues.length} issues`);
+            (window.hskLogger || console).debug(`⚠️ Flashcard system test found ${flashcardIssues.length} issues`);
         }
     }
 
@@ -325,7 +325,7 @@ class HSKDiagnosticSystem {
      * Probar controles interactivos
      */
     async testInteractiveControls() {
-        console.log('🎛️ Testing interactive controls...');
+        (window.hskLogger || console).debug('🎛️ Testing interactive controls...');
         
         const controlIssues = [];
         
@@ -356,9 +356,9 @@ class HSKDiagnosticSystem {
         };
         
         if (controlIssues.length === 0) {
-            console.log('✅ Interactive controls test passed');
+            (window.hskLogger || console).debug('✅ Interactive controls test passed');
         } else {
-            console.log(`⚠️ Interactive controls test found ${controlIssues.length} issues`);
+            (window.hskLogger || console).debug(`⚠️ Interactive controls test found ${controlIssues.length} issues`);
         }
     }
 
@@ -366,7 +366,7 @@ class HSKDiagnosticSystem {
      * Validar temas (claro/oscuro)
      */
     async validateThemes() {
-        console.log('🌓 Validating themes...');
+        (window.hskLogger || console).debug('🌓 Validating themes...');
         
         const themeIssues = [];
         
@@ -391,9 +391,9 @@ class HSKDiagnosticSystem {
         };
         
         if (themeIssues.length === 0) {
-            console.log('✅ Theme validation passed');
+            (window.hskLogger || console).debug('✅ Theme validation passed');
         } else {
-            console.log(`⚠️ Theme validation found ${themeIssues.length} issues`);
+            (window.hskLogger || console).debug(`⚠️ Theme validation found ${themeIssues.length} issues`);
         }
     }
 
@@ -401,7 +401,7 @@ class HSKDiagnosticSystem {
      * Probar persistencia de datos
      */
     async testDataPersistence() {
-        console.log('💾 Testing data persistence...');
+        (window.hskLogger || console).debug('💾 Testing data persistence...');
         
         const persistenceIssues = [];
         
@@ -431,9 +431,9 @@ class HSKDiagnosticSystem {
         };
         
         if (persistenceIssues.length === 0) {
-            console.log('✅ Data persistence test passed');
+            (window.hskLogger || console).debug('✅ Data persistence test passed');
         } else {
-            console.log(`⚠️ Data persistence test found ${persistenceIssues.length} issues`);
+            (window.hskLogger || console).debug(`⚠️ Data persistence test found ${persistenceIssues.length} issues`);
         }
     }
 
@@ -441,7 +441,7 @@ class HSKDiagnosticSystem {
      * Verificar rendimiento
      */
     async checkPerformance() {
-        console.log('⚡ Checking performance...');
+        (window.hskLogger || console).debug('⚡ Checking performance...');
         
         const performanceIssues = [];
         
@@ -469,9 +469,9 @@ class HSKDiagnosticSystem {
         };
         
         if (performanceIssues.length === 0) {
-            console.log('✅ Performance check passed');
+            (window.hskLogger || console).debug('✅ Performance check passed');
         } else {
-            console.log(`⚠️ Performance check found ${performanceIssues.length} issues`);
+            (window.hskLogger || console).debug(`⚠️ Performance check found ${performanceIssues.length} issues`);
         }
     }
 
@@ -479,7 +479,7 @@ class HSKDiagnosticSystem {
      * Validar diseño responsive
      */
     async validateResponsiveDesign() {
-        console.log('📱 Validating responsive design...');
+        (window.hskLogger || console).debug('📱 Validating responsive design...');
         
         const responsiveIssues = [];
         
@@ -512,9 +512,9 @@ class HSKDiagnosticSystem {
         };
         
         if (responsiveIssues.length === 0) {
-            console.log('✅ Responsive design validation passed');
+            (window.hskLogger || console).debug('✅ Responsive design validation passed');
         } else {
-            console.log(`⚠️ Responsive design validation found ${responsiveIssues.length} issues`);
+            (window.hskLogger || console).debug(`⚠️ Responsive design validation found ${responsiveIssues.length} issues`);
         }
     }
 
@@ -611,37 +611,37 @@ class HSKDiagnosticSystem {
      * Mostrar reporte en consola de manera formateada
      */
     displayReport(report) {
-        console.log('\n' + '='.repeat(60));
-        console.log('📊 HSK LEARNING - DIAGNOSTIC REPORT');
-        console.log('='.repeat(60));
+        (window.hskLogger || console).debug('\n' + '='.repeat(60));
+        (window.hskLogger || console).debug('📊 HSK LEARNING - DIAGNOSTIC REPORT');
+        (window.hskLogger || console).debug('='.repeat(60));
         
-        console.log(`\n🕐 Timestamp: ${report.timestamp}`);
-        console.log(`📈 Overall Status: ${this.getStatusEmoji(report.overallStatus)} ${report.overallStatus.toUpperCase()}`);
+        (window.hskLogger || console).debug(`\n🕐 Timestamp: ${report.timestamp}`);
+        (window.hskLogger || console).debug(`📈 Overall Status: ${this.getStatusEmoji(report.overallStatus)} ${report.overallStatus.toUpperCase()}`);
         
-        console.log('\n📋 SUMMARY:');
-        console.log(`   Total Issues: ${report.summary.totalIssues}`);
-        console.log(`   🔴 Critical: ${report.summary.criticalIssues}`);
-        console.log(`   🟡 Warning: ${report.summary.warningIssues}`);
-        console.log(`   🔵 Info: ${report.summary.infoIssues}`);
+        (window.hskLogger || console).debug('\n📋 SUMMARY:');
+        (window.hskLogger || console).debug(`   Total Issues: ${report.summary.totalIssues}`);
+        (window.hskLogger || console).debug(`   🔴 Critical: ${report.summary.criticalIssues}`);
+        (window.hskLogger || console).debug(`   🟡 Warning: ${report.summary.warningIssues}`);
+        (window.hskLogger || console).debug(`   🔵 Info: ${report.summary.infoIssues}`);
         
         if (report.summary.totalIssues > 0) {
-            console.log('\n🔍 ISSUES BY CATEGORY:');
+            (window.hskLogger || console).debug('\n🔍 ISSUES BY CATEGORY:');
             Object.entries(report.categories).forEach(([category, issues]) => {
                 if (issues.length > 0) {
-                    console.log(`\n   ${category.toUpperCase()} (${issues.length} issues):`);
+                    (window.hskLogger || console).debug(`\n   ${category.toUpperCase()} (${issues.length} issues):`);
                     issues.forEach(issue => {
-                        console.log(`   ${this.getSeverityEmoji(issue.severity)} ${issue.component}: ${issue.description}`);
+                        (window.hskLogger || console).debug(`   ${this.getSeverityEmoji(issue.severity)} ${issue.component}: ${issue.description}`);
                     });
                 }
             });
         }
         
-        console.log('\n💡 RECOMMENDATIONS:');
+        (window.hskLogger || console).debug('\n💡 RECOMMENDATIONS:');
         report.recommendations.forEach((rec, index) => {
-            console.log(`   ${index + 1}. ${rec}`);
+            (window.hskLogger || console).debug(`   ${index + 1}. ${rec}`);
         });
         
-        console.log('\n' + '='.repeat(60));
+        (window.hskLogger || console).debug('\n' + '='.repeat(60));
         
         return report;
     }
@@ -681,4 +681,4 @@ if (window.location.search.includes('diagnostic=true')) {
     });
 }
 
-console.log('🔧 HSK Diagnostic System loaded. Run window.runHSKDiagnostic() to start diagnosis.');
+(window.hskLogger || console).debug('🔧 HSK Diagnostic System loaded. Run window.runHSKDiagnostic() to start diagnosis.');

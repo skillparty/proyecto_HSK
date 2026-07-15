@@ -8,16 +8,16 @@ if ('serviceWorker' in navigator) {
             const registration = await navigator.serviceWorker.register(swUrl, {
                 scope: appBasePath
             });
-            console.log('✅ ServiceWorker registered');
+            (window.hskLogger || console).debug('✅ ServiceWorker registered');
 
             // Listen for updates
             registration.addEventListener('updatefound', () => {
                 const newWorker = registration.installing;
-                console.log('👷 New Service Worker installing');
+                (window.hskLogger || console).debug('👷 New Service Worker installing');
 
                 newWorker.addEventListener('statechange', () => {
                     if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                        console.log('🔄 New content available; please refresh.');
+                        (window.hskLogger || console).debug('🔄 New content available; please refresh.');
                         if (window.app && window.app.handleUpdate) {
                             window.app.handleUpdate(registration);
                         }
@@ -27,7 +27,7 @@ if ('serviceWorker' in navigator) {
 
             // Check if there is already a waiting worker on load
             if (registration.waiting && navigator.serviceWorker.controller) {
-                console.log('🔄 A waiting Service Worker was found');
+                (window.hskLogger || console).debug('🔄 A waiting Service Worker was found');
                 if (window.app && window.app.handleUpdate) {
                     window.app.handleUpdate(registration);
                 }
@@ -43,8 +43,8 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.addEventListener('controllerchange', () => {
         if (refreshing) return;
         refreshing = true;
-        console.log('🚀 Controller changed, reloading...');
+        (window.hskLogger || console).debug('🚀 Controller changed, reloading...');
         window.location.reload();
     });
 }
-console.log('[🚀] HSK Learning App Ready');
+(window.hskLogger || console).debug('[🚀] HSK Learning App Ready');

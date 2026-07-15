@@ -56,6 +56,9 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="config/manifest.json">
 
+    <!-- Logger primero: todo script posterior puede usar window.hskLogger -->
+    <script src="assets/js/logger.js?v=1"></script>
+
     <!-- Resource Validation Script -->
     <script src="assets/js/bootstrap-diagnostics.js?v=1"></script>
 
@@ -1559,7 +1562,6 @@
         }
     </script>
     <!-- Background Data (Base64 Fallback) -->
-    <script src="assets/js/logger.js?v=1" defer></script>
     <script src="assets/js/bg-data.js" defer></script>
     <script src="assets/js/app.js?v=37" defer></script>
     <!-- matrix-game.js, tones-invaders-game.js, leaderboard.js loaded on demand by ui-controller.js -->

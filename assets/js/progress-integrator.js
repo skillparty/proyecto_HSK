@@ -5,7 +5,7 @@ class ProgressIntegrator {
         this.syncInterval = null;
         this.lastSyncTime = null;
         
-        console.log('🔗 Progress Integrator initialized');
+        (window.hskLogger || console).debug('🔗 Progress Integrator initialized');
     }
 
     // Initialize integration when user logs in
@@ -15,7 +15,7 @@ class ProgressIntegrator {
             return;
         }
 
-        console.log('🔄 Initializing progress integration for user:', user.displayName || user.username);
+        (window.hskLogger || console).debug('🔄 Initializing progress integration for user:', user.displayName || user.username);
 
         try {
             // Get local progress
@@ -26,7 +26,7 @@ class ProgressIntegrator {
             
             if (cloudResult.success && cloudResult.data) {
                 // Cloud data exists - merge with local
-                console.log('☁️ Found cloud progress, merging with local data');
+                (window.hskLogger || console).debug('☁️ Found cloud progress, merging with local data');
                 const mergedProgress = this.mergeProgress(localProgress, cloudResult.data);
                 
                 // Save merged progress locally
@@ -37,12 +37,12 @@ class ProgressIntegrator {
                 
             } else if (localProgress && Object.keys(localProgress).length > 0) {
                 // No cloud data but local exists - upload to cloud
-                console.log('📤 Uploading local progress to cloud');
+                (window.hskLogger || console).debug('📤 Uploading local progress to cloud');
                 await window.firebaseSync.syncUserProgress(localProgress);
                 
             } else {
                 // No data anywhere - initialize empty progress
-                console.log('🆕 Initializing new progress tracking');
+                (window.hskLogger || console).debug('🆕 Initializing new progress tracking');
                 const initialProgress = this.createInitialProgress();
                 this.saveLocalProgress(initialProgress);
                 await window.firebaseSync.syncUserProgress(initialProgress);
@@ -51,7 +51,7 @@ class ProgressIntegrator {
             // Start periodic sync
             this.startPeriodicSync();
             
-            console.log('✅ Progress integration initialized successfully');
+            (window.hskLogger || console).debug('✅ Progress integration initialized successfully');
 
         } catch (error) {
             console.error('❌ Failed to initialize progress integration:', error);
@@ -73,7 +73,7 @@ class ProgressIntegrator {
     saveLocalProgress(progress) {
         try {
             localStorage.setItem(this.localStorageKey, JSON.stringify(progress));
-            console.log('💾 Progress saved locally');
+            (window.hskLogger || console).debug('💾 Progress saved locally');
         } catch (error) {
             console.error('❌ Failed to save local progress:', error);
         }
@@ -134,7 +134,7 @@ class ProgressIntegrator {
 
         merged.lastUpdated = new Date().toISOString();
 
-        console.log('🔄 Progress merged:', {
+        (window.hskLogger || console).debug('🔄 Progress merged:', {
             local: local.totalStudied || 0,
             cloud: cloud.total_studied || 0,
             merged: merged.totalStudied
@@ -164,9 +164,9 @@ class ProgressIntegrator {
                 const syncResult = await window.firebaseSync.syncUserProgress(updatedProgress);
                 
                 if (syncResult.success) {
-                    console.log('✅ Progress updated and synced');
+                    (window.hskLogger || console).debug('✅ Progress updated and synced');
                 } else if (syncResult.offline) {
-                    console.log('📱 Progress updated locally (offline)');
+                    (window.hskLogger || console).debug('📱 Progress updated locally (offline)');
                 } else {
                     console.warn('⚠️ Progress updated locally but sync failed');
                 }
@@ -245,7 +245,7 @@ class ProgressIntegrator {
                 });
             }
 
-            console.log('📚 Word study recorded and synced');
+            (window.hskLogger || console).debug('📚 Word study recorded and synced');
             return currentProgress;
 
         } catch (error) {
@@ -268,14 +268,14 @@ class ProgressIntegrator {
                     const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
                     
                     if (lastUpdate > fiveMinutesAgo) {
-                        console.log('🔄 Periodic sync...');
+                        (window.hskLogger || console).debug('🔄 Periodic sync...');
                         await window.firebaseSync.syncUserProgress(progress);
                     }
                 }
             }
         }, 5 * 60 * 1000); // 5 minutes
 
-        console.log('⏰ Periodic sync started (every 5 minutes)');
+        (window.hskLogger || console).debug('⏰ Periodic sync started (every 5 minutes)');
     }
 
     // Stop periodic sync
@@ -283,7 +283,7 @@ class ProgressIntegrator {
         if (this.syncInterval) {
             clearInterval(this.syncInterval);
             this.syncInterval = null;
-            console.log('⏹️ Periodic sync stopped');
+            (window.hskLogger || console).debug('⏹️ Periodic sync stopped');
         }
     }
 

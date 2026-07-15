@@ -8,21 +8,21 @@ class FirebaseProgressSync {
         
         window.addEventListener('online', () => {
             this.isOnline = true;
-            console.log('🌐 Firebase Sync: Online');
+            (window.hskLogger || console).debug('🌐 Firebase Sync: Online');
         });
 
         window.addEventListener('offline', () => {
             this.isOnline = false;
-            console.log('📱 Firebase Sync: Offline');
+            (window.hskLogger || console).debug('📱 Firebase Sync: Offline');
         });
         
-        console.log('🔄 Firebase Progress Sync initialized');
+        (window.hskLogger || console).debug('🔄 Firebase Progress Sync initialized');
     }
 
     // Set current user for sync operations
     setCurrentUser(user) {
         this.currentUser = user;
-        console.log('👤 User set for Firebase sync:', user.uid || user.id);
+        (window.hskLogger || console).debug('👤 User set for Firebase sync:', user.uid || user.id);
     }
 
     // Sync methods that delegate to firebaseClient
@@ -95,7 +95,7 @@ class FirebaseProgressSync {
     async updateStudyHeatmap(date, activity) {
         // Firebase implementation could use a separate collection, 
         // but for now we'll just log it as it's a minor feature.
-        console.log('🔥 Firebase Heatmap update (simulated):', date, activity);
+        (window.hskLogger || console).debug('🔥 Firebase Heatmap update (simulated):', date, activity);
         return { success: true };
     }
 
