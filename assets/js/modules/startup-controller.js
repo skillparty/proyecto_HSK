@@ -5,7 +5,7 @@ class StartupController {
 
     async init() {
         try {
-            this.app.logInfo('[▶] Initializing HSK Learning App...');
+            this.app.logDebug('[▶] Initializing HSK Learning App...');
 
             if (!window.languageManager && window.LanguageManager) {
                 window.languageManager = new window.LanguageManager();
@@ -21,7 +21,7 @@ class StartupController {
 
                     try {
                         this.app.currentLanguage = nextLanguage;
-                        this.app.logInfo('[LANG] Language changed to ' + nextLanguage + ', reloading vocabulary...');
+                        this.app.logDebug('[LANG] Language changed to ' + nextLanguage + ', reloading vocabulary...');
                         await this.app.loadVocabulary(nextLanguage);
 
                         this.app.updateLanguageDisplay();
@@ -43,7 +43,7 @@ class StartupController {
                             1800
                         );
 
-                        this.app.logInfo('[OK] Language change completed: ' + nextLanguage);
+                        this.app.logDebug('[OK] Language change completed: ' + nextLanguage);
                     } catch (error) {
                         this.app.currentLanguage = previousLanguage;
                         this.app.logError('Language change failed:', error);
@@ -100,7 +100,7 @@ class StartupController {
             this.app.uiController.restoreLastVisitedTab();
             await this.app.initHealthCheckPanelIfRequested();
 
-            this.app.logInfo('[✓] HSK Learning App initialized successfully!');
+            this.app.logDebug('[✓] HSK Learning App initialized successfully!');
         } catch (error) {
             this.app.logError('[✗] Error initializing app:', error);
         }

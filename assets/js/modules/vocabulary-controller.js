@@ -46,7 +46,7 @@ class VocabularyController {
 
         const loadTask = async () => {
             const targetLanguage = forceLanguage || this.app.currentLanguage || 'en';
-            this.app.logInfo('[LOAD] Starting lazy load for ' + targetLanguage + ' vocabulary…');
+            this.app.logDebug('[LOAD] Starting lazy load for ' + targetLanguage + ' vocabulary…');
 
             try {
                 // Use pre-split files: lesson metadata + canonical order already embedded.
@@ -66,7 +66,7 @@ class VocabularyController {
                     const sentencesResponse = await fetch('assets/data/hsk_example_sentences.json');
                     if (sentencesResponse.ok) {
                         this.app.exampleSentences = await sentencesResponse.json();
-                        this.app.logInfo('[SENTENCES] Loaded dynamic example sentences database');
+                        this.app.logDebug('[SENTENCES] Loaded dynamic example sentences database');
                     } else {
                         this.app.exampleSentences = {};
                     }
@@ -75,7 +75,7 @@ class VocabularyController {
                     this.app.exampleSentences = {};
                 }
 
-                this.app.logInfo('[OK] Loaded ' + this.app.vocabulary.length + ' items');
+                this.app.logDebug('[OK] Loaded ' + this.app.vocabulary.length + ' items');
                 this.app.vocabularyLoaded = true;
                 this.app.vocabularyLoading = false;
 
