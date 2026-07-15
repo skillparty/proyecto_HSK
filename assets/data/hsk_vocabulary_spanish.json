@@ -36872,15 +36872,6 @@
     "lessonOrder": 1
   },
   {
-    "character": "火车站",
-    "pinyin": "huǒchēzhàn",
-    "english": "train station",
-    "spanish": "estación de tren",
-    "level": 1,
-    "lesson": 15,
-    "lessonOrder": 18
-  },
-  {
     "character": "几",
     "pinyin": "jǐ",
     "english": "how many",
@@ -37821,7 +37812,7 @@
     "pinyin": "zǒu",
     "english": "walk",
     "spanish": "caminar",
-    "level": 1,
+    "level": 2,
     "lesson": 15,
     "lessonOrder": 17
   },
@@ -37830,7 +37821,7 @@
     "pinyin": "zuì",
     "english": "most",
     "spanish": "más",
-    "level": 1,
+    "level": 2,
     "lesson": 15,
     "lessonOrder": 12
   },
