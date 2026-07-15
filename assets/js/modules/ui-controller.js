@@ -206,6 +206,9 @@ class UIController {
         (async () => {
           try {
             await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=9");
+            if (!window.PastExamsQuestionBank) {
+              await this.loadScript("assets/js/modules/past-exams-question-bank.js");
+            }
             if (!window.PastExamsController) {
               await this.loadScript("assets/js/modules/past-exams-controller.js?v=3");
             }

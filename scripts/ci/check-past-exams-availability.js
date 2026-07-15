@@ -6,6 +6,7 @@ const { join } = require('path');
 const vm = require('vm');
 
 const ROOT = process.cwd();
+const questionBankPath = join(ROOT, 'assets/js/modules/past-exams-question-bank.js');
 const controllerPath = join(ROOT, 'assets/js/modules/past-exams-controller.js');
 
 function fail(message) {
@@ -13,11 +14,12 @@ function fail(message) {
   process.exit(1);
 }
 
+if (!existsSync(questionBankPath)) {
+  fail('Missing module file: assets/js/modules/past-exams-question-bank.js');
+}
 if (!existsSync(controllerPath)) {
   fail('Missing controller file: assets/js/modules/past-exams-controller.js');
 }
-
-const source = readFileSync(controllerPath, 'utf-8');
 
 const sandbox = {
   console,
@@ -33,7 +35,10 @@ const sandbox = {
 };
 
 vm.createContext(sandbox);
-vm.runInContext(source, sandbox, { filename: controllerPath });
+// Orden real de carga: question-bank primero (past-exams-controller.js
+// instancia window.PastExamsQuestionBank en su constructor).
+vm.runInContext(readFileSync(questionBankPath, 'utf-8'), sandbox, { filename: questionBankPath });
+vm.runInContext(readFileSync(controllerPath, 'utf-8'), sandbox, { filename: controllerPath });
 
 const PastExamsController = sandbox.window.PastExamsController;
 assert.ok(PastExamsController, 'PastExamsController class was not loaded');
@@ -97,7 +102,7 @@ const appStub = {
 const controller = new PastExamsController(appStub);
 
 assert.strictEqual(
-  typeof controller.selectExamQuestions,
+  typeof controller.questionBank.selectExamQuestions,
   'function',
   'selectExamQuestions helper must exist'
 );
@@ -123,7 +128,7 @@ const requestCases = [
 ];
 
 requestCases.forEach((testCase) => {
-  const result = controller.selectExamQuestions(testCase.level, testCase.section, testCase.count);
+  const result = controller.questionBank.selectExamQuestions(testCase.level, testCase.section, testCase.count);
   assert.ok(result && typeof result === 'object', 'Expected selection result object');
   assert.strictEqual(
     result.questions.length,
@@ -154,7 +159,7 @@ for (let index = 1; index <= 15; index += 1) {
 appStub.pastExamQuestionBank = [];
 appStub.vocabulary = lowEntropyVocabulary;
 
-const lowEntropyResult = controller.selectExamQuestions('1', 'all', 5);
+const lowEntropyResult = controller.questionBank.selectExamQuestions('1', 'all', 5);
 assert.strictEqual(
   lowEntropyResult.questions.length,
   5,
@@ -187,7 +192,7 @@ appStub.pastExamQuestionBank = [
 ];
 appStub.vocabulary = buildMockVocabulary();
 
-const officialOnlyResult = controller.selectExamQuestions('1', 'reading', 5, { officialOnly: true });
+const officialOnlyResult = controller.questionBank.selectExamQuestions('1', 'reading', 5, { officialOnly: true });
 assert.strictEqual(officialOnlyResult.questions.length, 5, 'Official-only mode should still fill requested count');
 assert.strictEqual(officialOnlyResult.summary.generatedCount, 0, 'Official-only mode must not include generated questions');
 assert.ok(
@@ -198,7 +203,7 @@ assert.ok(
 appStub.pastExamQuestionBank = [];
 appStub.vocabulary = [];
 
-const emptyResult = controller.selectExamQuestions('1', 'reading', 5);
+const emptyResult = controller.questionBank.selectExamQuestions('1', 'reading', 5);
 assert.strictEqual(emptyResult.questions.length, 0, 'Expected empty result when both static and generated pools are empty');
 
 console.log('Past exams availability checks passed.');

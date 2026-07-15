@@ -45,6 +45,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/browse-controller.js?v=5",
   "./assets/js/modules/interaction-controller.js?v=8",
   "./assets/js/modules/game-engine.js",
+  "./assets/js/modules/past-exams-question-bank.js",
   "./assets/js/modules/past-exams-controller.js?v=3",
   "./assets/js/modules/quantifier-snake-utils.js?v=1",
   "./assets/js/modules/quantifier-snake-canvas.js?v=4",
