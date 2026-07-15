@@ -296,6 +296,9 @@ class UIController {
             if (!window.MatrixScoreController) {
               await this.loadScript("assets/js/modules/matrix-score-controller.js");
             }
+            if (typeof setupMatrixGameEventListeners === "undefined") {
+              await this.loadScript("assets/js/matrix-game-events.js");
+            }
             if (!window.MatrixGame) {
               await this.loadScript("assets/js/matrix-game.js?v=3");
             }

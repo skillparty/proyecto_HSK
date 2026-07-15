@@ -60,6 +60,7 @@ const PRECACHE_FILES = [
   "./assets/js/user-progress-backend.js",
   "./assets/js/app.js?v=37",
   "./assets/js/matrix-game.js?v=3",
+  "./assets/js/matrix-game-events.js",
   "./assets/js/matrix-game-ui.js",
   "./assets/js/tones-invaders-game.js?v=5",
   "./assets/js/hanzi-builder-game.js?v=2",
