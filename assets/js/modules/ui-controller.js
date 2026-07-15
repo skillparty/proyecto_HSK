@@ -234,6 +234,9 @@ class UIController {
             if (!window.QuantifierSnakeController) {
               await this.loadScript("assets/js/modules/quantifier-snake-controller.js?v=7");
             }
+            if (!window.QuantifierSnakeVersusRenderer) {
+              await this.loadScript("assets/js/modules/quantifier-snake-versus-renderer.js");
+            }
             if (!window.QuantifierSnakeVersusController) {
               await this.loadScript("assets/js/modules/quantifier-snake-versus.js?v=1");
             }
