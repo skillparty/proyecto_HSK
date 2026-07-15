@@ -8,6 +8,9 @@
 //
 // Exclusiones deliberadas:
 //   - assets/libros: PDF con copyright, solo referencia local (gitignored).
+//   - vocabularios monolíticos y lesson-order map: fuente del tooling
+//     (scripts/split-vocab.js genera los splits desde ellos); el runtime
+//     solo consume assets/data/vocab/hsk{1-6}_{en,es}.json.
 //   - node_modules, scripts, docs, .git: internos, nunca publicables.
 //
 // Uso: node scripts/build/build-dist.js
@@ -21,11 +24,19 @@ const OUT_DIR = join(ROOT, "dist");
 
 const INCLUDE = ["index.html", "sw.js", "assets", "config"];
 const EXCLUDED_DIRS = [join("assets", "libros")];
+const EXCLUDED_DATA_FILES = [
+  join("assets", "data", "hsk_vocabulary.json"),
+  join("assets", "data", "hsk_vocabulary_spanish.json"),
+  join("assets", "data", "hsk_lesson_order_map.json"),
+];
 const EXCLUDED_FILES = [".DS_Store"];
 
 function shouldCopy(srcPath) {
   const relPath = srcPath.slice(ROOT.length + 1);
   if (EXCLUDED_FILES.some((name) => relPath.endsWith(sep + name) || relPath === name)) {
+    return false;
+  }
+  if (EXCLUDED_DATA_FILES.includes(relPath)) {
     return false;
   }
   return !EXCLUDED_DIRS.some(
