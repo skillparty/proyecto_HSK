@@ -52,6 +52,8 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quantifier-snake-controller.js?v=7",
   "./assets/js/modules/quantifier-snake-versus-renderer.js",
   "./assets/js/modules/quantifier-snake-versus.js?v=1",
+  "./assets/js/modules/strokes-radicals-catalog-data.js",
+  "./assets/js/modules/strokes-radicals-practice.js",
   "./assets/js/modules/strokes-radicals-controller.js?v=4",
   "./assets/js/progress-integrator.js",
   "./assets/js/auth-backend.js",

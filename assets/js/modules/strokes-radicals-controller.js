@@ -20,39 +20,9 @@ class StrokesRadicalsController {
             /\btrazo(?:s)?\b/i,
             /\b(heng|shu|pie|na|dian|ti|gou|zhe)\b/i
         ];
-        this.strokeCodeComponentLabelsByLanguage = {
-            es: {
-                H: 'horizontal 一 (heng)',
-                S: 'vertical 丨 (shu)',
-                P: 'descendente izquierda 丿 (pie)',
-                N: 'descendente derecha ㇏ (na)',
-                D: 'punto 丶 (dian)',
-                T: 'ascendente ㇀ (ti)',
-                Z: 'giro/quiebre (zhe)',
-                G: 'gancho 亅 (gou)',
-                W: 'curva (wan)',
-                B: 'trazo corto (duan)',
-                X: 'oblicuo (xie)',
-                Q: 'envolvente (quan)'
-            },
-            en: {
-                H: 'horizontal 一 (heng)',
-                S: 'vertical 丨 (shu)',
-                P: 'left-falling 丿 (pie)',
-                N: 'right-falling ㇏ (na)',
-                D: 'dot 丶 (dian)',
-                T: 'rising ㇀ (ti)',
-                Z: 'turning (zhe)',
-                G: 'hook 亅 (gou)',
-                W: 'bend (wan)',
-                B: 'short stroke (duan)',
-                X: 'slanting (xie)',
-                Q: 'enclosing (quan)'
-            }
-        };
         this.strokeCharacters = new Set(['横', '竖', '撇', '捺', '点', '提', '钩', '折', '㇀', '㇏', '丶', '丿', '丨', '一']);
-        this.strokeCatalog = this.buildStrokeCatalog();
-        this.radicalCatalog = this.buildRadicalCatalog();
+        this.strokeCatalog = window.StrokesRadicalsCatalogData.buildStrokeCatalog();
+        this.radicalCatalog = window.StrokesRadicalsCatalogData.buildRadicalCatalog();
         this.radicalCatalogByNumber = new Map(this.radicalCatalog.map((entry) => [entry.number, entry]));
         this.searchRenderTimer = null;
 
@@ -64,21 +34,10 @@ class StrokesRadicalsController {
             radicalExamplesByNumber: {},
             typeFilter: 'all',
             levelFilter: 'all',
-            searchTerm: '',
-            practice: {
-                currentEntry: null,
-                correctOption: null,
-                selectedOption: null,
-                answered: false,
-                score: 0,
-                attempts: 0,
-                streak: 0,
-                bestStreak: 0,
-                difficulty: 'auto',
-                lastDifficultyUsed: 'easy',
-                sessionStartedAt: null
-            }
+            searchTerm: ''
         };
+
+        this.practice = new window.StrokesRadicalsPractice(this);
     }
 
     getLogger() {
@@ -93,204 +52,6 @@ class StrokesRadicalsController {
         this.getLogger().warn(...args);
     }
 
-    getStrokeCodeComponentLabels(languageCode = 'en') {
-        return this.strokeCodeComponentLabelsByLanguage[languageCode]
-            || this.strokeCodeComponentLabelsByLanguage.en;
-    }
-
-    buildCompositeStrokeName(strokeCode, languageCode = 'en') {
-        const normalizedCode = String(strokeCode || '').trim().toUpperCase();
-        if (!normalizedCode) {
-            return '';
-        }
-
-        const componentLabels = this.getStrokeCodeComponentLabels(languageCode);
-        const components = normalizedCode
-            .split('')
-            .map((part) => componentLabels[part] || part);
-
-        if (components.length === 1) {
-            if (languageCode === 'es') {
-                return `Variante ${normalizedCode}: ${components[0]}`;
-            }
-
-            return `Variant ${normalizedCode}: ${components[0]}`;
-        }
-
-        const joiner = ' + ';
-        if (languageCode === 'es') {
-            return `Compuesto ${normalizedCode}: ${components.join(joiner)}`;
-        }
-
-        return `Composite ${normalizedCode}: ${components.join(joiner)}`;
-    }
-
-    getExtendedStrokeMetadata() {
-        return new Map([
-            [0x31c0, { strokeCode: 'T' }],
-            [0x31c1, { strokeCode: 'WG' }],
-            [0x31c2, { strokeCode: 'XG' }],
-            [0x31c3, { strokeCode: 'BXG' }],
-            [0x31c4, { strokeCode: 'SW' }],
-            [0x31c5, { strokeCode: 'HZZ' }],
-            [0x31c6, { strokeCode: 'HZG' }],
-            [0x31c7, { strokeCode: 'HP' }],
-            [0x31c8, { strokeCode: 'HZWG' }],
-            [0x31c9, { strokeCode: 'SZWG' }],
-            [0x31ca, { strokeCode: 'HZT' }],
-            [0x31cb, { strokeCode: 'HZZP' }],
-            [0x31cc, { strokeCode: 'HPWG' }],
-            [0x31cd, { strokeCode: 'HZW' }],
-            [0x31ce, { strokeCode: 'HZZZ' }],
-            [0x31cf, { strokeCode: 'N' }],
-            [0x31d0, { strokeCode: 'H' }],
-            [0x31d1, { strokeCode: 'S' }],
-            [0x31d2, { strokeCode: 'P' }],
-            [0x31d3, { strokeCode: 'SP' }],
-            [0x31d4, { strokeCode: 'D' }],
-            [0x31d5, { strokeCode: 'HZ' }],
-            [0x31d6, { strokeCode: 'HG' }],
-            [0x31d7, { strokeCode: 'SZ' }],
-            [0x31d8, { strokeCode: 'SWZ' }],
-            [0x31d9, { strokeCode: 'ST' }],
-            [0x31da, { strokeCode: 'SG' }],
-            [0x31db, { strokeCode: 'PD' }],
-            [0x31dc, { strokeCode: 'PZ' }],
-            [0x31dd, { strokeCode: 'TN' }],
-            [0x31de, { strokeCode: 'SZZ' }],
-            [0x31df, { strokeCode: 'SWG' }],
-            [0x31e0, { strokeCode: 'HXWG' }],
-            [0x31e1, { strokeCode: 'HZZZG' }],
-            [0x31e2, { strokeCode: 'PG' }],
-            [0x31e3, { strokeCode: 'Q' }]
-        ]);
-    }
-
-    buildStrokeCatalog() {
-        const coreStrokes = [
-            {
-                id: 'core-heng',
-                symbol: '一',
-                pinyin: 'heng',
-                nameEs: 'Horizontal',
-                nameEn: 'Horizontal',
-                family: 'core'
-            },
-            {
-                id: 'core-shu',
-                symbol: '丨',
-                pinyin: 'shu',
-                nameEs: 'Vertical',
-                nameEn: 'Vertical',
-                family: 'core'
-            },
-            {
-                id: 'core-pie',
-                symbol: '丿',
-                pinyin: 'pie',
-                nameEs: 'Descendente izquierda',
-                nameEn: 'Left-falling',
-                family: 'core'
-            },
-            {
-                id: 'core-dian',
-                symbol: '丶',
-                pinyin: 'dian',
-                nameEs: 'Punto',
-                nameEn: 'Dot',
-                family: 'core'
-            },
-            {
-                id: 'core-na',
-                symbol: '㇏',
-                pinyin: 'na',
-                nameEs: 'Descendente derecha',
-                nameEn: 'Right-falling',
-                family: 'core'
-            },
-            {
-                id: 'core-ti',
-                symbol: '㇀',
-                pinyin: 'ti',
-                nameEs: 'Ascendente',
-                nameEn: 'Rising',
-                family: 'core'
-            },
-            {
-                id: 'core-gou',
-                symbol: '亅',
-                pinyin: 'gou',
-                nameEs: 'Gancho',
-                nameEn: 'Hook',
-                family: 'core'
-            },
-            {
-                id: 'core-zhe',
-                symbol: '乛',
-                pinyin: 'zhe',
-                nameEs: 'Giro',
-                nameEn: 'Turning',
-                family: 'core'
-            }
-        ];
-
-        const extendedStrokeMetadata = this.getExtendedStrokeMetadata();
-        const extensionStrokes = [];
-        for (let codePoint = 0x31c0; codePoint <= 0x31e3; codePoint += 1) {
-            const metadata = extendedStrokeMetadata.get(codePoint);
-            const strokeCode = String(metadata?.strokeCode || '').trim().toUpperCase();
-            const computedNameEs = this.buildCompositeStrokeName(strokeCode, 'es');
-            const computedNameEn = this.buildCompositeStrokeName(strokeCode, 'en');
-            const fallbackHex = codePoint.toString(16).toUpperCase();
-            extensionStrokes.push({
-                id: `extended-${codePoint.toString(16)}`,
-                symbol: String.fromCodePoint(codePoint),
-                pinyin: '',
-                nameEs: computedNameEs || `Trazo extendido U+${fallbackHex}`,
-                nameEn: computedNameEn || `Extended stroke U+${fallbackHex}`,
-                strokeCode,
-                family: 'extended'
-            });
-        }
-
-        return [...coreStrokes, ...extensionStrokes].map((entry, index) => ({
-            ...entry,
-            order: index + 1,
-            searchText: String([
-                entry.symbol,
-                entry.pinyin,
-                entry.nameEs,
-                entry.nameEn,
-                entry.strokeCode,
-                entry.family,
-                index + 1
-            ].join(' ').toLowerCase())
-        }));
-    }
-
-    buildRadicalCatalog() {
-        const radicals = [];
-
-        for (let radicalNumber = 1; radicalNumber <= 214; radicalNumber += 1) {
-            const kangxiSymbol = String.fromCodePoint(0x2f00 + (radicalNumber - 1));
-            const normalizedSymbol = kangxiSymbol.normalize('NFKC');
-            const symbol = normalizedSymbol || kangxiSymbol;
-
-            radicals.push({
-                number: radicalNumber,
-                symbol,
-                kangxiSymbol,
-                searchText: String([
-                    radicalNumber,
-                    symbol,
-                    kangxiSymbol,
-                    `kangxi radical ${radicalNumber}`
-                ].join(' ').toLowerCase())
-            });
-        }
-
-        return radicals;
-    }
 
     parseRadicalNumber(...texts) {
         for (const text of texts) {
@@ -406,382 +167,6 @@ class StrokesRadicalsController {
         this.state.radicalExamplesByNumber = radicalExamplesByNumber;
     }
 
-    getPracticeCategory(entry) {
-        if (entry.hasRadical && entry.hasStroke) return 'both';
-        if (entry.hasRadical) return 'radical';
-        if (entry.hasStroke) return 'stroke';
-        return 'none';
-    }
-
-    getPracticeOptionLabel(optionKey) {
-        const keyByOption = {
-            radical: 'strokesRadicalsPracticeOptionRadical',
-            stroke: 'strokesRadicalsPracticeOptionStroke',
-            both: 'strokesRadicalsPracticeOptionBoth',
-            none: 'strokesRadicalsPracticeOptionNone'
-        };
-
-        return this.app.getTranslation(keyByOption[optionKey] || keyByOption.none);
-    }
-
-    shuffleArray(items) {
-        const copy = [...items];
-        for (let index = copy.length - 1; index > 0; index -= 1) {
-            const randomIndex = Math.floor(Math.random() * (index + 1));
-            [copy[index], copy[randomIndex]] = [copy[randomIndex], copy[index]];
-        }
-
-        return copy;
-    }
-
-    getNumericValue(value, fallback = 0) {
-        const parsed = Number(value);
-        return Number.isFinite(parsed) ? parsed : fallback;
-    }
-
-    getPracticeSessionStorageKey() {
-        const currentUser = window.backendAuth?.getCurrentUser?.();
-        const userId = currentUser?.id || 'guest';
-        return `${this.practiceSessionStorageKey}:${userId}`;
-    }
-
-    sanitizeDifficulty(value) {
-        const allowed = new Set(['auto', 'easy', 'normal', 'hard']);
-        return allowed.has(value) ? value : 'auto';
-    }
-
-    loadPracticeSession() {
-        this.state.practice.sessionStartedAt = Date.now();
-
-        try {
-            const raw = sessionStorage.getItem(this.getPracticeSessionStorageKey());
-            if (!raw) {
-                return;
-            }
-
-            const parsed = JSON.parse(raw);
-            this.state.practice.score = this.getNumericValue(parsed.score, 0);
-            this.state.practice.attempts = this.getNumericValue(parsed.attempts, 0);
-            this.state.practice.streak = this.getNumericValue(parsed.streak, 0);
-            this.state.practice.bestStreak = this.getNumericValue(parsed.bestStreak, 0);
-            this.state.practice.difficulty = this.sanitizeDifficulty(String(parsed.difficulty || 'auto'));
-            this.state.practice.sessionStartedAt = this.getNumericValue(parsed.sessionStartedAt, Date.now());
-        } catch (error) {
-            this.logWarn('[strokes-radicals] Could not load practice session:', error);
-        }
-    }
-
-    savePracticeSession() {
-        try {
-            sessionStorage.setItem(this.getPracticeSessionStorageKey(), JSON.stringify({
-                score: this.state.practice.score,
-                attempts: this.state.practice.attempts,
-                streak: this.state.practice.streak,
-                bestStreak: this.state.practice.bestStreak,
-                difficulty: this.sanitizeDifficulty(this.state.practice.difficulty),
-                sessionStartedAt: this.state.practice.sessionStartedAt || Date.now()
-            }));
-        } catch (error) {
-            this.logWarn('[strokes-radicals] Could not save practice session:', error);
-        }
-    }
-
-    syncPracticeControls() {
-        const difficultySelect = document.getElementById('sr-practice-difficulty');
-        if (difficultySelect) {
-            difficultySelect.value = this.state.practice.difficulty || 'auto';
-        }
-    }
-
-    getEffectiveDifficulty() {
-        const selectedDifficulty = this.state.practice.difficulty || 'auto';
-        if (selectedDifficulty !== 'auto') {
-            return selectedDifficulty;
-        }
-
-        if (this.state.practice.streak >= this.difficultyThresholds.hard) {
-            return 'hard';
-        }
-
-        if (this.state.practice.streak >= this.difficultyThresholds.normal) {
-            return 'normal';
-        }
-
-        return 'easy';
-    }
-
-    getDifficultyLabel(difficulty) {
-        const keyByDifficulty = {
-            auto: 'strokesRadicalsPracticeDifficultyAuto',
-            easy: 'strokesRadicalsPracticeDifficultyEasy',
-            normal: 'strokesRadicalsPracticeDifficultyNormal',
-            hard: 'strokesRadicalsPracticeDifficultyHard'
-        };
-
-        return this.app.getTranslation(keyByDifficulty[difficulty] || keyByDifficulty.auto);
-    }
-
-    getPracticeOptionsForDifficulty(difficulty, correctOption) {
-        if (difficulty === 'easy') {
-            if (correctOption === 'radical' || correctOption === 'stroke') {
-                return ['radical', 'stroke'];
-            }
-            return [correctOption, 'radical'];
-        }
-
-        if (difficulty === 'normal') {
-            const options = ['radical', 'stroke', 'both'];
-            if (!options.includes(correctOption)) {
-                options.push(correctOption);
-            }
-            return options;
-        }
-
-        return ['radical', 'stroke', 'both'];
-    }
-
-    getPracticeHint(entry, difficulty) {
-        const pinyin = String(entry.word.pinyin || '?');
-        const meaning = this.sanitizeMeaning(entry.word);
-
-        if (difficulty === 'hard') {
-            return pinyin;
-        }
-
-        if (difficulty === 'normal') {
-            const shortMeaning = meaning.split(/[;,|]/)[0]?.trim() || meaning;
-            return `${pinyin} · ${shortMeaning}`;
-        }
-
-        return `${pinyin} · ${meaning}`;
-    }
-
-    getPracticePool() {
-        const filteredItems = this.state.filteredItems;
-        const effectiveDifficulty = this.getEffectiveDifficulty();
-        this.state.practice.lastDifficultyUsed = effectiveDifficulty;
-
-        const pool = filteredItems.filter((entry) => {
-            const category = this.getPracticeCategory(entry);
-
-            if (effectiveDifficulty === 'easy') {
-                return category === 'radical' || category === 'stroke';
-            }
-
-            if (effectiveDifficulty === 'normal') {
-                return category !== 'none';
-            }
-
-            return true;
-        });
-
-        return pool.length ? pool : filteredItems;
-    }
-
-    updatePracticeScore() {
-        const scoreEl = document.getElementById('sr-practice-score');
-        const streakEl = document.getElementById('sr-practice-streak');
-        const bestStreakEl = document.getElementById('sr-practice-best-streak');
-        const accuracyEl = document.getElementById('sr-practice-accuracy');
-        const difficultyEl = document.getElementById('sr-practice-current-difficulty');
-
-        const score = this.state.practice.score;
-        const attempts = this.state.practice.attempts;
-        const accuracy = attempts > 0 ? Math.round((score / attempts) * 100) : 0;
-        const effectiveDifficulty = this.getEffectiveDifficulty();
-
-        if (scoreEl) {
-            scoreEl.textContent = `${score}/${attempts}`;
-        }
-
-        if (streakEl) {
-            streakEl.textContent = String(this.state.practice.streak);
-        }
-
-        if (bestStreakEl) {
-            bestStreakEl.textContent = String(this.state.practice.bestStreak);
-        }
-
-        if (accuracyEl) {
-            accuracyEl.textContent = `${accuracy}%`;
-        }
-
-        if (difficultyEl) {
-            difficultyEl.textContent = this.getDifficultyLabel(effectiveDifficulty);
-        }
-
-        this.savePracticeSession();
-    }
-
-    resetPracticeSession() {
-        this.state.practice.score = 0;
-        this.state.practice.attempts = 0;
-        this.state.practice.streak = 0;
-        this.state.practice.bestStreak = 0;
-        this.state.practice.sessionStartedAt = Date.now();
-        this.state.practice.answered = false;
-        this.state.practice.selectedOption = null;
-
-        this.savePracticeSession();
-
-        if (this.state.filteredItems.length === 0) {
-            this.renderPracticeNoData();
-            return;
-        }
-
-        this.pickNextPracticeQuestion();
-        this.updatePracticeScore();
-    }
-
-    renderPracticeNoData() {
-        const questionEl = document.getElementById('sr-practice-question');
-        const characterEl = document.getElementById('sr-practice-character');
-        const hintEl = document.getElementById('sr-practice-hint');
-        const optionsEl = document.getElementById('sr-practice-options');
-        const feedbackEl = document.getElementById('sr-practice-feedback');
-        const nextBtn = document.getElementById('sr-practice-next');
-
-        if (questionEl) questionEl.textContent = this.app.getTranslation('strokesRadicalsPracticeNoData');
-        if (characterEl) characterEl.textContent = '-';
-        if (hintEl) hintEl.textContent = '';
-        if (optionsEl) optionsEl.innerHTML = '';
-        if (feedbackEl) feedbackEl.textContent = '';
-        if (nextBtn) nextBtn.style.display = 'none';
-
-        this.state.practice.currentEntry = null;
-        this.state.practice.correctOption = null;
-        this.state.practice.selectedOption = null;
-        this.state.practice.answered = false;
-        this.updatePracticeScore();
-    }
-
-    pickNextPracticeQuestion() {
-        const pool = this.getPracticePool();
-        if (pool.length === 0) {
-            this.renderPracticeNoData();
-            return;
-        }
-
-        const currentEntry = this.state.practice.currentEntry;
-        const available = currentEntry ? pool.filter((entry) => entry !== currentEntry) : pool;
-        const selectionPool = available.length ? available : pool;
-        const nextEntry = selectionPool[Math.floor(Math.random() * selectionPool.length)];
-        this.state.practice.currentEntry = nextEntry;
-        this.state.practice.correctOption = this.getPracticeCategory(nextEntry);
-        this.state.practice.selectedOption = null;
-        this.state.practice.answered = false;
-
-        this.renderPracticeQuestion();
-    }
-
-    applyPracticeAnswerState() {
-        const selectedOption = this.state.practice.selectedOption;
-        const correctOption = this.state.practice.correctOption;
-        if (!this.state.practice.answered || !selectedOption || !correctOption) {
-            return;
-        }
-
-        const isCorrect = selectedOption === correctOption;
-
-        document.querySelectorAll('#sr-practice-options .sr-practice-option').forEach((button) => {
-            const option = button.dataset.option;
-            if (option === correctOption) {
-                button.classList.add('correct');
-            } else if (option === selectedOption && !isCorrect) {
-                button.classList.add('incorrect');
-            }
-            button.disabled = true;
-        });
-
-        const feedbackEl = document.getElementById('sr-practice-feedback');
-        if (feedbackEl) {
-            if (isCorrect) {
-                feedbackEl.textContent = this.app.getTranslation('strokesRadicalsPracticeCorrect');
-                feedbackEl.className = 'sr-practice-feedback correct';
-            } else {
-                feedbackEl.textContent = this.app.getTranslation('strokesRadicalsPracticeIncorrect', {
-                    answer: this.getPracticeOptionLabel(correctOption)
-                });
-                feedbackEl.className = 'sr-practice-feedback incorrect';
-            }
-        }
-
-        const nextBtn = document.getElementById('sr-practice-next');
-        if (nextBtn) {
-            nextBtn.style.display = 'inline-flex';
-        }
-    }
-
-    renderPracticeQuestion(resetQuestionState = true) {
-        const questionEl = document.getElementById('sr-practice-question');
-        const characterEl = document.getElementById('sr-practice-character');
-        const hintEl = document.getElementById('sr-practice-hint');
-        const optionsEl = document.getElementById('sr-practice-options');
-        const feedbackEl = document.getElementById('sr-practice-feedback');
-        const nextBtn = document.getElementById('sr-practice-next');
-
-        const entry = this.state.practice.currentEntry;
-        if (!entry || !questionEl || !characterEl || !hintEl || !optionsEl || !feedbackEl || !nextBtn) {
-            return;
-        }
-
-        if (resetQuestionState) {
-            this.state.practice.answered = false;
-            this.state.practice.selectedOption = null;
-        }
-
-        const activeDifficulty = this.state.practice.lastDifficultyUsed || this.getEffectiveDifficulty();
-        const optionKeys = this.shuffleArray(
-            this.getPracticeOptionsForDifficulty(activeDifficulty, this.state.practice.correctOption)
-        );
-
-        questionEl.textContent = this.app.getTranslation('strokesRadicalsPracticePrompt');
-        characterEl.textContent = String(entry.word.character || '?');
-        hintEl.textContent = this.getPracticeHint(entry, activeDifficulty);
-        feedbackEl.textContent = '';
-        feedbackEl.className = 'sr-practice-feedback';
-        optionsEl.innerHTML = '';
-        nextBtn.style.display = 'none';
-
-        optionKeys.forEach((optionKey) => {
-            const optionBtn = document.createElement('button');
-            optionBtn.type = 'button';
-            optionBtn.className = 'sr-practice-option';
-            optionBtn.dataset.option = optionKey;
-            optionBtn.textContent = this.getPracticeOptionLabel(optionKey);
-            optionBtn.addEventListener('click', () => this.submitPracticeAnswer(optionKey));
-            optionsEl.appendChild(optionBtn);
-        });
-
-        if (!resetQuestionState && this.state.practice.answered) {
-            this.applyPracticeAnswerState();
-        }
-
-        this.updatePracticeScore();
-    }
-
-    submitPracticeAnswer(selectedOption) {
-        if (this.state.practice.answered) {
-            return;
-        }
-
-        const correctOption = this.state.practice.correctOption;
-        const isCorrect = selectedOption === correctOption;
-        this.state.practice.selectedOption = selectedOption;
-        this.state.practice.answered = true;
-        this.state.practice.attempts += 1;
-        if (isCorrect) {
-            this.state.practice.score += 1;
-            this.state.practice.streak += 1;
-            this.state.practice.bestStreak = Math.max(this.state.practice.bestStreak, this.state.practice.streak);
-        } else {
-            this.state.practice.streak = 0;
-        }
-
-        this.applyPracticeAnswerState();
-
-        this.updatePracticeScore();
-    }
 
     readFiltersFromDom() {
         const typeFilter = document.getElementById('strokes-radicals-type');
@@ -792,9 +177,9 @@ class StrokesRadicalsController {
         this.state.typeFilter = typeFilter ? typeFilter.value : 'all';
         this.state.levelFilter = levelFilter ? levelFilter.value : 'all';
         this.state.searchTerm = (searchInput ? searchInput.value : '').trim().toLowerCase();
-        this.state.practice.difficulty = practiceDifficulty
-            ? this.sanitizeDifficulty(practiceDifficulty.value)
-            : this.sanitizeDifficulty(this.state.practice.difficulty || 'auto');
+        this.practice.state.difficulty = practiceDifficulty
+            ? this.practice.sanitizeDifficulty(practiceDifficulty.value)
+            : this.practice.sanitizeDifficulty(this.practice.state.difficulty || 'auto');
     }
 
     applyFilters() {
@@ -1111,7 +496,7 @@ class StrokesRadicalsController {
             this.state.filteredItems = [];
             this.updateStats();
             this.toggleEmptyState(true, 'no-data');
-            this.renderPracticeNoData();
+            this.practice.renderPracticeNoData();
             return;
         }
 
@@ -1119,21 +504,21 @@ class StrokesRadicalsController {
         this.updateStats();
         this.renderCards();
 
-        const practicePool = this.getPracticePool();
+        const practicePool = this.practice.getPracticePool();
         if (practicePool.length === 0) {
-            this.renderPracticeNoData();
+            this.practice.renderPracticeNoData();
             return;
         }
 
-        const currentEntry = this.state.practice.currentEntry;
+        const currentEntry = this.practice.state.currentEntry;
         const hasCurrentEntryInPool = currentEntry ? practicePool.includes(currentEntry) : false;
 
         if (!hasCurrentEntryInPool) {
-            this.pickNextPracticeQuestion();
+            this.practice.pickNextPracticeQuestion();
             return;
         }
 
-        this.renderPracticeQuestion(false);
+        this.practice.renderPracticeQuestion(false);
     }
 
     bindEvents() {
@@ -1170,19 +555,19 @@ class StrokesRadicalsController {
         if (practiceDifficulty) {
             practiceDifficulty.addEventListener('change', () => {
                 this.readFiltersFromDom();
-                this.updatePracticeScore();
+                this.practice.updatePracticeScore();
                 this.render();
             });
         }
 
         const nextPracticeBtn = document.getElementById('sr-practice-next');
         if (nextPracticeBtn) {
-            nextPracticeBtn.addEventListener('click', () => this.pickNextPracticeQuestion());
+            nextPracticeBtn.addEventListener('click', () => this.practice.pickNextPracticeQuestion());
         }
 
         const resetPracticeBtn = document.getElementById('sr-practice-reset-session');
         if (resetPracticeBtn) {
-            resetPracticeBtn.addEventListener('click', () => this.resetPracticeSession());
+            resetPracticeBtn.addEventListener('click', () => this.practice.resetPracticeSession());
         }
 
         this.state.eventsBound = true;
@@ -1208,9 +593,9 @@ class StrokesRadicalsController {
             return;
         }
 
-        this.loadPracticeSession();
+        this.practice.loadPracticeSession();
         this.bindEvents();
-        this.syncPracticeControls();
+        this.practice.syncPracticeControls();
         this.state.initialized = true;
         await this.loadAndRender();
     }

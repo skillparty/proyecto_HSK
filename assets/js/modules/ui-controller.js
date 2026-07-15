@@ -181,6 +181,12 @@ class UIController {
       case "strokes-radicals":
         (async () => {
           try {
+            if (!window.StrokesRadicalsCatalogData) {
+              await this.loadScript("assets/js/modules/strokes-radicals-catalog-data.js");
+            }
+            if (!window.StrokesRadicalsPractice) {
+              await this.loadScript("assets/js/modules/strokes-radicals-practice.js");
+            }
             if (!window.StrokesRadicalsController) {
               await this.loadScript("assets/js/modules/strokes-radicals-controller.js?v=4");
             }

@@ -6,6 +6,8 @@ const { join } = require('path');
 const vm = require('vm');
 
 const ROOT = process.cwd();
+const catalogDataPath = join(ROOT, 'assets/js/modules/strokes-radicals-catalog-data.js');
+const practicePath = join(ROOT, 'assets/js/modules/strokes-radicals-practice.js');
 const controllerPath = join(ROOT, 'assets/js/modules/strokes-radicals-controller.js');
 
 function fail(message) {
@@ -13,11 +15,15 @@ function fail(message) {
   process.exit(1);
 }
 
-if (!existsSync(controllerPath)) {
-  fail('Missing controller file: assets/js/modules/strokes-radicals-controller.js');
+for (const [path, label] of [
+  [catalogDataPath, 'assets/js/modules/strokes-radicals-catalog-data.js'],
+  [practicePath, 'assets/js/modules/strokes-radicals-practice.js'],
+  [controllerPath, 'assets/js/modules/strokes-radicals-controller.js'],
+]) {
+  if (!existsSync(path)) {
+    fail('Missing module file: ' + label);
+  }
 }
-
-const source = readFileSync(controllerPath, 'utf-8');
 
 const sandbox = {
   console,
@@ -38,7 +44,12 @@ const sandbox = {
 };
 
 vm.createContext(sandbox);
-vm.runInContext(source, sandbox, { filename: controllerPath });
+// Orden real de carga: catalog-data y practice antes del controller
+// (su constructor instancia window.StrokesRadicalsPractice y llama a
+// window.StrokesRadicalsCatalogData.buildStrokeCatalog/buildRadicalCatalog).
+vm.runInContext(readFileSync(catalogDataPath, 'utf-8'), sandbox, { filename: catalogDataPath });
+vm.runInContext(readFileSync(practicePath, 'utf-8'), sandbox, { filename: practicePath });
+vm.runInContext(readFileSync(controllerPath, 'utf-8'), sandbox, { filename: controllerPath });
 
 const StrokesRadicalsController = sandbox.window.StrokesRadicalsController;
 assert.ok(StrokesRadicalsController, 'Controller class was not loaded');
