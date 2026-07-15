@@ -36,15 +36,18 @@ jobs:
 
       - name: Validate project
         run: npm run ci
-      
+
+      - name: Build site artifact
+        run: npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository as static site
-          path: '.'
+          # Only the public runtime files (dist/), never the whole repo
+          path: 'dist'
       
       - name: Deploy to GitHub Pages
         id: deployment

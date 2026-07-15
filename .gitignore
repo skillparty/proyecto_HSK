@@ -40,8 +40,8 @@ temp/
 
 # Local development
 .cache/
-dist/
-build/
+/dist/
+/build/
 
 # Database files
 database/*.db
