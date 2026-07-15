@@ -67,3 +67,7 @@ scripts/build-data/.tatoeba-cache/
 
 # Source book PDF (copyright, local reference only)
 assets/libros/
+
+# Playwright
+test-results/
+playwright-report/

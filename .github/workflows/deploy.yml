@@ -40,6 +40,20 @@ jobs:
       - name: Build site artifact
         run: npm run build
 
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: E2E tests against dist
+        run: npx playwright test
+
+      - name: Upload E2E failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: test-results/
+          retention-days: 7
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
