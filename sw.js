@@ -54,7 +54,6 @@ const PRECACHE_FILES = [
   "./assets/js/progress-integrator.js",
   "./assets/js/auth-backend.js",
   "./assets/js/user-progress-backend.js",
-  "./assets/js/bg-data.js",
   "./assets/js/app.js?v=37",
   "./assets/js/matrix-game.js?v=3",
   "./assets/js/matrix-game-ui.js",
