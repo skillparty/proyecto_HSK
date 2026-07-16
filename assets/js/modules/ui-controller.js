@@ -336,6 +336,9 @@ class UIController {
         (async () => {
           try {
             await this.loadStylesheet("assets/css/tones-invaders-styles.css?v=3");
+            if (!window.TonesInvadersRenderer) {
+              await this.loadScript("assets/js/tones-invaders-renderer.js");
+            }
             if (!window.TonesInvadersGame) {
               await this.loadScript("assets/js/tones-invaders-game.js?v=4");
             }
