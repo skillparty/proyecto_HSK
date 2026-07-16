@@ -11,6 +11,16 @@ module.exports = defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
+  // `npx serve` is a lightweight single-process static server: 5+ workers
+  // hammering it with full page loads (40+ requests each) at once can
+  // delay the window "load" event past the SW-registration poll timeout,
+  // failing tests/e2e/smoke.spec.js's "el service worker se registra"
+  // intermittently. Capped so the server never sees more concurrent full
+  // page loads than it can service promptly. Confirmed root cause: under
+  // 5 workers, navigator.serviceWorker.getRegistration() returned nothing
+  // for 20+s straight; in isolation (this workers count) it resolves in
+  // under 5ms every time.
+  workers: 3,
   reporter: process.env.CI ? "github" : "list",
   timeout: 45000,
   use: {
