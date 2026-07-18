@@ -1,0 +1,418 @@
+/* app-header-nav.css — parte 2 del split de styles-professional.css (2026-07-18).
+   Header (brand, badges, panel de ajustes) y navegación agrupada con dropdowns.
+   ORDEN DE CARGA OBLIGATORIO: app-base → header-nav → home → practice →
+   browse → strokes → quiz → stats → enhancements → dashboard-extras.
+   La cascada depende de este orden; no reordenar los <link>. */
+
+/* ============================================================================
+   4. HEADER
+   ============================================================================ */
+.app-header {
+    position: relative;
+    /* Changed from fixed */
+    width: 100%;
+    height: var(--header-height);
+    background: var(--bg-app);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 1000;
+    transition: all var(--transition-normal);
+}
+
+.header-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Brand/Logo */
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-brand .logo {
+    height: 36px;
+    width: auto;
+    filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.3));
+    transition: var(--transition-normal);
+}
+
+.header-brand:hover .logo {
+    transform: none;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 12px;
+}
+
+.app-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0;
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+}
+
+.app-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* Stats Badges */
+.header-stats {
+    display: flex;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px 12px;
+    border-radius: var(--radius-full, 50px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.header-stat-value {
+    color: var(--text-main);
+    font-weight: 700;
+    font-feature-settings: "tnum";
+}
+
+.header-progress {
+    width: 60px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.header-progress-fill {
+    height: 100%;
+    background: var(--success);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* Header Controls */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: auto;
+}
+
+.mobile-only {
+    display: none !important;
+}
+
+/* Panel de ajustes (idioma, voz, audio): dropdown bajo el engranaje,
+   cerrado por defecto en todos los viewports */
+.header-settings-group {
+    display: none;
+}
+
+.header-actions {
+    position: relative;
+}
+
+.header-actions.settings-open .header-settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 8px;
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-dropdown);
+    min-width: 220px;
+    animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 10px;
+    border-radius: var(--radius-md);
+}
+
+.settings-row:hover {
+    background: var(--color-bg-hover);
+}
+
+.settings-row-label {
+    font-size: 0.85rem;
+    font-weight: var(--weight-medium);
+    color: var(--text-muted);
+}
+
+.settings-row select {
+    background: var(--color-bg-input);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    min-width: 96px;
+    cursor: pointer;
+}
+
+.settings-row select:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-glow);
+}
+
+#header-search {
+    background: var(--color-bg-input);
+    border: 1px solid var(--color-border);
+    color: var(--text-main);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    width: 200px;
+    transition: all var(--transition-normal);
+}
+
+#header-search:focus {
+    outline: none;
+    background: var(--color-bg-input);
+    border-color: var(--primary);
+    width: 240px;
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.header-control {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 8px;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 50%;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.header-control:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   5. NAVIGATION
+   ============================================================================ */
+.nav-container {
+    width: 100%;
+    background: var(--bg-app);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-tabs {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 30px;
+    overflow: visible;
+}
+
+.nav-tab {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 12px 16px;
+    cursor: pointer;
+    position: relative;
+    transition: color var(--transition-fast);
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+}
+
+.nav-tab:hover {
+    color: var(--text-main);
+    background: var(--color-bg-hover);
+}
+
+.nav-tab.active {
+    color: var(--primary);
+    font-weight: 600;
+    background: transparent;
+    border-bottom: 3px solid var(--primary);
+    border-radius: 0;
+    padding-bottom: 9px;
+}
+
+.nav-tab::after {
+    display: none;
+}
+
+.nav-tab.active::after {
+    display: none;
+}
+
+/* Grouped Navigation & Dropdowns CSS */
+.nav-group {
+    position: relative;
+    display: inline-block;
+}
+
+.nav-group-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(10, 10, 10, 0.85); /* Modern dark glass */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Clean modern border */
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    min-width: 190px;
+    z-index: 1000;
+    transition: transform var(--transition-normal) ease, opacity var(--transition-normal) ease, visibility var(--transition-normal) ease;
+}
+
+/* Invisible bridge to prevent dropdown hover gap flickering */
+.nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: transparent;
+}
+
+html[data-theme="light"] .nav-dropdown {
+    background: rgba(255, 255, 255, 0.85); /* Modern light glass */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.02);
+}
+
+/* Open states on hover or class toggle */
+.nav-group.open .nav-dropdown,
+.nav-group:focus-within .nav-dropdown,
+.nav-group:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(4px);
+}
+
+.nav-group.open .dropdown-chevron,
+.nav-group:focus-within .dropdown-chevron,
+.nav-group:hover .dropdown-chevron {
+    transform: rotate(180deg);
+}
+
+.nav-dropdown-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    color: #e5e3df; /* Warm text on dark background */
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast) ease;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+html[data-theme="light"] .nav-dropdown-item {
+    color: var(--color-text-charcoal);
+}
+
+.nav-dropdown-item:hover {
+    color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.08);
+    padding-left: 18px; /* Small slide effect */
+}
+
+html[data-theme="light"] .nav-dropdown-item:hover {
+    color: var(--color-primary);
+    background: var(--color-bg-hover);
+}
+
+.nav-dropdown-item.active {
+    color: var(--color-accent);
+    font-weight: 600;
+    background: rgba(245, 158, 11, 0.15);
+}
+
+html[data-theme="light"] .nav-dropdown-item.active {
+    color: var(--color-primary);
+    background: rgba(211, 47, 47, 0.08);
+}
+
+/* Parent active style */
+.nav-group.parent-active > .nav-group-trigger {
+    color: var(--primary);
+    font-weight: 600;
+    border-bottom: 3px solid var(--primary);
+    border-radius: 0;
+    padding-bottom: 9px;
+}
+
+
+/* Nav Icons (using ASCII art from original or emojis as fallback for now) */
+.nav-tab .ascii-art,
+.nav-tab span[role="img"] {
+    margin-right: 6px;
+    font-size: 1.1em;
+}
+

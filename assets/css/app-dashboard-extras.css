@@ -1,0 +1,699 @@
+/* app-dashboard-extras.css — parte 10 del split de styles-professional.css (2026-07-18).
+   Stats heatmap, anillos radiales y dashboard 3D portal (overrides tardíos de home/stats).
+   ORDEN DE CARGA OBLIGATORIO: app-base → header-nav → home → practice →
+   browse → strokes → quiz → stats → enhancements → dashboard-extras.
+   La cascada depende de este orden; no reordenar los <link>. */
+
+/* ============================================================================
+   7B. STATS HEATMAP & RADIAL RINGS
+   ============================================================================ */
+.stats-heatmap-card {
+    background: rgba(30, 41, 59, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    margin-bottom: 10px;
+}
+
+html[data-theme="light"] .stats-heatmap-card {
+    background: rgba(255, 248, 240, 0.85);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.05);
+}
+
+.stats-rings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 18px;
+}
+
+.stats-ring-card {
+    background: rgba(30, 41, 59, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+    text-align: center;
+}
+
+html[data-theme="light"] .stats-ring-card {
+    background: rgba(255, 248, 240, 0.85);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 20px rgba(139, 0, 0, 0.03);
+}
+
+.stats-ring-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.ring-svg-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ring-percent {
+    position: absolute;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+}
+
+.ring-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+}
+
+.ring-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.ring-count {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.ring-accuracy {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+
+.ring-active-circle {
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive rings adjustments */
+@media (max-width: 900px) {
+    .stats-rings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 580px) {
+    .stats-rings-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================================
+   17. DASHBOARD GRID & 3D PORTAL (MOBILE-FIRST + DESKTOP SCROLL-FREE)
+   ============================================================================ */
+
+/* --- Base styles (mobile-first) --- */
+.dashboard-grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 24px;
+}
+
+.dashboard-3d-portal {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 12px;
+    gap: 8px;
+    min-height: 280px;
+}
+
+html[data-theme="dark"] .dashboard-3d-portal {
+    background: rgba(15, 23, 42, 0.35);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="light"] .dashboard-3d-portal {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.portal-badge {
+    background: #c62828; /* darker red: white text ≈ 5.2:1 (WCAG AA) */
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    align-self: flex-start;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+#matrix-3d-canvas {
+    flex: 1;
+    width: 100%;
+    min-height: 200px;
+    display: block;
+    border-radius: var(--radius-md);
+    outline: none;
+    cursor: grab;
+    background: transparent;
+}
+
+#matrix-3d-canvas:active {
+    cursor: grabbing;
+}
+
+.portal-instructions {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    opacity: 0.75;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.dashboard-action-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dashboard-subgrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+/* 2 columns on tablet */
+@media (min-width: 600px) {
+    .dashboard-subgrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- Desktop: scroll-free layout --- */
+@media (min-width: 992px) {
+    .app-container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .app-header {
+        flex-shrink: 0;
+    }
+
+    .nav-container {
+        flex-shrink: 0;
+    }
+
+    .app-footer {
+        flex-shrink: 0;
+        padding: 10px 20px !important;
+        margin-top: 0 !important;
+        font-size: 0.78rem;
+    }
+
+    .main-content {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+        padding: 10px 24px !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content-wrapper {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tab-panel {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .tab-panel.active {
+        display: flex !important;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+    }
+
+    #practice,
+    #browse,
+    #strokes-radicals,
+    #quiz,
+    #past-exams,
+    #home,
+    #culture-characters,
+    #culture-medicine,
+    #culture-opera,
+    #culture-technology,
+    #culture-clothing,
+    #culture-arts {
+        overflow-y: auto !important;
+    }
+
+    /* 1. Inicio (Home Tab) */
+    .dashboard-grid-container {
+        display: grid;
+        grid-template-columns: 40% 1fr;
+        gap: 16px;
+        flex: 1;
+        min-height: 0;
+        padding-bottom: 0;
+    }
+
+    .dashboard-3d-portal {
+        min-height: 0;
+        height: 100%;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 4px 24px rgba(31, 38, 135, 0.06);
+        justify-content: stretch;
+    }
+
+    #matrix-3d-canvas {
+        min-height: 0;
+        height: 100%;
+    }
+
+    .dashboard-action-panel {
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .welcome-card {
+        margin-bottom: 0 !important;
+        padding: 12px 18px !important;
+        flex-shrink: 0;
+    }
+
+    .dashboard-subgrid {
+        grid-template-columns: repeat(2, 1fr);
+        flex: 1;
+        min-height: 0;
+    }
+
+    .dashboard-card {
+        padding: 10px 14px !important;
+        margin: 0 !important;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    /* 2. Evaluar (Quiz & Past Exams) */
+    #quiz, #past-exams {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .quiz-setup {
+        width: 100%;
+        max-width: 580px;
+        margin: 0 auto !important;
+        padding: 24px !important;
+    }
+
+    .quiz-setup h2,
+    .quiz-results h2 {
+        margin-bottom: 16px !important;
+        font-size: 1.5rem !important;
+    }
+
+    .quiz-container {
+        width: 100%;
+        max-width: 680px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        flex: 1;
+        min-height: 0;
+    }
+
+    .quiz-header {
+        margin-bottom: 8px !important;
+        padding: 10px 16px !important;
+        flex-shrink: 0;
+    }
+
+    .quiz-content {
+        padding: 20px 24px !important;
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .question-text {
+        margin-bottom: 12px !important;
+        gap: 6px !important;
+    }
+
+    .quiz-option {
+        padding: 10px 14px !important;
+        font-size: 0.88rem !important;
+    }
+
+    .quiz-results {
+        padding: 24px !important;
+        max-width: 500px;
+        width: 100%;
+    }
+
+    /* 3. Juegos (Snake & Matrix) */
+    /* Snake layout/sizing vive en quantifier-snake-styles.css; las reglas
+       legacy con !important capaban el canvas y rompían el tamaño del board. */
+
+    #matrix {
+        overflow: hidden !important;
+    }
+
+    .matrix-game-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 16px 24px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+    }
+
+    .matrix-grid-board {
+        max-height: calc(100vh - 300px);
+        overflow-y: auto;
+    }
+
+    /* 4. Progreso (Stats & Leaderboard) */
+    #stats {
+        overflow: hidden !important;
+    }
+
+    .stats-overview {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 0;
+        height: 100%;
+        flex: 1;
+    }
+
+    .stats-empty-state {
+        flex: 1;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0 !important;
+    }
+
+    .stats-overview h2 {
+        margin: 0 !important;
+        font-size: 1.3rem !important;
+        flex-shrink: 0;
+    }
+
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+        margin-bottom: 0 !important;
+        flex-shrink: 0;
+    }
+
+    .stat-card {
+        padding: 8px 10px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 70px;
+    }
+
+    .stat-card .stat-value {
+        font-size: 1.25rem !important;
+        margin-bottom: 2px !important;
+    }
+
+    .stat-card .stat-label {
+        font-size: 0.75rem !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        opacity: 0.85;
+    }
+
+    .stats-dashboard-row {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+        min-height: 0;
+    }
+
+    .stats-heatmap-card {
+        grid-column: span 3 !important;
+    }
+
+    .stats-heatmap-card, .stats-chart-card, .stats-achievements-card, .level-progress {
+        padding: 16px !important;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stats-achievements-grid {
+        max-height: 140px;
+        overflow-y: auto;
+    }
+
+    .level-progress {
+        margin-top: 0 !important;
+        padding: 16px !important;
+    }
+
+    #reset-stats {
+        align-self: center !important;
+        margin: 20px auto 10px auto !important;
+        max-width: 280px;
+        width: 100%;
+        padding: 12px 24px !important;
+        font-size: 0.95rem !important;
+        font-weight: 600;
+        border-radius: var(--radius-md, 12px) !important;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    }
+
+    #leaderboard {
+        overflow: hidden;
+    }
+
+    .leaderboard-section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        gap: 10px;
+    }
+
+    .leaderboard-header {
+        margin-bottom: 0 !important;
+        flex-shrink: 0;
+    }
+
+    .leaderboard-title {
+        font-size: 1.4rem !important;
+        margin: 0 !important;
+    }
+
+    .leaderboard-subtitle {
+        font-size: 0.8rem;
+        margin: 2px 0 0 0 !important;
+    }
+
+    .leaderboard-controls {
+        gap: 8px !important;
+        margin-bottom: 0 !important;
+        padding: 8px 12px !important;
+        flex-shrink: 0;
+    }
+
+    .leaderboard-content {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+    }
+}
+
+/* ── SRS Daily Loop Card ─────────────────────────────────────────── */
+.srs-daily-card {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(229,57,53,0.04) 100%);
+    border: 1px solid rgba(229,57,53,0.25);
+}
+
+.srs-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.srs-donut-wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+}
+
+.srs-count-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.srs-count {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.srs-text-block {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.srs-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-primary, var(--color-text));
+}
+
+.srs-sub {
+    font-size: 0.72rem;
+    color: var(--text-dim, var(--color-text-muted));
+    margin: 0;
+}
+
+.srs-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.srs-chip {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.srs-chip-due     { background: rgba(229, 57, 53, 0.12); color: var(--accent); }
+.srs-chip-new     { background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
+.srs-chip-learned { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+
+.srs-start-btn {
+    flex-shrink: 0;
+    padding: 8px 18px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    white-space: nowrap;
+}
+
+.srs-start-btn:hover  { opacity: 0.85; transform: translateY(-1px); }
+.srs-start-btn:active { transform: scale(0.97); }
+
+.srs-btn-primary {
+    background: var(--accent);
+    color: #1a1a1a; /* dark text on yellow accent: ≈ 11:1 (white was 1.53:1) */
+    font-weight: 700;
+}
+
+.srs-btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+}
+
+@media (max-width: 480px) {
+    .srs-card-inner { flex-direction: column; align-items: flex-start; }
+    .srs-start-btn  { width: 100%; text-align: center; }
+}
+
+/* ── Header streak enhancements ──────────────────────────────────── */
+.header-streak-icon {
+    font-size: 1rem;
+    line-height: 1;
+    filter: grayscale(1);
+    transition: filter 0.3s ease;
+}
+
+#header-streak-stat.streak-active .header-streak-icon {
+    filter: none;
+    animation: streakPulse 2s ease-in-out infinite;
+}
+
+@keyframes streakPulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.15); }
+}
+
+.header-due-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.header-due-badge:hover { transform: scale(1.1); }

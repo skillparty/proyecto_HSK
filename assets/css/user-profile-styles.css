@@ -284,7 +284,7 @@
         padding: 8px;
     }
 
-    /* El pill guest se reduce a icono de login (ver styles-professional.css) */
+    /* El pill guest se reduce a icono de login (ver app-header-nav.css) */
     .guest-text,
     .sync-status {
         display: none;

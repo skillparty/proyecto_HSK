@@ -1,0 +1,621 @@
+/* app-home.css — parte 3 del split de styles-professional.css (2026-07-18).
+   Utilities/animaciones y módulo Home: welcome, daily goal, 每日汉字, achievements.
+   ORDEN DE CARGA OBLIGATORIO: app-base → header-nav → home → practice →
+   browse → strokes → quiz → stats → enhancements → dashboard-extras.
+   La cascada depende de este orden; no reordenar los <link>. */
+
+/* ============================================================================
+   6. UTILITIES & ANIMATIONS
+   ============================================================================ */
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================================
+   7. HOME MODULE
+   ============================================================================ */
+.home-hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: var(--color-secondary);
+    border-radius: var(--radius-lg);
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-product);
+}
+
+.home-hero::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(244, 63, 94, 0.1) 0%,
+        transparent 50%
+    );
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.home-hero h2 {
+    font-size: var(--text-5xl);
+    font-family: var(--font-display);
+    letter-spacing: var(--tracking-hero);
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--color-text-on-dark);
+    line-height: 1.05;
+}
+
+.home-hero p {
+    font-size: var(--text-lg);
+    font-weight: 400;
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-text-on-dark);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    opacity: 0.9;
+}
+
+.welcome-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.welcome-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-stat .stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-family: var(--font-mono);
+}
+
+.welcome-stat .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Feature Cards */
+.home-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding-bottom: 40px;
+}
+
+.home-card {
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-top: 4px solid transparent;
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-top-color var(--transition-fast);
+}
+
+.home-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border);
+    border-top-color: var(--primary);
+}
+
+.home-card:hover .home-card-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: var(--primary);
+    background: var(--color-primary-subtle);
+    width: 64px;
+    height: 64px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    padding: 0;
+    transition: transform var(--transition-bounce);
+}
+
+.home-card-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: var(--primary);
+    background: var(--color-primary-subtle);
+    width: 64px;
+    height: 64px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    padding: 0;
+    transition: transform var(--transition-bounce);
+}
+
+/* Specific override for Chinese characters to ensure they fit */
+.home-card-icon.chinese-char {
+    width: auto;
+    min-width: 64px;
+}
+
+.chinese-char {
+    font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--primary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.home-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+}
+
+/* ============================================================================
+   7A. DASHBOARD GRID & CARDS
+   ============================================================================ */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    padding-bottom: 40px;
+    margin-top: 10px;
+}
+
+.dashboard-card {
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease, border-color var(--transition-fast) ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(229, 57, 53, 0.35); /* Subtle red accent border on hover */
+    box-shadow: var(--shadow-lg), 0 6px 24px rgba(229, 57, 53, 0.06);
+}
+
+/* Welcome Card */
+.welcome-card {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #3a0d0d, #220505); /* Imperial Oxblood Red Gradient */
+    border: 1px solid var(--accent);
+    color: var(--color-text-on-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+html[data-theme="light"] .welcome-card {
+    background: linear-gradient(135deg, #f5ecd8, #e8d0a7); /* Warm cream and soft gold gradient */
+    border: 1px solid var(--color-primary);
+    color: var(--color-text-charcoal);
+}
+
+.welcome-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+}
+
+.welcome-user-info h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--accent);
+}
+
+html[data-theme="light"] .welcome-user-info h2 {
+    color: var(--color-primary);
+}
+
+.welcome-user-info p {
+    font-size: 1.05rem;
+    opacity: 0.85;
+}
+
+/* Red Traditional stamp */
+.welcome-stamp {
+    width: 60px;
+    height: 60px;
+    border: 3px double #d32f2f;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #d32f2f;
+    font-family: "Noto Sans SC", serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    transform: rotate(-12deg);
+    user-select: none;
+    opacity: 0.75;
+}
+
+.welcome-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+html[data-theme="light"] .welcome-stats {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.welcome-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-stat .stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-text-on-dark);
+}
+
+html[data-theme="light"] .welcome-stat .stat-number {
+    color: var(--color-primary-hover);
+}
+
+.welcome-stat .stat-label {
+    font-size: 0.8rem;
+    opacity: 0.75;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Card titles */
+.dashboard-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+}
+
+/* Continue Learn Card */
+.continue-card {
+    background: var(--bg-card);
+}
+
+.continue-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.continue-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Daily Goal Card */
+.daily-goal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.goal-numbers {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.dashboard-progress-container {
+    width: 100%;
+    height: 12px;
+    background: var(--color-border-subtle);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.dashboard-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-success), #10b981);
+    border-radius: 6px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.goal-feedback {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+
+/* Daily character (每日汉字) with Mi Zi Ge */
+.daily-char-card {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.char-mi-zi-ge-container {
+    flex-shrink: 0;
+}
+
+.char-mi-zi-ge {
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border: 2px solid #8b0000; /* Imperial dark red border */
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+html[data-theme="light"] .char-mi-zi-ge {
+    border-color: var(--color-primary);
+}
+
+.mi-zi-ge-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(139, 0, 0, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(139, 0, 0, 0.15) 1px, transparent 1px),
+        repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(139, 0, 0, 0.1) 4px, rgba(139, 0, 0, 0.1) 5px),
+        repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(139, 0, 0, 0.1) 4px, rgba(139, 0, 0, 0.1) 5px);
+    background-position: center;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+}
+
+.mi-zi-ge-lines::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    border-top: 1px dashed rgba(139, 0, 0, 0.25);
+}
+
+.mi-zi-ge-lines::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    border-left: 1px dashed rgba(139, 0, 0, 0.25);
+}
+
+.char-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    font-family: "Noto Sans SC", "Ma Shan Zheng", sans-serif;
+    z-index: 2;
+}
+
+.char-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-grow: 1;
+}
+
+.char-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin: 0;
+}
+
+.char-pinyin-meaning {
+    display: flex;
+    flex-direction: column;
+}
+
+.char-pinyin {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.char-meaning {
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.char-info-pill {
+    display: inline-flex;
+    margin-top: 2px;
+}
+
+.char-level {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--accent);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Achievements Widget */
+.achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    background: var(--color-bg-hover);
+    border: 1px solid var(--color-border-subtle);
+    transition: transform var(--transition-fast) ease;
+}
+
+.achievement-item:hover {
+    transform: translateX(3px);
+}
+
+.achievement-icon {
+    width: 38px;
+    height: 38px;
+    background: radial-gradient(circle, var(--accent), #d97706);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.achievement-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.achievement-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.achievement-desc {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+
+.achievement-item.lock {
+    /* Tema oscuro: fondo translúcido oscuro (el gris claro previo arruinaba el
+       contraste del texto). El tema claro tiene su propio override abajo. */
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Estado bloqueado: atenuar solo el icono, no el texto (mantener contraste AA) */
+.achievement-item.lock .achievement-icon {
+    opacity: 0.45;
+    filter: grayscale(1);
+}
+
+html[data-theme="light"] .achievement-item.lock {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .welcome-card {
+        grid-column: span 1;
+    }
+
+    .daily-char-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.past-exams-note {
+    margin-top: 10px;
+    margin-bottom: 16px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.past-exams-hint {
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+.past-exams-pool-summary {
+    margin: 6px 0 14px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+

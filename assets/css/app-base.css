@@ -1,0 +1,368 @@
+/* app-base.css — parte 1 del split de styles-professional.css (2026-07-18).
+   Reset, estilos base, estructura de layout y pilares sino-bolivianos.
+   ORDEN DE CARGA OBLIGATORIO: app-base → header-nav → home → practice →
+   browse → strokes → quiz → stats → enhancements → dashboard-extras.
+   La cascada depende de este orden; no reordenar los <link>. */
+
+/*
+================================================================================
+CONFUC10 ++ - PROFESSIONAL DESIGN SYSTEM
+================================================================================
+Version: 4.0.0
+Description: Modern, professional, and aesthetic design for HSK Learning Platform.
+Features: Glassmorphism, Deep Dark Theme, Smooth Animations, Mobile Responsive.
+================================================================================
+*/
+
+/* ============================================================================
+   1. DESIGN TOKENS (VARIABLES)
+   ============================================================================ */
+/* Design Tokens are now centralized in design-tokens.css.
+   All variables (--primary, --bg-app, --text-main, etc.) are inherited from there.
+   To customize the theme, edit design-tokens.css — not this file. */
+
+/* ============================================================================
+   2. RESET & BASE STYLES
+   ============================================================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(229, 57, 53, 0.2);
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(229, 57, 53, 0.45);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-app);
+    /* Atmósfera sutil en secciones de trabajo: leve brillo cálido superior,
+       sin competir con el contenido */
+    background-image: radial-gradient(1100px 480px at 50% -120px, rgba(229, 57, 53, 0.05), transparent 70%);
+    background-repeat: no-repeat;
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+html[data-theme="dark"] body {
+    background-image: radial-gradient(1100px 480px at 50% -120px, rgba(229, 57, 53, 0.09), transparent 70%);
+}
+
+/* Mural caligráfico (evolución de la escritura) reservado para el home.
+   Capa fija con fade para que el cambio de tab no repinte el body. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.92)),
+        url("../images/background01.webp");
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+html[data-theme="dark"] body::before {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)),
+        url("../images/background01.webp");
+}
+
+html[data-active-tab="home"] body::before {
+    opacity: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+input::placeholder,
+textarea::placeholder,
+select:disabled,
+input:disabled,
+textarea:disabled,
+button:disabled {
+    color: var(--text-muted);
+}
+
+input::placeholder,
+textarea::placeholder {
+    opacity: 0.9;
+}
+
+select:disabled,
+input:disabled,
+textarea:disabled,
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+ul {
+    list-style: none;
+}
+
+:where(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    [role="button"],
+    [tabindex]
+):focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.home-card:focus-visible,
+.vocab-card:focus-visible,
+#flashcard:focus-visible,
+.nav-tab:focus-visible,
+.header-control:focus-visible,
+.action-btn:focus-visible,
+.btn-primary:focus-visible {
+    box-shadow: var(--shadow-glow);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-app);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-dim);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ============================================================================
+   3. LAYOUT STRUCTURE
+   ============================================================================ */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px;
+    /* padding-top: calc(var(--header-height) + 20px); removed */
+}
+
+/* ============================================================================
+   3. SINO-BOLIVIAN FUSION DECORATIONS (THEMED PILLARS & TEXT)
+   ============================================================================ */
+
+/* Ocultar por defecto en dispositivos pequeños y medianos para evitar sobrecarga */
+.vertical-pillar-left,
+.vertical-pillar-right,
+.vertical-text-left,
+.vertical-text-right,
+.lantern-top,
+.coin-bottom {
+    display: none;
+}
+
+/* Reactivar y estilizar de forma majestuosa en pantallas de escritorio amplias */
+@media (min-width: 1450px) {
+    .vertical-pillar-left,
+    .vertical-pillar-right {
+        display: block;
+        position: fixed;
+        top: 120px;
+        bottom: 80px;
+        width: 14px;
+        background: rgba(30, 41, 59, 0.35);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(245, 158, 11, 0.28); /* Borde de Oro Imperial */
+        border-radius: 8px;
+        box-shadow: 
+            0 0 15px rgba(245, 158, 11, 0.08),
+            inset 0 0 8px rgba(0, 0, 0, 0.3);
+        z-index: 90;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .vertical-pillar-left {
+        left: calc(50vw - 640px - 70px);
+    }
+
+    .vertical-pillar-right {
+        right: calc(50vw - 640px - 70px);
+    }
+
+    /* Patrón Textil Aguayo Andino vertical dentro de los pilares */
+    .vertical-pillar-left::before,
+    .vertical-pillar-right::before {
+        content: '';
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        left: 4px;
+        width: 4px;
+        border-radius: 2px;
+        background: linear-gradient(to bottom, 
+            #dc2626 0%, #dc2626 15%, 
+            #eab308 15%, #eab308 30%, 
+            #10b981 30%, #10b981 45%, 
+            #ec4899 45%, #ec4899 60%, 
+            #3b82f6 60%, #3b82f6 75%, 
+            #eab308 75%, #eab308 90%, 
+            #dc2626 90%, #dc2626 100%
+        );
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Los pilares son puramente decorativos: nada de controles.
+       El nivel HSK se elige en Estudiar/Browse; la racha vive en el header. */
+
+    /* Faroles Chinos Colgantes en el tope */
+    .lantern-top {
+        display: block;
+        position: absolute;
+        top: -34px;
+        left: -11px;
+        width: 36px;
+        height: 36px;
+        background: radial-gradient(circle at 35% 35%, #f43f5e, #dc2626 60%, #9f1239);
+        border: 2.5px solid var(--accent);
+        border-radius: 50% 50% 45% 45%;
+        box-shadow: 
+            0 0 16px rgba(220, 38, 38, 0.62),
+            inset 0 -4px 10px rgba(0, 0, 0, 0.35);
+        transform-origin: top center;
+        animation: swinging-lantern 3.2s ease-in-out infinite alternate;
+        cursor: pointer;
+    }
+
+    /* Borlas y detalles del farol */
+    .lantern-top::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 14px;
+        width: 4px;
+        height: 15px;
+        background: #f59e0b;
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+    
+    .lantern-top::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: 14px;
+        width: 4px;
+        height: 6px;
+        background: #f59e0b;
+        border-radius: 2px;
+    }
+
+    .lantern-top:hover {
+        animation: swinging-lantern-fast 0.8s ease-in-out infinite alternate;
+    }
+
+    /* Monedas de Bronce Imperiales en la base */
+    .coin-bottom {
+        display: block;
+        position: absolute;
+        bottom: -22px;
+        left: -11px;
+        width: 36px;
+        height: 36px;
+        background: radial-gradient(circle at 35% 35%, #ffe082, #f59e0b 60%, #b45309);
+        border: 2px solid #fffbcf;
+        border-radius: 50%;
+        box-shadow: 
+            0 4px 10px rgba(0, 0, 0, 0.45),
+            0 0 8px rgba(245, 158, 11, 0.2);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Agujero cuadrado tradicional en el centro de la moneda china */
+    .coin-bottom::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background: var(--color-bg-app);
+        border: 1px solid #92400e;
+        transform: rotate(45deg);
+    }
+
+    .coin-bottom:hover {
+        transform: scale(1.15) rotate(360deg);
+    }
+}
+
+/* Animaciones de Farol Swing */
+@keyframes swinging-lantern {
+    0% { transform: rotate(-6deg); }
+    100% { transform: rotate(6deg); }
+}
+
+@keyframes swinging-lantern-fast {
+    0% { transform: rotate(-18deg); }
+    100% { transform: rotate(18deg); }
+}
+

@@ -65,7 +65,7 @@ class ThemeController {
         }
 
         // Los colores y el fondo del tema viven en design-tokens.css y
-        // styles-professional.css bajo html[data-theme="dark"]. Aquí solo se
+        // los app-*.css (split de styles-professional) bajo html[data-theme="dark"]. Aquí solo se
         // alterna el atributo/clases; nunca estilos en línea.
     }
 

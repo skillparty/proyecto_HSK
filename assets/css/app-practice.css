@@ -1,0 +1,820 @@
+/* app-practice.css — parte 4 del split de styles-professional.css (2026-07-18).
+   Módulo Practice: selector de nivel, flashcard, caras multi-carácter, controles.
+   ORDEN DE CARGA OBLIGATORIO: app-base → header-nav → home → practice →
+   browse → strokes → quiz → stats → enhancements → dashboard-extras.
+   La cascada depende de este orden; no reordenar los <link>. */
+
+/* ============================================================================
+   8. PRACTICE MODULE
+   ============================================================================ */
+.practice-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Study Progress & Streak */
+.study-progress {
+    background: var(--bg-panel);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.study-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.study-progress-title {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.study-progress-value {
+    color: var(--primary);
+    font-weight: 700;
+    font-family: var(--font-mono);
+}
+
+.progress-bar {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-full, 100px);
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), #e11d48);
+    border-radius: var(--radius-full, 100px);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(244, 63, 94, 0.3);
+}
+
+.study-streak {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.streak-day {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.streak-day.active {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.streak-day.today {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(244, 63, 94, 0.1);
+}
+
+/* Level Selector */
+.level-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--bg-panel);
+    padding: 15px 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.level-selector label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.select-input {
+    background: var(--color-bg-input);
+    border: 1px solid var(--color-border);
+    color: var(--text-main);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    flex: 1;
+    max-width: 200px;
+    transition: border-color var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+}
+
+.select-input:hover {
+    border-color: rgba(229, 57, 53, 0.5);
+}
+
+.select-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+/* Flashcard */
+.flashcard-area {
+    perspective: 1000px;
+    margin: 20px 0;
+}
+
+.flashcard {
+    background: transparent;
+    border-radius: var(--radius-lg);
+    width: 100%;
+    height: 470px;
+    max-width: 560px;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--bg-app);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+}
+
+.card-back {
+    padding: 18px 22px;
+    justify-content: flex-start;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+.card-back::-webkit-scrollbar {
+    width: 6px;
+}
+.card-back::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+.card-front {
+    z-index: 2;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    z-index: 1;
+    background: var(--bg-panel);
+    overflow: hidden;
+}
+
+/* Card Content — Character Containers for Multi-Character Layouts */
+.card-character-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 0 auto 22px;
+    min-height: 160px;
+}
+
+/* Multi-character scaling for front face */
+.card-character-container.multi-char {
+    gap: 8px;
+}
+.card-character-container.multi-char .card-character {
+    width: 110px;
+    height: 110px;
+    font-size: 4.2rem;
+}
+.card-character-container.triple-char {
+    gap: 6px;
+}
+.card-character-container.triple-char .card-character {
+    width: 90px;
+    height: 90px;
+    font-size: 3.2rem;
+}
+
+.card-back-character-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Multi-character scaling for back face */
+.card-back-character-container.multi-char {
+    gap: 6px;
+}
+.card-back-character-container.multi-char .card-back-character {
+    width: 64px;
+    height: 64px;
+    font-size: 2.4rem;
+}
+.card-back-character-container.triple-char {
+    gap: 4px;
+}
+.card-back-character-container.triple-char .card-back-character {
+    width: 54px;
+    height: 54px;
+    font-size: 2.0rem;
+}
+
+.card-back-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-pill);
+    padding: 3px 10px;
+    display: inline-flex;
+    align-self: flex-start;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.plain-text-character {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-text-charcoal);
+    text-align: center;
+    line-height: 1.2;
+    padding: 10px 20px;
+    font-family: var(--font-display), system-ui, -apple-system, sans-serif;
+}
+
+.punctuation-box {
+    font-size: 3rem;
+    font-family: var(--font-chinese);
+    color: var(--color-text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 4px;
+}
+
+/* Card Content — Front Character (large calligraphy grid) */
+.card-character {
+    font-size: 6rem;
+    font-family: var(--font-chinese-serif);
+    font-weight: 600;
+    /* Tinta fija: la caja de papel de arroz es clara en ambos temas */
+    color: #1c1917;
+    position: relative;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    margin: 0;
+    
+    /* Rejilla de Caligrafía Tradicional MiZiGe (米字格) */
+    background-color: rgba(254, 252, 251, 0.75);
+    border: 2px solid rgba(220, 38, 38, 0.38);
+    background-image: 
+        linear-gradient(45deg, transparent 49.5%, rgba(220, 38, 38, 0.22) 49.5%, rgba(220, 38, 38, 0.22) 50.5%, transparent 50.5%),
+        linear-gradient(-45deg, transparent 49.5%, rgba(220, 38, 38, 0.22) 49.5%, rgba(220, 38, 38, 0.22) 50.5%, transparent 50.5%),
+        linear-gradient(to bottom, transparent 49.5%, rgba(220, 38, 38, 0.22) 49.5%, rgba(220, 38, 38, 0.22) 50.5%, transparent 50.5%),
+        linear-gradient(to right, transparent 49.5%, rgba(220, 38, 38, 0.22) 49.5%, rgba(220, 38, 38, 0.22) 50.5%, transparent 50.5%);
+    background-size: 100% 100%;
+    box-shadow: 
+        inset 0 0 10px rgba(220, 38, 38, 0.05),
+        0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Card Content — Back Character (compact) */
+.card-back-character {
+    font-size: 3rem;
+    font-family: var(--font-chinese-serif);
+    font-weight: 600;
+    /* Tinta fija: la caja de papel de arroz es clara en ambos temas */
+    color: #1c1917;
+    position: relative;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin: 0;
+    flex-shrink: 0;
+    
+    /* Rejilla de Caligrafía Tradicional MiZiGe (米字格) compacta */
+    background-color: rgba(254, 252, 251, 0.75);
+    border: 1.5px solid rgba(220, 38, 38, 0.32);
+    background-image: 
+        linear-gradient(45deg, transparent 49.5%, rgba(220, 38, 38, 0.18) 49.5%, rgba(220, 38, 38, 0.18) 50.5%, transparent 50.5%),
+        linear-gradient(-45deg, transparent 49.5%, rgba(220, 38, 38, 0.18) 49.5%, rgba(220, 38, 38, 0.18) 50.5%, transparent 50.5%),
+        linear-gradient(to bottom, transparent 49.5%, rgba(220, 38, 38, 0.18) 49.5%, rgba(220, 38, 38, 0.18) 50.5%, transparent 50.5%),
+        linear-gradient(to right, transparent 49.5%, rgba(220, 38, 38, 0.18) 49.5%, rgba(220, 38, 38, 0.18) 50.5%, transparent 50.5%);
+    background-size: 100% 100%;
+    box-shadow: 
+        inset 0 0 6px rgba(220, 38, 38, 0.04),
+        0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card-hint {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: opacity 0.25s ease;
+}
+
+.card-hint.hint-hidden {
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.card-hint.hint-revealed {
+    opacity: 1;
+}
+
+.card-front-meta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    margin-bottom: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    letter-spacing: 0.01em;
+}
+
+.card-answer {
+    font-size: 4rem;
+    color: var(--success);
+    margin-bottom: 20px;
+    font-family: var(--font-chinese);
+}
+
+.card-back .card-answer {
+    display: none;
+}
+
+.card-details {
+    width: 100%;
+    text-align: left;
+    color: var(--text-muted);
+}
+
+.card-details p {
+    margin: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+}
+
+.card-details strong {
+    color: var(--text-main);
+    margin-right: 8px;
+}
+
+.detail-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.lang-flag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    padding: 2px 6px;
+    margin-right: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.vocab-audio-btn svg,
+.feedback-icon svg,
+.no-results-icon svg {
+    display: block;
+}
+
+.vocab-audio-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.vocab-audio-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.card-back-pronunciation {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 36px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.card-back-pronunciation:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Controls (Pinyin Input & Buttons) */
+.pinyin-input-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#pinyin-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+#pinyin-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#pinyin-input:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.action-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    background: var(--primary-hover);
+}
+
+#next-card-next-btn {
+    background: var(--secondary);
+}
+
+#next-card-next-btn:hover {
+    background: var(--secondary-hover);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .mobile-only {
+        display: flex !important;
+    }
+
+    /* El dropdown de ajustes es global; en móvil se ancla al viewport
+       (el contenedor puede desbordar) y agranda targets táctiles */
+    .header-actions.settings-open .header-settings-group {
+        position: fixed;
+        top: calc(var(--header-height) + 6px);
+        right: 12px;
+        left: auto;
+        max-width: calc(100vw - 24px);
+    }
+
+    .settings-row select {
+        min-height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .app-header {
+        height: 64px !important;
+        padding: 0 12px !important;
+    }
+
+    /* El header-container ya hereda el padding del app-header; quitar el suyo
+       evita padding doble que estrechaba el brand y truncaba el título */
+    .header-container {
+        padding: 0 !important;
+    }
+
+    /* La barra de navegación inferior es fija (60px): el footer reserva ese
+       espacio para no quedar oculto tras ella */
+    .app-footer {
+        padding-bottom: 72px !important;
+    }
+
+    /* El brand cede espacio solo si hace falta; con el título completo
+       (~120px) entra de sobra junto a los controles en 375px */
+    .header-brand {
+        min-width: 0;
+        flex-shrink: 1;
+        gap: 8px;
+    }
+
+    .header-brand .logo {
+        height: 32px !important;
+        flex-shrink: 0;
+    }
+
+    .logo-text {
+        min-width: 0;
+        margin-left: 8px;
+    }
+
+    .app-title {
+        font-size: 1.05rem !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .app-subtitle {
+        display: none !important;
+    }
+
+    .header-actions {
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    /* Auth compacto en móvil: solo icono, sin etiquetas ni botón de texto */
+    .auth-guest-mode {
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+    }
+
+    .auth-guest-mode .guest-info {
+        display: none !important;
+    }
+
+    .auth-login-btn {
+        font-size: 0 !important; /* oculta el texto, conserva el SVG */
+        padding: 8px !important;
+        min-width: 40px;
+        min-height: 40px;
+        justify-content: center;
+        border-radius: 50% !important;
+    }
+
+    button.header-control,
+    #theme-toggle,
+    #audio-toggle,
+    #mobile-settings-toggle,
+    .vocab-audio-btn,
+    .card-back-pronunciation {
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .home-hero h2 {
+        font-size: var(--text-4xl);
+        font-family: var(--font-display);
+        letter-spacing: var(--tracking-hero);
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--color-text-on-dark);
+        line-height: 1.05;
+    }
+
+    .welcome-stats {
+        gap: 20px;
+    }
+
+    .home-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .header-stats {
+        display: none;
+    }
+
+    #header-search {
+        width: 36px;
+        padding: 8px;
+        background: transparent;
+        border: none;
+        color: transparent;
+    }
+
+    /* Evitar que el placeholder se filtre en el search colapsado */
+    #header-search::placeholder {
+        color: transparent;
+    }
+
+    #header-search:focus {
+        width: 140px;
+        color: var(--text-main);
+        background: var(--bg-panel);
+        border: 1px solid var(--color-border);
+    }
+
+    #header-search:focus::placeholder {
+        color: var(--text-dim);
+    }
+
+    /* Mobile Bottom Navigation Bar */
+    .nav-container {
+        position: fixed !important;
+        bottom: 0 !important;
+        top: auto !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background: var(--bg-panel) !important;
+        border-top: 1px solid var(--color-border) !important;
+        border-bottom: none !important;
+        border-radius: 16px 16px 0 0 !important;
+        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08) !important;
+        padding: 4px 0 !important;
+        z-index: 1000 !important;
+        height: 60px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .nav-tabs {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 10px !important;
+        display: flex !important;
+        justify-content: space-around !important;
+        gap: 0 !important;
+    }
+
+    .nav-tab {
+        font-size: 0.72rem !important;
+        padding: 4px 2px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 2px !important;
+        flex: 1 !important;
+        color: var(--text-muted) !important;
+        background: transparent !important;
+        height: auto !important;
+        border: none !important;
+    }
+
+    .nav-tab svg {
+        margin-right: 0 !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .nav-tab.active {
+        color: var(--primary) !important;
+        border-bottom: none !important;
+        background: transparent !important;
+    }
+
+    /* Active state indicator dot */
+    .nav-tab.active::after {
+        display: block !important;
+        content: '' !important;
+        position: absolute !important;
+        bottom: -2px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 4px !important;
+        height: 4px !important;
+        background: var(--primary) !important;
+        border-radius: 50% !important;
+    }
+
+    .nav-tab .dropdown-chevron {
+        display: none !important;
+    }
+
+    /* Position the dropdowns above the bottom navigation bar */
+    .nav-dropdown {
+        top: auto !important;
+        bottom: calc(100% + 6px) !important;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(10px) !important;
+        box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15) !important;
+        border-color: var(--color-border) !important;
+    }
+
+    .nav-group.open .nav-dropdown,
+    .nav-group:focus-within .nav-dropdown,
+    .nav-group:hover .nav-dropdown {
+        transform: translateX(-50%) translateY(0) !important;
+    }
+
+    .content-wrapper {
+        padding-bottom: 74px !important; /* Avoid content clipping on mobile */
+    }
+
+    /* Mantener serif y tinta oscura (la caja de papel es clara en ambos temas);
+       solo ajustar tamaño para móvil */
+    .card-character {
+        font-size: 4.4rem;
+        width: 124px;
+        height: 124px;
+        margin-bottom: 16px;
+    }
+
+    .card-character-container {
+        min-height: 124px;
+    }
+
+    /* Altura fija menor para que la tarjeta no deje un hueco enorme antes
+       del input; las caras siguen absolutas para conservar el flip 3D */
+    .flashcard {
+        height: 360px;
+    }
+
+    .card-face {
+        padding: 24px 20px;
+    }
+
+    .flashcard-area {
+        margin: 12px 0;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

@@ -1,0 +1,238 @@
+/* app-browse.css — parte 5 del split de styles-professional.css (2026-07-18).
+   Módulo Browse: grid de vocabulario, filtros, tarjetas.
+   ORDEN DE CARGA OBLIGATORIO: app-base → header-nav → home → practice →
+   browse → strokes → quiz → stats → enhancements → dashboard-extras.
+   La cascada depende de este orden; no reordenar los <link>. */
+
+/* ============================================================================
+   9. BROWSE MODULE
+   ============================================================================ */
+.search-section {
+    margin-bottom: 30px;
+    background: var(--bg-panel);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.search-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    flex: 2;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    min-width: 200px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.search-input:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.vocabulary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    align-items: stretch;
+}
+
+.vocab-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 22px 18px 14px;
+    text-align: center;
+    transition:
+        transform var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Lomo de tono: acento de color semántico en el borde izquierdo */
+.vocab-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-border-subtle);
+    transition: width var(--transition-fast), background var(--transition-fast);
+}
+.vocab-card.tone-spine-1::before { background: var(--color-tone-1); }
+.vocab-card.tone-spine-2::before { background: var(--color-tone-2); }
+.vocab-card.tone-spine-3::before { background: var(--color-tone-3); }
+.vocab-card.tone-spine-4::before { background: var(--color-tone-4); }
+.vocab-card.tone-spine-0::before { background: var(--color-tone-0); }
+
+.vocab-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(229, 57, 53, 0.45);
+    box-shadow: var(--shadow-md);
+}
+.vocab-card:hover::before {
+    width: 5px;
+}
+
+/* Acción principal de la tarjeta: botón real (accesible, sin anidar interactivos) */
+.vocab-card-main {
+    appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.vocab-card-main:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.vocab-char,
+.vocab-character {
+    font-size: 2.6rem;
+    color: var(--text-main);
+    font-family: var(--font-chinese-serif);
+    font-weight: 600;
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+
+    /* Rejilla de Caligrafía 田字格: cruz central limpia, sin diagonales */
+    background-color: rgba(254, 252, 251, 0.85); /* Papel de arroz cálido */
+    border: 1.5px solid rgba(220, 38, 38, 0.22); /* Borde rojo lacado suave */
+    background-image:
+        linear-gradient(to bottom, transparent calc(50% - 0.5px), rgba(220, 38, 38, 0.12) calc(50% - 0.5px), rgba(220, 38, 38, 0.12) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to right, transparent calc(50% - 0.5px), rgba(220, 38, 38, 0.12) calc(50% - 0.5px), rgba(220, 38, 38, 0.12) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    background-size: 100% 100%;
+    box-shadow:
+        inset 0 0 6px rgba(220, 38, 38, 0.03),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.vocab-character-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 14px;
+    flex-wrap: wrap;
+    min-height: 76px;
+    align-items: center;
+}
+
+.vocab-character-box {
+    font-size: 2rem;
+    color: var(--text-main);
+    font-family: var(--font-chinese-serif);
+    font-weight: 600;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+
+    /* Rejilla de Caligrafía 田字格: cruz central limpia, sin diagonales */
+    background-color: rgba(254, 252, 251, 0.85); /* Papel de arroz cálido */
+    border: 1.5px solid rgba(220, 38, 38, 0.22); /* Borde rojo lacado suave */
+    background-image:
+        linear-gradient(to bottom, transparent calc(50% - 0.5px), rgba(220, 38, 38, 0.14) calc(50% - 0.5px), rgba(220, 38, 38, 0.14) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to right, transparent calc(50% - 0.5px), rgba(220, 38, 38, 0.14) calc(50% - 0.5px), rgba(220, 38, 38, 0.14) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    background-size: 100% 100%;
+    box-shadow:
+        inset 0 0 6px rgba(220, 38, 38, 0.03),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* Las cajas mi-zi-ge conservan papel claro en ambos temas: los caracteres
+   dentro usan la paleta de tonos del tema claro, no la aclarada para
+   superficies oscuras */
+html[data-theme="dark"] .vocab-character,
+html[data-theme="dark"] .vocab-character-box {
+    --color-tone-1: #dc2626; /* Rojo */
+    --color-tone-2: #16a34a; /* Verde */
+    --color-tone-3: #2563eb; /* Azul */
+    --color-tone-4: #7c3aed; /* Morado */
+    --color-tone-0: #6b7280; /* Gris */
+}
+
+.vocab-pinyin {
+    color: var(--primary);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-bottom: 4px;
+}
+
+.vocab-meaning {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+/* Pie de tarjeta: metadatos alineados al fondo para ritmo uniforme en la rejilla */
+.vocab-card-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-border-subtle);
+}
+
+/* Nivel como badge discreto: metadato, no protagonista */
+.vocab-level {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: var(--color-bg-hover);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-pill);
+    padding: 2px 10px;
+}
+
+/* Botón de audio compacto en el pie */
+.vocab-card-footer .vocab-audio-btn {
+    width: 30px;
+    height: 30px;
+}
+

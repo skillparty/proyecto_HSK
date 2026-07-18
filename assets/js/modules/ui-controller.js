@@ -661,7 +661,7 @@ class UIController {
   }
 
   ensureToastStyles() {
-    // Toast styles are now in styles-professional.css.
+    // Toast styles are now in app-enhancements.css.
     // This method is kept for backward compatibility but no longer injects inline CSS.
     // If the stylesheet somehow failed to load, styles degrade gracefully.
   }

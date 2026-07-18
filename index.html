@@ -40,7 +40,17 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=6" id="design-tokens">
-    <link rel="stylesheet" href="assets/css/styles-professional.css?v=34" id="main-stylesheet">
+    <!-- Split de styles-professional.css: el orden de estos <link> ES la cascada, no reordenar -->
+    <link rel="stylesheet" href="assets/css/app-base.css" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/app-header-nav.css">
+    <link rel="stylesheet" href="assets/css/app-home.css">
+    <link rel="stylesheet" href="assets/css/app-practice.css">
+    <link rel="stylesheet" href="assets/css/app-browse.css">
+    <link rel="stylesheet" href="assets/css/app-strokes.css">
+    <link rel="stylesheet" href="assets/css/app-quiz.css">
+    <link rel="stylesheet" href="assets/css/app-stats.css">
+    <link rel="stylesheet" href="assets/css/app-enhancements.css">
+    <link rel="stylesheet" href="assets/css/app-dashboard-extras.css">
     <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=3" id="auth-stylesheet">
 
     <!-- Game/leaderboard CSS injected on demand by ui-controller.js (see loadStylesheet) -->
