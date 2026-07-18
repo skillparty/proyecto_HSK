@@ -12,8 +12,9 @@
     "check:strokes-catalog": "node scripts/ci/check-strokes-radicals-catalog.js",
     "check:past-exams": "node scripts/ci/check-past-exams-availability.js",
     "check:snake-quantifiers": "node scripts/ci/check-quantifier-snake-data.js",
-    "ci": "npm run check:index-assembled && npm run check:syntax && npm run check:cache-versions && npm run check:strokes-catalog && npm run check:past-exams && npm run check:snake-quantifiers",
+    "ci": "npm run check:index-assembled && npm run check:syntax && npm run check:cache-versions && npm run check:strokes-catalog && npm run check:past-exams && npm run check:snake-quantifiers && npm run test:unit",
     "test": "npm run ci",
+    "test:unit": "vitest run",
     "test:e2e": "npm run build && playwright test",
     "translation:report": "node scripts/translation/coverage-report.js --report docs/development/translation/coverage-report.json",
     "translation:report:strict": "node scripts/translation/coverage-report.js --strict --report docs/development/translation/coverage-report.json",
@@ -40,6 +41,7 @@
     "@axe-core/playwright": "^4.12.1",
     "@playwright/test": "^1.59.1",
     "jsdom": "^29.1.1",
-    "pinyin-pro": "^3.28.1"
+    "pinyin-pro": "^3.28.1",
+    "vitest": "^4.1.10"
   }
 }
