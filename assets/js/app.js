@@ -102,14 +102,16 @@ class HSKApp {
         this.uiController = new UIController(this);
         this.srsEngine = new SRSEngine(this);
         this.flashcardManager = new FlashcardManager(this);
-        this.quizEngine = new QuizEngine(this);
-        this.quizLegacyController = new QuizLegacyController(this);
+        // quizEngine, quizLegacyController: lazy — instantiated by
+        // ui-controller.js on first "quiz" tab open (scripts load then).
         this.homeController = new HomeController(this);
         this.matrixController = new MatrixController(this);
-        this.statsController = new StatsController(this);
+        // statsController: lazy — instantiated by ui-controller.js on
+        // first "stats" tab open (script isn't loaded until then).
         this.themeController = new ThemeController(this);
         this.audioController = new AudioController(this);
-        this.browseController = new BrowseController(this);
+        // browseController: lazy — instantiated by ui-controller.js on
+        // first "browse" tab open (script isn't loaded until then).
         // strokesRadicalsController: lazy — instantiated by ui-controller.js
         // on first "strokes-radicals" tab open (script isn't loaded until then).
         this.modalController = new ModalController(this);
@@ -262,9 +264,17 @@ class HSKApp {
     getTranslation(key, replacements = {}) { return this.languageController.getTranslation(key, replacements); }
     initializeMatrixGameLegacy() { return this.legacyFlowController.initializeMatrixGameLegacy(); }
     initializeLeaderboard() { return this.legacyFlowController.initializeLeaderboard(); }
-    getMeaningForLanguage(word) { return this.browseController.getMeaningForLanguage(word); }
-    updateVocabularyCards() { return this.browseController.updateVocabularyCards(); }
-    initializeBrowse() { return this.browseController.initializeBrowse(); }
+    // Implementación real aquí (no en browseController): practice, quiz-legacy
+    // y strokes-radicals la necesitan aunque browse (lazy) no haya cargado.
+    getMeaningForLanguage(word) {
+        if (this.currentLanguage === 'es') {
+            return word.spanish || word.translation || word.english || '?';
+        }
+
+        return word.english || word.translation || '?';
+    }
+    updateVocabularyCards() { return this.browseController && this.browseController.updateVocabularyCards(); }
+    initializeBrowse() { return this.browseController && this.browseController.initializeBrowse(); }
     selectVocabWord(word) {
         this.switchTab('practice');
         this.currentWord = word;
@@ -274,22 +284,22 @@ class HSKApp {
     }
     initializeStrokesRadicals() { return this.strokesRadicalsController && this.strokesRadicalsController.initialize(); }
     refreshStrokesRadicals() { return this.strokesRadicalsController && this.strokesRadicalsController.refresh(); }
-    setupInfiniteScroll() { return this.browseController.setupInfiniteScroll(); }
-    loadMoreVocabulary() { return this.browseController.loadMoreVocabulary(); }
-    filterVocabulary() { return this.browseController.filterVocabulary(); }
-    renderVocabularyBatch(words) { return this.browseController.renderVocabularyBatch(words); }
-    createVocabularyCard(word) { return this.browseController.createVocabularyCard(word); }
-    showLoadingIndicator() { return this.browseController.showLoadingIndicator(); }
-    hideLoadingIndicator() { return this.browseController.hideLoadingIndicator(); }
-    showNoMoreItemsIndicator() { return this.browseController.showNoMoreItemsIndicator(); }
-    hideNoMoreItemsIndicator() { return this.browseController.hideNoMoreItemsIndicator(); }
-    showNoResultsMessage() { return this.browseController.showNoResultsMessage(); }
+    setupInfiniteScroll() { return this.browseController && this.browseController.setupInfiniteScroll(); }
+    loadMoreVocabulary() { return this.browseController && this.browseController.loadMoreVocabulary(); }
+    filterVocabulary() { return this.browseController && this.browseController.filterVocabulary(); }
+    renderVocabularyBatch(words) { return this.browseController && this.browseController.renderVocabularyBatch(words); }
+    createVocabularyCard(word) { return this.browseController && this.browseController.createVocabularyCard(word); }
+    showLoadingIndicator() { return this.browseController && this.browseController.showLoadingIndicator(); }
+    hideLoadingIndicator() { return this.browseController && this.browseController.hideLoadingIndicator(); }
+    showNoMoreItemsIndicator() { return this.browseController && this.browseController.showNoMoreItemsIndicator(); }
+    hideNoMoreItemsIndicator() { return this.browseController && this.browseController.hideNoMoreItemsIndicator(); }
+    showNoResultsMessage() { return this.browseController && this.browseController.showNoResultsMessage(); }
 
-                    showQuizQuestion() { this.quizEngine.showQuestion(); }
-    submitQuizAnswer() { this.quizEngine.submitAnswer(); }
-    nextQuizQuestion() { this.quizEngine.nextQuestion(); }
-    showQuizResults() { this.quizEngine.showResults(); }
-    restartQuiz() { this.quizEngine.restart(); }
+    showQuizQuestion() { return this.quizEngine && this.quizEngine.showQuestion(); }
+    submitQuizAnswer() { return this.quizEngine && this.quizEngine.submitAnswer(); }
+    nextQuizQuestion() { return this.quizEngine && this.quizEngine.nextQuestion(); }
+    showQuizResults() { return this.quizEngine && this.quizEngine.showResults(); }
+    restartQuiz() { return this.quizEngine && this.quizEngine.restart(); }
     saveQuizSessionState() {
         if (this.quizEngine && typeof this.quizEngine.saveSession === 'function') {
             this.quizEngine.saveSession();
@@ -309,12 +319,12 @@ class HSKApp {
     }
     renderQuizResumeAction() { return this.legacyFlowController.renderQuizResumeAction(); }
     resumeQuizSession() { return this.legacyFlowController.resumeQuizSession(); }
-    hasResumableQuizSession(session) { return this.quizEngine.hasResumableSession(session); }
+    hasResumableQuizSession(session) { return Boolean(this.quizEngine && this.quizEngine.hasResumableSession(session)); }
 
-    async updateStats() { return this.statsController.updateStats(); }
-    toggleStatsEmptyState(showEmpty) { return this.statsController.toggleStatsEmptyState(showEmpty); }
-    async updateLevelProgress() { return this.statsController.updateLevelProgress(); }
-    resetStats() { return this.statsController.resetStats(); }
+    async updateStats() { return this.statsController && this.statsController.updateStats(); }
+    toggleStatsEmptyState(showEmpty) { return this.statsController && this.statsController.toggleStatsEmptyState(showEmpty); }
+    async updateLevelProgress() { return this.statsController && this.statsController.updateLevelProgress(); }
+    resetStats() { return this.statsController && this.statsController.resetStats(); }
     initializeTheme() { return this.themeController.initializeTheme(); }
     toggleTheme() { return this.themeController.toggleTheme(); }
     applyTheme() { return this.themeController.applyTheme(); }

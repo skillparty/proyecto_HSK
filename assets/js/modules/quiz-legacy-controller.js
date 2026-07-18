@@ -172,3 +172,5 @@ class QuizLegacyController {
         this.app.logDebug('[QUIZ] Quiz reset');
     }
 }
+
+window.QuizLegacyController = QuizLegacyController;

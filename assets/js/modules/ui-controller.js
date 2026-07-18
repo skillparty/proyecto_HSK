@@ -173,10 +173,22 @@ class UIController {
         }
         break;
       case "browse":
-        if (!this.app.browseInitialized) {
-          this.app.initializeBrowse();
-          this.app.browseInitialized = true;
-        }
+        (async () => {
+          try {
+            if (!window.BrowseController) {
+              await this.loadScript("assets/js/modules/browse-controller.js?v=5");
+            }
+            if (!this.app.browseController) {
+              this.app.browseController = new window.BrowseController(this.app);
+            }
+            if (!this.app.browseInitialized) {
+              this.app.initializeBrowse();
+              this.app.browseInitialized = true;
+            }
+          } catch (err) {
+            this.logError("Failed to lazy load browse tab", err);
+          }
+        })();
         break;
       case "strokes-radicals":
         (async () => {
@@ -200,13 +212,29 @@ class UIController {
         })();
         break;
       case "quiz":
-        if (!this.app.quizInitialized) {
-          this.app.initializeQuiz();
-          this.app.quizInitialized = true;
-        }
-        if (this.app.quizEngine) {
-          this.app.renderQuizResumeAction();
-        }
+        (async () => {
+          try {
+            if (!window.QuizEngine) {
+              await this.loadScript("assets/js/modules/quiz-engine.js?v=2");
+            }
+            if (!window.QuizLegacyController) {
+              await this.loadScript("assets/js/modules/quiz-legacy-controller.js?v=1");
+            }
+            if (!this.app.quizEngine) {
+              this.app.quizEngine = new window.QuizEngine(this.app);
+            }
+            if (!this.app.quizLegacyController) {
+              this.app.quizLegacyController = new window.QuizLegacyController(this.app);
+            }
+            if (!this.app.quizInitialized) {
+              this.app.initializeQuiz();
+              this.app.quizInitialized = true;
+            }
+            this.app.renderQuizResumeAction();
+          } catch (err) {
+            this.logError("Failed to lazy load quiz tab", err);
+          }
+        })();
         break;
       case "past-exams":
         (async () => {
@@ -281,7 +309,19 @@ class UIController {
         })();
         break;
       case "stats":
-        this.app.updateStats();
+        (async () => {
+          try {
+            if (!window.StatsController) {
+              await this.loadScript("assets/js/modules/stats-controller.js?v=3");
+            }
+            if (!this.app.statsController) {
+              this.app.statsController = new window.StatsController(this.app);
+            }
+            this.app.updateStats();
+          } catch (err) {
+            this.logError("Failed to lazy load stats tab", err);
+          }
+        })();
         break;
       case "matrix":
         (async () => {

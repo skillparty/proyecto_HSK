@@ -32,6 +32,8 @@ const PRECACHE_FILES = [
   "./assets/js/modules/practice-view-controller.js?v=7",
   "./assets/js/modules/audio-controller.js?v=3",
   "./assets/js/modules/quiz-engine.js?v=2",
+  "./assets/js/modules/quiz-legacy-controller.js?v=1",
+  "./assets/js/modules/stats-controller.js?v=3",
   "./assets/js/modules/ui-controller.js?v=31",
   "./assets/js/modules/navigation-controller.js?v=4",
   "./assets/js/modules/culture/culture-module-base.js",

@@ -3,12 +3,10 @@ class BrowseController {
         this.app = app;
     }
 
+    // getMeaningForLanguage vive en app.js: también lo usan practice,
+    // quiz-legacy y strokes-radicals, y este controller es lazy.
     getMeaningForLanguage(word) {
-        if (this.app.currentLanguage === 'es') {
-            return word.spanish || word.translation || word.english || '?';
-        }
-
-        return word.english || word.translation || '?';
+        return this.app.getMeaningForLanguage(word);
     }
 
     updateVocabularyCards() {

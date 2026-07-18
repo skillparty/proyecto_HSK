@@ -506,3 +506,5 @@ class QuizEngine {
     }
   }
 }
+
+window.QuizEngine = QuizEngine;
