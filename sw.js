@@ -62,6 +62,7 @@ const PRECACHE_FILES = [
   "./assets/js/matrix-game.js?v=3",
   "./assets/js/matrix-game-events.js",
   "./assets/js/matrix-game-ui.js",
+  "./assets/js/matrix-game-view.js",
   "./assets/js/tones-invaders-game.js?v=5",
   "./assets/js/tones-invaders-renderer.js",
   "./assets/js/hanzi-builder-game.js?v=2",

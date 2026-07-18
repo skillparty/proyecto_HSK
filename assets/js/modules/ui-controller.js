@@ -299,6 +299,9 @@ class UIController {
             if (typeof setupMatrixGameEventListeners === "undefined") {
               await this.loadScript("assets/js/matrix-game-events.js");
             }
+            if (!window.MatrixGameView) {
+              await this.loadScript("assets/js/matrix-game-view.js");
+            }
             if (!window.MatrixGame) {
               await this.loadScript("assets/js/matrix-game.js?v=3");
             }

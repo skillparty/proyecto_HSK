@@ -64,6 +64,9 @@ class MatrixGame {
         this.scoreController = new MatrixScoreController(this);
         this.highScores = this.loadHighScores();
 
+        // Renderizado de pantallas y transiciones DOM
+        this.viewController = new MatrixGameView(this);
+
         this.sessionStorageKey = 'hsk-matrix-session-v1';
         this.sessionMaxAgeMs = 30 * 60 * 1000;
         this.legacyBackendApiEnabled = window.HSK_ENABLE_LEGACY_BACKEND_API === true;
@@ -97,7 +100,7 @@ class MatrixGame {
         this.logInfo('🎮 Initializing Matrix Game...');
         this.loadVocabulary();
         setupMatrixGameEventListeners();
-        this.renderGameInterface();
+        this.viewController.renderGameInterface();
     }
 
     loadVocabulary() {
@@ -163,7 +166,7 @@ class MatrixGame {
         document.getElementById('matrix-game').style.display = 'block';
 
         // Actualizar UI
-        this.updateGameUI();
+        this.viewController.updateGameUI();
 
         // Iniciar juego
         this.isPlaying = true;
@@ -264,43 +267,13 @@ class MatrixGame {
         }
 
         // Renderizar la matriz
-        this.renderMatrix();
+        this.viewController.renderMatrix();
     }
 
     getRandomCharacter() {
         // Caracteres de respaldo si no hay suficiente vocabulario
         const backupChars = ['的', '一', '是', '在', '不', '了', '有', '和', '人', '这', '中', '大', '为', '上', '个', '国', '我', '以', '要', '他'];
         return backupChars[Math.floor(Math.random() * backupChars.length)];
-    }
-
-    renderMatrix() {
-        const matrixContainer = document.getElementById('character-matrix');
-        const gridSize = this.config[this.difficulty].gridSize;
-
-        // Limpiar matriz anterior
-        matrixContainer.innerHTML = '';
-
-        // Restablecer eventos de puntero
-        if (matrixContainer) {
-            matrixContainer.style.pointerEvents = 'auto';
-        }
-
-        // Establecer grid CSS
-        matrixContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-        matrixContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
-
-        // Crear celdas
-        this.matrixCharacters.forEach((char, index) => {
-            const cell = document.createElement('button');
-            cell.className = 'matrix-char';
-            cell.textContent = char;
-            cell.dataset.index = index;
-
-            // Añadir animación de entrada
-            cell.style.animationDelay = `${index * 0.02}s`;
-
-            matrixContainer.appendChild(cell);
-        });
     }
 
     checkAnswer(element) {
@@ -361,7 +334,7 @@ class MatrixGame {
 
         // Feedback visual
         element.classList.add('correct');
-        this.showFeedback('correct', `+${roundPoints} puntos`);
+        this.viewController.showFeedback('correct', `+${roundPoints} puntos`);
 
         // Play audio pronunciation of the correct character
         if (window.app && typeof window.app.playAudio === 'function' && this.currentWord?.character) {
@@ -390,7 +363,7 @@ class MatrixGame {
         this.sessionStats.averageTime = totalTime / this.sessionStats.totalRounds;
 
         // Actualizar UI
-        this.updateGameUI();
+        this.viewController.updateGameUI();
 
         // Siguiente ronda después de un breve delay
         setTimeout(() => {
@@ -417,7 +390,7 @@ class MatrixGame {
 
         // Feedback visual
         element.classList.add('wrong');
-        this.showFeedback('wrong', `-${penalty} puntos`);
+        this.viewController.showFeedback('wrong', `-${penalty} puntos`);
 
         // Play game hit sound effect
         if (window.app && window.app.audioController) {
@@ -439,23 +412,12 @@ class MatrixGame {
         }
 
         // Actualizar UI
-        this.updateGameUI();
+        this.viewController.updateGameUI();
 
         // Siguiente ronda después de un delay más largo
         setTimeout(() => {
             this.nextRound();
         }, 2000);
-    }
-
-    showFeedback(type, message) {
-        const overlay = document.getElementById('feedback-overlay');
-        overlay.className = `feedback-overlay ${type}`;
-        overlay.textContent = message;
-        overlay.style.display = 'flex';
-
-        setTimeout(() => {
-            overlay.style.display = 'none';
-        }, 800);
     }
 
     startTimer() {
@@ -506,34 +468,14 @@ class MatrixGame {
         if (this.isPaused) {
             pauseBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
             // Mostrar overlay de pausa
-            this.showPauseOverlay();
+            this.viewController.showPauseOverlay();
         } else {
             pauseBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
             // Ocultar overlay de pausa
-            this.hidePauseOverlay();
+            this.viewController.hidePauseOverlay();
         }
 
         this.saveSessionState(true);
-    }
-
-    showPauseOverlay() {
-        const overlay = document.createElement('div');
-        overlay.id = 'pause-overlay';
-        overlay.className = 'pause-overlay';
-        overlay.innerHTML = `
-            <div class="pause-content">
-                <h2>Juego Pausado</h2>
-                <p>Presiona espacio o el botón de play para continuar</p>
-            </div>
-        `;
-        document.getElementById('matrix-game').appendChild(overlay);
-    }
-
-    hidePauseOverlay() {
-        const overlay = document.getElementById('pause-overlay');
-        if (overlay) {
-            overlay.remove();
-        }
     }
 
     quitGame() {
@@ -566,42 +508,8 @@ class MatrixGame {
         const isNewRecord = await this.checkAndSaveHighScore();
 
         // Mostrar pantalla de resultados
-        this.showResults(accuracy, isNewRecord);
+        this.viewController.showResults(accuracy, isNewRecord);
         this.clearSessionState();
-    }
-
-    showResults(accuracy, isNewRecord) {
-        // Ocultar pantalla de juego
-        document.getElementById('matrix-game').style.display = 'none';
-
-        // Mostrar pantalla de resultados
-        document.getElementById('matrix-results').style.display = 'block';
-
-        // Actualizar estadísticas
-        document.getElementById('matrix-final-score').textContent = this.score.toLocaleString();
-        document.getElementById('matrix-correct-count').textContent = this.correctAnswers;
-        document.getElementById('matrix-wrong-count').textContent = this.wrongAnswers;
-        document.getElementById('matrix-best-streak').textContent = this.sessionStats.maxStreak;
-        document.getElementById('matrix-avg-time').textContent =
-            this.sessionStats.averageTime ? `${this.sessionStats.averageTime.toFixed(1)}s` : 'N/A';
-        document.getElementById('matrix-accuracy').textContent = `${accuracy}%`;
-
-        // Mostrar mensaje de nuevo récord
-        if (isNewRecord) {
-            document.getElementById('matrix-new-record').style.display = 'block';
-        } else {
-            document.getElementById('matrix-new-record').style.display = 'none';
-        }
-
-        // Guardar estadísticas en el perfil del usuario si está disponible
-        if (window.app && window.app.userProfile) {
-            window.app.userProfile.updateGameStats('matrix', {
-                score: this.score,
-                accuracy: accuracy,
-                level: this.currentLevel,
-                difficulty: this.difficulty
-            });
-        }
     }
 
     async checkAndSaveHighScore() {
@@ -624,12 +532,6 @@ class MatrixGame {
         return this.scoreController.updateHighScoresList();
     }
 
-    updateGameUI() {
-        document.getElementById('game-level').textContent = `HSK ${this.currentLevel}`;
-        document.getElementById('game-score').textContent = this.score.toLocaleString();
-        document.getElementById('game-streak').textContent = this.sessionStats.streak;
-    }
-
     playAgain() {
         // Resetear y volver a empezar con la misma configuración
         document.getElementById('matrix-results').style.display = 'none';
@@ -646,167 +548,14 @@ class MatrixGame {
 
     backToApp() {
         // Volver a la aplicación principal
-        this.hideGame();
+        this.viewController.hideGame();
         if (window.app) {
             window.app.switchTab('home');
         }
     }
 
     showGame() {
-        this.logInfo('🎮 Matrix Game showGame() called');
-
-        // First, render the game interface
-        this.logDebug('🎨 About to call renderGameInterface...');
-
-        // Get the container first
-        let gameContainer = document.getElementById('matrix-game-container');
-        if (!gameContainer) {
-            gameContainer = document.getElementById('matrix');
-        }
-
-        if (gameContainer && typeof renderMatrixGameInterface === 'function') {
-            this.logDebug('🎨 Rendering directly with renderMatrixGameInterface...');
-            try {
-                const html = renderMatrixGameInterface();
-                gameContainer.innerHTML = html;
-                this.logDebug('✅ Direct render successful, HTML length:', html.length);
-
-                if (window.languageManager?.updateInterface) {
-                    window.languageManager.updateInterface();
-                }
-
-                // Setup event listeners
-                this.setupGameEventListeners();
-            } catch (error) {
-                this.logError('❌ Direct render failed:', error);
-            }
-        } else {
-            this.logWarn('⚠️ Container or render function not available');
-            this.renderGameInterface();
-        }
-
-        this.logDebug('🎨 renderGameInterface completed');
-
-        // After rendering, look for the container again
-        let container = document.getElementById('matrix-game-container');
-        if (!container) {
-            // If still not found, the content was rendered directly in the matrix tab
-            container = document.getElementById('matrix');
-            this.logDebug('📦 Using matrix tab as container');
-        }
-
-        if (container) {
-            container.style.display = 'block';
-            this.logDebug('✅ Matrix game container shown');
-            this.logDebug('📏 Container innerHTML length:', container.innerHTML.length);
-
-            // Wait for DOM to be ready, then show config screen
-            setTimeout(() => {
-                const configScreen = document.getElementById('matrix-config');
-                const gameScreen = document.getElementById('matrix-game');
-                const resultsScreen = document.getElementById('matrix-results');
-
-                this.logDebug('🔍 Looking for screens after render...');
-                this.logDebug('Config screen found:', !!configScreen);
-                this.logDebug('Game screen found:', !!gameScreen);
-                this.logDebug('Results screen found:', !!resultsScreen);
-
-                if (configScreen) {
-                    configScreen.style.display = 'block';
-                    this.logDebug('✅ Config screen shown');
-                } else {
-                    this.logWarn('⚠️ Config screen not found');
-                    // Try to find it in the entire document
-                    const allConfigs = document.querySelectorAll('[id*="config"]');
-                    this.logDebug('All config elements found:', allConfigs.length);
-                    allConfigs.forEach((el, i) => this.logDebug('Config ' + i + ':', el.id));
-                }
-
-                if (gameScreen) gameScreen.style.display = 'none';
-                if (resultsScreen) resultsScreen.style.display = 'none';
-
-                this.updateHighScoresList();
-                this.syncResumeAction();
-            }, 100);
-        } else {
-            this.logError('❌ Matrix game container not found after rendering');
-        }
-    }
-
-    renderGameInterface() {
-        this.logDebug('🎨 Rendering Matrix Game Interface...');
-
-        // Verificar si el contenedor ya existe
-        let gameContainer = document.getElementById('matrix-game-container');
-
-        if (!gameContainer) {
-            // Si no existe, buscar en el tab de matrix
-            const matrixTab = document.getElementById('matrix');
-            if (matrixTab) {
-                gameContainer = matrixTab.querySelector('.matrix-game-container');
-                if (!gameContainer) {
-                    // Si tampoco existe, usar el tab de matrix directamente
-                    gameContainer = matrixTab;
-                    this.logDebug('📦 Using matrix tab as container');
-                }
-            }
-        }
-
-        if (!gameContainer) {
-            this.logError('❌ Matrix game container not found');
-            return;
-        }
-
-        // Usar la función de matrix-game-ui.js si está disponible
-        if (typeof renderMatrixGameInterface === 'function') {
-            this.logDebug('✅ Using renderMatrixGameInterface function');
-            gameContainer.innerHTML = renderMatrixGameInterface();
-        } else {
-            this.logWarn('⚠️ renderMatrixGameInterface not available, using fallback');
-            // Fallback: renderizar interfaz básica
-            gameContainer.innerHTML = this.getGameHTML();
-        }
-
-        // Configurar event listeners después de renderizar
-        this.setupGameEventListeners();
-
-        this.logDebug('✅ Matrix Game Interface rendered successfully');
-    }
-
-    setupGameEventListeners() {
-        this.logDebug('🎛️ Syncing Matrix Game state components...');
-        this.syncResumeAction();
-        this.logDebug('✅ State components synced');
-    }
-
-    getGameHTML() {
-        // HTML de respaldo para el juego
-        // typeof: referencia directa lanza ReferenceError si matrix-game-ui.js
-        // aún no cargó, y eso abortaba el constructor dejando una instancia
-        // fantasma con listeners activos.
-        return typeof renderMatrixGameInterface === 'function' ? renderMatrixGameInterface() : `
-            <div class="matrix-error">
-                <h2>Error cargando el juego</h2>
-                <p>Por favor, recarga la página</p>
-            </div>
-        `;
-    }
-
-    hideGame() {
-        const container = document.getElementById('matrix-game-container');
-        if (container) {
-            container.style.display = 'none';
-        }
-
-        // Limpiar cualquier juego en progreso
-        if (this.isPlaying) {
-            this.saveSessionState(true);
-            this.isPlaying = false;
-            if (this.timer) {
-                clearInterval(this.timer);
-                this.timer = null;
-            }
-        }
+        this.viewController.showGame();
     }
 
     saveSessionState(force = false) {
