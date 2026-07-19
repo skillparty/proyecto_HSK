@@ -273,7 +273,11 @@ html[data-theme="light"] .dashboard-3d-portal {
     #culture-opera,
     #culture-technology,
     #culture-clothing,
-    #culture-arts {
+    #culture-arts,
+    #etymology,
+    #leaderboard,
+    #word-linker,
+    #hanzi-builder {
         overflow-y: auto !important;
     }
 
