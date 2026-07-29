@@ -523,7 +523,7 @@ class BackendUserProgress {
     
     // Update user preference
     updatePreference(key, value) {
-        if (this.profile.preferences.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(this.profile.preferences, key)) {
             this.profile.preferences[key] = value;
             this.saveProfile();
             (window.hskLogger || console).debug(`⚙️ Updated preference: ${key} = ${value}`);

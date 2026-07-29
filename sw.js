@@ -195,7 +195,7 @@ async function precacheOptional() {
       const url = queue.shift();
       try {
         await cache.add(url);
-      } catch (error) {
+      } catch {
         failed++;
       }
     }
@@ -246,7 +246,6 @@ self.addEventListener("fetch", (event) => {
   if (!isSameOrigin(event.request.url)) return;
   if (isApiLikeRequest(event.request)) return;
 
-  const requestUrl = new URL(event.request.url);
   const isNavigation =
     event.request.mode === "navigate" ||
     event.request.destination === "document";
@@ -259,7 +258,7 @@ self.addEventListener("fetch", (event) => {
           const cache = await caches.open(RUNTIME_CACHE);
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
-        } catch (error) {
+        } catch {
           const cachedResponse = await caches.match(event.request);
           if (cachedResponse) return cachedResponse;
           return caches.match("./index.html");

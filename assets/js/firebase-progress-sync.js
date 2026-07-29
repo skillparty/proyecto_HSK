@@ -71,15 +71,15 @@ class FirebaseProgressSync {
         }
     }
 
+    // NO-OP: no escribe nada. Ignora level y levelData y devuelve success:true,
+    // así que quien la llame cree que sincronizó. La agregación por nivel la
+    // hace updateProgress(); esta quedó como stub y nunca se completó.
+    // El try/catch que envolvía el return hacía que pareciera implementada —
+    // ESLint lo detectó como catch inalcanzable. Se deja el comportamiento
+    // intacto y a la vista; decidir si se implementa o se borra con sus llamadas.
     async syncHSKProgress(level, levelData) {
         if (!window.firebaseClient) return { success: false };
-        try {
-            // Update specific level progress - the updateProgress method handles aggregation
-            // but we can pass specific stats if needed. For now, we'll use the standard update.
-            return { success: true };
-        } catch (error) {
-            return { success: false, error: error.message };
-        }
+        return { success: true };
     }
 
     async recordWordStudy(wordData) {

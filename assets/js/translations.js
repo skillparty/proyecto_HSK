@@ -473,7 +473,6 @@ const translations = {
         signOut: 'Cerrar sesión',
         authDescription: 'Inicia sesión para guardar tu progreso y sincronizar en todos tus dispositivos',
         welcome: 'Bienvenido',
-        guestMode: 'Modo invitado',
         cloudSync: 'Sincronización en la nube activada',
 
         // Leaderboard
@@ -803,7 +802,6 @@ const translations = {
         english: "English",
 
         // Header stats
-        totalStudied: "Studied",
         progress: "Progress",
         todayProgress: "Today's Progress",
 
@@ -997,7 +995,6 @@ const translations = {
         signOut: 'Sign out',
         authDescription: 'Sign in to save your progress and sync across devices',
         welcome: 'Welcome',
-        guestMode: 'Guest mode',
         cloudSync: 'Cloud sync enabled',
 
         // Leaderboard

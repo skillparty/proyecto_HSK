@@ -91,7 +91,10 @@ class SRSEngine {
     if (changed) {
       try {
         localStorage.setItem(SRSEngine.STORAGE_KEY, JSON.stringify(this.records));
-      } catch (_) {}
+      } catch {
+        // Storage bloqueado (modo privado, cuota llena): el merge ya está en
+        // memoria, así que la sesión sigue; solo no persiste.
+      }
       this.app.logDebug(`🧠 SRS merged ${Object.keys(remoteRecords).length} remote records`);
     }
   }
