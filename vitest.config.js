@@ -21,6 +21,7 @@ module.exports = defineConfig({
         "assets/js/utils/**/*.js",
         "assets/js/modules/srs-engine.js",
         "assets/js/modules/quantifier-snake-utils.js",
+        "assets/js/firebase-progress-sync.js",
       ],
       // Umbral sobre el subconjunto ya cubierto: sirve de trinquete, no deja
       // que baje. Se sube a medida que entren más módulos al include.

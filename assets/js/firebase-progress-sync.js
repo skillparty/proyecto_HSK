@@ -55,31 +55,35 @@ class FirebaseProgressSync {
         }
     }
 
+    // Snapshot agregado del progreso local. NO escribe los contadores en la
+    // nube: firebaseClient.updateProgress() es una API de EVENTO (suma 1 por
+    // llamada con increment atómico) y acá llegan agregados, desde la
+    // inicialización, el merge y el sync periódico. Mandarle un snapshot
+    // inflaba los contadores en cada llamada.
+    //
+    // Los contadores por nivel se llevan por eventos, vía recordStudyEvent().
     async syncUserProgress(progressData) {
         if (!window.firebaseClient) return { success: false };
+        return { success: true, data: progressData };
+    }
+
+    // Registra UN estudio de palabra. Mapea 1:1 con firebaseClient.updateProgress,
+    // que hace increment atómico sobre user_progress/{uid}_hsk{level}.
+    //
+    // timeSpentMinutes va en minutos porque es la unidad del campo
+    // total_time_spent (leaderboard.js lo divide por 60 para mostrar horas).
+    async recordStudyEvent(level, isCorrect, timeSpentMinutes = 0) {
+        if (!window.firebaseClient) return { success: false };
         try {
-            // progressData is from ProgressIntegrator (camelCase)
-            // We'll update the main progress for the current level
             await window.firebaseClient.updateProgress(
-                progressData.currentLevel || 1, 
-                progressData.isCorrect !== undefined ? progressData.isCorrect : true, 
-                progressData.timeSpent || 0
+                level,
+                isCorrect === true,
+                timeSpentMinutes,
             );
             return { success: true };
         } catch (error) {
             return { success: false, error: error.message };
         }
-    }
-
-    // NO-OP: no escribe nada. Ignora level y levelData y devuelve success:true,
-    // así que quien la llame cree que sincronizó. La agregación por nivel la
-    // hace updateProgress(); esta quedó como stub y nunca se completó.
-    // El try/catch que envolvía el return hacía que pareciera implementada —
-    // ESLint lo detectó como catch inalcanzable. Se deja el comportamiento
-    // intacto y a la vista; decidir si se implementa o se borra con sus llamadas.
-    async syncHSKProgress(level, levelData) {
-        if (!window.firebaseClient) return { success: false };
-        return { success: true };
     }
 
     async recordWordStudy(wordData) {

@@ -225,14 +225,14 @@ class ProgressIntegrator {
                 // Record individual word study
                 await window.firebaseSync.recordWordStudy(wordData);
                 
-                // Update overall progress
-                await window.firebaseSync.syncUserProgress(currentProgress);
-                
-                // Update HSK level progress
-                if (wordData.hskLevel && currentProgress.hskLevels) {
-                    await window.firebaseSync.syncHSKProgress(
-                        wordData.hskLevel, 
-                        currentProgress.hskLevels[wordData.hskLevel]
+                // Contadores por nivel: un evento por palabra estudiada.
+                // El nivel sale de la palabra, no del progreso agregado, que no
+                // lleva ningún campo de nivel actual.
+                if (wordData.hskLevel) {
+                    await window.firebaseSync.recordStudyEvent(
+                        wordData.hskLevel,
+                        wordData.isCorrect,
+                        (wordData.responseTime || 0) / 60000,
                     );
                 }
 
