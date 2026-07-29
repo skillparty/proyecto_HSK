@@ -38,10 +38,14 @@ if ('serviceWorker' in navigator) {
         }
     });
 
-    // Reload when the new service worker takes control
+    // Recargar solo ante un cambio REAL de service worker. Si la página arrancó
+    // sin controlador, el primer claim() es la instalación inicial: recargar ahí
+    // tira el estado de la sesión (pestaña activa, partida en curso) a cambio de
+    // nada, porque el SW recién instalado sirve exactamente lo ya cargado.
+    const hadController = Boolean(navigator.serviceWorker.controller);
     let refreshing = false;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (refreshing) return;
+        if (!hadController || refreshing) return;
         refreshing = true;
         (window.hskLogger || console).debug('🚀 Controller changed, reloading...');
         window.location.reload();
