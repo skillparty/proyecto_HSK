@@ -106,6 +106,37 @@ const PRECACHE_FILES = [
   "./assets/videos/toneInvader.mp4",
 ];
 
+// PRECACHE_FILES es la fuente única (scripts/build/apply-cache-versions.js
+// parsea ese bloque para validar existencia y calcular SW_VERSION). Los dos
+// tiers se derivan por predicado para no duplicar rutas.
+//
+// Opcional = data, media y todo lo específico de una pestaña/juego. Son ~4 MB
+// que no hacen falta para arrancar y que el fetch handler recachea en runtime.
+const OPTIONAL_PRECACHE_PATTERNS = [
+  "/assets/data/",
+  "/assets/images/",
+  "/assets/videos/",
+  "/culture/",
+  "matrix-game",
+  "tones-invaders",
+  "hanzi-builder",
+  "word-linker",
+  "quantifier-snake",
+  "strokes-radicals",
+  "past-exams",
+  "leaderboard",
+];
+
+function isOptionalPrecache(path) {
+  return OPTIONAL_PRECACHE_PATTERNS.some((pattern) => path.includes(pattern));
+}
+
+// Shell mínimo para arrancar offline: documento, manifest, CSS y JS del core.
+const CRITICAL_PRECACHE = PRECACHE_FILES.filter(
+  (path) => !isOptionalPrecache(path),
+);
+const OPTIONAL_PRECACHE = PRECACHE_FILES.filter(isOptionalPrecache);
+
 function isSameOrigin(url) {
   return new URL(url).origin === self.location.origin;
 }
@@ -144,9 +175,47 @@ function getRuntimeCacheKey(request) {
   return request;
 }
 
+// Concurrencia baja a propósito: este precache corre en segundo plano mientras
+// la página todavía está pidiendo sus controllers lazy. Dispararlo todo en
+// paralelo (57 requests) le roba conexiones al foreground y las pestañas lazy
+// tardan en aparecer.
+const OPTIONAL_PRECACHE_CONCURRENCY = 3;
+
+// Best-effort: cada entrada se cachea por separado, así un 404 aislado no
+// tumba el resto. Nunca entra en waitUntil — si el SW muere antes de terminar,
+// el fetch handler recachea esos assets en runtime cuando se piden.
+async function precacheOptional() {
+  const cache = await caches.open(STATIC_CACHE);
+  const queue = [...OPTIONAL_PRECACHE];
+  let failed = 0;
+
+  async function worker() {
+    while (queue.length > 0) {
+      const url = queue.shift();
+      try {
+        await cache.add(url);
+      } catch (error) {
+        failed++;
+      }
+    }
+  }
+
+  await Promise.all(
+    Array.from({ length: OPTIONAL_PRECACHE_CONCURRENCY }, worker),
+  );
+
+  if (failed > 0) {
+    console.warn(
+      `[SW] precache opcional: ${failed}/${OPTIONAL_PRECACHE.length} fallaron`,
+    );
+  }
+}
+
 self.addEventListener("install", (event) => {
+  // Solo el shell bloquea el install: es all-or-nothing a propósito, porque un
+  // shell incompleto significa prometer un offline que no se puede cumplir.
   event.waitUntil(
-    caches.open(STATIC_CACHE).then((cache) => cache.addAll(PRECACHE_FILES)),
+    caches.open(STATIC_CACHE).then((cache) => cache.addAll(CRITICAL_PRECACHE)),
   );
   self.skipWaiting();
 });
@@ -164,6 +233,9 @@ self.addEventListener("activate", (event) => {
           .map((name) => caches.delete(name)),
       );
       await self.clients.claim();
+      // Después del claim y fuera del waitUntil: el activate no debe esperar a
+      // ~3.7 MB de assets opcionales.
+      precacheOptional();
     })(),
   );
 });
