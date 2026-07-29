@@ -39,4 +39,48 @@ test.describe("flashcards (practice)", () => {
 
     expectNoPageErrors(pageErrors);
   });
+
+  test("el botón de pronunciación del reverso dispara playAudio con el carácter", async ({
+    page,
+  }) => {
+    const pageErrors = await gotoApp(page);
+    await openTab(page, "practice", "study");
+    await expect(page.locator("#question-text")).toHaveText(/[一-鿿]/, {
+      timeout: 20000,
+    });
+
+    // Espía playAudio antes de voltear la card: el botón dejó de ser un onclick
+    // inline y ahora es un listener sobre data-play-audio.
+    await page.evaluate(() => {
+      window.__playAudioCalls = [];
+      const original = window.app.playAudio.bind(window.app);
+      window.app.playAudio = (character) => {
+        window.__playAudioCalls.push(character);
+        return original(character);
+      };
+    });
+
+    const expectedCharacter = await page.evaluate(
+      () => window.app.currentWord.character,
+    );
+    const correctPinyin = await page.evaluate(() => window.app.currentWord.pinyin);
+    await page.locator("#pinyin-input").fill(correctPinyin);
+    await page.locator("#pinyin-input").press("Enter");
+    await expect(page.locator("#flashcard")).toHaveClass(/flipped/, { timeout: 5000 });
+
+    const pronunciationBtn = page.locator("[data-play-audio]").first();
+    await expect(pronunciationBtn).toBeVisible();
+
+    // El flip ya dispara la auto-pronunciación; se descarta para medir solo el click.
+    await page.evaluate(() => {
+      window.__playAudioCalls = [];
+    });
+    await pronunciationBtn.click();
+
+    await expect
+      .poll(() => page.evaluate(() => window.__playAudioCalls))
+      .toEqual([expectedCharacter]);
+
+    expectNoPageErrors(pageErrors);
+  });
 });

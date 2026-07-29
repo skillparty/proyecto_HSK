@@ -19,6 +19,8 @@ class LeaderboardManager {
   }
 
   setupEventListeners() {
+    this.setupDelegatedEvents();
+
     // Leaderboard type selector
     const typeSelector = document.getElementById("leaderboard-type");
     if (typeSelector) {
@@ -196,6 +198,45 @@ class LeaderboardManager {
     }
   }
 
+  // Delegación sobre el contenedor: el contenido se reemplaza entero en cada
+  // render, así que enganchar por elemento obligaría a re-atar tras cada
+  // innerHTML. Además evita los onclick inline, que bloquean una CSP sin
+  // 'unsafe-inline'.
+  setupDelegatedEvents() {
+    const container = document.getElementById("leaderboard-list");
+    if (!container || container.dataset.delegatedEvents === "true") return;
+
+    container.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-leaderboard-action]");
+      if (!trigger) return;
+
+      const action = trigger.dataset.leaderboardAction;
+      if (action === "go-to-practice") {
+        if (window.app) window.app.switchTab("practice");
+        return;
+      }
+      if (action === "retry") {
+        this.loadLeaderboard(true);
+      }
+    });
+
+    // Los eventos "error" no burbujean, pero sí bajan en fase de captura.
+    container.addEventListener(
+      "error",
+      (event) => {
+        const img = event.target;
+        if (!(img instanceof HTMLImageElement)) return;
+        const fallback = img.dataset.fallbackSrc;
+        // Sin guard, un fallback roto entra en bucle de errores.
+        if (!fallback || img.src.endsWith(fallback)) return;
+        img.src = fallback;
+      },
+      true,
+    );
+
+    container.dataset.delegatedEvents = "true";
+  }
+
   renderEmptyState(messageKey = "startWithPracticeToJoinRanking") {
     const container = document.getElementById("leaderboard-list");
     if (!container) return;
@@ -214,7 +255,7 @@ class LeaderboardManager {
                 </div>
                 <h3 data-i18n="noRankingData">No ranking data available</h3>
                 <p data-i18n="${messageKey}">Start with Practice to appear on the leaderboard</p>
-                <button class="btn btn-primary leaderboard-empty-cta" onclick="window.app && window.app.switchTab('practice')" data-i18n="goToPractice">Go to Practice</button>
+                <button class="btn btn-primary leaderboard-empty-cta" data-leaderboard-action="go-to-practice" data-i18n="goToPractice">Go to Practice</button>
             </div>
         `;
 
@@ -325,7 +366,7 @@ class LeaderboardManager {
                     <img src="${this.safeAvatarUrl(user.avatar_url)}"
                          alt="${this.escapeHtml(user.display_name || user.username)}"
                          class="user-avatar"
-                         onerror="this.src='/default-avatar.png'">
+                         data-fallback-src="/default-avatar.png">
                     <div class="user-details">
                         <div class="user-name">${this.escapeHtml(user.display_name || user.username)}</div>
                         <div class="user-username">@${this.escapeHtml(user.username)}</div>
@@ -491,7 +532,7 @@ class LeaderboardManager {
                 <div class="leaderboard-error">
                     <div class="error-icon"></div>
                     <div class="error-message">${message}</div>
-                    <button onclick="window.leaderboardManager.loadLeaderboard(true)" class="retry-btn">
+                    <button data-leaderboard-action="retry" class="retry-btn">
                         <span data-i18n="tryAgain">Retry</span>
                     </button>
                 </div>

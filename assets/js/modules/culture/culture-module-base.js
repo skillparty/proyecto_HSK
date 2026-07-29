@@ -49,12 +49,30 @@ class CultureModuleBase {
           <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚠️</div>
           <p style="font-weight: 600; margin-bottom: 0.5rem;">No se pudo cargar ${this.title}</p>
           <p style="font-size: 0.85rem; color: var(--color-text-muted, #666); margin-bottom: 1.5rem;">${msg || "Error desconocido"}</p>
-          <button onclick="this.closest('[id]') && window.app && window.app.uiController && window.app.uiController.handleTabInitialization(this.closest('[id]').parentElement.parentElement.id)"
+          <button data-culture-action="retry"
             style="padding: 0.5rem 1.5rem; background: var(--color-primary, #d32f2f); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
             Reintentar
           </button>
         </div>
       `;
+
+      const retryBtn = this.container.querySelector('[data-culture-action="retry"]');
+      if (retryBtn) {
+        retryBtn.addEventListener("click", () =>
+          this.retryTabInitialization(retryBtn),
+        );
+      }
+    }
+  }
+
+  // Vuelve a disparar la inicialización del tab que contiene este módulo.
+  // Antes esto vivía encadenado dentro de un onclick inline; se conserva el
+  // mismo recorrido del DOM, arrancando desde el propio botón.
+  retryTabInitialization(fromElement) {
+    const tabPanel = fromElement?.closest("[id]")?.parentElement?.parentElement;
+    const uiController = window.app?.uiController;
+    if (tabPanel?.id && uiController) {
+      uiController.handleTabInitialization(tabPanel.id);
     }
   }
 

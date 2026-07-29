@@ -144,7 +144,7 @@ class PracticeViewController {
                     <div class="${backContainerClass}">${this.renderChineseCharacters(this.app.currentWord.character, true)}</div>
                     <div class="card-back-header-text">
                         <div class="card-back-pinyin">${this.colorPinyinWithBadges(this.app.currentWord.pinyin) || '?'}</div>
-                        <button class="card-back-pronunciation" onclick="window.app.playAudio('${this.app.currentWord.character}')">
+                        <button class="card-back-pronunciation" data-play-audio="${window.hskEscapeHtml(this.app.currentWord.character)}">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                 <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
@@ -191,6 +191,16 @@ class PracticeViewController {
                 ${this.getExampleSentence(this.app.currentWord)}
             </div>
         `;
+
+        // El carácter viaja en data-play-audio en vez de interpolarse dentro de
+        // un onclick: evita el inline handler (bloquea CSP) y no hay que meter
+        // texto en una cadena JS embebida en un atributo HTML.
+        const pronunciationBtn = fullInfo.querySelector('[data-play-audio]');
+        if (pronunciationBtn) {
+            pronunciationBtn.addEventListener('click', () => {
+                this.app.playAudio(pronunciationBtn.dataset.playAudio);
+            });
+        }
 
         this.resetCardState();
         this.app.logDebug('Card updated: ' + this.app.currentWord.character + ' (' + mode + ')');

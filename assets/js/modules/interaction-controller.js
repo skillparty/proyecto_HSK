@@ -128,13 +128,14 @@ class InteractionController {
                         </div>
                     `).join('')}
                 </div>
-                <button class="btn btn-primary" onclick="this.parentElement.parentElement.remove()">Close</button>
+                <button class="btn btn-primary" data-shortcuts-action="close">Close</button>
             </div>
         `;
         document.body.appendChild(modal);
 
         modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
+            // Click en el backdrop o en el botón Cerrar: mismo resultado.
+            if (event.target === modal || event.target.closest('[data-shortcuts-action="close"]')) {
                 modal.remove();
             }
         });
