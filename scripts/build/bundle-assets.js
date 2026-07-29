@@ -16,6 +16,18 @@
 
 const { readFileSync, writeFileSync, existsSync, rmSync } = require("fs");
 const { join } = require("path");
+const esbuild = require("esbuild");
+
+// minifyIdentifiers queda DESACTIVADO a propósito. Estos son scripts clásicos:
+// los nombres top-level son los globals por los que se referencian entre sí
+// (class UIController {} ... new UIController()). Renombrarlos rompe todas las
+// referencias cruzadas. Whitespace y syntax son la mayor parte del ahorro y no
+// tocan nombres.
+const MINIFY_JS = {
+  minifyWhitespace: true,
+  minifySyntax: true,
+  minifyIdentifiers: false,
+};
 
 const HEAD_BUNDLE = "assets/js/head.bundle.js";
 const APP_BUNDLE = "assets/js/app.bundle.js";
@@ -81,6 +93,29 @@ function concatenate(dir, relPaths, banner, separator) {
     (relPath) => `/* ${relPath} */\n${readVerified(dir, relPath, separator)}`,
   );
   return `/* ${banner} — generado por scripts/build/bundle-assets.js */\n${parts.join(separator)}\n`;
+}
+
+// Se minifica el bundle ya concatenado, no archivo por archivo: así minifySyntax
+// puede trabajar sobre el resultado final. El scope top-level sigue siendo el
+// global porque el loader es un <script> clásico, no un módulo.
+function minify(source, loader, label) {
+  const options =
+    loader === "css"
+      ? { loader: "css", minify: true }
+      : { loader: "js", ...MINIFY_JS };
+
+  try {
+    const result = esbuild.transformSync(source, options);
+    const before = Buffer.byteLength(source);
+    const after = Buffer.byteLength(result.code);
+    console.log(
+      `  ${label}: ${(before / 1024).toFixed(0)}KB → ${(after / 1024).toFixed(0)}KB`,
+    );
+    return result.code;
+  } catch (error) {
+    console.error(`Bundle: falló la minificación de ${label}: ${error.message}`);
+    process.exit(1);
+  }
 }
 
 // Clasifica los <script src> del head/body en los tres grupos que no se pueden
@@ -155,15 +190,19 @@ function main() {
 
   writeFileSync(
     join(dir, HEAD_BUNDLE),
-    concatenate(dir, blocking, "head bundle", JS_SEPARATOR),
+    minify(concatenate(dir, blocking, "head bundle", JS_SEPARATOR), "js", "head.bundle.js"),
   );
   writeFileSync(
     join(dir, APP_BUNDLE),
-    concatenate(dir, deferred, "app bundle", JS_SEPARATOR),
+    minify(concatenate(dir, deferred, "app bundle", JS_SEPARATOR), "js", "app.bundle.js"),
   );
   writeFileSync(
     join(dir, CSS_BUNDLE),
-    concatenate(dir, cssFiles, "css bundle (el orden ES la cascada)", CSS_SEPARATOR),
+    minify(
+      concatenate(dir, cssFiles, "css bundle (el orden ES la cascada)", CSS_SEPARATOR),
+      "css",
+      "app.bundle.css",
+    ),
   );
 
   html = replaceGroup(
