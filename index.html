@@ -7,6 +7,36 @@
     <!-- Sin meta Cache-Control/Pragma/Expires: la invalidación la hacen los
          sufijos ?v=<hash> (scripts/build/apply-cache-versions.js) y el
          service worker. Forzar no-store aquí anulaba ambos mecanismos. -->
+
+    <!-- Content-Security-Policy. GitHub Pages no deja poner headers, así que va
+         por meta; eso implica que NO existe modo Report-Only, entra aplicando.
+         El placeholder de hashes en script-src lo reemplaza assemble-index.js
+         con el sha256 de cada script inline (pre-paint del tema, importmap y
+         loader de diagnóstico): no editar a mano.
+         Orígenes, uno por uno:
+           www.gstatic.com      → SDK modular de Firebase (ver el importmap)
+           cdnjs.cloudflare.com → three.js, cargado on-demand por home-controller
+           fonts.googleapis.com → hoja de estilos de Google Fonts
+           fonts.gstatic.com    → archivos de fuente
+           *.googleapis.com     → Firestore + identitytoolkit/securetoken (auth)
+           confuc10.firebaseapp.com → iframe auxiliar del login con GitHub
+         img-src queda en https: a propósito: el leaderboard muestra avatares
+         de otros usuarios y esas URLs son arbitrarias. -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'sha256-NvTXWrxVXMFh0WU635fNVUXY9aBacaarf4IG2G2fiTw=' 'sha256-6rHrVxjBiOvrqUA7FF1yGWFIjzMGqLD+qE+617F1ccc=' 'sha256-BjRFpQ+OJ7OcC3I2aKR2XvsH7T1u59mBn+qZlHhFG2M=' https://www.gstatic.com https://cdnjs.cloudflare.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: https:;
+        connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com;
+        frame-src https://confuc10.firebaseapp.com;
+        worker-src 'self';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+    ">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Confuc10++ — HSK Chinese Learning Platform</title>
 
     <!-- PWA Meta Tags -->

@@ -18,6 +18,7 @@
 // Uso: node scripts/build/assemble-index.js
 
 const { readFileSync, writeFileSync, existsSync } = require("fs");
+const { createHash } = require("crypto");
 const { join } = require("path");
 
 const ROOT = process.cwd();
@@ -25,6 +26,41 @@ const TEMPLATE = join(ROOT, "templates", "index.template.html");
 const OUTPUT = join(ROOT, "index.html");
 
 const INCLUDE_PATTERN = /^(\s*)<!-- include:(\S+) -->\s*$/;
+
+// Scripts inline (sin src): el pre-paint del tema y el importmap de Firebase.
+// Ninguno de los dos puede externalizarse — el pre-paint tiene que correr antes
+// del primer CSS o hay flash de tema, y el importmap no soporta src.
+const INLINE_SCRIPT_PATTERN = /<script(?![^>]*\ssrc=)[^>]*>([\s\S]*?)<\/script>/g;
+const CSP_HASH_PLACEHOLDER = "{{CSP_SCRIPT_HASHES}}";
+
+// El hash de CSP se calcula sobre el contenido exacto entre <script> y
+// </script>, byte a byte. Calcularlo en build (y no a mano en el template)
+// evita que se pudra en cuanto alguien toque una línea de esos scripts.
+function computeInlineScriptHashes(html) {
+  const hashes = [];
+  for (const match of html.matchAll(INLINE_SCRIPT_PATTERN)) {
+    const digest = createHash("sha256").update(match[1], "utf8").digest("base64");
+    const source = `'sha256-${digest}'`;
+    if (!hashes.includes(source)) hashes.push(source);
+  }
+  return hashes;
+}
+
+function applyCspHashes(html) {
+  if (!html.includes(CSP_HASH_PLACEHOLDER)) {
+    console.error(
+      `No se encontró ${CSP_HASH_PLACEHOLDER} en el template: la CSP quedaría sin los hashes de los scripts inline.`,
+    );
+    process.exit(1);
+  }
+  // replaceAll y no replace: replace con patrón string sustituye solo la
+  // primera aparición, y basta que alguien nombre el placeholder en un
+  // comentario para que el de la meta quede sin reemplazar.
+  return html.replaceAll(
+    CSP_HASH_PLACEHOLDER,
+    computeInlineScriptHashes(html).join(" "),
+  );
+}
 
 function assemble() {
   if (!existsSync(TEMPLATE)) {
@@ -60,7 +96,9 @@ function assemble() {
     process.exit(1);
   }
 
-  return assembled;
+  // Después de expandir los includes: un partial podría traer su propio
+  // script inline y también tendría que entrar en la CSP.
+  return applyCspHashes(assembled);
 }
 
 function main() {
