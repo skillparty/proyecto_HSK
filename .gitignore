@@ -71,3 +71,6 @@ assets/libros/
 # Playwright
 test-results/
 playwright-report/
+
+# Coverage (vitest)
+coverage/
