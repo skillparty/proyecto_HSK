@@ -30,6 +30,7 @@ const PRECACHE_FILES = [
   "./assets/css/tones-invaders-styles.css?v=3",
   "./assets/css/hanzi-builder-styles.css?v=2",
   "./assets/css/word-linker-styles.css?v=2",
+  "./assets/js/utils/html.js?v=1",
   "./assets/js/bootstrap-diagnostics.js?v=1",
   "./assets/js/firebase-bootstrap.js?v=1",
   "./assets/js/sw-register.js?v=1",

@@ -2,10 +2,7 @@
 class BackendAuth {
   // Sanitize user-supplied strings to prevent XSS
   escapeHtml(str) {
-    if (!str) return "";
-    const div = document.createElement("div");
-    div.appendChild(document.createTextNode(String(str)));
-    return div.innerHTML;
+    return window.hskEscapeHtml(str);
   }
 
   constructor() {
@@ -280,7 +277,7 @@ class BackendAuth {
     authContainer.innerHTML = `
             <div class="user-profile">
                 <div class="user-avatar-container">
-                    <img src="${this.escapeHtml(this.currentUser.avatar_url)}" alt="Avatar" class="user-avatar">
+                    <img src="${window.hskSafeHttpsUrl(this.currentUser.avatar_url)}" alt="Avatar" class="user-avatar">
                     <div class="user-status ${statusClass}" title="${statusText}">
                         ${statusIcon}
                     </div>

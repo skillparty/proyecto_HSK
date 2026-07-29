@@ -226,21 +226,12 @@ class LeaderboardManager {
   // Escape user-controlled strings before inserting into innerHTML templates.
   // Leaderboard data comes from other users' Firestore documents.
   escapeHtml(value) {
-    if (value === null || value === undefined) return "";
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
+    return window.hskEscapeHtml(value);
   }
 
   // Only allow https URLs for avatars; anything else falls back to default.
   safeAvatarUrl(url) {
-    if (typeof url === "string" && url.startsWith("https://")) {
-      return this.escapeHtml(url);
-    }
-    return "/default-avatar.png";
+    return window.hskSafeHttpsUrl(url);
   }
 
   renderUserCard(user) {

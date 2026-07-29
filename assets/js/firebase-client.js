@@ -4,10 +4,7 @@
 class FirebaseClient {
   // Sanitize user-supplied strings to prevent XSS
   escapeHtml(str) {
-    if (!str) return "";
-    const div = document.createElement("div");
-    div.appendChild(document.createTextNode(String(str)));
-    return div.innerHTML;
+    return window.hskEscapeHtml(str);
   }
 
   constructor() {
@@ -538,7 +535,7 @@ class FirebaseClient {
     container.innerHTML = `
             <div class="user-profile">
                 <div class="user-avatar-container">
-                    <img src="${this.escapeHtml(photoURL)}" alt="Avatar" class="user-avatar" onerror="this.src='https://github.com/github.png'">
+                    <img src="${window.hskSafeHttpsUrl(photoURL, "https://github.com/github.png")}" alt="Avatar" class="user-avatar" onerror="this.src='https://github.com/github.png'">
                 </div>
                 <div class="user-info">
                     <div class="user-name">${this.escapeHtml(name)}</div>
