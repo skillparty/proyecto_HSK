@@ -116,4 +116,42 @@ test.describe("Content-Security-Policy", () => {
     expect(consoleViolations, consoleViolations.join("\n")).toEqual([]);
     expect(pageErrors, pageErrors.join("\n")).toEqual([]);
   });
+
+  // Regresión: la primera versión de la CSP rompió el login en producción.
+  // signInWithPopup carga https://apis.google.com/js/api.js para montar su
+  // iframe auxiliar; sin ese origen en script-src falla con auth/internal-error
+  // y el popup no llega a abrirse. Ninguno de los otros specs lo tocaba.
+  //
+  // No se completa la autenticación (haría falta una cuenta real de GitHub). La
+  // aserción fuerte es la de violaciones CSP: se disparan apenas Firebase
+  // intenta cargar gapi, o sea antes de cualquier ida y vuelta con GitHub.
+  test("iniciar el login con GitHub no dispara violaciones", async ({
+    page,
+    context,
+  }) => {
+    await collectViolations(page);
+    await gotoApp(page);
+
+    const loginButton = page.locator('[data-auth-action="login"]');
+    await expect(loginButton).toBeVisible({ timeout: 15000 });
+
+    const popupPromise = context
+      .waitForEvent("page", { timeout: 20000 })
+      .catch(() => null);
+    await loginButton.click();
+    const popup = await popupPromise;
+
+    // Margen para que la violación llegue a reportarse si gapi queda bloqueado.
+    await page.waitForTimeout(2000);
+
+    const reported = await readViolations(page);
+    expect(reported, formatViolations(reported)).toEqual([]);
+
+    // El popup depende de red externa, así que es una comprobación blanda: si
+    // abrió, tiene que haber llegado al proveedor, no morir en un about:blank.
+    if (popup) {
+      await popup.waitForLoadState("domcontentloaded").catch(() => {});
+      expect(popup.url()).not.toBe("about:blank");
+    }
+  });
 });

@@ -15,6 +15,10 @@
          loader de diagnóstico): no editar a mano.
          Orígenes, uno por uno:
            www.gstatic.com      → SDK modular de Firebase (ver el importmap)
+           apis.google.com      → gapi, que Firebase Auth carga para montar el
+                                  iframe auxiliar de signInWithPopup. Sin esto
+                                  el login falla con auth/internal-error y el
+                                  popup no llega a abrirse.
            cdnjs.cloudflare.com → three.js, cargado on-demand por home-controller
            fonts.googleapis.com → hoja de estilos de Google Fonts
            fonts.gstatic.com    → archivos de fuente
@@ -24,7 +28,7 @@
          de otros usuarios y esas URLs son arbitrarias. -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
-        script-src 'self' {{CSP_SCRIPT_HASHES}} https://www.gstatic.com https://cdnjs.cloudflare.com;
+        script-src 'self' {{CSP_SCRIPT_HASHES}} https://www.gstatic.com https://apis.google.com https://cdnjs.cloudflare.com;
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
         font-src 'self' https://fonts.gstatic.com;
         img-src 'self' data: https:;
