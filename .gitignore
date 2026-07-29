@@ -74,3 +74,6 @@ playwright-report/
 
 # Coverage (vitest)
 coverage/
+
+# Backups de migraciones (datos de usuarios, nunca al repo)
+backups/
