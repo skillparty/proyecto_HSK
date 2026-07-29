@@ -35,7 +35,19 @@ const crypto = require("crypto");
 const HASH_LENGTH = 8;
 const INDEX_FILE = "index.html";
 const SW_FILE = "sw.js";
-const UI_CONTROLLER_FILE = "assets/js/modules/ui-controller.js";
+
+// ui-controller.js es el archivo que lleva dentro los refs ?v= del loader lazy,
+// y por eso se reescribe y hashea aparte. En dist/ ya no existe suelto: quedó
+// concatenado dentro del app bundle (bundle-assets.js), así que el portador de
+// esos refs pasa a ser el bundle.
+const UI_CONTROLLER_SOURCE = "assets/js/modules/ui-controller.js";
+const UI_CONTROLLER_BUNDLE = "assets/js/app.bundle.js";
+
+function resolveUiControllerFile(root) {
+  return existsSync(join(root, UI_CONTROLLER_BUNDLE))
+    ? UI_CONTROLLER_BUNDLE
+    : UI_CONTROLLER_SOURCE;
+}
 
 function parseArgs(argv) {
   const args = { dir: ".", write: false };
@@ -116,6 +128,8 @@ function applyVersions(content, versionMap) {
 function main() {
   const args = parseArgs(process.argv);
   const root = args.dir;
+
+  const UI_CONTROLLER_FILE = resolveUiControllerFile(root);
 
   const targets = [INDEX_FILE, SW_FILE, UI_CONTROLLER_FILE];
   for (const target of targets) {

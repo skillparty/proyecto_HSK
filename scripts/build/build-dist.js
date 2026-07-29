@@ -59,6 +59,17 @@ function main() {
     });
   }
 
+  // Antes del versionado: el hash ?v= tiene que calcularse sobre los bundles.
+  const bundling = spawnSync(
+    process.execPath,
+    [join(__dirname, "bundle-assets.js"), OUT_DIR],
+    { stdio: "inherit" },
+  );
+  if (bundling.status !== 0) {
+    console.error("Fallo al generar los bundles");
+    process.exit(bundling.status ?? 1);
+  }
+
   const versioning = spawnSync(
     process.execPath,
     [join(__dirname, "apply-cache-versions.js"), "--dir", OUT_DIR, "--write"],
