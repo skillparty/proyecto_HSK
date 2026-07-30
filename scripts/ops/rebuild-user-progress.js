@@ -34,9 +34,19 @@
 //     hasOnlyAllowedFields() solo admite la lista snake_case
 // El script lee ambas formas y reporta cuántos documentos vio de cada una.
 //
+// DOS MODOS.
+//   (por defecto) reconstruye desde word_progress con la semántica redefinida
+//                 que se describe arriba.
+//   --reset       pone todos los contadores en cero y arranca limpio desde el
+//                 arreglo de sync. Es la opción honesta cuando el historial
+//                 recuperable no justifica arrastrar números que igual no
+//                 reflejan lo que el usuario hizo. Conserva user_id, hsk_level y
+//                 los campos denormalizados que el leaderboard lee desde acá.
+//
 // Uso:
 //   GOOGLE_APPLICATION_CREDENTIALS=/ruta/service-account.json \
 //     node scripts/ops/rebuild-user-progress.js                 # auditoría, no escribe
+//   ... --reset                                                 # muestra qué pondría en cero
 //   ... --user <uid>                                            # acota a un usuario
 //   ... --write                                                 # aplica (hace backup antes)
 
@@ -47,9 +57,10 @@ const admin = require("firebase-admin");
 const BACKUP_DIR = join(process.cwd(), "backups");
 
 function parseArgs(argv) {
-  const args = { write: false, user: null };
+  const args = { write: false, user: null, mode: "rebuild" };
   for (let i = 2; i < argv.length; i++) {
     if (argv[i] === "--write") args.write = true;
+    else if (argv[i] === "--reset") args.mode = "reset";
     else if (argv[i] === "--user" && argv[i + 1]) args.user = argv[++i];
     else {
       console.error(`Argumento desconocido: ${argv[i]}`);
@@ -160,6 +171,37 @@ function buildTarget(bucket) {
   };
 }
 
+// Modo --reset: pone los contadores en cero y deja el resto del documento.
+// Se conservan user_id y hsk_level (identidad del doc) y los campos
+// denormalizados username / display_name / avatar_url, que el leaderboard lee
+// desde acá: borrarlos dejaría las tarjetas sin nombre ni avatar.
+//
+// last_studied se elimina porque con los contadores en cero es una fecha que no
+// corresponde a ninguna actividad registrada.
+function buildReset(existing) {
+  return {
+    user_id: existing.user_id,
+    hsk_level: existing.hsk_level,
+    total_words_studied: 0,
+    correct_answers: 0,
+    incorrect_answers: 0,
+    current_streak: 0,
+    best_streak: 0,
+    total_time_spent: 0,
+    last_studied: admin.firestore.FieldValue.delete(),
+  };
+}
+
+function reportResetDiff(current) {
+  return [...current.values()]
+    .map((doc) => ({
+      docId: doc.id,
+      antes: `${doc.total_words_studied ?? 0} est / ${doc.correct_answers ?? 0} ok / ${doc.incorrect_answers ?? 0} err / racha ${doc.best_streak ?? 0} / ${doc.total_time_spent ?? 0} min`,
+      despues: "todo en 0",
+    }))
+    .sort((a, b) => a.docId.localeCompare(b.docId));
+}
+
 function reportDiff(targets, current) {
   const rows = [];
   for (const [docId, target] of targets) {
@@ -176,12 +218,71 @@ function reportDiff(targets, current) {
   return rows;
 }
 
+// Backup completo antes de cualquier escritura. Es la única vuelta atrás.
+function backup(current) {
+  mkdirSync(BACKUP_DIR, { recursive: true });
+  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const path = join(BACKUP_DIR, `user_progress-${stamp}.json`);
+  writeFileSync(path, JSON.stringify([...current.values()], null, 2));
+  console.log(`Backup de ${current.size} documentos en ${path}`);
+  return path;
+}
+
+async function runReset(db, args) {
+  const current = await collectUserProgress(db, args.user);
+  console.log(`user_progress: ${current.size} documentos`);
+  console.log("");
+
+  if (current.size === 0) {
+    console.log("No hay nada que resetear.");
+    return;
+  }
+
+  console.log("Se pondrían en cero:");
+  console.log("");
+  for (const row of reportResetDiff(current)) {
+    console.log(`  ${row.docId}`);
+    console.log(`      antes:   ${row.antes}`);
+    console.log(`      después: ${row.despues}`);
+  }
+  console.log("");
+  console.log(
+    "Se conservan user_id, hsk_level y los campos denormalizados que usa el leaderboard.",
+  );
+  console.log("");
+
+  if (!args.write) {
+    console.log("Dry-run. Nada escrito. Agregar --write para aplicar.");
+    return;
+  }
+
+  const backupPath = backup(current);
+
+  let written = 0;
+  for (const doc of current.values()) {
+    await db
+      .collection("user_progress")
+      .doc(doc.id)
+      .set(buildReset(doc), { merge: true });
+    written++;
+  }
+
+  console.log(`Listo: ${written} documentos reseteados.`);
+  console.log(`Para revertir, restaurar desde ${backupPath}.`);
+}
+
 async function main() {
   const args = parseArgs(process.argv);
   const db = initFirestore();
 
+  console.log(`Modo: ${args.mode}`);
   console.log(args.user ? `Usuario: ${args.user}` : "Todos los usuarios");
   console.log("");
+
+  if (args.mode === "reset") {
+    await runReset(db, args);
+    return;
+  }
 
   const { byUserLevel, shapes, total } = await collectWordProgress(db, args.user);
   console.log(`word_progress: ${total} documentos`);
@@ -234,11 +335,7 @@ async function main() {
     return;
   }
 
-  mkdirSync(BACKUP_DIR, { recursive: true });
-  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-  const backupPath = join(BACKUP_DIR, `user_progress-${stamp}.json`);
-  writeFileSync(backupPath, JSON.stringify([...current.values()], null, 2));
-  console.log(`Backup de ${current.size} documentos en ${backupPath}`);
+  const backupPath = backup(current);
 
   let written = 0;
   for (const [docId, target] of targets) {
