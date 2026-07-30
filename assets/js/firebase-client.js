@@ -415,6 +415,57 @@ class FirebaseClient {
     await sdk.setDoc(docRef, data, { merge: true });
   }
 
+  // Normaliza al esquema snake_case que valida isValidWordProgress() en
+  // firestore.rules. Es obligatorio y no cosmético: esa regla usa
+  // hasOnlyAllowedFields(), o sea que CUALQUIER clave fuera de la lista hace
+  // que Firestore rechace la escritura entera.
+  //
+  // Antes se hacía `...wordData` a ciegas. Los llamadores de
+  // firebase-progress-sync mandan camelCase (isCorrect, hskLevel, responseTime)
+  // y esas escrituras venían siendo rechazadas en silencio desde siempre.
+  //
+  // Acepta ambas formas para no romper a los llamadores existentes, pero lo que
+  // se escribe es siempre snake_case.
+  static toWordProgressDocument(wordData) {
+    const pick = (...keys) => {
+      for (const key of keys) {
+        if (wordData[key] !== undefined && wordData[key] !== null) {
+          return wordData[key];
+        }
+      }
+      return undefined;
+    };
+
+    const document = {
+      word_character: pick("word_character", "character"),
+      word_pinyin: pick("word_pinyin", "pinyin"),
+      word_translation: pick("word_translation", "translation", "meaning"),
+      hsk_level: pick("hsk_level", "hskLevel", "level"),
+      practice_mode: pick("practice_mode", "practiceMode"),
+      is_correct: pick("is_correct", "isCorrect"),
+      response_time: pick("response_time", "responseTime"),
+      word_id: pick("word_id", "id"),
+    };
+
+    // Firestore rechaza los undefined; además la regla valida tipos solo si el
+    // campo está presente, así que omitir es más seguro que mandar null.
+    for (const key of Object.keys(document)) {
+      if (document[key] === undefined) delete document[key];
+    }
+
+    if (document.hsk_level !== undefined) {
+      document.hsk_level = Number(document.hsk_level);
+    }
+    if (document.response_time !== undefined) {
+      document.response_time = Number(document.response_time) || 0;
+    }
+    if (document.is_correct !== undefined) {
+      document.is_correct = document.is_correct === true;
+    }
+
+    return document;
+  }
+
   async saveWordProgress(wordData) {
     if (!this.user) return;
 
@@ -435,7 +486,7 @@ class FirebaseClient {
         docRef,
         {
           user_id: this.user.uid,
-          ...wordData,
+          ...FirebaseClient.toWordProgressDocument(wordData),
           updated_at: sdk.serverTimestamp(),
         },
         { merge: true },

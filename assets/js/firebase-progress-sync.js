@@ -92,6 +92,10 @@ class FirebaseProgressSync {
             await window.firebaseClient.saveWordProgress(wordData);
             return { success: true };
         } catch (error) {
+            // Nadie mira el valor de retorno, así que sin este warn un rechazo
+            // de firestore.rules desaparece sin dejar rastro. Fue exactamente
+            // lo que pasó con las escrituras en camelCase.
+            console.warn('⚠️ word_progress no se pudo guardar:', error.message);
             return { success: false, error: error.message };
         }
     }
