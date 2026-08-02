@@ -42,6 +42,7 @@ class LeaderboardManager {
     // Period selector
     const periodSelector = document.getElementById("leaderboard-period");
     if (periodSelector) {
+      this.currentPeriod = periodSelector.value || "all_time";
       periodSelector.addEventListener("change", (e) => {
         this.currentPeriod = e.target.value;
         this.loadLeaderboard();
@@ -91,17 +92,16 @@ class LeaderboardManager {
       };
 
       const dbType = typeMapping[this.currentType] || "total_words";
-      const isLevelFiltered = this.currentHskLevel !== "all";
 
       // Get leaderboard data from Firebase
       const leaderboardData = await window.firebaseClient.getLeaderboard(
         dbType,
-        isLevelFiltered ? this.FILTERED_FETCH_LIMIT : this.DISPLAY_LIMIT,
+        this.hasActiveFilters() ? this.FILTERED_FETCH_LIMIT : this.DISPLAY_LIMIT,
       );
 
       (window.hskLogger || console).debug("📊 Leaderboard response:", leaderboardData.length, "users");
 
-      this.currentLeaderboard = this.applyHskLevelFilter(leaderboardData || []);
+      this.currentLeaderboard = this.applyFilters(leaderboardData || []);
       this.renderLeaderboard();
 
       // Load user position if authenticated
@@ -126,18 +126,54 @@ class LeaderboardManager {
     }
   }
 
+  hasActiveFilters() {
+    return this.currentHskLevel !== "all" || this.currentPeriod !== "all_time";
+  }
+
+  emptyStateMessageKey() {
+    if (this.currentHskLevel !== "all") return "noRankingForThisLevel";
+    if (this.currentPeriod !== "all_time") return "noRankingForThisPeriod";
+    return "startWithPracticeToJoinRanking";
+  }
+
+  // last_studied llega como Timestamp de Firestore cuando el SDK lo hidrata, y
+  // como string cuando viene de un backup o de datos ya serializados.
+  static toDate(value) {
+    if (!value) return null;
+    const date = typeof value.toDate === "function" ? value.toDate() : new Date(value);
+    return Number.isNaN(date.getTime()) ? null : date;
+  }
+
+  matchesHskLevel(row) {
+    if (this.currentHskLevel === "all") return true;
+    return Number(row.hsk_level) === Number(this.currentHskLevel);
+  }
+
+  matchesPeriod(row) {
+    const days = LeaderboardManager.PERIOD_DAYS[this.currentPeriod];
+    if (!days) return true;
+
+    const lastActivity = LeaderboardManager.toDate(row.last_activity);
+    // Sin fecha de actividad no se puede afirmar que entre en la ventana, así
+    // que queda afuera: mismo criterio que usa getLeaderboardStats para contar
+    // usuarios activos.
+    if (!lastActivity) return false;
+
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - days);
+    return lastActivity >= cutoff;
+  }
+
   // El rank que trae getLeaderboard es la posición dentro del ranking global.
-  // Al quedarse con un solo nivel esas posiciones salen salteadas (1, 7, 23…),
-  // así que se renumeran para que la tabla filtrada se lea 1..N.
-  applyHskLevelFilter(rows) {
-    if (this.currentHskLevel === "all") {
+  // Al filtrar, esas posiciones salen salteadas (1, 7, 23…), así que se
+  // renumeran para que la tabla se lea 1..N.
+  applyFilters(rows) {
+    if (!this.hasActiveFilters()) {
       return rows.slice(0, this.DISPLAY_LIMIT);
     }
 
-    const level = Number(this.currentHskLevel);
-
     return rows
-      .filter((row) => Number(row.hsk_level) === level)
+      .filter((row) => this.matchesHskLevel(row) && this.matchesPeriod(row))
       .slice(0, this.DISPLAY_LIMIT)
       .map((row, index) => ({ ...row, rank: index + 1 }));
   }
@@ -215,13 +251,9 @@ class LeaderboardManager {
     }
 
     if (this.currentLeaderboard.length === 0) {
-      // Con un nivel elegido, la tabla vacía no significa "todavía no practicaste"
-      // sino que nadie compite en ese nivel.
-      this.renderEmptyState(
-        this.currentHskLevel === "all"
-          ? "startWithPracticeToJoinRanking"
-          : "noRankingForThisLevel",
-      );
+      // Con un filtro puesto, la tabla vacía no significa "todavía no
+      // practicaste" sino que nadie entra en ese recorte.
+      this.renderEmptyState(this.emptyStateMessageKey());
       return;
     }
 
@@ -601,6 +633,10 @@ class LeaderboardManager {
     this.loadLeaderboard();
   }
 }
+
+// Ventana de cada opción de #leaderboard-period, en días. all_time no figura:
+// la ausencia de entrada es lo que desactiva el filtro.
+LeaderboardManager.PERIOD_DAYS = { weekly: 7, monthly: 30 };
 
 // Export for use in main app
 window.LeaderboardManager = LeaderboardManager;

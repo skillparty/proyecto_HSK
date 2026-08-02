@@ -109,6 +109,14 @@ test.describe("tabs con carga diferida", () => {
       })
       .toBe("4");
 
+    // Mismo caso que el nivel: el listener existía pero nadie leía el valor.
+    await page.locator("#leaderboard-period").selectOption("weekly");
+    await expect
+      .poll(() => page.evaluate(() => window.app.leaderboardManager.currentPeriod), {
+        timeout: 10000,
+      })
+      .toBe("weekly");
+
     expectNoPageErrors(pageErrors);
   });
 
