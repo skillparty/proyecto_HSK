@@ -28,7 +28,9 @@ class NavigationController {
     this.app = app;
 
     if (!this.app.lastTabStorageKey) {
-      this.app.lastTabStorageKey = "hsk-last-tab";
+      // Desde el registro central en vez de repetir el literal: si no, cambiar
+      // la clave en StorageController.KEYS no tendría ningún efecto acá.
+      this.app.lastTabStorageKey = StorageController.KEYS.LAST_TAB;
     }
 
     if (!this.app.onboardingSessionStorageKey) {

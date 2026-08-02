@@ -397,19 +397,6 @@ class HanziBuilderGame {
         return arr;
     }
     
-    /**
-     * Get the stored high score for Hanzi Builder from localStorage
-     * @returns {number} The high score, or 0 if none exists
-     */
-    getHighScore() {
-        try {
-            const stored = localStorage.getItem('hanzi-builder-highscore');
-            return stored ? parseInt(stored, 10) : 0;
-        } catch {
-            return 0;
-        }
-    }
-    
     // Retro synthesizer helper
     playSynth(frequency, type = 'sine', volume = 0.1, duration = 0.15) {
         if (window.gameAudioManager) {
