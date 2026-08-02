@@ -67,10 +67,9 @@ class StartupController {
                 this.app.logDebug('[✓] Backend User Progress initialized');
             }
 
-            if (window.LeaderboardManager) {
-                this.app.leaderboardManager = new window.LeaderboardManager();
-                this.app.logDebug('[✓] Leaderboard Manager initialized');
-            }
+            // El LeaderboardManager NO se instancia acá: leaderboard.js se carga
+            // on-demand al abrir la pestaña, así que en este punto la clase no
+            // existe. Lo crea ui-controller después de bajar el script.
 
             this.app.loadVocabulary();
             this.app.setupEventListeners();

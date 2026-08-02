@@ -366,6 +366,12 @@ class UIController {
             if (!window.LeaderboardManager) {
               await this.loadScript("assets/js/leaderboard.js?v=2");
             }
+            // La instancia se crea acá, no en startup-controller: leaderboard.js
+            // es lazy, así que al arrancar la app la clase todavía no existe y
+            // aquella comprobación nunca se cumplía.
+            if (!this.app.leaderboardManager && window.LeaderboardManager) {
+              this.app.leaderboardManager = new window.LeaderboardManager();
+            }
             if (!this.app.leaderboardInitialized) {
               this.app.initializeLeaderboard();
               this.app.leaderboardInitialized = true;

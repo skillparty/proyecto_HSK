@@ -78,6 +78,40 @@ test.describe("tabs con carga diferida", () => {
     expectNoPageErrors(pageErrors);
   });
 
+  // Regresión: startup-controller construía el LeaderboardManager detrás de un
+  // `if (window.LeaderboardManager)` que nunca se cumplía, porque leaderboard.js
+  // es lazy y al arrancar la clase todavía no existe. El tab abría sin instancia
+  // y no cargaba nada. Ahora lo instancia ui-controller tras bajar el script.
+  test("leaderboard se instancia al abrir el tab y el filtro de nivel guarda estado", async ({
+    page,
+  }) => {
+    const pageErrors = await gotoApp(page);
+    const warnings = [];
+    page.on("console", (message) => {
+      if (message.type() === "warning") warnings.push(message.text());
+    });
+
+    await openTab(page, "leaderboard", "progress");
+
+    await expect
+      .poll(() => page.evaluate(() => !!window.app.leaderboardManager), { timeout: 10000 })
+      .toBe(true);
+    expect(warnings.filter((w) => w.includes("Leaderboard manager not available"))).toHaveLength(0);
+
+    await expect
+      .poll(() => page.evaluate(() => window.app.leaderboardManager.currentHskLevel))
+      .toBe("all");
+
+    await page.locator("#leaderboard-hsk-level").selectOption("4");
+    await expect
+      .poll(() => page.evaluate(() => window.app.leaderboardManager.currentHskLevel), {
+        timeout: 10000,
+      })
+      .toBe("4");
+
+    expectNoPageErrors(pageErrors);
+  });
+
   test("cambiar idioma antes de abrir estos tabs no rompe la app", async ({ page }) => {
     const pageErrors = await gotoApp(page);
 
