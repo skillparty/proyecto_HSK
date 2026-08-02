@@ -525,6 +525,9 @@ class FirebaseClient {
       const formattedData = data.map((entry, index) => ({
         rank: index + 1,
         user_id: entry.user_id,
+        // Lo consume el filtro por nivel del leaderboard, que se aplica en
+        // cliente sobre estas filas.
+        hsk_level: entry.hsk_level,
         username: entry.username || "Anonymous",
         display_name: entry.display_name || entry.username || "Anonymous",
         avatar_url:

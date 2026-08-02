@@ -4,11 +4,20 @@ class LeaderboardManager {
     this.currentLeaderboard = [];
     this.currentType = "total_studied";
     this.currentPeriod = "all_time";
+    this.currentHskLevel = "all";
     this.userPosition = null;
     this.stats = null;
     this.statsCache = null;
     this.statsCacheTime = 0;
     this.STATS_CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
+    // Filas visibles en la tabla.
+    this.DISPLAY_LIMIT = 50;
+    // Al filtrar por nivel se traen más filas porque el filtro es en cliente:
+    // Firestore ordena por el campo del ranking, no por hsk_level, y acotar allá
+    // pediría un índice compuesto por cada campo de orden. Con 300 el top 50 de
+    // un nivel concreto queda cubierto de sobra para el tamaño actual de la base.
+    this.FILTERED_FETCH_LIMIT = 300;
 
     this.init();
   }
@@ -42,7 +51,9 @@ class LeaderboardManager {
     // HSK level selector
     const hskSelector = document.getElementById("leaderboard-hsk-level");
     if (hskSelector) {
-      hskSelector.addEventListener("change", () => {
+      this.currentHskLevel = hskSelector.value || "all";
+      hskSelector.addEventListener("change", (e) => {
+        this.currentHskLevel = e.target.value;
         this.loadLeaderboard();
       });
     }
@@ -80,16 +91,17 @@ class LeaderboardManager {
       };
 
       const dbType = typeMapping[this.currentType] || "total_words";
+      const isLevelFiltered = this.currentHskLevel !== "all";
 
       // Get leaderboard data from Firebase
       const leaderboardData = await window.firebaseClient.getLeaderboard(
         dbType,
-        50,
+        isLevelFiltered ? this.FILTERED_FETCH_LIMIT : this.DISPLAY_LIMIT,
       );
 
       (window.hskLogger || console).debug("📊 Leaderboard response:", leaderboardData.length, "users");
 
-      this.currentLeaderboard = leaderboardData || [];
+      this.currentLeaderboard = this.applyHskLevelFilter(leaderboardData || []);
       this.renderLeaderboard();
 
       // Load user position if authenticated
@@ -113,6 +125,23 @@ class LeaderboardManager {
       this.showLoading(false);
     }
   }
+
+  // El rank que trae getLeaderboard es la posición dentro del ranking global.
+  // Al quedarse con un solo nivel esas posiciones salen salteadas (1, 7, 23…),
+  // así que se renumeran para que la tabla filtrada se lea 1..N.
+  applyHskLevelFilter(rows) {
+    if (this.currentHskLevel === "all") {
+      return rows.slice(0, this.DISPLAY_LIMIT);
+    }
+
+    const level = Number(this.currentHskLevel);
+
+    return rows
+      .filter((row) => Number(row.hsk_level) === level)
+      .slice(0, this.DISPLAY_LIMIT)
+      .map((row, index) => ({ ...row, rank: index + 1 }));
+  }
+
   async loadUserPosition() {
     if (!window.firebaseClient || !window.firebaseClient.isAuthenticated())
       return;
@@ -186,7 +215,13 @@ class LeaderboardManager {
     }
 
     if (this.currentLeaderboard.length === 0) {
-      this.renderEmptyState("startWithPracticeToJoinRanking");
+      // Con un nivel elegido, la tabla vacía no significa "todavía no practicaste"
+      // sino que nadie compite en ese nivel.
+      this.renderEmptyState(
+        this.currentHskLevel === "all"
+          ? "startWithPracticeToJoinRanking"
+          : "noRankingForThisLevel",
+      );
       return;
     }
 
