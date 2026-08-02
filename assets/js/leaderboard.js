@@ -98,7 +98,7 @@ class LeaderboardManager {
       }
 
       // Load statistics from Firebase
-      await this.loadStats();
+      await this.loadStats(forceRefresh);
     } catch (error) {
       console.error("Error loading leaderboard:", error);
       // Ensure we always have a valid array
@@ -137,10 +137,13 @@ class LeaderboardManager {
     }
   }
 
-  async loadStats() {
-    // Use cached stats if fresh (avoids reading all user_progress docs on every render)
+  async loadStats(forceRefresh = false) {
+    // Use cached stats if fresh (avoids reading all user_progress docs on every render).
+    // forceRefresh lo pasa el botón de refresh: si no, el usuario aprieta y no pasa
+    // nada hasta que vence el TTL.
     const now = Date.now();
     if (
+      !forceRefresh &&
       this.statsCache &&
       now - this.statsCacheTime < this.STATS_CACHE_TTL_MS
     ) {
