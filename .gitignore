@@ -77,3 +77,8 @@ coverage/
 
 # Backups de migraciones (datos de usuarios, nunca al repo)
 backups/
+
+# Emulador de Firestore (tests de firestore.rules)
+firestore-debug.log
+firebase-debug.log
+.firebase/
