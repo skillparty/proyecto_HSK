@@ -80,6 +80,19 @@ service cloud.firestore {
       return request.resource.data.user_id == request.auth.uid;
     }
 
+    // Las colecciones con docId compuesto usan {uid}_{sufijo}. Sin atar ese id
+    // al uid que escribe, cualquier autenticado puede crear el documento de
+    // otro con su propio user_id: como delete está prohibido y update exige ser
+    // dueño del documento existente, la víctima queda sin poder escribir ese
+    // documento nunca más.
+    // Comparación por prefijo en vez de split('_'), porque un uid puede
+    // contener '_', y sin regex para no armar un patrón con datos de auth.
+    function docIdOwnedByUser(docId) {
+      let prefix = request.auth.uid + '_';
+      return docId.size() > prefix.size() &&
+             docId[0:prefix.size()] == prefix;
+    }
+
     // Ensure user_id field is not modified on update
     function userIdNotModified() {
       return !('user_id' in request.resource.data) ||
@@ -240,14 +253,22 @@ service cloud.firestore {
     // --- user_progress ---
     // Owners can read/write their own progress.
     // Authenticated users can READ all progress (needed for leaderboard).
+    // La lectura abierta es deliberada: el ranking lee la colección entera
+    // ordenada por puntaje. Los campos son justamente los que el leaderboard
+    // muestra en público (username, display_name, avatar_url y contadores); el
+    // email vive en user_profiles, que sí está cerrado. Firestore no permite
+    // restringir lectura por campo, así que acotarlo más exigiría una colección
+    // pública aparte escrita desde el servidor.
     match /user_progress/{docId} {
       allow read: if isAuthenticated();
 
       allow create: if isAuthenticated() &&
+                       docIdOwnedByUser(docId) &&
                        incomingUserIdMatches() &&
                        isValidUserProgress();
 
       allow update: if isAuthenticated() &&
+                       docIdOwnedByUser(docId) &&
                        resource.data.user_id == request.auth.uid &&
                        userIdNotModified() &&
                        incomingUserIdMatches() &&
@@ -263,10 +284,12 @@ service cloud.firestore {
                      resource.data.user_id == request.auth.uid;
 
       allow create: if isAuthenticated() &&
+                       docIdOwnedByUser(docId) &&
                        incomingUserIdMatches() &&
                        isValidWordProgress();
 
       allow update: if isAuthenticated() &&
+                       docIdOwnedByUser(docId) &&
                        resource.data.user_id == request.auth.uid &&
                        userIdNotModified() &&
                        incomingUserIdMatches() &&
@@ -282,10 +305,12 @@ service cloud.firestore {
                      resource.data.user_id == request.auth.uid;
 
       allow create: if isAuthenticated() &&
+                       docIdOwnedByUser(docId) &&
                        incomingUserIdMatches() &&
                        isValidAchievement();
 
       allow update: if isAuthenticated() &&
+                       docIdOwnedByUser(docId) &&
                        resource.data.user_id == request.auth.uid &&
                        userIdNotModified() &&
                        incomingUserIdMatches() &&
