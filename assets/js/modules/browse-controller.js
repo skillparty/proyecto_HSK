@@ -112,7 +112,7 @@ class BrowseController {
         let filteredVocab = this.app.vocabulary;
 
         if (selectedLevel !== 'all') {
-            filteredVocab = filteredVocab.filter(word => word.level == selectedLevel);
+            filteredVocab = filteredVocab.filter(word => Number(word.level) === Number(selectedLevel));
         }
 
         if (searchTerm) {

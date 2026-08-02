@@ -152,7 +152,7 @@ class HealthController {
 
             try {
                 controller.postMessage({ type: 'GET_VERSION' }, [channel.port2]);
-            } catch (error) {
+            } catch {
                 clearTimeout(timeoutId);
                 resolve(null);
             }
@@ -240,7 +240,7 @@ class HealthController {
             } else {
                 try {
                     message = JSON.stringify(reason);
-                } catch (error) {
+                } catch {
                     message = String(reason);
                 }
             }
@@ -254,7 +254,7 @@ class HealthController {
             const raw = localStorage.getItem(this.app.errorDigestStorageKey);
             const parsed = raw ? JSON.parse(raw) : [];
             return Array.isArray(parsed) ? parsed : [];
-        } catch (error) {
+        } catch {
             return [];
         }
     }

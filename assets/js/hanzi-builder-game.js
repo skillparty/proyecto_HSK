@@ -110,8 +110,8 @@ class HanziBuilderGame {
         this.state.isPlaying = true;
         
         // Build words list
-        let appWords = window.app.vocabulary || [];
-        let matchingWords = [];
+        const appWords = window.app.vocabulary || [];
+        const matchingWords = [];
         
         // Filter from database what matches level
         for (const [char, info] of Object.entries(this.decompositions)) {
@@ -405,7 +405,7 @@ class HanziBuilderGame {
         try {
             const stored = localStorage.getItem('hanzi-builder-highscore');
             return stored ? parseInt(stored, 10) : 0;
-        } catch (e) {
+        } catch {
             return 0;
         }
     }
@@ -435,7 +435,7 @@ class HanziBuilderGame {
             
             osc.start();
             osc.stop(audioCtx.currentTime + duration);
-        } catch (e) {
+        } catch {
             // Ignored browser context blocks
         }
     }

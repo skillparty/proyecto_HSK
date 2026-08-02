@@ -92,7 +92,7 @@ class WordLinkerGame {
             rawVocab = [...this.fallbackVocab];
         }
         
-        let filtered = rawVocab.filter(w => w.character && w.character.length === 2);
+        const filtered = rawVocab.filter(w => w.character && w.character.length === 2);
         
         if (this.activeLevel !== "all") {
             const lvl = parseInt(this.activeLevel);
@@ -170,7 +170,7 @@ class WordLinkerGame {
         this.state.wordsInGrid = shuffled.slice(0, 4);
         
         // Extract all characters of the 4 words
-        let gridChars = [];
+        const gridChars = [];
         this.state.wordsInGrid.forEach(word => {
             gridChars.push(word.character.charAt(0));
             gridChars.push(word.character.charAt(1));
@@ -440,7 +440,7 @@ class WordLinkerGame {
             
             osc.start();
             osc.stop(audioCtx.currentTime + duration);
-        } catch (e) {
+        } catch {
             // Ignored browser sound blocks
         }
     }

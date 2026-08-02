@@ -85,7 +85,7 @@ for (const level of LEVELS) {
   // English split — lesson metadata pre-merged, sourceOrder embedded
   const enLevel = enAll
     .filter(w => Number(w.level) === level)
-    .map((w, i) => {
+    .map((w) => {
       const merged = mergeLesson({ ...w, english: w.translation || w.english, spanish: w.spanish || null });
       return { ...merged, _sourceOrder: enAll.indexOf(w) };
     });
@@ -129,9 +129,7 @@ console.log(`\nOriginal: EN ${(origEn/1024).toFixed(0)}KB + ES ${(origEs/1024).t
 console.log(`Split total: EN ${(totalEnSplit/1024).toFixed(0)}KB + ES ${(totalEsSplit/1024).toFixed(0)}KB`);
 console.log('\nPer-level savings example:');
 LEVELS.forEach(l => {
-  const en = manifest.levels[l].en;
   const es = manifest.levels[l].es;
   const wouldFetch = origEn + (l > 1 ? origEs : 0) + mapSize;
-  const nowFetch = en.bytes + es.bytes;
   console.log(`  HSK${l} ES user: was ~${(wouldFetch/1024).toFixed(0)}KB → now ~${(es.bytes/1024).toFixed(0)}KB (${Math.round((1 - es.bytes/wouldFetch)*100)}% less)`);
 });

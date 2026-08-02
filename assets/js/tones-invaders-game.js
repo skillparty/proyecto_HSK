@@ -93,7 +93,7 @@ class TonesInvadersGame {
     // Resolve tone number from Pinyin string
     detectTone(pinyin) {
         if (!pinyin) return 5;
-        for (let char of pinyin) {
+        for (const char of pinyin) {
             if (this.toneVowels[char]) {
                 return this.toneVowels[char];
             }
@@ -157,7 +157,7 @@ class TonesInvadersGame {
         // Mobile Buttons
         const toneBtns = document.querySelectorAll('.tones-inv-tone-btn');
         toneBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
+            btn.addEventListener('click', () => {
                 const tone = parseInt(btn.getAttribute('data-tone'));
                 this.fireLaser(tone);
             });
@@ -696,7 +696,7 @@ class TonesInvadersGame {
             
             osc.start();
             osc.stop(audioCtx.currentTime + duration);
-        } catch (e) {
+        } catch {
             // Silent catch if audio is blocked by browser policies
         }
     }

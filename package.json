@@ -12,7 +12,7 @@
     "check:strokes-catalog": "node scripts/ci/check-strokes-radicals-catalog.js",
     "check:past-exams": "node scripts/ci/check-past-exams-availability.js",
     "check:snake-quantifiers": "node scripts/ci/check-quantifier-snake-data.js",
-    "lint": "eslint . --max-warnings 41",
+    "lint": "eslint . --max-warnings 0",
     "ci": "npm run lint && npm run check:index-assembled && npm run check:syntax && npm run check:cache-versions && npm run check:strokes-catalog && npm run check:past-exams && npm run check:snake-quantifiers && npm run test:coverage",
     "test": "npm run ci",
     "test:unit": "vitest run",

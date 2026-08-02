@@ -45,7 +45,7 @@ class QuizEngine {
     let vocabPool =
       selectedLevel === "all"
         ? this.app.vocabulary
-        : this.app.vocabulary.filter((word) => word.level == selectedLevel);
+        : this.app.vocabulary.filter((word) => Number(word.level) === Number(selectedLevel));
 
     if (vocabPool.length === 0) {
       this.app.showToast(

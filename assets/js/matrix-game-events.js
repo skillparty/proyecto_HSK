@@ -97,3 +97,5 @@ function setupMatrixGameEventListeners() {
             }
         });
     }
+
+window.setupMatrixGameEventListeners = setupMatrixGameEventListeners;

@@ -496,7 +496,7 @@ class HSKDiagnosticSystem {
                 return Array.from(sheet.cssRules || []).some(rule => 
                     rule.type === CSSRule.MEDIA_RULE
                 );
-            } catch (e) {
+            } catch {
                 return false;
             }
         });

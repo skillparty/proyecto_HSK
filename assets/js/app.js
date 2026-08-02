@@ -382,7 +382,7 @@ class HSKApp {
         return this.legacyFlowController.showMatrixGameFallback();
     }
 
-    handleAuthChange(event, session) {
+    handleAuthChange(event, _session) {
         if (event === 'SIGNED_IN' && this.srsEngine) {
             this.srsEngine.syncFromFirebase().then(() => {
                 if (this.feedbackController) this.feedbackController.updateHeaderStats();

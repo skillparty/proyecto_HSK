@@ -29,7 +29,7 @@ test.describe("smoke", () => {
                 (registration.active || registration.installing || registration.waiting)
               );
             });
-          } catch (_navigationRace) {
+          } catch {
             return false;
           }
         },

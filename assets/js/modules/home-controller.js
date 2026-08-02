@@ -102,7 +102,7 @@ class HomeController {
 
         // 3. Daily Goal
         const target = stats.dailyGoal || 20;
-        let todayCount = stats.todayCards || 0;
+        const todayCount = stats.todayCards || 0;
         
         const goalCurrentEl = document.getElementById('dash-goal-current');
         if (goalCurrentEl) goalCurrentEl.textContent = todayCount;

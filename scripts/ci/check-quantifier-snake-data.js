@@ -20,7 +20,7 @@ let payload;
 try {
   payload = JSON.parse(readFileSync(dataPath, 'utf-8'));
 } catch (error) {
-  fail('Invalid JSON in assets/data/quantifier_snake_words.json');
+  fail(`Invalid JSON in assets/data/quantifier_snake_words.json: ${error.message}`);
 }
 
 assert.ok(payload && typeof payload === 'object', 'Snake quantifier payload must be an object');

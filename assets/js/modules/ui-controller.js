@@ -736,3 +736,5 @@ class UIController {
     return tabButton?.querySelector("span")?.textContent?.trim() || tabName;
   }
 }
+
+window.UIController = UIController;

@@ -431,7 +431,7 @@ class EtymologyController {
           target.innerHTML = `<span class="etym-writer-fallback">${this.selectedHanzi}</span>`;
         },
       });
-    } catch (err) {
+    } catch {
       target.innerHTML = `<span class="etym-writer-fallback">${this.selectedHanzi}</span>`;
     }
   }

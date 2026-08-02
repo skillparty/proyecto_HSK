@@ -33,7 +33,7 @@ class FlashcardManager {
     const levelFilter =
       level === "all"
         ? this.app.vocabulary
-        : this.app.vocabulary.filter((word) => word.level == level);
+        : this.app.vocabulary.filter((word) => Number(word.level) === Number(level));
 
     this.currentSession = this.buildSessionOrder(levelFilter, level);
     this.sessionIndex = 0;
@@ -488,8 +488,8 @@ class FlashcardManager {
       ǚ: "3",
       ǜ: "4",
     };
-    let tones = [];
-    for (let char of pinyin) {
+    const tones = [];
+    for (const char of pinyin) {
       if (toneMap[char]) tones.push(toneMap[char]);
     }
     return tones.length > 0 ? tones.join("") : "0";
@@ -725,3 +725,5 @@ class FlashcardManager {
     }).join(" ");
   }
 }
+
+window.FlashcardManager = FlashcardManager;

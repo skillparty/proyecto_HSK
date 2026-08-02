@@ -7,7 +7,7 @@
             const debugStorage = localStorage.getItem('hsk-debug');
             const localHost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
             return debugParam === '1' || debugParam === 'true' || debugStorage === '1' || localHost;
-        } catch (_err) {
+        } catch {
             return false;
         }
     }

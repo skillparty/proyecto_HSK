@@ -52,10 +52,6 @@ const OUT = '/tmp/hsk_audit';
     // --- Reload keeps light via pre-paint (check attr before app JS runs) ---
     const light2 = await browser.newPage({ viewport: { width: 1440, height: 900 } });
     await light2.addInitScript(() => localStorage.setItem('hsk-theme', 'light'));
-    let prePaintAttr = null;
-    light2.on('domcontentloaded', async () => {
-        prePaintAttr = await light2.evaluate(() => document.documentElement.getAttribute('data-theme')).catch(() => null);
-    });
     await light2.goto(BASE, { waitUntil: 'domcontentloaded' }).catch(() => {});
     const earlyAttr = await light2.evaluate(() => document.documentElement.getAttribute('data-theme'));
     check('pre-paint: light applied at domcontentloaded', earlyAttr === 'light', earlyAttr);

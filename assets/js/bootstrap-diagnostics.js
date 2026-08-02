@@ -24,28 +24,6 @@ window.addEventListener('load', function () {
     (window.hskLogger || console).debug('[✓] Resource validation complete');
 });
 
-// Error handler for missing resources
-function showResourceError(resource) {
-    console.error(`[✗] Failed to load: ${resource}`);
-
-    // Create error notification
-    const errorDiv = document.createElement('div');
-    errorDiv.style.cssText = `
-        position: fixed; top: 20px; right: 20px; z-index: 10000;
-        background: #ef4444; color: white; padding: 12px 16px;
-        border-radius: 8px; font-size: 14px; max-width: 300px;
-    `;
-    errorDiv.textContent = `Error loading ${resource}. Some features may not work correctly.`;
-    document.body.appendChild(errorDiv);
-
-    // Auto-remove after 5 seconds
-    setTimeout(() => {
-        if (errorDiv.parentNode) {
-            errorDiv.parentNode.removeChild(errorDiv);
-        }
-    }, 5000);
-}
-
 // Global uncaught error display
 window.addEventListener('error', (event) => {
     console.error('[✗] Uncaught error:', event.message);

@@ -169,3 +169,5 @@ function renderMatrixGameInterface() {
 
 // La función renderMatrixGameInterface está disponible globalmente
 // y será utilizada por matrix-game.js cuando sea necesario
+
+window.renderMatrixGameInterface = renderMatrixGameInterface;

@@ -216,3 +216,5 @@ class MatrixController {
         `;
   }
 }
+
+window.MatrixController = MatrixController;

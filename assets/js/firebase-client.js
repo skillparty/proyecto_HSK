@@ -388,7 +388,7 @@ class FirebaseClient {
     const docId = `${this.user.uid}_hsk${hskLevel}`;
     const docRef = sdk.doc(this.db, "user_progress", docId);
     const docSnap = await sdk.getDoc(docRef);
-    let data = docSnap.exists()
+    const data = docSnap.exists()
       ? docSnap.data()
       : {
           user_id: this.user.uid,
@@ -678,7 +678,6 @@ class FirebaseClient {
 window.firebaseClient = new FirebaseClient();
 
 // Auto-initialize
-let retryCount = 0;
 setTimeout(() => {
   window.firebaseClient.initialize().catch(console.error);
 }, 200);

@@ -11,7 +11,6 @@ JSDOM.fromURL("https://skillparty.github.io/proyecto_HSK/index.html?v=clear", {
     console.log("HOME classes:", document.getElementById("home").className);
     
     // Click Cultura
-    const cultureBtn = document.querySelector('.nav-group-trigger'); // Wait, there are multiple nav-group-triggers
     const cultureGroup = document.querySelector('.nav-group[data-group="culture"] .nav-group-trigger');
     if (cultureGroup) {
       cultureGroup.click();

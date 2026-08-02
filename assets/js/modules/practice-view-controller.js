@@ -19,8 +19,9 @@ class PracticeViewController {
             return;
         }
 
+        // El reverso de la tarjeta se renderiza más abajo desde this.app.currentWord,
+        // así que acá solo hacen falta la cara visible y la pista.
         let question = '';
-        let answer = '';
         let hint = '';
 
         const meaning = this.app.getMeaningForLanguage(this.app.currentWord);
@@ -29,23 +30,19 @@ class PracticeViewController {
         switch (mode) {
             case 'char-to-pinyin':
                 question = this.app.currentWord.character;
-                answer = this.app.currentWord.pinyin;
                 hint = meaning;
                 break;
             case 'char-to-english':
             default:
                 question = this.app.currentWord.character;
-                answer = meaning;
                 hint = this.app.currentWord.pinyin;
                 break;
             case 'pinyin-to-char':
                 question = this.app.currentWord.pinyin;
-                answer = this.app.currentWord.character;
                 hint = meaning;
                 break;
             case 'english-to-char':
                 question = meaning;
-                answer = this.app.currentWord.character;
                 hint = this.app.currentWord.pinyin;
                 break;
         }
