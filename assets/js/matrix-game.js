@@ -177,19 +177,25 @@ class MatrixGame {
     }
 
     filterVocabularyByLevel() {
+        // Debajo de esto la grilla se queda sin distractores y repite caracteres.
+        const MIN_WORDS_PER_LEVEL = 20;
+
         const sourceVocabulary = this.allVocabulary && this.allVocabulary.length > 0
             ? this.allVocabulary
             : this.vocabulary;
 
-        // Filtrar vocabulario según el nivel seleccionado
-        const levelVocab = sourceVocabulary.filter(word =>
-            word.level === this.currentLevel || word.hsk === this.currentLevel
+        // Filtrar vocabulario según el nivel seleccionado.
+        // Number() en ambos lados: en los JSON de vocab el nivel es número, pero
+        // el <select> lo entrega como string y hay llamadores que asignan
+        // currentLevel sin convertirlo.
+        const levelVocab = sourceVocabulary.filter(
+            word => Number(word.level) === Number(this.currentLevel)
         );
 
         // Si no hay suficientes palabras del nivel, usar todas las palabras hasta ese nivel
-        if (levelVocab.length < 20) {
-            this.vocabulary = sourceVocabulary.filter(word =>
-                (word.level <= this.currentLevel) || (word.hsk <= this.currentLevel)
+        if (levelVocab.length < MIN_WORDS_PER_LEVEL) {
+            this.vocabulary = sourceVocabulary.filter(
+                word => Number(word.level) <= Number(this.currentLevel)
             );
         } else {
             this.vocabulary = levelVocab;
