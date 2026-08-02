@@ -127,7 +127,6 @@ class AudioController {
         }
 
         const voices = speechSynthesis.getVoices();
-        this.app.availableVoices = voices;
 
         const chineseVoices = voices.filter(voice =>
             voice.lang.includes('zh') ||

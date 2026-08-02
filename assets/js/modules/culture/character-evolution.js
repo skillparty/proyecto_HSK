@@ -230,11 +230,6 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
     };
   }
 
-  async loadData() {
-    // Rely on local bilingual content instead of fetch to avoid network issues
-    this.charactersData = this.content;
-  }
-
   render() {
     if (!this.container) return;
 

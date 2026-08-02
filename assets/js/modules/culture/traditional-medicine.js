@@ -133,10 +133,6 @@ class TraditionalMedicineModule extends (window.CultureModuleBase || CultureModu
     };
   }
 
-  async loadData() {
-    this.medicineData = this.content;
-  }
-
   render() {
     if (!this.container) return;
 

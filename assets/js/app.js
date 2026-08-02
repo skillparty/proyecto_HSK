@@ -55,7 +55,6 @@ class HSKApp {
         this.isDarkMode = true; // Default to dark theme (PlanetScale style)
         this.isAudioEnabled = true;
         this.selectedVoice = 'auto'; // 'male', 'female', 'auto'
-        this.availableVoices = [];
         this.chineseVoices = { male: null, female: null };
         this.currentLanguage = localStorage.getItem('hsk-language') || 'es';
 

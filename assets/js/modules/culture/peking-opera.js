@@ -117,10 +117,6 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
     };
   }
 
-  async loadData() {
-    this.operaData = this.content;
-  }
-
   render() {
     if (!this.container) return;
 

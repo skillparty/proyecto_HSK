@@ -138,10 +138,6 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
     };
   }
 
-  async loadData() {
-    this.artsData = this.content;
-  }
-
   render() {
     if (!this.container) return;
 

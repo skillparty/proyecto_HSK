@@ -130,10 +130,6 @@ class EthnicClothingModule extends (window.CultureModuleBase || CultureModuleBas
     };
   }
 
-  async loadData() {
-    this.clothingData = this.content;
-  }
-
   render() {
     if (!this.container) return;
 

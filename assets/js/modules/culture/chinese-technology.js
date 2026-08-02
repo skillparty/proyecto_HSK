@@ -112,10 +112,6 @@ class ChineseTechnologyModule extends (window.CultureModuleBase || CultureModule
     };
   }
 
-  async loadData() {
-    this.techData = this.content;
-  }
-
   render() {
     if (!this.container) return;
 

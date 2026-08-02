@@ -76,6 +76,9 @@ class CultureModuleBase {
     }
   }
 
+  // Hook para módulos que necesiten traer datos antes de render(). Los que hay
+  // hoy no lo usan: llevan su contenido bilingüe embebido en this.content, a
+  // propósito, para no depender de la red al abrir la pestaña.
   async loadData() {
     // To be implemented by subclasses
   }
