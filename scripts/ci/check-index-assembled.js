@@ -6,7 +6,7 @@
 // de commitear — o si editó index.html directamente, lo que lo
 // desincroniza silenciosamente de los partials.
 
-const { readFileSync } = require("fs");
+const { readFileSync, existsSync } = require("fs");
 const { join } = require("path");
 const { assemble } = require("../build/assemble-index");
 
@@ -14,10 +14,9 @@ const ROOT = process.cwd();
 const INDEX_FILE = join(ROOT, "index.html");
 
 function main() {
-  const committed = readFileSync(INDEX_FILE, "utf8");
-  const expected = assemble();
+  const { html, deferred } = assemble();
 
-  if (committed !== expected) {
+  if (readFileSync(INDEX_FILE, "utf8") !== html) {
     console.error(
       "index.html está desincronizado de templates/index.template.html + partials.",
     );
@@ -25,7 +24,26 @@ function main() {
     process.exit(1);
   }
 
-  console.log("index.html coincide con template + partials.");
+  // Los partials diferidos también son generados: si quedan viejos, la pestaña
+  // muestra markup que ya no corresponde al template y nada más falla.
+  const stale = [];
+  for (const [runtimePath, expectedContent] of deferred) {
+    const fullPath = join(ROOT, runtimePath);
+    if (!existsSync(fullPath) || readFileSync(fullPath, "utf8") !== expectedContent) {
+      stale.push(runtimePath);
+    }
+  }
+
+  if (stale.length > 0) {
+    console.error("Partials diferidos desincronizados del template:");
+    for (const path of stale) console.error(`  - ${path}`);
+    console.error("Corré `npm run assemble` y commiteá el resultado.");
+    process.exit(1);
+  }
+
+  console.log(
+    `index.html coincide con template + partials (${deferred.size} diferidos verificados).`,
+  );
 }
 
 main();

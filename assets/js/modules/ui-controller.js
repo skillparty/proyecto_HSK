@@ -5,6 +5,8 @@
 class UIController {
   constructor(app) {
     this.app = app;
+    // Hidrataciones de panel en curso, por nombre de tab.
+    this.pendingHydrations = new Map();
     this.logDebug("📱 UIController module initialized");
   }
 
@@ -45,6 +47,46 @@ class UIController {
       ...css.map((u) => this.loadStylesheet(u)),
       ...js.map((u) => this.loadScript(u)),
     ]);
+  }
+
+  // Baja el markup de un panel diferido y lo mete en su contenedor vacío. El
+  // <div id="<tab>" class="tab-panel"> sí viaja en index.html: lo que falta es
+  // su contenido, que escribe assemble-index.js en assets/partials/tabs/.
+  //
+  // Devuelve true si el panel quedó listo para que corra su init. Nunca
+  // rechaza: un fallo de red se loguea y devuelve false, para no correr el init
+  // sobre un panel vacío.
+  hydrateTabPanel(tabName) {
+    const panel = document.getElementById(tabName);
+    if (!panel) return Promise.resolve(false);
+    if (panel.dataset.hydrated === "true") return Promise.resolve(true);
+
+    // Dos clicks rápidos sobre la misma pestaña no deben disparar dos fetches
+    // ni inyectar el markup dos veces.
+    const inFlight = this.pendingHydrations.get(tabName);
+    if (inFlight) return inFlight;
+
+    const url = `assets/partials/tabs/${tabName}.html`;
+    const pending = fetch(url)
+      .then(async (response) => {
+        if (!response.ok) throw new Error(`${response.status} al pedir ${url}`);
+        panel.innerHTML = await response.text();
+        panel.dataset.hydrated = "true";
+
+        // El markup recién inyectado trae data-i18n sin traducir: sin esto la
+        // pestaña aparece con los textos por defecto del template hasta el
+        // próximo cambio de idioma.
+        window.languageManager?.updateInterface?.();
+        return true;
+      })
+      .catch((err) => {
+        this.logError(`No se pudo cargar el markup de la pestaña ${tabName}`, err);
+        return false;
+      })
+      .finally(() => this.pendingHydrations.delete(tabName));
+
+    this.pendingHydrations.set(tabName, pending);
+    return pending;
   }
 
   getLogger() {
@@ -163,6 +205,19 @@ class UIController {
   }
 
   handleTabInitialization(tabName) {
+    // Los paneles diferidos llegan vacíos: hay que inyectar su markup antes de
+    // correr el init, que consulta el DOM de la pestaña.
+    if (UIController.DEFERRED_TAB_PANELS.has(tabName)) {
+      this.hydrateTabPanel(tabName).then((ready) => {
+        if (ready) this.runTabInitialization(tabName);
+      });
+      return;
+    }
+
+    this.runTabInitialization(tabName);
+  }
+
+  runTabInitialization(tabName) {
     switch (tabName) {
       case "home":
         if (
@@ -742,5 +797,31 @@ class UIController {
     return tabButton?.querySelector("span")?.textContent?.trim() || tabName;
   }
 }
+
+// Tabs cuyo markup NO viaja en index.html y se baja de assets/partials/tabs/
+// al abrirlas. Tiene que coincidir con los `defer-include` de
+// templates/index.template.html y con PRECACHE_FILES de sw.js — lo verifica
+// scripts/ci/check-deferred-panels.js.
+//
+// home y practice quedan afuera por ser las pestañas de arranque. browse, quiz,
+// past-exams y matrix también: su markup lo consultan scripts que corren en el
+// boot (interaction-controller ata 15 listeners ahí), y diferirlo los dejaría
+// enganchando a la nada, en silencio.
+UIController.DEFERRED_TAB_PANELS = new Set([
+  "strokes-radicals",
+  "snake-quantifiers",
+  "tones-invaders",
+  "hanzi-builder",
+  "word-linker",
+  "stats",
+  "leaderboard",
+  "etymology",
+  "culture-characters",
+  "culture-medicine",
+  "culture-opera",
+  "culture-technology",
+  "culture-clothing",
+  "culture-arts",
+]);
 
 window.UIController = UIController;
