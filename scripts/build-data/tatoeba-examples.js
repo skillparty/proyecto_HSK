@@ -42,7 +42,10 @@ const SOURCES = {
 };
 
 // Sentence length window (in Han characters) for pedagogical examples.
-const MIN_LEN = 4;
+// El piso es 3 y no 4 porque a esa altura hay interjecciones completas y muy
+// usadas —不客气。 祝贺你。 不敢当。— que con 4 quedaban afuera siendo
+// justo el registro que un principiante necesita.
+const MIN_LEN = 3;
 const MAX_LEN = 22;
 
 function log(...a) { console.log('[tatoeba]', ...a); }
@@ -106,6 +109,18 @@ function collapseLatinRuns(chinese, py) {
   return out;
 }
 
+// Caracteres tradicionales de alta frecuencia que no existen en simplificado.
+// No busca ser exhaustivo: alcanza para detectar si una frase está escrita en
+// tradicional, porque cualquier oración normal usa varios de estos.
+const TRADITIONAL_MARKERS = new Set(
+  '這說個們來時對國學會爲後點實現數與經開關無馬鳥華語體發當萬義樣專東車門問間題師書長聲遠親覺讀寫買賣錢銀鐵飛風雲電話見輛過還進邊麗盡靈幾樂習題辦處務員動總條約強兩業產進標準團',
+);
+
+function hasTraditional(text) {
+  for (const ch of text) if (TRADITIONAL_MARKERS.has(ch)) return true;
+  return false;
+}
+
 // Solo los ids de un tsv. Para el pivote hace falta saber si un id es inglés o
 // español mientras se recorre links.csv, pero no su texto: cargarlo entero
 // serían 2M de frases en inglés en memoria.
@@ -135,12 +150,13 @@ async function main() {
   const cmn = await loadSentences(cmnTsv);
   log('cmn sentences:', cmn.size);
 
-  // 3. stream links: collect, per cmn id, the set of linked target ids, y de
-  //    paso los enlaces eng -> * que hacen falta para el pivote al español.
-  const engIds = await idsOf(engTsv);
+  // 3. Dos pasadas sobre links.csv.
+  //    La primera arma, por cada frase china, el conjunto de ids enlazados.
+  //    La segunda busca español a un salto de esos destinos: el puente puede
+  //    ser cualquier idioma, no solo inglés. Hacen falta dos pasadas porque
+  //    hasta terminar la primera no se sabe qué destinos importan.
   const spaIds = await idsOf(spaTsv);
-  const cmnLinks = new Map();   // cmnId -> Set(targetId)
-  const engToSpa = new Map();   // engId -> spaId (primer español enlazado)
+  const cmnLinks = new Map();     // cmnId -> Set(targetId)
   const neededTargets = new Set();
   {
     const rl = readline.createInterface({ input: fs.createReadStream(linksCsv), crlfDelay: Infinity });
@@ -148,28 +164,35 @@ async function main() {
       const tab = line.indexOf('\t');
       if (tab < 0) continue;
       const a = line.slice(0, tab);
+      if (!cmn.has(a)) continue;
       const b = line.slice(tab + 1).trim();
-      if (cmn.has(a)) {
-        let s = cmnLinks.get(a);
-        if (!s) { s = new Set(); cmnLinks.set(a, s); }
-        s.add(b);
-        neededTargets.add(b);
-      } else if (engIds.has(a) && spaIds.has(b) && !engToSpa.has(a)) {
-        engToSpa.set(a, b);
-      }
+      let s = cmnLinks.get(a);
+      if (!s) { s = new Set(); cmnLinks.set(a, s); }
+      s.add(b);
+      neededTargets.add(b);
     }
   }
   log('cmn sentences with links:', cmnLinks.size, '| target ids needed:', neededTargets.size);
-  log('eng->spa links (para el pivote):', engToSpa.size);
+
+  const bridgeToSpa = new Map();  // idPuente -> spaId (primer español enlazado)
+  {
+    const rl = readline.createInterface({ input: fs.createReadStream(linksCsv), crlfDelay: Infinity });
+    for await (const line of rl) {
+      const tab = line.indexOf('\t');
+      if (tab < 0) continue;
+      const a = line.slice(0, tab);
+      if (!neededTargets.has(a) || bridgeToSpa.has(a)) continue;
+      const b = line.slice(tab + 1).trim();
+      if (spaIds.has(b)) bridgeToSpa.set(a, b);
+    }
+  }
+  log('puentes con español a un salto:', bridgeToSpa.size);
 
   // 4. load only the spa/eng texts we need. Al español hay que sumarle los
   //    destinos alcanzables por pivote, que no están en neededTargets.
   const eng = await loadSentences(engTsv, neededTargets);
   const spaNeeded = new Set(neededTargets);
-  for (const engId of eng.keys()) {
-    const spaId = engToSpa.get(engId);
-    if (spaId) spaNeeded.add(spaId);
-  }
+  for (const spaId of bridgeToSpa.values()) spaNeeded.add(spaId);
   const spa = await loadSentences(spaTsv, spaNeeded);
   log('spa targets resolved:', spa.size, '| eng targets resolved:', eng.size);
 
@@ -185,16 +208,18 @@ async function main() {
     }
     if (!en) continue;
 
-    // Sin español directo, probar el pivote por el inglés enlazado.
+    // Sin español directo, pivote por alguno de los destinos enlazados. Se
+    // prueba primero el inglés: es el puente con más enlaces a español, y deja
+    // el par en-es visible al lado del inglés que ya se está mostrando. Si no,
+    // sirve cualquier otro idioma; el salto es igual de largo.
     let via = 'directo';
     if (!es) {
-      for (const t of set) {
-        if (!eng.has(t)) continue;
-        const spaId = engToSpa.get(t);
+      const bridges = [...set].sort((a, b) => Number(eng.has(b)) - Number(eng.has(a)));
+      for (const t of bridges) {
+        const spaId = bridgeToSpa.get(t);
         if (spaId && spa.has(spaId)) {
           es = spa.get(spaId);
-          engId = t;
-          via = 'pivote';
+          via = eng.has(t) ? 'pivote' : 'pivote-otro';
           break;
         }
       }
@@ -206,14 +231,26 @@ async function main() {
     if (len < MIN_LEN || len > MAX_LEN) continue;
     qualifying.push({ text, es, en, len, via, engId });
   }
-  // Más corta primero, que es lo que sirve como ejemplo; a igual longitud gana
-  // la de español directo, que no arrastra el salto extra del pivote.
-  qualifying.sort((a, b) => a.len - b.len || (a.via === 'directo' ? -1 : 1));
-  const directCount = qualifying.filter((s) => s.via === 'directo').length;
-  log(
-    'qualifying zh sentences (es+en, length-bounded):', qualifying.length,
-    `(directo: ${directCount}, pivote: ${qualifying.length - directCount})`,
+  // Orden de preferencia: la más corta, que es lo que sirve como ejemplo, pero
+  // el tradicional pesa como si la frase fuera TRAD_PENALTY caracteres más
+  // larga. El HSK evalúa simplificado y el corpus de Tatoeba mezcla los dos:
+  // una frase en tradicional le muestra al alumno formas que no está
+  // estudiando. Con la penalización, una tradicional solo gana si además es
+  // bastante más corta, o si no hay ninguna simplificada para esa palabra.
+  // A igualdad, manda la traducción más directa: español directo, luego pivote
+  // por inglés, luego por cualquier otro idioma — cuantos menos saltos, menos
+  // deriva de sentido.
+  const TRAD_PENALTY = 4;
+  const VIA_RANK = { directo: 0, pivote: 1, 'pivote-otro': 2 };
+  for (const s of qualifying) {
+    s.trad = hasTraditional(s.text) ? 1 : 0;
+    s.cost = s.len + s.trad * TRAD_PENALTY;
+  }
+  qualifying.sort(
+    (a, b) => a.cost - b.cost || a.trad - b.trad || VIA_RANK[a.via] - VIA_RANK[b.via],
   );
+  const byVia = qualifying.reduce((acc, s) => ({ ...acc, [s.via]: (acc[s.via] || 0) + 1 }), {});
+  log('qualifying zh sentences (es+en, length-bounded):', qualifying.length, byVia);
 
   // 6. match HSK words -> shortest qualifying sentence containing the word
   const vocab = JSON.parse(fs.readFileSync(VOCAB, 'utf8'));
@@ -243,7 +280,7 @@ async function main() {
           // Marcadas aparte para poder auditarlas o revertirlas sin tocar las
           // de traducción directa: en el pivote el español es traducción del
           // inglés, no del chino.
-          source: sent.via === 'pivote' ? 'tatoeba-pivot' : 'tatoeba',
+          source: sent.via === 'directo' ? 'tatoeba' : 'tatoeba-pivot',
         };
         missing.delete(word);
       }
