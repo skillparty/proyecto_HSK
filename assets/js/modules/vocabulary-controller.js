@@ -61,19 +61,15 @@ class VocabularyController {
                     }));
                 }
 
-                // Load example sentences
-                try {
-                    const sentencesResponse = await fetch('assets/data/hsk_example_sentences.json');
-                    if (sentencesResponse.ok) {
-                        this.app.exampleSentences = await sentencesResponse.json();
-                        this.app.logDebug('[SENTENCES] Loaded dynamic example sentences database');
-                    } else {
-                        this.app.exampleSentences = {};
-                    }
-                } catch (sentencesError) {
-                    this.app.logWarn('[SENTENCES] Failed to load example sentences:', sentencesError);
-                    this.app.exampleSentences = {};
-                }
+                // Las frases de ejemplo NO bloquean el arranque: son 238 KB
+                // gzip y solo se ven en el reverso de la tarjeta, que el
+                // usuario tarda segundos en destapar. Esperarlas acá retrasaba
+                // la primera flashcard por un dato que todavía no se muestra.
+                // Hasta que lleguen, el reverso cae en el bloque de "practicá
+                // con esta palabra", que es el mismo fallback que usa una
+                // palabra sin ejemplo.
+                this.app.exampleSentences = this.app.exampleSentences || {};
+                this.loadExampleSentences();
 
                 this.app.logDebug('[OK] Loaded ' + this.app.vocabulary.length + ' items');
                 this.app.vocabularyLoaded = true;
@@ -103,6 +99,35 @@ class VocabularyController {
 
         this.app.vocabularyPromise = loadTask();
         return this.app.vocabularyPromise;
+    }
+
+    // Fetch en segundo plano, sin await desde loadVocabulary. Se guarda la
+    // promesa para no dispararlo dos veces si se recarga el vocabulario al
+    // cambiar de idioma: el archivo es el mismo para ambos idiomas.
+    loadExampleSentences() {
+        if (this.app.exampleSentencesPromise) return this.app.exampleSentencesPromise;
+
+        this.app.exampleSentencesPromise = fetch('assets/data/hsk_example_sentences.json')
+            .then((response) => {
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                return response.json();
+            })
+            .then((sentences) => {
+                this.app.exampleSentences = sentences;
+                this.app.logDebug('[SENTENCES] Loaded dynamic example sentences database');
+                return sentences;
+            })
+            .catch((error) => {
+                this.app.logWarn('[SENTENCES] Failed to load example sentences:', error);
+                this.app.exampleSentences = {};
+                // Se limpia para que un fallo de red se pueda reintentar en la
+                // próxima carga de vocabulario en vez de quedar sin ejemplos
+                // por el resto de la sesión.
+                this.app.exampleSentencesPromise = null;
+                return {};
+            });
+
+        return this.app.exampleSentencesPromise;
     }
 
     createFallbackVocabulary() {
