@@ -56,6 +56,35 @@ test.describe("frases de ejemplo", () => {
     expect(info.withoutEnglish).toBe(0);
   });
 
+  // Cuatro entradas del vocabulario son patrones correlativos escritos con
+  // puntos suspensivos ('虽然......但是......'). Ninguna frase contiene esa
+  // cadena literal, así que hasta que el pipeline aprendió a partirlos eran las
+  // únicas de HSK1-3 sin ejemplo.
+  test("un patrón correlativo muestra su ejemplo con las dos partes marcadas", async ({
+    page,
+  }) => {
+    const pageErrors = await gotoApp(page);
+    await page.waitForFunction(
+      () => Object.keys(window.app?.exampleSentences || {}).length > 0,
+      { timeout: 20000 },
+    );
+
+    await page.evaluate(() => {
+      const word = window.app.vocabulary.find((w) => w.character === "虽然......但是......");
+      window.app.currentWord = word;
+      window.app.flashcardManager.currentWord = word;
+      window.app.flashcardManager.updateCard();
+    });
+
+    const chinese = page.locator("#full-info .example-section .example-chinese");
+    await expect(chinese).toBeVisible({ timeout: 10000 });
+    await expect(chinese.locator(".highlight-char")).toHaveText(["虽然", "但是"]);
+    // Los puntos del patrón no deben llegar a la pantalla.
+    await expect(chinese).not.toContainText("......");
+
+    expectNoPageErrors(pageErrors);
+  });
+
   test("el reverso de la tarjeta muestra la frase con ES y EN", async ({ page }) => {
     const pageErrors = await gotoApp(page);
     await page.waitForFunction(

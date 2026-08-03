@@ -257,6 +257,37 @@ class PracticeViewController {
         return tones.length > 0 ? tones.join('') : '0';
     }
 
+    // Cuatro entradas del vocabulario son patrones correlativos, no palabras:
+    // '虽然......但是......' y compañía. Sus partes aparecen separadas dentro de
+    // la frase, así que se resalta cada una por su lado y en orden.
+    //
+    // El literal se escapa antes de armar el RegExp: los puntos del patrón son
+    // comodines en una expresión regular, y 虽然......但是 llegaría a marcar
+    // texto que no corresponde.
+    highlightWordInSentence(sentence, character) {
+        if (!sentence || !character) return sentence;
+
+        const wrap = (text) => `<span class="highlight-char">${text}</span>`;
+        const escape = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+        if (!character.includes('......')) {
+            if (!sentence.includes(character)) return sentence;
+            return sentence.replace(new RegExp(escape(character), 'g'), wrap(character));
+        }
+
+        // Una sola marca por parte y avanzando: 才 puede repetirse en la frase
+        // y solo interesa el que forma el patrón.
+        let result = '';
+        let rest = sentence;
+        for (const part of character.split('......').filter(Boolean)) {
+            const at = rest.indexOf(part);
+            if (at < 0) return sentence;
+            result += rest.slice(0, at) + wrap(part);
+            rest = rest.slice(at + part.length);
+        }
+        return result + rest;
+    }
+
     getExampleSentence(word) {
         let example = null;
         if (this.app.exampleSentences && this.app.exampleSentences[word.character]) {
@@ -264,11 +295,7 @@ class PracticeViewController {
         }
 
         if (example) {
-            let highlightedChinese = example.chinese || '';
-            if (word.character && highlightedChinese.includes(word.character)) {
-                const regex = new RegExp(word.character, 'g');
-                highlightedChinese = highlightedChinese.replace(regex, `<span class="highlight-char">${word.character}</span>`);
-            }
+            const highlightedChinese = this.highlightWordInSentence(example.chinese || '', word.character);
 
             const pinyinBlock = example.pinyin ? `<div class="example-pinyin">${this.colorPinyinByTone(example.pinyin)}</div>` : '';
             return `
