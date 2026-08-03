@@ -6,6 +6,11 @@
  * Pipeline:
  *   1. Download + decompress Tatoeba per-language sentences (cmn, spa, eng) + links.
  *   2. Map each Mandarin (cmn) sentence to its Spanish and English translations.
+ *      El español directo escasea (10.7k frases zh con enlace a spa, contra 65k
+ *      con enlace a eng), y era el cuello de botella real: exigir ES+EN directos
+ *      dejaba HSK6 al 10%. Cuando no hay español directo se busca por pivote
+ *      zh -> en -> es, que es lo mismo que Tatoeba muestra como traducción
+ *      indirecta. Esas entradas quedan marcadas con source 'tatoeba-pivot'.
  *   3. For every HSK word, pick the shortest qualifying Mandarin sentence that
  *      contains it and has BOTH a Spanish and English translation.
  *   4. Generate pinyin for the chosen sentence with pinyin-pro.
@@ -87,6 +92,33 @@ async function loadSentences(tsv, keepIds) {
   return map;
 }
 
+// pinyin-pro trata cada letra latina de la frase como un token suelto, así que
+// los nombres propios salen deletreados: 'Tom没有礼貌。' -> 'T o m méi yǒu...'.
+// Se colapsan tomando las palabras latinas de la frase china original y no
+// adivinando sobre el pinyin: 'a', 'e' y 'o' son sílabas válidas y unirlas a
+// ciegas rompería frases legítimas.
+function collapseLatinRuns(chinese, py) {
+  let out = py;
+  for (const word of chinese.match(/[A-Za-z]+/g) || []) {
+    if (word.length < 2) continue;
+    out = out.split(word.split('').join(' ')).join(word);
+  }
+  return out;
+}
+
+// Solo los ids de un tsv. Para el pivote hace falta saber si un id es inglés o
+// español mientras se recorre links.csv, pero no su texto: cargarlo entero
+// serían 2M de frases en inglés en memoria.
+async function idsOf(tsv) {
+  const set = new Set();
+  const rl = readline.createInterface({ input: fs.createReadStream(tsv), crlfDelay: Infinity });
+  for await (const line of rl) {
+    const tab = line.indexOf('\t');
+    if (tab > 0) set.add(line.slice(0, tab));
+  }
+  return set;
+}
+
 async function main() {
   ensureCache();
 
@@ -103,8 +135,12 @@ async function main() {
   const cmn = await loadSentences(cmnTsv);
   log('cmn sentences:', cmn.size);
 
-  // 3. stream links: collect, per cmn id, the set of linked target ids
+  // 3. stream links: collect, per cmn id, the set of linked target ids, y de
+  //    paso los enlaces eng -> * que hacen falta para el pivote al español.
+  const engIds = await idsOf(engTsv);
+  const spaIds = await idsOf(spaTsv);
   const cmnLinks = new Map();   // cmnId -> Set(targetId)
+  const engToSpa = new Map();   // engId -> spaId (primer español enlazado)
   const neededTargets = new Set();
   {
     const rl = readline.createInterface({ input: fs.createReadStream(linksCsv), crlfDelay: Infinity });
@@ -118,34 +154,66 @@ async function main() {
         if (!s) { s = new Set(); cmnLinks.set(a, s); }
         s.add(b);
         neededTargets.add(b);
+      } else if (engIds.has(a) && spaIds.has(b) && !engToSpa.has(a)) {
+        engToSpa.set(a, b);
       }
     }
   }
   log('cmn sentences with links:', cmnLinks.size, '| target ids needed:', neededTargets.size);
+  log('eng->spa links (para el pivote):', engToSpa.size);
 
-  // 4. load only the spa/eng texts we need
-  const spa = await loadSentences(spaTsv, neededTargets);
+  // 4. load only the spa/eng texts we need. Al español hay que sumarle los
+  //    destinos alcanzables por pivote, que no están en neededTargets.
   const eng = await loadSentences(engTsv, neededTargets);
+  const spaNeeded = new Set(neededTargets);
+  for (const engId of eng.keys()) {
+    const spaId = engToSpa.get(engId);
+    if (spaId) spaNeeded.add(spaId);
+  }
+  const spa = await loadSentences(spaTsv, spaNeeded);
   log('spa targets resolved:', spa.size, '| eng targets resolved:', eng.size);
 
   // 5. build qualifying cmn sentences (have both es + en), within length window
   const hanCount = (s) => (s.match(/[一-鿿]/g) || []).length;
   const qualifying = [];
   for (const [id, set] of cmnLinks) {
-    let es = null, en = null;
+    let es = null, en = null, engId = null;
     for (const t of set) {
       if (!es && spa.has(t)) es = spa.get(t);
-      if (!en && eng.has(t)) en = eng.get(t);
+      if (!en && eng.has(t)) { en = eng.get(t); engId = t; }
       if (es && en) break;
     }
-    if (!es || !en) continue;
+    if (!en) continue;
+
+    // Sin español directo, probar el pivote por el inglés enlazado.
+    let via = 'directo';
+    if (!es) {
+      for (const t of set) {
+        if (!eng.has(t)) continue;
+        const spaId = engToSpa.get(t);
+        if (spaId && spa.has(spaId)) {
+          es = spa.get(spaId);
+          engId = t;
+          via = 'pivote';
+          break;
+        }
+      }
+    }
+    if (!es) continue;
+
     const text = cmn.get(id);
     const len = hanCount(text);
     if (len < MIN_LEN || len > MAX_LEN) continue;
-    qualifying.push({ text, es, en, len });
+    qualifying.push({ text, es, en, len, via, engId });
   }
-  qualifying.sort((a, b) => a.len - b.len); // shortest first
-  log('qualifying zh sentences (es+en, length-bounded):', qualifying.length);
+  // Más corta primero, que es lo que sirve como ejemplo; a igual longitud gana
+  // la de español directo, que no arrastra el salto extra del pivote.
+  qualifying.sort((a, b) => a.len - b.len || (a.via === 'directo' ? -1 : 1));
+  const directCount = qualifying.filter((s) => s.via === 'directo').length;
+  log(
+    'qualifying zh sentences (es+en, length-bounded):', qualifying.length,
+    `(directo: ${directCount}, pivote: ${qualifying.length - directCount})`,
+  );
 
   // 6. match HSK words -> shortest qualifying sentence containing the word
   const vocab = JSON.parse(fs.readFileSync(VOCAB, 'utf8'));
@@ -161,15 +229,21 @@ async function main() {
     if (missing.size === 0) break;
     for (const [word] of missing) {
       if (sent.text.includes(word)) {
-        const py = pinyin(sent.text, { toneType: 'symbol', type: 'string' })
-          .replace(/\s+([。，、！？；：،])/g, '$1') // no space before CJK punctuation
-          .trim();
+        const py = collapseLatinRuns(
+          sent.text,
+          pinyin(sent.text, { toneType: 'symbol', type: 'string' })
+            .replace(/\s+([。，、！？；：،])/g, '$1') // no space before CJK punctuation
+            .trim(),
+        );
         generated[word] = {
           chinese: sent.text,
           pinyin: py,
           english: sent.en,
           spanish: sent.es,
-          source: 'tatoeba',
+          // Marcadas aparte para poder auditarlas o revertirlas sin tocar las
+          // de traducción directa: en el pivote el español es traducción del
+          // inglés, no del chino.
+          source: sent.via === 'pivote' ? 'tatoeba-pivot' : 'tatoeba',
         };
         missing.delete(word);
       }
@@ -191,7 +265,11 @@ async function main() {
     const none = b.total - b.curated - b.generated;
     log(`  HSK${lvl}: ${b.total} / ${b.curated} / ${b.generated} / ${none}`);
   }
-  log('total generated:', Object.keys(generated).length);
+  const pivoted = Object.values(generated).filter((e) => e.source === 'tatoeba-pivot').length;
+  log(
+    'total generated:', Object.keys(generated).length,
+    `(español directo: ${Object.keys(generated).length - pivoted}, por pivote: ${pivoted})`,
+  );
 
   // 8. write staging output (does NOT touch app data)
   fs.writeFileSync(path.join(CACHE, 'examples-new.json'), JSON.stringify(generated, null, 1));
@@ -200,4 +278,10 @@ async function main() {
   log('wrote staging: examples-new.json + examples-merged.json (review before merge)');
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+// Importado como módulo desde merge-tatoeba-examples.js, que reusa la
+// normalización de pinyin: solo corre el pipeline si se lo invoca directo.
+if (require.main === module) {
+  main().catch((e) => { console.error(e); process.exit(1); });
+}
+
+module.exports = { collapseLatinRuns };
