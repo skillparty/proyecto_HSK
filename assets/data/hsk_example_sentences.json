@@ -257,6 +257,13 @@
   "spanish": "Bob no sólo interpreta a la guitarra, sino también a la flauta.",
   "source": "tatoeba"
  },
+ "不但......而且......": {
+  "chinese": "她不但漂亮，而且聪明。",
+  "pinyin": "tā bú dàn piào liang， ér qiě cōng ming。",
+  "english": "She is as clever as she is beautiful.",
+  "spanish": "No sólo es guapa, sino que también es inteligente.",
+  "source": "tatoeba"
+ },
  "不可思议": {
   "chinese": "你真是不可思议。",
   "pinyin": "nǐ zhēn shì bù kě sī yì。",
@@ -4643,6 +4650,13 @@
   "spanish": "Tuvimos que mentir para protegernos.",
   "source": "tatoeba"
  },
+ "只有......才......": {
+  "chinese": "只有你才做得到。",
+  "pinyin": "zhǐ yǒu nǐ cái zuò dé dào。",
+  "english": "You're the only one who can do it.",
+  "spanish": "Vos sos el único que puede hacerlo.",
+  "source": "tatoeba-pivot"
+ },
  "只要": {
   "chinese": "只要說不。",
   "pinyin": "zhǐ yào shuō bù。",
@@ -5722,6 +5736,13 @@
   "english": "Yoko avoided answering my question.",
   "spanish": "Yoko sorteó mi pregunta.",
   "source": "tatoeba-pivot"
+ },
+ "因为......所以......": {
+  "chinese": "因为他有钱，所以能去那儿。",
+  "pinyin": "yīn wèi tā yǒu qián， suǒ yǐ néng qù nà ér。",
+  "english": "Because he is wealthy, he can go there.",
+  "spanish": "Como él es rico, puede ir allá.",
+  "source": "tatoeba"
  },
  "因此": {
   "chinese": "她定期去看牙医，因此很少牙疼。",
@@ -18672,6 +18693,13 @@
   "english": "Better to be hated for who you are than loved for who you're not.",
   "spanish": "Mejor ser odiado por lo que eres que querido por lo que no eres.",
   "source": "tatoeba"
+ },
+ "虽然......但是......": {
+  "chinese": "这本书虽然很厚，但是不贵。",
+  "pinyin": "zhè běn shū suī rán hěn hòu， dàn shì bú guì。",
+  "english": "That book is thick, but it's not very expensive.",
+  "spanish": "Ese libro es grueso, pero no muy caro.",
+  "source": "tatoeba-pivot"
  },
  "蚂蚁": {
   "chinese": "有一排蚂蚁在厨房里进进出出。",

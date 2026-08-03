@@ -109,6 +109,31 @@ function collapseLatinRuns(chinese, py) {
   return out;
 }
 
+// Cuatro entradas del vocabulario no son palabras sino patrones gramaticales
+// correlativos, escritos con puntos suspensivos entre las partes:
+// '虽然......但是......', '因为......所以......', '不但......而且......' y
+// '只有......才......'. Ninguna frase contiene esa cadena literal, así que con
+// includes() nunca podían recibir un ejemplo.
+const PATTERN_SEPARATOR = '......';
+
+function splitPatternParts(word) {
+  return word.split(PATTERN_SEPARATOR).filter(Boolean);
+}
+
+// Para un patrón hacen falta todas sus partes y en orden: 虽然 antes que 但是.
+// Para una palabra normal esto se reduce a un includes().
+function sentenceMatchesWord(text, word) {
+  if (!word.includes(PATTERN_SEPARATOR)) return text.includes(word);
+
+  let from = 0;
+  for (const part of splitPatternParts(word)) {
+    const at = text.indexOf(part, from);
+    if (at < 0) return false;
+    from = at + part.length;
+  }
+  return true;
+}
+
 // Caracteres tradicionales de alta frecuencia que no existen en simplificado.
 // No busca ser exhaustivo: alcanza para detectar si una frase está escrita en
 // tradicional, porque cualquier oración normal usa varios de estos.
@@ -265,7 +290,7 @@ async function main() {
   for (const sent of qualifying) {
     if (missing.size === 0) break;
     for (const [word] of missing) {
-      if (sent.text.includes(word)) {
+      if (sentenceMatchesWord(sent.text, word)) {
         const py = collapseLatinRuns(
           sent.text,
           pinyin(sent.text, { toneType: 'symbol', type: 'string' })
