@@ -285,6 +285,13 @@
   "spanish": "Me he estado sintiendo un poco agitado.",
   "source": "tatoeba"
  },
+ "不客气": {
+  "chinese": "不客气。",
+  "pinyin": "bú kè qì。",
+  "english": "You're welcome.",
+  "spanish": "De nada.",
+  "source": "tatoeba-pivot"
+ },
  "不得不": {
   "chinese": "我不得不向她道歉。",
   "pinyin": "wǒ bù dé bú xiàng tā dào qiàn。",
@@ -339,6 +346,13 @@
   "pinyin": "tíng zhǐ， bù rán wǒ jiù kāi qiāng le。",
   "english": "Stop, or I'll shoot.",
   "spanish": "Alto o disparo.",
+  "source": "tatoeba-pivot"
+ },
+ "不由得": {
+  "chinese": "不由得想起了故乡。",
+  "pinyin": "bù yóu dé xiǎng qǐ le gù xiāng。",
+  "english": "I can never forget my hometown.",
+  "spanish": "No puedo evitar acordarme de mi ciudad natal.",
   "source": "tatoeba-pivot"
  },
  "不禁": {
@@ -487,6 +501,13 @@
   "english": "He lost face.",
   "spanish": "Él fue humillado.",
   "source": "tatoeba"
+ },
+ "丢人": {
+  "chinese": "真丢人！",
+  "pinyin": "zhēn diū rén！",
+  "english": "What a shame!",
+  "spanish": "¡Qué pena!",
+  "source": "tatoeba-pivot"
  },
  "两": {
   "chinese": "Sam比Tom小两岁。",
@@ -649,6 +670,13 @@
   "spanish": "Tenemos cinco tipos de kebab.",
   "source": "tatoeba"
  },
+ "临时": {
+  "chinese": "夜幕降临时，孩子们回家了。",
+  "pinyin": "yè mù jiàng lín shí， hái zi men huí jiā le。",
+  "english": "The children returned home at dusk.",
+  "spanish": "Los niños volvieron al caer la noche.",
+  "source": "tatoeba-pivot"
+ },
  "丸": {
   "chinese": "我想要五个肉丸。",
   "pinyin": "wǒ xiǎng yào wǔ gè ròu wán。",
@@ -696,6 +724,13 @@
   "pinyin": "shuí shì zhè jiàn fáng zi de zhǔ rén？",
   "english": "Who is the owner of this house?",
   "spanish": "¿Quién es el dueño de esta casa?",
+  "source": "tatoeba-pivot"
+ },
+ "主任": {
+  "chinese": "在主任不在的时候，办公室由谁来负责？",
+  "pinyin": "zài zhǔ rèn bú zài de shí hòu， bàn gōng shì yóu shuí lái fù zé？",
+  "english": "Who is in charge of the office while the boss is away?",
+  "spanish": "Cuando el jefe sale, ¿quién queda como responsable de la oficina?",
   "source": "tatoeba-pivot"
  },
  "主动": {
@@ -1123,6 +1158,13 @@
   "spanish": "Tom conoce a mucha gente.",
   "source": "tatoeba-pivot"
  },
+ "亦": {
+  "chinese": "盗亦有道。",
+  "pinyin": "dào yì yǒu dào。",
+  "english": "There is honor even among thieves.",
+  "spanish": "Incluso los ladrones tienen un código de honor.",
+  "source": "tatoeba-pivot"
+ },
  "产品": {
   "chinese": "这些产品质量同等。",
   "pinyin": "zhè xiē chǎn pǐn zhì liàng tóng děng。",
@@ -1241,6 +1283,13 @@
   "english": "Guns don't kill people. People kill people.",
   "spanish": "Las armas no matan gente. La gente mata gente.",
   "source": "tatoeba"
+ },
+ "人民币": {
+  "chinese": "请问，我要用美元换人民币，这儿可以换给我人民币吗？",
+  "pinyin": "qǐng wèn， wǒ yào yòng měi yuán huàn rén mín bì， zhè ér kě yǐ huàn gěi wǒ rén mín bì ma？",
+  "english": "Excuse me, I'd like to exchange US dollars for RMB - can I get RMB here?",
+  "spanish": "Disculpe, querría cambiar dólares a yuanes, ¿puedo obtener yuanes aquí?",
+  "source": "tatoeba-pivot"
  },
  "人物": {
   "chinese": "他是作家，還是政治人物。",
@@ -1561,6 +1610,13 @@
   "spanish": "Él se graduó de Cambridge con honores.",
   "source": "tatoeba-pivot"
  },
+ "优点": {
+  "chinese": "你们的优点和缺点是什么？",
+  "pinyin": "nǐ men de yōu diǎn hé quē diǎn shì shén me？",
+  "english": "What are your strengths and weaknesses?",
+  "spanish": "¿Cuáles son sus cualidades y sus defectos?",
+  "source": "tatoeba-pivot"
+ },
  "优秀": {
   "chinese": "Maja Keuc是位优秀的女歌手。",
   "pinyin": "Maja   Keuc shì wèi yōu xiù de nǚ gē shǒu。",
@@ -1644,6 +1700,13 @@
   "english": "The news made her sad.",
   "spanish": "Esta noticia la puso triste.",
   "source": "tatoeba"
+ },
+ "伪造": {
+  "chinese": "这是一个伪造品。",
+  "pinyin": "zhè shì yí gè wěi zào pǐn。",
+  "english": "It's a fake.",
+  "spanish": "Es una farsa.",
+  "source": "tatoeba-pivot"
  },
  "估计": {
   "chinese": "我们估计能在两周内到那个地方。",
@@ -2057,6 +2120,13 @@
   "spanish": "He perdido la confianza en usted.",
   "source": "tatoeba-pivot"
  },
+ "信念": {
+  "chinese": "有信念。",
+  "pinyin": "yǒu xìn niàn。",
+  "english": "Have faith.",
+  "spanish": "Ten fe.",
+  "source": "tatoeba-pivot"
+ },
  "信息": {
   "chinese": "这些信息对我们非常重要。",
   "pinyin": "zhè xiē xìn xī duì wǒ men fēi cháng zhòng yào。",
@@ -2181,6 +2251,13 @@
   "pinyin": "wǒ zhèng zài zhí bān。",
   "english": "I am on duty now.",
   "spanish": "Estoy de guardia ahora.",
+  "source": "tatoeba-pivot"
+ },
+ "倾向": {
+  "chinese": "我会更倾向于第二句话。",
+  "pinyin": "wǒ huì gèng qīng xiàng yú dì èr jù huà。",
+  "english": "I would prefer the second sentence.",
+  "spanish": "Preferiría la segunda frase.",
   "source": "tatoeba-pivot"
  },
  "假": {
@@ -2385,6 +2462,13 @@
   "english": "He is full of energy.",
   "spanish": "Él está lleno de energía.",
   "source": "tatoeba"
+ },
+ "充电器": {
+  "chinese": "我的手机充电器掉了。",
+  "pinyin": "wǒ de shǒu jī chōng diàn qì diào le。",
+  "english": "My smartphone charger fell.",
+  "spanish": "Perdí el cargador de mi teléfono.",
+  "source": "tatoeba-pivot"
  },
  "充足": {
   "chinese": "我們有充足的時間。",
@@ -2837,6 +2921,13 @@
   "pinyin": "chūn jié， jí nóng lì xīn nián。",
   "english": "Spring Festival is also known as Chinese New Year.",
   "spanish": "El Festival de Primavera es también conocido como el Año Nuevo Chino.",
+  "source": "tatoeba-pivot"
+ },
+ "农村": {
+  "chinese": "在城市生活和在农村生活很不同。",
+  "pinyin": "zài chéng shì shēng huó hé zài nóng cūn shēng huó hěn bù tóng。",
+  "english": "Living in the city is really different to living in the country.",
+  "spanish": "Vivir en la ciudad es bastante diferente que vivir en el campo.",
   "source": "tatoeba-pivot"
  },
  "农民": {
@@ -3315,6 +3406,13 @@
   "spanish": "No dependas demasiado de otros.",
   "source": "tatoeba-pivot"
  },
+ "刮风": {
+  "chinese": "已经刮风两天了。",
+  "pinyin": "yǐ jīng guā fēng liǎng tiān le。",
+  "english": "It has been windy for two days.",
+  "spanish": "Lleva dos días haciendo viento.",
+  "source": "tatoeba-manual-es"
+ },
  "到": {
   "chinese": "你做到啦！",
   "pinyin": "nǐ zuò dào lā！",
@@ -3363,6 +3461,13 @@
   "english": "The American police are in blue uniforms.",
   "spanish": "Los policías estadounidenses visten uniforme azul.",
   "source": "tatoeba"
+ },
+ "制止": {
+  "chinese": "制止她！",
+  "pinyin": "zhì zhǐ tā！",
+  "english": "Stop her!",
+  "spanish": "¡Paradla!",
+  "source": "tatoeba-pivot"
  },
  "制造": {
   "chinese": "他们知道如何制造原子弹。",
@@ -3587,6 +3692,13 @@
   "english": "Animals are afraid of fire.",
   "spanish": "Los animales tienen miedo del fuego.",
   "source": "tatoeba"
+ },
+ "动画片": {
+  "chinese": "我想学日语，但是我不喜欢看日本动画片。",
+  "pinyin": "wǒ xiǎng xué rì yǔ， dàn shì wǒ bù xǐ huan kàn rì běn dòng huà piàn。",
+  "english": "I want to learn Japanese but I don't like watching anime.",
+  "spanish": "Quiero aprender japonés, pero no me gusta ver el ánime.",
+  "source": "tatoeba-pivot"
  },
  "助手": {
   "chinese": "助手拿了钱。",
@@ -3979,6 +4091,13 @@
   "spanish": "Aunque tengan una buena carta de vinos, yo tampoco quiero cenar aquí.",
   "source": "tatoeba"
  },
+ "即便": {
+  "chinese": "即便是小孩子也能做到呢。",
+  "pinyin": "jí biàn shì xiǎo hái zi yě néng zuò dào ne。",
+  "english": "Even a child can do it.",
+  "spanish": "Eso puede hacerlo hasta un niño.",
+  "source": "tatoeba-pivot"
+ },
  "却": {
   "chinese": "我要的是茶，而他却给了我一杯咖啡。",
   "pinyin": "wǒ yào de shì chá， ér tā què gěi le wǒ yì bēi kā fēi。",
@@ -4160,6 +4279,13 @@
   "spanish": "Este tenedor está sucio.",
   "source": "tatoeba"
  },
+ "及早": {
+  "chinese": "盡可能及早拜訪您。",
+  "pinyin": "jìn kě néng jí zǎo bài fǎng nín。",
+  "english": "I'll come as soon as I can.",
+  "spanish": "Vendré tan pronto como sea posible.",
+  "source": "tatoeba-pivot"
+ },
  "及时": {
   "chinese": "我们会及时赶到吗?",
   "pinyin": "wǒ men huì jí shí gǎn dào ma ?",
@@ -4200,6 +4326,13 @@
   "pinyin": "shǒu xiān， wǒ yào tīng tīng shuāng fāng de yì jiàn。",
   "english": "First, I should hear both sides.",
   "spanish": "Primero, debería escuchar ambas partes.",
+  "source": "tatoeba-pivot"
+ },
+ "双胞胎": {
+  "chinese": "汉妮和南妮是双胞胎。",
+  "pinyin": "hàn nī hé nán nī shì shuāng bāo tāi。",
+  "english": "Hanni and Nanni are twins.",
+  "spanish": "Hanni y Nanni son hermanas gemelas.",
   "source": "tatoeba-pivot"
  },
  "反复": {
@@ -4278,6 +4411,13 @@
   "english": "China's developing too quickly.",
   "spanish": "El desarrollo de China es demasiado rápido.",
   "source": "tatoeba"
+ },
+ "发布": {
+  "chinese": "房间挤满了等待发布会开始的记者。",
+  "pinyin": "fáng jiān jǐ mǎn le děng dài fā bù huì kāi shǐ de jì zhě。",
+  "english": "The room was jam-packed with reporters waiting for the press conference to begin.",
+  "spanish": "La sala estaba repleta de periodistas que estaban esperando que comenzara la rueda de prensa.",
+  "source": "tatoeba-pivot"
  },
  "发愁": {
   "chinese": "不要为这事发愁。",
@@ -4592,6 +4732,13 @@
   "pinyin": "wǒ men dé chū jié lùn， zhè ge jì huà mù qián shì bù kě xíng de。",
   "english": "We have come to the conclusion that this plan is not feasible currently.",
   "spanish": "Hemos llegado a la conclusión de que este plan no es viable actualmente.",
+  "source": "tatoeba-pivot"
+ },
+ "可见": {
+  "chinese": "肉眼可见。",
+  "pinyin": "ròu yǎn kě jiàn。",
+  "english": "It is visible to the naked eye.",
+  "spanish": "Es visible a simple vista.",
   "source": "tatoeba-pivot"
  },
  "可观": {
@@ -5018,6 +5165,13 @@
   "spanish": "¿Por cuánto tiempo se quedarán?",
   "source": "tatoeba"
  },
+ "呈现": {
+  "chinese": "他的脸上呈现了愤怒。",
+  "pinyin": "tā de liǎn shàng chéng xiàn le fèn nù。",
+  "english": "Anger showed on his face.",
+  "spanish": "La ira se dibujó en su cara.",
+  "source": "tatoeba-pivot"
+ },
  "告诉": {
   "chinese": "他都告诉我了。",
   "pinyin": "tā dōu gào sù wǒ le。",
@@ -5130,6 +5284,13 @@
   "spanish": "Amor y paz.",
   "source": "tatoeba"
  },
+ "和气": {
+  "chinese": "和气点。",
+  "pinyin": "hé qì diǎn。",
+  "english": "Be nice.",
+  "spanish": "Sé agradable.",
+  "source": "tatoeba-pivot"
+ },
  "和睦": {
   "chinese": "湯姆和瑪麗就是沒法兒和睦相處。",
   "pinyin": "tāng mǔ hé mǎ lí jiù shì méi fǎ ér hé mù xiāng chǔ。",
@@ -5157,6 +5318,13 @@
   "english": "The coffee is bad.",
   "spanish": "El café no es bueno.",
   "source": "tatoeba"
+ },
+ "咨询": {
+  "chinese": "好的，您想咨询什么事情？",
+  "pinyin": "hǎo de， nín xiǎng zī xún shén me shì qíng？",
+  "english": "OK, what would you like advice on?",
+  "spanish": "Bien, ¿en qué le gustaría ser asesorado?",
+  "source": "tatoeba-pivot"
  },
  "咬": {
   "chinese": "我们猜这是一种被蛇咬伤的毒。",
@@ -5298,6 +5466,13 @@
   "spanish": "¡Oh no! ¡Casi lo olvido!",
   "source": "tatoeba-pivot"
  },
+ "售货员": {
+  "chinese": "客人和售货员打了2小时电话。",
+  "pinyin": "kè rén hé shòu huò yuán dǎ le 2 xiǎo shí diàn huà。",
+  "english": "The customer and the salesman spoke for two hours on the phone.",
+  "spanish": "El cliente ha estado dos horas al teléfono con el vendedor.",
+  "source": "tatoeba-pivot"
+ },
  "唯一": {
   "chinese": "这是我唯一关心的。",
   "pinyin": "zhè shì wǒ wéi yī guān xīn de。",
@@ -5346,6 +5521,13 @@
   "english": "I am going to the shop.",
   "spanish": "Voy a la tienda.",
   "source": "tatoeba"
+ },
+ "商量": {
+  "chinese": "我不知道该和谁商量好。",
+  "pinyin": "wǒ bù zhī dào gāi hé shuí shāng liáng hǎo。",
+  "english": "I don't know who to consult with.",
+  "spanish": "No sé a quién debo dirigirme.",
+  "source": "tatoeba-pivot"
  },
  "啊": {
   "chinese": "你真高啊！",
@@ -5827,6 +6009,13 @@
   "spanish": "¿A qué distancia está el aeropuerto?",
   "source": "tatoeba"
  },
+ "场合": {
+  "chinese": "不会看场合。",
+  "pinyin": "bú huì kàn chǎng hé。",
+  "english": "Unable to sense the situation.",
+  "spanish": "Desubicado.",
+  "source": "tatoeba-pivot"
+ },
  "场所": {
   "chinese": "海滩是一个供孩子们玩乐的理想场所。",
   "pinyin": "hǎi tān shì yí gè gòng hái zi men wán lè de lǐ xiǎng chǎng suǒ。",
@@ -6043,6 +6232,13 @@
   "english": "The city was full of starving soldiers.",
   "spanish": "La ciudad estaba llena de soldados hambrientos.",
   "source": "tatoeba"
+ },
+ "壮丽": {
+  "chinese": "我从没见过那么壮丽的日落景色。",
+  "pinyin": "wǒ cóng méi jiàn guò nà me zhuàng lì de rì luò jǐng sè。",
+  "english": "Never have I seen such a beautiful sunset.",
+  "spanish": "Jamás había visto una puesta de sol tan espléndida.",
+  "source": "tatoeba-pivot"
  },
  "声明": {
   "chinese": "变量的声明在C和C++中极其重要。",
@@ -6865,6 +7061,13 @@
   "english": "We are all students.",
   "spanish": "Todos nosotros somos estudiantes."
  },
+ "学说": {
+  "chinese": "约翰·道尔顿是原子学说的创始人",
+  "pinyin": "yuē hàn · dào ěr dùn shì yuán zǐ xué shuō de chuàng shǐ rén",
+  "english": "John Dalton was the creator of the atomic theory.",
+  "spanish": "John Dalton fue el creador de la teoría atómica.",
+  "source": "tatoeba-pivot"
+ },
  "孩子": {
   "chinese": "她愛孩子。",
   "pinyin": "tā ài hái zi。",
@@ -7150,6 +7353,13 @@
   "pinyin": "píng děng shì yóu xiàn fǎ bǎo zhàng de。",
   "english": "Equality is guaranteed by the Constitution.",
   "spanish": "La igualdad es garantizada por la constitución.",
+  "source": "tatoeba-pivot"
+ },
+ "宫殿": {
+  "chinese": "他出生在一个宫殿里，那宫殿已经不存在了。",
+  "pinyin": "tā chū shēng zài yí gè gōng diàn lǐ， nà gōng diàn yǐ jīng bù cún zài le。",
+  "english": "He was born in a palace that isn't there any more.",
+  "spanish": "Él nació en un castillo que hoy en día ya no existe.",
   "source": "tatoeba-pivot"
  },
  "宰": {
@@ -7459,6 +7669,13 @@
   "spanish": "Por favor, ten más cuidado en el futuro.",
   "source": "tatoeba-pivot"
  },
+ "将近": {
+  "chinese": "已将近十点了。该是睡觉的时候了。",
+  "pinyin": "yǐ jiāng jìn shí diǎn le。 gāi shì shuì jiào de shí hòu le。",
+  "english": "It's close to ten o'clock. It's about time we went to bed.",
+  "spanish": "Son casi las 10. Es hora de dormir.",
+  "source": "tatoeba-pivot"
+ },
  "尊敬": {
   "chinese": "Tom尊敬他的父母。",
   "pinyin": "Tom zūn jìng tā de fù mǔ。",
@@ -7668,6 +7885,13 @@
   "english": "After the residents leave, the house is empty.",
   "spanish": "Después de que los residentes se fueron, la casa quedó vacía.",
   "source": "tatoeba"
+ },
+ "居然": {
+  "chinese": "我没想到今天居然会哭的。",
+  "pinyin": "wǒ méi xiǎng dào jīn tiān jū rán huì kū de。",
+  "english": "I never expected I would end up crying today.",
+  "spanish": "Hoy me había propuesto no llorar.",
+  "source": "tatoeba-pivot"
  },
  "屈服": {
   "chinese": "你不應該屈服在誘惑之下。",
@@ -8198,6 +8422,13 @@
   "pinyin": "tā yǒu yōu mò gǎn。",
   "english": "She has a sense of humor.",
   "spanish": "Ella tiene sentido del humor.",
+  "source": "tatoeba-pivot"
+ },
+ "广告": {
+  "chinese": "那家公司在广告上花了很多钱。",
+  "pinyin": "nà jiā gōng sī zài guǎng gào shàng huā le hěn duō qián。",
+  "english": "The company spends a lot of money on advertising.",
+  "spanish": "Esta compañía ha gastado mucho dinero en publicidad.",
   "source": "tatoeba-pivot"
  },
  "广场": {
@@ -8795,6 +9026,13 @@
   "spanish": "¡No hay quien te aguante!",
   "source": "tatoeba"
  },
+ "忍耐": {
+  "chinese": "忍耐是有限度的。",
+  "pinyin": "rěn nài shì yǒu xiàn dù de。",
+  "english": "Patience has its limits.",
+  "spanish": "Soportar puede ser insoportable.",
+  "source": "tatoeba-pivot"
+ },
  "忘记": {
   "chinese": "别忘记关窗户。",
   "pinyin": "bié wàng jì guān chuāng hù。",
@@ -8815,6 +9053,13 @@
   "english": "I'm busy all the time.",
   "spanish": "Siempre estoy ocupado.",
   "source": "tatoeba"
+ },
+ "忠实": {
+  "chinese": "他忠实地实行了该计划。",
+  "pinyin": "tā zhōng shí dì shí xíng le gāi jì huà。",
+  "english": "He carried out the scheme faithfully.",
+  "spanish": "Él llevó a cabo el plan de forma expeditiva.",
+  "source": "tatoeba-pivot"
  },
  "快": {
   "chinese": "生日快乐，Muiriel！",
@@ -9152,6 +9397,13 @@
   "spanish": "La situación empeora día a día.",
   "source": "tatoeba"
  },
+ "情景": {
+  "chinese": "我决不会忘记去年与总统握手的情景。",
+  "pinyin": "wǒ jué bú huì wàng jì qù nián yǔ zǒng tǒng wò shǒu de qíng jǐng。",
+  "english": "I'll never forget shaking the President's hand last year.",
+  "spanish": "El año pasado le estreché la mano al presidente; es algo que no olvidaré nunca.",
+  "source": "tatoeba-pivot"
+ },
  "情理": {
   "chinese": "他说的话不合情理。",
   "pinyin": "tā shuō de huà bù hé qíng lǐ。",
@@ -9242,6 +9494,13 @@
   "english": "Silence gives consent.",
   "spanish": "Quien calla otorga.",
   "source": "tatoeba"
+ },
+ "意图": {
+  "chinese": "政府明确宣布了降税的意图。",
+  "pinyin": "zhèng fǔ míng què xuān bù le jiàng shuì de yì tú。",
+  "english": "The government clearly stated its intention to lower taxes.",
+  "spanish": "El gobierno declaró explícita su intención de bajar los impuestos.",
+  "source": "tatoeba-pivot"
  },
  "意外": {
   "chinese": "那件意外是在甚麼地方發生的？",
@@ -9542,6 +9801,13 @@
   "spanish": "Haz el amor y no la guerra.",
   "source": "tatoeba"
  },
+ "战役": {
+  "chinese": "很多士兵在这场战役中严重受伤。",
+  "pinyin": "hěn duō shì bīng zài zhè chǎng zhàn yì zhōng yán zhòng shòu shāng。",
+  "english": "Many soldiers suffered terrible wounds in the battle.",
+  "spanish": "Muchos soldados sufrieron terribles heridas en la lucha.",
+  "source": "tatoeba-pivot"
+ },
  "战斗": {
   "chinese": "我会战斗至死。",
   "pinyin": "wǒ huì zhàn dòu zhì sǐ。",
@@ -9605,6 +9871,13 @@
   "spanish": "Este es un abanico chino.",
   "source": "tatoeba-pivot"
  },
+ "手势": {
+  "chinese": "她给我打了一个看不懂的手势。",
+  "pinyin": "tā gěi wǒ dǎ le yí gè kàn bù dǒng de shǒu shì。",
+  "english": "She gave me a hand gesture I didn't understand.",
+  "spanish": "Ella me hizo una señal que no capté.",
+  "source": "tatoeba-pivot"
+ },
  "手套": {
   "chinese": "湯姆買了新手套。",
   "pinyin": "tāng mǔ mǎi le xīn shǒu tào。",
@@ -9639,6 +9912,13 @@
   "english": "Do you have a cellphone?",
   "spanish": "¿Tiene móvil?",
   "source": "tatoeba"
+ },
+ "手续": {
+  "chinese": "我们去办一下手续吧。",
+  "pinyin": "wǒ men qù bàn yí xià shǒu xù ba。",
+  "english": "Let's deal with the formalities.",
+  "spanish": "Acabemos con las formalidades.",
+  "source": "tatoeba-pivot"
  },
  "手表": {
   "chinese": "我丢了手表 。",
@@ -9694,6 +9974,13 @@
   "pinyin": "nǎi nai qù shì ràng quán jiā dōu shòu le dǎ jī。",
   "english": "Grandmother's passing away came as a great blow to the entire family.",
   "spanish": "El fallecimiento de la abuela fue un mazazo para toda la familia.",
+  "source": "tatoeba-pivot"
+ },
+ "打包": {
+  "chinese": "我当时正忙着打包，因为我两天后要去法国。",
+  "pinyin": "wǒ dāng shí zhèng máng zhe dǎ bāo， yīn wèi wǒ liǎng tiān hòu yào qù fǎ guó。",
+  "english": "I was busy packing, because I was leaving for France in two days.",
+  "spanish": "Estaba ocupado haciendo el equipaje porque tengo que ir a Francia dentro de dos días.",
   "source": "tatoeba-pivot"
  },
  "打印": {
@@ -9779,6 +10066,13 @@
   "english": "I intend to go there.",
   "spanish": "Pienso ir allí.",
   "source": "tatoeba"
+ },
+ "打篮球": {
+  "chinese": "打篮球很有趣。",
+  "pinyin": "dǎ lán qiú hěn yǒu qù。",
+  "english": "Basketball is very fun to play.",
+  "spanish": "Jugar al baloncesto es muy divertido.",
+  "source": "tatoeba-manual-es"
  },
  "打量": {
   "chinese": "他把我從頭到腳打量了一番。",
@@ -9976,6 +10270,13 @@
   "spanish": "Prefiero morir a rendirme.",
   "source": "tatoeba"
  },
+ "抗议": {
+  "chinese": "美国的工人开始抗议。",
+  "pinyin": "měi guó de gōng rén kāi shǐ kàng yì。",
+  "english": "American workers began to protest.",
+  "spanish": "Los trabajadores estadounidenses comenzaron a protestar.",
+  "source": "tatoeba-pivot"
+ },
  "折": {
   "chinese": "再折磨他也没用，他不会招供的。",
   "pinyin": "zài zhé mó tā yě méi yòng， tā bú huì zhāo gòng de。",
@@ -10038,6 +10339,13 @@
   "english": "My passport was stolen.",
   "spanish": "Me han robado el pasaporte.",
   "source": "tatoeba"
+ },
+ "报仇": {
+  "chinese": "你杀了我的父亲，今天我要报仇。",
+  "pinyin": "nǐ shā le wǒ de fù qīn， jīn tiān wǒ yào bào chóu。",
+  "english": "You killed my father. Today, I want revenge.",
+  "spanish": "Mataste a mi padre, y hoy me vengaré.",
+  "source": "tatoeba-pivot"
  },
  "报名": {
   "chinese": "您需要带两张本人的白底报名照。",
@@ -10886,6 +11194,13 @@
   "spanish": "El bebé se quedó dormido en la cuna.",
   "source": "tatoeba-pivot"
  },
+ "摇滚": {
+  "chinese": "日本的年轻人喜爱摇滚乐和爵士乐。",
+  "pinyin": "rì běn de nián qīng rén xǐ ài yáo gǔn yuè hé jué shì yuè。",
+  "english": "Japanese young people like rock and jazz music.",
+  "spanish": "Los jóvenes japoneses adoran el rock y el jazz.",
+  "source": "tatoeba-pivot"
+ },
  "摊": {
   "chinese": "Tatoeba：你收到了一条私信？那你多半是摊上事了……",
   "pinyin": "Tatoeba： nǐ shōu dào le yì tiáo sī xìn？ nà nǐ duō bàn shì tān shàng shì le … …",
@@ -11011,6 +11326,13 @@
   "english": "That is a pencil.",
   "spanish": "Eso es un lápiz.",
   "source": "tatoeba"
+ },
+ "支出": {
+  "chinese": "生活支出急剧上涨。",
+  "pinyin": "shēng huó zhī chū jí jù shàng zhǎng。",
+  "english": "Living costs have increased rapidly.",
+  "spanish": "El coste de la vida ha aumentado drásticamente.",
+  "source": "tatoeba-pivot"
  },
  "支持": {
   "chinese": "我支持政治改革。",
@@ -11656,6 +11978,13 @@
   "spanish": "¡Feliz cumpleaños, Muiriel!",
   "source": "tatoeba"
  },
+ "日历": {
+  "chinese": "在西班牙日历中，一周的开始是周一。",
+  "pinyin": "zài xī bān yá rì lì zhōng， yì zhōu de kāi shǐ shì zhōu yī。",
+  "english": "In the Spanish calendar, the week begins with Monday.",
+  "spanish": "En el calendario español, la semana empieza el lunes.",
+  "source": "tatoeba-pivot"
+ },
  "日子": {
   "chinese": "今天是个好日子。",
   "pinyin": "jīn tiān shì gè hǎo rì zi。",
@@ -11726,6 +12055,13 @@
   "spanish": "¿Te lo has pasado bien?",
   "source": "tatoeba-pivot"
  },
+ "时刻": {
+  "chinese": "我们的方案在最后的时刻失败了。",
+  "pinyin": "wǒ men de fāng àn zài zuì hòu de shí kè shī bài le。",
+  "english": "Our plans fell through at the last minute.",
+  "spanish": "Nuestros planes fracasaron en el último minuto.",
+  "source": "tatoeba-pivot"
+ },
  "时尚": {
   "chinese": "跟上最近潮流时尚是件非常花钱的事儿。",
   "pinyin": "gēn shàng zuì jìn cháo liú shí shàng shì jiàn fēi cháng huā qián de shì ér。",
@@ -11740,12 +12076,26 @@
   "spanish": "A grandes males, grandes remedios.",
   "source": "tatoeba-pivot"
  },
+ "时机": {
+  "chinese": "好时机。",
+  "pinyin": "hǎo shí jī。",
+  "english": "Nice timing.",
+  "spanish": "Justo a tiempo.",
+  "source": "tatoeba-pivot"
+ },
  "时间": {
   "chinese": "时间飞逝。",
   "pinyin": "shí jiān fēi shì。",
   "english": "Time flies.",
   "spanish": "El tiempo vuela.",
   "source": "tatoeba"
+ },
+ "时髦": {
+  "chinese": "短裙不时髦了。",
+  "pinyin": "duǎn qún bù shí máo le。",
+  "english": "The short skirt is out of fashion.",
+  "spanish": "Las faldas cortas ya no están de moda.",
+  "source": "tatoeba-pivot"
  },
  "旷课": {
   "chinese": "汤姆总是旷课。",
@@ -11961,6 +12311,13 @@
   "spanish": "IA quiere decir Inteligencia Artificial.",
   "source": "tatoeba-pivot"
  },
+ "暂时": {
+  "chinese": "暂时下线洗澡吃饭，过40分左右回来!",
+  "pinyin": "zàn shí xià xiàn xǐ zǎo chī fàn， guò 4 0 fēn zuǒ yòu huí lái !",
+  "english": "Break for bath & food, back in about 40 minutes!",
+  "spanish": "Me desconecto para ducharme y cenar, en unos 40 minutos vuelvo.",
+  "source": "tatoeba-pivot"
+ },
  "暖和": {
   "chinese": "這條被子很暖和。",
   "pinyin": "zhè tiáo bèi zi hěn nuǎn huo。",
@@ -11987,6 +12344,13 @@
   "pinyin": "bào lì shì shè huì de ái zhèng。",
   "english": "Violence is the cancer of our society.",
   "spanish": "La violencia es el cáncer de nuestra sociedad.",
+  "source": "tatoeba-pivot"
+ },
+ "暴露": {
+  "chinese": "瑪麗著裝暴露。",
+  "pinyin": "mǎ lí zhù zhuāng bào lù。",
+  "english": "Mary is scantily clad.",
+  "spanish": "María está ligera de ropa.",
   "source": "tatoeba-pivot"
  },
  "曲子": {
@@ -13105,6 +13469,13 @@
   "spanish": "Estás bien.",
   "source": "tatoeba-pivot"
  },
+ "气质": {
+  "chinese": "这些年空气质量恶化了。",
+  "pinyin": "zhè xiē nián kōng qì zhì liàng è huà le。",
+  "english": "Air quality has deteriorated these past few years.",
+  "spanish": "La calidad del aire a decaído durante los últimos años.",
+  "source": "tatoeba-pivot"
+ },
  "氧气": {
   "chinese": "爱就像氧气。",
   "pinyin": "ài jiù xiàng yǎng qì。",
@@ -13299,11 +13670,25 @@
   "spanish": "Los ríos se inundaron con la lluvia torrencial.",
   "source": "tatoeba-pivot"
  },
+ "波浪": {
+  "chinese": "波浪拍打着海岸。",
+  "pinyin": "bō làng pāi dǎ zhe hǎi àn。",
+  "english": "Waves are beating the shore.",
+  "spanish": "Las olas están rompiendo en la costa.",
+  "source": "tatoeba-pivot"
+ },
  "注册": {
   "chinese": "我注册了，现在该干什么呢？",
   "pinyin": "wǒ zhù cè le， xiàn zài gāi gàn shén me ne？",
   "english": "What do I have to do now that I'm registered?",
   "spanish": "¿Cómo opero ahora que estoy registrado?",
+  "source": "tatoeba-pivot"
+ },
+ "注射": {
+  "chinese": "我很平静，直到我看到了注射器。",
+  "pinyin": "wǒ hěn píng jìng， zhí dào wǒ kàn dào le zhù shè qì。",
+  "english": "I was calm until I saw the syringe.",
+  "spanish": "Estaba tranquilo hasta que vi la jeringuilla.",
   "source": "tatoeba-pivot"
  },
  "注意": {
@@ -14096,6 +14481,13 @@
   "spanish": "Debemos estar siempre preparados para los desastres.",
   "source": "tatoeba-pivot"
  },
+ "炉灶": {
+  "chinese": "约翰离开了公司，另起炉灶。",
+  "pinyin": "yuē hàn lí kāi le gōng sī， lìng qǐ lú zào。",
+  "english": "John turned his back on the company and started on his own.",
+  "spanish": "John ha abandonado esta empresa y ha comenzado su propio negocio.",
+  "source": "tatoeba-pivot"
+ },
  "炎热": {
   "chinese": "这里夏天非常炎热。",
   "pinyin": "zhè lǐ xià tiān fēi cháng yán rè。",
@@ -14178,6 +14570,13 @@
   "pinyin": "tā rè lèi yíng kuàng。",
   "english": "Tears filled her eyes.",
   "spanish": "Las lágrimas rebosaban de sus ojos.",
+  "source": "tatoeba-pivot"
+ },
+ "热爱": {
+  "chinese": "他们是热爱和平的人。",
+  "pinyin": "tā men shì rè ài hé píng de rén。",
+  "english": "They are a peace-loving people.",
+  "spanish": "Ellos son un pueblo amante de la paz.",
   "source": "tatoeba-pivot"
  },
  "烹饪": {
@@ -14592,6 +14991,13 @@
   "spanish": "El león es el rey de los animales.",
   "source": "tatoeba"
  },
+ "狼吞虎咽": {
+  "chinese": "他狼吞虎咽地吃了一顿。",
+  "pinyin": "tā láng tūn hǔ yàn dì chī le yí dùn。",
+  "english": "He devoured his meal.",
+  "spanish": "Él devoraba su almuerzo.",
+  "source": "tatoeba-pivot"
+ },
  "猜": {
   "chinese": "我猜想你可能是对的。",
   "pinyin": "wǒ cāi xiǎng nǐ kě néng shì duì de。",
@@ -14659,6 +15065,13 @@
   "pinyin": "nǐ bù gāi wán nòng tā de gǎn qíng。",
   "english": "You should not trifle with his feelings.",
   "spanish": "No deberías jugar con sus sentimientos.",
+  "source": "tatoeba-pivot"
+ },
+ "玩意儿": {
+  "chinese": "能把那玩意儿递给我吗？",
+  "pinyin": "néng bǎ nà wán yì ér dì gěi wǒ ma？",
+  "english": "Can you pass me that thingamajig?",
+  "spanish": "¿Puedes pasarme esta cosa?",
   "source": "tatoeba-pivot"
  },
  "环境": {
@@ -15241,6 +15654,20 @@
   "spanish": "Su piel es tan blanca como la nieve.",
   "source": "tatoeba-pivot"
  },
+ "皮革": {
+  "chinese": "這靴是用皮革做的。",
+  "pinyin": "zhè xuē shì yòng pí gé zuò de。",
+  "english": "These boots are made of leather.",
+  "spanish": "Estas botas son de cuero.",
+  "source": "tatoeba-pivot"
+ },
+ "皮鞋": {
+  "chinese": "汤姆买了一双黑色皮鞋。",
+  "pinyin": "tāng mǔ mǎi le yì shuāng hēi sè pí xié。",
+  "english": "Tom bought a pair of black leather shoes.",
+  "spanish": "Tom compró un par de zapatos de cuero negros.",
+  "source": "tatoeba-manual-es"
+ },
  "盆": {
   "chinese": "覆盆子很貴。",
   "pinyin": "fù pén zǐ hěn guì。",
@@ -15681,6 +16108,13 @@
   "spanish": "Cuando le hago una pregunta ella me mira enfurecida.",
   "source": "tatoeba"
  },
+ "矛盾": {
+  "chinese": "你在自相矛盾。",
+  "pinyin": "nǐ zài zì xiāng máo dùn。",
+  "english": "You're contradicting yourself.",
+  "spanish": "Te estás contradiciendo.",
+  "source": "tatoeba-pivot"
+ },
  "知识": {
   "chinese": "知识就是力量。",
   "pinyin": "zhī shi jiù shì lì liàng。",
@@ -15925,6 +16359,13 @@
   "english": "My grandfather is very healthy.",
   "spanish": "Mi abuelo está muy sano.",
   "source": "tatoeba"
+ },
+ "祝贺": {
+  "chinese": "祝贺你。",
+  "pinyin": "zhù hè nǐ。",
+  "english": "Congratulations!",
+  "spanish": "¡Felicidades!",
+  "source": "tatoeba-pivot"
  },
  "神仙": {
   "chinese": "神仙只在童话里存在。",
@@ -16206,6 +16647,13 @@
   "spanish": "Sin aire, el hombre no puede existir.",
   "source": "tatoeba"
  },
+ "空白": {
+  "chinese": "如果沒有你，我的人生就會變得空白一片。",
+  "pinyin": "rú guǒ méi yǒu nǐ， wǒ de rén shēng jiù huì biàn dé kòng bái yí piàn。",
+  "english": "My life would be completely empty without you.",
+  "spanish": "Sin ti, mi vida no tendría ningún sentido.",
+  "source": "tatoeba-pivot"
+ },
  "空虚": {
   "chinese": "没有他我的生活是空虚的。",
   "pinyin": "méi yǒu tā wǒ de shēng huó shì kōng xū de。",
@@ -16332,6 +16780,13 @@
   "spanish": "Este partido de fútbol está lleno de competencia enérgica y espléndida.",
   "source": "tatoeba-pivot"
  },
+ "竞赛": {
+  "chinese": "我爸爸参加了料理竞赛并得了第一名。",
+  "pinyin": "wǒ bà ba cān jiā le liào lǐ jìng sài bìng dé le dì yī míng。",
+  "english": "My father participated in a cooking contest and came in first.",
+  "spanish": "Mi padre se presentó a un concurso culinario y lo ganó.",
+  "source": "tatoeba-pivot"
+ },
  "竞选": {
   "chinese": "你应该竞选市长。",
   "pinyin": "nǐ yīng gāi jìng xuǎn shì zhǎng。",
@@ -16359,6 +16814,13 @@
   "english": "What is the origin of the universe?",
   "spanish": "¿Cuál es el origen del universo?",
   "source": "tatoeba"
+ },
+ "端正": {
+  "chinese": "她是一位品行端正的女士。",
+  "pinyin": "tā shì yí wèi pǐn xíng duān zhèng de nǚ shì。",
+  "english": "She is a very correct lady.",
+  "spanish": "Es una mujer de buenas maneras.",
+  "source": "tatoeba-pivot"
  },
  "笑": {
   "chinese": "大家笑了。",
@@ -16553,6 +17015,13 @@
   "pinyin": "zhè bú shì wǒ xǐ huan de lèi xíng。",
   "english": "This is not my type.",
   "spanish": "No es mi tipo.",
+  "source": "tatoeba-pivot"
+ },
+ "粉末": {
+  "chinese": "桌上布满了粉末。",
+  "pinyin": "zhuō shàng bù mǎn le fěn mò。",
+  "english": "The table is covered with powder.",
+  "spanish": "La mesa estaba llena de polvo.",
   "source": "tatoeba-pivot"
  },
  "粒": {
@@ -17898,6 +18367,13 @@
   "spanish": "Este mes ha sido algo difícil.",
   "source": "tatoeba"
  },
+ "色彩": {
+  "chinese": "他看见色彩鲜艳的鸟、花朵和树叶。",
+  "pinyin": "tā kàn jiàn sè cǎi xiān yàn de niǎo、 huā duǒ hé shù yè。",
+  "english": "He saw brightly-colored birds, flowers and leaves.",
+  "spanish": "Él veía aves, flores y hojas, y en todas partes brillaban los colores.",
+  "source": "tatoeba-pivot"
+ },
  "艺术": {
   "chinese": "谁买这种艺术品？",
   "pinyin": "shuí mǎi zhè zhǒng yì shù pǐn？",
@@ -17931,6 +18407,13 @@
   "pinyin": "diàn nǎo wèi wǒ men jié shěng le hěn duō shí jiān， jiě jué le hěn duō wèn tí。",
   "english": "Computers save us a lot of time and trouble.",
   "spanish": "Las computadoras nos ahorran mucho tiempo y molestias.",
+  "source": "tatoeba-pivot"
+ },
+ "节约": {
+  "chinese": "我节约我有的钱。",
+  "pinyin": "wǒ jié yuē wǒ yǒu de qián。",
+  "english": "I save what money I got.",
+  "spanish": "Ahorro el dinero que tengo.",
   "source": "tatoeba-pivot"
  },
  "花": {
@@ -18868,6 +19351,13 @@
   "spanish": "Ella habla chino.",
   "source": "tatoeba"
  },
+ "讲座": {
+  "chinese": "讲座八点钟开始。",
+  "pinyin": "jiǎng zuò bā diǎn zhōng kāi shǐ。",
+  "english": "The lecture starts at 8 o'clock.",
+  "spanish": "Los cursos empiezan a las 8.",
+  "source": "tatoeba-pivot"
+ },
  "讲究": {
   "chinese": "他穿着上很不讲究。",
   "pinyin": "tā chuān zhe shàng hěn bù jiǎng jiū。",
@@ -19139,6 +19629,13 @@
   "english": "Come along with me.",
   "spanish": "Por favor, sígame.",
   "source": "tatoeba"
+ },
+ "请假": {
+  "chinese": "不过你还是请假比较好。",
+  "pinyin": "bú guò nǐ hái shì qǐng jià bǐ jiào hǎo。",
+  "english": "Still, you'd better ask for time off.",
+  "spanish": "De todos modos, es mejor que pidas permiso.",
+  "source": "tatoeba-zh-manual"
  },
  "请帖": {
   "chinese": "我收到了请帖。",
@@ -19467,6 +19964,13 @@
   "spanish": "¡Han ganado!",
   "source": "tatoeba"
  },
+ "赤字": {
+  "chinese": "這場生意正面臨著赤字。",
+  "pinyin": "zhè chǎng shēng yì zhèng miàn lín zhù chì zì。",
+  "english": "The business is in the red.",
+  "spanish": "El negocio está en números rojos.",
+  "source": "tatoeba-pivot"
+ },
  "赤道": {
   "chinese": "赤道把地球分为两个半球。",
   "pinyin": "chì dào bǎ dì qiú fēn wéi liǎng gè bàn qiú。",
@@ -19775,6 +20279,13 @@
   "spanish": "Ubuntu incluye mucho software.",
   "source": "tatoeba-pivot"
  },
+ "轰动": {
+  "chinese": "披头士的发型引起了轰动。",
+  "pinyin": "pī tóu shì de fà xíng yǐn qǐ le hōng dòng。",
+  "english": "The hair style of the Beatles created a sensation.",
+  "spanish": "El corte de pelo de los Beatles causó sensación.",
+  "source": "tatoeba-pivot"
+ },
  "轻": {
   "chinese": "他很年轻。",
   "pinyin": "tā hěn nián qīng。",
@@ -19978,6 +20489,13 @@
   "spanish": "Tuve suerte.",
   "source": "tatoeba-pivot"
  },
+ "运行": {
+  "chinese": "你的新电脑运行得好吗？",
+  "pinyin": "nǐ de xīn diàn nǎo yùn xíng dé hǎo ma？",
+  "english": "Does your new computer run well?",
+  "spanish": "¿Trabaja bien tu nueva computadora?",
+  "source": "tatoeba-pivot"
+ },
  "运输": {
   "chinese": "石油被油船运输。",
   "pinyin": "shí yóu bèi yóu chuán yùn shū。",
@@ -20151,6 +20669,13 @@
   "english": "If we go this way, we'll catch up with them.",
   "spanish": "Por este camino les atajaremos.",
   "source": "tatoeba"
+ },
+ "追悼": {
+  "chinese": "莊的派對像是個追悼會。",
+  "pinyin": "zhuāng de pài duì xiàng shì gè zhuī dào huì。",
+  "english": "Trang's party was like a wake.",
+  "spanish": "La fiesta de Trang fue como una vigilia.",
+  "source": "tatoeba-pivot"
  },
  "追求": {
   "chinese": "有些人只追求快乐。",
@@ -20555,6 +21080,13 @@
   "pinyin": "tā men de yǒu qíng yùn niàng chéng le ài qíng。",
   "english": "Their friendship ripened into a deep love.",
   "spanish": "Su amistad ha crecido a un profundo amor.",
+  "source": "tatoeba-pivot"
+ },
+ "酱油": {
+  "chinese": "把米饭和鸡蛋及酱油混一下。",
+  "pinyin": "bǎ mǐ fàn hé jī dàn jí jiàng yóu hùn yí xià。",
+  "english": "Mix the rice and eggs with soy sauce.",
+  "spanish": "Mezcle el arroz con los huevos y la salsa de soja.",
   "source": "tatoeba-pivot"
  },
  "酸": {
@@ -21011,6 +21543,13 @@
   "spanish": "Un extraño está de pie delante de la casa.",
   "source": "tatoeba"
  },
+ "降临": {
+  "chinese": "夜幕降临时，孩子们回家了。",
+  "pinyin": "yè mù jiàng lín shí， hái zi men huí jiā le。",
+  "english": "The children returned home at dusk.",
+  "spanish": "Los niños volvieron al caer la noche.",
+  "source": "tatoeba-pivot"
+ },
  "降低": {
   "chinese": "她降低了收音机的音量。",
   "pinyin": "tā jiàng dī le shōu yīn jī de yīn liàng。",
@@ -21415,6 +21954,13 @@
   "pinyin": "gāi xiàng mù zhèng zài jìn xíng zhōng。",
   "english": "The project is ongoing.",
   "spanish": "El proyecto está en marcha.",
+  "source": "tatoeba-pivot"
+ },
+ "顺便": {
+  "chinese": "顺便问一句，你们已经去过北海道了吗？",
+  "pinyin": "shùn biàn wèn yí jù， nǐ men yǐ jīng qù guò běi hǎi dào le ma？",
+  "english": "By the way, have you ever been to Hokkaido?",
+  "spanish": "De hecho, ¿habéis ido ya a Hokkaido?",
   "source": "tatoeba-pivot"
  },
  "顺利": {
@@ -21837,11 +22383,25 @@
   "spanish": "Es feliz.",
   "source": "tatoeba"
  },
+ "高峰": {
+  "chinese": "你认为日本第二高峰是哪座山？",
+  "pinyin": "nǐ rèn wéi rì běn dì èr gāo fēng shì nǎ zuò shān？",
+  "english": "What mountain do you think is the second highest in Japan?",
+  "spanish": "¿Cuál es según tú la segunda montaña más alta de Japón?",
+  "source": "tatoeba-pivot"
+ },
  "高潮": {
   "chinese": "你怎麼確定你的女朋友沒有假裝高潮?",
   "pinyin": "nǐ zěn mó què dìng nǐ de nǚ péng yǒu méi yǒu jiǎ zhuāng gāo cháo ?",
   "english": "How can you be sure your girlfriend isn't faking her orgasms?",
   "spanish": "¿Cómo puedes estar seguro de que tu novia no finge los orgasmos?",
+  "source": "tatoeba-pivot"
+ },
+ "高超": {
+  "chinese": "这个班的女生平均身高超过了155公分。",
+  "pinyin": "zhè ge bān de nǚ shēng píng jūn shēn gāo chāo guò le 1 5 5 gōng fēn。",
+  "english": "The average height of the girls in class is over 155 centimeters.",
+  "spanish": "La media de estatura de las chicas de la clase está por encima del metro cincuenta y cinco.",
   "source": "tatoeba-pivot"
  },
  "高速公路": {
@@ -21879,6 +22439,13 @@
   "spanish": "El gato está observando al pez.",
   "source": "tatoeba"
  },
+ "鲜艳": {
+  "chinese": "他看见色彩鲜艳的鸟、花朵和树叶。",
+  "pinyin": "tā kàn jiàn sè cǎi xiān yàn de niǎo、 huā duǒ hé shù yè。",
+  "english": "He saw brightly-colored birds, flowers and leaves.",
+  "spanish": "Él veía aves, flores y hojas, y en todas partes brillaban los colores.",
+  "source": "tatoeba-pivot"
+ },
  "鸟": {
   "chinese": "鸟有翅膀。",
   "pinyin": "niǎo yǒu chì bǎng。",
@@ -21906,6 +22473,13 @@
   "english": "You're in big trouble.",
   "spanish": "Ya estáis en problemas.",
   "source": "tatoeba"
+ },
+ "黄河": {
+  "chinese": "四月底，黄河的水发黑了。",
+  "pinyin": "sì yuè dǐ， huáng hé de shuǐ fā hēi le。",
+  "english": "At the end of April, the water of the Yellow River had darkened.",
+  "spanish": "A finales de abril, el agua del río Amarillo se había oscurecido.",
+  "source": "tatoeba-manual-es"
  },
  "黄金": {
   "chinese": "黄金比铁重。",
