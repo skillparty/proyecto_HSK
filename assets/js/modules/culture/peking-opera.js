@@ -128,6 +128,19 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
       const style = document.createElement('style');
       style.id = 'culture-opera-styles';
       style.textContent = `
+        .culture-hero-banner {
+          width: 100%;
+          margin-bottom: 1.5rem;
+          border-radius: var(--radius-lg, 12px);
+          overflow: hidden;
+          box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.1));
+        }
+        .culture-hero-img {
+          width: 100%;
+          max-height: 340px;
+          object-fit: cover;
+          display: block;
+        }
         .opera-intro {
           padding: 1.5rem;
           background: var(--color-bg-card, rgba(220, 38, 38, 0.03));
@@ -303,6 +316,9 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
     const selectedColor = activeContent.masks[this.selectedColorIndex];
 
     let html = `
+      <div class="culture-hero-banner">
+        <img src="assets/images/culture/peking_opera.jpg" alt="Ópera de Pekín" class="culture-hero-img" loading="lazy" />
+      </div>
       <div class="opera-intro">
         <p>${activeContent.intro}</p>
       </div>

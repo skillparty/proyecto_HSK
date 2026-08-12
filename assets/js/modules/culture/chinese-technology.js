@@ -226,6 +226,9 @@ class ChineseTechnologyModule extends (window.CultureModuleBase || CultureModule
     }
 
     let html = `
+      <div class="culture-hero-banner">
+        <img src="assets/images/culture/chinese_technology.jpg" alt="Tecnología China" class="culture-hero-img" loading="lazy" />
+      </div>
       <div class="tech-intro">
         <p>${activeContent.intro}</p>
       </div>

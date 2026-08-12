@@ -231,7 +231,7 @@ class UIController {
         (async () => {
           try {
             if (!window.BrowseController) {
-              await this.loadScript("assets/js/modules/browse-controller.js?v=5");
+              await this.loadScript("assets/js/modules/browse-controller.js?v=b6cba58c");
             }
             if (!this.app.browseController) {
               this.app.browseController = new window.BrowseController(this.app);
@@ -255,7 +255,7 @@ class UIController {
               await this.loadScript("assets/js/modules/strokes-radicals-practice.js");
             }
             if (!window.StrokesRadicalsController) {
-              await this.loadScript("assets/js/modules/strokes-radicals-controller.js?v=4");
+              await this.loadScript("assets/js/modules/strokes-radicals-controller.js?v=6369da31");
             }
             if (!this.app.strokesRadicalsController) {
               this.app.strokesRadicalsController = new window.StrokesRadicalsController(this.app);
@@ -270,10 +270,10 @@ class UIController {
         (async () => {
           try {
             if (!window.QuizEngine) {
-              await this.loadScript("assets/js/modules/quiz-engine.js?v=2");
+              await this.loadScript("assets/js/modules/quiz-engine.js?v=0f8dc82d");
             }
             if (!window.QuizLegacyController) {
-              await this.loadScript("assets/js/modules/quiz-legacy-controller.js?v=1");
+              await this.loadScript("assets/js/modules/quiz-legacy-controller.js?v=0c8d314f");
             }
             if (!this.app.quizEngine) {
               this.app.quizEngine = new window.QuizEngine(this.app);
@@ -294,12 +294,12 @@ class UIController {
       case "past-exams":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=9");
+            await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=73064cd6");
             if (!window.PastExamsQuestionBank) {
               await this.loadScript("assets/js/modules/past-exams-question-bank.js");
             }
             if (!window.PastExamsController) {
-              await this.loadScript("assets/js/modules/past-exams-controller.js?v=3");
+              await this.loadScript("assets/js/modules/past-exams-controller.js?v=380d4198");
             }
             if (!this.app.pastExamsController) {
               this.app.pastExamsController = new window.PastExamsController(this.app);
@@ -312,22 +312,22 @@ class UIController {
         break;
       case "snake-quantifiers":
         (async () => {
-          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=9");
+          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=73064cd6");
           try {
             if (!window.QuantifierSnakeUtils) {
-              await this.loadScript("assets/js/modules/quantifier-snake-utils.js?v=1");
+              await this.loadScript("assets/js/modules/quantifier-snake-utils.js?v=cf878469");
             }
             if (!window.QuantifierSnakeCanvasRenderer) {
-              await this.loadScript("assets/js/modules/quantifier-snake-canvas.js?v=4");
+              await this.loadScript("assets/js/modules/quantifier-snake-canvas.js?v=11c68752");
             }
             if (!window.QuantifierSnakeController) {
-              await this.loadScript("assets/js/modules/quantifier-snake-controller.js?v=7");
+              await this.loadScript("assets/js/modules/quantifier-snake-controller.js?v=a9fbbef3");
             }
             if (!window.QuantifierSnakeVersusRenderer) {
               await this.loadScript("assets/js/modules/quantifier-snake-versus-renderer.js");
             }
             if (!window.QuantifierSnakeVersusController) {
-              await this.loadScript("assets/js/modules/quantifier-snake-versus.js?v=1");
+              await this.loadScript("assets/js/modules/quantifier-snake-versus.js?v=ff794386");
             }
             if (!this.app.quantifierSnakeController) {
               this.app.quantifierSnakeController = new window.QuantifierSnakeController(this.app);
@@ -367,7 +367,7 @@ class UIController {
         (async () => {
           try {
             if (!window.StatsController) {
-              await this.loadScript("assets/js/modules/stats-controller.js?v=3");
+              await this.loadScript("assets/js/modules/stats-controller.js?v=df78e753");
             }
             if (!this.app.statsController) {
               this.app.statsController = new window.StatsController(this.app);
@@ -381,7 +381,7 @@ class UIController {
       case "matrix":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/matrix-game-styles.css?v=7");
+            await this.loadStylesheet("assets/css/matrix-game-styles.css?v=1864034e");
             if (!window.GameStateManager) {
               await this.loadScript("assets/js/modules/game-engine.js");
             }
@@ -398,7 +398,7 @@ class UIController {
               await this.loadScript("assets/js/matrix-game-view.js");
             }
             if (!window.MatrixGame) {
-              await this.loadScript("assets/js/matrix-game.js?v=3");
+              await this.loadScript("assets/js/matrix-game.js?v=9da2483d");
             }
             if (typeof renderMatrixGameInterface === "undefined") {
               await this.loadScript("assets/js/matrix-game-ui.js");
@@ -419,7 +419,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/leaderboard-styles.css");
             if (!window.LeaderboardManager) {
-              await this.loadScript("assets/js/leaderboard.js?v=2");
+              await this.loadScript("assets/js/leaderboard.js?v=104e8458");
             }
             // La instancia se crea acá, no en startup-controller: leaderboard.js
             // es lazy, así que al arrancar la app la clase todavía no existe y
@@ -439,12 +439,12 @@ class UIController {
       case "tones-invaders":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/tones-invaders-styles.css?v=3");
+            await this.loadStylesheet("assets/css/tones-invaders-styles.css?v=5821d4f3");
             if (!window.TonesInvadersRenderer) {
               await this.loadScript("assets/js/tones-invaders-renderer.js");
             }
             if (!window.TonesInvadersGame) {
-              await this.loadScript("assets/js/tones-invaders-game.js?v=4");
+              await this.loadScript("assets/js/tones-invaders-game.js?v=3dde898f");
             }
             if (!window.tonesInvadersGame) {
               window.tonesInvadersGame = new TonesInvadersGame(this.app);
@@ -458,9 +458,9 @@ class UIController {
       case "hanzi-builder":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/hanzi-builder-styles.css?v=2");
+            await this.loadStylesheet("assets/css/hanzi-builder-styles.css?v=6cfca79e");
             if (!window.HanziBuilderGame) {
-              await this.loadScript("assets/js/hanzi-builder-game.js?v=2");
+              await this.loadScript("assets/js/hanzi-builder-game.js?v=745260cd");
             }
             if (!window.hanziBuilderGame) {
               window.hanziBuilderGame = new HanziBuilderGame(this.app);
@@ -474,9 +474,9 @@ class UIController {
       case "word-linker":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/word-linker-styles.css?v=2");
+            await this.loadStylesheet("assets/css/word-linker-styles.css?v=ba5d13f3");
             if (!window.WordLinkerGame) {
-              await this.loadScript("assets/js/word-linker-game.js?v=2");
+              await this.loadScript("assets/js/word-linker-game.js?v=d263c1b3");
             }
             if (!window.wordLinkerGame) {
               window.wordLinkerGame = new WordLinkerGame(this.app);
@@ -490,9 +490,9 @@ class UIController {
       case "etymology":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/etymology-styles.css?v=2");
+            await this.loadStylesheet("assets/css/etymology-styles.css?v=ffa5693a");
             if (!window.EtymologyController) {
-              await this.loadScript("assets/js/modules/etymology-controller.js?v=25");
+              await this.loadScript("assets/js/modules/etymology-controller.js?v=db5c6f8f");
             }
             if (!window.etymologyController) {
               window.etymologyController = new EtymologyController(this.app);
@@ -608,6 +608,22 @@ class UIController {
             await window.traditionalArtsModule.initialize();
           } catch (err) {
             this.logError("culture-arts init failed:", err);
+          }
+        })();
+        break;
+      case "videos":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/app-videos.css?v=4fe4d7ef");
+            if (!window.VideosController) {
+              await this.loadScript("assets/js/modules/videos-controller.js?v=924af91f");
+            }
+            if (!this.app.videosController) {
+              this.app.videosController = new window.VideosController(this.app);
+            }
+            await this.app.videosController.init();
+          } catch (err) {
+            this.logError("videos init failed:", err);
           }
         })();
         break;
@@ -822,6 +838,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "culture-technology",
   "culture-clothing",
   "culture-arts",
+  "videos",
 ]);
 
 window.UIController = UIController;

@@ -258,6 +258,9 @@ class TraditionalMedicineModule extends (window.CultureModuleBase || CultureModu
     }
 
     let html = `
+      <div class="culture-hero-banner">
+        <img src="assets/images/culture/traditional_medicine.jpg" alt="Medicina Tradicional China" class="culture-hero-img" loading="lazy" />
+      </div>
       <div class="medicine-intro">
         <p>${activeContent.intro}</p>
       </div>

@@ -21,6 +21,7 @@ class NavigationController {
       "culture-technology",
       "culture-clothing",
       "culture-arts",
+      "videos",
     ]);
   }
 
@@ -114,6 +115,7 @@ class NavigationController {
       "word-linker",
       "leaderboard",
       "stats",
+      "videos",
     ].includes(tabName);
   }
 

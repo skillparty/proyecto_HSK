@@ -299,6 +299,9 @@ class EthnicClothingModule extends (window.CultureModuleBase || CultureModuleBas
     }
 
     let html = `
+      <div class="culture-hero-banner">
+        <img src="assets/images/culture/ethnic_clothing.jpg" alt="Minorías y Vestimenta Étnica" class="culture-hero-img" loading="lazy" />
+      </div>
       <div class="clothing-intro">
         <p>${activeContent.intro}</p>
       </div>

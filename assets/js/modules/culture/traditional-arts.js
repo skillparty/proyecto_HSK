@@ -277,6 +277,9 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
     }
 
     let html = `
+      <div class="culture-hero-banner">
+        <img src="assets/images/culture/traditional_arts.jpg" alt="Artes Escénicas y Caligrafía" class="culture-hero-img" loading="lazy" />
+      </div>
       <div class="arts-intro">
         <p>${activeContent.intro}</p>
       </div>

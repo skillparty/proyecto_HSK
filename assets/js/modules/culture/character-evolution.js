@@ -395,6 +395,9 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
     }
 
     let html = `
+      <div class="culture-hero-banner">
+        <img src="assets/images/culture/character_evolution.jpg" alt="Evolución de Caracteres" class="culture-hero-img" loading="lazy" />
+      </div>
       <div class="evolution-intro">
         <p>${activeContent.intro}</p>
       </div>

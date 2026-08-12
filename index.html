@@ -33,7 +33,7 @@
         font-src 'self' https://fonts.gstatic.com;
         img-src 'self' data: https:;
         connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com;
-        frame-src https://confuc10.firebaseapp.com;
+        frame-src https://confuc10.firebaseapp.com https://www.youtube.com https://www.youtube-nocookie.com;
         worker-src 'self';
         object-src 'none';
         base-uri 'self';
@@ -234,6 +234,15 @@
                         <path d="M7 14h10"></path>
                     </svg>
                     <span data-i18n="etymologyTab">Etimología</span>
+                </button>
+
+                <!-- Videos (Direct link) -->
+                <button class="nav-tab" data-tab="videos">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                        <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                    </svg>
+                    <span data-i18n="videosTab">Videos</span>
                 </button>
 
                 <!-- Estudiar (Dropdown) -->
@@ -847,6 +856,9 @@
 
                 <!-- culture-arts: markup diferido, se baja de assets/partials/tabs/culture-arts.html al abrir la pestaña -->
                 <div id="culture-arts" class="tab-panel" tabindex="0"></div>
+
+                <!-- videos: markup diferido, se baja de assets/partials/tabs/videos.html al abrir la pestaña -->
+                <div id="videos" class="tab-panel"></div>
             </div>
         </main>
 
