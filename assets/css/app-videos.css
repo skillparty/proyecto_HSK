@@ -812,6 +812,31 @@
         background: var(--color-border);
         border-radius: var(--radius-pill);
     }
+
+    .videos-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .videos-vocab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .videos-speed-control-group {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+        margin-top: 6px;
+    }
+
+    .videos-btn {
+        min-height: 44px;
+    }
+
+    .videos-chip {
+        min-height: 38px;
+        font-size: 0.825rem;
+    }
 }
 
 /* ================================================================================

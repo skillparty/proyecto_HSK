@@ -852,3 +852,38 @@
     }
 }
 
+/* Additional Mobile Touch Targets & Fluid Flashcard Sizing */
+@media (max-width: 640px) {
+    .flashcard {
+        max-width: 100%;
+        min-height: 260px;
+    }
+
+    .card-character-container {
+        font-size: clamp(2.4rem, 11vw, 3.8rem) !important;
+    }
+
+    .pinyin-input-container {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: stretch;
+    }
+
+    #pinyin-input {
+        max-width: 100%;
+        min-height: 44px;
+        font-size: 1.05rem;
+    }
+
+    .speech-rec-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .action-btn {
+        width: 100%;
+        min-height: 44px;
+        font-size: 0.95rem;
+    }
+}
+

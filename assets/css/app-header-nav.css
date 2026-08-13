@@ -416,3 +416,70 @@ html[data-theme="light"] .nav-dropdown-item.active {
     font-size: 1.1em;
 }
 
+/* ============================================================================
+   MOBILE RESPONSIVE NAVIGATION ENHANCEMENTS
+   ============================================================================ */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 6px 12px;
+        gap: 8px;
+    }
+
+    .header-title-container h1 {
+        font-size: 1.1rem;
+    }
+
+    .header-title-container p {
+        display: none;
+    }
+
+    #header-search {
+        width: 120px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    #header-search:focus {
+        width: 150px;
+    }
+
+    .nav-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        padding: 0 8px;
+        scrollbar-width: none; /* Hide scrollbar Firefox */
+    }
+
+    .nav-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar Chrome/Safari */
+    }
+
+    .nav-tabs {
+        gap: 8px;
+        padding: 0 4px;
+        flex-wrap: nowrap;
+    }
+
+    .nav-tab {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .nav-dropdown {
+        left: 0;
+        transform: translateY(6px);
+        min-width: 180px;
+        max-width: calc(100vw - 32px);
+    }
+
+    .nav-dropdown-item {
+        min-height: 44px;
+        padding: 10px 14px;
+    }
+}
+
+
