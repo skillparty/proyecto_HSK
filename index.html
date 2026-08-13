@@ -479,16 +479,52 @@
                                         </div>
                                     </div>
                                     <div class="char-details" style="gap: 2px;">
-                                        <h4 class="char-title" data-i18n="dashDailyWordTitle" style="font-size: 0.72rem; margin: 0; color: var(--text-dim);">Carácter del día</h4>
-                                        <div class="char-pinyin-meaning" style="display: flex; flex-direction: column;">
-                                            <div class="char-pinyin" id="dash-char-pinyin" style="font-size: 0.8rem; font-weight: 700;">zhōng</div>
-                                            <div class="char-meaning" id="dash-char-meaning" style="font-size: 0.75rem; color: var(--text-muted); max-height: 18px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Medio, centro</div>
-                                        </div>
-                                        <div style="display: flex; gap: 6px; align-items: center; margin-top: 2px;">
-                                            <span class="char-level" id="dash-char-level" style="font-size: 0.65rem; background: rgba(0,0,0,0.05); padding: 1px 4px; border-radius: 4px;">HSK 1</span>
-                                            <button class="btn btn-secondary btn-xs" id="dash-char-study-btn" style="padding: 1px 6px; font-size: 0.68rem;">
-                                                <span data-i18n="practiceWithWord">Practicar</span>
+                                        <div class="char-title" style="font-size: 0.72rem; color: var(--text-dim);" data-i18n="dashDailyCharTitle">Carácter del día</div>
+                                        <div class="char-pinyin" id="dash-char-pinyin" style="font-size: 0.95rem; font-weight: 700; color: var(--color-primary);">zhōng</div>
+                                        <div class="char-meaning" id="dash-char-meaning" style="font-size: 0.8rem; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;">centro, medio</div>
+                                        <div class="char-actions" style="margin-top: 4px;">
+                                            <button id="dash-char-listen" class="dashboard-mini-btn" title="Escuchar pronunciación" data-i18n-title="dashListenPronunciation">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
                                             </button>
+                                            <button id="dash-char-details" class="dashboard-mini-btn" title="Ver detalles y trazos" data-i18n-title="dashViewDetails">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Daily Quests Card -->
+                                <div class="dashboard-card daily-quests-card" style="grid-column: span 2;">
+                                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+                                        <h3 class="card-title" style="margin:0; font-size:1rem; display:flex; align-items:center; gap:8px;">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <span data-i18n="dailyQuestsTitle">Desafíos Diarios (Daily Quests)</span>
+                                        </h3>
+                                        <span class="videos-meta-tag" style="font-size:0.75rem;">+50 XP</span>
+                                    </div>
+                                    <div class="daily-quests-list" id="daily-quests-container" style="display:flex; flex-direction:column; gap:8px;">
+                                        <div class="quest-item" style="display:flex; align-items:center; justify-content:space-between; background:var(--color-bg-hover, rgba(0,0,0,0.03)); padding:8px 12px; border-radius:8px; font-size:0.85rem;">
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <input type="checkbox" id="quest-srs" disabled style="accent-color:var(--color-success);" />
+                                                <span data-i18n="questSrsLabel">Estudia 10 tarjetas SRS</span>
+                                            </div>
+                                            <span style="font-size:0.75rem; font-weight:700; color:var(--color-primary);">+20 XP</span>
+                                        </div>
+                                        <div class="quest-item" style="display:flex; align-items:center; justify-content:space-between; background:var(--color-bg-hover, rgba(0,0,0,0.03)); padding:8px 12px; border-radius:8px; font-size:0.85rem;">
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <input type="checkbox" id="quest-games" disabled style="accent-color:var(--color-success);" />
+                                                <span data-i18n="questGamesLabel">Juega 1 partida de Minijuegos</span>
+                                            </div>
+                                            <span style="font-size:0.75rem; font-weight:700; color:var(--color-primary);">+15 XP</span>
+                                        </div>
+                                        <div class="quest-item" style="display:flex; align-items:center; justify-content:space-between; background:var(--color-bg-hover, rgba(0,0,0,0.03)); padding:8px 12px; border-radius:8px; font-size:0.85rem;">
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <input type="checkbox" id="quest-videos" disabled style="accent-color:var(--color-success);" />
+                                                <span data-i18n="questVideosLabel">Mira 1 video interactivo</span>
+                                            </div>
+                                            <span style="font-size:0.75rem; font-weight:700; color:var(--color-primary);">+15 XP</span>
                                         </div>
                                     </div>
                                 </div>
@@ -608,6 +644,14 @@
                         <div class="pinyin-input-container">
                             <input type="text" id="pinyin-input" class="pinyin-input" data-i18n-placeholder="typePinyin" placeholder="Type Pinyin..."
                                 autocomplete="off" autocapitalize="off" spellcheck="false">
+                            <button type="button" id="speech-rec-btn" class="speech-rec-btn" title="Pronunciar en voz alta (Web Speech API)" data-i18n-title="speechMicTitle" aria-label="Evaluar pronunciación">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                                </svg>
+                            </button>
                             <div id="feedback-message" class="feedback-message"></div>
                             <button id="check-btn" class="action-btn" style="display: none;" data-i18n="submit">Submit</button>
                             <button id="next-card-next-btn" class="action-btn next-btn-hidden"
@@ -640,6 +684,14 @@
                                 <option value="lesson" data-i18n="browseSortLesson" selected>Orden por lección</option>
                                 <option value="alphabetical" data-i18n="browseSortAlphabetical">Orden alfabético</option>
                             </select>
+                            <button type="button" id="export-anki-btn" class="btn btn-secondary" title="Exportar mazo a formato Anki CSV" data-i18n-title="exportAnkiTitle" style="display:inline-flex; align-items:center; gap:6px;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                <span data-i18n="exportAnkiBtn">Exportar a Anki</span>
+                            </button>
                         </div>
                     </div>
 

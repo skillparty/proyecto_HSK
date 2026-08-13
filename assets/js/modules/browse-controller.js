@@ -34,6 +34,11 @@ class BrowseController {
 
         this.filterVocabulary();
         this.setupInfiniteScroll();
+
+        const exportBtn = document.getElementById('export-anki-btn');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', () => this.exportToAnkiCsv());
+        }
     }
 
     setupInfiniteScroll() {
@@ -362,6 +367,38 @@ class BrowseController {
             '<h4>No words found</h4>' +
             '<p>Try adjusting the search or filters.</p>' +
             '</div>';
+    }
+
+    exportToAnkiCsv() {
+        const vocabList = this.app.browseState?.filteredVocabulary || this.app.vocabulary || [];
+        if (vocabList.length === 0) {
+            if (this.app.showNotification) {
+                this.app.showNotification('No hay vocabulario para exportar', 'warning');
+            }
+            return;
+        }
+
+        let csvContent = 'Hanzi\tPinyin\tMeaning\tLevel\n';
+        vocabList.forEach(item => {
+            const hanzi = (item.character || '').replace(/"/g, '""');
+            const pinyin = (item.pinyin || '').replace(/"/g, '""');
+            const meaning = (this.getMeaningForLanguage(item) || '').replace(/"/g, '""');
+            const level = item.level || 1;
+            csvContent += `"${hanzi}"\t"${pinyin}"\t"${meaning}"\t"HSK ${level}"\n`;
+        });
+
+        const blob = new Blob([csvContent], { type: 'text/tab-separated-values;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `hsk_vocab_anki_export.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        if (this.app.showNotification) {
+            this.app.showNotification(`¡Exportadas ${vocabList.length} palabras a CSV para Anki!`, 'success');
+        }
     }
 }
 

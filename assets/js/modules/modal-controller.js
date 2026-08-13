@@ -169,6 +169,68 @@ class ModalController {
             }
         }, 10000);
     }
+
+    showHotkeysModal() {
+        if (document.getElementById('hotkeys-modal')) return;
+
+        const currentLang = window.languageManager?.currentLanguage || 'es';
+        const title = currentLang === 'es' ? 'Atajos de Teclado' : 'Keyboard Shortcuts';
+
+        const shortcuts = currentLang === 'es' ? [
+            { key: 'Espacio', desc: 'Voltear tarjeta SRS / Pausar video' },
+            { key: '1, 2, 3, 4', desc: 'Evaluar dificultad SRS (Otra vez, Difícil, Bien, Fácil)' },
+            { key: 'f  ó  /', desc: 'Enfocar buscador global' },
+            { key: 'Esc', desc: 'Cerrar modales o reproductor' },
+            { key: '?', desc: 'Abrir este menú de ayuda' }
+        ] : [
+            { key: 'Space', desc: 'Flip SRS Flashcard / Pause Video' },
+            { key: '1, 2, 3, 4', desc: 'Rate SRS Difficulty (Again, Hard, Good, Easy)' },
+            { key: 'f  or  /', desc: 'Focus global search bar' },
+            { key: 'Esc', desc: 'Close modals or video player' },
+            { key: '?', desc: 'Open this help menu' }
+        ];
+
+        const backdrop = document.createElement('div');
+        backdrop.id = 'hotkeys-modal';
+        backdrop.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:10000;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.2s ease-out;';
+
+        const content = document.createElement('div');
+        content.style.cssText = 'background:var(--color-bg-card, #ffffff);color:var(--color-text-main, #333333);padding:24px;border-radius:16px;max-width:440px;width:90%;box-shadow:var(--shadow-xl, 0 20px 40px rgba(0,0,0,0.25));border:1px solid var(--color-border);position:relative;';
+
+        const listHtml = shortcuts.map(s => `
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--color-border-subtle, rgba(0,0,0,0.06));">
+                <span style="font-size:0.9rem;color:var(--color-text-muted);">${s.desc}</span>
+                <kbd style="background:var(--color-bg-hover, #f3f4f6);color:var(--color-primary);padding:4px 10px;border-radius:6px;font-family:monospace;font-size:0.85rem;font-weight:700;border:1px solid var(--color-border);">${s.key}</kbd>
+            </div>
+        `).join('');
+
+        content.innerHTML = `
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--color-border);">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                        <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M8 12h.01M12 12h.01M16 12h.01M7 16h10"></path>
+                    </svg>
+                    <h3 style="margin:0;font-size:1.15rem;font-weight:700;">${title}</h3>
+                </div>
+                <button id="close-hotkeys-btn" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--color-text-muted);">&times;</button>
+            </div>
+            <div>${listHtml}</div>
+        `;
+
+        backdrop.appendChild(content);
+        document.body.appendChild(backdrop);
+
+        const closeBtn = content.querySelector('#close-hotkeys-btn');
+        const closeModal = () => {
+            if (backdrop.parentNode) backdrop.remove();
+        };
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        backdrop.addEventListener('click', (e) => {
+            if (e.target === backdrop) closeModal();
+        });
+    }
 }
 
 window.ModalController = ModalController;

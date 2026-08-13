@@ -9,6 +9,31 @@ class InteractionController {
                 return;
             }
 
+            if (event.key === 'Escape') {
+                const hotkeysModal = document.getElementById('hotkeys-modal');
+                if (hotkeysModal) hotkeysModal.remove();
+                const shortcutModal = document.querySelector('.keyboard-shortcuts-modal');
+                if (shortcutModal) shortcutModal.remove();
+                if (this.app.videosController) this.app.videosController.closePlayer();
+                return;
+            }
+
+            if ((event.key === '?' || event.key === 'h' || event.key === 'H') && !event.altKey) {
+                event.preventDefault();
+                this.showKeyboardShortcuts();
+                return;
+            }
+
+            if ((event.key === 'f' || event.key === '/') && !event.altKey) {
+                event.preventDefault();
+                const searchInput = document.getElementById('search-input') || document.getElementById('videos-search-input') || document.getElementById('header-search-input');
+                if (searchInput) {
+                    searchInput.focus();
+                    if (typeof searchInput.select === 'function') searchInput.select();
+                }
+                return;
+            }
+
             if (event.altKey) {
                 switch (event.key) {
                     case '1':
@@ -104,6 +129,10 @@ class InteractionController {
     }
 
     showKeyboardShortcuts() {
+        if (this.app.modalController && typeof this.app.modalController.showHotkeysModal === 'function') {
+            this.app.modalController.showHotkeysModal();
+            return;
+        }
         const shortcuts = [
             { key: 'Alt + 1-0', action: 'Switch tabs' },
             { key: 'Space', action: 'Flip flashcard' },
@@ -221,6 +250,11 @@ class InteractionController {
                     }
                 }
             });
+        }
+
+        const speechRecBtn = document.getElementById('speech-rec-btn');
+        if (speechRecBtn) {
+            speechRecBtn.addEventListener('click', () => this.startSpeechRecognition());
         }
 
         if (checkBtn) {
@@ -552,6 +586,73 @@ class InteractionController {
                 ticking = true;
             }
         }, { capture: true, passive: true });
+    }
+
+    startSpeechRecognition() {
+        const btn = document.getElementById('speech-rec-btn');
+        const feedback = document.getElementById('feedback-message');
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            if (this.app.showNotification) {
+                this.app.showNotification('El reconocimiento de voz no está soportado en este navegador (intenta en Chrome o Safari)', 'warning');
+            }
+            return;
+        }
+
+        try {
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'zh-CN';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 3;
+
+            if (btn) btn.classList.add('recording');
+            if (feedback) {
+                feedback.textContent = 'Escuchando tu pronunciación en mandarín... 🎙️';
+                feedback.className = 'feedback-message info';
+                feedback.style.display = 'block';
+            }
+
+            recognition.onresult = (event) => {
+                if (btn) btn.classList.remove('recording');
+                const results = Array.from(event.results[0]).map(r => r.transcript);
+                const targetChar = this.app.currentWord?.character || '';
+
+                const isMatch = results.some(text => text.includes(targetChar));
+
+                if (isMatch) {
+                    if (feedback) {
+                        feedback.textContent = `¡Pronunciación excelente! (Escuchado: "${results[0]}")`;
+                        feedback.className = 'feedback-message correct';
+                    }
+                    if (this.app.flashcardManager) {
+                        this.app.flashcardManager.checkPinyinAnswer(this.app.currentWord?.pinyin);
+                    }
+                } else {
+                    if (feedback) {
+                        feedback.textContent = `Escuchado: "${results[0]}" — ¡Inténtalo de nuevo!`;
+                        feedback.className = 'feedback-message incorrect';
+                    }
+                }
+            };
+
+            recognition.onerror = () => {
+                if (btn) btn.classList.remove('recording');
+                if (feedback) {
+                    feedback.textContent = 'No se detectó voz o se canceló el permiso.';
+                    feedback.className = 'feedback-message warning';
+                }
+            };
+
+            recognition.onend = () => {
+                if (btn) btn.classList.remove('recording');
+            };
+
+            recognition.start();
+        } catch (err) {
+            if (btn) btn.classList.remove('recording');
+            this.app.logWarn('Speech recognition error:', err);
+        }
     }
 }
 
