@@ -116,6 +116,12 @@
                         <line x1="19" y1="5" x2="19" y2="19"></line>
                     </svg>
                 </button>
+                <!-- Speed Controls -->
+                <div class="videos-speed-control-group" title="Velocidad de reproducción">
+                    <button type="button" class="videos-speed-btn" data-speed="0.75">0.75x</button>
+                    <button type="button" class="videos-speed-btn active" data-speed="1.0">1.0x</button>
+                    <button type="button" class="videos-speed-btn" data-speed="1.25">1.25x</button>
+                </div>
             </div>
 
             <div class="videos-player-actions">
@@ -190,6 +196,21 @@
             </div>
         </div>
 
+        <!-- Personal User Notes Card with Auto-Save -->
+        <div id="videos-user-notes-card" class="videos-interactive-card">
+            <h4 class="videos-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-success, #10b981);">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                <span data-i18n="personalNotesTitle">Mis Apuntes Personales de este Video</span>
+            </h4>
+            <textarea id="videos-user-notes-input" class="videos-notes-textarea" placeholder="Escribe tus notas personales aquí (se guardan automáticamente en tu navegador)..." data-i18n-placeholder="personalNotesPlaceholder" rows="3"></textarea>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+                <span id="videos-notes-saved-status" style="font-size:0.75rem; color:var(--color-text-dim);">Guardado automático listo</span>
+            </div>
+        </div>
+
         <!-- Notes Card -->
         <div id="videos-notes-card" class="videos-notes-card" style="display: none;">
             <h4 class="videos-notes-title">
@@ -232,6 +253,10 @@
                 <button type="button" class="videos-chip videos-chip-level" data-filter="HSK 4">HSK 4</button>
                 <button type="button" class="videos-chip videos-chip-level" data-filter="HSK 5">HSK 5</button>
                 <button type="button" class="videos-chip videos-chip-level" data-filter="HSK 6">HSK 6</button>
+                <!-- Duration Fast Filters -->
+                <button type="button" class="videos-chip" data-filter="dur_short" data-i18n="filterShortDur">&lt; 5 min</button>
+                <button type="button" class="videos-chip" data-filter="dur_medium" data-i18n="filterMediumDur">5 - 15 min</button>
+                <button type="button" class="videos-chip" data-filter="dur_long" data-i18n="filterLongDur">&gt; 15 min</button>
                 <!-- Category Filters -->
                 <button type="button" class="videos-chip" data-filter="Gramática" data-i18n="categoryGrammar">Gramática</button>
                 <button type="button" class="videos-chip" data-filter="Pronunciación & Tonos" data-i18n="categoryPronunciation">Pronunciación & Tonos</button>

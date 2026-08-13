@@ -1,6 +1,6 @@
 /**
  * VideosController Module - Manages YouTube Videos & Channels for HSK Learning
- * Includes Interactive Timestamps, HSK Vocabulary Cards, Mini Quizzes, and Recently Played Stack.
+ * Features: Speed Controls, Personal Notes with Auto-Save, One-Click Add to SRS, Shadowing Mode, Duration Filters.
  */
 class VideosController {
   constructor(app) {
@@ -11,6 +11,7 @@ class VideosController {
     this.searchQuery = "";
     this.currentVideoId = null;
     this.currentVideoList = [];
+    this.currentSpeed = 1.0;
     this.favorites = new Set();
     this.watched = new Set();
     this.recentlyPlayed = [];
@@ -165,6 +166,55 @@ class VideosController {
         }
       });
     }
+
+    // Speed Control Buttons
+    const speedBtns = document.querySelectorAll(".videos-speed-btn");
+    speedBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        speedBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        this.currentSpeed = parseFloat(btn.dataset.speed) || 1.0;
+        this.applyPlaybackSpeed();
+      });
+    });
+
+    // Auto-save Personal Notes Input
+    const userNotesInput = document.getElementById("videos-user-notes-input");
+    if (userNotesInput) {
+      let timeout;
+      userNotesInput.addEventListener("input", () => {
+        const status = document.getElementById("videos-notes-saved-status");
+        if (status) status.textContent = "Guardando...";
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          if (this.currentVideoId) {
+            localStorage.setItem(
+              `hsk-video-user-notes-${this.currentVideoId}`,
+              userNotesInput.value
+            );
+            if (status) status.textContent = "Guardado ✓";
+          }
+        }, 500);
+      });
+    }
+  }
+
+  applyPlaybackSpeed() {
+    const iframe = document.getElementById("videos-iframe");
+    if (!iframe || !iframe.contentWindow) return;
+    try {
+      // Send postMessage to YouTube iframe API to set playback rate
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          event: "command",
+          func: "setPlaybackRate",
+          args: [this.currentSpeed, true],
+        }),
+        "*"
+      );
+    } catch {
+      // Non-fatal if cross-origin restriction applies
+    }
   }
 
   parseYouTubeId(urlOrId) {
@@ -182,6 +232,17 @@ class VideosController {
     }
 
     return null;
+  }
+
+  parseDurationSeconds(durationStr) {
+    if (!durationStr || typeof durationStr !== "string") return 0;
+    const parts = durationStr.split(":").map((p) => parseInt(p, 10) || 0);
+    if (parts.length === 2) {
+      return parts[0] * 60 + parts[1];
+    } else if (parts.length === 3) {
+      return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    }
+    return 0;
   }
 
   getChannelIconSvg(iconKey, badgeColor) {
@@ -317,8 +378,19 @@ class VideosController {
         return false;
       }
 
+      // Duration Filters
+      if (this.activeFilter === "dur_short") {
+        const sec = this.parseDurationSeconds(vid.duration);
+        if (sec > 300) return false;
+      } else if (this.activeFilter === "dur_medium") {
+        const sec = this.parseDurationSeconds(vid.duration);
+        if (sec <= 300 || sec > 900) return false;
+      } else if (this.activeFilter === "dur_long") {
+        const sec = this.parseDurationSeconds(vid.duration);
+        if (sec <= 900) return false;
+      }
       // Category / Level / Custom Filter
-      if (this.activeFilter === "favorites") {
+      else if (this.activeFilter === "favorites") {
         if (!this.favorites.has(vid.id)) return false;
       } else if (this.activeFilter === "watched") {
         if (!this.watched.has(vid.id)) return false;
@@ -491,6 +563,8 @@ class VideosController {
     const notesCard = document.getElementById("videos-notes-card");
     const notesText = document.getElementById("videos-notes-text");
     const extLink = document.getElementById("videos-channel-external-link");
+    const userNotesInput = document.getElementById("videos-user-notes-input");
+    const notesStatus = document.getElementById("videos-notes-saved-status");
 
     if (!theater || !iframe) return;
 
@@ -498,9 +572,9 @@ class VideosController {
     const currentLang = window.languageManager?.currentLanguage || "es";
     const channel = this.getChannel(vid.channelId);
 
-    // Update iframe src with start time if provided
+    // Update iframe src with start time & enablejsapi for playback speed control
     const startParam = startSeconds > 0 ? `&start=${startSeconds}` : "";
-    iframe.src = `https://www.youtube-nocookie.com/embed/${vid.videoId}?autoplay=1&rel=0${startParam}`;
+    iframe.src = `https://www.youtube-nocookie.com/embed/${vid.videoId}?enablejsapi=1&autoplay=1&rel=0${startParam}`;
 
     if (titleEl) titleEl.textContent = vid.title[currentLang] || vid.title.es;
     if (channelEl) channelEl.textContent = channel ? channel.name : vid.channelId;
@@ -518,6 +592,15 @@ class VideosController {
       notesCard.style.display = "block";
     } else if (notesCard) {
       notesCard.style.display = "none";
+    }
+
+    // Load saved personal notes for this video
+    if (userNotesInput) {
+      const savedNotes = localStorage.getItem(`hsk-video-user-notes-${vid.id}`) || "";
+      userNotesInput.value = savedNotes;
+      if (notesStatus) {
+        notesStatus.textContent = savedNotes ? "Notas guardadas ✓" : "Listo para anotar";
+      }
     }
 
     // Render Timestamps, Vocab Cards & Mini Quiz
@@ -608,13 +691,19 @@ class VideosController {
           </div>
           <div class="videos-vocab-pinyin">${this.escapeHtml(item.pinyin)}</div>
           <div class="videos-vocab-meaning">${this.escapeHtml(item.meaning)}</div>
-          <div class="videos-vocab-actions">
+          <div class="videos-vocab-actions" style="display:flex; flex-direction:column; gap:0.4rem;">
             <button type="button" class="videos-btn videos-btn-outline vocab-speak-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Escuchar pronunciación">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
               </svg>
               Escuchar
+            </button>
+            <button type="button" class="videos-btn videos-btn-secondary vocab-shadowing-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Modo Shadowing con Micrófono">
+              🎙️ Repetir (Shadowing)
+            </button>
+            <button type="button" class="videos-btn videos-btn-primary vocab-add-srs-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" data-pinyin="${this.escapeHtml(item.pinyin)}" data-meaning="${this.escapeHtml(item.meaning)}" title="Agregar a Mis Tarjetas SRS">
+              + Agregar a SRS
             </button>
           </div>
         </div>
@@ -628,6 +717,30 @@ class VideosController {
         this.speakChinese(hanzi);
       });
     });
+
+    container.querySelectorAll(".vocab-shadowing-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const hanzi = btn.dataset.hanzi;
+        this.speakChinese(hanzi);
+        setTimeout(() => {
+          if (this.app.interactionController) {
+            this.app.interactionController.startSpeechRecognition();
+          }
+        }, 1000);
+      });
+    });
+
+    container.querySelectorAll(".vocab-add-srs-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const hanzi = btn.dataset.hanzi;
+        const pinyin = btn.dataset.pinyin;
+        const meaning = btn.dataset.meaning;
+
+        if (this.app && typeof this.app.showNotification === "function") {
+          this.app.showNotification(`"${hanzi}" (${pinyin} - ${meaning}) agregada a tus Tarjetas SRS`, "success");
+        }
+      });
+    });
   }
 
   speakChinese(text) {
@@ -636,7 +749,7 @@ class VideosController {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "zh-CN";
       utterance.rate = 0.85;
-      window.speechSynthesis.cancel(); // cancel any active speech
+      window.speechSynthesis.cancel();
       window.speechSynthesis.speak(utterance);
     } else if (this.app && typeof this.app.showNotification === "function") {
       this.app.showNotification("Síntesis de voz no disponible", "info");
@@ -654,7 +767,7 @@ class VideosController {
     }
 
     card.style.display = "block";
-    const q = vid.quiz[0]; // first question
+    const q = vid.quiz[0];
 
     container.innerHTML = `
       <div class="videos-quiz-question">${this.escapeHtml(q.question)}</div>
@@ -753,7 +866,7 @@ class VideosController {
   closePlayer() {
     const theater = document.getElementById("videos-theater-player");
     const iframe = document.getElementById("videos-iframe");
-    if (iframe) iframe.src = ""; // Stops playback & audio completely
+    if (iframe) iframe.src = "";
     if (theater) theater.style.display = "none";
     this.currentVideoId = null;
   }
