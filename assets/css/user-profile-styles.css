@@ -287,7 +287,22 @@
     /* El pill guest se reduce a icono de login (ver app-header-nav.css) */
     .guest-text,
     .sync-status {
-        display: none;
+        display: none !important;
+    }
+
+    .auth-login-btn {
+        padding: 8px !important;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        border-radius: 50% !important;
+        justify-content: center !important;
+        font-size: 0 !important;
+    }
+
+    .auth-login-btn span {
+        display: none !important;
     }
 }
 

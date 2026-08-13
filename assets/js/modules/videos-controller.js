@@ -17,6 +17,13 @@ class VideosController {
     this.recentlyPlayed = [];
     this.initialized = false;
 
+    // Loop A-B repetition state
+    this.loopPointA = null;
+    this.loopPointB = null;
+    this.isLoopActive = false;
+    this.loopInterval = null;
+    this.currentPlaybackSeconds = 0;
+
     this.loadFavoritesAndWatched();
   }
 
@@ -84,6 +91,7 @@ class VideosController {
       this.renderChannels();
       this.renderRecentlyPlayed();
       this.renderVideos();
+      this.checkOfflineStatus();
       this.initialized = true;
     } catch (err) {
       if (this.app && typeof this.app.logError === "function") {
@@ -92,7 +100,17 @@ class VideosController {
     }
   }
 
+  checkOfflineStatus() {
+    const banner = document.getElementById("videos-offline-banner");
+    if (!banner) return;
+    const isOnline = typeof navigator.onLine === "boolean" ? navigator.onLine : true;
+    banner.style.display = isOnline ? "none" : "flex";
+  }
+
   setupEventListeners() {
+    window.addEventListener("online", () => this.checkOfflineStatus());
+    window.addEventListener("offline", () => this.checkOfflineStatus());
+
     const searchInput = document.getElementById("videos-search-input");
     if (searchInput) {
       searchInput.addEventListener("input", (e) => {
@@ -178,6 +196,27 @@ class VideosController {
       });
     });
 
+    // Loop A-B Buttons
+    const loopABtn = document.getElementById("videos-loop-a-btn");
+    if (loopABtn) {
+      loopABtn.addEventListener("click", () => this.setLoopPointA());
+    }
+
+    const loopBBtn = document.getElementById("videos-loop-b-btn");
+    if (loopBBtn) {
+      loopBBtn.addEventListener("click", () => this.setLoopPointB());
+    }
+
+    const loopToggleBtn = document.getElementById("videos-loop-toggle-btn");
+    if (loopToggleBtn) {
+      loopToggleBtn.addEventListener("click", () => this.toggleLoop());
+    }
+
+    const loopClearBtn = document.getElementById("videos-loop-clear-btn");
+    if (loopClearBtn) {
+      loopClearBtn.addEventListener("click", () => this.clearLoop());
+    }
+
     // Auto-save Personal Notes Input
     const userNotesInput = document.getElementById("videos-user-notes-input");
     if (userNotesInput) {
@@ -196,6 +235,17 @@ class VideosController {
           }
         }, 500);
       });
+    }
+
+    // Copy & Export Notes Buttons
+    const copyNotesBtn = document.getElementById("videos-copy-notes-btn");
+    if (copyNotesBtn) {
+      copyNotesBtn.addEventListener("click", () => this.copyPersonalNotes());
+    }
+
+    const exportNotesBtn = document.getElementById("videos-export-notes-btn");
+    if (exportNotesBtn) {
+      exportNotesBtn.addEventListener("click", () => this.exportPersonalNotesMarkdown());
     }
   }
 
@@ -603,8 +653,9 @@ class VideosController {
       }
     }
 
-    // Render Timestamps, Vocab Cards & Mini Quiz
+    // Render Timestamps, Phrases, Vocab Cards & Mini Quiz
     this.renderTimestamps(vid);
+    this.renderPhrases(vid);
     this.renderVocab(vid);
     this.renderQuiz(vid);
 
@@ -665,7 +716,54 @@ class VideosController {
     container.querySelectorAll(".videos-timestamp-pill").forEach((btn) => {
       btn.addEventListener("click", () => {
         const seconds = parseInt(btn.dataset.time, 10) || 0;
+        this.currentPlaybackSeconds = seconds;
         this.playVideo(vid, seconds);
+      });
+    });
+  }
+
+  renderPhrases(vid) {
+    const card = document.getElementById("videos-phrases-card");
+    const container = document.getElementById("videos-phrases-list");
+    if (!card || !container) return;
+
+    if (!vid.keyPhrases || vid.keyPhrases.length === 0) {
+      card.style.display = "none";
+      return;
+    }
+
+    card.style.display = "block";
+    container.innerHTML = vid.keyPhrases
+      .map(
+        (phrase) => `
+        <div class="videos-phrase-item">
+          <div class="videos-phrase-body">
+            <div class="videos-phrase-hanzi">${this.escapeHtml(phrase.hanzi)}</div>
+            <div class="videos-phrase-pinyin">${this.escapeHtml(phrase.pinyin)}</div>
+            <div class="videos-phrase-meaning">${this.escapeHtml(phrase.meaning)}</div>
+          </div>
+          <div class="videos-phrase-actions">
+            <button type="button" class="videos-btn videos-btn-outline phrase-speak-btn" data-hanzi="${this.escapeHtml(phrase.hanzi)}" title="Escuchar frase">
+              🔊 Escuchar
+            </button>
+            <button type="button" class="videos-btn videos-btn-secondary phrase-shadow-btn" data-hanzi="${this.escapeHtml(phrase.hanzi)}" data-pinyin="${this.escapeHtml(phrase.pinyin)}" title="Repetir y evaluar voz">
+              🎙️ Repetir
+            </button>
+          </div>
+        </div>
+      `
+      )
+      .join("");
+
+    container.querySelectorAll(".phrase-speak-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        this.speakChinese(btn.dataset.hanzi);
+      });
+    });
+
+    container.querySelectorAll(".phrase-shadow-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        this.startShadowing(btn.dataset.hanzi, btn.dataset.pinyin);
       });
     });
   }
@@ -692,18 +790,19 @@ class VideosController {
           <div class="videos-vocab-pinyin">${this.escapeHtml(item.pinyin)}</div>
           <div class="videos-vocab-meaning">${this.escapeHtml(item.meaning)}</div>
           <div class="videos-vocab-actions" style="display:flex; flex-direction:column; gap:0.4rem;">
-            <button type="button" class="videos-btn videos-btn-outline vocab-speak-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Escuchar pronunciación">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-              </svg>
-              Escuchar
-            </button>
-            <button type="button" class="videos-btn videos-btn-secondary vocab-shadowing-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Modo Shadowing con Micrófono">
-              🎙️ Repetir (Shadowing)
-            </button>
-            <button type="button" class="videos-btn videos-btn-primary vocab-add-srs-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" data-pinyin="${this.escapeHtml(item.pinyin)}" data-meaning="${this.escapeHtml(item.meaning)}" title="Agregar a Mis Tarjetas SRS">
+            <div style="display:flex; gap:0.35rem;">
+              <button type="button" class="videos-btn videos-btn-outline vocab-speak-btn" style="flex:1;" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Escuchar pronunciación">
+                🔊 Audio
+              </button>
+              <button type="button" class="videos-btn videos-btn-secondary vocab-shadowing-btn" style="flex:1;" data-hanzi="${this.escapeHtml(item.hanzi)}" data-pinyin="${this.escapeHtml(item.pinyin)}" title="Modo Shadowing">
+                🎙️ Repetir
+              </button>
+            </div>
+            <button type="button" class="videos-btn videos-btn-primary vocab-add-srs-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" data-pinyin="${this.escapeHtml(item.pinyin)}" data-meaning="${this.escapeHtml(item.meaning)}" data-level="${this.escapeHtml(item.level || "HSK 1")}" title="Agregar a Mis Tarjetas SRS">
               + Agregar a SRS
+            </button>
+            <button type="button" class="videos-btn videos-btn-outline vocab-etym-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Ver descomposición de radicales y trazos">
+              🔍 Trazos / Etimología
             </button>
           </div>
         </div>
@@ -713,20 +812,13 @@ class VideosController {
 
     container.querySelectorAll(".vocab-speak-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        const hanzi = btn.dataset.hanzi;
-        this.speakChinese(hanzi);
+        this.speakChinese(btn.dataset.hanzi);
       });
     });
 
     container.querySelectorAll(".vocab-shadowing-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
-        const hanzi = btn.dataset.hanzi;
-        this.speakChinese(hanzi);
-        setTimeout(() => {
-          if (this.app.interactionController) {
-            this.app.interactionController.startSpeechRecognition();
-          }
-        }, 1000);
+        this.startShadowing(btn.dataset.hanzi, btn.dataset.pinyin);
       });
     });
 
@@ -735,12 +827,83 @@ class VideosController {
         const hanzi = btn.dataset.hanzi;
         const pinyin = btn.dataset.pinyin;
         const meaning = btn.dataset.meaning;
-
-        if (this.app && typeof this.app.showNotification === "function") {
-          this.app.showNotification(`"${hanzi}" (${pinyin} - ${meaning}) agregada a tus Tarjetas SRS`, "success");
-        }
+        const level = btn.dataset.level;
+        this.addVocabToSRS(hanzi, pinyin, meaning, level);
       });
     });
+
+    container.querySelectorAll(".vocab-etym-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const hanzi = btn.dataset.hanzi;
+        this.jumpToEtymology(hanzi);
+      });
+    });
+  }
+
+  addVocabToSRS(hanzi, pinyin, meaning, levelStr) {
+    const levelNum = parseInt((levelStr || "1").replace(/\D/g, ""), 10) || 1;
+    const wordPayload = {
+      character: hanzi,
+      pinyin: pinyin,
+      meaning: meaning,
+      level: levelNum,
+    };
+
+    // Enroll into SRS Engine if available
+    if (this.app && this.app.srsEngine && typeof this.app.srsEngine.rate === "function") {
+      this.app.srsEngine.rate(wordPayload, "good");
+    }
+
+    // Persist to custom words collection
+    try {
+      const stored = localStorage.getItem("hsk-custom-srs-words");
+      const list = stored ? JSON.parse(stored) : [];
+      if (!list.some((w) => w.character === hanzi)) {
+        list.push(wordPayload);
+        localStorage.setItem("hsk-custom-srs-words", JSON.stringify(list));
+      }
+    } catch {
+      // Non-fatal
+    }
+
+    if (this.app && typeof this.app.showNotification === "function") {
+      this.app.showNotification(`"${hanzi}" (${pinyin}) agregada a tus Tarjetas SRS para repaso`, "success");
+    }
+  }
+
+  jumpToEtymology(hanzi) {
+    if (!hanzi) return;
+    const singleChar = hanzi.charAt(0);
+
+    // Switch to etymology or strokes tab
+    if (this.app && this.app.uiController && typeof this.app.uiController.switchTab === "function") {
+      this.app.uiController.switchTab("etymology");
+    }
+
+    setTimeout(() => {
+      if (window.etymologyController && typeof window.etymologyController.gotoChar === "function") {
+        window.etymologyController.gotoChar(singleChar);
+      }
+    }, 150);
+
+    if (this.app && typeof this.app.showNotification === "function") {
+      this.app.showNotification(`Explorando carácter "${singleChar}" en Etimología y Trazos`, "info");
+    }
+  }
+
+  startShadowing(text, pinyin) {
+    if (!text) return;
+    this.speakChinese(text);
+
+    if (this.app && typeof this.app.showNotification === "function") {
+      this.app.showNotification(`Escucha: "${text}" (${pinyin || ""}). Prepárate para hablar...`, "info");
+    }
+
+    setTimeout(() => {
+      if (this.app && this.app.interactionController && typeof this.app.interactionController.startSpeechRecognition === "function") {
+        this.app.interactionController.startSpeechRecognition();
+      }
+    }, 1200);
   }
 
   speakChinese(text) {
@@ -753,6 +916,162 @@ class VideosController {
       window.speechSynthesis.speak(utterance);
     } else if (this.app && typeof this.app.showNotification === "function") {
       this.app.showNotification("Síntesis de voz no disponible", "info");
+    }
+  }
+
+  // --- Loop A-B Implementation ---
+
+  formatTime(totalSeconds) {
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = Math.floor(totalSeconds % 60);
+    return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+  }
+
+  setLoopPointA(sec) {
+    const time = typeof sec === "number" ? sec : this.currentPlaybackSeconds;
+    this.loopPointA = time;
+    const aVal = document.getElementById("videos-loop-a-val");
+    if (aVal) aVal.textContent = this.formatTime(time);
+    if (this.app && typeof this.app.showNotification === "function") {
+      this.app.showNotification(`Punto A fijado en ${this.formatTime(time)}`, "info");
+    }
+  }
+
+  setLoopPointB(sec) {
+    const time = typeof sec === "number" ? sec : this.currentPlaybackSeconds + 5;
+    this.loopPointB = time;
+    const bVal = document.getElementById("videos-loop-b-val");
+    if (bVal) bVal.textContent = this.formatTime(time);
+    if (this.app && typeof this.app.showNotification === "function") {
+      this.app.showNotification(`Punto B fijado en ${this.formatTime(time)}`, "info");
+    }
+  }
+
+  toggleLoop() {
+    this.isLoopActive = !this.isLoopActive;
+    const btn = document.getElementById("videos-loop-toggle-btn");
+    if (btn) {
+      btn.classList.toggle("active", this.isLoopActive);
+    }
+
+    if (this.isLoopActive) {
+      if (this.loopPointA === null) this.setLoopPointA(0);
+      if (this.loopPointB === null) this.setLoopPointB(10);
+      this.startLoopChecker();
+      if (this.app && typeof this.app.showNotification === "function") {
+        this.app.showNotification(`Bucle A-B activado (${this.formatTime(this.loopPointA)} - ${this.formatTime(this.loopPointB)})`, "success");
+      }
+    } else {
+      this.stopLoopChecker();
+      if (this.app && typeof this.app.showNotification === "function") {
+        this.app.showNotification("Bucle A-B desactivado", "info");
+      }
+    }
+  }
+
+  startLoopChecker() {
+    this.stopLoopChecker();
+    this.loopInterval = setInterval(() => {
+      if (!this.isLoopActive || this.loopPointA === null || this.loopPointB === null) return;
+      this.currentPlaybackSeconds += 0.5;
+      if (this.currentPlaybackSeconds >= this.loopPointB) {
+        this.currentPlaybackSeconds = this.loopPointA;
+        const currentVid = this.data?.videos?.find((v) => v.id === this.currentVideoId);
+        if (currentVid) {
+          this.playVideo(currentVid, this.loopPointA);
+        }
+      }
+    }, 500);
+  }
+
+  stopLoopChecker() {
+    if (this.loopInterval) {
+      clearInterval(this.loopInterval);
+      this.loopInterval = null;
+    }
+  }
+
+  clearLoop() {
+    this.loopPointA = null;
+    this.loopPointB = null;
+    this.isLoopActive = false;
+    this.stopLoopChecker();
+
+    const aVal = document.getElementById("videos-loop-a-val");
+    const bVal = document.getElementById("videos-loop-b-val");
+    const toggleBtn = document.getElementById("videos-loop-toggle-btn");
+
+    if (aVal) aVal.textContent = "--:--";
+    if (bVal) bVal.textContent = "--:--";
+    if (toggleBtn) toggleBtn.classList.remove("active");
+  }
+
+  // --- Personal Notes Export & Copy ---
+
+  copyPersonalNotes() {
+    const input = document.getElementById("videos-user-notes-input");
+    const text = input ? input.value : "";
+    if (!text.trim()) {
+      if (this.app && typeof this.app.showNotification === "function") {
+        this.app.showNotification("No hay apuntes escritos para copiar", "warning");
+      }
+      return;
+    }
+
+    navigator.clipboard.writeText(text).then(() => {
+      if (this.app && typeof this.app.showNotification === "function") {
+        this.app.showNotification("Apuntes copiados al portapapeles ✓", "success");
+      }
+    }).catch(() => {
+      if (this.app && typeof this.app.showNotification === "function") {
+        this.app.showNotification("No se pudo copiar automáticamente", "warning");
+      }
+    });
+  }
+
+  exportPersonalNotesMarkdown() {
+    const currentVid = this.data?.videos?.find((v) => v.id === this.currentVideoId);
+    const input = document.getElementById("videos-user-notes-input");
+    const userNotes = input ? input.value : "";
+    const title = currentVid?.title?.es || "Apuntes de Video";
+    const channel = this.getChannel(currentVid?.channelId)?.name || "Canal de Chino";
+    const level = currentVid?.level || "HSK";
+
+    let mdContent = `# ${title}\n\n`;
+    mdContent += `**Canal**: ${channel} | **Nivel**: ${level}\n`;
+    mdContent += `**Fecha**: ${new Date().toLocaleDateString()}\n\n`;
+
+    if (currentVid?.vocab && currentVid.vocab.length > 0) {
+      mdContent += `## Vocabulario HSK Destacado\n\n`;
+      currentVid.vocab.forEach((v) => {
+        mdContent += `- **${v.hanzi}** (${v.pinyin}): ${v.meaning} [${v.level}]\n`;
+      });
+      mdContent += `\n`;
+    }
+
+    if (currentVid?.keyPhrases && currentVid.keyPhrases.length > 0) {
+      mdContent += `## Oraciones y Frases Clave\n\n`;
+      currentVid.keyPhrases.forEach((p) => {
+        mdContent += `- ${p.hanzi} (*${p.pinyin}*) — ${p.meaning}\n`;
+      });
+      mdContent += `\n`;
+    }
+
+    mdContent += `## Mis Apuntes Personales\n\n`;
+    mdContent += userNotes.trim() ? `${userNotes}\n` : `*(Sin notas personales aún)*\n`;
+
+    const blob = new Blob([mdContent], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `Apuntes_${(currentVid?.id || "video")}.md`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    if (this.app && typeof this.app.showNotification === "function") {
+      this.app.showNotification("Archivo Markdown descargado con éxito ✓", "success");
     }
   }
 
@@ -869,6 +1188,7 @@ class VideosController {
     if (iframe) iframe.src = "";
     if (theater) theater.style.display = "none";
     this.currentVideoId = null;
+    this.clearLoop();
   }
 
   toggleFavorite(vidId) {

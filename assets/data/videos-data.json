@@ -581,12 +581,180 @@
         { "hanzi": "打卡", "pinyin": "dǎkǎ", "meaning": "Registrarse / Marcar tarjeta en un lugar icónico", "level": "HSK 5" },
         { "hanzi": "流行", "pinyin": "liúxíng", "meaning": "Popular / De moda", "level": "HSK 4" }
       ],
+      "keyPhrases": [
+        { "hanzi": "中国年轻人喜欢在网红地点打卡拍照。", "pinyin": "Zhōngguó niánqīngrén xǐhuan zài wǎnghóng dìdiǎn dǎkǎ pāizhào.", "meaning": "A los jóvenes chinos les gusta marcar presencia y tomarse fotos en lugares populares." },
+        { "hanzi": "这种音乐现在非常流行。", "pinyin": "Zhè zhǒng yīnyuè xiànzài fēicháng liúxíng.", "meaning": "Este tipo de música es muy popular ahora." }
+      ],
       "quiz": [
         {
           "question": "¿Qué significa la expresión de internet '666' (liùliùliù) entre la juventud china?",
           "options": ["Algo malo o desafortunado", "Increíble / Muy hábil o genial", "Llegar tarde"],
           "answer": 1,
           "explanation": "'666' se pronuncia similar a 溜 (liù, hábil/fluido) y expresa que alguien es genial o hace algo de forma increíble."
+        }
+      ]
+    },
+    {
+      "id": "vid_dc_03",
+      "videoId": "8M2vK9P1vL0",
+      "title": {
+        "es": "Gastronomía China y Cómo Pedir Comida en un Restaurante",
+        "en": "Chinese Gastronomy & How to Order Food in a Restaurant"
+      },
+      "channelId": "descubriendo_china",
+      "level": "HSK 2",
+      "category": "Cultura & Viajes",
+      "duration": "13:10",
+      "description": {
+        "es": "Aprende los platos más típicos de China (dumplings, pato laqueado, hot pot) y las frases para ordenar como un nativo.",
+        "en": "Learn the most typical Chinese dishes (dumplings, Peking duck, hot pot) and the phrases to order like a native."
+      },
+      "tags": ["Comida", "Restaurante", "Gastronomía", "Diálogo", "HSK 2"],
+      "notes": "Vocabulario clave: 服务员 (fúwùyuán - camarero), 菜单 (càidān - menú), 买单 (mǎidān - la cuenta).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Introducción a las 8 grandes cocinas chinas" },
+        { "time": 200, "label": "03:20 - Platos imprescindibles: Jiaozi y Pato Laqueado" },
+        { "time": 450, "label": "07:30 - Diálogo en restaurante: Pedir mesa y menú" },
+        { "time": 660, "label": "11:00 - Pedir la cuenta y modales en la mesa" }
+      ],
+      "vocab": [
+        { "hanzi": "服务员", "pinyin": "fúwùyuán", "meaning": "Camarero / Mesero", "level": "HSK 2" },
+        { "hanzi": "菜单", "pinyin": "càidān", "meaning": "Menú / Carta", "level": "HSK 2" },
+        { "hanzi": "买单", "pinyin": "mǎidān", "meaning": "Pagar la cuenta", "level": "HSK 2" }
+      ],
+      "keyPhrases": [
+        { "hanzi": "服务员，请给我们一份菜单。", "pinyin": "Fúwùyuán, qǐng gěi wǒmen yí fèn càidān.", "meaning": "Camarero, por favor denos un menú." },
+        { "hanzi": "我们要一碗米饭和两盘饺子。", "pinyin": "Wǒmen yào yì wǎn mǐfàn hé liǎng pán jiǎozi.", "meaning": "Queremos un cuenco de arroz y dos platos de dumplings." },
+        { "hanzi": "服务员，买单！", "pinyin": "Fúwùyuán, mǎidān!", "meaning": "¡Camarero, la cuenta!" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cómo llamas educadamente al camarero en un restaurante chino?",
+          "options": ["师傅 (shīfu)", "服务员 (fúwùyuán)", "老板 (lǎobǎn)"],
+          "answer": 1,
+          "explanation": "服务员 (fúwùyuán) es la forma estándar y respetuosa de llamar al personal de servicio en restaurantes."
+        }
+      ]
+    },
+    {
+      "id": "vid_cc_03",
+      "videoId": "7K9m1L0X8vP",
+      "title": {
+        "es": "Diálogos de Compras y Regateo en Mandarín",
+        "en": "Shopping and Bargaining Dialogues in Mandarin"
+      },
+      "channelId": "chineseclass101",
+      "level": "HSK 2",
+      "category": "Escucha & Diálogos",
+      "duration": "11:30",
+      "description": {
+        "es": "Frases útiles para preguntar precios, regatear amistosamente y pagar con el móvil (WeChat/Alipay).",
+        "en": "Useful phrases for asking prices, friendly bargaining, and paying by mobile (WeChat/Alipay)."
+      },
+      "tags": ["Compras", "Dinero", "Regateo", "HSK 2", "Diálogo"],
+      "notes": "Frase de oro: 太贵了，能不能便宜一点？(Tài guì le, néng bu néng piányi yìdiǎn? - Demasiado caro, ¿puede ser más barato?).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Preguntar cuánto cuesta: 这个多少钱？" },
+        { "time": 190, "label": "03:10 - Expresar que es caro y pedir descuento" },
+        { "time": 420, "label": "07:00 - Métodos de pago digital (微信支付 / 支付宝)" }
+      ],
+      "vocab": [
+        { "hanzi": "多少钱", "pinyin": "duōshao qián", "meaning": "¿Cuánto cuesta?", "level": "HSK 1" },
+        { "hanzi": "便宜", "pinyin": "piányi", "meaning": "Barato / Económico", "level": "HSK 2" },
+        { "hanzi": "贵", "pinyin": "guì", "meaning": "Caro", "level": "HSK 2" }
+      ],
+      "keyPhrases": [
+        { "hanzi": "这个苹果多少钱一斤？", "pinyin": "Zhè ge píngguǒ duōshao qián yì jīn?", "meaning": "¿Cuánto cuesta medio kilo de estas manzanas?" },
+        { "hanzi": "太贵了，便宜一点吧！", "pinyin": "Tài guì le, piányi yìdiǎn ba!", "meaning": "¡Es muy caro, déjelo un poco más barato!" },
+        { "hanzi": "我可以微信支付吗？", "pinyin": "Wǒ kěyǐ Wēixìn zhīfù ma?", "meaning": "¿Puedo pagar con WeChat?" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cómo se dice '¿Cuánto cuesta?' en chino?",
+          "options": ["怎么样？(zěnmeyàng?)", "多少钱？(duōshao qián?)", "什么地方？(shénme dìfang?)"],
+          "answer": 1,
+          "explanation": "多少钱？(duōshao qián?) es la expresión universal para preguntar el precio."
+        }
+      ]
+    },
+    {
+      "id": "vid_wb_03",
+      "videoId": "3P5m1L8X9vK",
+      "title": {
+        "es": "Partículas Modales Chinas Explicadas: 了, 吧, 呢, 吗",
+        "en": "Chinese Modal Particles Explained: 了, 吧, 呢, 吗"
+      },
+      "channelId": "wissbegierde",
+      "level": "HSK 3",
+      "category": "Gramática",
+      "duration": "15:40",
+      "description": {
+        "es": "Descubre cuándo y cómo usar las partículas modales que dan naturalidad y fluidez al chino hablado.",
+        "en": "Discover when and how to use modal particles that bring naturalness and fluency to spoken Chinese."
+      },
+      "tags": ["Gramática", "Partículas", "HSK 3", "Estructura"],
+      "notes": "Resumen: 了 (cambio de estado o acción completada), 吧 (sugerencia), 呢 (pregunta de rebote o continuidad), 吗 (pregunta sí/no).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Introducción a las 4 partículas modales" },
+        { "time": 210, "label": "03:30 - Usos del 了 (le) de cambio de estado" },
+        { "time": 480, "label": "08:00 - La partícula 吧 (ba) para sugerencias" },
+        { "time": 700, "label": "11:40 - La partícula 呢 (ne) para preguntas elípticas" }
+      ],
+      "vocab": [
+        { "hanzi": "了", "pinyin": "le", "meaning": "Partícula de cambio de situación / completado", "level": "HSK 1" },
+        { "hanzi": "吧", "pinyin": "ba", "meaning": "Partícula de sugerencia (¿vamos?)", "level": "HSK 1" },
+        { "hanzi": "呢", "pinyin": "ne", "meaning": "Partícula de pregunta elíptica / ¿y tú?", "level": "HSK 1" }
+      ],
+      "keyPhrases": [
+        { "hanzi": "下雨了，我们回家吧。", "pinyin": "Xiàyǔ le, wǒmen huíjiā ba.", "meaning": "Ha empezado a llover, regresemos a casa." },
+        { "hanzi": "我喜欢喝茶，你呢？", "pinyin": "Wǒ xǐhuan hē chá, nǐ ne?", "meaning": "A mí me gusta tomar té, ¿y a ti?" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Qué partícula se utiliza al final para proponer una sugerencia amistosa como '¡Vamos a comer!'?",
+          "options": ["了 (le)", "吧 (ba)", "呢 (ne)"],
+          "answer": 1,
+          "explanation": "吧 (ba) suaviza el tono e indica una sugerencia o propuesta (ej. 我们走吧 - ¡Vámonos!)."
+        }
+      ]
+    },
+    {
+      "id": "vid_mb_03",
+      "videoId": "1L0X8vP7K9m",
+      "title": {
+        "es": "Música Tradicional de Guzheng y Poesía Clásica Tang",
+        "en": "Traditional Guzheng Music & Classical Tang Poetry"
+      },
+      "channelId": "madebybilibili",
+      "level": "HSK 6",
+      "category": "Cultura Pop",
+      "duration": "14:10",
+      "description": {
+        "es": "Sumérgete en la elegancia de la cítara china (Guzheng) acompañada de recitación de poemas de Li Bai y Du Fu.",
+        "en": "Immerse yourself in the elegance of the Chinese zither (Guzheng) accompanied by recitations of Li Bai and Du Fu."
+      },
+      "tags": ["Guzheng", "Poesía", "Li Bai", "Cultura Clásica", "HSK 6"],
+      "notes": "Poema célebre: 静夜思 (Jìng yè sī - Pensamientos en una noche tranquila) de Li Bai.",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Introducción al instrumento tradicional Guzheng" },
+        { "time": 240, "label": "04:00 - Interpretación musical: 高山流水 (Altas Montañas y Agua Fluyente)" },
+        { "time": 560, "label": "09:20 - Recitación poética: 静夜思 de Li Bai" }
+      ],
+      "vocab": [
+        { "hanzi": "古筝", "pinyin": "gǔzhēng", "meaning": "Guzheng (cítara tradicional china)", "level": "HSK 6" },
+        { "hanzi": "诗歌", "pinyin": "shīgē", "meaning": "Poesía / Poema", "level": "HSK 5" },
+        { "hanzi": "月亮", "pinyin": "yuèliang", "meaning": "Luna", "level": "HSK 2" }
+      ],
+      "keyPhrases": [
+        { "hanzi": "床前明月光，疑是地上霜。", "pinyin": "Chuáng qián míng yuè guāng, yí shì dì shàng shuāng.", "meaning": "Frente a mi lecho brilla la luz de la luna, como si fuera escarcha sobre el suelo." },
+        { "hanzi": "举头望明月，低头思故乡。", "pinyin": "Jǔ tóu wàng míng yuè, dī tóu sī gùxiāng.", "meaning": "Levanto la cabeza y contemplo la luna brillante; bajo la cabeza y pienso en mi tierra natal." }
+      ],
+      "quiz": [
+        {
+          "question": "¿Quién es el autor del célebre poema 'Pensamientos en una noche tranquila' (静夜思)?",
+          "options": ["杜甫 (Du Fu)", "李白 (Li Bai)", "苏轼 (Su Shi)"],
+          "answer": 1,
+          "explanation": "李白 (Li Bai) es uno de los poetas más ilustres de la Dinastía Tang y autor de '静夜思'."
         }
       ]
     }

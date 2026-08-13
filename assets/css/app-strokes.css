@@ -519,3 +519,41 @@
     }
 }
 
+@media (max-width: 640px) {
+    .strokes-radicals-container {
+        padding: 14px;
+        border-radius: var(--radius-md);
+    }
+
+    .strokes-radicals-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .sr-reference-grid-strokes {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 6px;
+    }
+
+    .sr-reference-grid-radicals {
+        grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
+        gap: 6px;
+    }
+
+    .sr-practice-option {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sr-audio-btn {
+        min-height: 40px;
+        min-width: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+

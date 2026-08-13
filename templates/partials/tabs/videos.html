@@ -95,135 +95,182 @@
             </button>
         </div>
 
-        <!-- Responsive iFrame Wrapper -->
-        <div class="videos-iframe-wrapper">
-            <iframe id="videos-iframe" src="" title="YouTube Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
+    <!-- Offline Notice Banner -->
+    <div id="videos-offline-banner" class="videos-offline-banner" style="display: none;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"></path>
+        </svg>
+        <span data-i18n="offlineVideosNotice">Modo sin conexión: Para reproducir el video se requiere internet. El vocabulario, apuntes y cuestionario siguen disponibles.</span>
+    </div>
 
-        <!-- Player Controls & Info Bar -->
-        <div class="videos-theater-footer">
-            <div class="videos-player-controls">
-                <button type="button" id="videos-prev-btn" class="videos-btn videos-btn-outline" title="Video anterior">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="19 20 9 12 19 4 19 20"></polygon>
-                        <line x1="5" y1="19" x2="5" y2="5"></line>
-                    </svg>
-                    <span data-i18n="prevVideo">Anterior</span>
-                </button>
-                <button type="button" id="videos-next-btn" class="videos-btn videos-btn-outline" title="Siguiente video">
-                    <span data-i18n="nextVideo">Siguiente</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="5 4 15 12 5 20 5 4"></polygon>
-                        <line x1="19" y1="5" x2="19" y2="19"></line>
-                    </svg>
-                </button>
-                <!-- Speed Controls -->
-                <div class="videos-speed-control-group" title="Velocidad de reproducción">
-                    <button type="button" class="videos-speed-btn" data-speed="0.75">0.75x</button>
-                    <button type="button" class="videos-speed-btn active" data-speed="1.0">1.0x</button>
-                    <button type="button" class="videos-speed-btn" data-speed="1.25">1.25x</button>
-                </div>
-            </div>
+    <!-- Responsive iFrame Wrapper -->
+    <div class="videos-iframe-wrapper">
+        <iframe id="videos-iframe" src="" title="YouTube Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
 
-            <div class="videos-player-actions">
-                <button type="button" id="videos-favorite-btn" class="videos-btn videos-btn-secondary" title="Guardar en favoritos">
-                    <span id="videos-favorite-icon-box">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
-                    </span>
-                    <span id="videos-favorite-text" data-i18n="markFavorite">Favorito</span>
-                </button>
-                <button type="button" id="videos-watched-btn" class="videos-btn videos-btn-secondary" title="Marcar como visto">
-                    <span id="videos-watched-icon-box">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </span>
-                    <span id="videos-watched-text" data-i18n="markWatched">Marcar visto</span>
-                </button>
-                <a id="videos-channel-external-link" href="#" target="_blank" rel="noopener" class="videos-btn videos-btn-external">
-                    <span data-i18n="visitChannel">Ver canal en YouTube</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <!-- Interactive Timestamps Card -->
-        <div id="videos-timestamps-card" class="videos-interactive-card" style="display: none;">
-            <h4 class="videos-card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
+    <!-- Player Controls & Info Bar -->
+    <div class="videos-theater-footer">
+        <div class="videos-player-controls">
+            <button type="button" id="videos-prev-btn" class="videos-btn videos-btn-outline" title="Video anterior">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                    <line x1="5" y1="19" x2="5" y2="5"></line>
                 </svg>
-                <span data-i18n="timestampsTitle">Marcas de Tiempo e Momentos Clave</span>
-            </h4>
-            <div id="videos-timestamps-list" class="videos-timestamps-grid">
-                <!-- Timestamp badges injected dynamically -->
-            </div>
-        </div>
-
-        <!-- Linked HSK Vocabulary Card -->
-        <div id="videos-vocab-card" class="videos-interactive-card" style="display: none;">
-            <h4 class="videos-card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-secondary, #3b82f6);">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                <span data-i18n="prevVideo">Anterior</span>
+            </button>
+            <button type="button" id="videos-next-btn" class="videos-btn videos-btn-outline" title="Siguiente video">
+                <span data-i18n="nextVideo">Siguiente</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                    <line x1="19" y1="5" x2="19" y2="19"></line>
                 </svg>
-                <span data-i18n="linkedVocabTitle">Vocabulario HSK Destacado en esta Lección</span>
-            </h4>
-            <div id="videos-vocab-list" class="videos-vocab-grid">
-                <!-- Vocab cards injected dynamically -->
+            </button>
+            <!-- Speed Controls -->
+            <div class="videos-speed-control-group" title="Velocidad de reproducción">
+                <button type="button" class="videos-speed-btn" data-speed="0.75">0.75x</button>
+                <button type="button" class="videos-speed-btn active" data-speed="1.0">1.0x</button>
+                <button type="button" class="videos-speed-btn" data-speed="1.25">1.25x</button>
+            </div>
+            <!-- Loop A-B Controls -->
+            <div class="videos-loop-control-group" title="Repetición en bucle de fragmento">
+                <span class="videos-loop-label" data-i18n="loopControlTitle">Bucle A-B:</span>
+                <button type="button" id="videos-loop-a-btn" class="videos-btn-compact" title="Fijar tiempo de inicio A">
+                    <span data-i18n="setLoopABtn">Punto A</span>: <strong id="videos-loop-a-val">--:--</strong>
+                </button>
+                <button type="button" id="videos-loop-b-btn" class="videos-btn-compact" title="Fijar tiempo de fin B">
+                    <span data-i18n="setLoopBBtn">Punto B</span>: <strong id="videos-loop-b-val">--:--</strong>
+                </button>
+                <button type="button" id="videos-loop-toggle-btn" class="videos-btn-compact" title="Activar/Desactivar bucle">
+                    🔁 <span data-i18n="toggleLoopBtn">Repetir</span>
+                </button>
+                <button type="button" id="videos-loop-clear-btn" class="videos-btn-compact" title="Limpiar puntos de bucle">
+                    ✕
+                </button>
             </div>
         </div>
 
-        <!-- Interactive Mini Quiz Card -->
-        <div id="videos-quiz-card" class="videos-interactive-card" style="display: none;">
-            <h4 class="videos-card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-warning, #f59e0b);">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        <div class="videos-player-actions">
+            <button type="button" id="videos-favorite-btn" class="videos-btn videos-btn-secondary" title="Guardar en favoritos">
+                <span id="videos-favorite-icon-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </span>
+                <span id="videos-favorite-text" data-i18n="markFavorite">Favorito</span>
+            </button>
+            <button type="button" id="videos-watched-btn" class="videos-btn videos-btn-secondary" title="Marcar como visto">
+                <span id="videos-watched-icon-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </span>
+                <span id="videos-watched-text" data-i18n="markWatched">Marcar visto</span>
+            </button>
+            <a id="videos-channel-external-link" href="#" target="_blank" rel="noopener" class="videos-btn videos-btn-external">
+                <span data-i18n="visitChannel">Ver canal en YouTube</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
                 </svg>
-                <span data-i18n="videoQuizTitle">Mini Quiz de Comprensión</span>
-            </h4>
-            <div id="videos-quiz-box" class="videos-quiz-container">
-                <!-- Quiz questions injected dynamically -->
-            </div>
+            </a>
         </div>
+    </div>
 
-        <!-- Personal User Notes Card with Auto-Save -->
-        <div id="videos-user-notes-card" class="videos-interactive-card">
-            <h4 class="videos-card-title">
+    <!-- Interactive Timestamps Card -->
+    <div id="videos-timestamps-card" class="videos-interactive-card" style="display: none;">
+        <h4 class="videos-card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span data-i18n="timestampsTitle">Marcas de Tiempo e Momentos Clave</span>
+        </h4>
+        <div id="videos-timestamps-list" class="videos-timestamps-grid">
+            <!-- Timestamp badges injected dynamically -->
+        </div>
+    </div>
+
+    <!-- Key Phrases & Listening Guide Card -->
+    <div id="videos-phrases-card" class="videos-interactive-card" style="display: none;">
+        <h4 class="videos-card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span data-i18n="keyPhrasesTitle">Guía de Escucha y Oraciones Clave</span>
+        </h4>
+        <div id="videos-phrases-list" class="videos-phrases-grid">
+            <!-- Phrases injected dynamically -->
+        </div>
+    </div>
+
+    <!-- Linked HSK Vocabulary Card -->
+    <div id="videos-vocab-card" class="videos-interactive-card" style="display: none;">
+        <h4 class="videos-card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-secondary, #3b82f6);">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span data-i18n="linkedVocabTitle">Vocabulario HSK Destacado en esta Lección</span>
+        </h4>
+        <div id="videos-vocab-list" class="videos-vocab-grid">
+            <!-- Vocab cards injected dynamically -->
+        </div>
+    </div>
+
+    <!-- Interactive Mini Quiz Card -->
+    <div id="videos-quiz-card" class="videos-interactive-card" style="display: none;">
+        <h4 class="videos-card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-warning, #f59e0b);">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <span data-i18n="videoQuizTitle">Mini Quiz de Comprensión</span>
+        </h4>
+        <div id="videos-quiz-box" class="videos-quiz-container">
+            <!-- Quiz questions injected dynamically -->
+        </div>
+    </div>
+
+    <!-- Personal User Notes Card with Auto-Save & Export -->
+    <div id="videos-user-notes-card" class="videos-interactive-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+            <h4 class="videos-card-title" style="margin-bottom: 0;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-success, #10b981);">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                 </svg>
                 <span data-i18n="personalNotesTitle">Mis Apuntes Personales de este Video</span>
             </h4>
-            <textarea id="videos-user-notes-input" class="videos-notes-textarea" placeholder="Escribe tus notas personales aquí (se guardan automáticamente en tu navegador)..." data-i18n-placeholder="personalNotesPlaceholder" rows="3"></textarea>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
-                <span id="videos-notes-saved-status" style="font-size:0.75rem; color:var(--color-text-dim);">Guardado automático listo</span>
+            <div class="videos-notes-actions-bar">
+                <button type="button" id="videos-copy-notes-btn" class="videos-btn-compact" title="Copiar apuntes al portapapeles">
+                    📋 <span data-i18n="copyNotesBtn">Copiar</span>
+                </button>
+                <button type="button" id="videos-export-notes-btn" class="videos-btn-compact" title="Descargar como archivo Markdown">
+                    📥 <span data-i18n="exportNotesBtn">Descargar (.md)</span>
+                </button>
             </div>
         </div>
-
-        <!-- Notes Card -->
-        <div id="videos-notes-card" class="videos-notes-card" style="display: none;">
-            <h4 class="videos-notes-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-warning);">
-                    <line x1="9" y1="18" x2="15" y2="18"></line>
-                    <line x1="10" y1="22" x2="14" y2="22"></line>
-                    <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1.55.63 2.85 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path>
-                </svg>
-                <span data-i18n="videoNotesTitle">Notas & Consejos de Estudio</span>
-            </h4>
-            <p id="videos-notes-text" class="videos-notes-content">--</p>
+        <textarea id="videos-user-notes-input" class="videos-notes-textarea" placeholder="Escribe tus notas personales aquí (se guardan automáticamente en tu navegador)..." data-i18n-placeholder="personalNotesPlaceholder" rows="3"></textarea>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+            <span id="videos-notes-saved-status" style="font-size:0.75rem; color:var(--color-text-dim);">Guardado automático listo</span>
         </div>
+    </div>
+
+    <!-- Notes Card -->
+    <div id="videos-notes-card" class="videos-notes-card" style="display: none;">
+        <h4 class="videos-notes-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-warning);">
+                <line x1="9" y1="18" x2="15" y2="18"></line>
+                <line x1="10" y1="22" x2="14" y2="22"></line>
+                <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1.55.63 2.85 1.5 3.5.76.76 1.23 1.52 1.41 2.5"></path>
+            </svg>
+            <span data-i18n="videoNotesTitle">Notas & Consejos de Estudio</span>
+        </h4>
+        <p id="videos-notes-text" class="videos-notes-content">--</p>
+    </div>
     </div>
 
     <!-- Video Catalog Grid & Category/Level Filters -->

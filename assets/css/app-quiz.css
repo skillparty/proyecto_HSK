@@ -256,3 +256,80 @@
     box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
 }
 
+/* ============================================================================
+   MOBILE RESPONSIVE QUIZ STYLES
+   ============================================================================ */
+@media (max-width: 640px) {
+    .quiz-setup,
+    .quiz-content,
+    .quiz-results {
+        padding: 20px 14px;
+        margin: 16px auto;
+        border-radius: var(--radius-md);
+    }
+
+    .quiz-setup h2,
+    .quiz-results h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .quiz-options {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .quiz-option {
+        padding: 14px 16px;
+        font-size: 1rem;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .question-text {
+        margin-bottom: 20px;
+        gap: 8px;
+    }
+
+    .quiz-header {
+        padding: 10px 14px;
+        margin-bottom: 14px;
+    }
+
+    .quiz-actions,
+    .results-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        min-height: 46px;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .control-group {
+        margin-bottom: 14px;
+    }
+
+    .control-group .select-input {
+        width: 100%;
+        max-width: 100%;
+        min-height: 44px;
+    }
+
+    .control-checkbox-label {
+        font-size: 0.85rem;
+        gap: 8px;
+    }
+}
+
+

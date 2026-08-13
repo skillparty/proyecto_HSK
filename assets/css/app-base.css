@@ -26,6 +26,8 @@ Features: Glassmorphism, Deep Dark Theme, Smooth Animations, Mobile Responsive.
    ============================================================================ */
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 /* Custom modern scrollbars */
@@ -201,7 +203,19 @@ ul {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 20px;
-    /* padding-top: calc(var(--header-height) + 20px); removed */
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        min-height: 100dvh;
+    }
+
+    .main-content {
+        padding: 12px 12px calc(var(--bottom-nav-height, 60px) + var(--safe-area-bottom, 0px) + 24px) 12px;
+        width: 100%;
+        max-width: 100%;
+    }
 }
 
 /* ============================================================================

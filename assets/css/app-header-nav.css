@@ -417,68 +417,290 @@ html[data-theme="light"] .nav-dropdown-item.active {
 }
 
 /* ============================================================================
-   MOBILE RESPONSIVE NAVIGATION ENHANCEMENTS
+/* ============================================================================
+   MOBILE RESPONSIVE NAVIGATION & HEADER (BOTTOM BAR NAVIGATION)
    ============================================================================ */
 @media (max-width: 768px) {
+    .mobile-only {
+        display: flex !important;
+    }
+
+    .app-header {
+        height: 64px !important;
+        padding: 0 12px !important;
+        padding-top: var(--safe-area-top, 0px) !important;
+    }
+
+    .header-container {
+        padding: 0 !important;
+        max-width: 100%;
+    }
+
     .header-content {
-        padding: 6px 12px;
-        gap: 8px;
+        padding: 0;
+        gap: 6px;
     }
 
-    .header-title-container h1 {
-        font-size: 1.1rem;
+    .header-brand {
+        display: flex !important;
+        align-items: center !important;
+        min-width: fit-content;
+        flex-shrink: 0;
+        gap: 6px;
     }
 
-    .header-title-container p {
-        display: none;
+    .header-brand .logo {
+        height: 28px !important;
+        width: 28px !important;
+        flex-shrink: 0;
+    }
+
+    .logo-text {
+        min-width: fit-content;
+        margin-left: 4px;
+    }
+
+    .app-title {
+        font-size: 1rem !important;
+        white-space: nowrap;
+    }
+
+    .app-subtitle {
+        display: none !important;
+    }
+
+    .header-stats {
+        display: none !important;
+    }
+
+    .header-actions {
+        gap: 6px;
+        flex-shrink: 0;
     }
 
     #header-search {
-        width: 120px;
-        padding: 6px 10px;
-        font-size: 0.8rem;
+        width: 36px;
+        padding: 8px;
+        background: transparent;
+        border: none;
+        color: transparent;
+    }
+
+    #header-search::placeholder {
+        color: transparent;
     }
 
     #header-search:focus {
-        width: 150px;
+        width: 130px;
+        color: var(--text-main);
+        background: var(--bg-panel);
+        border: 1px solid var(--color-border);
+        padding: 6px 12px;
     }
 
+    #header-search:focus::placeholder {
+        color: var(--text-dim);
+    }
+
+    .header-control {
+        min-width: 40px;
+        min-height: 40px;
+        padding: 8px;
+    }
+
+    /* Dropdown de ajustes anclado de forma segura en móvil */
+    .header-actions.settings-open .header-settings-group {
+        position: fixed;
+        top: calc(var(--header-height) + var(--safe-area-top, 0px) + 6px);
+        right: 12px;
+        left: auto;
+        max-width: calc(100vw - 24px);
+        min-width: 210px;
+        z-index: var(--z-toast, 1100);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+    }
+
+    .settings-row {
+        min-height: 44px;
+    }
+
+    .settings-row select {
+        min-height: 40px;
+        font-size: 0.9rem;
+    }
+
+    /* Auth compacto en móvil */
+    .auth-guest-mode {
+        padding: 0 !important;
+        border: none !important;
+        background: transparent !important;
+    }
+
+    .auth-guest-mode .guest-info {
+        display: none !important;
+    }
+
+    .auth-login-btn {
+        font-size: 0 !important;
+        padding: 8px !important;
+        min-width: 40px;
+        min-height: 40px;
+        justify-content: center;
+        border-radius: 50% !important;
+    }
+
+    /* Mobile Bottom Navigation Bar */
     .nav-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        justify-content: flex-start;
-        padding: 0 8px;
-        scrollbar-width: none; /* Hide scrollbar Firefox */
-    }
-
-    .nav-container::-webkit-scrollbar {
-        display: none; /* Hide scrollbar Chrome/Safari */
+        position: fixed !important;
+        bottom: 0 !important;
+        top: auto !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background: var(--bg-panel) !important;
+        border-top: 1px solid var(--color-border) !important;
+        border-bottom: none !important;
+        border-radius: 16px 16px 0 0 !important;
+        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.12) !important;
+        padding: 4px 0 max(4px, var(--safe-area-bottom, 0px)) !important;
+        z-index: 1000 !important;
+        height: calc(60px + var(--safe-area-bottom, 0px)) !important;
+        display: flex !important;
+        align-items: center !important;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
     }
 
     .nav-tabs {
-        gap: 8px;
-        padding: 0 4px;
-        flex-wrap: nowrap;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 4px !important;
+        display: flex !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        gap: 0 !important;
+        overflow: visible !important;
     }
 
     .nav-tab {
-        padding: 12px 10px;
-        font-size: 0.85rem;
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
+        font-size: 0.65rem !important;
+        padding: 4px 1px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 2px !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        color: var(--text-muted) !important;
+        background: transparent !important;
+        height: auto !important;
+        border: none !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis;
+        overflow: visible !important;
+        touch-action: manipulation;
     }
 
+    .nav-tab span {
+        font-size: 0.64rem !important;
+        letter-spacing: -0.02em;
+    }
+
+    .nav-tab svg {
+        margin-right: 0 !important;
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .nav-tab.active {
+        color: var(--primary) !important;
+        border-bottom: none !important;
+        background: transparent !important;
+        font-weight: 600 !important;
+    }
+
+    .nav-tab.active::after {
+        display: block !important;
+        content: '' !important;
+        position: absolute !important;
+        bottom: -2px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 4px !important;
+        height: 4px !important;
+        background: var(--primary) !important;
+        border-radius: 50% !important;
+    }
+
+    .nav-tab .dropdown-chevron {
+        display: none !important;
+    }
+
+    /* Position the dropdowns above the bottom navigation bar */
     .nav-dropdown {
-        left: 0;
-        transform: translateY(6px);
-        min-width: 180px;
-        max-width: calc(100vw - 32px);
+        position: absolute !important;
+        top: auto !important;
+        bottom: calc(100% + 8px) !important;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(8px) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none;
+        box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.22) !important;
+        border-color: var(--color-border) !important;
+        min-width: 170px !important;
+        max-width: calc(100vw - 16px) !important;
+        border-radius: var(--radius-lg) !important;
+        z-index: 1100 !important;
+        transition: transform var(--transition-fast), opacity var(--transition-fast), visibility var(--transition-fast);
+    }
+
+    .nav-group.open .nav-dropdown,
+    .nav-group:focus-within .nav-dropdown,
+    .nav-group:hover .nav-dropdown {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateX(-50%) translateY(0) !important;
+    }
+
+    /* Boundary-aware alignment for side groups */
+    .nav-group[data-group="study"] .nav-dropdown {
+        left: 0 !important;
+        right: auto !important;
+        transform: translateY(8px) !important;
+    }
+    .nav-group[data-group="study"].open .nav-dropdown,
+    .nav-group[data-group="study"]:hover .nav-dropdown,
+    .nav-group[data-group="study"]:focus-within .nav-dropdown {
+        transform: translateY(0) !important;
+    }
+
+    .nav-group[data-group="culture"] .nav-dropdown,
+    .nav-group[data-group="progress"] .nav-dropdown {
+        left: auto !important;
+        right: 0 !important;
+        transform: translateY(8px) !important;
+    }
+    .nav-group[data-group="culture"].open .nav-dropdown,
+    .nav-group[data-group="culture"]:hover .nav-dropdown,
+    .nav-group[data-group="culture"]:focus-within .nav-dropdown,
+    .nav-group[data-group="progress"].open .nav-dropdown,
+    .nav-group[data-group="progress"]:hover .nav-dropdown,
+    .nav-group[data-group="progress"]:focus-within .nav-dropdown {
+        transform: translateY(0) !important;
     }
 
     .nav-dropdown-item {
         min-height: 44px;
         padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+
+    /* Footer padding on mobile to not be covered by bottom bar */
+    .app-footer {
+        padding-bottom: calc(76px + var(--safe-area-bottom, 0px)) !important;
     }
 }
 

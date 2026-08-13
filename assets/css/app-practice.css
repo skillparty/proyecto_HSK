@@ -573,267 +573,64 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .mobile-only {
-        display: flex !important;
+    .practice-container {
+        gap: 16px;
     }
 
-    /* El dropdown de ajustes es global; en móvil se ancla al viewport
-       (el contenedor puede desbordar) y agranda targets táctiles */
-    .header-actions.settings-open .header-settings-group {
-        position: fixed;
-        top: calc(var(--header-height) + 6px);
-        right: 12px;
-        left: auto;
-        max-width: calc(100vw - 24px);
+    .study-progress {
+        padding: 16px 14px;
+        gap: 12px;
     }
 
-    .settings-row select {
-        min-height: 40px;
+    .streak-day {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+    }
+
+    .level-selector {
+        padding: 12px 14px;
+        gap: 10px;
+    }
+
+    .level-selector label {
+        font-size: 0.85rem;
+    }
+
+    .select-input {
+        min-height: 44px;
         font-size: 0.9rem;
     }
 
-    .app-header {
-        height: 64px !important;
-        padding: 0 12px !important;
-    }
-
-    /* El header-container ya hereda el padding del app-header; quitar el suyo
-       evita padding doble que estrechaba el brand y truncaba el título */
-    .header-container {
-        padding: 0 !important;
-    }
-
-    /* La barra de navegación inferior es fija (60px): el footer reserva ese
-       espacio para no quedar oculto tras ella */
-    .app-footer {
-        padding-bottom: 72px !important;
-    }
-
-    /* El brand cede espacio solo si hace falta; con el título completo
-       (~120px) entra de sobra junto a los controles en 375px */
-    .header-brand {
-        min-width: 0;
-        flex-shrink: 1;
-        gap: 8px;
-    }
-
-    .header-brand .logo {
-        height: 32px !important;
-        flex-shrink: 0;
-    }
-
-    .logo-text {
-        min-width: 0;
-        margin-left: 8px;
-    }
-
-    .app-title {
-        font-size: 1.05rem !important;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .app-subtitle {
-        display: none !important;
-    }
-
-    .header-actions {
-        gap: 6px;
-        flex-shrink: 0;
-    }
-
-    /* Auth compacto en móvil: solo icono, sin etiquetas ni botón de texto */
-    .auth-guest-mode {
-        padding: 0 !important;
-        border: none !important;
-        background: transparent !important;
-    }
-
-    .auth-guest-mode .guest-info {
-        display: none !important;
-    }
-
-    .auth-login-btn {
-        font-size: 0 !important; /* oculta el texto, conserva el SVG */
-        padding: 8px !important;
-        min-width: 40px;
-        min-height: 40px;
-        justify-content: center;
-        border-radius: 50% !important;
-    }
-
-    button.header-control,
-    #theme-toggle,
-    #audio-toggle,
-    #mobile-settings-toggle,
     .vocab-audio-btn,
     .card-back-pronunciation {
-        min-width: 40px;
-        min-height: 40px;
-    }
-
-    .home-hero h2 {
-        font-size: var(--text-4xl);
-        font-family: var(--font-display);
-        letter-spacing: var(--tracking-hero);
-        font-weight: 600;
-        margin-bottom: 20px;
-        color: var(--color-text-on-dark);
-        line-height: 1.05;
-    }
-
-    .welcome-stats {
-        gap: 20px;
-    }
-
-    .home-cards {
-        grid-template-columns: 1fr;
-    }
-
-    .header-stats {
-        display: none;
-    }
-
-    #header-search {
-        width: 36px;
-        padding: 8px;
-        background: transparent;
-        border: none;
-        color: transparent;
-    }
-
-    /* Evitar que el placeholder se filtre en el search colapsado */
-    #header-search::placeholder {
-        color: transparent;
-    }
-
-    #header-search:focus {
-        width: 140px;
-        color: var(--text-main);
-        background: var(--bg-panel);
-        border: 1px solid var(--color-border);
-    }
-
-    #header-search:focus::placeholder {
-        color: var(--text-dim);
-    }
-
-    /* Mobile Bottom Navigation Bar */
-    .nav-container {
-        position: fixed !important;
-        bottom: 0 !important;
-        top: auto !important;
-        left: 0 !important;
-        right: 0 !important;
-        width: 100% !important;
-        background: var(--bg-panel) !important;
-        border-top: 1px solid var(--color-border) !important;
-        border-bottom: none !important;
-        border-radius: 16px 16px 0 0 !important;
-        box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08) !important;
-        padding: 4px 0 !important;
-        z-index: 1000 !important;
-        height: 60px !important;
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    .nav-tabs {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 10px !important;
-        display: flex !important;
-        justify-content: space-around !important;
-        gap: 0 !important;
-    }
-
-    .nav-tab {
-        font-size: 0.72rem !important;
-        padding: 4px 2px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 2px !important;
-        flex: 1 !important;
-        color: var(--text-muted) !important;
-        background: transparent !important;
-        height: auto !important;
-        border: none !important;
-    }
-
-    .nav-tab svg {
-        margin-right: 0 !important;
-        width: 20px !important;
-        height: 20px !important;
-    }
-
-    .nav-tab.active {
-        color: var(--primary) !important;
-        border-bottom: none !important;
-        background: transparent !important;
-    }
-
-    /* Active state indicator dot */
-    .nav-tab.active::after {
-        display: block !important;
-        content: '' !important;
-        position: absolute !important;
-        bottom: -2px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 4px !important;
-        height: 4px !important;
-        background: var(--primary) !important;
-        border-radius: 50% !important;
-    }
-
-    .nav-tab .dropdown-chevron {
-        display: none !important;
-    }
-
-    /* Position the dropdowns above the bottom navigation bar */
-    .nav-dropdown {
-        top: auto !important;
-        bottom: calc(100% + 6px) !important;
-        left: 50% !important;
-        transform: translateX(-50%) translateY(10px) !important;
-        box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15) !important;
-        border-color: var(--color-border) !important;
-    }
-
-    .nav-group.open .nav-dropdown,
-    .nav-group:focus-within .nav-dropdown,
-    .nav-group:hover .nav-dropdown {
-        transform: translateX(-50%) translateY(0) !important;
+        min-width: 44px;
+        min-height: 44px;
     }
 
     .content-wrapper {
-        padding-bottom: 74px !important; /* Avoid content clipping on mobile */
+        padding-bottom: 20px;
     }
 
-    /* Mantener serif y tinta oscura (la caja de papel es clara en ambos temas);
-       solo ajustar tamaño para móvil */
+    /* Mantener serif y tinta oscura; tamaño ajustado para móvil */
     .card-character {
-        font-size: 4.4rem;
+        font-size: clamp(3.2rem, 12vw, 4.4rem);
         width: 124px;
         height: 124px;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
     }
 
     .card-character-container {
         min-height: 124px;
     }
 
-    /* Altura fija menor para que la tarjeta no deje un hueco enorme antes
-       del input; las caras siguen absolutas para conservar el flip 3D */
     .flashcard {
-        height: 360px;
+        height: 380px;
+        max-width: 100%;
     }
 
     .card-face {
-        padding: 24px 20px;
+        padding: 20px 16px;
     }
 
     .flashcard-area {
@@ -852,11 +649,38 @@
     }
 }
 
-/* Additional Mobile Touch Targets & Fluid Flashcard Sizing */
+/* Additional Mobile Touch Targets & Fluid Flashcard Sizing (<= 640px) */
 @media (max-width: 640px) {
+    .practice-container {
+        gap: 12px;
+    }
+
+    .level-selector {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        padding: 10px 12px;
+    }
+
+    .level-selector .select-input {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .study-streak {
+        gap: 4px;
+    }
+
+    .streak-day {
+        width: 26px;
+        height: 26px;
+        font-size: 0.7rem;
+    }
+
     .flashcard {
         max-width: 100%;
-        min-height: 260px;
+        min-height: 320px;
+        height: auto;
     }
 
     .card-character-container {
@@ -871,18 +695,20 @@
 
     #pinyin-input {
         max-width: 100%;
-        min-height: 44px;
+        width: 100%;
+        min-height: 48px;
         font-size: 1.05rem;
     }
 
     .speech-rec-btn {
-        min-width: 44px;
-        min-height: 44px;
+        min-width: 48px;
+        min-height: 48px;
+        flex-shrink: 0;
     }
 
     .action-btn {
         width: 100%;
-        min-height: 44px;
+        min-height: 46px;
         font-size: 0.95rem;
     }
 }

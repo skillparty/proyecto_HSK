@@ -584,11 +584,32 @@ html[data-theme="light"] .achievement-item.lock {
     
     .welcome-card {
         grid-column: span 1;
+        padding: 16px;
     }
 
     .daily-char-card {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .welcome-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .welcome-stamp {
+        display: none;
+    }
+
+    .welcome-stats {
+        justify-content: space-around;
+        gap: 8px;
+    }
+
+    .daily-quests-card,
+    .srs-daily-card {
+        grid-column: span 1 !important;
     }
 }
 

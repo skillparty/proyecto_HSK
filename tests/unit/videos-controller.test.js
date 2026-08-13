@@ -217,4 +217,101 @@ describe("VideosController & Data", () => {
       expect(filtered[0].id).toBe("v2");
     });
   });
+
+  describe("Loop A-B Repetition Mode", () => {
+    it("formats seconds into MM:SS correctly", () => {
+      expect(controller.formatTime(0)).toBe("00:00");
+      expect(controller.formatTime(65)).toBe("01:05");
+      expect(controller.formatTime(720)).toBe("12:00");
+      expect(controller.formatTime(3665)).toBe("61:05");
+    });
+
+    it("sets loop point A and B and toggles active state", () => {
+      controller.setLoopPointA(15);
+      controller.setLoopPointB(30);
+
+      expect(controller.loopPointA).toBe(15);
+      expect(controller.loopPointB).toBe(30);
+
+      controller.toggleLoop();
+      expect(controller.isLoopActive).toBe(true);
+      expect(controller.loopInterval).not.toBeNull();
+
+      controller.toggleLoop();
+      expect(controller.isLoopActive).toBe(false);
+      expect(controller.loopInterval).toBeNull();
+    });
+
+    it("clears loop points and resets state", () => {
+      controller.setLoopPointA(10);
+      controller.setLoopPointB(25);
+      controller.toggleLoop();
+
+      controller.clearLoop();
+      expect(controller.loopPointA).toBeNull();
+      expect(controller.loopPointB).toBeNull();
+      expect(controller.isLoopActive).toBe(false);
+      expect(controller.loopInterval).toBeNull();
+    });
+  });
+
+  describe("SRS and Etymology Integration", () => {
+    it("enrolls vocabulary into SRS engine and persists in local storage", () => {
+      const mockRate = vi.fn();
+      mockApp.srsEngine = { rate: mockRate };
+
+      controller.addVocabToSRS("长城", "Chángchéng", "Gran Muralla", "HSK 2");
+
+      expect(mockRate).toHaveBeenCalledWith(
+        {
+          character: "长城",
+          pinyin: "Chángchéng",
+          meaning: "Gran Muralla",
+          level: 2,
+        },
+        "good"
+      );
+
+      const customWords = JSON.parse(localStorage.getItem("hsk-custom-srs-words") || "[]");
+      expect(customWords.some((w) => w.character === "长城")).toBe(true);
+      expect(mockApp.showNotification).toHaveBeenCalledWith(
+        expect.stringContaining("agregada a tus Tarjetas SRS"),
+        "success"
+      );
+    });
+
+    it("triggers tab switch and character lookup when jumping to Etymology", () => {
+      const mockSwitchTab = vi.fn();
+      mockApp.uiController = { switchTab: mockSwitchTab };
+
+      controller.jumpToEtymology("中国");
+
+      expect(mockSwitchTab).toHaveBeenCalledWith("etymology");
+      expect(mockApp.showNotification).toHaveBeenCalledWith(
+        expect.stringContaining("Explorando carácter"),
+        "info"
+      );
+    });
+  });
+
+  describe("Personal Notes Export & Key Phrases", () => {
+    it("validates keyPhrases structure in data if present", () => {
+      const rawData = readFileSync(
+        join(process.cwd(), "assets/data/videos-data.json"),
+        "utf8"
+      );
+      const data = JSON.parse(rawData);
+
+      const vidsWithPhrases = data.videos.filter((v) => v.keyPhrases);
+      expect(vidsWithPhrases.length).toBeGreaterThan(0);
+
+      vidsWithPhrases.forEach((v) => {
+        v.keyPhrases.forEach((p) => {
+          expect(p.hanzi).toBeTruthy();
+          expect(p.pinyin).toBeTruthy();
+          expect(p.meaning).toBeTruthy();
+        });
+      });
+    });
+  });
 });

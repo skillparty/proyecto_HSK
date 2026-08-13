@@ -1115,3 +1115,150 @@
     border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
+/* Offline Notice Banner */
+.videos-offline-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    margin-bottom: 1.25rem;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: var(--radius-md);
+    color: var(--color-warning, #d97706);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Loop A-B Controls */
+.videos-loop-control-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    flex-wrap: wrap;
+}
+
+.videos-loop-label {
+    font-size: 0.775rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    padding: 0 0.25rem;
+}
+
+.videos-btn-compact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.55rem;
+    background: var(--color-bg-hover);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    color: var(--color-text-main);
+    font-size: 0.775rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.videos-btn-compact:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-primary-subtle);
+}
+
+.videos-btn-compact.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Notes Action Bar */
+.videos-notes-actions-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Key Phrases / Listening Guide */
+.videos-phrases-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.videos-phrase-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 0.9rem 1.15rem;
+    transition: border-color var(--transition-fast);
+}
+
+.videos-phrase-item:hover {
+    border-color: var(--color-primary);
+}
+
+.videos-phrase-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.videos-phrase-hanzi {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    font-family: var(--font-display, sans-serif);
+    line-height: 1.4;
+}
+
+.videos-phrase-pinyin {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.videos-phrase-meaning {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.videos-phrase-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex-shrink: 0;
+}
+
+.vocab-etym-btn {
+    font-size: 0.775rem;
+    padding: 0.35rem 0.6rem;
+}
+
+@media (max-width: 640px) {
+    .videos-phrase-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .videos-phrase-actions {
+        flex-direction: row;
+    }
+    .videos-phrase-actions .videos-btn {
+        flex: 1;
+    }
+    .videos-loop-control-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+

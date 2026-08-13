@@ -322,31 +322,53 @@ html[data-theme="light"] .level-progress {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+    .stats-overview {
+        padding: 14px;
+    }
+
+    .stats-cards {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 14px 10px;
+    }
+
+    .stat-value {
+        font-size: 1.6rem;
+    }
+
+    .stats-chart-card,
+    .stats-achievements-card,
+    .level-progress {
+        padding: 14px;
+        border-radius: var(--radius-md);
+    }
+
     .stats-achievements-grid {
         grid-template-columns: 1fr;
     }
-}
 
-/* Footer */
-.app-footer {
-    padding: 40px 20px;
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: 40px;
-}
-
-.dev-signature img {
-    height: 30px;
-    margin-bottom: 15px;
-    opacity: 0.8;
-}
-
-@media (max-width: 768px) {
-    .quiz-options {
-        grid-template-columns: 1fr;
+    .achievement-badge {
+        padding: 10px;
     }
 }
+
+@media (max-width: 480px) {
+    .stats-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .leaderboard-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .leaderboard-item {
+        padding: 10px 12px;
+    }
+}
+
 
