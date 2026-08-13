@@ -1,5 +1,6 @@
 /**
  * VideosController Module - Manages YouTube Videos & Channels for HSK Learning
+ * Includes Interactive Timestamps, HSK Vocabulary Cards, Mini Quizzes, and Recently Played Stack.
  */
 class VideosController {
   constructor(app) {
@@ -12,6 +13,7 @@ class VideosController {
     this.currentVideoList = [];
     this.favorites = new Set();
     this.watched = new Set();
+    this.recentlyPlayed = [];
     this.initialized = false;
 
     this.loadFavoritesAndWatched();
@@ -26,6 +28,10 @@ class VideosController {
       const wtch = localStorage.getItem("hsk-video-watched");
       if (wtch) {
         this.watched = new Set(JSON.parse(wtch));
+      }
+      const rcnt = localStorage.getItem("hsk-video-recently-played");
+      if (rcnt) {
+        this.recentlyPlayed = JSON.parse(rcnt);
       }
     } catch (e) {
       if (this.app && typeof this.app.logWarn === "function") {
@@ -54,6 +60,16 @@ class VideosController {
     }
   }
 
+  saveRecentlyPlayed() {
+    try {
+      localStorage.setItem("hsk-video-recently-played", JSON.stringify(this.recentlyPlayed));
+    } catch (e) {
+      if (this.app && typeof this.app.logWarn === "function") {
+        this.app.logWarn("Error saving recently played videos:", e);
+      }
+    }
+  }
+
   async init() {
     if (this.initialized) return;
 
@@ -65,6 +81,7 @@ class VideosController {
       this.data = await response.json();
       this.setupEventListeners();
       this.renderChannels();
+      this.renderRecentlyPlayed();
       this.renderVideos();
       this.initialized = true;
     } catch (err) {
@@ -154,14 +171,12 @@ class VideosController {
     if (!urlOrId) return null;
     const str = urlOrId.trim();
 
-    // If it's a URL or contains slashes/dots, extract YouTube ID
     if (str.includes("://") || str.includes("www.") || str.includes("/") || str.includes(".")) {
       const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|&v=)([^#&?]*).*/;
       const match = str.match(regExp);
       return match && match[2] && match[2].length === 11 ? match[2] : null;
     }
 
-    // Direct 11-character video ID
     if (/^[a-zA-Z0-9_-]{11}$/.test(str)) {
       return str;
     }
@@ -243,6 +258,55 @@ class VideosController {
     });
   }
 
+  renderRecentlyPlayed() {
+    const section = document.getElementById("videos-recently-played-section");
+    const container = document.getElementById("videos-recently-played-list");
+    if (!section || !container) return;
+
+    if (!this.recentlyPlayed || this.recentlyPlayed.length === 0) {
+      section.style.display = "none";
+      return;
+    }
+
+    section.style.display = "block";
+    const currentLang = window.languageManager?.currentLanguage || "es";
+
+    container.innerHTML = this.recentlyPlayed
+      .slice(0, 6)
+      .map((vid) => {
+        const title = vid.title[currentLang] || vid.title.es || vid.title;
+        const thumbUrl = `https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`;
+
+        return `
+          <div class="video-recent-card" data-video-id="${vid.id}">
+            <div class="video-recent-thumb-box">
+              <img src="${thumbUrl}" alt="${this.escapeHtml(title)}" loading="lazy" />
+              <div class="video-recent-play-overlay">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+            </div>
+            <div class="video-recent-info">
+              <span class="video-recent-level">${this.escapeHtml(vid.level || "")}</span>
+              <h5 class="video-recent-title">${this.escapeHtml(title)}</h5>
+            </div>
+          </div>
+        `;
+      })
+      .join("");
+
+    container.querySelectorAll(".video-recent-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        const vidId = card.dataset.videoId;
+        const found = this.data?.videos?.find((v) => v.id === vidId);
+        if (found) {
+          this.playVideo(found);
+        }
+      });
+    });
+  }
+
   getFilteredVideos() {
     if (!this.data || !this.data.videos) return [];
     const currentLang = window.languageManager?.currentLanguage || "es";
@@ -260,7 +324,8 @@ class VideosController {
         if (!this.watched.has(vid.id)) return false;
       } else if (this.activeFilter !== "all") {
         const matchesCategory = vid.category === this.activeFilter;
-        const matchesLevel = vid.level === this.activeFilter;
+        const matchesLevel =
+          vid.level === this.activeFilter || vid.level.includes(this.activeFilter);
         if (!matchesCategory && !matchesLevel) return false;
       }
 
@@ -416,7 +481,7 @@ class VideosController {
     this.playVideo(customVid);
   }
 
-  playVideo(vid) {
+  playVideo(vid, startSeconds = 0) {
     const theater = document.getElementById("videos-theater-player");
     const iframe = document.getElementById("videos-iframe");
     const titleEl = document.getElementById("videos-player-title");
@@ -433,8 +498,9 @@ class VideosController {
     const currentLang = window.languageManager?.currentLanguage || "es";
     const channel = this.getChannel(vid.channelId);
 
-    // Update iframe src with no-cookie privacy domain
-    iframe.src = `https://www.youtube-nocookie.com/embed/${vid.videoId}?autoplay=1&rel=0`;
+    // Update iframe src with start time if provided
+    const startParam = startSeconds > 0 ? `&start=${startSeconds}` : "";
+    iframe.src = `https://www.youtube-nocookie.com/embed/${vid.videoId}?autoplay=1&rel=0${startParam}`;
 
     if (titleEl) titleEl.textContent = vid.title[currentLang] || vid.title.es;
     if (channelEl) channelEl.textContent = channel ? channel.name : vid.channelId;
@@ -454,6 +520,14 @@ class VideosController {
       notesCard.style.display = "none";
     }
 
+    // Render Timestamps, Vocab Cards & Mini Quiz
+    this.renderTimestamps(vid);
+    this.renderVocab(vid);
+    this.renderQuiz(vid);
+
+    // Update Recently Played
+    this.addRecentlyPlayed(vid);
+
     // Mark automatically as watched
     this.watched.add(vid.id);
     this.saveWatched();
@@ -466,8 +540,168 @@ class VideosController {
     const yOffset = theater.getBoundingClientRect().top + window.pageYOffset - (navHeight + 20);
     window.scrollTo({ top: Math.max(0, yOffset), behavior: "smooth" });
 
-    // Refresh grid to show watched status badge
+    // Refresh grid & recent section
     this.renderVideos();
+    this.renderRecentlyPlayed();
+  }
+
+  addRecentlyPlayed(vid) {
+    if (!vid || !vid.id) return;
+    this.recentlyPlayed = this.recentlyPlayed.filter((v) => v.id !== vid.id);
+    this.recentlyPlayed.unshift(vid);
+    if (this.recentlyPlayed.length > 8) {
+      this.recentlyPlayed.pop();
+    }
+    this.saveRecentlyPlayed();
+  }
+
+  renderTimestamps(vid) {
+    const card = document.getElementById("videos-timestamps-card");
+    const container = document.getElementById("videos-timestamps-list");
+    if (!card || !container) return;
+
+    if (!vid.timestamps || vid.timestamps.length === 0) {
+      card.style.display = "none";
+      return;
+    }
+
+    card.style.display = "block";
+    container.innerHTML = vid.timestamps
+      .map(
+        (ts) => `
+        <button type="button" class="videos-timestamp-pill" data-time="${ts.time}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>${this.escapeHtml(ts.label)}</span>
+        </button>
+      `
+      )
+      .join("");
+
+    container.querySelectorAll(".videos-timestamp-pill").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const seconds = parseInt(btn.dataset.time, 10) || 0;
+        this.playVideo(vid, seconds);
+      });
+    });
+  }
+
+  renderVocab(vid) {
+    const card = document.getElementById("videos-vocab-card");
+    const container = document.getElementById("videos-vocab-list");
+    if (!card || !container) return;
+
+    if (!vid.vocab || vid.vocab.length === 0) {
+      card.style.display = "none";
+      return;
+    }
+
+    card.style.display = "block";
+    container.innerHTML = vid.vocab
+      .map(
+        (item) => `
+        <div class="videos-vocab-item">
+          <div class="videos-vocab-header">
+            <span class="videos-vocab-hanzi">${this.escapeHtml(item.hanzi)}</span>
+            <span class="videos-vocab-level-badge">${this.escapeHtml(item.level)}</span>
+          </div>
+          <div class="videos-vocab-pinyin">${this.escapeHtml(item.pinyin)}</div>
+          <div class="videos-vocab-meaning">${this.escapeHtml(item.meaning)}</div>
+          <div class="videos-vocab-actions">
+            <button type="button" class="videos-btn videos-btn-outline vocab-speak-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Escuchar pronunciación">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+              Escuchar
+            </button>
+          </div>
+        </div>
+      `
+      )
+      .join("");
+
+    container.querySelectorAll(".vocab-speak-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const hanzi = btn.dataset.hanzi;
+        this.speakChinese(hanzi);
+      });
+    });
+  }
+
+  speakChinese(text) {
+    if (!text) return;
+    if ("speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "zh-CN";
+      utterance.rate = 0.85;
+      window.speechSynthesis.cancel(); // cancel any active speech
+      window.speechSynthesis.speak(utterance);
+    } else if (this.app && typeof this.app.showNotification === "function") {
+      this.app.showNotification("Síntesis de voz no disponible", "info");
+    }
+  }
+
+  renderQuiz(vid) {
+    const card = document.getElementById("videos-quiz-card");
+    const container = document.getElementById("videos-quiz-box");
+    if (!card || !container) return;
+
+    if (!vid.quiz || vid.quiz.length === 0) {
+      card.style.display = "none";
+      return;
+    }
+
+    card.style.display = "block";
+    const q = vid.quiz[0]; // first question
+
+    container.innerHTML = `
+      <div class="videos-quiz-question">${this.escapeHtml(q.question)}</div>
+      <div class="videos-quiz-options">
+        ${q.options
+          .map(
+            (opt, idx) => `
+          <button type="button" class="videos-quiz-opt-btn" data-idx="${idx}">
+            ${this.escapeHtml(opt)}
+          </button>
+        `
+          )
+          .join("")}
+      </div>
+      <div id="videos-quiz-feedback" class="videos-quiz-feedback" style="display: none;"></div>
+    `;
+
+    container.querySelectorAll(".videos-quiz-opt-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const selectedIdx = parseInt(btn.dataset.idx, 10);
+        const feedbackEl = document.getElementById("videos-quiz-feedback");
+
+        container.querySelectorAll(".videos-quiz-opt-btn").forEach((b) => {
+          b.disabled = true;
+        });
+
+        if (selectedIdx === q.answer) {
+          btn.classList.add("correct");
+          if (feedbackEl) {
+            feedbackEl.className = "videos-quiz-feedback correct";
+            feedbackEl.textContent = `¡Correcto! ${q.explanation || ""}`;
+            feedbackEl.style.display = "block";
+          }
+        } else {
+          btn.classList.add("incorrect");
+          const correctBtn = container.querySelector(
+            `.videos-quiz-opt-btn[data-idx="${q.answer}"]`
+          );
+          if (correctBtn) correctBtn.classList.add("correct");
+          if (feedbackEl) {
+            feedbackEl.className = "videos-quiz-feedback incorrect";
+            feedbackEl.textContent = `Incorrecto. ${q.explanation || ""}`;
+            feedbackEl.style.display = "block";
+          }
+        }
+      });
+    });
   }
 
   updateTheaterButtons() {

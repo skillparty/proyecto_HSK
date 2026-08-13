@@ -52,7 +52,7 @@ describe("VideosController & Data", () => {
     });
   });
 
-  describe("Videos Data Integrity", () => {
+  describe("Videos Data Integrity & Interactive Fields", () => {
     const rawData = readFileSync(
       join(process.cwd(), "assets/data/videos-data.json"),
       "utf8"
@@ -76,7 +76,7 @@ describe("VideosController & Data", () => {
       });
     });
 
-    it("has valid video entries linking to existing channels", () => {
+    it("has valid video entries with HSK level, timestamps, vocab, and quiz", () => {
       const channelIds = new Set(data.channels.map((c) => c.id));
       expect(data.videos.length).toBeGreaterThan(0);
 
@@ -89,6 +89,32 @@ describe("VideosController & Data", () => {
         expect(vid.description.en).toBeTruthy();
         expect(vid.level).toBeTruthy();
         expect(vid.category).toBeTruthy();
+
+        if (vid.timestamps) {
+          expect(Array.isArray(vid.timestamps)).toBe(true);
+          vid.timestamps.forEach((ts) => {
+            expect(typeof ts.time).toBe("number");
+            expect(ts.label).toBeTruthy();
+          });
+        }
+
+        if (vid.vocab) {
+          expect(Array.isArray(vid.vocab)).toBe(true);
+          vid.vocab.forEach((v) => {
+            expect(v.hanzi).toBeTruthy();
+            expect(v.pinyin).toBeTruthy();
+            expect(v.meaning).toBeTruthy();
+          });
+        }
+
+        if (vid.quiz) {
+          expect(Array.isArray(vid.quiz)).toBe(true);
+          vid.quiz.forEach((q) => {
+            expect(q.question).toBeTruthy();
+            expect(Array.isArray(q.options)).toBe(true);
+            expect(typeof q.answer).toBe("number");
+          });
+        }
       });
     });
   });
@@ -117,6 +143,18 @@ describe("VideosController & Data", () => {
       expect(controller.watched.has("vid_01")).toBe(false);
       expect(JSON.parse(localStorage.getItem("hsk-video-watched"))).not.toContain("vid_01");
     });
+
+    it("stores and manages recently played videos", () => {
+      const sampleVid1 = { id: "v1", videoId: "v1111111111", title: { es: "Video 1" }, level: "HSK 1" };
+      const sampleVid2 = { id: "v2", videoId: "v2222222222", title: { es: "Video 2" }, level: "HSK 2" };
+
+      controller.addRecentlyPlayed(sampleVid1);
+      controller.addRecentlyPlayed(sampleVid2);
+
+      expect(controller.recentlyPlayed[0].id).toBe("v2");
+      expect(controller.recentlyPlayed[1].id).toBe("v1");
+      expect(JSON.parse(localStorage.getItem("hsk-video-recently-played"))).toHaveLength(2);
+    });
   });
 
   describe("Filtering Logic", () => {
@@ -144,7 +182,7 @@ describe("VideosController & Data", () => {
             title: { es: "Cultura en Pekín", en: "Culture in Beijing" },
             description: { es: "Viajes por China", en: "Travel in China" },
             category: "Cultura & Viajes",
-            level: "Cultura",
+            level: "HSK 3",
             tags: ["pekin", "cultura"],
           },
         ],
@@ -156,6 +194,13 @@ describe("VideosController & Data", () => {
       const filtered = controller.getFilteredVideos();
       expect(filtered).toHaveLength(1);
       expect(filtered[0].id).toBe("v1");
+    });
+
+    it("filters by HSK level chip", () => {
+      controller.activeFilter = "HSK 3";
+      const filtered = controller.getFilteredVideos();
+      expect(filtered).toHaveLength(1);
+      expect(filtered[0].id).toBe("v2");
     });
 
     it("filters by category or level", () => {

@@ -758,3 +758,280 @@
         border-radius: var(--radius-pill);
     }
 }
+
+/* ================================================================================
+   NEW INTERACTIVE FEATURES: RECENTLY PLAYED, TIMESTAMPS, VOCAB, QUIZZES
+   ================================================================================ */
+
+/* Recently Played Carousel Grid */
+.videos-recent-grid {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.75rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.video-recent-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 0.5rem;
+    min-width: 260px;
+    max-width: 280px;
+    cursor: pointer;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.video-recent-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+}
+
+.video-recent-thumb-box {
+    position: relative;
+    width: 80px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: #000;
+    flex-shrink: 0;
+}
+
+.video-recent-thumb-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-recent-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.video-recent-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.video-recent-level {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.video-recent-title {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* HSK Level Filter Chips */
+.videos-chip-level {
+    font-weight: 700;
+    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.05);
+    color: var(--color-primary);
+}
+
+.videos-chip-level.active {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+}
+
+/* Interactive Cards inside Theater Player */
+.videos-interactive-card {
+    margin-top: 1.25rem;
+    padding: 1.25rem;
+    background: var(--color-bg-hover);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.videos-card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0 0 1rem 0;
+}
+
+/* Timestamps Grid */
+.videos-timestamps-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.videos-timestamp-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    color: var(--color-primary);
+    font-size: 0.825rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.videos-timestamp-pill:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+}
+
+/* Linked HSK Vocab Grid */
+.videos-vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.videos-vocab-item {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.videos-vocab-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.videos-vocab-hanzi {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    font-family: var(--font-display, sans-serif);
+}
+
+.videos-vocab-level-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
+    background: var(--color-primary-subtle);
+    color: var(--color-primary);
+    border-radius: var(--radius-pill);
+}
+
+.videos-vocab-pinyin {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.videos-vocab-meaning {
+    font-size: 0.825rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.videos-vocab-actions {
+    margin-top: auto;
+}
+
+.vocab-speak-btn {
+    width: 100%;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.775rem;
+}
+
+/* Mini Quiz Container */
+.videos-quiz-container {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+}
+
+.videos-quiz-question {
+    font-size: 0.975rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 1rem;
+}
+
+.videos-quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.videos-quiz-opt-btn {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: var(--color-bg-hover);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.videos-quiz-opt-btn:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    background: var(--color-primary-subtle);
+}
+
+.videos-quiz-opt-btn.correct {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: var(--color-success, #10b981);
+    color: var(--color-success, #10b981);
+    font-weight: 700;
+}
+
+.videos-quiz-opt-btn.incorrect {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: var(--color-error, #ef4444);
+    color: var(--color-error, #ef4444);
+    font-weight: 700;
+}
+
+.videos-quiz-feedback {
+    padding: 0.85rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.videos-quiz-feedback.correct {
+    background: rgba(16, 185, 129, 0.1);
+    color: #047857;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.videos-quiz-feedback.incorrect {
+    background: rgba(239, 68, 68, 0.1);
+    color: #b91c1c;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+

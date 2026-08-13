@@ -24,7 +24,7 @@
         "es": "Aprende chino mandarín rápido con lecciones estructuradas de escucha, vocabulario HSK y diálogos prácticos.",
         "en": "Learn Mandarin Chinese fast with structured listening lessons, HSK vocabulary, and practical dialogues."
       },
-      "categories": ["HSK 1-2", "Escucha & Diálogos", "Vocabulario"]
+      "categories": ["HSK 1", "HSK 2", "Escucha & Diálogos", "Vocabulario"]
     },
     {
       "id": "wissbegierde",
@@ -37,7 +37,7 @@
         "es": "Explicaciones claras sobre gramática china, patrones de oraciones, lectura y preparación para exámenes HSK.",
         "en": "Clear explanations of Chinese grammar, sentence structures, reading, and HSK exam preparation."
       },
-      "categories": ["Gramática", "Lecciones HSK", "Estructura"]
+      "categories": ["HSK 2", "HSK 3", "Gramática", "Estructura"]
     },
     {
       "id": "chinodivertido",
@@ -50,7 +50,7 @@
         "es": "Lecciones dinámicas y divertidas en español para dominar tonos, pronunciación y frases cotidianas.",
         "en": "Dynamic and fun lessons in Spanish to master tones, pronunciation, and everyday phrases."
       },
-      "categories": ["Pronunciación & Tonos", "Tips & Errores", "Vocabulario"]
+      "categories": ["HSK 1", "Pronunciación & Tonos", "Tips & Errores", "Vocabulario"]
     },
     {
       "id": "elisalaoshi",
@@ -63,7 +63,7 @@
         "es": "Profesora Elisa Laoshi ofreciendo lecciones paso a paso de chino mandarín para hispanohablantes.",
         "en": "Teacher Elisa Laoshi offering step-by-step Mandarin Chinese lessons for Spanish speakers."
       },
-      "categories": ["HSK 1-4", "Gramática en Español", "Hanzi & Radicales"]
+      "categories": ["HSK 1", "HSK 2", "HSK 3", "HSK 4", "Hanzi & Radicales"]
     },
     {
       "id": "manushi1",
@@ -76,7 +76,7 @@
         "es": "Profesor Manu Shi compartiendo lecciones prácticas, pronunciación adecuada, tonos y vocabulario HSK.",
         "en": "Teacher Manu Shi sharing practical lessons, proper pronunciation, tones, and HSK vocabulary."
       },
-      "categories": ["Vocabulario HSK", "Pronunciación", "Frases Útiles"]
+      "categories": ["HSK 1", "HSK 2", "Vocabulario HSK", "Frases Útiles"]
     },
     {
       "id": "madebybilibili",
@@ -89,7 +89,7 @@
         "es": "Contenido audiovisual oficial de Bilibili: animaciones (donghua), dramas y cultura pop con subtítulos.",
         "en": "Official Bilibili audiovisual content: animations (donghua), dramas, and pop culture with subtitles."
       },
-      "categories": ["Series & Animación", "Cultura Pop", "Inmersión"]
+      "categories": ["HSK 3", "HSK 4", "HSK 5", "Series & Animación", "Cultura Pop"]
     }
   ],
   "videos": [
@@ -101,7 +101,7 @@
         "en": "Discovering the Great Wall of China and its History"
       },
       "channelId": "descubriendo_china",
-      "level": "HSK 1-3",
+      "level": "HSK 3",
       "category": "Cultura & Viajes",
       "duration": "12:45",
       "description": {
@@ -109,7 +109,26 @@
         "en": "A fascinating tour of the Great Wall of China with cultural vocabulary and essential historical facts."
       },
       "tags": ["Muralla China", "Historia", "Cultura", "Turismo"],
-      "notes": "Vocabulario clave: 长城 (chángchéng - Gran Muralla), 历史 (lìshǐ - Historia), 文化 (wénhuà - Cultura)."
+      "notes": "Vocabulario clave: 长城 (chángchéng - Gran Muralla), 历史 (lìshǐ - Historia), 文化 (wénhuà - Cultura).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Introducción a la Gran Muralla" },
+        { "time": 180, "label": "03:00 - Construcción e Historia" },
+        { "time": 450, "label": "07:30 - Sección Badaling (八达岭)" },
+        { "time": 620, "label": "10:20 - Datos Culturales y Turismo" }
+      ],
+      "vocab": [
+        { "hanzi": "长城", "pinyin": "chángchéng", "meaning": "Gran Muralla China", "level": "HSK 3" },
+        { "hanzi": "历史", "pinyin": "lìshǐ", "meaning": "Historia", "level": "HSK 3" },
+        { "hanzi": "文化", "pinyin": "wénhuà", "meaning": "Cultura", "level": "HSK 3" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cómo se dice 'Gran Muralla China' en mandarín?",
+          "options": ["故宫 (gùgōng)", "长城 (chángchéng)", "天安门 (tiān'ānmén)"],
+          "answer": 1,
+          "explanation": "长城 (chángchéng) significa literalmente 'Muralla Larga' o la Gran Muralla China."
+        }
+      ]
     },
     {
       "id": "vid_dc_02",
@@ -119,7 +138,7 @@
         "en": "Chinese New Year and the Spring Festival"
       },
       "channelId": "descubriendo_china",
-      "level": "Cultura",
+      "level": "HSK 2",
       "category": "Cultura & Viajes",
       "duration": "15:20",
       "description": {
@@ -127,7 +146,24 @@
         "en": "Learn about Chinese New Year celebrations, red envelopes (hóngbāo), and family traditions."
       },
       "tags": ["春节", "Año Nuevo Chino", "Tradiciones", "Fiesta de Primavera"],
-      "notes": "Vocabulario clave: 春节 (chūnjié - Fiesta de Primavera), 红包 (hóngbāo - Sobre rojo), 恭喜发财 (gōngxǐ fācái)."
+      "notes": "Vocabulario clave: 春节 (chūnjié - Fiesta de Primavera), 红包 (hóngbāo - Sobre rojo), 恭喜发财 (gōngxǐ fācái).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Origen de la Fiesta de Primavera" },
+        { "time": 240, "label": "04:00 - Sobres Rojos y Banquete Familiar" },
+        { "time": 540, "label": "09:00 - Danza del Dragón y Fuegos Artificiales" }
+      ],
+      "vocab": [
+        { "hanzi": "春节", "pinyin": "chūnjié", "meaning": "Fiesta de Primavera / Año Nuevo Chino", "level": "HSK 2" },
+        { "hanzi": "红包", "pinyin": "hóngbāo", "meaning": "Sobre rojo con dinero", "level": "HSK 2" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cuál es el nombre tradicional chino para el Año Nuevo Chino?",
+          "options": ["中秋节 (zhōngqiūjié)", "春节 (chūnjié)", "端午节 (duānwǔjié)"],
+          "answer": 1,
+          "explanation": "春节 (chūnjié) es la Fiesta de Primavera o Año Nuevo Chino."
+        }
+      ]
     },
     {
       "id": "vid_cc_01",
@@ -145,7 +181,27 @@
         "en": "Complete guide for beginners: greetings, pronouns, numbers, and basic sentence structures."
       },
       "tags": ["HSK 1", "Principiantes", "Saludos", "Vocabulario Básicos"],
-      "notes": "Vocabulario clave: 你好 (nǐ hǎo), 谢谢 (xièxie), 再见 (zàijiàn), 我 (wǒ), 你 (nǐ)."
+      "notes": "Vocabulario clave: 你好 (nǐ hǎo), 谢谢 (xièxie), 再见 (zàijiàn), 我 (wǒ), 你 (nǐ).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Saludos de Bienvenida" },
+        { "time": 180, "label": "03:00 - Pronombres (我, 你, 他/她)" },
+        { "time": 450, "label": "07:30 - Contar del 1 al 10" },
+        { "time": 900, "label": "15:00 - Construcción de Frases Simples" }
+      ],
+      "vocab": [
+        { "hanzi": "你好", "pinyin": "nǐ hǎo", "meaning": "Hola", "level": "HSK 1" },
+        { "hanzi": "谢谢", "pinyin": "xièxie", "meaning": "Gracias", "level": "HSK 1" },
+        { "hanzi": "再见", "pinyin": "zàijiàn", "meaning": "Adiós", "level": "HSK 1" },
+        { "hanzi": "我", "pinyin": "wǒ", "meaning": "Yo", "level": "HSK 1" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cómo se dice 'Gracias' en mandarín?",
+          "options": ["不客气 (bú kèqi)", "谢谢 (xièxie)", "对不起 (duìbuqǐ)"],
+          "answer": 1,
+          "explanation": "谢谢 (xièxie) significa 'Gracias'."
+        }
+      ]
     },
     {
       "id": "vid_cc_02",
@@ -155,7 +211,7 @@
         "en": "Chinese Listening Practice for Beginners"
       },
       "channelId": "chineseclass101",
-      "level": "HSK 1-2",
+      "level": "HSK 1",
       "category": "Escucha & Diálogos",
       "duration": "18:15",
       "description": {
@@ -163,7 +219,24 @@
         "en": "Listening comprehension exercises with slow and repeated dialogues to train your ear."
       },
       "tags": ["Escucha", "Diálogos", "HSK 1", "HSK 2"],
-      "notes": "Palabras clave: 听力 (tīnglì - Escucha), 对话 (duìhuà - Diálogo), 练习 (liànxí - Práctica)."
+      "notes": "Palabras clave: 听力 (tīnglì - Escucha), 对话 (duìhuà - Diálogo), 练习 (liànxí - Práctica).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Diálogo 1: Presentación personal" },
+        { "time": 300, "label": "05:00 - Diálogo 2: Preguntar la hora" },
+        { "time": 660, "label": "11:00 - Diálogo 3: Comprar bebidas" }
+      ],
+      "vocab": [
+        { "hanzi": "听力", "pinyin": "tīnglì", "meaning": "Comprensión auditiva", "level": "HSK 2" },
+        { "hanzi": "名字", "pinyin": "míngzi", "meaning": "Nombre", "level": "HSK 1" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Qué pregunta se usa para consultar el nombre de alguien?",
+          "options": ["你叫什么名字？", "你是哪国人？", "你在哪里？"],
+          "answer": 0,
+          "explanation": "'你叫什么名字？' (Nǐ jiào shénme míngzi?) significa '¿Cómo te llamas?'."
+        }
+      ]
     },
     {
       "id": "vid_wb_01",
@@ -173,7 +246,7 @@
         "en": "Essential HSK 1 & HSK 2 Grammar Course"
       },
       "channelId": "wissbegierde",
-      "level": "HSK 1-2",
+      "level": "HSK 2",
       "category": "Gramática",
       "duration": "22:10",
       "description": {
@@ -181,7 +254,24 @@
         "en": "Methodical explanation of key grammar rules for HSK 1 and HSK 2 levels."
       },
       "tags": ["Gramática", "HSK 1", "HSK 2", "Estructura de Oración"],
-      "notes": "Conceptos clave: Estructura Sujeto + Tiempo + Lugar + Verbo + Objeto."
+      "notes": "Conceptos clave: Estructura Sujeto + Tiempo + Lugar + Verbo + Objeto.",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Estructura básica de la oración china" },
+        { "time": 360, "label": "06:00 - Uso de la partícula de pregunta 吗 (ma)" },
+        { "time": 720, "label": "12:00 - El verbo 是 (shì - ser) y la negación 不 (bù)" }
+      ],
+      "vocab": [
+        { "hanzi": "是", "pinyin": "shì", "meaning": "Ser / Estar afirmativo", "level": "HSK 1" },
+        { "hanzi": "不", "pinyin": "bù", "meaning": "No / Negación", "level": "HSK 1" }
+      ],
+      "quiz": [
+        {
+          "question": "En la estructura china, ¿dónde se coloca la partícula de pregunta 吗 (ma)?",
+          "options": ["Al principio de la oración", "Al final de la oración", "Antes del verbo"],
+          "answer": 1,
+          "explanation": "La partícula 吗 (ma) se coloca siempre al final de una oración afirmativa para convertirla en pregunta."
+        }
+      ]
     },
     {
       "id": "vid_wb_02",
@@ -191,7 +281,7 @@
         "en": "How to Build Correct Sentences in Mandarin"
       },
       "channelId": "wissbegierde",
-      "level": "HSK 2-3",
+      "level": "HSK 3",
       "category": "Gramática",
       "duration": "16:40",
       "description": {
@@ -199,7 +289,24 @@
         "en": "Learn the exact word order of Chinese grammar elements to avoid common mistakes."
       },
       "tags": ["Gramática", "Orden de Palabras", "HSK 2", "Sintaxis"],
-      "notes": "Regla clave: El complemento de tiempo siempre va antes del verbo principal."
+      "notes": "Regla clave: El complemento de tiempo siempre va antes del verbo principal.",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Regla de oro del orden sintáctico" },
+        { "time": 240, "label": "04:00 - Posición de las expresiones de tiempo" },
+        { "time": 540, "label": "09:00 - Complementos de resultado" }
+      ],
+      "vocab": [
+        { "hanzi": "昨天", "pinyin": "zuótiān", "meaning": "Ayer", "level": "HSK 2" },
+        { "hanzi": "今天", "pinyin": "jīntiān", "meaning": "Hoy", "level": "HSK 1" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cuál orden de palabras es gramaticalmente correcto?",
+          "options": ["我 去 昨天 医院", "我 昨天 去 医院", "去 医院 我 昨天"],
+          "answer": 1,
+          "explanation": "En chino el tiempo (昨天) va antes del verbo (去): Sujeto + Tiempo + Verbo + Objeto."
+        }
+      ]
     },
     {
       "id": "vid_cd_01",
@@ -217,7 +324,25 @@
         "en": "Mnemonics and practical exercises in Spanish to perfect the 4 tones and neutral tone."
       },
       "tags": ["Tonos", "Pronunciación", "Pinyin", "mā má mǎ mà"],
-      "notes": "Tonos: 1° Tono alto (一声), 2° Tono ascendente (二声), 3° Tono bajo/caído (三声), 4° Tono descendente (四声)."
+      "notes": "Tonos: 1° Tono alto (一声), 2° Tono ascendente (二声), 3° Tono bajo/caído (三声), 4° Tono descendente (四声).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Explicación gráfica del tono 1 (mā)" },
+        { "time": 180, "label": "03:00 - El tono 2 ascendente (má)" },
+        { "time": 360, "label": "06:00 - El tono 3 en forma de V (mǎ)" },
+        { "time": 540, "label": "09:00 - El tono 4 tajante (mà)" }
+      ],
+      "vocab": [
+        { "hanzi": "妈", "pinyin": "mā", "meaning": "Mamá (1° Tono)", "level": "HSK 1" },
+        { "hanzi": "马", "pinyin": "mǎ", "meaning": "Caballo (3° Tono)", "level": "HSK 1" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Qué tono tiene la palabra 妈 (mā)?",
+          "options": ["1° Tono alto plano", "2° Tono ascendente", "4° Tono descendente"],
+          "answer": 0,
+          "explanation": "妈 (mā) se pronuncia en el primer tono, alto y sostenido."
+        }
+      ]
     },
     {
       "id": "vid_cd_02",
@@ -227,7 +352,7 @@
         "en": "Top 10 Common Mistakes When Speaking Chinese"
       },
       "channelId": "chinodivertido",
-      "level": "HSK 1-3",
+      "level": "HSK 2",
       "category": "Tips & Errores",
       "duration": "11:50",
       "description": {
@@ -235,7 +360,23 @@
         "en": "Discover the most frequent mistakes made by Spanish speakers when learning Chinese and how to avoid them."
       },
       "tags": ["Consejos", "Errores Comunes", "Pronunciación", "Español"],
-      "notes": "Consejo: Cuidado con confundir 是 (shì) con los verbos que indican posición como 在 (zài)."
+      "notes": "Consejo: Cuidado con confundir 是 (shì) con los verbos que indican posición como 在 (zài).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Error 1: Traducir literalmente el verbo 'Estar'" },
+        { "time": 210, "label": "03:30 - Error 2: Abuso de los pronombres personales" },
+        { "time": 420, "label": "07:00 - Error 3: Confusión en modificadores" }
+      ],
+      "vocab": [
+        { "hanzi": "在", "pinyin": "zài", "meaning": "Estar en / Ubicación", "level": "HSK 1" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cómo se dice 'Estoy en casa' correctamente?",
+          "options": ["我是家 (wǒ shì jiā)", "我在家 (wǒ zài jiā)", "我家在 (wǒ jiā zài)"],
+          "answer": 1,
+          "explanation": "Para expresar ubicación personal se usa 在 (zài): 我在家."
+        }
+      ]
     },
     {
       "id": "vid_el_01",
@@ -253,7 +394,24 @@
         "en": "Comprehensive and friendly lesson to start your Mandarin Chinese learning journey from scratch."
       },
       "tags": ["Elisa Laoshi", "HSK 1", "Lección 1", "Pinyin"],
-      "notes": "Lección de iniciación: Pinyin, iniciales, finales y expresiones básicas en clase."
+      "notes": "Lección de iniciación: Pinyin, iniciales, finales y expresiones básicas en clase.",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Bienvenida de Elisa Laoshi" },
+        { "time": 300, "label": "05:00 - Tabla de iniciales del Pinyin (b, p, m, f)" },
+        { "time": 720, "label": "12:00 - Vocales simples (a, o, e, i, u, ü)" }
+      ],
+      "vocab": [
+        { "hanzi": "老师", "pinyin": "lǎoshī", "meaning": "Profesor / Maestro", "level": "HSK 1" },
+        { "hanzi": "学生", "pinyin": "xuésheng", "meaning": "Estudiante", "level": "HSK 1" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Qué significa la palabra 老师 (lǎoshī)?",
+          "options": ["Estudiante", "Profesor / Maestro", "Amigo"],
+          "answer": 1,
+          "explanation": "老师 (lǎoshī) significa profesor o maestro."
+        }
+      ]
     },
     {
       "id": "vid_el_02",
@@ -263,7 +421,7 @@
         "en": "Breakdown of Essential Chinese Radicals"
       },
       "channelId": "elisalaoshi",
-      "level": "HSK 1-2",
+      "level": "HSK 2",
       "category": "Hanzi & Radicales",
       "duration": "17:15",
       "description": {
@@ -271,7 +429,24 @@
         "en": "Learn the most important radicals (氵 water, 亻 person, 扌 hand, ⻌ movement) to memorize Hanzi easily."
       },
       "tags": ["Radicales", "Hanzi", "Caracteres", "Mnemotecnia"],
-      "notes": "Radicales: 氵 (Agua /氵字旁), 亻 (Persona / 单人旁), 扌 (Mano / 提手旁)."
+      "notes": "Radicales: 氵 (Agua /氵字旁), 亻 (Persona / 单人旁), 扌 (Mano / 提手旁).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - ¿Qué es un radical en la escritura china?" },
+        { "time": 240, "label": "04:00 - Radical de agua 氵 (sāndiǎnshuǐ)" },
+        { "time": 540, "label": "09:00 - Radical de persona 亻 (dānrénpáng)" }
+      ],
+      "vocab": [
+        { "hanzi": "河", "pinyin": "hé", "meaning": "Río (contiene radical agua 氵)", "level": "HSK 2" },
+        { "hanzi": "你", "pinyin": "nǐ", "meaning": "Tú (contiene radical persona 亻)", "level": "HSK 1" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Qué significado aporta el radical 氵 (tres gotas) a un carácter?",
+          "options": ["Fuego o calor", "Agua o líquidos", "Madera o árboles"],
+          "answer": 1,
+          "explanation": "El radical 氵 (sāndiǎnshuǐ) representa agua o conceptos relacionados con líquidos."
+        }
+      ]
     },
     {
       "id": "vid_ms_01",
@@ -289,7 +464,26 @@
         "en": "Comprehensive review of the 150 HSK 1 words with native pronunciation, pinyin, and example sentences."
       },
       "tags": ["HSK 1", "Manu Shi", "150 Palabras", "Vocabulario"],
-      "notes": "Recomendado: Usar tarjetas de memoria para afianzar las 150 palabras HSK 1."
+      "notes": "Recomendado: Usar tarjetas de memoria para afianzar las 150 palabras HSK 1.",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Palabras 1 a 30: Saludos y Personas" },
+        { "time": 600, "label": "10:00 - Palabras 31 a 70: Números y Tiempo" },
+        { "time": 1200, "label": "20:00 - Palabras 71 a 110: Lugares y Comida" },
+        { "time": 1800, "label": "30:00 - Palabras 111 a 150: Verbos Frecuentes" }
+      ],
+      "vocab": [
+        { "hanzi": "吃", "pinyin": "chī", "meaning": "Comer", "level": "HSK 1" },
+        { "hanzi": "喝", "pinyin": "hē", "meaning": "Beber", "level": "HSK 1" },
+        { "hanzi": "家", "pinyin": "jiā", "meaning": "Casa / Familia", "level": "HSK 1" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cuántas palabras exige el examen HSK 1 tradicional?",
+          "options": ["150 palabras", "300 palabras", "500 palabras"],
+          "answer": 0,
+          "explanation": "El examen HSK 1 clásico consta de 150 palabras indispensables."
+        }
+      ]
     },
     {
       "id": "vid_ms_02",
@@ -307,7 +501,24 @@
         "en": "Key expressions for conversing with native Mandarin speakers in real situations."
       },
       "tags": ["Conversación", "Frases", "Manu Shi", "HSK 2"],
-      "notes": "Frases clave: 没问题 (méi wèntí - Sin problema), 太好了 (tài hǎo le - ¡Buenísimo!)."
+      "notes": "Frases clave: 没问题 (méi wèntí - Sin problema), 太好了 (tài hǎo le - ¡Buenísimo!).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Frases para mostrar acuerdo" },
+        { "time": 300, "label": "05:00 - Expresiones de cortesía cotidianas" },
+        { "time": 660, "label": "11:00 - Pedir aclaración si no entendiste" }
+      ],
+      "vocab": [
+        { "hanzi": "没问题", "pinyin": "méi wèntí", "meaning": "Sin problema", "level": "HSK 2" },
+        { "hanzi": "太好了", "pinyin": "tài hǎo le", "meaning": "¡Buenísimo / Excelente!", "level": "HSK 2" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cómo responderías a alguien si todo está bien y no hay problema?",
+          "options": ["没关系 (méi guānxi)", "没问题 (méi wèntí)", "对不起 (duìbuqǐ)"],
+          "answer": 1,
+          "explanation": "没问题 (méi wèntí) significa 'Sin problema'."
+        }
+      ]
     },
     {
       "id": "vid_mb_01",
@@ -317,7 +528,7 @@
         "en": "Chinese Donghua & Animation with Bilingual Subtitles"
       },
       "channelId": "madebybilibili",
-      "level": "HSK 3-4",
+      "level": "HSK 4",
       "category": "Series & Animación",
       "duration": "24:00",
       "description": {
@@ -325,7 +536,24 @@
         "en": "Enjoy original animation created by Bilibili to train listening comprehension and reading speed."
       },
       "tags": ["Donghua", "Bilibili", "Subtítulos", "Inmersión"],
-      "notes": "Consejo de estudio: Activa los subtítulos en chino para asociar el sonido con el carácter de forma inmediata."
+      "notes": "Consejo de estudio: Activa los subtítulos en chino para asociar el sonido con el carácter de forma inmediata.",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Escena 1: Encuentro en la ciudad medieval" },
+        { "time": 420, "label": "07:00 - Escena 2: Batalla y diálogos rápidos" },
+        { "time": 900, "label": "15:00 - Escena 3: Reflexión del héroe" }
+      ],
+      "vocab": [
+        { "hanzi": "动画", "pinyin": "dònghuà", "meaning": "Animación / Donghua", "level": "HSK 4" },
+        { "hanzi": "英雄", "pinyin": "yīngxióng", "meaning": "Héroe", "level": "HSK 4" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Cómo se le llama a la animación hecha en China?",
+          "options": ["Manhua (漫画)", "Donghua (动画)", "Hanfu (汉服)"],
+          "answer": 1,
+          "explanation": "Donghua (动画) es el término chino para la animación."
+        }
+      ]
     },
     {
       "id": "vid_mb_02",
@@ -335,7 +563,7 @@
         "en": "Pop Culture, Trends and Youth in China"
       },
       "channelId": "madebybilibili",
-      "level": "Cultura",
+      "level": "HSK 5",
       "category": "Cultura Pop",
       "duration": "16:45",
       "description": {
@@ -343,7 +571,24 @@
         "en": "Audiovisual special on internet trends, music, youth slang, and pop culture in China."
       },
       "tags": ["Cultura Pop", "Modismos", "Juventud", "Bilibili"],
-      "notes": "Modismos populares: 666 (liùliùliù - genial), 打卡 (dǎkǎ - registrarse/marcar presencia)."
+      "notes": "Modismos populares: 666 (liùliùliù - genial), 打卡 (dǎkǎ - registrarse/marcar presencia).",
+      "timestamps": [
+        { "time": 0, "label": "00:00 - Jerga de internet china y números" },
+        { "time": 300, "label": "05:00 - Tendencias musicales en Bilibili" },
+        { "time": 660, "label": "11:00 - El fenómeno del cosplay en Shanghái" }
+      ],
+      "vocab": [
+        { "hanzi": "打卡", "pinyin": "dǎkǎ", "meaning": "Registrarse / Marcar tarjeta en un lugar icónico", "level": "HSK 5" },
+        { "hanzi": "流行", "pinyin": "liúxíng", "meaning": "Popular / De moda", "level": "HSK 4" }
+      ],
+      "quiz": [
+        {
+          "question": "¿Qué significa la expresión de internet '666' (liùliùliù) entre la juventud china?",
+          "options": ["Algo malo o desafortunado", "Increíble / Muy hábil o genial", "Llegar tarde"],
+          "answer": 1,
+          "explanation": "'666' se pronuncia similar a 溜 (liù, hábil/fluido) y expresa que alguien es genial o hace algo de forma increíble."
+        }
+      ]
     }
   ]
 }
