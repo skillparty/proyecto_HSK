@@ -1,18 +1,38 @@
 [
   {
-    "character": "日", "pinyin": "rì", "meaning": "Sol",
-    "oracle": "☀️", "bronze": "🌞", "seal": "❂", "description": "Originalmente un círculo con un punto en el centro representando el sol."
+    "character": "日", "pinyin": "rì",
+    "meaning": { "es": "Sol", "en": "Sun" },
+    "oracle": "☀️", "bronze": "🌞", "seal": "❂",
+    "description": {
+      "es": "Originalmente un círculo con un punto en el centro representando el sol.",
+      "en": "Originally a circle with a dot in the center representing the sun."
+    }
   },
   {
-    "character": "月", "pinyin": "yuè", "meaning": "Luna",
-    "oracle": "🌙", "bronze": "🌛", "seal": "☾", "description": "Representaba la forma de la luna creciente."
+    "character": "月", "pinyin": "yuè",
+    "meaning": { "es": "Luna", "en": "Moon" },
+    "oracle": "🌙", "bronze": "🌛", "seal": "☾",
+    "description": {
+      "es": "Representaba la forma de la luna creciente.",
+      "en": "Depicted the shape of the crescent moon."
+    }
   },
   {
-    "character": "水", "pinyin": "shuǐ", "meaning": "Agua",
-    "oracle": "🌊", "bronze": "💧", "seal": "♒", "description": "Dibujado originalmente como un río fluyendo."
+    "character": "水", "pinyin": "shuǐ",
+    "meaning": { "es": "Agua", "en": "Water" },
+    "oracle": "🌊", "bronze": "💧", "seal": "♒",
+    "description": {
+      "es": "Dibujado originalmente como un río fluyendo.",
+      "en": "Originally drawn as a flowing river."
+    }
   },
   {
-    "character": "木", "pinyin": "mù", "meaning": "Árbol / Madera",
-    "oracle": "🌲", "bronze": "🌳", "seal": "𐂷", "description": "Representación visual del tronco, ramas y raíces de un árbol."
+    "character": "木", "pinyin": "mù",
+    "meaning": { "es": "Árbol / Madera", "en": "Tree / Wood" },
+    "oracle": "🌲", "bronze": "🌳", "seal": "𐂷",
+    "description": {
+      "es": "Representación visual del tronco, ramas y raíces de un árbol.",
+      "en": "Visual representation of the trunk, branches, and roots of a tree."
+    }
   }
 ]

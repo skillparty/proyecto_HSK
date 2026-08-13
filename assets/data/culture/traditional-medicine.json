@@ -4,42 +4,60 @@
       "name": "Qi", 
       "hanzi": "气", 
       "pinyin": "qì", 
-      "desc": "La energía vital o fuerza de vida que fluye por todo el universo y el cuerpo humano a través de canales llamados meridianos." 
+      "desc": {
+        "es": "La energía vital o fuerza de vida que fluye por todo el universo y el cuerpo humano a través de canales llamados meridianos.",
+        "en": "The vital energy or life force flowing through the universe and human body via channels called meridians."
+      }
     },
     { 
       "name": "Yin y Yang", 
       "hanzi": "阴阳", 
       "pinyin": "yīn yáng", 
-      "desc": "Dos fuerzas opuestas pero complementarias. El Yin es frío, pasivo y oscuro; el Yang es caliente, activo y luminoso. La salud depende del equilibrio perfecto entre ambas." 
+      "desc": {
+        "es": "Dos fuerzas opuestas pero complementarias. El Yin es frío, pasivo y oscuro; el Yang es caliente, activo y luminoso. La salud depende del equilibrio perfecto entre ambas.",
+        "en": "Two opposing yet complementary forces. Yin is cold, passive, and dark; Yang is warm, active, and bright. Health depends on their perfect balance."
+      }
     },
     { 
       "name": "Cinco Elementos", 
       "hanzi": "五行", 
       "pinyin": "wǔ xíng", 
-      "desc": "Madera, Fuego, Tierra, Metal y Agua. Este sistema explica las interacciones fisiológicas y patológicas entre los órganos del cuerpo." 
+      "desc": {
+        "es": "Madera, Fuego, Tierra, Metal y Agua. Este sistema explica las interacciones fisiológicas y patológicas entre los órganos del cuerpo.",
+        "en": "Wood, Fire, Earth, Metal, and Water. This system explains physiological and pathological interactions among body organs."
+      }
     }
   ],
   "practices": [
     { 
-      "name": "Acupuntura", 
+      "name": { "es": "Acupuntura", "en": "Acupuncture" }, 
       "hanzi": "针灸", 
       "pinyin": "zhēn jiǔ",
       "icon": "📌", 
-      "desc": "Inserción de agujas extremadamente finas en puntos específicos (acupuntos) a lo largo de los meridianos para restaurar el flujo de Qi." 
+      "desc": {
+        "es": "Inserción de agujas extremadamente finas en puntos específicos (acupuntos) a lo largo de los meridianos para restaurar el flujo de Qi.",
+        "en": "Insertion of fine needles at specific points (acupoints) along meridians to restore Qi flow."
+      }
     },
     { 
-      "name": "Fitoterapia", 
+      "name": { "es": "Fitoterapia", "en": "Herbal Medicine" }, 
       "hanzi": "中药", 
       "pinyin": "zhōng yào",
       "icon": "🌿", 
-      "desc": "Uso de miles de plantas medicinales, minerales y otros productos, cuidadosamente combinados en fórmulas personalizadas." 
+      "desc": {
+        "es": "Uso de miles de plantas medicinales, minerales y otros productos, cuidadosamente combinados en fórmulas personalizadas.",
+        "en": "Use of thousands of medicinal herbs, minerals, and natural products, tailored into customized formulas."
+      }
     },
     { 
-      "name": "Ventosas", 
+      "name": { "es": "Ventosas", "en": "Cupping Therapy" }, 
       "hanzi": "拔罐", 
       "pinyin": "bá guàn",
       "icon": "🏺", 
-      "desc": "Aplicación de tazas de vidrio o bambú sobre la piel creando un vacío para estimular el flujo sanguíneo y aliviar el dolor muscular." 
+      "desc": {
+        "es": "Aplicación de tazas de vidrio o bambú sobre la piel generando vacío para estimular la circulación sanguínea y aliviar la tensión.",
+        "en": "Application of glass or bamboo cups creating suction on skin to stimulate circulation and relieve tension."
+      }
     }
   ]
 }

@@ -24,6 +24,17 @@ class LanguageController {
         this.app.refreshPastExamsLanguage();
         this.app.refreshQuantifierSnakeLanguage();
         this.app.refreshStrokesRadicals();
+
+        if (this.app.videosController && this.app.videosController.initialized) {
+            this.app.videosController.renderChannels();
+            this.app.videosController.renderRecentlyPlayed();
+            this.app.videosController.renderVideos();
+        }
+
+        window.dispatchEvent(new CustomEvent('languageChanged', {
+            detail: { language: this.app.currentLanguage || 'es' }
+        }));
+
         this.app.updateThemeButton();
         this.app.updateAudioButton();
         this.updateHeaderControlMicrocopy();

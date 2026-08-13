@@ -2,26 +2,38 @@
   "roles": [
     {
       "name": "Sheng (生)",
-      "desc": "Personajes masculinos principales. Se dividen en Lao Sheng (hombres mayores y dignos), Xiao Sheng (hombres jóvenes) y Wu Sheng (personajes marciales y acróbatas)."
+      "desc": {
+        "es": "Personajes masculinos principales. Se dividen en Lao Sheng (hombres mayores y dignos), Xiao Sheng (hombres jóvenes) y Wu Sheng (personajes marciales y acróbatas).",
+        "en": "Main male roles. Divided into Lao Sheng (dignified older men), Xiao Sheng (young men), and Wu Sheng (martial characters and acrobats)."
+      }
     },
     {
       "name": "Dan (旦)",
-      "desc": "Personajes femeninos. Incluyen Qing Yi (mujeres virtuosas y elegantes), Hua Dan (mujeres jóvenes y vivaces) y Wu Dan (mujeres guerreras)."
+      "desc": {
+        "es": "Personajes femeninos. Incluyen Qing Yi (mujeres virtuosas y elegantes), Hua Dan (mujeres jóvenes y vivaces) y Wu Dan (mujeres guerreras).",
+        "en": "Female roles. Include Qing Yi (virtuous, elegant women), Hua Dan (lively young women), and Wu Dan (female warriors)."
+      }
     },
     {
       "name": "Jing (净)",
-      "desc": "Personajes masculinos con caras pintadas. Sus elaborados maquillajes revelan su personalidad: lealtad, valentía, astucia o ferocidad."
+      "desc": {
+        "es": "Personajes masculinos con caras pintadas. Sus elaborados maquillajes revelan su personalidad: lealtad, valentía, astucia o ferocidad.",
+        "en": "Painted face male roles. Their elaborate face patterns reveal personality: loyalty, bravery, cunning, or fierceness."
+      }
     },
     {
       "name": "Chou (丑)",
-      "desc": "El payaso o personaje cómico. Se reconoce por una mancha blanca de maquillaje alrededor de los ojos y la nariz. Aportan humor y pueden improvisar."
+      "desc": {
+        "es": "El payaso o personaje cómico. Se reconoce por una mancha blanca de maquillaje alrededor de los ojos y la nariz. Aportan humor y pueden improvisar.",
+        "en": "The clown or comedic role. Recognized by a white patch around eyes and nose. Adds humor and can improvise."
+      }
     }
   ],
   "colors": [
-    { "color": "Rojo", "hex": "#e53935", "meaning": "Lealtad, valentía y rectitud. Usado por héroes legendarios como Guan Yu." },
-    { "color": "Negro", "hex": "#212121", "meaning": "Valor, fiereza e imparcialidad. Representa personajes rudos pero justos como Bao Zheng." },
-    { "color": "Blanco", "hex": "#ffffff", "meaning": "Astucia, engaño y traición. Típico de villanos poderosos como Cao Cao.", "text": "#333" },
-    { "color": "Azul/Verde", "hex": "#1e88e5", "meaning": "Firmeza, terquedad y valor indomable. Común en guerreros rebeldes o héroes populares." },
-    { "color": "Amarillo", "hex": "#fbc02d", "meaning": "Crueldad, ambición e inteligencia oculta. Usado por asesinos o personajes de la realeza corruptos.", "text": "#333" }
+    { "color": { "es": "Rojo", "en": "Red" }, "hex": "#e53935", "meaning": { "es": "Lealtad, valentía y rectitud. Usado por héroes legendarios como Guan Yu.", "en": "Loyalty, bravery, and righteousness. Used for legendary heroes like Guan Yu." } },
+    { "color": { "es": "Negro", "en": "Black" }, "hex": "#212121", "meaning": { "es": "Valor, fiereza e imparcialidad. Representa personajes rudos pero justos como Bao Zheng.", "en": "Courage, fierceness, and impartiality. Represents rough but fair figures like Bao Zheng." } },
+    { "color": { "es": "Blanco", "en": "White" }, "hex": "#ffffff", "meaning": { "es": "Astucia, engaño y traición. Típico de villanos poderosos como Cao Cao.", "en": "Cunning, deceit, and treachery. Typical of powerful villains like Cao Cao." }, "text": "#333" },
+    { "color": { "es": "Azul/Verde", "en": "Blue/Green" }, "hex": "#1e88e5", "meaning": { "es": "Firmeza, terquedad y valor indomable. Común en guerreros rebeldes o héroes populares.", "en": "Steadfastness, stubbornness, and indomitable courage. Common in rebel warriors." } },
+    { "color": { "es": "Amarillo", "en": "Yellow" }, "hex": "#fbc02d", "meaning": { "es": "Crueldad, ambición e inteligencia oculta. Usado por asesinos o personajes de la realeza corruptos.", "en": "Cruelty, ambition, and hidden intelligence. Used for assassins or corrupt royalty." }, "text": "#333" }
   ]
 }

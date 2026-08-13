@@ -1,32 +1,44 @@
 {
   "achievements": [
     { 
-      "title": "Red de Alta Velocidad (Gaotie)", 
+      "title": { "es": "Red de Alta Velocidad (Gaotie)", "en": "High-Speed Rail Network (Gaotie)" }, 
       "hanzi": "高铁",
       "pinyin": "gāo tiě",
       "icon": "🚄",
-      "desc": "China posee la red ferroviaria de alta velocidad más grande del mundo (más de 40,000 km), conectando miles de ciudades. Los modernos trenes Fuxing (复兴号) alcanzan velocidades de 350 km/h, revolucionando el transporte interurbano."
+      "desc": {
+        "es": "China posee la red ferroviaria de alta velocidad más grande del mundo (más de 40,000 km), conectando miles de ciudades. Los modernos trenes Fuxing (复兴号) alcanzan velocidades de 350 km/h, revolucionando el transporte interurbano.",
+        "en": "China possesses the world's largest high-speed railway network (over 40,000 km), connecting thousands of cities. Modern Fuxing (复兴号) trains reach speeds of 350 km/h, revolutionizing intercity transit."
+      }
     },
     { 
-      "title": "Estación Espacial Tiangong", 
+      "title": { "es": "Estación Espacial Tiangong", "en": "Tiangong Space Station" }, 
       "hanzi": "天宫",
       "pinyin": "tiān gōng",
       "icon": "🛰️",
-      "desc": "Significa 'Palacio Celestial'. Completada en 2022, esta estación orbital modular de investigación es 100% de desarrollo chino, marcando un hito independiente en la presencia humana permanente en el espacio."
+      "desc": {
+        "es": "Significa 'Palacio Celestial'. Completada en 2022, esta estación orbital modular de investigación es 100% de desarrollo chino, marcando un hito independiente en la presencia humana permanente en el espacio.",
+        "en": "Meaning 'Heavenly Palace'. Completed in 2022, this modular orbital research station is 100% Chinese-developed, marking an independent milestone in permanent human space presence."
+      }
     },
     { 
-      "title": "Potencia Naval y Marítima", 
+      "title": { "es": "Potencia Naval y Marítima", "en": "Naval and Maritime Power" }, 
       "hanzi": "航海",
       "pinyin": "háng hǎi",
       "icon": "🚢",
-      "desc": "China es el principal constructor naval del mundo. Destaca en la creación de megabuques portacontenedores, rompehielos polares (Xuelong) e innovadores portaaviones con tecnología de catapultas electromagnéticas."
+      "desc": {
+        "es": "China es el principal constructor naval del mundo. Destaca en la creación de megabuques portacontenedores, rompehielos polares (Xuelong) e innovadores portaaviones con tecnología de catapultas electromagnéticas.",
+        "en": "China is the world's leading shipbuilder. It excels in crafting mega container ships, polar icebreakers (Xuelong), and innovative aircraft carriers featuring electromagnetic catapult tech."
+      }
     },
     {
-      "title": "Liderazgo en Energías Limpias",
+      "title": { "es": "Liderazgo en Energías Limpias", "en": "Clean Energy Leadership" },
       "hanzi": "新能源",
       "pinyin": "xīn néng yuán",
       "icon": "⚡",
-      "desc": "Líder mundial indiscutible en la producción de vehículos eléctricos (EV), baterías de nueva generación y capacidad instalada de energía solar y eólica, impulsando la transición energética global."
+      "desc": {
+        "es": "Líder mundial indiscutible en la producción de vehículos eléctricos (EV), baterías de nueva generación y capacidad instalada de energía solar y eólica, impulsando la transición energética global.",
+        "en": "Undisputed global leader in electric vehicle (EV) production, next-gen batteries, and solar/wind capacity, driving the global energy transition."
+      }
     }
   ],
   "innovations": []
