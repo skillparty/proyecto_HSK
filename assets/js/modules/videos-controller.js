@@ -169,6 +169,27 @@ class VideosController {
     return null;
   }
 
+  getChannelIconSvg(iconKey, badgeColor) {
+    const stroke = badgeColor || "var(--color-primary)";
+    switch (iconKey) {
+      case "compass":
+        return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>`;
+      case "graduation":
+        return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`;
+      case "book":
+        return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`;
+      case "smile":
+        return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>`;
+      case "user":
+        return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`;
+      case "mic":
+        return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`;
+      case "tv":
+      default:
+        return `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>`;
+    }
+  }
+
   renderChannels() {
     const container = document.getElementById("videos-channels-list");
     if (!container || !this.data || !this.data.channels) return;
@@ -179,11 +200,13 @@ class VideosController {
       .map((ch) => {
         const desc = ch.description[currentLang] || ch.description.es;
         const isActive = this.activeChannel === ch.id;
+        const iconSvg = this.getChannelIconSvg(ch.icon || ch.avatar, ch.badgeColor);
+
         return `
           <div class="videos-channel-card ${isActive ? "active" : ""}" data-channel-id="${ch.id}">
             <div class="videos-channel-top">
               <div class="videos-channel-avatar" style="border-color: ${ch.badgeColor || "var(--color-primary)"};">
-                ${ch.avatar || "🇨🇳"}
+                ${iconSvg}
               </div>
               <div>
                 <h4 class="videos-channel-name">${this.escapeHtml(ch.name)}</h4>
@@ -295,6 +318,14 @@ class VideosController {
         const isWtch = this.watched.has(vid.id);
         const thumbUrl = `https://img.youtube.com/vi/${vid.videoId}/hqdefault.jpg`;
 
+        const favSvg = isFav
+          ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-error);"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
+          : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-dim);"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+
+        const watchedBadge = isWtch
+          ? `<span class="video-card-watched-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="vertical-align:-1px; margin-right:2px;"><polyline points="20 6 9 17 4 12"></polyline></svg> Visto</span>`
+          : "";
+
         return `
           <div class="video-card" data-video-id="${vid.id}">
             <div class="video-card-thumb-wrapper">
@@ -307,7 +338,7 @@ class VideosController {
                 </div>
               </div>
               <span class="video-card-duration">${vid.duration || ""}</span>
-              ${isWtch ? `<span class="video-card-watched-badge">✓ Visto</span>` : ""}
+              ${watchedBadge}
             </div>
 
             <div class="video-card-body">
@@ -322,7 +353,7 @@ class VideosController {
                 <span class="video-card-channel-name">${this.escapeHtml(channel ? channel.name : "")}</span>
                 <div style="display:flex; gap:0.5rem; align-items:center;">
                   <button type="button" class="video-card-fav-btn" title="Favorito">
-                    ${isFav ? "❤️" : "🤍"}
+                    ${favSvg}
                   </button>
                   <button type="button" class="videos-btn videos-btn-primary" style="padding:0.35rem 0.75rem; font-size:0.775rem;">
                     Reproducir
@@ -429,7 +460,11 @@ class VideosController {
     this.updateTheaterButtons();
 
     theater.style.display = "block";
-    theater.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Scroll smoothly taking sticky navigation header into account
+    const navHeight = document.querySelector(".nav-container")?.offsetHeight || 60;
+    const yOffset = theater.getBoundingClientRect().top + window.pageYOffset - (navHeight + 20);
+    window.scrollTo({ top: Math.max(0, yOffset), behavior: "smooth" });
 
     // Refresh grid to show watched status badge
     this.renderVideos();
@@ -439,14 +474,26 @@ class VideosController {
     if (!this.currentVideoId) return;
     const favText = document.getElementById("videos-favorite-text");
     const watchText = document.getElementById("videos-watched-text");
-    const favIcon = document.querySelector("#videos-favorite-btn .favorite-icon");
+    const favIconBox = document.getElementById("videos-favorite-icon-box");
+    const watchIconBox = document.getElementById("videos-watched-icon-box");
 
     const isFav = this.favorites.has(this.currentVideoId);
     const isWtch = this.watched.has(this.currentVideoId);
 
-    if (favIcon) favIcon.textContent = isFav ? "❤️" : "🤍";
+    if (favIconBox) {
+      favIconBox.innerHTML = isFav
+        ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: var(--color-error);"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
+        : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+    }
+
+    if (watchIconBox) {
+      watchIconBox.innerHTML = isWtch
+        ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-success);"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`
+        : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+    }
+
     if (favText) favText.textContent = isFav ? "En Favoritos" : "Favorito";
-    if (watchText) watchText.textContent = isWtch ? "Visto ✓" : "Marcar visto";
+    if (watchText) watchText.textContent = isWtch ? "Visto" : "Marcar visto";
   }
 
   playPreviousVideo() {

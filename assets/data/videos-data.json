@@ -5,7 +5,7 @@
       "handle": "@Descubriendo_China",
       "name": "Descubriendo China",
       "url": "https://www.youtube.com/@Descubriendo_China",
-      "avatar": "🇨🇳",
+      "icon": "compass",
       "badgeColor": "#e53935",
       "description": {
         "es": "Canal dedicado a difundir la riqueza cultural, la historia, las tradiciones y la vida cotidiana en China.",
@@ -18,7 +18,7 @@
       "handle": "@ChineseClass101",
       "name": "ChineseClass101",
       "url": "https://www.youtube.com/@ChineseClass101",
-      "avatar": "🎓",
+      "icon": "graduation",
       "badgeColor": "#2563eb",
       "description": {
         "es": "Aprende chino mandarín rápido con lecciones estructuradas de escucha, vocabulario HSK y diálogos prácticos.",
@@ -31,7 +31,7 @@
       "handle": "@Wissbegierde",
       "name": "Wissbegierde",
       "url": "https://www.youtube.com/@Wissbegierde",
-      "avatar": "📚",
+      "icon": "book",
       "badgeColor": "#7c3aed",
       "description": {
         "es": "Explicaciones claras sobre gramática china, patrones de oraciones, lectura y preparación para exámenes HSK.",
@@ -44,7 +44,7 @@
       "handle": "@chinodivertido",
       "name": "Chino Divertido",
       "url": "https://www.youtube.com/@chinodivertido",
-      "avatar": "😄",
+      "icon": "smile",
       "badgeColor": "#f59e0b",
       "description": {
         "es": "Lecciones dinámicas y divertidas en español para dominar tonos, pronunciación y frases cotidianas.",
@@ -57,7 +57,7 @@
       "handle": "@elisalaoshi",
       "name": "Elisa Laoshi",
       "url": "https://www.youtube.com/@elisalaoshi",
-      "avatar": "👩‍🏫",
+      "icon": "user",
       "badgeColor": "#10b981",
       "description": {
         "es": "Profesora Elisa Laoshi ofreciendo lecciones paso a paso de chino mandarín para hispanohablantes.",
@@ -70,7 +70,7 @@
       "handle": "@manushi1",
       "name": "Manu Shi - Chino con Manu",
       "url": "https://www.youtube.com/@manushi1",
-      "avatar": "🎙️",
+      "icon": "mic",
       "badgeColor": "#06b6d4",
       "description": {
         "es": "Profesor Manu Shi compartiendo lecciones prácticas, pronunciación adecuada, tonos y vocabulario HSK.",
@@ -83,7 +83,7 @@
       "handle": "@MadeByBilibili",
       "name": "Made by Bilibili",
       "url": "https://www.youtube.com/@MadeByBilibili",
-      "avatar": "📺",
+      "icon": "tv",
       "badgeColor": "#ec4899",
       "description": {
         "es": "Contenido audiovisual oficial de Bilibili: animaciones (donghua), dramas y cultura pop con subtítulos.",
