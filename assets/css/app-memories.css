@@ -1,0 +1,1190 @@
+/*
+================================================================================
+BAÚL DE LOS RECUERDOS (ICUMSS Memories Trunk / 记忆宝盒)
+Sino-Bolivian Fusion Theme - Gallery, Timeline & Memory Vault
+================================================================================
+*/
+
+.memories-container {
+    max-width: var(--max-width, 1280px);
+    margin: 0 auto;
+    padding: var(--space-lg, 20px) var(--space-md, 16px) var(--space-section, 64px);
+    color: var(--color-text-main);
+    animation: fadeIn 0.3s ease;
+}
+
+/* ============================================================================
+   1. HERO BANNER
+   ============================================================================ */
+.memories-hero {
+    position: relative;
+    background: linear-gradient(135deg, rgba(229, 57, 53, 0.08) 0%, rgba(250, 204, 21, 0.06) 50%, rgba(34, 197, 94, 0.05) 100%);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl, 16px);
+    padding: var(--space-xl, 24px) var(--space-lg, 20px);
+    margin-bottom: var(--space-xl, 24px);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+html[data-theme="dark"] .memories-hero {
+    background: linear-gradient(135deg, rgba(229, 57, 53, 0.14) 0%, rgba(20, 20, 24, 0.95) 60%, rgba(34, 197, 94, 0.08) 100%);
+    border-color: var(--color-border);
+}
+
+.memories-hero::before {
+    content: "記憶";
+    position: absolute;
+    right: 20px;
+    bottom: -15px;
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    opacity: 0.04;
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+}
+
+html[data-theme="dark"] .memories-hero::before {
+    opacity: 0.06;
+}
+
+.memories-hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md, 16px);
+}
+
+.memories-hero-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-md, 16px);
+    flex-wrap: wrap;
+}
+
+.memories-title-group {
+    flex: 1 1 340px;
+}
+
+.memories-badge-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs, 8px);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-xs, 8px);
+}
+
+.memories-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-xs, 12px);
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill, 9999px);
+    background: var(--color-primary-subtle);
+    color: var(--color-primary);
+    border: 1px solid rgba(229, 57, 53, 0.2);
+}
+
+.memories-badge-icumss {
+    background: rgba(250, 204, 21, 0.15);
+    color: #b45309;
+    border-color: rgba(250, 204, 21, 0.35);
+}
+
+html[data-theme="dark"] .memories-badge-icumss {
+    background: rgba(250, 204, 21, 0.12);
+    color: var(--color-accent);
+}
+
+.memories-title {
+    font-family: var(--font-display, "Noto Serif SC", serif);
+    font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.4rem);
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0 0 4px;
+    line-height: var(--leading-tight, 1.15);
+}
+
+.memories-title-hanzi {
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    color: var(--color-primary);
+    font-size: 1.1em;
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+.memories-subtitle {
+    font-size: var(--text-base, 16px);
+    color: var(--color-text-muted);
+    margin: 0;
+    line-height: var(--leading-normal, 1.55);
+    max-width: 65ch;
+}
+
+/* Quick Actions in Hero */
+.memories-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm, 12px);
+    flex-wrap: wrap;
+}
+
+.memories-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    font-size: var(--text-sm, 14px);
+    font-weight: 600;
+    border-radius: var(--radius-md, 8px);
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+    border: none;
+    text-decoration: none;
+}
+
+.memories-hero-btn-primary {
+    background: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(229, 57, 53, 0.25);
+}
+
+.memories-hero-btn-primary:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(229, 57, 53, 0.35);
+}
+
+.memories-hero-btn-secondary {
+    background: var(--color-bg-card);
+    color: var(--color-text-main);
+    border: 1px solid var(--color-border);
+}
+
+.memories-hero-btn-secondary:hover {
+    background: var(--color-bg-hover);
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+}
+
+/* Stats summary bar */
+.memories-stats-bar {
+    display: flex;
+    gap: var(--space-lg, 20px);
+    padding-top: var(--space-sm, 12px);
+    border-top: 1px solid var(--color-border-subtle);
+    flex-wrap: wrap;
+}
+
+.memories-stat-item {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.memories-stat-val {
+    font-size: var(--text-lg, 18px);
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--color-primary);
+}
+
+.memories-stat-lbl {
+    font-size: var(--text-xs, 12px);
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+/* ============================================================================
+   2. CONTROLS & FILTER BAR
+   ============================================================================ */
+.memories-controls-bar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md, 16px);
+    margin-bottom: var(--space-xl, 24px);
+}
+
+.memories-search-and-views {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md, 16px);
+    flex-wrap: wrap;
+}
+
+.memories-search-box {
+    position: relative;
+    flex: 1 1 280px;
+    max-width: 480px;
+}
+
+.memories-search-input {
+    width: 100%;
+    height: 42px;
+    padding: 0 16px 0 40px;
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-input);
+    color: var(--color-text-main);
+    font-size: var(--text-sm, 14px);
+    transition: all var(--transition-fast);
+}
+
+.memories-search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.memories-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-dim);
+    pointer-events: none;
+}
+
+.memories-view-switchers {
+    display: flex;
+    align-items: center;
+    background: var(--color-bg-panel);
+    padding: 3px;
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid var(--color-border);
+    gap: 2px;
+}
+
+.memories-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: var(--text-xs, 12px);
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-sm, 6px);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.memories-view-btn:hover {
+    color: var(--color-text-main);
+}
+
+.memories-view-btn.is-active {
+    background: var(--color-primary);
+    color: #ffffff;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Category Filters */
+.memories-categories {
+    display: flex;
+    gap: var(--space-xs, 8px);
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+}
+
+.memories-cat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill, 9999px);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-card);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm, 14px);
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+    user-select: none;
+}
+
+.memories-cat-chip:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text-main);
+    background: var(--color-bg-hover);
+}
+
+.memories-cat-chip.is-active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(229, 57, 53, 0.25);
+    font-weight: 600;
+}
+
+.memories-cat-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 6px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    border-radius: var(--radius-pill, 9999px);
+    background: rgba(0, 0, 0, 0.08);
+    color: inherit;
+}
+
+.memories-cat-chip.is-active .memories-cat-count {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .memories-cat-chip .memories-cat-count {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================================================
+   3. GALLERY GRID VIEW (POLAROID & HERITAGE CARDS)
+   ============================================================================ */
+.memories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: var(--space-lg, 20px);
+}
+
+.memory-card {
+    position: relative;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 12px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+}
+
+.memory-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(229, 57, 53, 0.4);
+}
+
+.memory-card:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-glow);
+}
+
+/* Image Frame */
+.memory-card-img-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 66.66%; /* 3:2 Aspect Ratio */
+    background: var(--color-bg-hover);
+    overflow: hidden;
+}
+
+.memory-card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.memory-card:hover .memory-card-img {
+    transform: scale(1.05);
+}
+
+/* Chinese Cultural Stamp Overlay (印章) */
+.memory-card-seal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(229, 57, 53, 0.88);
+    color: #ffffff;
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+}
+
+/* Category Badge on Image */
+.memory-card-cat-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(15, 15, 18, 0.78);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm, 6px);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Favorite indicator button on card */
+.memory-card-fav-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(15, 15, 18, 0.7);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(4px);
+    z-index: 3;
+}
+
+.memory-card-fav-btn:hover {
+    background: rgba(229, 57, 53, 0.9);
+    transform: scale(1.1);
+}
+
+.memory-card-fav-btn.is-fav {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+}
+
+/* Card Body */
+.memory-card-body {
+    padding: var(--space-md, 16px);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.memory-card-hanzi {
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.3;
+}
+
+.memory-card-pinyin {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-dim);
+    margin-top: -4px;
+}
+
+.memory-card-title {
+    font-size: var(--text-base, 16px);
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin: 0;
+    line-height: 1.35;
+}
+
+.memory-card-desc {
+    font-size: var(--text-sm, 14px);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.memory-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: var(--text-xs, 12px);
+    color: var(--color-text-dim);
+}
+
+.memory-card-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.memory-card-tag {
+    font-size: 11px;
+    padding: 2px 6px;
+    background: var(--color-bg-hover);
+    border-radius: 4px;
+    color: var(--color-text-muted);
+}
+
+.memory-card-note-badge {
+    color: var(--color-accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 600;
+}
+
+/* ============================================================================
+   4. TIMELINE VIEW
+   ============================================================================ */
+.memories-timeline-wrap {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-xl, 24px) 0;
+}
+
+.memories-timeline-wrap::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 28px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-accent) 50%, var(--color-success) 100%);
+    border-radius: var(--radius-pill);
+}
+
+@media (min-width: 768px) {
+    .memories-timeline-wrap::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    margin-bottom: var(--space-xl, 32px);
+}
+
+@media (min-width: 768px) {
+    .timeline-item:nth-child(odd) {
+        flex-direction: row-reverse;
+    }
+    .timeline-item:nth-child(odd) .timeline-card {
+        text-align: right;
+    }
+    .timeline-item:nth-child(odd) .timeline-card .timeline-tags {
+        justify-content: flex-end;
+    }
+}
+
+.timeline-node {
+    position: absolute;
+    left: 17px;
+    top: 20px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-bg-card);
+    border: 4px solid var(--color-primary);
+    box-shadow: 0 0 0 4px var(--color-primary-glow);
+    z-index: 4;
+    transition: transform var(--transition-fast);
+}
+
+@media (min-width: 768px) {
+    .timeline-node {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.timeline-item:hover .timeline-node {
+    transform: scale(1.2);
+}
+@media (min-width: 768px) {
+    .timeline-item:hover .timeline-node {
+        transform: translateX(-50%) scale(1.2);
+    }
+}
+
+.timeline-content {
+    margin-left: 60px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .timeline-content {
+        margin-left: 0;
+        width: 45%;
+    }
+    .timeline-item:nth-child(even) .timeline-content {
+        margin-left: auto;
+    }
+}
+
+.timeline-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 12px);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    cursor: pointer;
+}
+
+.timeline-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.timeline-img-wrap {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+.timeline-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.timeline-card:hover .timeline-img {
+    transform: scale(1.05);
+}
+
+.timeline-body {
+    padding: var(--space-md, 16px);
+}
+
+.timeline-hanzi {
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.timeline-title {
+    font-size: var(--text-base, 16px);
+    font-weight: 600;
+    margin: 4px 0 6px;
+}
+
+.timeline-desc {
+    font-size: var(--text-sm, 14px);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    margin: 0 0 10px;
+}
+
+.timeline-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+/* ============================================================================
+   5. MODAL / LIGHTBOX VIEWER
+   ============================================================================ */
+.memory-lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(12px);
+    z-index: var(--z-modal, 1000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md, 16px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.memory-lightbox-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.memory-lightbox-dialog {
+    position: relative;
+    background: var(--color-bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl, 16px);
+    max-width: 1040px;
+    width: 100%;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    transform: scale(0.95);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.memory-lightbox-overlay.is-open .memory-lightbox-dialog {
+    transform: scale(1);
+}
+
+@media (min-width: 900px) {
+    .memory-lightbox-dialog {
+        flex-direction: row;
+        height: 600px;
+    }
+}
+
+/* Lightbox Image Area */
+.memory-lightbox-media {
+    position: relative;
+    flex: 1 1 60%;
+    background: #09090b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-height: 280px;
+}
+
+.memory-lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+    user-select: none;
+}
+
+/* Nav arrows on Lightbox */
+.memory-lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(20, 20, 24, 0.75);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(6px);
+    z-index: 5;
+}
+
+.memory-lightbox-nav-btn:hover {
+    background: var(--color-primary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.memory-lightbox-nav-prev { left: 12px; }
+.memory-lightbox-nav-next { right: 12px; }
+
+/* Lightbox Info Sidebar */
+.memory-lightbox-info {
+    flex: 1 1 40%;
+    padding: var(--space-xl, 24px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md, 16px);
+    background: var(--color-bg-card);
+}
+
+.memory-lightbox-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.memory-lightbox-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-bg-hover);
+    color: var(--color-text-main);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    z-index: 10;
+}
+
+.memory-lightbox-close-btn:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+}
+
+.memory-lightbox-hanzi {
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.25;
+}
+
+.memory-lightbox-pinyin {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--color-text-dim);
+}
+
+.memory-lightbox-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin: 0;
+    line-height: 1.35;
+}
+
+.memory-lightbox-desc {
+    font-size: var(--text-sm, 14px);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Audio button in detail */
+.memory-lightbox-audio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-md, 8px);
+    background: var(--color-primary-subtle);
+    color: var(--color-primary);
+    border: 1px solid rgba(229, 57, 53, 0.25);
+    font-size: var(--text-xs, 12px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    align-self: flex-start;
+}
+
+.memory-lightbox-audio-btn:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+/* Vocab chips section */
+.memory-lightbox-vocab-box {
+    background: var(--color-bg-hover);
+    padding: var(--space-sm, 12px);
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid var(--color-border);
+}
+
+.memory-lightbox-vocab-title {
+    font-size: var(--text-xs, 12px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-dim);
+    margin-bottom: 6px;
+}
+
+.memory-lightbox-vocab-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.memory-vocab-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: var(--color-bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm, 6px);
+    font-size: var(--text-xs, 12px);
+    color: var(--color-text-main);
+}
+
+.memory-vocab-chip strong {
+    color: var(--color-primary);
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+}
+
+/* Personal Notes Area inside Lightbox */
+.memory-lightbox-notes-box {
+    margin-top: auto;
+    background: rgba(250, 204, 21, 0.08);
+    border: 1px dashed rgba(250, 204, 21, 0.4);
+    border-radius: var(--radius-md, 8px);
+    padding: var(--space-sm, 12px);
+}
+
+html[data-theme="dark"] .memory-lightbox-notes-box {
+    background: rgba(250, 204, 21, 0.05);
+    border-color: rgba(250, 204, 21, 0.25);
+}
+
+.memory-notes-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--text-xs, 12px);
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin-bottom: 6px;
+}
+
+.memory-notes-textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 8px;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-input);
+    color: var(--color-text-main);
+    font-size: var(--text-xs, 12px);
+    font-family: var(--font-main);
+    resize: vertical;
+}
+
+.memory-notes-textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.memory-notes-save-msg {
+    font-size: 11px;
+    color: var(--color-success);
+    margin-top: 4px;
+    display: none;
+}
+
+/* ============================================================================
+   6. MYSTERY CHEST (BAÚL MÁGICO SORPRESA) MODAL
+   ============================================================================ */
+.memory-chest-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: var(--z-modal, 1000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-md, 16px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.memory-chest-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.memory-chest-dialog {
+    background: var(--color-bg-panel);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-xl, 16px);
+    max-width: 540px;
+    width: 100%;
+    padding: var(--space-xl, 24px);
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(250, 204, 21, 0.2);
+    position: relative;
+    animation: bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.memory-chest-icon-wrap {
+    font-size: 4rem;
+    margin-bottom: 8px;
+    animation: chestWobble 1.5s infinite ease-in-out;
+}
+
+.memory-chest-proverb {
+    background: var(--color-primary-subtle);
+    border-left: 3px solid var(--color-primary);
+    padding: 10px 14px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 14px 0;
+    text-align: left;
+}
+
+.memory-chest-proverb-hanzi {
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 1.05rem;
+}
+
+.memory-chest-proverb-meaning {
+    font-size: var(--text-xs, 12px);
+    color: var(--color-text-muted);
+    margin-top: 2px;
+}
+
+/* ============================================================================
+   7. SLIDESHOW / MODO PRESENTACIÓN
+   ============================================================================ */
+.memories-slideshow-wrap {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+    background: #09090b;
+    border-radius: var(--radius-xl, 16px);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-xl);
+}
+
+.slideshow-stage {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.slideshow-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.slideshow-overlay-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+    padding: 30px 24px 20px;
+    color: #ffffff;
+}
+
+.slideshow-hanzi {
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.slideshow-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 2px 0 6px;
+}
+
+.slideshow-desc {
+    font-size: 0.9rem;
+    opacity: 0.88;
+    max-width: 70ch;
+    margin: 0;
+}
+
+.slideshow-controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #141417;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.slideshow-ctrl-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: var(--radius-md, 8px);
+    font-size: var(--text-sm, 14px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.slideshow-ctrl-btn:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* ============================================================================
+   8. EMPTY & LOADING STATES
+   ============================================================================ */
+.memories-empty {
+    text-align: center;
+    padding: 48px 16px;
+    color: var(--color-text-muted);
+}
+
+.memories-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    opacity: 0.7;
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes chestWobble {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-6deg); }
+    75% { transform: rotate(6deg); }
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.6); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .memories-grid {
+        grid-template-columns: 1fr;
+    }
+    .slideshow-stage {
+        height: 340px;
+    }
+    .memory-lightbox-media {
+        min-height: 220px;
+    }
+}

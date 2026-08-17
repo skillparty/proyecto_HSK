@@ -231,7 +231,7 @@ class UIController {
         (async () => {
           try {
             if (!window.BrowseController) {
-              await this.loadScript("assets/js/modules/browse-controller.js?v=b6cba58c");
+              await this.loadScript("assets/js/modules/browse-controller.js?v=3d918a0a");
             }
             if (!this.app.browseController) {
               this.app.browseController = new window.BrowseController(this.app);
@@ -490,7 +490,7 @@ class UIController {
       case "etymology":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/etymology-styles.css?v=ffa5693a");
+            await this.loadStylesheet("assets/css/etymology-styles.css?v=a037cb9e");
             if (!window.EtymologyController) {
               await this.loadScript("assets/js/modules/etymology-controller.js?v=db5c6f8f");
             }
@@ -614,9 +614,9 @@ class UIController {
       case "videos":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/app-videos.css?v=4fe4d7ef");
+            await this.loadStylesheet("assets/css/app-videos.css?v=f5735c3e");
             if (!window.VideosController) {
-              await this.loadScript("assets/js/modules/videos-controller.js?v=924af91f");
+              await this.loadScript("assets/js/modules/videos-controller.js?v=3fc0373d");
             }
             if (!this.app.videosController) {
               this.app.videosController = new window.VideosController(this.app);
@@ -624,6 +624,22 @@ class UIController {
             await this.app.videosController.init();
           } catch (err) {
             this.logError("videos init failed:", err);
+          }
+        })();
+        break;
+      case "memories":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/app-memories.css");
+            if (!window.MemoriesController) {
+              await this.loadScript("assets/js/modules/memories-controller.js");
+            }
+            if (!this.app.memoriesController) {
+              this.app.memoriesController = new window.MemoriesController(this.app);
+            }
+            await this.app.memoriesController.init();
+          } catch (err) {
+            this.logError("memories init failed:", err);
           }
         })();
         break;
@@ -652,6 +668,8 @@ class UIController {
             "culture-technology",
             "culture-clothing",
             "culture-arts",
+            "videos",
+            "memories",
           ]);
     try {
       const savedTab = localStorage.getItem(this.app.lastTabStorageKey);
@@ -839,6 +857,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "culture-clothing",
   "culture-arts",
   "videos",
+  "memories",
 ]);
 
 window.UIController = UIController;
