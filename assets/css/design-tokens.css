@@ -148,7 +148,7 @@ Architecture: CSS Custom Properties.
     /* ---- LAYOUT ---- */
     --header-height: 64px;
     --subnav-height: 52px;
-    --max-width: 1280px;
+    --max-width: 1360px;
 
     /* ---- BORDER RADIUS ---- */
     --radius-none: 0px;

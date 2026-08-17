@@ -475,17 +475,17 @@
 
                                 <!-- Daily Word (每日汉字) Card -->
                                 <div class="dashboard-card daily-char-card" style="display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: flex-start;">
-                                    <div class="char-mi-zi-ge-container">
-                                        <div class="char-mi-zi-ge" style="width: 68px; height: 68px; min-width: 68px; margin: 0;">
+                                    <div class="char-mi-zi-ge-container" style="flex-shrink: 0;">
+                                        <div class="char-mi-zi-ge" style="width: 60px; height: 60px; min-width: 60px; margin: 0;">
                                             <div class="mi-zi-ge-lines"></div>
-                                            <div class="char-display" id="dash-char-character" style="font-size: 2.2rem;">中</div>
+                                            <div class="char-display" id="dash-char-character" style="font-size: 2rem;">中</div>
                                         </div>
                                     </div>
-                                    <div class="char-details" style="gap: 2px;">
+                                    <div class="char-details" style="display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1;">
                                         <div class="char-title" style="font-size: 0.72rem; color: var(--text-dim);" data-i18n="dashDailyCharTitle">Carácter del día</div>
                                         <div class="char-pinyin" id="dash-char-pinyin" style="font-size: 0.95rem; font-weight: 700; color: var(--color-primary);">zhōng</div>
-                                        <div class="char-meaning" id="dash-char-meaning" style="font-size: 0.8rem; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;">centro, medio</div>
-                                        <div class="char-actions" style="margin-top: 4px;">
+                                        <div class="char-meaning" id="dash-char-meaning" style="font-size: 0.8rem; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">centro, medio</div>
+                                        <div class="char-actions" style="margin-top: 4px; display: flex; gap: 6px;">
                                             <button id="dash-char-listen" class="dashboard-mini-btn" title="Escuchar pronunciación" data-i18n-title="dashListenPronunciation">
                                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
                                             </button>

@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+54d7685c";
+const SW_VERSION = "4.70.0+b673d219";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -12,8 +12,8 @@ const PRECACHE_FILES = [
   "./",
   "./index.html",
   "./config/manifest.json",
-  "./assets/css/design-tokens.css?v=ac7078a3",
-  "./assets/css/app-base.css?v=9b3d5a15",
+  "./assets/css/design-tokens.css?v=ce688d54",
+  "./assets/css/app-base.css?v=ac1c0b65",
   "./assets/css/app-header-nav.css?v=33ffdc36",
   "./assets/css/app-home.css?v=ce40ba46",
   "./assets/css/app-practice.css?v=54e3acd3",
@@ -36,7 +36,7 @@ const PRECACHE_FILES = [
   "./assets/js/bootstrap-diagnostics.js?v=4dd221b0",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=4036af96",
-  "./assets/js/translations.js?v=710327b6",
+  "./assets/js/translations.js?v=c65ffb94",
   "./assets/js/firebase-client.js?v=64c15ce8",
   "./assets/js/firebase-progress-sync.js?v=0739a27c",
   "./assets/js/modules/srs-engine.js?v=513fe4f7",
