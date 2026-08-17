@@ -300,20 +300,6 @@ class HomeController {
         // 6. SRS Daily Loop Card
         this.renderSrsCard();
 
-        // 7. Memories Shortcut Card
-        const memoriesShortcut = document.getElementById('dash-memories-shortcut');
-        if (memoriesShortcut) {
-            memoriesShortcut.onclick = () => {
-                this.app.switchTab('memories');
-            };
-            memoriesShortcut.onkeydown = (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.app.switchTab('memories');
-                }
-            };
-        }
-
         // Initialize or resume the 3D Chinese Cultural Portal
         if (!this.portalScene.initialized) {
             this.portalScene.init();

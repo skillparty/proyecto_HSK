@@ -260,6 +260,7 @@ html[data-theme="light"] .dashboard-3d-portal {
         flex-direction: column;
         flex: 1;
         min-height: 0;
+        overflow-y: auto !important;
     }
 
     #practice,
@@ -274,8 +275,12 @@ html[data-theme="light"] .dashboard-3d-portal {
     #culture-technology,
     #culture-clothing,
     #culture-arts,
+    #videos,
+    #memories,
     #etymology,
     #leaderboard,
+    #stats,
+    #tones-invaders,
     #word-linker,
     #hanzi-builder {
         overflow-y: auto !important;
