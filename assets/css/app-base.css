@@ -223,14 +223,146 @@ ul {
    3. SINO-BOLIVIAN FUSION DECORATIONS (THEMED PILLARS & TEXT)
    ============================================================================ */
 
-/* Ocultar pilares flotantes para mantener el viewport limpio y sin solapamientos */
+/* Ocultar por defecto en móviles y pantallas estándar */
 .vertical-pillar-left,
 .vertical-pillar-right,
 .vertical-text-left,
 .vertical-text-right,
 .lantern-top,
 .coin-bottom {
-    display: none !important;
+    display: none;
+}
+
+/* Reactivar de forma armónica en pantallas de escritorio amplias */
+@media (min-width: 1520px) {
+    .vertical-pillar-left,
+    .vertical-pillar-right {
+        display: block;
+        position: fixed;
+        top: 110px;
+        bottom: 68px;
+        width: 14px;
+        background: rgba(30, 41, 59, 0.45);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(245, 158, 11, 0.35); /* Borde de Oro Imperial */
+        border-radius: 8px;
+        box-shadow: 
+            0 0 16px rgba(245, 158, 11, 0.12),
+            inset 0 0 8px rgba(0, 0, 0, 0.35);
+        z-index: 80;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .vertical-pillar-left {
+        left: calc(50vw - 680px - 45px);
+    }
+
+    .vertical-pillar-right {
+        right: calc(50vw - 680px - 45px);
+    }
+
+    /* Patrón Textil Aguayo Andino vertical dentro de los pilares */
+    .vertical-pillar-left::before,
+    .vertical-pillar-right::before {
+        content: '';
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        left: 4px;
+        width: 4px;
+        border-radius: 2px;
+        background: linear-gradient(to bottom, 
+            #dc2626 0%, #dc2626 15%, 
+            #eab308 15%, #eab308 30%, 
+            #10b981 30%, #10b981 45%, 
+            #ec4899 45%, #ec4899 60%, 
+            #3b82f6 60%, #3b82f6 75%, 
+            #eab308 75%, #eab308 90%, 
+            #dc2626 90%, #dc2626 100%
+        );
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+    }
+
+    /* Faroles Chinos Colgantes en el tope */
+    .lantern-top {
+        display: block;
+        position: absolute;
+        top: -30px;
+        left: -11px;
+        width: 36px;
+        height: 36px;
+        background: radial-gradient(circle at 35% 35%, #f43f5e, #dc2626 60%, #9f1239);
+        border: 2px solid var(--color-accent, #facc15);
+        border-radius: 50% 50% 45% 45%;
+        box-shadow: 
+            0 0 16px rgba(220, 38, 38, 0.65),
+            inset 0 -4px 10px rgba(0, 0, 0, 0.35);
+        transform-origin: top center;
+        pointer-events: auto;
+        cursor: pointer;
+        transition: transform 0.15s ease-out;
+    }
+
+    /* Borlas y detalles del farol */
+    .lantern-top::after {
+        content: '';
+        position: absolute;
+        bottom: -14px;
+        left: 14px;
+        width: 4px;
+        height: 14px;
+        background: #f59e0b;
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+    
+    .lantern-top::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: 14px;
+        width: 4px;
+        height: 6px;
+        background: #f59e0b;
+        border-radius: 2px;
+    }
+
+    /* Monedas de Bronce Imperiales en la base que giran con scroll */
+    .coin-bottom {
+        display: flex;
+        position: absolute;
+        bottom: -18px;
+        left: -11px;
+        width: 36px;
+        height: 36px;
+        background: radial-gradient(circle at 35% 35%, #ffe082, #f59e0b 60%, #b45309);
+        border: 2px solid #fffbcf;
+        border-radius: 50%;
+        box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.45),
+            0 0 10px rgba(245, 158, 11, 0.3);
+        pointer-events: auto;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.12s ease-out;
+    }
+
+    /* Agujero cuadrado tradicional en el centro de la moneda china */
+    .coin-bottom::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background: #0f172a;
+        border: 1px solid #92400e;
+        transform: rotate(45deg);
+    }
+
+    html[data-theme="light"] .coin-bottom::after {
+        background: #ffffff;
+    }
 }
 
 /* ============================================================================

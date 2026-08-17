@@ -344,18 +344,20 @@ class MemoriesController {
       {
         id: "puente_chino",
         img: "assets/images/memories/puenteChino.jpg",
-        seal: "逐梦",
+        seal: "荣耀",
         category: "contests",
-        title: "Concurso Puente Chino (汉语桥)",
-        titleEn: "Chinese Bridge Competition (汉语桥)",
-        hanzi: "追梦中文 — 汉语桥世界大学生中文比赛",
-        pinyin: "Zhuīmèng Zhōngwén — Hànyǔ Qiáo Bǐsài",
-        desc: "El certamen internacional más prestigioso de elocuencia, conocimiento y talento artístico en idioma chino.",
-        descEn: "The premier global competition showcasing Chinese language proficiency and cultural talents.",
-        tags: ["Puente Chino", "Elocuencia", "Internacional", "Cultura"],
+        title: "Concurso Puente Chino (汉语桥) — Gran Triunfo de Nicole 🏆",
+        titleEn: "Chinese Bridge Competition (汉语桥) — Nicole's 1st Place Victory 🏆",
+        hanzi: "追梦中文 · 荣获桂冠 — 汉语桥世界大学生中文比赛",
+        pinyin: "Zhuīmèng Zhōngwén · Rónghuò Guìguān — Hànyǔ Qiáo Bǐsài",
+        desc: "El certamen internacional más prestigioso de elocuencia, conocimiento y cultura china, donde Nicole brilló alcanzando el 1.er Lugar (冠军) en una destacadísima participación que llenó de gloria y orgullo a todo el ICUMSS.",
+        descEn: "The premier global competition showcasing Chinese language proficiency, where Nicole shined winning 1st Place (Champion) bringing immense honor and pride to ICUMSS.",
+        tags: ["Puente Chino", "1er Lugar", "Nicole", "Campeona", "Elocuencia", "ICUMSS"],
         vocab: [
           { hanzi: "汉语桥", pinyin: "Hànyǔ Qiáo", meaning: "Puente Chino" },
-          { hanzi: "比赛", pinyin: "bǐsài", meaning: "competencia" }
+          { hanzi: "冠军", pinyin: "guànjūn", meaning: "campeón / 1er lugar" },
+          { hanzi: "比赛", pinyin: "bǐsài", meaning: "competencia" },
+          { hanzi: "荣耀", pinyin: "róngyào", meaning: "gloria / honor" }
         ]
       },
 
@@ -484,19 +486,21 @@ class MemoriesController {
       {
         id: "nicole_recuerdo",
         img: "assets/images/memories/nicole_recuerdo.jpg",
-        seal: "同心",
+        seal: "冠军",
         category: "friendship",
-        title: "Nicole — Recuerdos Especiales y Amistad",
-        titleEn: "Nicole — Special Memories & Friendship",
-        hanzi: "并肩同行 — 珍贵情谊与美好时光",
-        pinyin: "Bìngjiān Tóngxíng — Zhēnguì Qíngyì yǔ Měihǎo Shíguāng",
-        desc: "Momentos inolvidables compartidos junto a Nicole en el camino del aprendizaje, complicidad y recuerdos que perduran en el corazón.",
-        descEn: "Unforgettable moments shared with Nicole along our learning journey, fond memories that stay forever in the heart.",
-        tags: ["Amistad", "Recuerdo Especial", "Compañerismo", "ICUMSS"],
+        title: "Nicole — 1.er Lugar Concurso Puente Chino & Amistad Inolvidable 🏆",
+        titleEn: "Nicole — 1st Place Chinese Bridge Champion & Cherished Friendship 🏆",
+        hanzi: "并肩同行 · 汉语桥总冠军 — 璀璨荣耀与真挚情谊",
+        pinyin: "Bìngjiān Tóngxíng · Hànyǔ Qiáo Guànjūn — Cuǐcàn Róngyào",
+        desc: "¡Celebrando el histórico 1.er Lugar de Nicole en el Concurso Mundial Puente Chino (汉语桥)! Un testimonio de talento, perseverancia y elocuencia que celebramos con inmenso orgullo, compartiendo momentos inolvidables de complicidad, estudio y amistad que perduran para siempre.",
+        descEn: "Celebrating Nicole's historic 1st Place victory at the Chinese Bridge Competition (汉语桥)! A testament to talent and perseverance celebrated with great pride, alongside memories of friendship.",
+        tags: ["Nicole", "1er Lugar", "Puente Chino", "Campeona", "Amistad", "Orgullo", "ICUMSS"],
         vocab: [
+          { hanzi: "冠军", pinyin: "guànjūn", meaning: "campeón / 1er lugar" },
+          { hanzi: "汉语桥", pinyin: "Hànyǔ Qiáo", meaning: "Puente Chino" },
           { hanzi: "朋友", pinyin: "péngyou", meaning: "amigo/a" },
           { hanzi: "友谊", pinyin: "yǒuyì", meaning: "amistad" },
-          { hanzi: "美好", pinyin: "měihǎo", meaning: "hermoso/maravilloso" }
+          { hanzi: "美好", pinyin: "měihǎo", meaning: "hermoso / maravilloso" }
         ]
       }
     ];

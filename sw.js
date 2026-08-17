@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+b673d219";
+const SW_VERSION = "4.70.0+a3a8bb2c";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -13,7 +13,7 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css?v=ce688d54",
-  "./assets/css/app-base.css?v=ac1c0b65",
+  "./assets/css/app-base.css?v=208eb12c",
   "./assets/css/app-header-nav.css?v=33ffdc36",
   "./assets/css/app-home.css?v=ce40ba46",
   "./assets/css/app-practice.css?v=54e3acd3",

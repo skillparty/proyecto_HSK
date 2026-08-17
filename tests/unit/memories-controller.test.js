@@ -138,6 +138,19 @@ describe("MemoriesController (Baúl de los Recuerdos)", () => {
       expect(results.length).toBe(1);
       expect(results[0].id).toBe("auditorio_humanidades");
     });
+
+    it("searches and finds Nicole's 1st place championship in Puente Chino", () => {
+      controller.currentCategory = "all";
+      controller.searchQuery = "Nicole";
+      const results = controller.getFilteredData();
+      expect(results.length).toBe(2);
+      expect(results.some((r) => r.id === "nicole_recuerdo")).toBe(true);
+      expect(results.some((r) => r.id === "puente_chino")).toBe(true);
+
+      const nicole = controller.memoriesData.find((m) => m.id === "nicole_recuerdo");
+      expect(nicole.seal).toBe("冠军");
+      expect(nicole.title).toContain("1.er Lugar");
+    });
   });
 
   describe("Favorites Management", () => {
