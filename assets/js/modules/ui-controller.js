@@ -231,7 +231,7 @@ class UIController {
         (async () => {
           try {
             if (!window.BrowseController) {
-              await this.loadScript("assets/js/modules/browse-controller.js?v=612cb556");
+              await this.loadScript("assets/js/modules/browse-controller.js?v=6c8c3c15");
             }
             if (!this.app.browseController) {
               this.app.browseController = new window.BrowseController(this.app);

@@ -14,7 +14,7 @@ class WritingSheetsController {
         this.state = {
             characters: [], // Array de { hanzi, pinyin, meaning, strokes }
             gridType: "tianzige", // "tianzige" | "mige" | "huizige" | "jiugongge" | "pingzige"
-            practiceMode: "stroke-by-stroke", // "stroke-by-stroke" | "tracing" | "model-blank"
+            practiceMode: "stroke-by-stroke", // "stroke-by-stroke" | "tracing" | "model-blank" | "composition"
             gridSize: "medium", // "large" (26mm) | "medium" (20mm) | "small" (15mm)
             slotsPerRow: "8", // "auto" | "6" | "8" | "10"
             gridColor: "#dc2626", // Rojo Imperial por defecto
@@ -33,6 +33,40 @@ class WritingSheetsController {
             numbers: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"],
             nature: ["日", "月", "山", "水", "火", "木", "金", "土", "天"],
             hsk1: ["我", "你", "他", "是", "好", "大", "小", "多", "少", "人"]
+        };
+
+        // Mapa de radicales frecuentes (部首) para metadatos de caracteres
+        this.radicalMap = {
+            "人": "人", "大": "大", "女": "女", "子": "子", "小": "小",
+            "口": "口", "山": "山", "工": "工", "土": "土", "夕": "夕",
+            "手": "扌", "打": "扌", "把": "扌", "拉": "扌", "找": "扌",
+            "水": "水", "河": "氵", "海": "氵", "湖": "氵", "没": "氵",
+            "火": "火", "热": "灬", "然": "灬", "煮": "灬",
+            "心": "心", "想": "心", "思": "心", "意": "心", "忙": "忄",
+            "日": "日", "时": "日", "明": "日", "早": "日", "晚": "日",
+            "月": "月", "有": "月", "朋": "月", "期": "月",
+            "木": "木", "树": "木", "林": "木", "森": "木", "桌": "木",
+            "金": "金", "银": "钅", "铁": "钅", "钱": "钅",
+            "言": "言", "说": "讠", "话": "讠", "语": "讠", "读": "讠", "请": "讠",
+            "走": "走", "足": "足", "跑": "足", "路": "足", "跳": "足",
+            "食": "食", "吃": "口", "喝": "口", "饭": "饣",
+            "衣": "衣", "车": "车", "门": "门", "马": "马",
+            "目": "目", "看": "目", "睡": "目", "眼": "目",
+            "耳": "耳", "听": "口", "雨": "雨", "雪": "雨", "电": "雨",
+            "草": "艹", "花": "艹", "茶": "艹", "菜": "艹", "药": "艹",
+            "竹": "竹", "笔": "竹", "筷": "竹",
+            "丝": "纟", "红": "纟", "绿": "纟", "给": "纟", "经": "纟",
+            "虫": "虫", "鸟": "鸟", "鱼": "鱼", "禾": "禾",
+            "我": "戈", "你": "亻", "他": "亻", "她": "女", "们": "亻",
+            "是": "日", "好": "女", "不": "一", "了": "乛", "在": "土",
+            "这": "辶", "那": "阝", "的": "白", "很": "彳", "多": "夕",
+            "少": "小", "学": "子", "会": "人", "能": "月",
+            "天": "大", "年": "干", "星": "日", "来": "木", "去": "土",
+            "上": "一", "下": "一", "中": "丨", "里": "里",
+            "永": "水", "谢": "讠", "再": "冂", "见": "见",
+            "一": "一", "二": "二", "三": "一", "四": "囗", "五": "一",
+            "六": "八", "七": "一", "八": "八", "九": "丿", "十": "十",
+            "百": "白", "千": "十", "万": "一"
         };
     }
 
@@ -348,7 +382,9 @@ class WritingSheetsController {
                 hanzi: ch,
                 pinyin: pinyin,
                 meaning: meaning,
-                strokes: strokes
+                strokes: strokes,
+                strokeCount: strokes.length || 0,
+                radical: this.radicalMap[ch] || ""
             });
         }
 
@@ -552,11 +588,15 @@ class WritingSheetsController {
             `;
         }
 
+        const radicalInfo = item.radical ? `<div class="ws-meta-radical" title="部首: ${item.radical}">部首 ${item.radical}</div>` : "";
+        const strokeInfo = item.strokeCount > 0 ? `<div class="ws-meta-strokes">${item.strokeCount} 画</div>` : "";
+
         return `
             <div class="ws-practice-row">
                 <div class="ws-char-meta-block">
                     ${showPinyin && item.pinyin ? `<div class="ws-meta-pinyin">${item.pinyin}</div>` : ""}
                     ${showMeaning && item.meaning ? `<div class="ws-meta-meaning" title="${item.meaning}">${item.meaning}</div>` : ""}
+                    <div class="ws-meta-details">${radicalInfo}${strokeInfo}</div>
                 </div>
                 <div class="ws-slots-row">
                     ${slotsHtml}
@@ -592,7 +632,9 @@ class WritingSheetsController {
 
         for (let p = 0; p < totalPages; p++) {
             const pageItems = items.slice(p * rowsPerPage, (p + 1) * rowsPerPage);
-            const rowsHtml = pageItems.map(item => this.renderPracticeRow(item, this.state)).join("");
+            const rowsHtml = this.state.practiceMode === "composition"
+                ? this.renderCompositionGrid(pageItems, this.state)
+                : pageItems.map(item => this.renderPracticeRow(item, this.state)).join("");
 
             const headerHtml = this.state.showStudentHeader ? `
                 <header class="ws-sheet-header">
@@ -639,6 +681,40 @@ class WritingSheetsController {
         previewContainer.innerHTML = fullHtml;
     }
 
+    // Renderiza una cuadrícula de composición continua (texto corrido)
+    renderCompositionGrid(items, options) {
+        const { gridType, gridSize, gridColor, showPinyinLines } = options;
+        const gridSvg = this.renderGridSvg(gridType, gridColor);
+        const sizeClass = `size-${gridSize}`;
+
+        let cellsHtml = "";
+        for (const item of items) {
+            const pinyinGuide = showPinyinLines ? `<div class="ws-pinyin-guide-box"></div>` : "";
+            cellsHtml += `
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    ${pinyinGuide}
+                    <div class="ws-grid-cell ${sizeClass}">
+                        ${gridSvg}
+                        <span class="ws-cell-char is-faded">${item.hanzi}</span>
+                    </div>
+                </div>
+            `;
+            // Add empty practice cells after each character
+            for (let i = 0; i < 1; i++) {
+                cellsHtml += `
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        ${pinyinGuide}
+                        <div class="ws-grid-cell ${sizeClass}">
+                            ${gridSvg}
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        return `<div class="ws-composition-grid">${cellsHtml}</div>`;
+    }
+
     // Genera el documento HTML completo para exportar / imprimir en PDF vectorial
     generateFullDocument() {
         const items = this.state.characters;
@@ -648,7 +724,9 @@ class WritingSheetsController {
         let pagesHtml = "";
         for (let p = 0; p < totalPages; p++) {
             const pageItems = items.slice(p * rowsPerPage, (p + 1) * rowsPerPage);
-            const rowsHtml = pageItems.map(item => this.renderPracticeRow(item, this.state)).join("");
+            const rowsHtml = this.state.practiceMode === "composition"
+                ? this.renderCompositionGrid(pageItems, this.state)
+                : pageItems.map(item => this.renderPracticeRow(item, this.state)).join("");
 
             const headerHtml = this.state.showStudentHeader ? `
                 <header class="ws-sheet-header">

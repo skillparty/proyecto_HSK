@@ -91,6 +91,18 @@ class BrowseController {
             printSelectedBtn.dataset.boundPrintSel = 'true';
             printSelectedBtn.addEventListener('click', () => this.openPdfModal());
         }
+
+        // Botón de Quiz con selección
+        const quizSelectedBtn = document.getElementById("browse-quiz-selected-btn");
+        if (quizSelectedBtn) {
+            quizSelectedBtn.addEventListener("click", () => this.quizWithSelected());
+        }
+
+        // Botón de exportar selección a Anki
+        const ankiSelectedBtn = document.getElementById("browse-anki-selected-btn");
+        if (ankiSelectedBtn) {
+            ankiSelectedBtn.addEventListener("click", () => this.exportSelectedToAnki());
+        }
     }
 
     getOrCreateSentinel() {
@@ -625,6 +637,11 @@ class BrowseController {
         if (selectionBar) {
             selectionBar.style.display = (this.isSelectionMode || count > 0) ? 'flex' : 'none';
         }
+
+        const quizBtn = document.getElementById("browse-quiz-selected-btn");
+        const ankiBtn = document.getElementById("browse-anki-selected-btn");
+        if (quizBtn) quizBtn.style.display = count > 0 ? "" : "none";
+        if (ankiBtn) ankiBtn.style.display = count > 0 ? "" : "none";
     }
 
     showLoadingIndicator() {
@@ -735,6 +752,58 @@ class BrowseController {
 
         if (this.app.showNotification) {
             this.app.showNotification(`¡Exportadas ${vocabList.length} palabras a CSV para Anki!`, 'success');
+        }
+    }
+
+    quizWithSelected() {
+        if (this.selectedWords.size === 0) return;
+        const vocab = this.app?.vocabulary || [];
+        const selectedVocab = vocab.filter(w => this.selectedWords.has(w.character));
+        if (selectedVocab.length === 0) return;
+
+        // Guardar vocabulario seleccionado para el quiz
+        this.app.quizSelectedVocabulary = selectedVocab;
+
+        // Desactivar modo selección
+        this.toggleSelectionMode(false);
+
+        // Navegar al tab de quiz
+        if (this.app.navigateTo) {
+            this.app.navigateTo("quiz");
+        } else {
+            const quizTab = document.querySelector('[data-tab="quiz"]');
+            if (quizTab) quizTab.click();
+        }
+
+        if (this.app.showNotification) {
+            this.app.showNotification(`Quiz iniciado con ${selectedVocab.length} palabras seleccionadas`, "success");
+        }
+    }
+
+    exportSelectedToAnki() {
+        if (this.selectedWords.size === 0) return;
+        const vocab = this.app?.vocabulary || [];
+        const selectedVocab = vocab.filter(w => this.selectedWords.has(w.character));
+        if (selectedVocab.length === 0) return;
+
+        const csvHeader = "character\tpinyin\tmeaning_es\tmeaning_en\tlevel\n";
+        const csvRows = selectedVocab.map(w =>
+            `${w.character}\t${w.pinyin || ""}\t${w.spanish || ""}\t${w.english || ""}\t${w.level || ""}`
+        ).join("\n");
+
+        const csvContent = csvHeader + csvRows;
+        const blob = new Blob([csvContent], { type: "text/tab-separated-values;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `hsk-selected-${this.selectedWords.size}-words.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        if (this.app.showNotification) {
+            this.app.showNotification(`${selectedVocab.length} palabras exportadas a Anki CSV`, "success");
         }
     }
 }

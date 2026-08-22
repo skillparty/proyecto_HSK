@@ -256,6 +256,14 @@ class FlashcardPdfController {
                                         </div>
                                     </label>
                                 ` : ""}
+
+                                <label class="pdf-radio-card" id="pdf-format-card-duplex">
+                                    <input type="radio" name="pdf-format" value="duplex">
+                                    <div class="pdf-radio-content">
+                                        <span class="pdf-radio-title">📖 ${this.t("pdfFormatDuplex")}</span>
+                                        <span class="pdf-radio-desc">${this.t("pdfFormatDuplexDesc")}</span>
+                                    </div>
+                                </label>
                             </div>
                         </div>
 
@@ -528,6 +536,24 @@ class FlashcardPdfController {
             pagesHtml += `<div class="print-page">${pageContent}</div>`;
         }
 
+        // Para formato duplex: generar páginas reverso
+        if (options.format === "duplex") {
+            pagesHtml += '<div style="page-break-before: always;"></div>';
+            for (let p = 0; p < totalPages; p++) {
+                const pageItems = items.slice(p * density, (p + 1) * density);
+                const backCards = pageItems.map(w => this.renderDuplexBackCard(w, options.lang)).join("");
+                const backBody = `<div class="duplex-grid density-${density}">${backCards}</div>`;
+                const pageContent = this.renderPageContent([], {
+                    ...options,
+                    customBody: backBody,
+                    pageIndex: p + 1 + totalPages,
+                    totalPages: totalPages * 2,
+                    isBackPage: true
+                });
+                pagesHtml += `<div class="print-page">${pageContent}</div>`;
+            }
+        }
+
         return `<!DOCTYPE html>
 <html lang="${options.lang}">
 <head>
@@ -561,7 +587,9 @@ class FlashcardPdfController {
 
         let bodyHtml = "";
 
-        if (format === "practice") {
+        if (options.customBody) {
+            bodyHtml = options.customBody;
+        } else if (format === "practice") {
             bodyHtml = `
                 <div class="practice-page-info">
                     <span class="practice-field">Estudiante: _______________________________</span>
@@ -577,6 +605,9 @@ class FlashcardPdfController {
                     ${items.map(item => this.renderEtymologyPrintCard(item, lang)).join("")}
                 </div>
             `;
+        } else if (format === "duplex") {
+            const frontCards = items.map(w => this.renderDuplexFrontCard(w, options.lang)).join("");
+            bodyHtml = `<div class="duplex-grid density-${options.density}">${frontCards}</div>`;
         } else {
             // Flashcards format
             bodyHtml = `
@@ -690,6 +721,44 @@ class FlashcardPdfController {
                     </div>
                     ${componentsHtml}
                 </div>
+            </div>
+        `;
+    }
+
+    // Renderiza página frontal de flashcard duplex (solo Hanzi grande en Tianzige)
+    renderDuplexFrontCard(word) {
+        const levelBadge = word.level ? `<span class="duplex-level-badge">HSK ${word.level}</span>` : "";
+        return `
+            <div class="duplex-card duplex-front">
+                <div class="duplex-tianzige">
+                    <svg class="duplex-grid-svg" viewBox="0 0 100 100">
+                        <rect x="1" y="1" width="98" height="98" fill="#fffdf9" stroke="#dc2626" stroke-width="1.5" />
+                        <line x1="50" y1="1" x2="50" y2="99" stroke="#dc2626" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5" />
+                        <line x1="1" y1="50" x2="99" y2="50" stroke="#dc2626" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5" />
+                    </svg>
+                    <span class="duplex-hanzi">${word.character || word.hanzi || ""}</span>
+                </div>
+                ${levelBadge}
+            </div>
+        `;
+    }
+
+    // Renderiza página reversa de flashcard duplex (Pinyin + Significado + Frase ejemplo)
+    renderDuplexBackCard(word, lang) {
+        const meaning = this.getMeaning(word, lang);
+        const exampleSentence = word.example || word.exampleSentence || "";
+        const examplePinyin = word.examplePinyin || "";
+        return `
+            <div class="duplex-card duplex-back">
+                <div class="duplex-pinyin">${word.pinyin || ""}</div>
+                <div class="duplex-character-small">${word.character || word.hanzi || ""}</div>
+                <div class="duplex-meaning">${meaning}</div>
+                ${exampleSentence ? `
+                    <div class="duplex-example">
+                        <div class="duplex-example-zh">${exampleSentence}</div>
+                        ${examplePinyin ? `<div class="duplex-example-py">${examplePinyin}</div>` : ""}
+                    </div>
+                ` : ""}
             </div>
         `;
     }
@@ -988,6 +1057,110 @@ class FlashcardPdfController {
                 font-size: 7.5pt;
                 margin-right: 3px;
                 margin-top: 2px;
+            }
+
+            /* Duplex Flashcard Styles */
+            .duplex-grid {
+                display: grid;
+                gap: 8mm;
+                padding: 4mm;
+            }
+            .duplex-grid.density-6 { grid-template-columns: repeat(2, 1fr); }
+            .duplex-grid.density-8 { grid-template-columns: repeat(2, 1fr); }
+            .duplex-grid.density-12 { grid-template-columns: repeat(3, 1fr); }
+            
+            .duplex-card {
+                border: 1.5px solid #e2e8f0;
+                border-radius: 10px;
+                padding: 6mm;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                page-break-inside: avoid;
+                min-height: 60mm;
+            }
+            
+            .duplex-front { background: #fffdf9; }
+            
+            .duplex-tianzige {
+                position: relative;
+                width: 42mm;
+                height: 42mm;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .duplex-grid-svg {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .duplex-hanzi {
+                position: relative;
+                z-index: 2;
+                font-family: "Noto Serif SC", "Songti SC", serif;
+                font-size: 32mm;
+                font-weight: 600;
+                color: #1e293b;
+                line-height: 1;
+            }
+            
+            .duplex-level-badge {
+                margin-top: 4mm;
+                font-size: 9pt;
+                font-weight: 700;
+                color: #dc2626;
+                background: rgba(220, 38, 38, 0.08);
+                padding: 2px 10px;
+                border-radius: 12px;
+            }
+            
+            .duplex-back {
+                background: #fafafa;
+                gap: 3mm;
+            }
+            
+            .duplex-pinyin {
+                font-size: 16pt;
+                font-weight: 700;
+                color: #dc2626;
+                letter-spacing: 0.5px;
+            }
+            
+            .duplex-character-small {
+                font-family: "Noto Serif SC", "Songti SC", serif;
+                font-size: 14pt;
+                color: #94a3b8;
+            }
+            
+            .duplex-meaning {
+                font-size: 13pt;
+                font-weight: 600;
+                color: #334155;
+            }
+            
+            .duplex-example {
+                margin-top: 2mm;
+                padding-top: 2mm;
+                border-top: 1px dashed #e2e8f0;
+                width: 100%;
+            }
+            
+            .duplex-example-zh {
+                font-family: "Noto Serif SC", "Songti SC", serif;
+                font-size: 11pt;
+                color: #475569;
+            }
+            
+            .duplex-example-py {
+                font-size: 9pt;
+                color: #94a3b8;
+                font-style: italic;
             }
         `;
     }

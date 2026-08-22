@@ -239,6 +239,44 @@ describe("WritingSheetsController", () => {
       expect(rowHtml).toContain("size-small");
       expect(rowHtml).toContain("大");
     });
+
+    it("includes radical and stroke count metadata in character items and practice row", async () => {
+      await controller.loadCharactersFromText("你好水");
+      expect(controller.state.characters[0].radical).toBe("亻");
+      expect(controller.state.characters[2].radical).toBe("水");
+
+      const rowHtml = controller.renderPracticeRow(controller.state.characters[0], {
+        gridType: "tianzige",
+        practiceMode: "model-blank",
+        gridSize: "medium",
+        slotsPerRow: "8",
+        gridColor: "#dc2626",
+        showPinyin: true,
+        showMeaning: true,
+        showPinyinLines: false
+      });
+
+      expect(rowHtml).toContain("ws-meta-details");
+      expect(rowHtml).toContain("部首");
+    });
+
+    it("renders continuous composition grid in composition mode", () => {
+      const items = [
+        { hanzi: "千", pinyin: "qiān", meaning: "mil", strokes: [], radical: "十", strokeCount: 3 },
+        { hanzi: "里", pinyin: "lǐ", meaning: "milla", strokes: [], radical: "里", strokeCount: 7 }
+      ];
+
+      const compHtml = controller.renderCompositionGrid(items, {
+        gridType: "mige",
+        gridSize: "medium",
+        gridColor: "#059669",
+        showPinyinLines: false
+      });
+
+      expect(compHtml).toContain("ws-composition-grid");
+      expect(compHtml).toContain("千");
+      expect(compHtml).toContain("里");
+    });
   });
 
   describe("Document generation and print dispatch", () => {

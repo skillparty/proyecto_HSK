@@ -73,19 +73,19 @@
     </script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/design-tokens.css?v=6" id="design-tokens">
+    <link rel="stylesheet" href="assets/css/design-tokens.css?v=ce688d54" id="design-tokens">
     <!-- Split de styles-professional.css: el orden de estos <link> ES la cascada, no reordenar -->
-    <link rel="stylesheet" href="assets/css/app-base.css" id="main-stylesheet">
-    <link rel="stylesheet" href="assets/css/app-header-nav.css">
-    <link rel="stylesheet" href="assets/css/app-home.css">
-    <link rel="stylesheet" href="assets/css/app-practice.css">
-    <link rel="stylesheet" href="assets/css/app-browse.css">
-    <link rel="stylesheet" href="assets/css/app-strokes.css">
-    <link rel="stylesheet" href="assets/css/app-quiz.css">
-    <link rel="stylesheet" href="assets/css/app-stats.css">
-    <link rel="stylesheet" href="assets/css/app-enhancements.css">
-    <link rel="stylesheet" href="assets/css/app-dashboard-extras.css">
-    <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=3" id="auth-stylesheet">
+    <link rel="stylesheet" href="assets/css/app-base.css?v=208eb12c" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=33ffdc36">
+    <link rel="stylesheet" href="assets/css/app-home.css?v=ce40ba46">
+    <link rel="stylesheet" href="assets/css/app-practice.css?v=54e3acd3">
+    <link rel="stylesheet" href="assets/css/app-browse.css?v=d5a7c864">
+    <link rel="stylesheet" href="assets/css/app-strokes.css?v=1249c158">
+    <link rel="stylesheet" href="assets/css/app-quiz.css?v=5d43a437">
+    <link rel="stylesheet" href="assets/css/app-stats.css?v=cd1fd78c">
+    <link rel="stylesheet" href="assets/css/app-enhancements.css?v=94e9d87b">
+    <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=e9f43713">
+    <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=8292921d" id="auth-stylesheet">
 
     <!-- Game/leaderboard CSS injected on demand by ui-controller.js (see loadStylesheet) -->
     <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
@@ -101,13 +101,13 @@
     <link rel="manifest" href="config/manifest.json">
 
     <!-- Logger primero: todo script posterior puede usar window.hskLogger -->
-    <script src="assets/js/logger.js?v=1"></script>
+    <script src="assets/js/logger.js?v=1fe0fcff"></script>
 
     <!-- Escapado compartido: debe cargar antes que firebase-client/auth-backend/leaderboard -->
-    <script src="assets/js/utils/html.js?v=1"></script>
+    <script src="assets/js/utils/html.js?v=8f3dabb2"></script>
 
     <!-- Resource Validation Script -->
-    <script src="assets/js/bootstrap-diagnostics.js?v=1"></script>
+    <script src="assets/js/bootstrap-diagnostics.js?v=4dd221b0"></script>
 
     <!-- Scripts moved to end of body for proper loading order -->
 </head>
@@ -726,6 +726,14 @@
                         <div class="selection-bar-actions">
                             <button type="button" id="browse-select-all-btn" class="btn btn-sm btn-outline" data-i18n="selectAll">Seleccionar todo</button>
                             <button type="button" id="browse-clear-selection-btn" class="btn btn-sm btn-outline" data-i18n="deselectAll">Deseleccionar</button>
+                            <button id="browse-quiz-selected-btn" class="btn btn-sm btn-secondary" data-i18n="quizSelectedBtn" style="display: none;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                <span data-i18n="quizSelectedBtn">Quiz</span>
+                            </button>
+                            <button id="browse-anki-selected-btn" class="btn btn-sm btn-secondary" data-i18n-title="exportAnkiSelectedTitle" style="display: none;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                <span data-i18n="exportAnkiSelectedBtn">Anki CSV</span>
+                            </button>
                             <button type="button" id="browse-print-selected-btn" class="btn btn-sm btn-primary" style="display:inline-flex; align-items:center; gap:5px;">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 6 2 18 2 18 9"></polyline>
@@ -988,51 +996,51 @@
     }
     </script>
 
-    <script type="module" src="assets/js/firebase-bootstrap.js?v=1"></script>
+    <script type="module" src="assets/js/firebase-bootstrap.js?v=39292ce5"></script>
 
     <!-- Firebase Client (Dependent on bridge) -->
-    <script src="assets/js/firebase-client.js?v=5" defer></script>
+    <script src="assets/js/firebase-client.js?v=64c15ce8" defer></script>
 
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=27" defer></script>
-    <script src="assets/js/firebase-progress-sync.js?v=1" defer></script>
+    <script src="assets/js/translations.js?v=aaf0b06c" defer></script>
+    <script src="assets/js/firebase-progress-sync.js?v=0739a27c" defer></script>
 
     <!-- Modules -->
-    <script src="assets/js/modules/srs-engine.js?v=3" defer></script>
-    <script src="assets/js/modules/flashcard-manager.js?v=7" defer></script>
+    <script src="assets/js/modules/srs-engine.js?v=513fe4f7" defer></script>
+    <script src="assets/js/modules/flashcard-manager.js?v=4907c12f" defer></script>
     <!-- quiz-engine.js, quiz-legacy-controller.js, stats-controller.js loaded on demand by ui-controller.js -->
 
-    <script src="assets/js/modules/theme-controller.js?v=4" defer></script>
-    <script src="assets/js/modules/audio-controller.js?v=3" defer></script>
+    <script src="assets/js/modules/theme-controller.js?v=ce3fcd01" defer></script>
+    <script src="assets/js/modules/audio-controller.js?v=bc9b1f37" defer></script>
     <!-- browse-controller.js loaded on demand by ui-controller.js -->
 
     <!-- strokes-radicals-controller.js loaded on demand by ui-controller.js -->
-    <script src="assets/js/modules/modal-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/health-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/storage-controller.js?v=2" defer></script>
-    <script src="assets/js/modules/language-controller.js?v=3" defer></script>
-    <script src="assets/js/modules/progress-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/navigation-controller.js?v=4" defer></script>
-    <script src="assets/js/modules/search-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/practice-view-controller.js?v=7" defer></script>
-    <script src="assets/js/modules/feedback-controller.js?v=3" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=8" defer></script>
+    <script src="assets/js/modules/modal-controller.js?v=53800ca8" defer></script>
+    <script src="assets/js/modules/health-controller.js?v=d9a5d36f" defer></script>
+    <script src="assets/js/modules/storage-controller.js?v=1707b7b5" defer></script>
+    <script src="assets/js/modules/language-controller.js?v=57c17946" defer></script>
+    <script src="assets/js/modules/progress-controller.js?v=34a14089" defer></script>
+    <script src="assets/js/modules/navigation-controller.js?v=aa469b9a" defer></script>
+    <script src="assets/js/modules/search-controller.js?v=2437bb5f" defer></script>
+    <script src="assets/js/modules/practice-view-controller.js?v=d2275c84" defer></script>
+    <script src="assets/js/modules/feedback-controller.js?v=5265417c" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=e5328943" defer></script>
     <!-- past-exams-controller.js, quantifier-snake-{utils,canvas,controller,versus}.js loaded on demand by ui-controller.js -->
-    <script src="assets/js/modules/vocabulary-controller.js?v=3" defer></script>
-    <script src="assets/js/modules/legacy-flow-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/startup-controller.js?v=1" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=31" defer></script>
-    <script src="assets/js/modules/home-cultural-portal-scene.js" defer></script>
-    <script src="assets/js/modules/home-controller.js?v=7" defer></script>
-    <script src="assets/js/modules/matrix-controller.js?v=2" defer></script>
+    <script src="assets/js/modules/vocabulary-controller.js?v=ac8e0304" defer></script>
+    <script src="assets/js/modules/legacy-flow-controller.js?v=aa8b0d0c" defer></script>
+    <script src="assets/js/modules/startup-controller.js?v=714668c8" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=3cd700c2" defer></script>
+    <script src="assets/js/modules/home-cultural-portal-scene.js?v=4c0158bd" defer></script>
+    <script src="assets/js/modules/home-controller.js?v=74b15215" defer></script>
+    <script src="assets/js/modules/matrix-controller.js?v=6dd74492" defer></script>
 
     <!-- Culture modules loaded on demand by ui-controller.js (see loadScript) -->
 
-    <script src="assets/js/progress-integrator.js?v=2" defer></script>
-    <script src="assets/js/auth-backend.js?v=8" defer></script>
-    <script src="assets/js/user-progress-backend.js?v=2" defer></script>
+    <script src="assets/js/progress-integrator.js?v=0f7f559e" defer></script>
+    <script src="assets/js/auth-backend.js?v=3885d457" defer></script>
+    <script src="assets/js/user-progress-backend.js?v=2dc1518b" defer></script>
     <script>
         // Load diagnostic system only when requested via ?diagnostic=true
         if (window.location.search.includes('diagnostic=true')) {
@@ -1041,14 +1049,14 @@
             document.body.appendChild(script);
         }
     </script>
-    <script src="assets/js/app.js?v=37" defer></script>
+    <script src="assets/js/app.js?v=9964893d" defer></script>
     <!-- matrix-game.js, tones-invaders-game.js, leaderboard.js loaded on demand by ui-controller.js -->
 
     <!-- Background Image Integration -->
     <!-- Background Image Integration (Removed hardcoded style) -->
 
 
-    <script src="assets/js/sw-register.js?v=1" defer></script>
+    <script src="assets/js/sw-register.js?v=4036af96" defer></script>
 </body>
 
 </html>

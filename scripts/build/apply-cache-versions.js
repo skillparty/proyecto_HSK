@@ -176,9 +176,15 @@ function main() {
     versionMap.set(UI_CONTROLLER_FILE, shortHash(Buffer.from(uiResult.content)));
   }
 
-  // 4. Reescribir index.html y sw.js con el mapa completo
+  // 4. Reescribir index.html, sw.js y templates/index.template.html con el mapa completo
   const indexResult = applyVersions(indexContent, versionMap);
   const swResult = applyVersions(swContent, versionMap);
+  const templateFile = "templates/index.template.html";
+  let templateResult = null;
+  if (existsSync(join(root, templateFile))) {
+    const templateContent = readFileSync(join(root, templateFile), "utf8");
+    templateResult = applyVersions(templateContent, versionMap);
+  }
 
   // 5. SW_VERSION global: cubre precache completo + index.html reescrito
   const globalInputs = [];
@@ -212,6 +218,9 @@ function main() {
     { file: SW_FILE, content: finalSwContent, changes: swResult.changes + (versionChanged ? 1 : 0) },
     { file: UI_CONTROLLER_FILE, content: uiResult.content, changes: uiResult.changes },
   ];
+  if (templateResult) {
+    results.push({ file: templateFile, content: templateResult.content, changes: templateResult.changes });
+  }
 
   console.log(`Rutas versionadas: ${versionMap.size}`);
   console.log(`SW_VERSION: ${versionMatch[1]} -> ${newVersion}`);

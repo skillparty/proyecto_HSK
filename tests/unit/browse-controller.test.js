@@ -262,6 +262,25 @@ describe("BrowseController", () => {
         })
       );
     });
+
+    it("starts quiz with selected words and exports selected to Anki", () => {
+      controller.initializeBrowse();
+      mockApp.navigateTo = vi.fn();
+      controller.toggleWordSelection("你好", null, true);
+      controller.toggleWordSelection("谢谢", null, true);
+
+      controller.quizWithSelected();
+      expect(mockApp.quizSelectedVocabulary.length).toBe(2);
+      expect(mockApp.navigateTo).toHaveBeenCalledWith("quiz");
+
+      global.URL.createObjectURL = vi.fn(() => "blob:dummy");
+      global.URL.revokeObjectURL = vi.fn();
+      controller.exportSelectedToAnki();
+      expect(mockApp.showNotification).toHaveBeenCalledWith(
+        expect.stringContaining("palabras exportadas a Anki CSV"),
+        "success"
+      );
+    });
   });
 });
 

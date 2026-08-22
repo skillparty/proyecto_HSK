@@ -200,6 +200,26 @@ describe("FlashcardPdfController", () => {
       expect(html).toContain("Pictograma de persona de pie");
     });
 
+    it("generates HTML document for Duplex double-sided format with front and back pages", () => {
+      const items = [
+        { character: "你好", pinyin: "nǐ hǎo", spanish: "hola", level: 1 },
+        { character: "谢谢", pinyin: "xiè xie", spanish: "gracias", level: 1 }
+      ];
+      const html = controller.generateFullDocument(items, {
+        format: "duplex",
+        density: 6,
+        lang: "es",
+        title: "Flashcards Duplex"
+      });
+
+      expect(html).toContain("duplex-card");
+      expect(html).toContain("duplex-front");
+      expect(html).toContain("duplex-back");
+      expect(html).toContain("duplex-hanzi");
+      expect(html).toContain("duplex-pinyin");
+      expect(html).toContain("duplex-meaning");
+    });
+
     it("calculates pagination correctly for 15 items with density 6", () => {
       const items = [];
       for (let i = 1; i <= 15; i++) {

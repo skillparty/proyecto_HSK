@@ -729,6 +729,39 @@
     color: #b91c1c;
 }
 
+/* ── Radical & Stroke Count Metadata ── */
+.ws-meta-details {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-top: 1px;
+}
+
+.ws-meta-radical {
+    font-size: 7pt;
+    color: #64748b;
+    background: rgba(100, 116, 139, 0.08);
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.ws-meta-strokes {
+    font-size: 7pt;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* ── Composition / Continuous Writing Grid ── */
+.ws-composition-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 1;
+}
+
 /* ---- Print Styles (@media print) ---- */
 @media print {
     @page {
