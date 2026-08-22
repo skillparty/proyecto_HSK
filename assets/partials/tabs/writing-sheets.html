@@ -1,0 +1,315 @@
+    <div class="writing-sheets-container">
+        <!-- Header & Top Actions -->
+        <header class="ws-header">
+            <div class="ws-header-content">
+                <div class="ws-title-wrap">
+                    <div class="ws-title-icon" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                            <path d="M2 2l7.586 7.586"></path>
+                            <circle cx="11" cy="11" r="2"></circle>
+                        </svg>
+                    </div>
+                    <h2 class="ws-title" data-i18n="writingSheetsTitle">Generador de Plantillas de Escritura y Caligrafía</h2>
+                </div>
+                <p class="ws-subtitle" data-i18n="writingSheetsSubtitle">Diseña hojas de caligrafía china personalizadas con desglose trazo por trazo, cuadrículas tradicionales y guías imprimibles en PDF.</p>
+            </div>
+            <div class="ws-header-actions">
+                <button type="button" id="ws-presets-btn" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span data-i18n="presetTemplatesBtn">Plantillas de Ejemplo</span>
+                </button>
+                <button type="button" id="ws-print-btn" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    <span data-i18n="generatePrintPdfBtn">Imprimir / Guardar PDF</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <div class="ws-workspace">
+            <!-- Left Controls Panel -->
+            <aside class="ws-panel" aria-label="Configuración de Plantilla">
+                <!-- 1. Caracteres a Practicar -->
+                <div class="ws-section">
+                    <h3 class="ws-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="9" x2="20" y2="9"></line>
+                            <line x1="4" y1="15" x2="20" y2="15"></line>
+                            <line x1="10" y1="3" x2="8" y2="21"></line>
+                            <line x1="16" y1="3" x2="14" y2="21"></line>
+                        </svg>
+                        <span>1. Caracteres a Practicar</span>
+                    </h3>
+
+                    <!-- Source Mode Selector Tabs -->
+                    <div class="ws-source-tabs" role="tablist">
+                        <button type="button" class="ws-source-tab is-active" data-source="text" role="tab" aria-selected="true" data-i18n="sourceTextMode">Texto Libre</button>
+                        <button type="button" class="ws-source-tab" data-source="hsk" role="tab" aria-selected="false" data-i18n="sourceHskMode">Nivel HSK</button>
+                        <button type="button" class="ws-source-tab" data-source="etymology" role="tab" aria-selected="false" data-i18n="sourceEtymologyMode">Etimología</button>
+                    </div>
+
+                    <!-- Panel Texto Libre -->
+                    <div id="ws-source-panel-text" class="ws-source-panel is-active">
+                        <div class="ws-textarea-wrap">
+                            <textarea id="ws-custom-input" class="ws-custom-textarea" placeholder="Escribe o pega aquí caracteres chinos (ej. 你好, 学中文, 永字八法, 龙)..." data-i18n-placeholder="customTextInputPlaceholder"></textarea>
+                        </div>
+                        <div class="ws-presets-bar">
+                            <button type="button" class="ws-preset-btn" data-preset="greetings">你好 · 谢谢 · 再见</button>
+                            <button type="button" class="ws-preset-btn" data-preset="yong">永字八法 (Yǒng)</button>
+                            <button type="button" class="ws-preset-btn" data-preset="numbers">一 二 三 四 五 六 七 八 九 十</button>
+                            <button type="button" class="ws-preset-btn" data-preset="nature">日月水火木金土天</button>
+                        </div>
+                    </div>
+
+                    <!-- Panel Nivel HSK -->
+                    <div id="ws-source-panel-hsk" class="ws-source-panel">
+                        <div class="ws-control-row">
+                            <label for="ws-hsk-select" class="ws-control-label">Nivel HSK:</label>
+                            <select id="ws-hsk-select" class="ws-control-select">
+                                <option value="1">HSK 1 (150 palabras)</option>
+                                <option value="2">HSK 2 (150 palabras)</option>
+                                <option value="3">HSK 3 (300 palabras)</option>
+                                <option value="4">HSK 4 (600 palabras)</option>
+                                <option value="5">HSK 5 (1300 palabras)</option>
+                                <option value="6">HSK 6 (2500 palabras)</option>
+                            </select>
+                        </div>
+                        <div class="ws-control-row">
+                            <label for="ws-hsk-count-select" class="ws-control-label">Cantidad:</label>
+                            <select id="ws-hsk-count-select" class="ws-control-select">
+                                <option value="6">Primeros 6 caracteres</option>
+                                <option value="10" selected>Primeros 10 caracteres</option>
+                                <option value="15">Primeros 15 caracteres</option>
+                                <option value="20">Primeros 20 caracteres</option>
+                            </select>
+                        </div>
+                        <button type="button" id="ws-load-hsk-btn" class="btn btn-secondary" style="width: 100%; margin-top: 6px;">Cargar desde HSK</button>
+                    </div>
+
+                    <!-- Panel Etimología -->
+                    <div id="ws-source-panel-etymology" class="ws-source-panel">
+                        <div class="ws-control-row">
+                            <label for="ws-etym-lesson-select" class="ws-control-label">Lección Etimológica:</label>
+                            <select id="ws-etym-lesson-select" class="ws-control-select">
+                                <option value="A-1">A-1 · De las personas (人, 大, 女, 子)</option>
+                                <option value="A-2">A-2 · Del cuerpo humano (手, 口, 目, 耳)</option>
+                                <option value="B-1">B-1 · De la naturaleza (日, 月, 山, 水)</option>
+                                <option value="B-2">B-2 · Animales y plantas (木, 禾, 鸟, 马)</option>
+                            </select>
+                        </div>
+                        <button type="button" id="ws-load-etym-btn" class="btn btn-secondary" style="width: 100%; margin-top: 6px;">Cargar desde Etimología</button>
+                    </div>
+
+                    <!-- Chips de caracteres seleccionados -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0 4px;">
+                        <span id="ws-char-count-text" class="ws-char-count" data-i18n="characterCountText">4 caracteres en plantilla</span>
+                        <button type="button" id="ws-clear-chars-btn" class="btn-text" style="font-size: 0.8rem; color: var(--primary, #e53935); cursor: pointer; background: none; border: none; padding: 0;" data-i18n="clearAllChars">Limpiar</button>
+                    </div>
+                    <div id="ws-selected-chips" class="ws-selected-chips" aria-label="Caracteres activos">
+                        <!-- Chips dinámicos -->
+                    </div>
+                </div>
+
+                <!-- 2. Tipo de Cuadrícula Tradicional -->
+                <div class="ws-section">
+                    <h3 class="ws-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="12" y1="3" x2="12" y2="21"></line>
+                        </svg>
+                        <span data-i18n="gridTypeLabel">2. Tipo de Cuadrícula</span>
+                    </h3>
+                    <div class="ws-options-grid" id="ws-grid-type-group">
+                        <div class="ws-option-card is-selected" data-grid="tianzige">
+                            <div class="ws-option-preview-box">
+                                <svg viewBox="0 0 36 36" width="32" height="32">
+                                    <rect x="1" y="1" width="34" height="34" fill="#fffdf9" stroke="currentColor" stroke-width="1.5"/>
+                                    <line x1="18" y1="1" x2="18" y2="35" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <line x1="1" y1="18" x2="35" y2="18" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                                </svg>
+                            </div>
+                            <span class="ws-option-title">田字格<br><small>Cruz</small></span>
+                        </div>
+                        <div class="ws-option-card" data-grid="mige">
+                            <div class="ws-option-preview-box">
+                                <svg viewBox="0 0 36 36" width="32" height="32">
+                                    <rect x="1" y="1" width="34" height="34" fill="#fffdf9" stroke="currentColor" stroke-width="1.5"/>
+                                    <line x1="18" y1="1" x2="18" y2="35" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <line x1="1" y1="18" x2="35" y2="18" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <line x1="1" y1="1" x2="35" y2="35" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
+                                    <line x1="1" y1="35" x2="35" y2="1" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.6"/>
+                                </svg>
+                            </div>
+                            <span class="ws-option-title">米字格<br><small>Estrella</small></span>
+                        </div>
+                        <div class="ws-option-card" data-grid="huizige">
+                            <div class="ws-option-preview-box">
+                                <svg viewBox="0 0 36 36" width="32" height="32">
+                                    <rect x="1" y="1" width="34" height="34" fill="#fffdf9" stroke="currentColor" stroke-width="1.5"/>
+                                    <rect x="9" y="9" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <line x1="18" y1="1" x2="18" y2="35" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.5"/>
+                                    <line x1="1" y1="18" x2="35" y2="18" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.5"/>
+                                </svg>
+                            </div>
+                            <span class="ws-option-title">回字格<br><small>Interior</small></span>
+                        </div>
+                        <div class="ws-option-card" data-grid="jiugongge">
+                            <div class="ws-option-preview-box">
+                                <svg viewBox="0 0 36 36" width="32" height="32">
+                                    <rect x="1" y="1" width="34" height="34" fill="#fffdf9" stroke="currentColor" stroke-width="1.5"/>
+                                    <line x1="12" y1="1" x2="12" y2="35" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <line x1="24" y1="1" x2="24" y2="35" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <line x1="1" y1="12" x2="35" y2="12" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <line x1="1" y1="24" x2="35" y2="24" stroke="currentColor" stroke-width="1" stroke-dasharray="2,2"/>
+                                </svg>
+                            </div>
+                            <span class="ws-option-title">九宫格<br><small>3x3</small></span>
+                        </div>
+                        <div class="ws-option-card" data-grid="pingzige">
+                            <div class="ws-option-preview-box">
+                                <svg viewBox="0 0 36 36" width="32" height="32">
+                                    <rect x="1" y="1" width="34" height="34" fill="#fffdf9" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <span class="ws-option-title">简洁<br><small>Limpio</small></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Modo de Práctica y Desglose Pedagógico -->
+                <div class="ws-section">
+                    <h3 class="ws-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <span data-i18n="practiceModeLabel">3. Modo de Práctica</span>
+                    </h3>
+                    <div class="ws-mode-grid" id="ws-practice-mode-group">
+                        <div class="ws-mode-card is-selected" data-mode="stroke-by-stroke">
+                            <div class="ws-mode-icon">✍️</div>
+                            <div class="ws-mode-text">
+                                <div class="ws-mode-title" data-i18n="modeStrokeByStroke">Trazo por Trazo Progresivo</div>
+                                <div class="ws-mode-desc">Descompone la secuencia paso a paso (trazo 1, 1+2, etc.) en las primeras casillas antes de las casillas vacías.</div>
+                            </div>
+                        </div>
+                        <div class="ws-mode-card" data-mode="tracing">
+                            <div class="ws-mode-icon">🌫️</div>
+                            <div class="ws-mode-text">
+                                <div class="ws-mode-title" data-i18n="modeTracing">Guía Sombreada para Calcar</div>
+                                <div class="ws-mode-desc">Muestra el carácter en gris tenue para que el estudiante repase y calque los trazos con lápiz encima.</div>
+                            </div>
+                        </div>
+                        <div class="ws-mode-card" data-mode="model-blank">
+                            <div class="ws-mode-icon">🎯</div>
+                            <div class="ws-mode-text">
+                                <div class="ws-mode-title" data-i18n="modeModelBlank">Modelo + Casillas Vacías</div>
+                                <div class="ws-mode-desc">Carácter modelo destacado a la izquierda y casillas vacías con cuadrícula para escribir de memoria.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Dimensiones, Color y Personalización -->
+                <div class="ws-section">
+                    <h3 class="ws-section-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span>4. Formato y Apariencia</span>
+                    </h3>
+
+                    <div class="ws-control-row">
+                        <label for="ws-size-select" class="ws-control-label" data-i18n="gridSizeLabel">Tamaño de Casillas:</label>
+                        <select id="ws-size-select" class="ws-control-select">
+                            <option value="large" data-i18n="gridSizeLarge">Grande (L · 26mm)</option>
+                            <option value="medium" selected data-i18n="gridSizeMedium">Mediano (M · 20mm)</option>
+                            <option value="small" data-i18n="gridSizeSmall">Compacto (S · 15mm)</option>
+                        </select>
+                    </div>
+
+                    <div class="ws-control-row">
+                        <label for="ws-slots-select" class="ws-control-label" data-i18n="slotsPerRowLabel">Casillas por fila:</label>
+                        <select id="ws-slots-select" class="ws-control-select">
+                            <option value="auto">Auto (Llenar fila A4)</option>
+                            <option value="6">6 casillas</option>
+                            <option value="8" selected>8 casillas</option>
+                            <option value="10">10 casillas</option>
+                        </select>
+                    </div>
+
+                    <div class="ws-control-row">
+                        <span class="ws-control-label" data-i18n="gridColorLabel">Color de Cuadrícula:</span>
+                        <div class="ws-color-swatches" id="ws-color-swatches">
+                            <button type="button" class="ws-color-swatch is-selected" data-color="#dc2626" style="background: #dc2626;" title="Rojo Imperial"></button>
+                            <button type="button" class="ws-color-swatch" data-color="#64748b" style="background: #64748b;" title="Gris Grafito"></button>
+                            <button type="button" class="ws-color-swatch" data-color="#059669" style="background: #059669;" title="Verde Jade"></button>
+                            <button type="button" class="ws-color-swatch" data-color="#2563eb" style="background: #2563eb;" title="Azul Tinta"></button>
+                        </div>
+                    </div>
+
+                    <div class="ws-control-row" style="margin-top: 12px;">
+                        <label for="ws-title-input" class="ws-control-label" data-i18n="worksheetTitleField">Título de la Hoja:</label>
+                        <input type="text" id="ws-title-input" class="ws-control-input" value="Práctica de Caligrafía China" style="width: 200px;">
+                    </div>
+
+                    <div style="margin-top: 12px; border-top: 1px solid var(--color-border, #e2e8f0); padding-top: 10px;">
+                        <label class="ws-toggle-label">
+                            <input type="checkbox" id="ws-toggle-pinyin" class="ws-toggle-checkbox" checked>
+                            <span data-i18n="showPinyinLabel">Mostrar Pinyin con marcas tonales</span>
+                        </label>
+                        <label class="ws-toggle-label">
+                            <input type="checkbox" id="ws-toggle-meaning" class="ws-toggle-checkbox" checked>
+                            <span data-i18n="showMeaningLabel">Mostrar Significado en español</span>
+                        </label>
+                        <label class="ws-toggle-label">
+                            <input type="checkbox" id="ws-toggle-pinyin-lines" class="ws-toggle-checkbox">
+                            <span data-i18n="showPinyinLinesLabel">Líneas pauta Pinyin (4 líneas)</span>
+                        </label>
+                        <label class="ws-toggle-label">
+                            <input type="checkbox" id="ws-toggle-student-header" class="ws-toggle-checkbox" checked>
+                            <span data-i18n="showStudentHeaderLabel">Encabezado para Estudiante / Fecha</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Live Preview & Print Pages -->
+            <main class="ws-preview-container" aria-label="Vista Previa">
+                <div class="ws-preview-toolbar">
+                    <div class="ws-preview-info">
+                        <span style="font-size: 1.1rem;">📄</span>
+                        <span data-i18n="livePreviewTitle">Vista Previa en Vivo</span>
+                        <span id="ws-page-count-badge" class="badge" style="background: var(--bg-card, #f1f5f9); color: var(--text-main); font-size: 0.8rem; padding: 2px 8px; border-radius: 999px;">1 página A4</span>
+                    </div>
+                    <button type="button" id="ws-toolbar-print-btn" class="btn btn-primary btn-sm">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                        <span data-i18n="generatePrintPdfBtn">Imprimir / Guardar PDF</span>
+                    </button>
+                </div>
+
+                <!-- Live A4 Pages Container -->
+                <div id="ws-preview-pages" class="ws-preview-pages-wrapper">
+                    <!-- Las hojas .ws-sheet se insertan dinámicamente aquí -->
+                </div>
+            </main>
+        </div>
+    </div>

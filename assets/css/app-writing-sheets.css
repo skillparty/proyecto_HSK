@@ -1,0 +1,781 @@
+/**
+ * App Writing Sheets - Estilos para el Generador de Plantillas de Escritura y Caligrafía
+ * Cuadrículas tradicionales chinas (田字格, 米字格, 回字格, 九宫格), desglose trazo a trazo
+ * y hojas de impresión profesional A4 con metadatos de estudiante y branding exterior Confuc10++.
+ */
+
+.writing-sheets-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+}
+
+/* Header & Banner */
+.ws-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+}
+
+.ws-header-content {
+    flex: 1 1 400px;
+}
+
+.ws-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.ws-title-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md, 12px);
+    background: linear-gradient(135deg, var(--primary, #e53935), #991b1b);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+}
+
+.ws-title {
+    margin: 0;
+    font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.9rem);
+    font-weight: 800;
+    color: var(--text-main, #1e293b);
+    letter-spacing: -0.02em;
+}
+
+.ws-subtitle {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-muted, #64748b);
+    line-height: 1.5;
+}
+
+.ws-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Main Workspace Grid (Split Desktop / Stack Mobile) */
+.ws-workspace {
+    display: grid;
+    grid-template-columns: minmax(360px, 440px) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .ws-workspace {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Controls Panel */
+.ws-panel {
+    background: var(--bg-panel, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.05));
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.ws-section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary, #e53935);
+    margin: 0 0 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ws-section-title svg {
+    flex-shrink: 0;
+}
+
+/* Character Source Selection Tabs */
+.ws-source-tabs {
+    display: flex;
+    background: var(--bg-card, #f8fafc);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-sm, 8px);
+    padding: 3px;
+    gap: 3px;
+    margin-bottom: 12px;
+}
+
+.ws-source-tab {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted, #64748b);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    text-align: center;
+}
+
+.ws-source-tab.is-active {
+    background: var(--bg-panel, #ffffff);
+    color: var(--primary, #e53935);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ws-source-panel {
+    display: none;
+}
+
+.ws-source-panel.is-active {
+    display: block;
+}
+
+/* Text Input for Custom Characters */
+.ws-textarea-wrap {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.ws-custom-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--color-border, #cbd5e1);
+    border-radius: var(--radius-sm, 8px);
+    background: var(--bg-panel, #ffffff);
+    color: var(--text-main, #1e293b);
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-size: 1.15rem;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.ws-custom-textarea:focus {
+    border-color: var(--primary, #e53935);
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.15);
+}
+
+.ws-char-count {
+    font-size: 0.8rem;
+    color: var(--text-muted, #64748b);
+    text-align: right;
+    margin-top: 4px;
+}
+
+/* Character Chip List */
+.ws-selected-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-height: 140px;
+    overflow-y: auto;
+    padding: 6px;
+    background: var(--bg-card, #f8fafc);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-sm, 8px);
+    margin-bottom: 12px;
+}
+
+.ws-char-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-panel, #ffffff);
+    border: 1px solid var(--color-border, #cbd5e1);
+    padding: 4px 8px 4px 10px;
+    border-radius: var(--radius-pill, 999px);
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-main, #1e293b);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.ws-chip-remove {
+    background: none;
+    border: none;
+    color: var(--text-muted, #94a3b8);
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.ws-chip-remove:hover {
+    color: var(--primary, #e53935);
+    background: rgba(229, 57, 53, 0.1);
+}
+
+/* Quick Add Presets Bar */
+.ws-presets-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.ws-preset-btn {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    background: var(--bg-card, #f1f5f9);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-pill, 999px);
+    color: var(--text-main, #334155);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.ws-preset-btn:hover {
+    background: var(--primary, #e53935);
+    color: #ffffff;
+    border-color: var(--primary, #e53935);
+}
+
+/* Visual Options Grid (Cards Selector) */
+.ws-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.ws-option-card {
+    border: 1.5px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    padding: 8px 6px;
+    background: var(--bg-panel, #ffffff);
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.18s ease;
+    user-select: none;
+}
+
+.ws-option-card:hover {
+    border-color: var(--primary, #e53935);
+    transform: translateY(-1px);
+}
+
+.ws-option-card.is-selected {
+    border-color: var(--primary, #e53935);
+    background: rgba(229, 57, 53, 0.05);
+    box-shadow: 0 0 0 1px var(--primary, #e53935);
+}
+
+.ws-option-preview-box {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary, #e53935);
+}
+
+.ws-option-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-main, #1e293b);
+    line-height: 1.2;
+}
+
+/* Practice Mode Option Cards (wider) */
+.ws-mode-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.ws-mode-card {
+    border: 1.5px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    padding: 10px 12px;
+    background: var(--bg-panel, #ffffff);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.18s ease;
+}
+
+.ws-mode-card:hover {
+    border-color: var(--primary, #e53935);
+}
+
+.ws-mode-card.is-selected {
+    border-color: var(--primary, #e53935);
+    background: rgba(229, 57, 53, 0.04);
+    box-shadow: 0 0 0 1px var(--primary, #e53935);
+}
+
+.ws-mode-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--bg-card, #f8fafc);
+    border: 1px solid var(--color-border, #e2e8f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.ws-mode-card.is-selected .ws-mode-icon {
+    background: var(--primary, #e53935);
+    color: #ffffff;
+    border-color: var(--primary, #e53935);
+}
+
+.ws-mode-text {
+    flex: 1;
+}
+
+.ws-mode-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-main, #1e293b);
+    margin-bottom: 2px;
+}
+
+.ws-mode-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted, #64748b);
+    line-height: 1.3;
+}
+
+/* Control Rows (Inputs & Selects) */
+.ws-control-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.ws-control-label {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--text-main, #334155);
+}
+
+.ws-control-input,
+.ws-control-select {
+    padding: 6px 10px;
+    border: 1px solid var(--color-border, #cbd5e1);
+    border-radius: var(--radius-sm, 6px);
+    background: var(--bg-panel, #ffffff);
+    color: var(--text-main, #1e293b);
+    font-size: 0.88rem;
+    outline: none;
+}
+
+.ws-control-input:focus,
+.ws-control-select:focus {
+    border-color: var(--primary, #e53935);
+}
+
+/* Checkbox Toggles */
+.ws-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.86rem;
+    color: var(--text-main, #334155);
+    user-select: none;
+    margin-bottom: 8px;
+}
+
+.ws-toggle-checkbox {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--primary, #e53935);
+    cursor: pointer;
+}
+
+/* Color Swatches Selector */
+.ws-color-swatches {
+    display: flex;
+    gap: 8px;
+}
+
+.ws-color-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.ws-color-swatch:hover {
+    transform: scale(1.15);
+}
+
+.ws-color-swatch.is-selected {
+    border-color: #1e293b;
+    transform: scale(1.15);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Live A4 Sheet Preview Container */
+.ws-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ws-preview-toolbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-panel, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-md, 12px);
+    padding: 8px 16px;
+    box-shadow: var(--shadow-sm, 0 2px 6px rgba(0, 0, 0, 0.04));
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ws-preview-info {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-main, #1e293b);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ws-preview-pages-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-height: 850px;
+    overflow-y: auto;
+    padding: 1rem 0.5rem;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: var(--radius-lg, 16px);
+}
+
+/* A4 Sheet Simulation (Screen) */
+.ws-sheet {
+    width: 100%;
+    max-width: 210mm;
+    min-height: 297mm;
+    background: #ffffff;
+    color: #0f172a;
+    padding: 14mm 14mm 14mm 14mm;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Sheet Exterior Header (Outside grid border) */
+.ws-sheet-header {
+    border-bottom: 2px solid #0f172a;
+    padding-bottom: 3.5mm;
+    margin-bottom: 5mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.ws-sheet-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ws-sheet-logo {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+.ws-sheet-title-text {
+    font-size: 13pt;
+    font-weight: 800;
+    color: #b91c1c;
+    letter-spacing: -0.01em;
+}
+
+.ws-sheet-subtitle-text {
+    font-size: 8pt;
+    color: #64748b;
+    font-weight: 600;
+    margin-top: 1px;
+}
+
+.ws-sheet-student-info {
+    display: flex;
+    gap: 5mm;
+    font-size: 8.5pt;
+    color: #334155;
+    font-weight: 600;
+}
+
+.ws-student-field {
+    display: inline-flex;
+    gap: 4px;
+    border-bottom: 1px solid #94a3b8;
+    padding-bottom: 1px;
+    min-width: 32mm;
+}
+
+.ws-student-field.score-field {
+    min-width: 22mm;
+    color: #e11d48;
+}
+
+/* Sheet Grid Body */
+.ws-sheet-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4mm;
+}
+
+/* Worksheet Practice Row */
+.ws-practice-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 3mm;
+    padding-bottom: 2.5mm;
+    border-bottom: 1px dotted #e2e8f0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+/* Character Meta Block (Left side of row) */
+.ws-char-meta-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 26mm;
+    flex-shrink: 0;
+    gap: 1.5mm;
+}
+
+.ws-meta-pinyin {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #dc2626;
+    line-height: 1.1;
+}
+
+.ws-meta-meaning {
+    font-size: 7.5pt;
+    color: #64748b;
+    line-height: 1.15;
+    max-width: 26mm;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Practice Grid Slots (Row of cells) */
+.ws-slots-row {
+    display: flex;
+    gap: 2mm;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex: 1;
+}
+
+/* Individual Grid Cell */
+.ws-grid-cell {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+/* Cell Sizes */
+.ws-grid-cell.size-large {
+    width: 26mm;
+    height: 26mm;
+}
+
+.ws-grid-cell.size-medium {
+    width: 20mm;
+    height: 20mm;
+}
+
+.ws-grid-cell.size-small {
+    width: 15mm;
+    height: 15mm;
+}
+
+/* SVG Grid Overlay */
+.ws-grid-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Cell Character Content */
+.ws-cell-char {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-chinese-serif, "Noto Serif SC", "KaiTi", "Songti SC", serif);
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1;
+    user-select: none;
+}
+
+.ws-grid-cell.size-large .ws-cell-char {
+    font-size: 19mm;
+}
+
+.ws-grid-cell.size-medium .ws-cell-char {
+    font-size: 14.5mm;
+}
+
+.ws-grid-cell.size-small .ws-cell-char {
+    font-size: 11mm;
+}
+
+/* Tracing / Faded Character */
+.ws-cell-char.is-faded {
+    color: rgba(148, 163, 184, 0.35);
+}
+
+/* Progressive Stroke SVG in Cell */
+.ws-stroke-svg {
+    position: absolute;
+    inset: 2mm;
+    width: calc(100% - 4mm);
+    height: calc(100% - 4mm);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* 4-Line Pinyin Guide Box (Optional) */
+.ws-pinyin-guide-box {
+    width: 100%;
+    height: 6mm;
+    margin-bottom: 1mm;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background-image: linear-gradient(to bottom,
+        transparent 0%, transparent 33%,
+        rgba(220, 38, 38, 0.25) 33%, rgba(220, 38, 38, 0.25) 35%,
+        transparent 35%, transparent 66%,
+        rgba(220, 38, 38, 0.25) 66%, rgba(220, 38, 38, 0.25) 68%,
+        transparent 68%, transparent 100%
+    );
+}
+
+/* Sheet Exterior Footer */
+.ws-sheet-footer {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 2.5mm;
+    margin-top: 5mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+    color: #64748b;
+}
+
+.ws-sheet-footer-brand {
+    font-weight: 700;
+    color: #b91c1c;
+}
+
+/* ---- Print Styles (@media print) ---- */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 8mm 8mm 8mm 8mm;
+    }
+
+    *, *:before, *:after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+    }
+
+    .app-header,
+    .vertical-pillar-left,
+    .vertical-pillar-right,
+    .tab-navigation,
+    .ws-header,
+    .ws-panel,
+    .ws-preview-toolbar,
+    .app-footer {
+        display: none !important;
+    }
+
+    .ws-workspace {
+        display: block !important;
+    }
+
+    .ws-preview-pages-wrapper {
+        padding: 0 !important;
+        background: transparent !important;
+        overflow: visible !important;
+        max-height: none !important;
+    }
+
+    .ws-sheet {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        padding: 6mm 8mm !important;
+        page-break-after: always;
+        break-after: page;
+        min-height: calc(297mm - 16mm) !important;
+        max-width: 100% !important;
+    }
+}

@@ -23,6 +23,7 @@ class NavigationController {
       "culture-arts",
       "videos",
       "memories",
+      "writing-sheets",
     ]);
   }
 

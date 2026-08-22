@@ -30,6 +30,9 @@ class EtymologyController {
     this.activeFamily = null;
     this.selectedHanzi = null;
     this.writer = null;
+
+    this.selectedHanziSet = new Set();
+    this.isSelectionMode = false;
   }
 
   get container() {
@@ -170,8 +173,9 @@ class EtymologyController {
     const s = this.section;
 
     this.container.innerHTML = `
-      <section class="etym-wrap" aria-label="Etimología de caracteres">
+      <section class="etym-wrap ${this.isSelectionMode ? "selection-mode-active" : ""}" aria-label="Etimología de caracteres">
         ${this.renderHeader(s)}
+        ${this.renderSelectionBar()}
         ${this.renderSectionTabs()}
         ${this.renderViewToggle()}
         <div class="etym-body">
@@ -194,16 +198,59 @@ class EtymologyController {
   }
 
   renderHeader(s) {
+    const selCount = this.selectedHanziSet.size;
     return `
       <header class="etym-header">
         <div class="etym-header-text">
           <h2 class="etym-title">${this.escape(s.title)}</h2>
           <p class="etym-intro">${this.escape(s.intro)}</p>
         </div>
-        <span class="etym-lang-badge" title="Próximamente en inglés">
-          🌐 English coming soon
-        </span>
+        <div class="etym-header-actions">
+          <button type="button" class="btn btn-secondary btn-sm etym-pdf-btn" id="etym-export-pdf-btn" title="Generar PDF imprimible de tarjetas y hojas de práctica" style="display:inline-flex; align-items:center; gap:6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Exportar PDF</span>
+          </button>
+          <button type="button" class="btn btn-outline btn-sm etym-select-btn ${this.isSelectionMode ? "is-active" : ""}" id="etym-select-mode-btn" title="Activar/desactivar modo selección">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:4px;">
+              <polyline points="9 11 12 14 22 4"></polyline>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+            </svg>
+            <span id="etym-select-mode-text">Seleccionar</span>
+            <span id="etym-selected-badge" class="badge-count" style="display:${selCount > 0 ? "inline-block" : "none"};">${selCount}</span>
+          </button>
+          <span class="etym-lang-badge" title="Próximamente en inglés">
+            🌐 English coming soon
+          </span>
+        </div>
       </header>`;
+  }
+
+  renderSelectionBar() {
+    const selCount = this.selectedHanziSet.size;
+    return `
+      <div id="etym-selection-bar" class="selection-floating-bar" style="display:${(this.isSelectionMode || selCount > 0) ? "flex" : "none"}; margin-bottom: 1rem;">
+        <div class="selection-bar-info">
+          <span id="etym-selected-text">${selCount} seleccionados</span>
+        </div>
+        <div class="selection-bar-actions">
+          <button type="button" id="etym-select-all-btn" class="btn btn-sm btn-outline">Seleccionar visibles</button>
+          <button type="button" id="etym-clear-selection-btn" class="btn btn-sm btn-outline">Deseleccionar</button>
+          <button type="button" id="etym-print-selected-btn" class="btn btn-sm btn-primary" style="display:inline-flex; align-items:center; gap:5px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span id="etym-print-selected-text">Generar PDF (${selCount})</span>
+          </button>
+        </div>
+      </div>`;
   }
 
   renderSectionTabs() {
@@ -299,17 +346,26 @@ class EtymologyController {
     }
     return chars
       .map(
-        (entry) => `
-          <button class="etym-card ${
-            entry.hanzi === this.selectedHanzi ? "is-selected" : ""
-          }" data-hanzi="${entry.hanzi}" type="button"
-            aria-label="${entry.hanzi} ${this.escape(entry.meaning)}">
-            <span class="etym-card-hanzi">${entry.hanzi}</span>
-            <span class="etym-card-pinyin">${this.escape(entry.pinyin)}</span>
-            <span class="etym-card-meaning">${this.escape(
-              entry.meaning.split(",")[0].split(";")[0]
-            )}</span>
-          </button>`
+        (entry) => {
+          const isSelected = this.selectedHanziSet.has(entry.hanzi);
+          return `
+          <div class="etym-card-wrap ${isSelected ? "is-card-selected" : ""}">
+            <label class="etym-card-select-label" title="Seleccionar para PDF">
+              <input type="checkbox" class="etym-card-checkbox" data-hanzi="${entry.hanzi}" ${isSelected ? "checked" : ""}>
+              <span class="etym-card-select-custom"></span>
+            </label>
+            <button class="etym-card ${
+              entry.hanzi === this.selectedHanzi ? "is-selected" : ""
+            }" data-hanzi="${entry.hanzi}" type="button"
+              aria-label="${entry.hanzi} ${this.escape(entry.meaning)}">
+              <span class="etym-card-hanzi">${entry.hanzi}</span>
+              <span class="etym-card-pinyin">${this.escape(entry.pinyin)}</span>
+              <span class="etym-card-meaning">${this.escape(
+                entry.meaning.split(",")[0].split(";")[0]
+              )}</span>
+            </button>
+          </div>`;
+        }
       )
       .join("");
   }
@@ -380,16 +436,18 @@ class EtymologyController {
               ? `<span class="etym-jp-tag" title="También usado en japonés (kanji)">JP · kanji</span>`
               : ""
           }
+          <div class="etym-detail-actions">
+            <button class="etym-detail-btn etym-replay" type="button">Repetir trazos</button>
+            <button class="etym-detail-btn etym-quiz" type="button">Practicar</button>
+          </div>
         </div>
       </div>
-      <div class="etym-stroke-actions">
-        <button class="etym-btn etym-replay" type="button">▶ Animar trazos</button>
-        <button class="etym-btn etym-secondary etym-quiz" type="button">✎ Practicar</button>
+
+      <div class="etym-story">
+        <h3 class="etym-section-title">Por qué de su forma</h3>
+        <p class="etym-story-text">${this.highlightComponents(entry.etymology)}</p>
       </div>
-      <div class="etym-why">
-        <h3 class="etym-section-title">El porqué (${entry.lessonId} · ${this.escape(entry.theme)})</h3>
-        <p class="etym-why-text">${this.highlightComponents(entry.etymology)}</p>
-      </div>
+
       ${decomposition}
       ${words}`;
   }
@@ -397,25 +455,27 @@ class EtymologyController {
   renderFooter(s) {
     return `
       <footer class="etym-footer">
-        <p class="etym-source">Fuente: ${this.escape(s.source)}</p>
-        <p class="etym-credit">Orden de trazos: <a href="https://github.com/chanind/hanzi-writer" target="_blank" rel="noopener">Hanzi Writer</a> · datos de Make Me a Hanzi (LGPL/Arphic).</p>
+        <p class="etym-source">Fuente: <em>${this.escape(s.source)}</em></p>
       </footer>`;
   }
 
-  /* ---------- stroke animation ---------- */
+  /* ---------- hanzi-writer integration ---------- */
 
   mountWriter() {
     const target = document.getElementById("etym-writer-target");
-    if (!target || !this.selectedHanzi || !window.HanziWriter) return;
+    if (!target || !this.selectedHanzi) return;
     target.innerHTML = "";
-    this.writer = null;
 
-    const size = 200;
+    if (!window.HanziWriter) {
+      target.innerHTML = `<span class="etym-writer-fallback">${this.selectedHanzi}</span>`;
+      return;
+    }
+
     try {
       this.writer = window.HanziWriter.create(target, this.selectedHanzi, {
-        width: size,
-        height: size,
-        padding: 12,
+        width: 140,
+        height: 140,
+        padding: 6,
         showOutline: true,
         showCharacter: true,
         strokeAnimationSpeed: 1,
@@ -431,6 +491,7 @@ class EtymologyController {
           target.innerHTML = `<span class="etym-writer-fallback">${this.selectedHanzi}</span>`;
         },
       });
+      this.animateStrokes();
     } catch {
       target.innerHTML = `<span class="etym-writer-fallback">${this.selectedHanzi}</span>`;
     }
@@ -499,8 +560,31 @@ class EtymologyController {
       });
     });
 
-    root.querySelectorAll("[data-hanzi]").forEach((btn) => {
+    root.querySelectorAll(".etym-card").forEach((btn) => {
       btn.addEventListener("click", () => this.selectHanzi(btn.dataset.hanzi));
+    });
+
+    const pdfBtn = root.querySelector("#etym-export-pdf-btn");
+    if (pdfBtn) pdfBtn.addEventListener("click", () => this.openPdfModal());
+
+    const selectBtn = root.querySelector("#etym-select-mode-btn");
+    if (selectBtn) selectBtn.addEventListener("click", () => this.toggleSelectionMode());
+
+    const selectAllBtn = root.querySelector("#etym-select-all-btn");
+    if (selectAllBtn) selectAllBtn.addEventListener("click", () => this.selectAllVisible());
+
+    const clearBtn = root.querySelector("#etym-clear-selection-btn");
+    if (clearBtn) clearBtn.addEventListener("click", () => this.clearSelection());
+
+    const printSelBtn = root.querySelector("#etym-print-selected-btn");
+    if (printSelBtn) printSelBtn.addEventListener("click", () => this.openPdfModal());
+
+    root.querySelectorAll(".etym-card-checkbox").forEach((cb) => {
+      cb.addEventListener("change", (e) => {
+        e.stopPropagation();
+        this.toggleHanziSelection(cb.dataset.hanzi, cb.closest(".etym-card-wrap"), cb.checked);
+      });
+      cb.addEventListener("click", (e) => e.stopPropagation());
     });
 
     this.bindGoto(root);
@@ -525,6 +609,15 @@ class EtymologyController {
   }
 
   selectHanzi(hanzi) {
+    if (this.isSelectionMode) {
+      const isSelected = this.selectedHanziSet.has(hanzi);
+      const cardWrap = this.container.querySelector(`.etym-card-checkbox[data-hanzi="${hanzi}"]`)?.closest(".etym-card-wrap");
+      const cb = cardWrap?.querySelector(".etym-card-checkbox");
+      if (cb) cb.checked = !isSelected;
+      this.toggleHanziSelection(hanzi, cardWrap, !isSelected);
+      return;
+    }
+
     if (!this.section.charIndex.has(hanzi)) return;
     this.selectedHanzi = hanzi;
     const detail = document.getElementById("etym-detail");
@@ -534,7 +627,6 @@ class EtymologyController {
     });
     this.bindDetailEvents();
     this.mountWriter();
-    this.animateStrokes();
   }
 
   bindDetailEvents() {
@@ -555,6 +647,119 @@ class EtymologyController {
     }
     this.selectedHanzi = hanzi;
     this.render();
+  }
+
+  /* ---------- PDF & Selection Helpers ---------- */
+
+  async getPdfController() {
+    if (this.app && this.app.flashcardPdfController) {
+      return this.app.flashcardPdfController;
+    }
+    if (typeof window !== "undefined" && !window.FlashcardPdfController) {
+      if (this.app && this.app.uiController && typeof this.app.uiController.loadScript === "function") {
+        await this.app.uiController.loadScript("assets/js/modules/flashcard-pdf-controller.js");
+        await this.app.uiController.loadStylesheet("assets/css/flashcard-pdf-styles.css");
+      } else {
+        await new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = "assets/js/modules/flashcard-pdf-controller.js";
+          s.onload = resolve;
+          s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      }
+    }
+    const controller = new window.FlashcardPdfController(this.app);
+    if (this.app) {
+      this.app.flashcardPdfController = controller;
+    }
+    return controller;
+  }
+
+  async openPdfModal() {
+    try {
+      const pdfCtrl = await this.getPdfController();
+      const s = this.section;
+      const lesson = s.lessons.find((l) => l.id === this.activeLessonId);
+
+      pdfCtrl.openModal({
+        source: "etymology",
+        charIndex: s.charIndex,
+        currentLesson: lesson,
+        currentSection: s,
+        selectedItems: this.selectedHanziSet
+      });
+    } catch (err) {
+      console.error("[Etymology] Error opening PDF modal:", err);
+    }
+  }
+
+  toggleSelectionMode(forceState) {
+    this.isSelectionMode = typeof forceState === "boolean" ? forceState : !this.isSelectionMode;
+    const wrap = this.container.querySelector(".etym-wrap");
+    if (wrap) wrap.classList.toggle("selection-mode-active", this.isSelectionMode);
+    const selectBtn = this.container.querySelector("#etym-select-mode-btn");
+    if (selectBtn) selectBtn.classList.toggle("is-active", this.isSelectionMode);
+    this.updateSelectionUI();
+  }
+
+  toggleHanziSelection(hanzi, cardWrap, isChecked) {
+    if (!hanzi) return;
+    if (isChecked) {
+      this.selectedHanziSet.add(hanzi);
+      if (cardWrap) cardWrap.classList.add("is-card-selected");
+    } else {
+      this.selectedHanziSet.delete(hanzi);
+      if (cardWrap) cardWrap.classList.remove("is-card-selected");
+    }
+    this.updateSelectionUI();
+  }
+
+  selectAllVisible() {
+    const chars = this.currentChars();
+    chars.forEach((entry) => {
+      if (entry && entry.hanzi) {
+        this.selectedHanziSet.add(entry.hanzi);
+      }
+    });
+    this.container.querySelectorAll(".etym-card-checkbox").forEach((cb) => {
+      cb.checked = true;
+      const wrap = cb.closest(".etym-card-wrap");
+      if (wrap) wrap.classList.add("is-card-selected");
+    });
+    this.updateSelectionUI();
+  }
+
+  clearSelection() {
+    this.selectedHanziSet.clear();
+    this.container.querySelectorAll(".etym-card-checkbox").forEach((cb) => {
+      cb.checked = false;
+      const wrap = cb.closest(".etym-card-wrap");
+      if (wrap) wrap.classList.remove("is-card-selected");
+    });
+    this.updateSelectionUI();
+  }
+
+  updateSelectionUI() {
+    const count = this.selectedHanziSet.size;
+    const bar = this.container.querySelector("#etym-selection-bar");
+    const badge = this.container.querySelector("#etym-selected-badge");
+    const text = this.container.querySelector("#etym-selected-text");
+    const printText = this.container.querySelector("#etym-print-selected-text");
+
+    if (badge) {
+      badge.textContent = count;
+      badge.style.display = count > 0 ? "inline-block" : "none";
+    }
+    if (text) {
+      text.textContent = `${count} seleccionados`;
+    }
+    if (printText) {
+      printText.textContent = `Generar PDF (${count})`;
+    }
+    if (bar) {
+      bar.style.display = (this.isSelectionMode || count > 0) ? "flex" : "none";
+    }
   }
 
   /* ---------- helpers ---------- */

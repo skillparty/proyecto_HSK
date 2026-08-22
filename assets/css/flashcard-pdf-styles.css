@@ -1,0 +1,498 @@
+/* ============================================================================
+   FLASHCARD PDF & PRINT MODAL STYLES
+   Minimalist, professional, and accessible modal + preview system
+   ============================================================================ */
+
+.pdf-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.pdf-modal-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pdf-modal-dialog {
+    background: var(--bg-panel, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    width: 100%;
+    max-width: 980px;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: scale(0.96) translateY(10px);
+    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+.pdf-modal-backdrop.is-open .pdf-modal-dialog {
+    transform: scale(1) translateY(0);
+}
+
+/* Header */
+.pdf-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+    background: var(--bg-card, #ffffff);
+}
+
+.pdf-modal-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.pdf-modal-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-primary-subtle, #fee2e2);
+    color: var(--primary, #e53935);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdf-modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main, #0f172a);
+    letter-spacing: -0.01em;
+}
+
+.pdf-modal-subtitle {
+    margin: 2px 0 0;
+    font-size: 0.85rem;
+    color: var(--text-muted, #64748b);
+}
+
+.pdf-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: var(--text-muted, #64748b);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.pdf-modal-close:hover {
+    background: var(--color-bg-hover, #f1f5f9);
+    color: var(--text-main, #0f172a);
+}
+
+/* Body */
+.pdf-modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px 24px;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+.pdf-modal-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.pdf-control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pdf-control-label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-main, #0f172a);
+    letter-spacing: 0.01em;
+}
+
+.pdf-control-label-sm {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted, #475569);
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* Radio Card Selector */
+.pdf-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pdf-radio-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    background: var(--bg-card, #ffffff);
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+    user-select: none;
+}
+
+.pdf-radio-card:hover:not(.is-disabled) {
+    border-color: rgba(229, 57, 53, 0.4);
+    background: var(--color-bg-hover, #f8fafc);
+}
+
+.pdf-radio-card.is-selected {
+    border-color: var(--primary, #e53935);
+    background: rgba(229, 57, 53, 0.04);
+    box-shadow: 0 0 0 1px var(--primary, #e53935);
+}
+
+.pdf-radio-card.is-disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.pdf-radio-card input[type="radio"] {
+    margin-top: 3px;
+    accent-color: var(--primary, #e53935);
+    cursor: pointer;
+}
+
+.pdf-radio-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.pdf-radio-title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-main, #0f172a);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pdf-radio-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted, #64748b);
+    line-height: 1.35;
+}
+
+.pdf-select-compact {
+    margin-top: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--color-border, #cbd5e1);
+    background: var(--bg-panel, #ffffff);
+    color: var(--text-main, #0f172a);
+    font-size: 0.82rem;
+    width: 100%;
+}
+
+.pdf-options-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding-top: 6px;
+    border-top: 1px solid var(--color-border, #e2e8f0);
+}
+
+.pdf-select-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid var(--color-border, #cbd5e1);
+    background: var(--bg-card, #ffffff);
+    color: var(--text-main, #0f172a);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Preview Column */
+.pdf-modal-preview-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-md, 12px);
+    padding: 14px;
+    overflow: hidden;
+}
+
+.pdf-preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pdf-preview-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-muted, #475569);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.pdf-preview-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--color-primary-subtle, #fee2e2);
+    color: var(--primary, #dc2626);
+}
+
+.pdf-preview-viewport {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    padding: 10px 4px;
+    background: #475569;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+    max-height: 480px;
+}
+
+.pdf-preview-sheet {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    min-height: 520px;
+    padding: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    font-size: 8pt;
+    transform-origin: top center;
+    color: #0f172a;
+}
+
+.pdf-preview-sheet .tianzige-box {
+    width: 32px;
+    height: 32px;
+    font-size: 1.15rem;
+}
+
+.pdf-preview-sheet .tianzige-box.etym-large {
+    width: 38px;
+    height: 38px;
+    font-size: 1.4rem;
+}
+
+.pdf-preview-sheet .flashcards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.pdf-preview-sheet .flashcard-cutout {
+    border: 1px dashed #cbd5e1;
+    padding: 6px 8px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 7.5pt;
+}
+
+.pdf-preview-sheet .print-card-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 6.5pt;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+.pdf-preview-sheet .print-card-pinyin {
+    font-weight: 700;
+    color: #dc2626;
+    font-size: 7.5pt;
+    margin: 2px 0 1px;
+}
+
+.pdf-preview-sheet .print-card-meaning {
+    font-size: 6.5pt;
+    color: #334155;
+}
+
+.pdf-preview-sheet .print-page-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 6pt;
+    color: #64748b;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+}
+
+.pdf-preview-sheet .print-page-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 6pt;
+    color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 4px;
+    margin-top: auto;
+}
+
+.pdf-preview-sheet .practice-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px dotted #e2e8f0;
+}
+
+.pdf-preview-sheet .practice-model-col {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 90px;
+}
+
+.pdf-preview-sheet .practice-pinyin {
+    font-weight: 700;
+    color: #dc2626;
+    font-size: 7pt;
+}
+
+.pdf-preview-sheet .practice-meaning {
+    font-size: 6pt;
+    color: #475569;
+}
+
+.pdf-preview-sheet .practice-grid-slots {
+    display: flex;
+    gap: 3px;
+    flex: 1;
+}
+
+.pdf-preview-sheet .practice-page-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 6.5pt;
+    color: #475569;
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.pdf-preview-sheet .etymology-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.pdf-preview-sheet .etymology-print-card {
+    border: 1px dashed #cbd5e1;
+    border-radius: 4px;
+    padding: 6px;
+    display: flex;
+    gap: 6px;
+}
+
+.pdf-preview-sheet .etym-card-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 44px;
+}
+
+.pdf-preview-sheet .etym-card-right {
+    flex: 1;
+    font-size: 6.5pt;
+}
+
+.pdf-preview-sheet .print-etym-label {
+    font-size: 5.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+}
+
+.pdf-preview-sheet .print-etym-story p {
+    margin: 0;
+    line-height: 1.25;
+    font-size: 6pt;
+}
+
+.pdf-preview-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 250px;
+    color: #94a3b8;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.pdf-modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--color-border, #e2e8f0);
+    background: var(--bg-card, #ffffff);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pdf-modal-dialog {
+        max-height: 96vh;
+    }
+    .pdf-modal-body {
+        grid-template-columns: 1fr;
+        padding: 14px 16px;
+        gap: 16px;
+    }
+    .pdf-modal-preview-col {
+        display: none; /* Hide live preview on small mobile screens to keep controls clean */
+    }
+    .pdf-modal-header {
+        padding: 14px 16px;
+    }
+    .pdf-modal-footer {
+        padding: 12px 16px;
+    }
+}

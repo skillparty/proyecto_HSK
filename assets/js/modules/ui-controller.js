@@ -231,7 +231,7 @@ class UIController {
         (async () => {
           try {
             if (!window.BrowseController) {
-              await this.loadScript("assets/js/modules/browse-controller.js?v=3d918a0a");
+              await this.loadScript("assets/js/modules/browse-controller.js?v=612cb556");
             }
             if (!this.app.browseController) {
               this.app.browseController = new window.BrowseController(this.app);
@@ -239,6 +239,8 @@ class UIController {
             if (!this.app.browseInitialized) {
               this.app.initializeBrowse();
               this.app.browseInitialized = true;
+            } else if (typeof this.app.browseController.onTabActivated === "function") {
+              this.app.browseController.onTabActivated();
             }
           } catch (err) {
             this.logError("Failed to lazy load browse tab", err);
@@ -490,13 +492,14 @@ class UIController {
       case "etymology":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/etymology-styles.css?v=a037cb9e");
+            await this.loadStylesheet("assets/css/etymology-styles.css?v=019824da");
             if (!window.EtymologyController) {
-              await this.loadScript("assets/js/modules/etymology-controller.js?v=db5c6f8f");
+              await this.loadScript("assets/js/modules/etymology-controller.js?v=36ae41ab");
             }
             if (!window.etymologyController) {
               window.etymologyController = new EtymologyController(this.app);
             }
+            this.app.etymologyController = window.etymologyController;
             await window.etymologyController.initialize();
           } catch (err) {
             this.logError("etymology init failed:", err);
@@ -643,6 +646,22 @@ class UIController {
           }
         })();
         break;
+      case "writing-sheets":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/app-writing-sheets.css");
+            if (!window.WritingSheetsController) {
+              await this.loadScript("assets/js/modules/writing-sheets-controller.js");
+            }
+            if (!this.app.writingSheetsController) {
+              this.app.writingSheetsController = new window.WritingSheetsController(this.app);
+            }
+            await this.app.writingSheetsController.initialize();
+          } catch (err) {
+            this.logError("writing-sheets init failed:", err);
+          }
+        })();
+        break;
     }
   }
 
@@ -670,6 +689,7 @@ class UIController {
             "culture-arts",
             "videos",
             "memories",
+            "writing-sheets",
           ]);
     try {
       const savedTab = localStorage.getItem(this.app.lastTabStorageKey);
@@ -858,6 +878,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "culture-arts",
   "videos",
   "memories",
+  "writing-sheets",
 ]);
 
 window.UIController = UIController;

@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+a3a8bb2c";
+const SW_VERSION = "4.70.0+2a9c7334";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -17,7 +17,7 @@ const PRECACHE_FILES = [
   "./assets/css/app-header-nav.css?v=33ffdc36",
   "./assets/css/app-home.css?v=ce40ba46",
   "./assets/css/app-practice.css?v=54e3acd3",
-  "./assets/css/app-browse.css?v=d77f94f0",
+  "./assets/css/app-browse.css?v=d5a7c864",
   "./assets/css/app-strokes.css?v=1249c158",
   "./assets/css/app-quiz.css?v=5d43a437",
   "./assets/css/app-stats.css?v=cd1fd78c",
@@ -36,7 +36,7 @@ const PRECACHE_FILES = [
   "./assets/js/bootstrap-diagnostics.js?v=4dd221b0",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=4036af96",
-  "./assets/js/translations.js?v=c65ffb94",
+  "./assets/js/translations.js?v=1503a908",
   "./assets/js/firebase-client.js?v=64c15ce8",
   "./assets/js/firebase-progress-sync.js?v=0739a27c",
   "./assets/js/modules/srs-engine.js?v=513fe4f7",
@@ -46,8 +46,8 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=0f8dc82d",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=df78e753",
-  "./assets/js/modules/ui-controller.js?v=51b7c653",
-  "./assets/js/modules/navigation-controller.js?v=e3d9bd14",
+  "./assets/js/modules/ui-controller.js?v=952c09dc",
+  "./assets/js/modules/navigation-controller.js?v=aa469b9a",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",
   "./assets/js/modules/culture/traditional-medicine.js",
@@ -57,7 +57,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/culture/traditional-arts.js",
   "./assets/js/modules/memories-controller.js",
   "./assets/js/modules/language-controller.js?v=57c17946",
-  "./assets/js/modules/browse-controller.js?v=3d918a0a",
+  "./assets/js/modules/browse-controller.js?v=612cb556",
   "./assets/js/modules/interaction-controller.js?v=e5328943",
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-question-bank.js",
@@ -99,6 +99,7 @@ const PRECACHE_FILES = [
   "./assets/partials/tabs/culture-arts.html",
   "./assets/partials/tabs/videos.html",
   "./assets/partials/tabs/memories.html",
+  "./assets/partials/tabs/writing-sheets.html",
   "./assets/data/videos-data.json",
   "./assets/data/culture/character-evolution.json",
   "./assets/data/culture/chinese-technology.json",
