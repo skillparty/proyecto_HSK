@@ -86,6 +86,93 @@
                             </div>
                         </div>
 
+                        <!-- Hanzi Stroke Drawing Canvas -->
+                        <div class="strokes-radicals-canvas-section" id="strokes-radicals-canvas-section">
+                            <div class="sr-canvas-header">
+                                <div class="sr-canvas-title-group">
+                                    <h3>✍️ Lienzo de Escritura y Caligrafía</h3>
+                                    <p>Dibuja el carácter en la cuadrícula 米字格 con guía de trazo y pronunciación.</p>
+                                </div>
+                                <div class="hz-active-char-badge">
+                                    <span>Carácter activo:</span>
+                                    <strong id="hanzi-canvas-char-display">中</strong>
+                                </div>
+                            </div>
+
+                            <div class="sr-canvas-workspace">
+                                <div class="sr-canvas-drawing-area">
+                                    <canvas id="hanzi-draw-canvas" width="320" height="320"></canvas>
+                                </div>
+
+                                <div class="sr-canvas-side-tools">
+                                    <div class="sr-tool-group">
+                                        <label for="hanzi-canvas-char-input" class="control-label">Escribir otro carácter:</label>
+                                        <div class="hz-char-input-wrap">
+                                            <input type="text" id="hanzi-canvas-char-input" maxlength="2" placeholder="中" value="中" class="search-input" />
+                                            <button id="hanzi-canvas-audio-btn" class="btn btn-secondary" title="Escuchar pronunciación" type="button">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="sr-tool-group">
+                                        <label class="control-label">Accesos rápidos:</label>
+                                        <div class="hz-quick-chars-list">
+                                            <button type="button" class="hz-quick-char">你</button>
+                                            <button type="button" class="hz-quick-char">好</button>
+                                            <button type="button" class="hz-quick-char">学</button>
+                                            <button type="button" class="hz-quick-char">中</button>
+                                            <button type="button" class="hz-quick-char">国</button>
+                                            <button type="button" class="hz-quick-char">家</button>
+                                            <button type="button" class="hz-quick-char">爱</button>
+                                            <button type="button" class="hz-quick-char">水</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="sr-tool-group">
+                                        <label class="control-label">Color de tinta:</label>
+                                        <div class="hz-color-chips-list">
+                                            <button type="button" class="hz-color-chip active" data-color="#e11d48" style="background: #e11d48;" title="Rojo Cinabrio"></button>
+                                            <button type="button" class="hz-color-chip" data-color="#f8fafc" style="background: #f8fafc;" title="Tinta Blanca / Plata"></button>
+                                            <button type="button" class="hz-color-chip" data-color="#eab308" style="background: #eab308;" title="Oro Imperial"></button>
+                                            <button type="button" class="hz-color-chip" data-color="#3b82f6" style="background: #3b82f6;" title="Azul Índigo"></button>
+                                            <button type="button" class="hz-color-chip" data-color="#10b981" style="background: #10b981;" title="Verde Jade"></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="sr-canvas-actions-grid">
+                                        <button id="hanzi-canvas-undo-btn" class="btn btn-secondary" title="Deshacer último trazo" type="button">
+                                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                                                <path d="M3 7v6h6"></path>
+                                                <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+                                            </svg>
+                                            <span>Deshacer</span>
+                                        </button>
+
+                                        <button id="hanzi-canvas-ghost-toggle" class="btn btn-secondary active" title="Mostrar/ocultar guía" type="button">
+                                            <span>Guía 描红</span>
+                                        </button>
+
+                                        <button id="hanzi-canvas-animate-btn" class="btn btn-secondary" title="Animar carácter" type="button">
+                                            <span>Animar</span>
+                                        </button>
+
+                                        <button id="hanzi-canvas-clear-btn" class="btn btn-secondary" title="Limpiar lienzo" type="button">
+                                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                                                <path d="M3 6h18"></path>
+                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                            </svg>
+                                            <span>Limpiar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="strokes-radicals-practice" id="strokes-radicals-practice">
                             <div class="sr-practice-header">
                                 <h3 data-i18n="strokesRadicalsPracticeTitle">Práctica rápida</h3>

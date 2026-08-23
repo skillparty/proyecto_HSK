@@ -13,6 +13,8 @@ class NavigationController {
       "tones-invaders",
       "hanzi-builder",
       "word-linker",
+      "sentence-builder",
+      "tone-trainer",
       "leaderboard",
       "stats",
       "culture-characters",

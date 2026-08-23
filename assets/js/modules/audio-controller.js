@@ -24,6 +24,26 @@ class AudioController {
         this.synth.playGameOver();
     }
 
+    playCorrect() {
+        if (!this.app.isAudioEnabled) return;
+        this.synth.playCorrect();
+    }
+
+    playIncorrect() {
+        if (!this.app.isAudioEnabled) return;
+        this.synth.playIncorrect();
+    }
+
+    playFlip() {
+        if (!this.app.isAudioEnabled) return;
+        this.synth.playFlip();
+    }
+
+    playStreakFanfare() {
+        if (!this.app.isAudioEnabled) return;
+        this.synth.playStreakFanfare();
+    }
+
     toggleAudio() {
         this.app.isAudioEnabled = !this.app.isAudioEnabled;
         localStorage.setItem('hsk-audio-enabled', this.app.isAudioEnabled.toString());
@@ -353,6 +373,97 @@ class AudioSynthesizer {
             console.warn('AudioSynthesizer error:', e);
         }
     }
+
+    playCorrect() {
+        try {
+            this.init();
+            if (!this.ctx || this.ctx.state === 'suspended') return;
+            const now = this.ctx.currentTime;
+            const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+            notes.forEach((freq, idx) => {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                const noteTime = now + idx * 0.06;
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, noteTime);
+                gain.gain.setValueAtTime(0.06, noteTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, noteTime + 0.22);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(noteTime);
+                osc.stop(noteTime + 0.22);
+            });
+        } catch (e) {
+            console.warn('AudioSynthesizer error:', e);
+        }
+    }
+
+    playIncorrect() {
+        try {
+            this.init();
+            if (!this.ctx || this.ctx.state === 'suspended') return;
+            const now = this.ctx.currentTime;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(220, now); // A3
+            osc.frequency.exponentialRampToValueAtTime(140, now + 0.2);
+            gain.gain.setValueAtTime(0.08, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.2);
+        } catch (e) {
+            console.warn('AudioSynthesizer error:', e);
+        }
+    }
+
+    playFlip() {
+        try {
+            this.init();
+            if (!this.ctx || this.ctx.state === 'suspended') return;
+            const now = this.ctx.currentTime;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(320, now);
+            osc.frequency.exponentialRampToValueAtTime(160, now + 0.06);
+            gain.gain.setValueAtTime(0.04, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.06);
+        } catch (e) {
+            console.warn('AudioSynthesizer error:', e);
+        }
+    }
+
+    playStreakFanfare() {
+        try {
+            this.init();
+            if (!this.ctx || this.ctx.state === 'suspended') return;
+            const now = this.ctx.currentTime;
+            const notes = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50]; // C5, D5, E5, G5, A5, C6
+            notes.forEach((freq, idx) => {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                const noteTime = now + idx * 0.07;
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, noteTime);
+                gain.gain.setValueAtTime(0.07, noteTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, noteTime + 0.35);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(noteTime);
+                osc.stop(noteTime + 0.35);
+            });
+        } catch (e) {
+            console.warn('AudioSynthesizer error:', e);
+        }
+    }
 }
 
+window.AudioSynthesizer = AudioSynthesizer;
 window.AudioController = AudioController;

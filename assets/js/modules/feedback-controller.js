@@ -57,9 +57,15 @@ class FeedbackController {
             if (this.app.stats.currentStreak > this.app.stats.bestStreak) {
                 this.app.stats.bestStreak = this.app.stats.currentStreak;
             }
+            if (this.app.stats.currentStreak > 0 && this.app.stats.currentStreak % 10 === 0) {
+                this.app.audioController?.playStreakFanfare();
+            } else {
+                this.app.audioController?.playCorrect();
+            }
             this.app.logDebug('[OK] Marked "' + this.app.currentWord.character + '" as KNOWN');
         } else {
             this.app.stats.currentStreak = 0;
+            this.app.audioController?.playIncorrect();
             this.app.logDebug('[NO] Marked "' + this.app.currentWord.character + '" as NOT KNOWN');
         }
 

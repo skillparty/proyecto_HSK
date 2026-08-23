@@ -569,6 +569,7 @@ class FlashcardManager {
       this.app.isFlipped = true;
       if (input) input.disabled = true;
       this.enableKnowledgeButtons();
+      this.app.audioController?.playFlip();
       this.app.logDebug("[卡] Card flipped");
     }
   }

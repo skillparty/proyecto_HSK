@@ -197,6 +197,10 @@ class HomeController {
         }
 
         // 5. Recent Achievements
+        if (this.app.achievementManager) {
+            this.app.achievementManager.checkAll(stats);
+        }
+
         const achievementsList = [
             {
                 id: 'first-steps',

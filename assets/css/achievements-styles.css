@@ -1,0 +1,301 @@
+/* achievements-styles.css — Gamification & Trophy Showcase 2.0 */
+
+.achievements-showcase-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header & Points Banner */
+.ach-summary-banner {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.ach-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ach-trophy-large-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    filter: drop-shadow(0 4px 10px rgba(234, 179, 8, 0.4));
+}
+
+.ach-summary-text h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.25rem;
+    color: var(--text-main);
+}
+
+.ach-summary-text p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.ach-points-pill {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(245, 158, 11, 0.05));
+    border: 1px solid rgba(234, 179, 8, 0.35);
+    border-radius: 9999px;
+    padding: 8px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: #eab308;
+    font-size: 1.1rem;
+    font-family: var(--font-mono, monospace);
+}
+
+/* Category Filter Tabs */
+.ach-filters-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.ach-filter-btn {
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 8px);
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ach-filter-btn:hover {
+    border-color: var(--primary, #e11d48);
+    color: var(--text-main);
+}
+
+.ach-filter-btn.active {
+    background: var(--primary, #e11d48);
+    border-color: var(--primary, #e11d48);
+    color: white;
+}
+
+/* Grid of Trophy Badges */
+.ach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.ach-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 14px);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ach-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md, 0 8px 20px rgba(0, 0, 0, 0.15));
+}
+
+.ach-card.unlocked {
+    border-color: rgba(234, 179, 8, 0.35);
+    background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(234, 179, 8, 0.03) 100%);
+}
+
+.ach-card.locked {
+    opacity: 0.65;
+    filter: grayscale(0.5);
+}
+
+.ach-card.locked:hover {
+    opacity: 0.85;
+    filter: grayscale(0.2);
+}
+
+.ach-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ach-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--color-border);
+}
+
+.ach-card.unlocked .ach-icon-box {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(245, 158, 11, 0.1));
+    border-color: rgba(234, 179, 8, 0.4);
+}
+
+.ach-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.ach-title {
+    font-weight: 700;
+    font-size: 0.98rem;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ach-tier-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.ach-tier-bronze { color: #cd7f32; }
+.ach-tier-silver { color: #94a3b8; }
+.ach-tier-gold { color: #eab308; }
+.ach-tier-platinum { color: #38bdf8; }
+
+.ach-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.35;
+    margin: 0;
+}
+
+/* Progress bar inside card */
+.ach-progress-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: auto;
+}
+
+.ach-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.ach-progress-track {
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.06));
+    border-radius: 9999px;
+    height: 6px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.ach-progress-fill {
+    background: var(--primary, #e11d48);
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+}
+
+.ach-card.unlocked .ach-progress-fill {
+    background: #eab308;
+}
+
+/* Celebration Toast Notification */
+.ach-toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 11000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.ach-toast {
+    background: var(--bg-panel, #18181b);
+    border: 2px solid #eab308;
+    border-radius: var(--radius-lg, 16px);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(234, 179, 8, 0.3);
+    animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: auto;
+    max-width: 380px;
+}
+
+@keyframes toastSlideIn {
+    from { transform: translateX(100%) scale(0.85); opacity: 0; }
+    to { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+.ach-toast-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    animation: trophyBounce 0.6s ease infinite alternate;
+}
+
+@keyframes trophyBounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-4px); }
+}
+
+.ach-toast-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ach-toast-heading {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #eab308;
+}
+
+.ach-toast-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.ach-toast-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Confetti Canvas */
+#ach-confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 12000;
+}

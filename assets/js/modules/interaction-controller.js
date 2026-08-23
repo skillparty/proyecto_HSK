@@ -15,6 +15,15 @@ class InteractionController {
                 const shortcutModal = document.querySelector('.keyboard-shortcuts-modal');
                 if (shortcutModal) shortcutModal.remove();
                 if (this.app.videosController) this.app.videosController.closePlayer();
+                if (this.app.searchController) this.app.searchController.closeCommandPalette();
+                return;
+            }
+
+            if ((event.metaKey || event.ctrlKey) && (event.key === 'k' || event.key === 'K')) {
+                event.preventDefault();
+                if (this.app.searchController) {
+                    this.app.searchController.toggleCommandPalette();
+                }
                 return;
             }
 
@@ -26,10 +35,8 @@ class InteractionController {
 
             if ((event.key === 'f' || event.key === '/') && !event.altKey) {
                 event.preventDefault();
-                const searchInput = document.getElementById('search-input') || document.getElementById('videos-search-input') || document.getElementById('header-search-input');
-                if (searchInput) {
-                    searchInput.focus();
-                    if (typeof searchInput.select === 'function') searchInput.select();
+                if (this.app.searchController) {
+                    this.app.searchController.openCommandPalette();
                 }
                 return;
             }
@@ -257,6 +264,11 @@ class InteractionController {
             speechRecBtn.addEventListener('click', () => this.startSpeechRecognition());
         }
 
+        const manageDecksBtn = document.getElementById('manage-decks-btn');
+        if (manageDecksBtn) {
+            manageDecksBtn.addEventListener('click', () => this.app.deckController?.openModal());
+        }
+
         if (checkBtn) {
             checkBtn.addEventListener('click', () => this.app.flashcardManager.checkPinyinAnswer());
         }
@@ -275,8 +287,11 @@ class InteractionController {
 
         const flashcard = document.getElementById('flashcard');
         if (flashcard) {
-            flashcard.addEventListener('click', () => {
-                // Reserved for future interaction behavior.
+            flashcard.addEventListener('click', (event) => {
+                if (event.target.closest('button, input, textarea, a, select, [data-action], .vocab-audio-btn, .speaker-btn')) {
+                    return;
+                }
+                this.app.flipCard();
             });
         }
 
@@ -288,17 +303,90 @@ class InteractionController {
         });
 
         const flashcardArea = document.querySelector('.flashcard-area');
-        if (flashcardArea) {
+        if (flashcardArea && flashcard) {
             let touchStartX = 0;
-            let touchEndX = 0;
+            let touchStartY = 0;
+            let currentTranslateX = 0;
+            let isSwiping = false;
 
             flashcardArea.addEventListener('touchstart', (event) => {
-                touchStartX = event.changedTouches[0].screenX;
+                if (!event.touches || event.touches.length !== 1) return;
+                touchStartX = event.touches[0].clientX;
+                touchStartY = event.touches[0].clientY;
+                currentTranslateX = 0;
+                isSwiping = false;
+                flashcard.style.transition = 'none';
             }, { passive: true });
 
-            flashcardArea.addEventListener('touchend', (event) => {
-                touchEndX = event.changedTouches[0].screenX;
-                this.handleSwipe(touchStartX, touchEndX);
+            flashcardArea.addEventListener('touchmove', (event) => {
+                if (!event.touches || event.touches.length !== 1) return;
+                const deltaX = event.touches[0].clientX - touchStartX;
+                const deltaY = event.touches[0].clientY - touchStartY;
+
+                if (!isSwiping && Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 10) {
+                    return;
+                }
+
+                if (Math.abs(deltaX) > 12) {
+                    isSwiping = true;
+                    currentTranslateX = deltaX;
+                    const rotateDeg = Math.min(Math.max(deltaX * 0.06, -10), 10);
+                    flashcard.style.transform = `translateX(${deltaX}px) rotate(${rotateDeg}deg)`;
+
+                    if (deltaX > 35) {
+                        flashcard.classList.add('swiping-right');
+                        flashcard.classList.remove('swiping-left');
+                    } else if (deltaX < -35) {
+                        flashcard.classList.add('swiping-left');
+                        flashcard.classList.remove('swiping-right');
+                    } else {
+                        flashcard.classList.remove('swiping-right', 'swiping-left');
+                    }
+                }
+            }, { passive: true });
+
+            flashcardArea.addEventListener('touchend', () => {
+                flashcard.style.transition = 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease';
+                flashcard.classList.remove('swiping-right', 'swiping-left');
+
+                if (isSwiping && Math.abs(currentTranslateX) > 55) {
+                    if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+                        try {
+                            navigator.vibrate(20);
+                        } catch {
+                            // Haptics not supported or permitted on device
+                            void 0;
+                        }
+                    }
+
+                    if (currentTranslateX > 0) {
+                        flashcard.style.transform = 'translateX(110%) rotate(12deg)';
+                        setTimeout(() => {
+                            flashcard.style.transition = 'none';
+                            flashcard.style.transform = '';
+                            if (this.app.flashcardManager.isFlipped) {
+                                this.app.flashcardManager.handleDifficulty('good');
+                            } else {
+                                this.app.flashcardManager.nextCard();
+                            }
+                        }, 180);
+                    } else {
+                        flashcard.style.transform = 'translateX(-110%) rotate(-12deg)';
+                        setTimeout(() => {
+                            flashcard.style.transition = 'none';
+                            flashcard.style.transform = '';
+                            if (this.app.flashcardManager.isFlipped) {
+                                this.app.flashcardManager.handleDifficulty('again');
+                            } else {
+                                this.app.flashcardManager.previousCard();
+                            }
+                        }, 180);
+                    }
+                } else {
+                    flashcard.style.transform = '';
+                }
+                isSwiping = false;
+                currentTranslateX = 0;
             }, { passive: true });
         }
 
@@ -392,6 +480,10 @@ class InteractionController {
 
         const headerSearch = document.getElementById('header-search');
         if (headerSearch) {
+            headerSearch.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.app.searchController?.openCommandPalette?.();
+            });
             headerSearch.addEventListener('input', (event) => {
                 this.app.performHeaderSearch(event.target.value);
             });
@@ -616,30 +708,35 @@ class InteractionController {
             recognition.onresult = (event) => {
                 if (btn) btn.classList.remove('recording');
                 const results = Array.from(event.results[0]).map(r => r.transcript);
-                const targetChar = this.app.currentWord?.character || '';
+                const transcript = (results[0] || '').trim();
+                const targetChar = (this.app.currentWord?.character || '').trim();
 
-                const isMatch = results.some(text => text.includes(targetChar));
+                const isMatch = results.some(text => text.includes(targetChar) || targetChar.includes(text));
 
                 if (isMatch) {
                     if (feedback) {
-                        feedback.textContent = `¡Pronunciación excelente! (Escuchado: "${results[0]}")`;
+                        feedback.textContent = `🎯 ¡Excelente pronunciación! (${transcript}) — 100% de precisión`;
                         feedback.className = 'feedback-message correct';
                     }
+                    this.app.audioController?.playCorrect?.();
+                    try { navigator.vibrate?.(40); } catch { void 0; }
                     if (this.app.flashcardManager) {
                         this.app.flashcardManager.checkPinyinAnswer(this.app.currentWord?.pinyin);
                     }
                 } else {
                     if (feedback) {
-                        feedback.textContent = `Escuchado: "${results[0]}" — ¡Inténtalo de nuevo!`;
+                        feedback.textContent = `🎙️ Escuchado: "${transcript}" (Objetivo: "${targetChar}") — ¡Inténtalo de nuevo!`;
                         feedback.className = 'feedback-message incorrect';
                     }
+                    this.app.audioController?.playIncorrect?.();
+                    try { navigator.vibrate?.([40, 40]); } catch { void 0; }
                 }
             };
 
             recognition.onerror = () => {
                 if (btn) btn.classList.remove('recording');
                 if (feedback) {
-                    feedback.textContent = 'No se detectó voz o se canceló el permiso.';
+                    feedback.textContent = 'No se detectó voz o se canceló el permiso del micrófono.';
                     feedback.className = 'feedback-message warning';
                 }
             };
@@ -651,7 +748,7 @@ class InteractionController {
             recognition.start();
         } catch (err) {
             if (btn) btn.classList.remove('recording');
-            this.app.logWarn('Speech recognition error:', err);
+            this.logWarn('Speech recognition error:', err);
         }
     }
 }

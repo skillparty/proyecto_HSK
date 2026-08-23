@@ -224,6 +224,9 @@ class QuizEngine {
     if (isCorrect) {
       this.state.score++;
       this.app.stats.correctAnswers++;
+      this.app.audioController?.playCorrect();
+    } else {
+      this.app.audioController?.playIncorrect();
     }
 
     this.app.updateDailyProgress();
@@ -324,6 +327,10 @@ class QuizEngine {
     this.app.saveStats();
     this.clearSession();
     this.app.renderQuizResumeAction();
+
+    if (percentage >= 80) {
+      this.app.audioController?.playStreakFanfare();
+    }
 
     if (this.app.userProgress?.recordQuizCompletion) {
       this.app.userProgress.recordQuizCompletion(

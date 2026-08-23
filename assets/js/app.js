@@ -101,6 +101,9 @@ class HSKApp {
         this.uiController = new UIController(this);
         this.srsEngine = new SRSEngine(this);
         this.flashcardManager = new FlashcardManager(this);
+        this.deckManager = window.DeckManager ? new window.DeckManager(this) : null;
+        this.deckController = window.DeckController ? new window.DeckController(this) : null;
+        this.achievementManager = window.AchievementManager ? new window.AchievementManager(this) : null;
         // quizEngine, quizLegacyController: lazy — instantiated by
         // ui-controller.js on first "quiz" tab open (scripts load then).
         this.homeController = new HomeController(this);

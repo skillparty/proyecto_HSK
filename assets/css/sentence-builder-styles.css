@@ -1,0 +1,380 @@
+/* sentence-builder-styles.css — Constructor de Oraciones */
+
+.sentence-builder-container {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 10px;
+}
+
+/* Header Banner */
+.sb-header-banner {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.1));
+}
+
+.sb-title-group {
+    flex: 1;
+    min-width: 260px;
+}
+
+.sb-main-title {
+    margin: 0 0 6px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sb-title-icon {
+    font-size: 1.6rem;
+}
+
+.sb-subtitle {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.sb-stats-bar {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.sb-stat-item {
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--color-border);
+    padding: 8px 14px;
+    border-radius: var(--radius-md, 10px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sb-stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.sb-stat-val {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--primary, #e11d48);
+    font-family: var(--font-mono, monospace);
+}
+
+/* Controls Card */
+.sb-controls-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 12px);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.sb-control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sb-control-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Arena & Cards */
+.sb-arena {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.sb-meaning-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 24px;
+    text-align: center;
+    box-shadow: var(--shadow-md, 0 4px 14px rgba(0,0,0,0.08));
+    position: relative;
+}
+
+.sb-target-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary, #e11d48);
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.sb-target-meaning {
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.sb-pinyin-reveal {
+    font-size: 1.15rem;
+    color: var(--primary, #e11d48);
+    font-weight: 500;
+    margin-top: 6px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* Target Slots Container */
+.sb-target-container {
+    background: var(--bg-app);
+    border: 2px dashed var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 22px;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sb-target-container.has-items {
+    border-style: solid;
+    border-color: var(--color-border-hover, rgba(225, 29, 72, 0.4));
+}
+
+.sb-target-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.sb-empty-prompt {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+    pointer-events: none;
+}
+
+/* Tiles Bank */
+.sb-bank-container {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 24px;
+}
+
+.sb-tiles-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    min-height: 70px;
+}
+
+/* Word Tile */
+.sb-tile {
+    background: var(--color-bg-input, #1e1e24);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md, 12px);
+    padding: 12px 20px;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.18s ease,
+                background-color 0.18s ease,
+                border-color 0.18s ease,
+                opacity 0.18s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sb-tile:hover {
+    transform: translateY(-3px) scale(1.03);
+    border-color: var(--primary, #e11d48);
+    box-shadow: 0 6px 14px rgba(225, 29, 72, 0.25);
+}
+
+.sb-tile:active {
+    transform: translateY(0) scale(0.97);
+}
+
+.sb-tile.placed {
+    opacity: 0.25;
+    pointer-events: none;
+    transform: scale(0.92);
+}
+
+.sb-target-tile {
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.15), rgba(244, 63, 94, 0.05));
+    border: 2px solid var(--primary, #e11d48);
+    border-radius: var(--radius-md, 12px);
+    padding: 12px 20px;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
+    animation: tilePopIn 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.sb-target-tile:hover {
+    transform: translateY(-2px);
+    background: rgba(239, 68, 68, 0.25);
+    border-color: #ef4444;
+}
+
+@keyframes tilePopIn {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Shake animation on error */
+.sb-target-container.shake {
+    animation: sbShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    border-color: #ef4444 !important;
+}
+
+@keyframes sbShake {
+    10%, 90% { transform: translate3d(-2px, 0, 0); }
+    20%, 80% { transform: translate3d(4px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+    40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+/* Actions Bar */
+.sb-actions-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+/* Feedback message */
+.sb-feedback {
+    padding: 14px 20px;
+    border-radius: var(--radius-md, 12px);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.sb-feedback.correct {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    color: #22c55e;
+}
+
+.sb-feedback.incorrect {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+}
+
+.sb-feedback.hint {
+    background: rgba(234, 179, 8, 0.15);
+    border: 1px solid rgba(234, 179, 8, 0.4);
+    color: #eab308;
+}
+
+/* Game Over Card */
+.sb-game-over-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 40px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: fadeIn 0.4s ease-out;
+    box-shadow: var(--shadow-md, 0 4px 20px rgba(0,0,0,0.15));
+}
+
+.sb-game-over-icon {
+    font-size: 3.5rem;
+}
+
+.sb-game-over-title {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.sb-game-over-stats {
+    display: flex;
+    gap: 30px;
+    margin: 10px 0;
+}
+
+.sb-go-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sb-go-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.sb-go-val {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--primary, #e11d48);
+    font-family: var(--font-mono, monospace);
+}
+
+@media (max-width: 640px) {
+    .sb-main-title {
+        font-size: 1.25rem;
+    }
+    .sb-tile, .sb-target-tile {
+        font-size: 1.15rem;
+        padding: 10px 14px;
+    }
+    .sb-target-meaning {
+        font-size: 1.2rem;
+    }
+}

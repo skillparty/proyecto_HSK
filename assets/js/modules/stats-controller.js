@@ -318,8 +318,12 @@ class StatsController {
         const grid = document.getElementById('stats-achievements-grid');
         if (!grid) return;
 
-        grid.innerHTML = '';
+        if (this.app.achievementManager) {
+            this.app.achievementManager.renderShowcase('stats-achievements-grid', stats);
+            return;
+        }
 
+        grid.innerHTML = '';
         const isEs = this.app.currentLanguage === 'es';
 
         const achievementsList = [

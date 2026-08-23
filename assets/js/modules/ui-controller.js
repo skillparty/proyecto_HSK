@@ -160,41 +160,58 @@ class UIController {
       this.logWarn("⚠️ Error saving last tab:", error);
     }
 
-    // Hide all tabs
-    document.querySelectorAll(".tab-panel").forEach((panel) => {
-      panel.classList.remove("active");
-      panel.style.display = "none";
-    });
+    const updateTabDOM = () => {
+      // Hide all tabs
+      document.querySelectorAll(".tab-panel").forEach((panel) => {
+        panel.classList.remove("active");
+        panel.style.display = "none";
+      });
 
-    // Show selected tab
-    const selectedTab = document.getElementById(tabName);
-    if (selectedTab) {
-      selectedTab.classList.add("active");
-      selectedTab.style.display = "block";
-    }
-
-    // Update navigation state
-    document.querySelectorAll(".nav-tab").forEach((tab) => {
-      tab.classList.toggle("active", tab.dataset.tab === tabName);
-    });
-
-    // Deactivate all dropdown items and groups
-    document.querySelectorAll(".nav-dropdown-item").forEach((item) => {
-      item.classList.toggle("active", item.dataset.tab === tabName);
-    });
-    document.querySelectorAll(".nav-group").forEach((group) => {
-      group.classList.remove("parent-active");
-    });
-
-    // If the target tab is inside a dropdown group, make that group parent-active
-    const activeDropdownItem = document.querySelector(
-      `.nav-dropdown-item[data-tab="${tabName}"]`,
-    );
-    if (activeDropdownItem) {
-      const parentGroup = activeDropdownItem.closest(".nav-group");
-      if (parentGroup) {
-        parentGroup.classList.add("parent-active");
+      // Show selected tab
+      const selectedTab = document.getElementById(tabName);
+      if (selectedTab) {
+        selectedTab.classList.add("active");
+        selectedTab.style.display = "block";
       }
+
+      // Update navigation state
+      document.querySelectorAll(".nav-tab").forEach((tab) => {
+        tab.classList.toggle("active", tab.dataset.tab === tabName);
+      });
+
+      // Deactivate all dropdown items and groups
+      document.querySelectorAll(".nav-dropdown-item").forEach((item) => {
+        item.classList.toggle("active", item.dataset.tab === tabName);
+      });
+      document.querySelectorAll(".nav-group").forEach((group) => {
+        group.classList.remove("parent-active");
+      });
+
+      // If the target tab is inside a dropdown group, make that group parent-active
+      const activeDropdownItem = document.querySelector(
+        `.nav-dropdown-item[data-tab="${tabName}"]`,
+      );
+      if (activeDropdownItem) {
+        const parentGroup = activeDropdownItem.closest(".nav-group");
+        if (parentGroup) {
+          parentGroup.classList.add("parent-active");
+        }
+      }
+    };
+
+    const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+    if (typeof document !== "undefined" && typeof document.startViewTransition === "function" && !prefersReducedMotion) {
+      const transition = document.startViewTransition(() => updateTabDOM());
+      transition.finished.finally(() => {
+        const heading = document.querySelector(`#${tabName} h2, #${tabName} h3, #${tabName}`);
+        if (heading && typeof heading.focus === "function") {
+          if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
+          heading.focus({ preventScroll: true });
+        }
+      });
+    } else {
+      updateTabDOM();
     }
 
     // Notify app to initialize tab-specific content
@@ -256,6 +273,9 @@ class UIController {
             if (!window.StrokesRadicalsPractice) {
               await this.loadScript("assets/js/modules/strokes-radicals-practice.js");
             }
+            if (!window.HanziCanvasController) {
+              await this.loadScript("assets/js/modules/hanzi-canvas-controller.js");
+            }
             if (!window.StrokesRadicalsController) {
               await this.loadScript("assets/js/modules/strokes-radicals-controller.js?v=6369da31");
             }
@@ -309,6 +329,22 @@ class UIController {
             this.app.initializePastExams();
           } catch (err) {
             this.logError("Failed to lazy load past-exams", err);
+          }
+        })();
+        break;
+      case "tone-trainer":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/tone-trainer-styles.css");
+            if (!window.ToneTrainerGame) {
+              await this.loadScript("assets/js/tone-trainer-game.js");
+            }
+            if (!window.toneTrainerGame) {
+              window.toneTrainerGame = new ToneTrainerGame(this.app);
+            }
+            window.toneTrainerGame.initialize();
+          } catch (err) {
+            this.logError("Failed to lazy load tone-trainer", err);
           }
         })();
         break;
@@ -486,6 +522,22 @@ class UIController {
             window.wordLinkerGame.initialize();
           } catch (err) {
             this.logError("Failed to lazy load word-linker-game", err);
+          }
+        })();
+        break;
+      case "sentence-builder":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/sentence-builder-styles.css");
+            if (!window.SentenceBuilderGame) {
+              await this.loadScript("assets/js/sentence-builder-game.js");
+            }
+            if (!window.sentenceBuilderGame) {
+              window.sentenceBuilderGame = new SentenceBuilderGame(this.app);
+            }
+            window.sentenceBuilderGame.initialize();
+          } catch (err) {
+            this.logError("Failed to lazy load sentence-builder-game", err);
           }
         })();
         break;
@@ -867,6 +919,8 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "tones-invaders",
   "hanzi-builder",
   "word-linker",
+  "sentence-builder",
+  "tone-trainer",
   "stats",
   "leaderboard",
   "etymology",

@@ -38,6 +38,7 @@ class StrokesRadicalsController {
         };
 
         this.practice = new window.StrokesRadicalsPractice(this);
+        this.canvasController = window.HanziCanvasController ? new window.HanziCanvasController(this.app) : null;
     }
 
     getLogger() {
@@ -596,6 +597,10 @@ class StrokesRadicalsController {
         this.practice.loadPracticeSession();
         this.bindEvents();
         this.practice.syncPracticeControls();
+        if (!this.canvasController && window.HanziCanvasController) {
+            this.canvasController = new window.HanziCanvasController(this.app);
+        }
+        this.canvasController?.initialize();
         this.state.initialized = true;
         await this.loadAndRender();
     }

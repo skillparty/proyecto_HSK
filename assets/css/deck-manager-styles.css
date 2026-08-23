@@ -1,0 +1,246 @@
+/* deck-manager-styles.css — Gestor de Mazos y Exportación / Importación */
+
+/* Flashcard Bookmark Star Button */
+.flashcard-fav-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.2s ease;
+    padding: 6px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flashcard-fav-btn:hover {
+    transform: scale(1.25);
+    color: #eab308;
+}
+
+.flashcard-fav-btn.is-fav {
+    color: #eab308;
+    filter: drop-shadow(0 2px 8px rgba(234, 179, 8, 0.5));
+}
+
+/* Modal Layout */
+.deck-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.deck-modal-dialog {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    width: 100%;
+    max-width: 680px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.deck-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deck-modal-title {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.deck-modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    border-radius: 6px;
+    padding: 4px 8px;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.deck-modal-close:hover {
+    color: var(--text-main);
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.08));
+}
+
+/* Nav Tabs */
+.deck-modal-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.02));
+    padding: 0 16px;
+}
+
+.deck-tab-btn {
+    background: transparent;
+    border: none;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.deck-tab-btn:hover {
+    color: var(--text-main);
+}
+
+.deck-tab-btn.active {
+    color: var(--primary, #e11d48);
+    border-bottom-color: var(--primary, #e11d48);
+}
+
+.deck-modal-body {
+    padding: 20px 24px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Deck Cards List */
+.deck-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.deck-item-card {
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.03));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 12px);
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.deck-item-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+    color: var(--text-main);
+}
+
+.deck-item-info p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.deck-word-count {
+    display: inline-block;
+    background: rgba(225, 29, 72, 0.12);
+    color: var(--primary, #e11d48);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    margin-left: 8px;
+}
+
+.deck-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.deck-btn-sm {
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.06));
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+}
+
+.deck-btn-sm:hover {
+    border-color: var(--primary, #e11d48);
+    background: rgba(225, 29, 72, 0.08);
+}
+
+.deck-btn-study {
+    background: var(--primary, #e11d48);
+    color: white;
+    border-color: var(--primary, #e11d48);
+}
+
+.deck-btn-study:hover {
+    background: #be123c;
+}
+
+/* Import Form */
+.deck-import-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.deck-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.deck-input-group label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.deck-input-group input,
+.deck-input-group textarea {
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 8px);
+    padding: 10px 14px;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 0.92rem;
+}
+
+.deck-input-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.deck-input-group input:focus,
+.deck-input-group textarea:focus {
+    outline: none;
+    border-color: var(--primary, #e11d48);
+}

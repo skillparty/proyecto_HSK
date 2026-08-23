@@ -793,3 +793,44 @@ body.zen-mode .practice-container {
     }
 }
 
+/* ============================================================================
+   9.5 ACCESSIBILITY & VIEW TRANSITIONS
+   ============================================================================ */
+
+/* High-Contrast Focus Visible Ring (WCAG 2.1 AA) */
+:focus-visible {
+    outline: 2px solid var(--primary, #e11d48) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.25) !important;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Reduced Motion Preference Overrides */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+}
+
+/* View Transitions Root Smoothing */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.22s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+

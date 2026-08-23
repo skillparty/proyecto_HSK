@@ -86,6 +86,9 @@
     <link rel="stylesheet" href="assets/css/app-enhancements.css?v=94e9d87b">
     <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=e9f43713">
     <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=8292921d" id="auth-stylesheet">
+    <link rel="stylesheet" href="assets/css/command-palette.css" id="command-palette-stylesheet">
+    <link rel="stylesheet" href="assets/css/achievements-styles.css" id="achievements-stylesheet">
+    <link rel="stylesheet" href="assets/css/deck-manager-styles.css" id="deck-manager-stylesheet">
 
     <!-- Game/leaderboard CSS injected on demand by ui-controller.js (see loadStylesheet) -->
     <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
@@ -289,6 +292,9 @@
                         <button class="nav-dropdown-item" data-tab="past-exams">
                             <span data-i18n="pastExamsTab">Exámenes</span>
                         </button>
+                        <button class="nav-dropdown-item" data-tab="tone-trainer">
+                            <span data-i18n="toneTrainerTab">Entrenador de Oído</span>
+                        </button>
                     </div>
                 </div>
 
@@ -320,6 +326,9 @@
                         </button>
                         <button class="nav-dropdown-item" data-tab="word-linker">
                             <span data-i18n="wordLinkerTab">Conector de Palabras</span>
+                        </button>
+                        <button class="nav-dropdown-item" data-tab="sentence-builder">
+                            <span data-i18n="sentenceBuilderTab">Constructor de Oraciones</span>
                         </button>
                     </div>
                 </div>
@@ -625,11 +634,18 @@
                             </select>
                         </div>
 
+                        <div class="deck-quick-bar" style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
+                            <button id="manage-decks-btn" class="btn btn-sm btn-secondary" type="button" style="font-size: 0.82rem; padding: 5px 12px; border-radius: 8px;">
+                                📦 <span data-i18n="manageDecksBtn">Mazos & Exportación Anki</span>
+                            </button>
+                        </div>
+
                         <!-- Flashcard Display -->
                         <div class="flashcard-area">
                             <div id="flashcard" class="flashcard">
                                 <div class="flashcard-inner">
                                     <div class="card-face card-front">
+                                        <button type="button" id="flashcard-fav-btn" class="flashcard-fav-btn" title="Guardar en Favoritos" aria-label="Favorito">⭐</button>
                                         <div class="hsk-academic-seal">学</div>
                                         <div class="card-character-container" id="question-text"></div>
                                         <div class="card-front-meta" id="lesson-meta-front" style="display: none;"></div>
@@ -913,6 +929,9 @@
                     </div>
                 </div>
 
+                <!-- tone-trainer: markup diferido, se baja de assets/partials/tabs/tone-trainer.html al abrir la pestaña -->
+                <div id="tone-trainer" class="tab-panel" data-tab="tone-trainer"></div>
+
                 <!-- snake-quantifiers: markup diferido, se baja de assets/partials/tabs/snake-quantifiers.html al abrir la pestaña -->
                 <div id="snake-quantifiers" class="tab-panel"></div>
 
@@ -937,6 +956,9 @@
 
             <!-- word-linker: markup diferido, se baja de assets/partials/tabs/word-linker.html al abrir la pestaña -->
             <div id="word-linker" class="tab-panel" style="display: none;"></div>
+
+            <!-- sentence-builder: markup diferido, se baja de assets/partials/tabs/sentence-builder.html al abrir la pestaña -->
+            <div id="sentence-builder" class="tab-panel" data-tab="sentence-builder"></div>
 
                 <!-- etymology: markup diferido, se baja de assets/partials/tabs/etymology.html al abrir la pestaña -->
                 <div id="etymology" class="tab-panel" tabindex="0"></div>
@@ -1005,11 +1027,15 @@
 
     <!-- Core Scripts -->
     <script src="assets/js/translations.js?v=aaf0b06c" defer></script>
+    <script src="assets/js/utils/idb-storage.js" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=0739a27c" defer></script>
 
     <!-- Modules -->
     <script src="assets/js/modules/srs-engine.js?v=513fe4f7" defer></script>
     <script src="assets/js/modules/flashcard-manager.js?v=4907c12f" defer></script>
+    <script src="assets/js/modules/deck-manager.js" defer></script>
+    <script src="assets/js/modules/deck-controller.js" defer></script>
+    <script src="assets/js/modules/achievement-manager.js" defer></script>
     <!-- quiz-engine.js, quiz-legacy-controller.js, stats-controller.js loaded on demand by ui-controller.js -->
 
     <script src="assets/js/modules/theme-controller.js?v=ce3fcd01" defer></script>

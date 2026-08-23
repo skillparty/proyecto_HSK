@@ -211,3 +211,37 @@ describe("getSummary", () => {
     expect(summary).toEqual({ due: 1, fresh: 1, learned: 1, total: 3 });
   });
 });
+
+describe("IndexedDB storage mirror", () => {
+  test("replicates saveRecords to window.idbStorage", () => {
+    window.idbStorage = {
+      get: vi.fn().mockResolvedValue({}),
+      set: vi.fn().mockResolvedValue(true),
+    };
+
+    const engine = freshEngine();
+    engine.rate(word("中"), "good");
+
+    expect(window.idbStorage.set).toHaveBeenCalledWith(
+      window.SRSEngine.STORAGE_KEY,
+      expect.objectContaining({ "1:中": expect.any(Object) }),
+    );
+  });
+
+  test("hydrates records from window.idbStorage when available", async () => {
+    const idbData = {
+      "1:国": { reps: 2, interval: 3, due: NOW + 100000, last: NOW },
+    };
+
+    window.idbStorage = {
+      get: vi.fn().mockResolvedValue(idbData),
+      set: vi.fn(),
+    };
+
+    const engine = freshEngine();
+    await engine.hydrateFromIndexedDB();
+
+    expect(engine.records["1:国"]).toBeDefined();
+    expect(engine.records["1:国"].reps).toBe(2);
+  });
+});

@@ -35,9 +35,22 @@ class SRSEngine {
     this.app = app;
     this.records = this.loadRecords();
     this._syncTimer = null;
+    this.hydrateFromIndexedDB();
     this.app.logDebug(
       `🧠 SRSEngine initialized (${Object.keys(this.records).length} word records)`,
     );
+  }
+
+  async hydrateFromIndexedDB() {
+    if (!window.idbStorage) return;
+    try {
+      const idbRecords = await window.idbStorage.get(SRSEngine.STORAGE_KEY);
+      if (idbRecords && typeof idbRecords === "object") {
+        this.mergeRemoteRecords(idbRecords);
+      }
+    } catch (err) {
+      this.app.logWarn("SRSEngine: IndexedDB hydration error:", err);
+    }
   }
 
   // --- Persistence -------------------------------------------------------
@@ -61,8 +74,16 @@ class SRSEngine {
         JSON.stringify(this.records),
       );
     } catch (error) {
-      this.app.logWarn("SRSEngine: could not save records:", error);
+      this.app.logWarn("SRSEngine: could not save records to localStorage:", error);
     }
+
+    // Mirror to IndexedDB for robust large storage
+    try {
+      window.idbStorage?.set?.(SRSEngine.STORAGE_KEY, this.records);
+    } catch {
+      void 0;
+    }
+
     this._scheduleSyncToFirebase();
   }
 

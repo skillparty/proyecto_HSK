@@ -129,6 +129,7 @@ class PracticeViewController {
         }
 
         this.app.waitingForNext = false;
+        this.app.deckController?.syncCurrentWordStar();
 
         const backWord = this.app.currentWord.character || '';
         const backChars = Array.from(backWord);

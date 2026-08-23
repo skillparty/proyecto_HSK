@@ -86,6 +86,9 @@
     <link rel="stylesheet" href="assets/css/app-enhancements.css?v=94e9d87b">
     <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=e9f43713">
     <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=8292921d" id="auth-stylesheet">
+    <link rel="stylesheet" href="assets/css/command-palette.css" id="command-palette-stylesheet">
+    <link rel="stylesheet" href="assets/css/achievements-styles.css" id="achievements-stylesheet">
+    <link rel="stylesheet" href="assets/css/deck-manager-styles.css" id="deck-manager-stylesheet">
 
     <!-- Game/leaderboard CSS injected on demand by ui-controller.js (see loadStylesheet) -->
     <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
@@ -289,6 +292,9 @@
                         <button class="nav-dropdown-item" data-tab="past-exams">
                             <span data-i18n="pastExamsTab">Exámenes</span>
                         </button>
+                        <button class="nav-dropdown-item" data-tab="tone-trainer">
+                            <span data-i18n="toneTrainerTab">Entrenador de Oído</span>
+                        </button>
                     </div>
                 </div>
 
@@ -320,6 +326,9 @@
                         </button>
                         <button class="nav-dropdown-item" data-tab="word-linker">
                             <span data-i18n="wordLinkerTab">Conector de Palabras</span>
+                        </button>
+                        <button class="nav-dropdown-item" data-tab="sentence-builder">
+                            <span data-i18n="sentenceBuilderTab">Constructor de Oraciones</span>
                         </button>
                     </div>
                 </div>
@@ -397,6 +406,8 @@
 
                 <!-- include:templates/partials/tabs/past-exams.html -->
 
+                <!-- defer-include:templates/partials/tabs/tone-trainer.html -->
+
                 <!-- defer-include:templates/partials/tabs/snake-quantifiers.html -->
 
                 <!-- defer-include:templates/partials/tabs/leaderboard.html -->
@@ -410,6 +421,8 @@
             <!-- defer-include:templates/partials/tabs/hanzi-builder.html -->
 
             <!-- defer-include:templates/partials/tabs/word-linker.html -->
+
+            <!-- defer-include:templates/partials/tabs/sentence-builder.html -->
 
                 <!-- defer-include:templates/partials/tabs/etymology.html -->
 
@@ -468,11 +481,15 @@
 
     <!-- Core Scripts -->
     <script src="assets/js/translations.js?v=aaf0b06c" defer></script>
+    <script src="assets/js/utils/idb-storage.js" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=0739a27c" defer></script>
 
     <!-- Modules -->
     <script src="assets/js/modules/srs-engine.js?v=513fe4f7" defer></script>
     <script src="assets/js/modules/flashcard-manager.js?v=4907c12f" defer></script>
+    <script src="assets/js/modules/deck-manager.js" defer></script>
+    <script src="assets/js/modules/deck-controller.js" defer></script>
+    <script src="assets/js/modules/achievement-manager.js" defer></script>
     <!-- quiz-engine.js, quiz-legacy-controller.js, stats-controller.js loaded on demand by ui-controller.js -->
 
     <script src="assets/js/modules/theme-controller.js?v=ce3fcd01" defer></script>
