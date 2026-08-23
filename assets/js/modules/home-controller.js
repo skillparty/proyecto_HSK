@@ -304,6 +304,9 @@ class HomeController {
         // 6. SRS Daily Loop Card
         this.renderSrsCard();
 
+        // 7. Daily Quests System
+        this.renderDailyQuests();
+
         // Initialize or resume the 3D Chinese Cultural Portal
         if (!this.portalScene.initialized) {
             this.portalScene.init();
@@ -394,6 +397,159 @@ class HomeController {
                 this.app.switchTab('practice');
             };
         }
+    }
+
+    getTodayDateKey() {
+        const d = new Date();
+        return `hsk_quests_${d.getFullYear()}_${String(d.getMonth() + 1).padStart(2, '0')}_${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    getDailyQuestsState() {
+        try {
+            const raw = localStorage.getItem(this.getTodayDateKey());
+            if (raw) return JSON.parse(raw);
+        } catch (e) {
+            this.logWarn('Error loading daily quests:', e);
+        }
+        return {
+            srs: false,
+            reader: false,
+            tones: false,
+            tutor: false,
+            completedAll: false,
+        };
+    }
+
+    saveDailyQuestsState(state) {
+        try {
+            localStorage.setItem(this.getTodayDateKey(), JSON.stringify(state));
+        } catch (e) {
+            this.logWarn('Error saving daily quests:', e);
+        }
+    }
+
+    markQuestCompleted(questId) {
+        const state = this.getDailyQuestsState();
+        if (state[questId]) return;
+
+        state[questId] = true;
+        const allDone = Boolean(state.srs && state.reader && state.tones && state.tutor);
+        if (allDone && !state.completedAll) {
+            state.completedAll = true;
+            if (this.app.achievementManager) {
+                this.app.achievementManager.unlock?.('daily-champion');
+                this.app.achievementManager.fireConfetti?.();
+            }
+            if (this.app.showToast) {
+                const isEs = this.app.currentLanguage !== 'en';
+                this.app.showToast(
+                    isEs ? '🏆 ¡Todas las misiones del día completadas! +100 XP' : '🏆 All daily quests completed! +100 XP',
+                    'success',
+                    3500
+                );
+            }
+            this.app.audioController?.playChime?.(587.33);
+        }
+        this.saveDailyQuestsState(state);
+        this.renderDailyQuests();
+    }
+
+    renderDailyQuests() {
+        const container = document.getElementById('daily-quests-container');
+        if (!container) return;
+
+        const isEs = this.app.currentLanguage !== 'en';
+        const state = this.getDailyQuestsState();
+
+        // Check if SRS goal for today was reached in stats
+        if (!state.srs && (this.app.stats?.todayCards || 0) >= 10) {
+            state.srs = true;
+            this.saveDailyQuestsState(state);
+        }
+
+        const quests = [
+            {
+                id: 'srs',
+                icon: '🧠',
+                title: isEs ? 'Repasa 10 tarjetas SRS' : 'Review 10 SRS cards',
+                xp: '+30 XP',
+                done: Boolean(state.srs),
+                actionTab: 'practice',
+                actionLabel: isEs ? 'Repasar' : 'Review',
+            },
+            {
+                id: 'reader',
+                icon: '📖',
+                title: isEs ? 'Lee 1 historia en el Lector Graduado' : 'Read 1 story in Graded Reader',
+                xp: '+25 XP',
+                done: Boolean(state.reader),
+                actionTab: 'graded-reader',
+                actionLabel: isEs ? 'Leer' : 'Read',
+            },
+            {
+                id: 'tones',
+                icon: '🎧',
+                title: isEs ? 'Entrena 1 ronda en el Entrenador de Tonos' : 'Train 1 round in Tone Trainer',
+                xp: '+20 XP',
+                done: Boolean(state.tones),
+                actionTab: 'tone-trainer',
+                actionLabel: isEs ? 'Entrenar' : 'Train',
+            },
+            {
+                id: 'tutor',
+                icon: '💬',
+                title: isEs ? 'Completa 1 diálogo en el Tutor' : 'Complete 1 Dialogue Scenario',
+                xp: '+25 XP',
+                done: Boolean(state.tutor),
+                actionTab: 'dialogue-tutor',
+                actionLabel: isEs ? 'Conversar' : 'Chat',
+            },
+        ];
+
+        const doneCount = quests.filter((q) => q.done).length;
+
+        const progressBadge = document.getElementById('quests-progress-badge');
+        if (progressBadge) {
+            progressBadge.textContent = isEs ? `${doneCount} / 4 completadas` : `${doneCount} / 4 completed`;
+            if (doneCount === 4) {
+                progressBadge.style.background = '#ecfdf5';
+                progressBadge.style.color = '#065f46';
+            }
+        }
+
+        container.innerHTML = quests
+            .map((q) => {
+                return `
+                <div class="quest-item" style="display:flex; align-items:center; justify-content:space-between; background:var(--color-bg-hover, rgba(0,0,0,0.03)); padding:10px 14px; border-radius:10px; font-size:0.88rem; transition:all 0.2s ease;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="font-size:1.15rem;">${q.done ? '✅' : q.icon}</span>
+                        <div>
+                            <div style="font-weight:600; ${q.done ? 'text-decoration:line-through; color:var(--text-muted, #9ca3af);' : 'color:var(--text-primary);'}">
+                                ${q.title}
+                            </div>
+                            <span style="font-size:0.72rem; font-weight:700; color:var(--color-primary);">${q.xp}</span>
+                        </div>
+                    </div>
+                    ${
+                        q.done
+                            ? `<span style="font-size:0.75rem; font-weight:700; color:#10b981; background:#ecfdf5; padding:3px 8px; border-radius:6px;">${isEs ? 'Lista' : 'Done'}</span>`
+                            : `<button class="btn btn-xs btn-primary quest-cta-btn" data-target-tab="${q.actionTab}" style="padding:4px 10px; font-size:0.75rem; border-radius:6px;">
+                                ${q.actionLabel} ➔
+                               </button>`
+                    }
+                </div>
+            `;
+            })
+            .join('');
+
+        container.querySelectorAll('.quest-cta-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.getAttribute('data-target-tab');
+                if (targetTab) {
+                    this.app.switchTab(targetTab);
+                }
+            });
+        });
     }
 
     setupEventListeners() {

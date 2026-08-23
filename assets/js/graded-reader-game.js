@@ -525,6 +525,8 @@ class GradedReaderGame {
             this.app.achievementManager.unlock?.("reader-master");
             this.app.achievementManager.fireConfetti?.();
         }
+
+        this.app?.homeController?.markQuestCompleted?.("reader");
     }
 }
 

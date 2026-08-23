@@ -459,6 +459,7 @@ class DialogueTutorGame {
             }
         }
         this.app.audioController?.playChime?.(587.33);
+        this.app?.homeController?.markQuestCompleted?.("tutor");
     }
 
     scrollToBottom() {

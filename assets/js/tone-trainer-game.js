@@ -359,6 +359,10 @@ class ToneTrainerGame {
             this.app?.audioController?.playCorrect?.();
         }
 
+        if (this.state.totalQuestions >= 3) {
+            this.app?.homeController?.markQuestCompleted?.("tones");
+        }
+
         try { navigator.vibrate?.(30); } catch { void 0; }
     }
 
