@@ -1,0 +1,477 @@
+/* radical-decomposer-styles.css — Estilos para el Laboratorio de Radicales y Mnemotecnias */
+
+.decomposer-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px 12px 60px;
+}
+
+.decomposer-header-banner {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.decomposer-title-group {
+    margin-bottom: 16px;
+}
+
+.decomposer-main-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    margin: 0 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.decomposer-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0;
+    line-height: 1.45;
+}
+
+/* Search Bar & Quick Filter Chips */
+.decomposer-search-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.decomposer-search-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.decomposer-search-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 1.1rem;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.decomposer-input {
+    width: 100%;
+    padding: 12px 16px 12px 42px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #d1d5db);
+    background: var(--bg-main, #f9fafb);
+    color: var(--text-primary, #111827);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.decomposer-input:focus {
+    border-color: var(--primary, #d32f2f);
+    background: var(--card-bg, #ffffff);
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.15);
+    outline: none;
+}
+
+.decomposer-quick-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.decomposer-chip {
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: var(--bg-main, #f3f4f6);
+    color: var(--text-primary, #374151);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.decomposer-chip:hover {
+    border-color: var(--primary, #d32f2f);
+    color: var(--primary, #d32f2f);
+    transform: translateY(-1px);
+}
+
+.decomposer-chip.active {
+    background: var(--primary, #d32f2f);
+    color: #ffffff;
+    border-color: var(--primary, #d32f2f);
+}
+
+/* Main Grid Layout */
+.decomposer-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 20px;
+}
+
+@media (max-width: 820px) {
+    .decomposer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.decomposer-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Main Card Hero */
+.char-hero-stage {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color, #f3f4f6);
+}
+
+.char-hero-mizige {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border: 2px solid var(--primary, #d32f2f);
+    border-radius: 14px;
+    background: #fffdfa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(211, 47, 47, 0.12);
+}
+
+.char-hero-mizige::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(to right, transparent 49%, rgba(211, 47, 47, 0.15) 50%, transparent 51%),
+        linear-gradient(to bottom, transparent 49%, rgba(211, 47, 47, 0.15) 50%, transparent 51%),
+        linear-gradient(45deg, transparent 49%, rgba(211, 47, 47, 0.08) 50%, transparent 51%),
+        linear-gradient(-45deg, transparent 49%, rgba(211, 47, 47, 0.08) 50%, transparent 51%);
+    pointer-events: none;
+}
+
+.char-hero-char {
+    font-size: 4rem;
+    font-family: "Noto Serif SC", "Noto Sans SC", serif;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    line-height: 1;
+    z-index: 1;
+}
+
+.char-hero-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.char-hero-pinyin {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--primary, #d32f2f);
+}
+
+.char-hero-meaning {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary, #1f2937);
+}
+
+.char-hero-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.decomposer-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: var(--bg-main, #f3f4f6);
+    color: var(--text-secondary, #4b5563);
+    border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.decomposer-mini-btn {
+    background: transparent;
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 6px;
+    padding: 3px 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.15s ease;
+}
+
+.decomposer-mini-btn:hover {
+    background: var(--bg-main, #f3f4f6);
+    transform: scale(1.08);
+}
+
+/* Formula Equation */
+.decomposer-formula-box {
+    margin-bottom: 22px;
+}
+
+.formula-title {
+    margin: 0 0 12px 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-secondary, #4b5563);
+}
+
+.formula-equation {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--bg-main, #f9fafb);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.formula-component {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 10px;
+    padding: 8px 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.comp-hanzi {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary, #d32f2f);
+    line-height: 1;
+}
+
+.comp-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.comp-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+}
+
+.comp-meaning {
+    font-size: 0.72rem;
+    color: var(--text-secondary, #6b7280);
+}
+
+.formula-operator {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-secondary, #9ca3af);
+}
+
+/* Mnemonic Card */
+.decomposer-mnemonic-card {
+    background: #fffdf5;
+    border: 1px solid #fef08a;
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+.mnemonic-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    color: #854d0e;
+    margin-bottom: 8px;
+}
+
+.mnemonic-story {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #713f12;
+}
+
+/* Side Column */
+.decomposer-side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.side-card-title {
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.radical-highlight-flex {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg-main, #f9fafb);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.rad-big-char {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary, #d32f2f);
+    line-height: 1;
+}
+
+.rad-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.rad-pinyin {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+}
+
+.rad-meaning {
+    font-size: 0.82rem;
+    color: var(--text-secondary, #6b7280);
+}
+
+/* Siblings Grid */
+.siblings-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0 0 10px 0;
+}
+
+.siblings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+    gap: 8px;
+}
+
+.sibling-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 4px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: var(--bg-main, #f9fafb);
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.sibling-item:hover {
+    border-color: var(--primary, #d32f2f);
+    background: rgba(211, 47, 47, 0.05);
+    transform: translateY(-2px);
+}
+
+.sibling-char {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+}
+
+.sibling-pinyin {
+    font-size: 0.72rem;
+    color: var(--primary, #d32f2f);
+    font-weight: 600;
+}
+
+/* Challenge Card */
+.challenge-prompt {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0 0 10px 0;
+}
+
+.challenge-slots {
+    display: flex;
+    gap: 8px;
+    min-height: 48px;
+    background: var(--bg-main, #f3f4f6);
+    border: 2px dashed var(--border-color, #d1d5db);
+    border-radius: 10px;
+    padding: 6px 12px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.challenge-slot-item {
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: var(--primary, #d32f2f);
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.challenge-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.challenge-opt-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color, #d1d5db);
+    background: var(--card-bg, #ffffff);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.challenge-opt-btn:hover {
+    border-color: var(--primary, #d32f2f);
+    transform: scale(1.08);
+}
+
+.challenge-feedback {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.challenge-feedback.correct {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #86efac;
+}
+
+.challenge-feedback.incorrect {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}

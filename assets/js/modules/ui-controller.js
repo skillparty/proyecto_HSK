@@ -746,6 +746,22 @@ class UIController {
           }
         })();
         break;
+      case "radical-decomposer":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/radical-decomposer-styles.css", "radical-decomposer-stylesheet");
+            if (!window.RadicalDecomposerGame) {
+              await this.loadScript("assets/js/radical-decomposer-game.js");
+            }
+            if (window.RadicalDecomposerGame && !window.radicalDecomposerGame) {
+              window.radicalDecomposerGame = new window.RadicalDecomposerGame(this.app);
+              window.radicalDecomposerGame.init();
+            }
+          } catch (err) {
+            this.logError("radical-decomposer init failed:", err);
+          }
+        })();
+        break;
     }
   }
 
@@ -972,6 +988,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "writing-sheets",
   "graded-reader",
   "dialogue-tutor",
+  "radical-decomposer",
 ]);
 
 window.UIController = UIController;

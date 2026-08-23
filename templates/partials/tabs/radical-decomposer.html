@@ -1,0 +1,93 @@
+<div id="radical-decomposer" class="tab-panel" data-tab="radical-decomposer">
+    <div class="decomposer-container">
+        <!-- Header Banner -->
+        <div class="decomposer-header-banner">
+            <div class="decomposer-title-group">
+                <h2 class="decomposer-main-title">
+                    <span class="decomposer-title-icon">🔬</span>
+                    <span data-i18n="radicalDecomposerTitle">Laboratorio de Radicales & Mnemotecnias</span>
+                </h2>
+                <p class="decomposer-subtitle" data-i18n="radicalDecomposerSubtitle">
+                    Descompón cualquier carácter chino en sus radicales anatómicos y aprende a recordarlo para siempre con mnemotecnias visuales.
+                </p>
+            </div>
+
+            <!-- Search & Quick Filter Bar -->
+            <div class="decomposer-search-bar">
+                <div class="decomposer-search-input-wrap">
+                    <span class="decomposer-search-icon">🔍</span>
+                    <input type="text" id="decomposer-search-input" class="decomposer-input" placeholder="Escribe un carácter o palabra (ej. 休, 明, 想, 好, 药, 家)..." autocomplete="off" spellcheck="false" />
+                </div>
+                <div class="decomposer-quick-chips" id="decomposer-quick-chips"></div>
+            </div>
+        </div>
+
+        <!-- Main Visual Decomposition Workspace -->
+        <div class="decomposer-grid">
+            <!-- Left Card: Anatomical Breakdown Tree -->
+            <div class="decomposer-card main-char-card" id="decomposer-main-card">
+                <div class="char-hero-stage">
+                    <div class="char-hero-mizige">
+                        <div class="char-hero-char" id="decomp-char-display">休</div>
+                    </div>
+                    <div class="char-hero-info">
+                        <div class="char-hero-pinyin" id="decomp-pinyin">xiū</div>
+                        <div class="char-hero-meaning" id="decomp-meaning">Descansar, reposar</div>
+                        <div class="char-hero-meta">
+                            <span class="decomposer-tag" id="decomp-hsk-badge">HSK 2</span>
+                            <span class="decomposer-tag" id="decomp-type-badge">会意字 (Ideograma compuesto)</span>
+                            <button id="decomp-audio-btn" class="decomposer-mini-btn" type="button" title="Escuchar">🔊</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decomposition Formula Tree -->
+                <div class="decomposer-formula-box">
+                    <h4 class="formula-title" data-i18n="decompFormulaTitle">Descomposición Anatómica:</h4>
+                    <div class="formula-equation" id="decomp-formula-equation"></div>
+                </div>
+
+                <!-- Visual Mnemonic Story Box -->
+                <div class="decomposer-mnemonic-card">
+                    <div class="mnemonic-badge">
+                        <span>💡</span> <strong data-i18n="decompMnemonicBadge">Mnemotecnia Visual & Truco de Memoria:</strong>
+                    </div>
+                    <p class="mnemonic-story" id="decomp-mnemonic-story">
+                        Imagina a una <strong>persona (亻 / 人)</strong> apoyada y descansando bajo la sombra de un <strong>árbol (木)</strong> tras una larga caminata. ¡Persona + Árbol = <strong>Descansar (休)</strong>!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column: Radical Details & Sibling Constellation -->
+            <div class="decomposer-side-column">
+                <!-- Radical Kangxi Card -->
+                <div class="decomposer-card radical-info-card">
+                    <h4 class="side-card-title">
+                        <span>🎋</span> <span data-i18n="decompRadicalInfoTitle">Radical Principal (部首)</span>
+                    </h4>
+                    <div class="radical-highlight-flex" id="decomp-radical-highlight"></div>
+                </div>
+
+                <!-- Sibling Characters (Family Tree) -->
+                <div class="decomposer-card siblings-card">
+                    <h4 class="side-card-title">
+                        <span>🌟</span> <span data-i18n="decompSiblingsTitle">Familia de Caracteres con este Radical</span>
+                    </h4>
+                    <p class="siblings-subtitle" id="decomp-siblings-desc">Otros caracteres comunes construidos con el mismo componente:</p>
+                    <div class="siblings-grid" id="decomp-siblings-grid"></div>
+                </div>
+
+                <!-- Interactive Mini-Challenge: Assemble the Hanzi -->
+                <div class="decomposer-card challenge-card">
+                    <h4 class="side-card-title">
+                        <span>🧩</span> <span data-i18n="decompChallengeTitle">Reto: Ensambla el Carácter</span>
+                    </h4>
+                    <p class="challenge-prompt" id="decomp-challenge-prompt">Selecciona los componentes en orden para formar el carácter:</p>
+                    <div class="challenge-slots" id="decomp-challenge-slots"></div>
+                    <div class="challenge-options" id="decomp-challenge-options"></div>
+                    <div class="challenge-feedback" id="decomp-challenge-feedback" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

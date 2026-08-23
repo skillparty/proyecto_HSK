@@ -98,6 +98,15 @@ class SearchController {
                     this.app.switchTab("dialogue-tutor");
                 },
             },
+            {
+                id: "action-open-decomposer",
+                title: "Abrir Laboratorio de Radicales y Mnemotecnias Visuales",
+                titleEn: "Open Radical Decomposer & Visual Mnemonics Lab",
+                icon: "🔬",
+                execute: () => {
+                    this.app.switchTab("radical-decomposer");
+                },
+            },
         ];
     }
 

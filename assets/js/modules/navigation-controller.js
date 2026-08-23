@@ -28,6 +28,7 @@ class NavigationController {
       "writing-sheets",
       "graded-reader",
       "dialogue-tutor",
+      "radical-decomposer",
     ]);
   }
 
