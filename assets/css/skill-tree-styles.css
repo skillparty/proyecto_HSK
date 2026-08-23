@@ -1,0 +1,478 @@
+/* skill-tree-styles.css — Estilos para el Mapa de Aventura y Árbol de Habilidades RPG */
+
+.skill-tree-container {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 16px 12px 60px;
+}
+
+.skill-tree-header {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.tree-header-info {
+    margin-bottom: 16px;
+}
+
+.tree-main-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    margin: 0 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.tree-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0;
+    line-height: 1.45;
+}
+
+.tree-stats-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.tree-stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-main, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    color: var(--text-primary, #374151);
+}
+
+/* Layout Grid */
+.tree-layout-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 20px;
+}
+
+@media (max-width: 860px) {
+    .tree-layout-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tree-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Adventure Map Zones */
+.map-zones-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.map-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.zone-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #d32f2f 0%, #991b1b 100%);
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 24px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+    margin-bottom: 24px;
+    z-index: 2;
+}
+
+.zone-nodes-trail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    position: relative;
+}
+
+/* Winding Nodes */
+.trail-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.trail-node:hover:not(.locked) {
+    transform: scale(1.08);
+}
+
+.node-orb {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    position: relative;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    border: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+/* Node States */
+.trail-node.available .node-orb {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: #ffffff;
+    border-color: #93c5fd;
+    animation: nodePulse 2s infinite;
+}
+
+.trail-node.completed .node-orb {
+    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    color: #ffffff;
+    border-color: #6ee7b7;
+}
+
+.trail-node.locked .node-orb {
+    background: var(--bg-main, #e5e7eb);
+    color: #9ca3af;
+    border-color: #d1d5db;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.trail-node.boss .node-orb {
+    width: 84px;
+    height: 84px;
+    background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+    color: #ffffff;
+    border-color: #fde68a;
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
+}
+
+@keyframes nodePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 14px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+.node-title-label {
+    margin-top: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+    text-align: center;
+    max-width: 140px;
+}
+
+.node-stars-row {
+    display: flex;
+    gap: 2px;
+    margin-top: 4px;
+    font-size: 0.75rem;
+}
+
+/* Side Panel */
+.tree-side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.side-card-title {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.talents-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0 0 14px 0;
+}
+
+.talents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.talent-card-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-main, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    padding: 12px 14px;
+    border-radius: 12px;
+    gap: 12px;
+}
+
+.talent-card-item.unlocked {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+}
+
+.talent-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.talent-icon {
+    font-size: 1.4rem;
+}
+
+.talent-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+}
+
+.talent-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary, #6b7280);
+}
+
+.talent-unlock-btn {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid #f59e0b;
+    background: #fffbeb;
+    color: #b45309;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+}
+
+.talent-unlock-btn:hover:not(:disabled) {
+    background: #f59e0b;
+    color: #ffffff;
+}
+
+.talent-unlock-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #d1d5db;
+    background: #f3f4f6;
+    color: #9ca3af;
+}
+
+/* Character Lore */
+.rank-badge-display {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-main, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.rank-avatar {
+    font-size: 2.2rem;
+}
+
+.rank-name {
+    margin: 0 0 4px 0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--primary, #d32f2f);
+}
+
+.rank-desc {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-secondary, #6b7280);
+    line-height: 1.4;
+}
+
+/* Challenge Modal */
+.tree-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 16px;
+    backdrop-filter: blur(4px);
+}
+
+.tree-modal-content {
+    background: var(--card-bg, #ffffff);
+    border-radius: 20px;
+    max-width: 520px;
+    width: 100%;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    animation: modalPop 0.25s ease-out;
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.tree-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    color: var(--text-secondary, #9ca3af);
+    cursor: pointer;
+}
+
+.tree-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.node-modal-icon {
+    font-size: 2.2rem;
+}
+
+.node-modal-title {
+    margin: 0 0 4px 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+}
+
+.node-modal-zone {
+    font-size: 0.78rem;
+    color: var(--primary, #d32f2f);
+    font-weight: 700;
+}
+
+.challenge-step-indicator {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-secondary, #6b7280);
+    margin-bottom: 10px;
+}
+
+.challenge-prompt-box {
+    background: var(--bg-main, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+}
+
+.challenge-question {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+}
+
+.challenge-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.node-option-btn {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #d1d5db);
+    background: var(--card-bg, #ffffff);
+    color: var(--text-primary, #111827);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: center;
+}
+
+.node-option-btn:hover {
+    border-color: var(--primary, #d32f2f);
+    background: rgba(211, 47, 47, 0.04);
+}
+
+.node-option-btn.correct {
+    background: #ecfdf5;
+    border-color: #10b981;
+    color: #065f46;
+}
+
+.node-option-btn.incorrect {
+    background: #fef2f2;
+    border-color: #ef4444;
+    color: #991b1b;
+}
+
+.tree-modal-result {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.result-stars {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.result-title {
+    margin: 0 0 6px 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #065f46;
+}
+
+.result-desc {
+    margin: 0 0 20px 0;
+    font-size: 0.92rem;
+    color: var(--text-secondary, #4b5563);
+}

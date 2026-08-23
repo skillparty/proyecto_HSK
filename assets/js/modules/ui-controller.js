@@ -762,6 +762,22 @@ class UIController {
           }
         })();
         break;
+      case "skill-tree":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/skill-tree-styles.css", "skill-tree-stylesheet");
+            if (!window.SkillTreeGame) {
+              await this.loadScript("assets/js/skill-tree-game.js");
+            }
+            if (window.SkillTreeGame && !window.skillTreeGame) {
+              window.skillTreeGame = new window.SkillTreeGame(this.app);
+              window.skillTreeGame.init();
+            }
+          } catch (err) {
+            this.logError("skill-tree init failed:", err);
+          }
+        })();
+        break;
     }
   }
 
@@ -989,6 +1005,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "graded-reader",
   "dialogue-tutor",
   "radical-decomposer",
+  "skill-tree",
 ]);
 
 window.UIController = UIController;

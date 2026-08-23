@@ -107,6 +107,15 @@ class SearchController {
                     this.app.switchTab("radical-decomposer");
                 },
             },
+            {
+                id: "action-open-skill-tree",
+                title: "Abrir Mapa de Aventura y Árbol de Habilidades RPG",
+                titleEn: "Open RPG Adventure Map & Skill Tree",
+                icon: "🗺️",
+                execute: () => {
+                    this.app.switchTab("skill-tree");
+                },
+            },
         ];
     }
 

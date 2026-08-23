@@ -1,0 +1,102 @@
+<div id="skill-tree" class="tab-panel" data-tab="skill-tree">
+    <div class="skill-tree-container">
+        <!-- Hero Header -->
+        <div class="skill-tree-header">
+            <div class="tree-header-info">
+                <h2 class="tree-main-title">
+                    <span class="tree-title-icon">🗺️</span>
+                    <span data-i18n="skillTreeTitle">Mapa de Aventura & Árbol de Habilidades RPG</span>
+                </h2>
+                <p class="tree-subtitle" data-i18n="skillTreeSubtitle">
+                    Avanza por el Camino del Dragón, completa nodos temáticos, vence a los guardianes de zona y desbloquea talentos pasivos.
+                </p>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="tree-stats-bar">
+                <div class="tree-stat-pill">
+                    <span class="pill-icon">⭐</span>
+                    <span class="pill-label" data-i18n="treeStarsLabel">Estrellas:</span>
+                    <strong id="tree-total-stars">0</strong> / 45
+                </div>
+                <div class="tree-stat-pill">
+                    <span class="pill-icon">⚡</span>
+                    <span class="pill-label" data-i18n="treeLevelLabel">Nivel RPG:</span>
+                    <strong id="tree-player-level">Nivel 1 (Novato)</strong>
+                </div>
+                <div class="tree-stat-pill">
+                    <span class="pill-icon">🔮</span>
+                    <span class="pill-label" data-i18n="treeTalentsLabel">Talentos:</span>
+                    <strong id="tree-unlocked-talents">0</strong> / 4
+                </div>
+            </div>
+        </div>
+
+        <!-- Layout Grid: Left Adventure Path / Right Talents & Quests -->
+        <div class="tree-layout-grid">
+            <!-- Left: Adventure Map Trail -->
+            <div class="tree-card map-trail-card">
+                <div class="map-zones-container" id="tree-zones-container">
+                    <!-- Zones and nodes rendered dynamically by SkillTreeGame -->
+                </div>
+            </div>
+
+            <!-- Right: Passive Talents & Inventory -->
+            <div class="tree-side-panel">
+                <!-- Talents Tree Card -->
+                <div class="tree-card talents-card">
+                    <h4 class="side-card-title">
+                        <span>🔮</span> <span data-i18n="talentsTitle">Árbol de Talentos Pasivos</span>
+                    </h4>
+                    <p class="talents-desc" data-i18n="talentsDesc">Desbloquea habilidades permanentes usando tus estrellas ganadas:</p>
+                    <div class="talents-list" id="tree-talents-list"></div>
+                </div>
+
+                <!-- Lore & Character Class Card -->
+                <div class="tree-card character-lore-card">
+                    <h4 class="side-card-title">
+                        <span>🐉</span> <span data-i18n="characterClassTitle">Rango del Erudito</span>
+                    </h4>
+                    <div class="rank-badge-display">
+                        <div class="rank-avatar" id="tree-rank-avatar">🥋</div>
+                        <div class="rank-info">
+                            <h5 class="rank-name" id="tree-rank-name">Aprendiz de la Aldea</h5>
+                            <p class="rank-desc" id="tree-rank-desc">Has comenzado tu viaje por los senderos del mandarín antiguo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Node Challenge Modal -->
+    <div id="tree-node-modal" class="tree-modal-overlay" style="display: none;">
+        <div class="tree-modal-content">
+            <button type="button" class="tree-modal-close" id="tree-modal-close-btn">&times;</button>
+            <div class="tree-modal-header">
+                <span class="node-modal-icon" id="modal-node-icon">🏮</span>
+                <div>
+                    <h3 class="node-modal-title" id="modal-node-title">Nodo 1: Saludos y Cortesía</h3>
+                    <span class="node-modal-zone" id="modal-node-zone">Zona 1: La Aldea de los Primeros Trazos</span>
+                </div>
+            </div>
+
+            <!-- Challenge Body -->
+            <div class="tree-challenge-body" id="modal-challenge-body">
+                <div class="challenge-step-indicator" id="modal-step-indicator">Pregunta 1 de 3</div>
+                <div class="challenge-prompt-box">
+                    <p class="challenge-question" id="modal-question-text">¿Cómo se dice "Hola" en mandarín?</p>
+                </div>
+                <div class="challenge-options-grid" id="modal-options-grid"></div>
+            </div>
+
+            <!-- Result Banner -->
+            <div class="tree-modal-result" id="modal-result-banner" style="display: none;">
+                <div class="result-stars" id="modal-result-stars">⭐⭐⭐</div>
+                <h4 class="result-title" id="modal-result-title">¡Nodo Conquistado!</h4>
+                <p class="result-desc" id="modal-result-desc">+50 XP y 3 Estrellas ganadas.</p>
+                <button type="button" class="btn btn-primary" id="modal-result-continue-btn">Continuar Viaje ➔</button>
+            </div>
+        </div>
+    </div>
+</div>

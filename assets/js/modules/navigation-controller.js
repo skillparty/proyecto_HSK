@@ -29,6 +29,7 @@ class NavigationController {
       "graded-reader",
       "dialogue-tutor",
       "radical-decomposer",
+      "skill-tree",
     ]);
   }
 
