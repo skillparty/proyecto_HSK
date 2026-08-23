@@ -55,37 +55,61 @@
   ],
   "shortcuts": [
     {
-      "name": "Practice",
-      "short_name": "Practice",
-      "description": "Start HSK vocabulary practice",
+      "name": "Práctica SRS",
+      "short_name": "Práctica",
+      "description": "Repaso diario de vocabulario inteligente",
       "url": "./index.html?tab=practice",
       "icons": [
         {
-          "src": "../assets/images/logo05.png",
+          "src": "./assets/images/logo05.png",
           "sizes": "96x96"
         }
       ]
     },
     {
-      "name": "Quiz",
-      "short_name": "Quiz",
-      "description": "Take an HSK quiz",
-      "url": "./index.html?tab=quiz",
+      "name": "Entrenador de Oído",
+      "short_name": "Tonos",
+      "description": "Entrenador de 4 tonos y pares mínimos",
+      "url": "./index.html?tab=tone-trainer",
       "icons": [
         {
-          "src": "../assets/images/logo05.png",
+          "src": "./assets/images/logo05.png",
           "sizes": "96x96"
         }
       ]
     },
     {
-      "name": "Browse",
-      "short_name": "Browse",
-      "description": "Browse HSK vocabulary",
-      "url": "./index.html?tab=browse",
+      "name": "Constructor de Oraciones",
+      "short_name": "Oraciones",
+      "description": "Construye oraciones en mandarín",
+      "url": "./index.html?tab=sentence-builder",
       "icons": [
         {
-          "src": "../assets/images/logo05.png",
+          "src": "./assets/images/logo05.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Lienzo de Caligrafía",
+      "short_name": "Trazos",
+      "description": "Practica la escritura de Hanzi en cuadrícula Mi Zi Ge",
+      "url": "./index.html?tab=strokes-radicals",
+      "icons": [
+        {
+          "src": "./assets/images/logo05.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Exámenes HSK",
+      "short_name": "Exámenes",
+      "description": "Simulador de exámenes oficiales HSK",
+      "url": "./index.html?tab=past-exams",
+      "icons": [
+        {
+          "src": "./assets/images/logo05.png",
           "sizes": "96x96"
         }
       ]

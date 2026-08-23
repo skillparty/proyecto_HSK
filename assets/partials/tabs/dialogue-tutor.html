@@ -1,0 +1,58 @@
+    <div class="tutor-container">
+        <!-- Header Banner -->
+        <div class="tutor-header-banner">
+            <div class="tutor-title-group">
+                <h2 class="tutor-main-title">
+                    <span class="tutor-title-icon">💬</span>
+                    <span data-i18n="dialogueTutorTitle">Tutor Conversacional & Diálogos</span>
+                </h2>
+                <p class="tutor-subtitle" data-i18n="dialogueTutorSubtitle">
+                    Simula conversaciones cotidianas en China con audio nativo, opciones ramificadas y notas culturales.
+                </p>
+            </div>
+            <div class="tutor-scenarios-bar" id="tutor-scenarios-bar"></div>
+        </div>
+
+        <!-- Dialogue Workspace -->
+        <div class="tutor-workspace-card">
+            <!-- Scenario Status Header -->
+            <div class="tutor-scenario-header">
+                <div class="tutor-scenario-info">
+                    <span id="tutor-scenario-icon" class="tutor-scenario-icon">🥢</span>
+                    <div>
+                        <h3 id="tutor-scenario-name" class="tutor-scenario-name">在餐厅点菜 (En el Restaurante)</h3>
+                        <p id="tutor-scenario-desc" class="tutor-scenario-desc">Aprende a pedir la carta, consultar ingredientes y pagar la cuenta.</p>
+                    </div>
+                </div>
+                <div class="tutor-score-badge">
+                    <span data-i18n="tutorScoreLabel">Fluidez:</span>
+                    <strong id="tutor-fluency-score">100%</strong>
+                </div>
+            </div>
+
+            <!-- Chat Message Feed -->
+            <div id="tutor-chat-feed" class="tutor-chat-feed"></div>
+
+            <!-- Interactive Reply Area -->
+            <div class="tutor-reply-section" id="tutor-reply-section">
+                <div class="tutor-reply-header">
+                    <span data-i18n="tutorSelectReply">Elige tu respuesta o pronúnciala:</span>
+                    <button id="tutor-mic-btn" class="tutor-mic-btn" type="button" title="Pronunciar respuesta con voz">
+                        <span>🎙️</span> <span data-i18n="tutorMicSpeak">Hablar</span>
+                    </button>
+                </div>
+                <div id="tutor-reply-options" class="tutor-reply-options"></div>
+            </div>
+
+            <!-- Scenario Finished Summary Banner -->
+            <div id="tutor-finished-banner" class="tutor-finished-banner" style="display: none;">
+                <div class="tutor-finished-icon">🎉</div>
+                <h4 id="tutor-finished-title" data-i18n="tutorFinishedTitle">¡Conversación Completada con Éxito!</h4>
+                <p id="tutor-finished-desc">Has completado todos los turnos del escenario satisfactoriamente.</p>
+                <div class="tutor-finished-actions">
+                    <button id="tutor-replay-btn" class="btn btn-primary" type="button" data-i18n="tutorReplayBtn">Repetir Escenario</button>
+                    <button id="tutor-next-scenario-btn" class="btn btn-secondary" type="button" data-i18n="tutorNextScenarioBtn">Siguiente Escenario</button>
+                </div>
+            </div>
+        </div>
+    </div>

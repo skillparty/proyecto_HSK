@@ -1,0 +1,74 @@
+    <div class="reader-container">
+        <!-- Banner / Header -->
+        <div class="reader-header-banner">
+            <div class="reader-title-group">
+                <h2 class="reader-main-title">
+                    <span class="reader-title-icon">📖</span>
+                    <span data-i18n="gradedReaderTitle">Lector Graduado HSK</span>
+                </h2>
+                <p class="reader-subtitle" data-i18n="gradedReaderSubtitle">
+                    Historias y lecturas adaptadas por nivel HSK con diccionario emergente interactivo y preguntas de comprensión.
+                </p>
+            </div>
+            <div class="reader-controls-bar">
+                <div class="reader-level-picker">
+                    <label for="reader-level-select" data-i18n="readerLevelLabel">Nivel:</label>
+                    <select id="reader-level-select" class="select-input">
+                        <option value="1" selected>HSK 1 (Principiante)</option>
+                        <option value="2">HSK 2 (Básico)</option>
+                        <option value="3">HSK 3 (Intermedio)</option>
+                        <option value="4">HSK 4 (Avanzado)</option>
+                    </select>
+                </div>
+                <div class="reader-toggles-group">
+                    <button id="reader-toggle-pinyin-btn" class="reader-btn-pill active" type="button" title="Mostrar/Ocultar Pinyin">
+                        <span class="reader-pill-icon">🔤</span>
+                        <span data-i18n="readerTogglePinyin">Pinyin: ON</span>
+                    </button>
+                    <button id="reader-read-aloud-btn" class="reader-btn-pill" type="button" title="Escuchar lectura en voz alta">
+                        <span class="reader-pill-icon">🔊</span>
+                        <span data-i18n="readerReadAloud">Leer en voz alta</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story Selection List (Carousel / Chips) -->
+        <div class="reader-story-selector" id="reader-story-chips"></div>
+
+        <!-- Reading Canvas Card -->
+        <div class="reader-article-card" id="reader-article-card">
+            <div class="reader-article-header">
+                <div class="reader-badge-wrap">
+                    <span id="reader-story-level-badge" class="reader-level-badge">HSK 1</span>
+                    <span id="reader-story-word-count" class="reader-meta-tag">120 palabras</span>
+                </div>
+                <h3 id="reader-story-title" class="reader-story-title">我的朋友李明</h3>
+                <p id="reader-story-pinyin-title" class="reader-story-pinyin-title">Wǒ de péngyou Lǐ Míng</p>
+            </div>
+
+            <!-- Interactive Story Body -->
+            <div id="reader-story-body" class="reader-story-body"></div>
+
+            <!-- Floating Hover/Tap Word Tooltip -->
+            <div id="reader-word-popover" class="reader-word-popover" style="display: none;" role="tooltip">
+                <div class="rwp-header">
+                    <span class="rwp-char" id="rwp-char">李明</span>
+                    <span class="rwp-pinyin" id="rwp-pinyin">Lǐ Míng</span>
+                    <button id="rwp-audio-btn" class="rwp-icon-btn" type="button" title="Pronunciar">🔊</button>
+                    <button id="rwp-fav-btn" class="rwp-icon-btn" type="button" title="Guardar en favoritos">⭐</button>
+                </div>
+                <div class="rwp-meaning" id="rwp-meaning">Li Ming (nombre propio)</div>
+            </div>
+
+            <!-- Comprehension Quiz Section -->
+            <div class="reader-quiz-section" id="reader-quiz-section">
+                <div class="reader-quiz-header">
+                    <span class="reader-quiz-icon">📝</span>
+                    <h4 data-i18n="readerComprehensionTitle">Preguntas de Comprensión Lectora</h4>
+                </div>
+                <div id="reader-quiz-questions" class="reader-quiz-list"></div>
+                <div id="reader-quiz-score-banner" class="reader-quiz-score-banner" style="display: none;"></div>
+            </div>
+        </div>
+    </div>

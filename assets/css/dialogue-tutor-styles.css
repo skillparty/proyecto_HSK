@@ -1,0 +1,381 @@
+/* dialogue-tutor-styles.css — Estilos para el Tutor Conversacional y Simulador de Diálogos */
+
+.tutor-container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 16px 12px 60px;
+}
+
+.tutor-header-banner {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.tutor-title-group {
+    margin-bottom: 16px;
+}
+
+.tutor-main-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    margin: 0 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tutor-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0;
+    line-height: 1.45;
+}
+
+/* Scenarios Chips Bar */
+.tutor-scenarios-bar {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    scrollbar-width: thin;
+}
+
+.tutor-scenario-chip {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: var(--bg-main, #f9fafb);
+    color: var(--text-primary, #1f2937);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tutor-scenario-chip:hover {
+    border-color: var(--primary, #d32f2f);
+    transform: translateY(-2px);
+}
+
+.tutor-scenario-chip.active {
+    background: var(--primary, #d32f2f);
+    color: #ffffff;
+    border-color: var(--primary, #d32f2f);
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+}
+
+/* Workspace Card */
+.tutor-workspace-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tutor-scenario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color, #f3f4f6);
+}
+
+.tutor-scenario-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tutor-scenario-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.tutor-scenario-name {
+    margin: 0 0 4px 0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+}
+
+.tutor-scenario-desc {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--text-secondary, #6b7280);
+}
+
+.tutor-score-badge {
+    background: #ecfdf5;
+    border: 1px solid #86efac;
+    color: #065f46;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Chat Feed */
+.tutor-chat-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 320px;
+    max-height: 480px;
+    overflow-y: auto;
+    padding: 12px 8px;
+    background: var(--bg-main, #f9fafb);
+    border-radius: 14px;
+    border: 1px solid var(--border-color, #f3f4f6);
+}
+
+.tutor-chat-message {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    animation: tutorMsgFade 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tutorMsgFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tutor-chat-message.bot {
+    align-self: flex-start;
+}
+
+.tutor-chat-message.user {
+    align-self: flex-end;
+}
+
+.tutor-bubble {
+    padding: 14px 18px;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.tutor-chat-message.bot .tutor-bubble {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-bottom-left-radius: 4px;
+}
+
+.tutor-chat-message.user .tutor-bubble {
+    background: var(--primary, #d32f2f);
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+.tutor-bubble-speaker {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    color: var(--text-secondary, #6b7280);
+}
+
+.tutor-chat-message.user .tutor-bubble-speaker {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.tutor-bubble-hanzi {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 2px;
+}
+
+.tutor-bubble-pinyin {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary, #d32f2f);
+    margin-bottom: 4px;
+}
+
+.tutor-chat-message.user .tutor-bubble-pinyin {
+    color: #fef08a;
+}
+
+.tutor-bubble-meaning {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #4b5563);
+    line-height: 1.35;
+}
+
+.tutor-chat-message.user .tutor-bubble-meaning {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.tutor-play-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 3px;
+    border-radius: 4px;
+    transition: transform 0.15s ease;
+}
+
+.tutor-play-btn:hover {
+    transform: scale(1.15);
+}
+
+/* Cultural Tip Card */
+.tutor-culture-tip {
+    margin-top: 6px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    color: #92400e;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+/* Reply Section */
+.tutor-reply-section {
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.tutor-reply-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary, #374151);
+}
+
+.tutor-mic-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color, #d1d5db);
+    background: var(--bg-main, #f3f4f6);
+    color: var(--text-primary, #374151);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tutor-mic-btn:hover {
+    background: var(--border-color, #e5e7eb);
+}
+
+.tutor-mic-btn.listening {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #b91c1c;
+    animation: tutorPulse 1.2s infinite;
+}
+
+@keyframes tutorPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+}
+
+.tutor-reply-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tutor-reply-card {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #d1d5db);
+    background: var(--card-bg, #ffffff);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+}
+
+.tutor-reply-card:hover {
+    border-color: var(--primary, #d32f2f);
+    background: rgba(211, 47, 47, 0.04);
+    transform: translateX(4px);
+}
+
+.tutor-reply-hanzi {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+    margin-bottom: 2px;
+}
+
+.tutor-reply-pinyin {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--primary, #d32f2f);
+    margin-bottom: 3px;
+}
+
+.tutor-reply-meaning {
+    font-size: 0.84rem;
+    color: var(--text-secondary, #4b5563);
+}
+
+/* Finished Banner */
+.tutor-finished-banner {
+    padding: 24px;
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.tutor-finished-icon {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+}
+
+.tutor-finished-banner h4 {
+    margin: 0 0 6px 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #166534;
+}
+
+.tutor-finished-banner p {
+    margin: 0 0 18px 0;
+    font-size: 0.92rem;
+    color: #15803d;
+}
+
+.tutor-finished-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}

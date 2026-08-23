@@ -26,6 +26,8 @@ class NavigationController {
       "videos",
       "memories",
       "writing-sheets",
+      "graded-reader",
+      "dialogue-tutor",
     ]);
   }
 

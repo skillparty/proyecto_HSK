@@ -714,6 +714,38 @@ class UIController {
           }
         })();
         break;
+      case "graded-reader":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/graded-reader-styles.css", "graded-reader-stylesheet");
+            if (!window.GradedReaderGame) {
+              await this.loadScript("assets/js/graded-reader-game.js");
+            }
+            if (window.GradedReaderGame && !window.gradedReaderGame) {
+              window.gradedReaderGame = new window.GradedReaderGame(this.app);
+              window.gradedReaderGame.init();
+            }
+          } catch (err) {
+            this.logError("graded-reader init failed:", err);
+          }
+        })();
+        break;
+      case "dialogue-tutor":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/dialogue-tutor-styles.css", "dialogue-tutor-stylesheet");
+            if (!window.DialogueTutorGame) {
+              await this.loadScript("assets/js/dialogue-tutor-game.js");
+            }
+            if (window.DialogueTutorGame && !window.dialogueTutorGame) {
+              window.dialogueTutorGame = new window.DialogueTutorGame(this.app);
+              window.dialogueTutorGame.init();
+            }
+          } catch (err) {
+            this.logError("dialogue-tutor init failed:", err);
+          }
+        })();
+        break;
     }
   }
 
@@ -737,13 +769,18 @@ class UIController {
             "culture-medicine",
             "culture-opera",
             "culture-technology",
-            "culture-clothing",
-            "culture-arts",
-            "videos",
-            "memories",
+            "sentence-builder",
+            "tone-trainer",
             "writing-sheets",
           ]);
     try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetFromUrl = urlParams.get("tab") || window.location.hash.replace("#", "");
+      if (targetFromUrl && allowedTabs.has(targetFromUrl) && document.getElementById(targetFromUrl)) {
+        this.switchTab(targetFromUrl);
+        return;
+      }
+
       const savedTab = localStorage.getItem(this.app.lastTabStorageKey);
       if (
         savedTab &&
@@ -933,6 +970,8 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "videos",
   "memories",
   "writing-sheets",
+  "graded-reader",
+  "dialogue-tutor",
 ]);
 
 window.UIController = UIController;

@@ -80,6 +80,24 @@ class SearchController {
                     this.app.deckController?.openModal?.();
                 },
             },
+            {
+                id: "action-open-reader",
+                title: "Abrir Lector Graduado HSK con Diccionario Flotante",
+                titleEn: "Open HSK Graded Reader with Popup Dictionary",
+                icon: "📖",
+                execute: () => {
+                    this.app.switchTab("graded-reader");
+                },
+            },
+            {
+                id: "action-open-tutor",
+                title: "Iniciar Tutor Conversacional y Simulación de Diálogos",
+                titleEn: "Start Dialogue Tutor & Scenario Simulator",
+                icon: "💬",
+                execute: () => {
+                    this.app.switchTab("dialogue-tutor");
+                },
+            },
         ];
     }
 
