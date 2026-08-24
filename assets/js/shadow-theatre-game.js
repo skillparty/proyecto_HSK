@@ -236,6 +236,8 @@ class ShadowTheatreGame {
         this.app = app;
         this.currentTale = SHADOW_TALES_DATABASE[0];
         this.currentSceneIdx = 0;
+        this.isAutoplaying = false;
+        this.autoplayTimer = null;
     }
 
     init() {
@@ -260,6 +262,7 @@ class ShadowTheatreGame {
         this.prevBtn = document.getElementById("shadow-prev-scene-btn");
         this.nextBtn = document.getElementById("shadow-next-scene-btn");
         this.playBtn = document.getElementById("shadow-play-scene-btn");
+        this.autoplayBtn = document.getElementById("shadow-autoplay-btn");
         this.sceneIndicator = document.getElementById("shadow-scene-indicator");
 
         this.moralContent = document.getElementById("tale-moral-content");
@@ -272,14 +275,59 @@ class ShadowTheatreGame {
 
     bindEvents() {
         if (this.prevBtn) {
-            this.prevBtn.addEventListener("click", () => this.goToPrevScene());
+            this.prevBtn.addEventListener("click", () => {
+                this.stopAutoplay();
+                this.goToPrevScene();
+            });
         }
         if (this.nextBtn) {
-            this.nextBtn.addEventListener("click", () => this.goToNextScene());
+            this.nextBtn.addEventListener("click", () => {
+                this.stopAutoplay();
+                this.goToNextScene();
+            });
         }
         if (this.playBtn) {
             this.playBtn.addEventListener("click", () => this.narrateCurrentScene());
         }
+        if (this.autoplayBtn) {
+            this.autoplayBtn.addEventListener("click", () => this.toggleAutoplay());
+        }
+    }
+
+    toggleAutoplay() {
+        if (this.isAutoplaying) {
+            this.stopAutoplay();
+        } else {
+            this.startAutoplay();
+        }
+    }
+
+    startAutoplay() {
+        this.isAutoplaying = true;
+        if (this.autoplayBtn) this.autoplayBtn.classList.add("playing");
+        this.runAutoplayStep();
+    }
+
+    stopAutoplay() {
+        this.isAutoplaying = false;
+        if (this.autoplayTimer) clearTimeout(this.autoplayTimer);
+        if (this.autoplayBtn) this.autoplayBtn.classList.remove("playing");
+    }
+
+    runAutoplayStep() {
+        if (!this.isAutoplaying) return;
+        this.narrateCurrentScene();
+
+        this.autoplayTimer = setTimeout(() => {
+            if (!this.isAutoplaying) return;
+            if (this.currentSceneIdx < this.currentTale.scenes.length - 1) {
+                this.goToNextScene();
+                this.runAutoplayStep();
+            } else {
+                this.stopAutoplay();
+                this.app?.showToast?.("Fin del relato tradicional.", "success", 2000);
+            }
+        }, 5500);
     }
 
     renderStoryChips() {

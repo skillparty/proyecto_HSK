@@ -622,6 +622,11 @@ class StatsController {
             levelSelect.addEventListener('change', () => this.renderCertificatePreview());
         }
 
+        const themeSelect = document.getElementById('cert-style-theme');
+        if (themeSelect) {
+            themeSelect.addEventListener('change', () => this.renderCertificatePreview());
+        }
+
         if (printBtn) {
             printBtn.addEventListener('click', () => this.printCertificate());
         }
@@ -633,14 +638,16 @@ class StatsController {
 
         const nameInput = document.getElementById('cert-student-name');
         const levelSelect = document.getElementById('cert-hsk-level');
+        const themeSelect = document.getElementById('cert-style-theme');
 
         const studentName = (nameInput?.value || 'Estudiante de Chino').trim();
         const level = levelSelect?.value || '1';
+        const theme = themeSelect?.value || 'imperial';
 
-        preview.innerHTML = this.generateCertificateHTML(studentName, level);
+        preview.innerHTML = this.generateCertificateHTML(studentName, level, theme);
     }
 
-    generateCertificateHTML(studentName, level) {
+    generateCertificateHTML(studentName, level, theme = 'imperial') {
         const isEs = this.app?.currentLanguage !== 'en';
         const dateStr = new Date().toLocaleDateString(isEs ? 'es-ES' : 'en-US', {
             year: 'numeric',
@@ -652,14 +659,31 @@ class StatsController {
         const totalWords = stats.totalStudied || 0;
         const accuracy = stats.totalStudied > 0 ? Math.round((stats.correctAnswers / stats.totalStudied) * 100) : 100;
 
+        let frameBg = '#fffdfa';
+        let frameBorder = '12px double #b45309';
+        let primaryColor = '#991b1b';
+        let accentColor = '#b45309';
+
+        if (theme === 'tang') {
+            frameBg = '#fefce8';
+            frameBorder = '10px solid #78350f';
+            primaryColor = '#78350f';
+            accentColor = '#92400e';
+        } else if (theme === 'modern') {
+            frameBg = '#f8fafc';
+            frameBorder = '10px double #1d4ed8';
+            primaryColor = '#1e3a8a';
+            accentColor = '#2563eb';
+        }
+
         return `
-            <div class="hsk-certificate-frame" style="background: #fffdfa; border: 12px double #b45309; border-radius: 12px; padding: 24px; text-align: center; color: #1e293b; font-family: 'Noto Serif SC', serif; position: relative; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
-                <div style="font-size: 1.1rem; color: #b45309; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 4px;">孔夫子中文学院 · CONFUCIUS INSTITUTE PLATFORM</div>
-                <h1 style="font-size: 1.8rem; font-weight: 900; color: #991b1b; margin: 4px 0 12px; letter-spacing: 0.08em;">《 国际中文能力结业证书 》</h1>
+            <div class="hsk-certificate-frame" style="background: ${frameBg}; border: ${frameBorder}; border-radius: 12px; padding: 24px; text-align: center; color: #1e293b; font-family: 'Noto Serif SC', serif; position: relative; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                <div style="font-size: 1.1rem; color: ${accentColor}; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 4px;">孔夫子中文学院 · CONFUCIUS INSTITUTE PLATFORM</div>
+                <h1 style="font-size: 1.8rem; font-weight: 900; color: ${primaryColor}; margin: 4px 0 12px; letter-spacing: 0.08em;">《 国际中文能力结业证书 》</h1>
                 <div style="font-size: 0.95rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">Certificate of Chinese Language Proficiency</div>
 
                 <p style="font-size: 0.95rem; color: #475569; margin: 0 0 6px 0;">Por cuanto el estudiante / This is to certify that</p>
-                <div style="font-size: 1.6rem; font-weight: 800; color: #0f172a; border-bottom: 2px solid #b45309; display: inline-block; padding: 0 24px 4px; margin-bottom: 14px;">
+                <div style="font-size: 1.6rem; font-weight: 800; color: #0f172a; border-bottom: 2px solid ${accentColor}; display: inline-block; padding: 0 24px 4px; margin-bottom: 14px;">
                     ${studentName}
                 </div>
 

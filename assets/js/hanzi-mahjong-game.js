@@ -8,7 +8,13 @@ const MAHJONG_RADICAL_PAIRS = [
     { id: "lin", partA: "木", partB: "木", result: "林", meaning: "Bosque" },
     { id: "ming", partA: "日", partB: "月", result: "明", meaning: "Brillante" },
     { id: "chi", partA: "口", partB: "乞", result: "吃", meaning: "Comer" },
-    { id: "qiu", partA: "禾", partB: "火", result: "秋", meaning: "Otoño" }
+    { id: "qiu", partA: "禾", partB: "火", result: "秋", meaning: "Otoño" },
+    { id: "xiu", partA: "亻", partB: "木", result: "休", meaning: "Descansar" },
+    { id: "ma", partA: "口", partB: "马", result: "吗", meaning: "Partícula interrogativa" },
+    { id: "xie", partA: "讠", partB: "身", result: "谢", meaning: "Agradecer" },
+    { id: "he", partA: "口", partB: "渴", result: "喝", meaning: "Beber" },
+    { id: "qing", partA: "氵", partB: "青", result: "清", meaning: "Claro / Puro" },
+    { id: "zhu", partA: "亻", partB: "主", result: "住", meaning: "Vivir / Residir" }
 ];
 
 const MAHJONG_COMPOUND_PAIRS = [
@@ -19,13 +25,20 @@ const MAHJONG_COMPOUND_PAIRS = [
     { id: "xuesheng", partA: "学", partB: "生", result: "学生", meaning: "Estudiante" },
     { id: "mingtian", partA: "明", partB: "天", result: "明天", meaning: "Mañana" },
     { id: "pengyou", partA: "朋", partB: "友", result: "朋友", meaning: "Amigo" },
-    { id: "kanjian", partA: "看", partB: "见", result: "看见", meaning: "Ver" }
+    { id: "kanjian", partA: "看", partB: "见", result: "看见", meaning: "Ver" },
+    { id: "kaishi", partA: "开", partB: "始", result: "开始", meaning: "Empezar" },
+    { id: "xihuan", partA: "喜", partB: "欢", result: "喜欢", meaning: "Gustar" },
+    { id: "gaoxing", partA: "高", partB: "兴", result: "高兴", meaning: "Feliz" },
+    { id: "yiyuan", partA: "医", partB: "院", result: "医院", meaning: "Hospital" },
+    { id: "shangdian", partA: "商", partB: "店", result: "商店", meaning: "Tienda" },
+    { id: "fanguan", partA: "饭", partB: "馆", result: "饭馆", meaning: "Restaurante" }
 ];
 
 class HanziMahjongGame {
     constructor(app) {
         this.app = app;
         this.currentMode = "radicals"; // "radicals" | "compounds"
+        this.currentDifficulty = "normal"; // "easy" (6) | "normal" (8) | "master" (12)
         this.score = 0;
         this.combo = 0;
         this.hintsRemaining = 3;
@@ -33,6 +46,7 @@ class HanziMahjongGame {
         this.timerInterval = null;
         this.selectedTile = null;
         this.pairsRemaining = 8;
+        this.targetPairs = 8;
         this.tiles = [];
     }
 
@@ -70,6 +84,15 @@ class HanziMahjongGame {
             });
         });
 
+        document.querySelectorAll(".mahjong-diff-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".mahjong-diff-btn").forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                this.currentDifficulty = btn.getAttribute("data-diff") || "normal";
+                this.startNewGame();
+            });
+        });
+
         if (this.hintBtn) {
             this.hintBtn.addEventListener("click", () => this.useHint());
         }
@@ -90,12 +113,33 @@ class HanziMahjongGame {
         }
     }
 
+    playTileClickSound() {
+        try {
+            const ctx = window.AudioContext ? new (window.AudioContext || window.webkitAudioContext)() : null;
+            if (!ctx) return;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "triangle";
+            osc.frequency.setValueAtTime(800, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.06);
+            gain.gain.setValueAtTime(0.3, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.06);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.06);
+        } catch {
+            // Audio ignore
+        }
+    }
+
     startNewGame() {
+        this.targetPairs = this.currentDifficulty === "easy" ? 6 : (this.currentDifficulty === "master" ? 12 : 8);
+        this.pairsRemaining = this.targetPairs;
         this.score = 0;
         this.combo = 0;
         this.hintsRemaining = 3;
         this.selectedTile = null;
-        this.pairsRemaining = 8;
 
         if (this.victoryOverlay) this.victoryOverlay.style.display = "none";
         this.updateStatsDisplay();
@@ -131,9 +175,10 @@ class HanziMahjongGame {
 
     setupBoardTiles() {
         const dataset = this.currentMode === "radicals" ? MAHJONG_RADICAL_PAIRS : MAHJONG_COMPOUND_PAIRS;
+        const pool = [...dataset].sort(() => Math.random() - 0.5).slice(0, this.targetPairs);
         const rawTiles = [];
 
-        dataset.forEach((pair) => {
+        pool.forEach((pair) => {
             rawTiles.push({
                 uid: `${pair.id}-A`,
                 pairId: pair.id,
@@ -162,6 +207,8 @@ class HanziMahjongGame {
     renderBoard() {
         if (!this.boardEl) return;
 
+        this.boardEl.className = `mahjong-board grid-${this.currentDifficulty}`;
+
         this.boardEl.innerHTML = this.tiles.map((tile, idx) => `
             <div class="mahjong-tile ${tile.isMatched ? "matched" : ""}" data-idx="${idx}" data-uid="${tile.uid}">
                 <div class="tile-hanzi">${tile.hanzi}</div>
@@ -180,6 +227,8 @@ class HanziMahjongGame {
     handleTileClick(idx, tileEl) {
         const tile = this.tiles[idx];
         if (!tile || tile.isMatched) return;
+
+        this.playTileClickSound();
 
         // Limpiar hints
         this.boardEl?.querySelectorAll(".hinted").forEach((el) => el.classList.remove("hinted"));

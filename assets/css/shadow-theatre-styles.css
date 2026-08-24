@@ -125,6 +125,21 @@
     justify-content: center;
     position: relative;
     padding: 20px;
+    animation: lanternFlicker 4s infinite alternate ease-in-out;
+}
+
+@keyframes lanternFlicker {
+    0% { filter: brightness(1) drop-shadow(0 0 10px rgba(245, 158, 11, 0.4)); }
+    30% { filter: brightness(1.05) drop-shadow(0 0 18px rgba(245, 158, 11, 0.6)); }
+    60% { filter: brightness(0.96) drop-shadow(0 0 8px rgba(245, 158, 11, 0.35)); }
+    100% { filter: brightness(1.03) drop-shadow(0 0 14px rgba(245, 158, 11, 0.5)); }
+}
+
+.shadow-autoplay-btn.playing {
+    background: #b91c1c;
+    color: #ffffff;
+    border-color: #991b1b;
+    box-shadow: 0 0 12px rgba(185, 28, 28, 0.4);
 }
 
 .puppet-silhouette-wrap {

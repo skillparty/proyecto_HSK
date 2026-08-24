@@ -30,6 +30,10 @@ const setupDOM = () => {
       <button class="mahjong-mode-btn active" data-mode="radicals"></button>
       <button class="mahjong-mode-btn" data-mode="compounds"></button>
 
+      <button class="mahjong-diff-btn" data-diff="easy"></button>
+      <button class="mahjong-diff-btn active" data-diff="normal"></button>
+      <button class="mahjong-diff-btn" data-diff="master"></button>
+
       <button id="mahjong-hint-btn"></button>
       <span id="mahjong-hints-count">3</span>
       <button id="mahjong-shuffle-btn"></button>
@@ -60,6 +64,20 @@ describe("HanziMahjongGame", () => {
     expect(game.tiles.length).toBe(16);
     expect(game.pairsRemaining).toBe(8);
     expect(document.querySelectorAll(".mahjong-tile").length).toBe(16);
+  });
+
+  test("switches difficulty to easy (6 pairs / 12 tiles) and master (12 pairs / 24 tiles)", () => {
+    game.init();
+    const diffBtns = document.querySelectorAll(".mahjong-diff-btn");
+    diffBtns[0].click(); // Easy
+    expect(game.currentDifficulty).toBe("easy");
+    expect(game.tiles.length).toBe(12);
+    expect(game.pairsRemaining).toBe(6);
+
+    diffBtns[2].click(); // Master
+    expect(game.currentDifficulty).toBe("master");
+    expect(game.tiles.length).toBe(24);
+    expect(game.pairsRemaining).toBe(12);
   });
 
   test("matches correct pair successfully and increases score & combo", () => {

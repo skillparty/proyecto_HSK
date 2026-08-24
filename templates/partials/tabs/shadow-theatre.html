@@ -46,6 +46,9 @@
                     <button type="button" class="btn btn-primary shadow-play-btn" id="shadow-play-scene-btn">
                         <span id="shadow-scene-play-icon">🔊</span> <span id="shadow-scene-play-label" data-i18n="shadowPlayNarrator">Escuchar Narración</span>
                     </button>
+                    <button type="button" class="btn btn-secondary shadow-autoplay-btn" id="shadow-autoplay-btn">
+                        <span>🎬</span> <span data-i18n="shadowAutoplayBtn">Modo Cinemático</span>
+                    </button>
                     <button type="button" class="btn btn-secondary shadow-nav-btn" id="shadow-next-scene-btn">
                         <span data-i18n="shadowNextScene">Siguiente Escena</span> <span>⏭️</span>
                     </button>
@@ -58,28 +61,28 @@
             <!-- Right: Tale Lore, Idiom Breakdown & Moral Quiz -->
             <div class="shadow-side-column">
                 <!-- Tale Info & Moral Lesson -->
-                <div class="shadow-card tale-moral-card">
-                    <h4 class="shadow-card-title">
+                <div class="shadow-side-card">
+                    <h4 class="side-card-title">
                         <span>📜</span> <span data-i18n="taleMoralTitle">Enseñanza y Moraleja</span>
                     </h4>
                     <div class="tale-moral-content" id="tale-moral-content">
-                        <!-- Moral description -->
+                        <!-- Rendered dynamically -->
                     </div>
                 </div>
 
-                <!-- Featured Idiom / Chengyu -->
-                <div class="shadow-card tale-chengyu-card">
-                    <h4 class="shadow-card-title">
-                        <span>💎</span> <span data-i18n="taleChengyuTitle">Chengyu / Modismo Destacado</span>
+                <!-- Featured Chengyu / Idiom -->
+                <div class="shadow-side-card chengyu-highlight-card">
+                    <h4 class="side-card-title">
+                        <span>🏮</span> <span data-i18n="taleChengyuTitle">Chengyu / Modismo Destacado</span>
                     </h4>
                     <div class="tale-chengyu-box" id="tale-chengyu-box">
-                        <!-- Chengyu details -->
+                        <!-- Rendered dynamically -->
                     </div>
                 </div>
 
-                <!-- Interactive Quiz: Story Comprehension -->
-                <div class="shadow-card tale-quiz-card">
-                    <h4 class="shadow-card-title">
+                <!-- Moral & Comprehension Challenge Quiz -->
+                <div class="shadow-side-card quiz-side-card">
+                    <h4 class="side-card-title">
                         <span>🎯</span> <span data-i18n="taleQuizTitle">Reto de Comprensión</span>
                     </h4>
                     <p class="tale-quiz-question" id="tale-quiz-question"></p>

@@ -35,6 +35,7 @@ const setupDOM = () => {
       <button id="shadow-prev-scene-btn"></button>
       <button id="shadow-next-scene-btn"></button>
       <button id="shadow-play-scene-btn"></button>
+      <button id="shadow-autoplay-btn"></button>
       <span id="shadow-scene-indicator"></span>
 
       <div id="tale-moral-content"></div>
@@ -63,6 +64,18 @@ describe("ShadowTheatreGame", () => {
     expect(document.getElementById("stage-caption-hanzi").textContent).toContain("十个太阳");
     expect(document.getElementById("tale-moral-content").textContent).toContain("valentía");
     expect(document.getElementById("tale-chengyu-box").textContent).toContain("拔苗助长");
+  });
+
+  test("toggles cinematic autoplay", () => {
+    game.init();
+    expect(game.isAutoplaying).toBe(false);
+
+    game.toggleAutoplay();
+    expect(game.isAutoplaying).toBe(true);
+    expect(document.getElementById("shadow-autoplay-btn").classList.contains("playing")).toBe(true);
+
+    game.toggleAutoplay();
+    expect(game.isAutoplaying).toBe(false);
   });
 
   test("navigates forward and backward through scenes", () => {

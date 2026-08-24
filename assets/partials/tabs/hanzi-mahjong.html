@@ -32,17 +32,27 @@
             </div>
         </div>
 
-        <!-- Controls Toolbar -->
+        <!-- Controls Toolbar & Filters -->
         <div class="mahjong-toolbar">
-            <div class="mahjong-mode-selector">
-                <button type="button" class="mahjong-mode-btn active" data-mode="radicals" data-i18n="mahjongModeRadicals">
-                    Radicales + Hanzi (部首组合)
-                </button>
-                <button type="button" class="mahjong-mode-btn" data-mode="compounds" data-i18n="mahjongModeCompounds">
-                    Palabras Compuestas (词语搭配)
-                </button>
+            <!-- Mode & Difficulty Selectors -->
+            <div class="mahjong-controls-left">
+                <div class="mahjong-mode-selector">
+                    <button type="button" class="mahjong-mode-btn active" data-mode="radicals" data-i18n="mahjongModeRadicals">
+                        Radicales + Hanzi (部首)
+                    </button>
+                    <button type="button" class="mahjong-mode-btn" data-mode="compounds" data-i18n="mahjongModeCompounds">
+                        Palabras HSK (词语)
+                    </button>
+                </div>
+
+                <div class="mahjong-difficulty-selector">
+                    <button type="button" class="mahjong-diff-btn" data-diff="easy" data-i18n="mahjongDiffEasy">Fácil (6)</button>
+                    <button type="button" class="mahjong-diff-btn active" data-diff="normal" data-i18n="mahjongDiffNormal">Normal (8)</button>
+                    <button type="button" class="mahjong-diff-btn" data-diff="master" data-i18n="mahjongDiffMaster">Maestro (12)</button>
+                </div>
             </div>
 
+            <!-- Action Buttons -->
             <div class="mahjong-action-buttons">
                 <button type="button" class="btn btn-secondary mahjong-btn" id="mahjong-hint-btn">
                     <span>💡</span> <span data-i18n="mahjongHintBtn">Pista</span> (<span id="mahjong-hints-count">3</span>)

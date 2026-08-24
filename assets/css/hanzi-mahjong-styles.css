@@ -76,7 +76,15 @@
     margin-bottom: 20px;
 }
 
-.mahjong-mode-selector {
+.mahjong-controls-left {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.mahjong-mode-selector,
+.mahjong-difficulty-selector {
     display: flex;
     border: 1px solid var(--border-color, #d1d5db);
     border-radius: 10px;
@@ -84,23 +92,26 @@
     background: var(--card-bg, #ffffff);
 }
 
-.mahjong-mode-btn {
-    padding: 8px 14px;
+.mahjong-mode-btn,
+.mahjong-diff-btn {
+    padding: 8px 12px;
     border: none;
     border-right: 1px solid var(--border-color, #d1d5db);
     background: transparent;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 700;
     color: var(--text-secondary, #4b5563);
     cursor: pointer;
     transition: all 0.15s ease;
 }
 
-.mahjong-mode-btn:last-child {
+.mahjong-mode-btn:last-child,
+.mahjong-diff-btn:last-child {
     border-right: none;
 }
 
-.mahjong-mode-btn.active {
+.mahjong-mode-btn.active,
+.mahjong-diff-btn.active {
     background: #047857;
     color: #ffffff;
 }
@@ -134,16 +145,37 @@
 
 .mahjong-board {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    max-width: 680px;
+    gap: 14px;
+    max-width: 780px;
     width: 100%;
+    margin: 0 auto;
 }
 
-@media (max-width: 600px) {
-    .mahjong-board {
+.mahjong-board.grid-easy {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 540px;
+}
+
+.mahjong-board.grid-normal {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 640px;
+}
+
+.mahjong-board.grid-master {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 820px;
+}
+
+@media (max-width: 680px) {
+    .mahjong-board.grid-master {
         grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .mahjong-board {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px;
     }
 }
 
@@ -194,7 +226,7 @@
 }
 
 .tile-hanzi {
-    font-size: 2rem;
+    font-size: 1.85rem;
     font-weight: 800;
     color: #991b1b;
     font-family: "Noto Serif SC", serif;
