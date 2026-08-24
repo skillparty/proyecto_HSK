@@ -1,0 +1,129 @@
+<div id="calligraphy-scroll" class="tab-panel" data-tab="calligraphy-scroll">
+    <div class="scroll-studio-container">
+        <!-- Header Banner -->
+        <div class="scroll-header-banner">
+            <div class="scroll-title-group">
+                <h2 class="scroll-main-title">
+                    <span class="scroll-title-icon">📜</span>
+                    <span data-i18n="calligraphyScrollTitle">Estudio de Caligrafía & Rollos Tradicionales</span>
+                </h2>
+                <p class="scroll-subtitle" data-i18n="calligraphyScrollSubtitle">
+                    Crea, personaliza e imprime elegantes rollos colgantes chinos verticales (立轴) con poemas milenarios de la Dinastía Tang, proverbios Chengyu o tus propios versos en tinta china.
+                </p>
+            </div>
+        </div>
+
+        <!-- Scroll Customizer & Live Stage -->
+        <div class="scroll-studio-grid">
+            <!-- Left: Scroll Options & Controls Sidebar -->
+            <div class="scroll-controls-card">
+                <h3 class="control-section-title">
+                    <span>🖌️</span> <span data-i18n="scrollControlsTitle">Personalizar Rollo de Caligrafía</span>
+                </h3>
+
+                <!-- Presets: Tang Poems & Classic Chengyu -->
+                <div class="control-group">
+                    <label for="scroll-preset-select" class="control-label" data-i18n="scrollPresetLabel">Seleccionar Obra Clásica:</label>
+                    <select id="scroll-preset-select" class="form-control">
+                        <option value="quiet-night" selected>《静夜思》- 李白 (Pensamiento en Noche Tranquila)</option>
+                        <option value="spring-dawn">《春晓》- 孟浩然 (Amanecer de Primavera)</option>
+                        <option value="stork-tower">《登鹳雀楼》- 王之涣 (Torre de la Cigüeña)</option>
+                        <option value="thousand-miles">《千里之行，始于足下》 (El viaje de mil millas)</option>
+                        <option value="water-stone">《水滴石穿》 (La constancia vence)</option>
+                        <option value="custom">✏️ Personalizado (Escribir mis propios caracteres)</option>
+                    </select>
+                </div>
+
+                <!-- Custom Text Inputs (Visible if custom chosen) -->
+                <div class="control-group" id="scroll-custom-inputs" style="display: none;">
+                    <label for="scroll-custom-title" class="control-label">Título del Rollo:</label>
+                    <input type="text" id="scroll-custom-title" class="form-control" placeholder="Ej. 《学海无涯》" value="《学无止境》" />
+
+                    <label for="scroll-custom-content" class="control-label" style="margin-top: 8px;">Contenido Vertical (Hanzi):</label>
+                    <textarea id="scroll-custom-content" class="form-control" rows="4" placeholder="Escribe tus caracteres aquí...">书山有路勤为径
+学海无涯苦作舟</textarea>
+                </div>
+
+                <!-- Calligraphy Font Style -->
+                <div class="control-group">
+                    <label for="scroll-font-style" class="control-label" data-i18n="scrollFontLabel">Estilo Caligráfico:</label>
+                    <select id="scroll-font-style" class="form-control">
+                        <option value="kaishu" selected>Estilo Regular / Kaishu (楷书 - Claridad y Elegancia)</option>
+                        <option value="xingshu">Estilo Cursivo / Xingshu (行书 - Fluidez y Dinamismo)</option>
+                        <option value="zhuanshu">Estilo de Sello Arcaico / Zhuanshu (篆书 - Tradición Imperial)</option>
+                    </select>
+                </div>
+
+                <!-- Silk Mounting Color Theme -->
+                <div class="control-group">
+                    <label for="scroll-silk-theme" class="control-label" data-i18n="scrollSilkThemeLabel">Color del Brocado de Seda (装裱):</label>
+                    <select id="scroll-silk-theme" class="form-control">
+                        <option value="imperial-gold" selected>Brocado Dorado Imperial (皇家织锦金)</option>
+                        <option value="celadon-jade">Jade Celadón Song (青瓷玉碧)</option>
+                        <option value="crimson-silk">Seda Carmesí Palacio (朱砂宫廷红)</option>
+                        <option value="ink-sapphire">Zafiro Índigo (水墨靛蓝)</option>
+                    </select>
+                </div>
+
+                <!-- Scholar Seal Name -->
+                <div class="control-group">
+                    <label for="scroll-seal-author" class="control-label" data-i18n="scrollAuthorSealLabel">Firma y Sello del Erudito:</label>
+                    <input type="text" id="scroll-seal-author" class="form-control" value="孔夫子门生" placeholder="Tu nombre en Hanzi" />
+                </div>
+
+                <!-- Actions -->
+                <div class="scroll-actions-wrapper">
+                    <button type="button" class="btn btn-secondary" id="scroll-read-aloud-btn">
+                        <span>🔊</span> <span data-i18n="scrollReciteBtn">Recitar Poema</span>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="scroll-print-btn">
+                        <span>🖨️</span> <span data-i18n="scrollPrintBtn">Imprimir / Guardar Rollo</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right: Traditional Vertical Hanging Scroll Live Preview -->
+            <div class="scroll-preview-card">
+                <div class="scroll-preview-wrapper">
+                    <div class="hanging-scroll-assembly" id="hanging-scroll-assembly">
+                        <!-- Top Hanging Ribbon & Rod -->
+                        <div class="scroll-hanging-cord"></div>
+                        <div class="scroll-rod-top">
+                            <span class="rod-knob left"></span>
+                            <span class="rod-wood"></span>
+                            <span class="rod-knob right"></span>
+                        </div>
+
+                        <!-- Silk Brocade Outer Mount -->
+                        <div class="scroll-silk-mount theme-imperial-gold" id="scroll-silk-mount">
+                            <!-- Inner Xuan Paper Scroll -->
+                            <div class="scroll-xuan-paper" id="scroll-xuan-paper">
+                                <!-- Scroll Header Title -->
+                                <div class="scroll-poem-title" id="scroll-poem-title">《静夜思》</div>
+                                <div class="scroll-poem-author" id="scroll-poem-author">【唐】李白</div>
+
+                                <!-- Vertical Calligraphy Text Columns -->
+                                <div class="scroll-calligraphy-body font-kaishu" id="scroll-calligraphy-body">
+                                    <!-- Populated dynamically (Right to left vertical flow) -->
+                                </div>
+
+                                <!-- Red Scholar Chop Seal Stamp -->
+                                <div class="scroll-vermilion-chop" id="scroll-vermilion-chop">
+                                    <span id="scroll-chop-top">孔门</span>
+                                    <span id="scroll-chop-bottom">雅士</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Weight Roller -->
+                        <div class="scroll-rod-bottom">
+                            <span class="rod-knob left"></span>
+                            <span class="rod-wood"></span>
+                            <span class="rod-knob right"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

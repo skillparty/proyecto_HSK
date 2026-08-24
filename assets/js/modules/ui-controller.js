@@ -842,6 +842,38 @@ class UIController {
           }
         })();
         break;
+      case "tone-visualizer":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/tone-visualizer-styles.css", "tone-visualizer-stylesheet");
+            if (!window.ToneVisualizerGame) {
+              await this.loadScript("assets/js/tone-visualizer-game.js");
+            }
+            if (window.ToneVisualizerGame && !window.toneVisualizerGame) {
+              window.toneVisualizerGame = new window.ToneVisualizerGame(this.app);
+              window.toneVisualizerGame.init();
+            }
+          } catch (err) {
+            this.logError("tone-visualizer init failed:", err);
+          }
+        })();
+        break;
+      case "calligraphy-scroll":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/calligraphy-scroll-styles.css", "calligraphy-scroll-stylesheet");
+            if (!window.CalligraphyScrollGame) {
+              await this.loadScript("assets/js/calligraphy-scroll-game.js");
+            }
+            if (window.CalligraphyScrollGame && !window.calligraphyScrollGame) {
+              window.calligraphyScrollGame = new window.CalligraphyScrollGame(this.app);
+              window.calligraphyScrollGame.init();
+            }
+          } catch (err) {
+            this.logError("calligraphy-scroll init failed:", err);
+          }
+        })();
+        break;
     }
   }
 
@@ -1074,6 +1106,8 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "shadow-theatre",
   "hanzi-mahjong",
   "china-cities",
+  "tone-visualizer",
+  "calligraphy-scroll",
 ]);
 
 window.UIController = UIController;

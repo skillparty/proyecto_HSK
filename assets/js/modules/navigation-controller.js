@@ -34,6 +34,8 @@ class NavigationController {
       "shadow-theatre",
       "hanzi-mahjong",
       "china-cities",
+      "tone-visualizer",
+      "calligraphy-scroll",
     ]);
   }
 

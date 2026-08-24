@@ -1,0 +1,298 @@
+/* calligraphy-scroll-styles.css — Estilos para el Estudio de Caligrafía y Rollos Chinos */
+
+.scroll-studio-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 12px 60px;
+}
+
+.scroll-header-banner {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.scroll-title-group {
+    margin-bottom: 4px;
+}
+
+.scroll-main-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    margin: 0 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.scroll-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0;
+    line-height: 1.45;
+}
+
+/* Studio Layout Grid */
+.scroll-studio-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 24px;
+}
+
+@media (max-width: 860px) {
+    .scroll-studio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.scroll-controls-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.control-section-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.control-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary, #374151);
+}
+
+.scroll-actions-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.scroll-actions-wrapper .btn {
+    flex: 1;
+    font-weight: 700;
+    padding: 10px;
+}
+
+/* Scroll Live Preview Card */
+.scroll-preview-card {
+    background: #1e293b;
+    border-radius: 20px;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-preview-wrapper {
+    max-width: 440px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Hanging Scroll Assembly */
+.hanging-scroll-assembly {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6));
+}
+
+/* Hanging Cord */
+.scroll-hanging-cord {
+    width: 2px;
+    height: 36px;
+    background: #d97706;
+    position: relative;
+}
+
+.scroll-hanging-cord::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #b45309;
+    border: 2px solid #fbbf24;
+}
+
+/* Wooden Rods */
+.scroll-rod-top,
+.scroll-rod-bottom {
+    display: flex;
+    align-items: center;
+    width: 106%;
+    height: 16px;
+    z-index: 3;
+}
+
+.scroll-rod-bottom {
+    height: 22px;
+}
+
+.rod-wood {
+    flex: 1;
+    height: 100%;
+    background: linear-gradient(180deg, #78350f 0%, #451a03 50%, #290e02 100%);
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2), 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+.rod-knob {
+    width: 18px;
+    height: 24px;
+    background: radial-gradient(circle, #fde68a 20%, #d97706 70%, #78350f 100%);
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.scroll-rod-bottom .rod-knob {
+    width: 22px;
+    height: 30px;
+}
+
+/* Silk Brocade Outer Mount */
+.scroll-silk-mount {
+    width: 100%;
+    padding: 34px 22px 40px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease;
+}
+
+/* Silk Mounting Themes */
+.scroll-silk-mount.theme-imperial-gold {
+    background: radial-gradient(circle at 50% 50%, #fef08a 0%, #ca8a04 70%, #854d0e 100%);
+    border-left: 3px solid #713f12;
+    border-right: 3px solid #713f12;
+}
+
+.scroll-silk-mount.theme-celadon-jade {
+    background: radial-gradient(circle at 50% 50%, #d1fae5 0%, #059669 70%, #064e3b 100%);
+    border-left: 3px solid #022c22;
+    border-right: 3px solid #022c22;
+}
+
+.scroll-silk-mount.theme-crimson-silk {
+    background: radial-gradient(circle at 50% 50%, #fca5a5 0%, #b91c1c 70%, #7f1d1d 100%);
+    border-left: 3px solid #450a0a;
+    border-right: 3px solid #450a0a;
+}
+
+.scroll-silk-mount.theme-ink-sapphire {
+    background: radial-gradient(circle at 50% 50%, #bfdbfe 0%, #2563eb 70%, #1e3a8a 100%);
+    border-left: 3px solid #0f172a;
+    border-right: 3px solid #0f172a;
+}
+
+/* Inner Xuan Paper */
+.scroll-xuan-paper {
+    background: #fffdf5;
+    border: 1px solid #dcd7c9;
+    border-radius: 4px;
+    padding: 24px 18px 20px;
+    min-height: 380px;
+    box-shadow: inset 0 0 15px rgba(180, 160, 120, 0.25), 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Header Poem Meta */
+.scroll-poem-title {
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: #1c1917;
+    margin-bottom: 2px;
+    letter-spacing: 0.1em;
+    font-family: "Noto Serif SC", serif;
+}
+
+.scroll-poem-author {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #78716c;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+}
+
+/* Vertical Calligraphy Columns (Right to Left) */
+.scroll-calligraphy-body {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #18181b;
+    line-height: 2.2;
+    letter-spacing: 0.2em;
+    height: 240px;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.scroll-calligraphy-body.font-kaishu {
+    font-family: "Noto Serif SC", "Kaiti SC", "STKaiti", serif;
+}
+
+.scroll-calligraphy-body.font-xingshu {
+    font-family: "Xingkai SC", "STXingkai", "Brush Script MT", cursive, serif;
+    font-weight: 700;
+}
+
+.scroll-calligraphy-body.font-zhuanshu {
+    font-family: "Noto Serif SC", "LiSu", "SimSun", serif;
+    letter-spacing: 0.25em;
+}
+
+/* Vermilion Chop Seal */
+.scroll-vermilion-chop {
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+    width: 42px;
+    height: 42px;
+    border: 2px solid #dc2626;
+    border-radius: 4px;
+    color: #dc2626;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.72rem;
+    line-height: 1;
+    transform: rotate(-4deg);
+    box-shadow: 0 2px 5px rgba(220, 38, 38, 0.25);
+    background: rgba(254, 242, 242, 0.4);
+}

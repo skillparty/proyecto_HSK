@@ -1,0 +1,108 @@
+    <div class="tone-vis-container">
+        <!-- Header Banner -->
+        <div class="tone-vis-header-banner">
+            <div class="tone-vis-title-group">
+                <h2 class="tone-vis-main-title">
+                    <span class="tone-vis-title-icon">📊</span>
+                    <span data-i18n="toneVisualizerTitle">Visualizador de Curva de Tonos & Entonación</span>
+                </h2>
+                <p class="tone-vis-subtitle" data-i18n="toneVisualizerSubtitle">
+                    Domina los 4 tonos del mandarín y el tono neutro mediante el sistema de 5 niveles tonales de Chao Yuen Ren (五度标记法), comparando la frecuencia y entonación en tiempo real.
+                </p>
+            </div>
+
+            <!-- Tone Quick Selector (1st, 2nd, 3rd, 4th, Neutral) -->
+            <div class="tone-selector-pills" id="tone-selector-pills">
+                <button type="button" class="tone-pill-btn active" data-tone="1">
+                    <span class="tone-pill-badge">1º Tono (55)</span>
+                    <span class="tone-pill-char">mā 妈</span>
+                </button>
+                <button type="button" class="tone-pill-btn" data-tone="2">
+                    <span class="tone-pill-badge">2º Tono (35)</span>
+                    <span class="tone-pill-char">má 麻</span>
+                </button>
+                <button type="button" class="tone-pill-btn" data-tone="3">
+                    <span class="tone-pill-badge">3º Tono (214)</span>
+                    <span class="tone-pill-char">mǎ 马</span>
+                </button>
+                <button type="button" class="tone-pill-btn" data-tone="4">
+                    <span class="tone-pill-badge">4º Tono (51)</span>
+                    <span class="tone-pill-char">mà 骂</span>
+                </button>
+                <button type="button" class="tone-pill-btn" data-tone="0">
+                    <span class="tone-pill-badge">Neutro (·)</span>
+                    <span class="tone-pill-char">ma 吗</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Visualizer Workspace Grid -->
+        <div class="tone-vis-grid">
+            <!-- Left: Pitch Canvas & Curve Waveform -->
+            <div class="tone-vis-card tone-canvas-card">
+                <div class="canvas-header-bar">
+                    <div class="tone-badge-display">
+                        <span class="tone-number-label" id="vis-tone-title">1º Tono: Alto y Nivelado (高平调 55)</span>
+                        <span class="tone-pinyin-display" id="vis-pinyin-display">mā (m-a-1)</span>
+                    </div>
+                    <div class="canvas-legend">
+                        <span class="legend-item"><span class="legend-dot native"></span> <span data-i18n="toneLegendNative">Modelo Nativo</span></span>
+                        <span class="legend-item"><span class="legend-dot user"></span> <span data-i18n="toneLegendUser">Tu Entonación</span></span>
+                    </div>
+                </div>
+
+                <!-- 5-Level Pitch Scale Canvas (Chao System) -->
+                <div class="pitch-canvas-wrapper">
+                    <canvas id="pitch-graph-canvas" width="620" height="280"></canvas>
+                </div>
+
+                <!-- Audio Controls & Practice Action Bar -->
+                <div class="tone-vis-actions-bar">
+                    <button type="button" class="btn btn-primary tone-action-btn" id="tone-play-audio-btn">
+                        <span>🔊</span> <span data-i18n="tonePlayModelBtn">Escuchar Modelo</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary tone-action-btn" id="tone-slow-audio-btn">
+                        <span>🐢</span> <span data-i18n="toneSlowModelBtn">Lento (0.75x)</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary tone-action-btn" id="tone-record-btn">
+                        <span id="tone-record-icon">🎙️</span> <span id="tone-record-label" data-i18n="tonePracticeMicBtn">Practicar Entonación</span>
+                    </button>
+                </div>
+
+                <!-- Live Score Feedback Banner -->
+                <div class="tone-feedback-banner" id="tone-feedback-banner" style="display: none;">
+                    <div class="feedback-score-circle" id="feedback-score-circle">95%</div>
+                    <div class="feedback-text-group">
+                        <h4 class="feedback-heading" id="feedback-heading">¡Excelente Curva Tonal!</h4>
+                        <p class="feedback-desc" id="feedback-desc">Has mantenido el tono alto y firme en el nivel 5 de forma precisa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Minimal Pairs & Tone Rules Guide -->
+            <div class="tone-vis-side-column">
+                <!-- Tone Guide Rules Card -->
+                <div class="tone-vis-card tone-rules-card">
+                    <h4 class="side-card-title">
+                        <span>💡</span> <span data-i18n="toneRulesTitle">Regla Mnemotécnica del Tono</span>
+                    </h4>
+                    <p class="tone-rule-desc" id="tone-rule-desc">
+                        Mantén la voz alta y plana como si cantaras una nota musical constante sin fluctuar.
+                    </p>
+                    <div class="tone-frequence-badge" id="tone-freq-badge">
+                        <span>Frecuencia:</span> <strong>Nivel 5 ➔ Nivel 5 (Constante)</strong>
+                    </div>
+                </div>
+
+                <!-- Tone Minimal Pairs Bench -->
+                <div class="tone-vis-card minimal-pairs-card">
+                    <h4 class="side-card-title">
+                        <span>⚖️</span> <span data-i18n="minimalPairsTitle">Pares Mínimos de Contraste</span>
+                    </h4>
+                    <div class="minimal-pairs-list" id="minimal-pairs-list">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

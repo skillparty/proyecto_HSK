@@ -152,6 +152,24 @@ class SearchController {
                     this.app.switchTab("china-cities");
                 },
             },
+            {
+                id: "action-open-tone-visualizer",
+                title: "Abrir Visualizador de Curva de Tonos",
+                titleEn: "Open Pitch Curve & Intonation Visualizer",
+                icon: "📊",
+                execute: () => {
+                    this.app.switchTab("tone-visualizer");
+                },
+            },
+            {
+                id: "action-open-calligraphy-scroll",
+                title: "Abrir Estudio de Rollos de Caligrafía Tradicional",
+                titleEn: "Open Traditional Calligraphy Scroll Studio",
+                icon: "📜",
+                execute: () => {
+                    this.app.switchTab("calligraphy-scroll");
+                },
+            },
         ];
     }
 
