@@ -1,0 +1,81 @@
+<div id="china-cities" class="tab-panel" data-tab="china-cities">
+    <div class="cities-container">
+        <!-- Header Banner -->
+        <div class="cities-header-banner">
+            <div class="cities-title-group">
+                <h2 class="cities-main-title">
+                    <span class="cities-title-icon">🗺️</span>
+                    <span data-i18n="chinaCitiesTitle">Explorador de Ciudades & Rutas de China</span>
+                </h2>
+                <p class="cities-subtitle" data-i18n="chinaCitiesSubtitle">
+                    Viaja por las metrópolis, maravillas históricas y paisajes naturales más célebres de China mientras dominas vocabulario geográfico, cultural y gastronómico.
+                </p>
+            </div>
+
+            <!-- City Selector Pills -->
+            <div class="cities-nav-pills" id="cities-nav-pills">
+                <!-- City pills rendered dynamically -->
+            </div>
+        </div>
+
+        <!-- City Spotlight & Explorer Workspace -->
+        <div class="cities-workspace-grid">
+            <!-- Left: Hero Overview & Highlights -->
+            <div class="cities-card city-hero-card">
+                <div class="city-banner-header">
+                    <div class="city-avatar-badge" id="city-avatar-badge">🏯</div>
+                    <div class="city-meta-text">
+                        <div class="city-chinese-name" id="city-chinese-name">北京 · Běijīng</div>
+                        <h3 class="city-spanish-name" id="city-spanish-name">Pekín / Beijing (Capital Imperial)</h3>
+                        <p class="city-tagline" id="city-tagline">El corazón político y cultural milenario de China.</p>
+                    </div>
+                </div>
+
+                <!-- City Highlights Grid (Monuments, Food, Culture) -->
+                <div class="city-highlights-section">
+                    <h4 class="section-title">
+                        <span>🌟</span> <span data-i18n="cityHighlightsTitle">Atracciones y Puntos Emblemáticos</span>
+                    </h4>
+                    <div class="highlights-grid" id="city-highlights-grid"></div>
+                </div>
+
+                <!-- Gastronomy & Local Specialties -->
+                <div class="city-food-section">
+                    <h4 class="section-title">
+                        <span>🥢</span> <span data-i18n="cityGastronomyTitle">Gastronomía y Sabores Típicos</span>
+                    </h4>
+                    <div class="food-grid" id="city-food-grid"></div>
+                </div>
+            </div>
+
+            <!-- Right: Travel Vocabulary & Cultural Trivia Quiz -->
+            <div class="cities-side-column">
+                <!-- Travel Vocabulary Deck -->
+                <div class="cities-card city-vocab-card">
+                    <h4 class="side-card-title">
+                        <span>📖</span> <span data-i18n="cityVocabTitle">Vocabulario de Viaje Esencial</span>
+                    </h4>
+                    <div class="city-vocab-list" id="city-vocab-list"></div>
+                </div>
+
+                <!-- Did you know? Trivia -->
+                <div class="cities-card city-trivia-card">
+                    <h4 class="side-card-title">
+                        <span>💡</span> <span data-i18n="cityTriviaTitle">¿Sabías que...? (文化小知识)</span>
+                    </h4>
+                    <p class="city-trivia-text" id="city-trivia-text"></p>
+                </div>
+
+                <!-- Mini-Game: Local Explorer Quiz -->
+                <div class="cities-card city-quiz-card">
+                    <h4 class="side-card-title">
+                        <span>🎯</span> <span data-i18n="cityQuizTitle">Reto de Guía Turístico</span>
+                    </h4>
+                    <p class="city-quiz-question" id="city-quiz-question"></p>
+                    <div class="city-quiz-options" id="city-quiz-options"></div>
+                    <div class="city-quiz-feedback" id="city-quiz-feedback" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

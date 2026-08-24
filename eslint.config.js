@@ -49,6 +49,8 @@ const APP_GLOBALS = [
   "SkillTreeGame",
   "LyricsLabGame",
   "ShadowTheatreGame",
+  "HanziMahjongGame",
+  "ChinaCitiesGame",
   "HanziCanvasController",
   "ToneTrainerGame",
   "CultureModuleBase",

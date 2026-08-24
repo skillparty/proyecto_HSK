@@ -1,0 +1,324 @@
+/* china-cities-styles.css — Estilos para la Guía Interactiva de Ciudades de China */
+
+.cities-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 16px 12px 60px;
+}
+
+.cities-header-banner {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.cities-title-group {
+    margin-bottom: 16px;
+}
+
+.cities-main-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    margin: 0 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cities-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0;
+    line-height: 1.45;
+}
+
+.cities-nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.city-pill-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: var(--bg-main, #f9fafb);
+    color: var(--text-primary, #374151);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.city-pill-btn:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.city-pill-btn.active {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    color: #ffffff;
+    border-color: #1e40af;
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+}
+
+/* Workspace Grid */
+.cities-workspace-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.8fr;
+    gap: 20px;
+}
+
+@media (max-width: 860px) {
+    .cities-workspace-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cities-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Banner Header */
+.city-banner-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color, #f3f4f6);
+}
+
+.city-avatar-badge {
+    width: 68px;
+    height: 68px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.city-chinese-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1d4ed8;
+    font-family: "Noto Serif SC", serif;
+}
+
+.city-spanish-name {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    margin: 2px 0;
+}
+
+.city-tagline {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0;
+}
+
+/* Sections */
+.section-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    margin: 0 0 14px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.highlights-grid,
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 600px) {
+    .highlights-grid,
+    .food-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.highlight-item-card,
+.food-item-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--bg-main, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.highlight-item-card:hover,
+.food-item-card:hover {
+    border-color: #2563eb;
+    background: #f8fafc;
+    transform: translateY(-1px);
+}
+
+.item-icon {
+    font-size: 1.6rem;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-hanzi {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    font-family: "Noto Serif SC", serif;
+}
+
+.item-pinyin {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.item-trans {
+    font-size: 0.78rem;
+    color: var(--text-secondary, #4b5563);
+    margin-top: 2px;
+}
+
+/* Side Column */
+.cities-side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.side-card-title {
+    margin: 0 0 12px 0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.city-vocab-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.city-vocab-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--bg-main, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.vocab-row-hanzi {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #1e40af;
+}
+
+.vocab-row-pinyin {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+}
+
+.vocab-row-trans {
+    font-size: 0.75rem;
+    color: var(--text-secondary, #6b7280);
+}
+
+/* Trivia Card */
+.city-trivia-card {
+    background: #fefce8;
+    border-color: #fef08a;
+}
+
+.city-trivia-text {
+    font-size: 0.85rem;
+    color: #713f12;
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* Quiz Card */
+.city-quiz-question {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+    margin: 0 0 10px 0;
+}
+
+.city-quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.city-quiz-opt-btn {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color, #d1d5db);
+    background: var(--card-bg, #ffffff);
+    color: var(--text-primary, #111827);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+}
+
+.city-quiz-opt-btn:hover {
+    border-color: #2563eb;
+    background: rgba(37, 99, 235, 0.04);
+}
+
+.city-quiz-feedback {
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.city-quiz-feedback.correct {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #86efac;
+}
+
+.city-quiz-feedback.incorrect {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}

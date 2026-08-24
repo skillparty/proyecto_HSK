@@ -810,6 +810,38 @@ class UIController {
           }
         })();
         break;
+      case "hanzi-mahjong":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/hanzi-mahjong-styles.css", "hanzi-mahjong-stylesheet");
+            if (!window.HanziMahjongGame) {
+              await this.loadScript("assets/js/hanzi-mahjong-game.js");
+            }
+            if (window.HanziMahjongGame && !window.hanziMahjongGame) {
+              window.hanziMahjongGame = new window.HanziMahjongGame(this.app);
+              window.hanziMahjongGame.init();
+            }
+          } catch (err) {
+            this.logError("hanzi-mahjong init failed:", err);
+          }
+        })();
+        break;
+      case "china-cities":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/china-cities-styles.css", "china-cities-stylesheet");
+            if (!window.ChinaCitiesGame) {
+              await this.loadScript("assets/js/china-cities-game.js");
+            }
+            if (window.ChinaCitiesGame && !window.chinaCitiesGame) {
+              window.chinaCitiesGame = new window.ChinaCitiesGame(this.app);
+              window.chinaCitiesGame.init();
+            }
+          } catch (err) {
+            this.logError("china-cities init failed:", err);
+          }
+        })();
+        break;
     }
   }
 
@@ -1040,6 +1072,8 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "skill-tree",
   "lyrics-lab",
   "shadow-theatre",
+  "hanzi-mahjong",
+  "china-cities",
 ]);
 
 window.UIController = UIController;

@@ -134,6 +134,24 @@ class SearchController {
                     this.app.switchTab("shadow-theatre");
                 },
             },
+            {
+                id: "action-open-mahjong",
+                title: "Abrir Laboratorio de Mahjong de Caracteres",
+                titleEn: "Open Hanzi Mahjong Tiles Lab",
+                icon: "🀄",
+                execute: () => {
+                    this.app.switchTab("hanzi-mahjong");
+                },
+            },
+            {
+                id: "action-open-china-cities",
+                title: "Abrir Explorador de Ciudades y Rutas de China",
+                titleEn: "Open Interactive China Cities Explorer",
+                icon: "🗺️",
+                execute: () => {
+                    this.app.switchTab("china-cities");
+                },
+            },
         ];
     }
 

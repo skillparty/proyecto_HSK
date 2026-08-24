@@ -1,0 +1,82 @@
+<div id="hanzi-mahjong" class="tab-panel" data-tab="hanzi-mahjong">
+    <div class="mahjong-container">
+        <!-- Header Banner -->
+        <div class="mahjong-header-banner">
+            <div class="mahjong-title-group">
+                <h2 class="mahjong-main-title">
+                    <span class="mahjong-title-icon">🀄</span>
+                    <span data-i18n="hanziMahjongTitle">Laboratorio de Mahjong de Caracteres</span>
+                </h2>
+                <p class="mahjong-subtitle" data-i18n="hanziMahjongSubtitle">
+                    Empareja fichas de Mahjong tradicionales combinando radicales complementarios para formar Hanzi o uniendo caracteres para crear palabras compuestas HSK.
+                </p>
+            </div>
+
+            <!-- Game Stats Bar -->
+            <div class="mahjong-stats-bar">
+                <div class="mahjong-stat-item">
+                    <span class="stat-label" data-i18n="mahjongScoreLabel">Puntos:</span>
+                    <strong class="stat-val" id="mahjong-score">0</strong>
+                </div>
+                <div class="mahjong-stat-item">
+                    <span class="stat-label" data-i18n="mahjongCombosLabel">Combo:</span>
+                    <strong class="stat-val" id="mahjong-combo">0×</strong>
+                </div>
+                <div class="mahjong-stat-item">
+                    <span class="stat-label" data-i18n="mahjongPairsLeftLabel">Pares Restantes:</span>
+                    <strong class="stat-val" id="mahjong-pairs-left">8</strong>
+                </div>
+                <div class="mahjong-stat-item">
+                    <span class="stat-label" data-i18n="mahjongTimerLabel">Tiempo:</span>
+                    <strong class="stat-val" id="mahjong-timer">00:00</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls Toolbar -->
+        <div class="mahjong-toolbar">
+            <div class="mahjong-mode-selector">
+                <button type="button" class="mahjong-mode-btn active" data-mode="radicals" data-i18n="mahjongModeRadicals">
+                    Radicales + Hanzi (部首组合)
+                </button>
+                <button type="button" class="mahjong-mode-btn" data-mode="compounds" data-i18n="mahjongModeCompounds">
+                    Palabras Compuestas (词语搭配)
+                </button>
+            </div>
+
+            <div class="mahjong-action-buttons">
+                <button type="button" class="btn btn-secondary mahjong-btn" id="mahjong-hint-btn">
+                    <span>💡</span> <span data-i18n="mahjongHintBtn">Pista</span> (<span id="mahjong-hints-count">3</span>)
+                </button>
+                <button type="button" class="btn btn-secondary mahjong-btn" id="mahjong-shuffle-btn">
+                    <span>🔀</span> <span data-i18n="mahjongShuffleBtn">Barajar</span>
+                </button>
+                <button type="button" class="btn btn-primary mahjong-btn" id="mahjong-new-game-btn">
+                    <span>🔄</span> <span data-i18n="mahjongNewGameBtn">Nueva Partida</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mahjong Board Layout -->
+        <div class="mahjong-board-wrapper">
+            <div class="mahjong-board" id="mahjong-board">
+                <!-- Mahjong tiles rendered dynamically -->
+            </div>
+
+            <!-- Victory Celebration Overlay -->
+            <div class="mahjong-victory-overlay" id="mahjong-victory-overlay" style="display: none;">
+                <div class="victory-modal-content">
+                    <div class="victory-icon">🀄 🏆 🀄</div>
+                    <h3 class="victory-title" data-i18n="mahjongVictoryTitle">¡Mesa Despejada! 恭喜发财</h3>
+                    <p class="victory-desc" id="mahjong-victory-desc">Has emparejado todas las fichas con maestría.</p>
+                    <div class="victory-score-badge">
+                        <span data-i18n="mahjongFinalScore">Puntuación Final:</span> <strong id="mahjong-final-score">1250</strong>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="mahjong-play-again-btn" data-i18n="mahjongPlayAgainBtn">
+                        Jugar de Nuevo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

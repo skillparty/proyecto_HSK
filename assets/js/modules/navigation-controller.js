@@ -32,6 +32,8 @@ class NavigationController {
       "skill-tree",
       "lyrics-lab",
       "shadow-theatre",
+      "hanzi-mahjong",
+      "china-cities",
     ]);
   }
 
