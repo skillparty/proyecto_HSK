@@ -116,6 +116,15 @@ class SearchController {
                     this.app.switchTab("skill-tree");
                 },
             },
+            {
+                id: "action-open-lyrics-lab",
+                title: "Abrir Laboratorio de Canciones y Rimas Chinas",
+                titleEn: "Open Chinese Nursery Rhymes & Lyrics Lab",
+                icon: "🎵",
+                execute: () => {
+                    this.app.switchTab("lyrics-lab");
+                },
+            },
         ];
     }
 

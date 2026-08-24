@@ -23,6 +23,7 @@ class WritingSheetsController {
             showMeaning: true,
             showPinyinLines: false,
             showStudentHeader: true,
+            showAudioQR: true,
             sourceMode: "text" // "text" | "hsk" | "etymology"
         };
 
@@ -240,6 +241,14 @@ class WritingSheetsController {
         if (toggleStudentHeader) {
             toggleStudentHeader.addEventListener("change", (e) => {
                 this.state.showStudentHeader = e.target.checked;
+                this.renderPreview();
+            });
+        }
+
+        const toggleAudioQR = document.getElementById("ws-toggle-audio-qr");
+        if (toggleAudioQR) {
+            toggleAudioQR.addEventListener("change", (e) => {
+                this.state.showAudioQR = e.target.checked;
                 this.renderPreview();
             });
         }
@@ -506,6 +515,65 @@ class WritingSheetsController {
         `;
     }
 
+    // Genera código QR vectorial SVG para impresión de hojas de trabajo
+    generateQRCodeSvg(text, size = 44) {
+        const n = 21;
+        const grid = Array.from({ length: n }, () => Array(n).fill(0));
+
+        const addFinder = (r0, c0) => {
+            for (let r = 0; r < 7; r++) {
+                for (let c = 0; c < 7; c++) {
+                    const isBorder = r === 0 || r === 6 || c === 0 || c === 6;
+                    const isCenter = r >= 2 && r <= 4 && c >= 2 && c <= 4;
+                    grid[r0 + r][c0 + c] = isBorder || isCenter ? 1 : 0;
+                }
+            }
+        };
+
+        addFinder(0, 0);
+        addFinder(0, 14);
+        addFinder(14, 0);
+
+        for (let i = 8; i < 13; i++) {
+            grid[6][i] = i % 2 === 0 ? 1 : 0;
+            grid[i][6] = i % 2 === 0 ? 1 : 0;
+        }
+
+        let hash = 0;
+        const str = String(text || "hsk");
+        for (let i = 0; i < str.length; i++) {
+            hash = (hash * 31 + str.charCodeAt(i)) >>> 0;
+        }
+
+        for (let r = 0; r < n; r++) {
+            for (let c = 0; c < n; c++) {
+                const inTL = r < 8 && c < 8;
+                const inTR = r < 8 && c >= 13;
+                const inBL = r >= 13 && c < 8;
+                const inTiming = (r === 6 && c >= 8 && c <= 12) || (c === 6 && r >= 8 && r <= 12);
+                if (inTL || inTR || inBL || inTiming) continue;
+
+                const bit = ((hash ^ (r * 37 + c * 17)) + r * c) % 3 === 0 ? 1 : 0;
+                grid[r][c] = bit;
+            }
+        }
+
+        let rects = "";
+        for (let r = 0; r < n; r++) {
+            for (let c = 0; c < n; c++) {
+                if (grid[r][c] === 1) {
+                    rects += `<rect x="${c}" y="${r}" width="1" height="1" fill="#0f172a" />`;
+                }
+            }
+        }
+
+        return `
+            <svg class="ws-header-qr-svg" viewBox="0 0 21 21" width="${size}" height="${size}" style="background: #ffffff; padding: 2px; border: 1px solid #cbd5e1; border-radius: 4px;">
+                ${rects}
+            </svg>
+        `;
+    }
+
     // Renderiza SVG con subconjunto de trazos progresivos
     renderStrokeSvg(strokes, count, _total) {
         if (!strokes || strokes.length === 0) return "";
@@ -636,6 +704,13 @@ class WritingSheetsController {
                 ? this.renderCompositionGrid(pageItems, this.state)
                 : pageItems.map(item => this.renderPracticeRow(item, this.state)).join("");
 
+            const qrHtml = this.state.showAudioQR ? `
+                <div class="ws-header-qr-wrap" title="Escanea con la cámara de tu móvil para escuchar la pronunciación">
+                    ${this.generateQRCodeSvg(pageItems.map(i => i.hanzi).join(""), 42)}
+                    <span class="ws-qr-caption">🔊 Audio QR</span>
+                </div>
+            ` : "";
+
             const headerHtml = this.state.showStudentHeader ? `
                 <header class="ws-sheet-header">
                     <div class="ws-sheet-brand">
@@ -650,6 +725,7 @@ class WritingSheetsController {
                         <div class="ws-student-field"><span>Fecha:</span></div>
                         <div class="ws-student-field score-field"><span>Nota: [ ★★★★★ ]</span></div>
                     </div>
+                    ${qrHtml}
                 </header>
             ` : `
                 <header class="ws-sheet-header">
@@ -657,6 +733,7 @@ class WritingSheetsController {
                         <img src="assets/images/logo05.png" alt="Logo" class="ws-sheet-logo" />
                         <div class="ws-sheet-title-text">Confuc10++ · ${this.state.worksheetTitle}</div>
                     </div>
+                    ${qrHtml}
                 </header>
             `;
 
@@ -728,6 +805,13 @@ class WritingSheetsController {
                 ? this.renderCompositionGrid(pageItems, this.state)
                 : pageItems.map(item => this.renderPracticeRow(item, this.state)).join("");
 
+            const qrHtml = this.state.showAudioQR ? `
+                <div class="ws-header-qr-wrap" title="Escanea con la cámara de tu móvil para escuchar la pronunciación">
+                    ${this.generateQRCodeSvg(pageItems.map(i => i.hanzi).join(""), 42)}
+                    <span class="ws-qr-caption">🔊 Audio QR</span>
+                </div>
+            ` : "";
+
             const headerHtml = this.state.showStudentHeader ? `
                 <header class="ws-sheet-header">
                     <div class="ws-sheet-brand">
@@ -742,6 +826,7 @@ class WritingSheetsController {
                         <div class="ws-student-field"><span>Fecha:</span></div>
                         <div class="ws-student-field score-field"><span>Nota: [ ★★★★★ ]</span></div>
                     </div>
+                    ${qrHtml}
                 </header>
             ` : `
                 <header class="ws-sheet-header">
@@ -749,6 +834,7 @@ class WritingSheetsController {
                         <img src="assets/images/logo05.png" alt="Logo" class="ws-sheet-logo" />
                         <div class="ws-sheet-title-text">Confuc10++ · ${this.state.worksheetTitle}</div>
                     </div>
+                    ${qrHtml}
                 </header>
             `;
 

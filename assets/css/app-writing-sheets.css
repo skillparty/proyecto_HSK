@@ -566,6 +566,28 @@
     color: #e11d48;
 }
 
+.ws-header-qr-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-left: 12px;
+}
+
+.ws-header-qr-svg {
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+}
+
+.ws-qr-caption {
+    font-size: 6.5pt;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+
 /* Sheet Grid Body */
 .ws-sheet-body {
     flex: 1;

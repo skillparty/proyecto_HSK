@@ -30,6 +30,7 @@ class NavigationController {
       "dialogue-tutor",
       "radical-decomposer",
       "skill-tree",
+      "lyrics-lab",
     ]);
   }
 

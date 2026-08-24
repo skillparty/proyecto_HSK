@@ -78,6 +78,7 @@ describe("WritingSheetsController", () => {
         <input type="checkbox" id="ws-toggle-meaning" checked />
         <input type="checkbox" id="ws-toggle-pinyin-lines" />
         <input type="checkbox" id="ws-toggle-student-header" checked />
+        <input type="checkbox" id="ws-toggle-audio-qr" checked />
 
         <span id="ws-page-count-badge"></span>
         <div id="ws-preview-pages"></div>
@@ -302,6 +303,14 @@ describe("WritingSheetsController", () => {
 
       const iframe = document.getElementById("writing-sheets-print-frame");
       expect(iframe).toBeTruthy();
+    });
+
+    it("renders Audio QR Code in header when showAudioQR is enabled", () => {
+      controller.state.characters = [{ hanzi: "你好", pinyin: "nǐ hǎo", meaning: "hola", strokes: [] }];
+      controller.state.showAudioQR = true;
+      const html = controller.generateFullDocument();
+      expect(html).toContain("ws-header-qr-wrap");
+      expect(html).toContain("Audio QR");
     });
   });
 });

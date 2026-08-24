@@ -1,0 +1,407 @@
+/* lyrics-lab-styles.css — Estilos para el Laboratorio de Canciones y Rimas Chinas */
+
+.lyrics-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 16px 12px 60px;
+}
+
+.lyrics-header-banner {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.lyrics-title-group {
+    margin-bottom: 16px;
+}
+
+.lyrics-main-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    margin: 0 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lyrics-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0;
+    line-height: 1.45;
+}
+
+.lyrics-song-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.song-chip-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: var(--bg-main, #f9fafb);
+    color: var(--text-primary, #374151);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.song-chip-btn:hover {
+    border-color: var(--primary, #d32f2f);
+    color: var(--primary, #d32f2f);
+    transform: translateY(-1px);
+}
+
+.song-chip-btn.active {
+    background: var(--primary, #d32f2f);
+    color: #ffffff;
+    border-color: var(--primary, #d32f2f);
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+}
+
+/* Workspace Grid */
+.lyrics-workspace-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 20px;
+}
+
+@media (max-width: 860px) {
+    .lyrics-workspace-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.lyrics-card {
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Hero Banner in Player */
+.song-hero-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color, #f3f4f6);
+}
+
+.song-cover-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.15);
+}
+
+.song-hero-meta {
+    flex: 1;
+}
+
+.song-hero-title {
+    margin: 0 0 4px 0;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+}
+
+.song-hero-desc {
+    margin: 0 0 6px 0;
+    font-size: 0.82rem;
+    color: var(--text-secondary, #6b7280);
+}
+
+.song-hero-tags {
+    display: flex;
+    gap: 6px;
+}
+
+.lyrics-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--bg-main, #f3f4f6);
+    color: var(--text-secondary, #4b5563);
+}
+
+/* Controls Bar */
+.lyrics-controls-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 12px;
+    background: var(--bg-main, #f9fafb);
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.btn-play-song {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.lyrics-speed-controls {
+    display: flex;
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.lyrics-speed-btn {
+    background: var(--card-bg, #ffffff);
+    border: none;
+    border-right: 1px solid var(--border-color, #d1d5db);
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text-secondary, #4b5563);
+    transition: all 0.15s ease;
+}
+
+.lyrics-speed-btn:last-child {
+    border-right: none;
+}
+
+.lyrics-speed-btn.active {
+    background: var(--primary, #d32f2f);
+    color: #ffffff;
+}
+
+.lyrics-repeat-btn {
+    margin-left: auto;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color, #d1d5db);
+    background: var(--card-bg, #ffffff);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Synchronized Lyrics Feed */
+.lyrics-lines-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 480px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.lyric-line-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: var(--bg-main, #fdfdfd);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.lyric-line-card:hover {
+    border-color: var(--primary, #d32f2f);
+    background: #fffcfc;
+}
+
+.lyric-line-card.active-singing {
+    border-color: #f59e0b;
+    background: #fffdf5;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.18);
+    transform: translateX(4px);
+}
+
+.lyric-line-play-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 2px;
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+}
+
+.lyric-line-card:hover .lyric-line-play-btn,
+.lyric-line-card.active-singing .lyric-line-play-btn {
+    opacity: 1;
+}
+
+.lyric-line-text-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.lyric-hanzi {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary, #111827);
+    font-family: "Noto Serif SC", serif;
+}
+
+.lyric-pinyin {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary, #d32f2f);
+}
+
+.lyric-meaning {
+    font-size: 0.8rem;
+    color: var(--text-secondary, #6b7280);
+    margin-top: 2px;
+}
+
+/* Side Column */
+.lyrics-side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.side-card-title {
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.song-vocab-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.vocab-note-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--bg-main, #f9fafb);
+    border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.vocab-note-hanzi {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--primary, #d32f2f);
+}
+
+.vocab-note-pinyin {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-primary, #111827);
+}
+
+.vocab-note-meaning {
+    font-size: 0.75rem;
+    color: var(--text-secondary, #6b7280);
+}
+
+/* Scramble Mini-Game */
+.challenge-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary, #6b7280);
+    margin: 0 0 12px 0;
+}
+
+.scramble-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 100px;
+    background: var(--bg-main, #f9fafb);
+    border: 2px dashed var(--border-color, #d1d5db);
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 12px;
+}
+
+.scramble-slot-item {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--primary, #d32f2f);
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.scramble-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.scramble-opt-btn {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color, #d1d5db);
+    background: var(--card-bg, #ffffff);
+    color: var(--text-primary, #111827);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+}
+
+.scramble-opt-btn:hover {
+    border-color: var(--primary, #d32f2f);
+    background: rgba(211, 47, 47, 0.04);
+}
+
+.scramble-feedback {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.scramble-feedback.correct {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #86efac;
+}
+
+.scramble-feedback.incorrect {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}

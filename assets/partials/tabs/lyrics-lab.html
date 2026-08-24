@@ -1,0 +1,80 @@
+    <div class="lyrics-container">
+        <!-- Header Banner -->
+        <div class="lyrics-header-banner">
+            <div class="lyrics-title-group">
+                <h2 class="lyrics-main-title">
+                    <span class="lyrics-title-icon">🎵</span>
+                    <span data-i18n="lyricsLabTitle">Laboratorio de Canciones & Rimas Chinas</span>
+                </h2>
+                <p class="lyrics-subtitle" data-i18n="lyricsLabSubtitle">
+                    Aprende vocabulario, ritmo y entonación natural a través de canciones infantiles y melodías tradicionales chinas con letras sincronizadas.
+                </p>
+            </div>
+
+            <!-- Song Selector Carousel / Pills -->
+            <div class="lyrics-song-chips" id="lyrics-song-chips">
+                <!-- Song selector chips rendered dynamically -->
+            </div>
+        </div>
+
+        <!-- Main Player & Karaoke Workspace -->
+        <div class="lyrics-workspace-grid">
+            <!-- Left: Karaoke Display & Controls -->
+            <div class="lyrics-card lyrics-player-card">
+                <div class="song-hero-banner">
+                    <div class="song-cover-avatar" id="song-hero-icon">🐅</div>
+                    <div class="song-hero-meta">
+                        <h3 class="song-hero-title" id="song-hero-title">《两只老虎》 (Dos Tigres)</h3>
+                        <p class="song-hero-desc" id="song-hero-desc">Canción infantil tradicional para aprender animales y partes del cuerpo.</p>
+                        <div class="song-hero-tags">
+                            <span class="lyrics-tag" id="song-hsk-level">HSK 1</span>
+                            <span class="lyrics-tag" id="song-tempo-tag">Tempo: 120 BPM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Playback Bar -->
+                <div class="lyrics-controls-bar">
+                    <button type="button" class="btn btn-primary btn-play-song" id="lyrics-play-all-btn">
+                        <span id="lyrics-play-icon">▶️</span>
+                        <span id="lyrics-play-label" data-i18n="lyricsPlayAll">Cantar Canción</span>
+                    </button>
+                    <div class="lyrics-speed-controls">
+                        <button type="button" class="lyrics-speed-btn" data-speed="0.75">0.75×</button>
+                        <button type="button" class="lyrics-speed-btn active" data-speed="1.0">1.0×</button>
+                        <button type="button" class="lyrics-speed-btn" data-speed="1.25">1.25×</button>
+                    </div>
+                    <button type="button" class="lyrics-repeat-btn" id="lyrics-toggle-pinyin-btn" data-i18n="lyricsTogglePinyin">
+                        Pinyin: ON
+                    </button>
+                </div>
+
+                <!-- Synchronized Lyrics Feed -->
+                <div class="lyrics-lines-feed" id="lyrics-lines-feed">
+                    <!-- Lines rendered dynamically -->
+                </div>
+            </div>
+
+            <!-- Right: Vocabulary Breakdown & Lyric Scramble Game -->
+            <div class="lyrics-side-column">
+                <!-- Cultural & Vocabulary Notes -->
+                <div class="lyrics-card song-vocab-card">
+                    <h4 class="side-card-title">
+                        <span>💡</span> <span data-i18n="lyricsVocabTitle">Vocabulario y Notas Clave</span>
+                    </h4>
+                    <div class="song-vocab-list" id="song-vocab-list"></div>
+                </div>
+
+                <!-- Mini-Game: Lyric Scramble Challenge -->
+                <div class="lyrics-card song-challenge-card">
+                    <h4 class="side-card-title">
+                        <span>🧩</span> <span data-i18n="lyricsChallengeTitle">Reto: Ordena los Versos</span>
+                    </h4>
+                    <p class="challenge-desc" data-i18n="lyricsChallengeDesc">Arrastra o pulsa los versos en el orden correcto de la canción:</p>
+                    <div class="scramble-slots" id="scramble-slots"></div>
+                    <div class="scramble-options" id="scramble-options"></div>
+                    <div class="scramble-feedback" id="scramble-feedback" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>

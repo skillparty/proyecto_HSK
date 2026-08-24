@@ -778,6 +778,22 @@ class UIController {
           }
         })();
         break;
+      case "lyrics-lab":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/lyrics-lab-styles.css", "lyrics-lab-stylesheet");
+            if (!window.LyricsLabGame) {
+              await this.loadScript("assets/js/lyrics-lab-game.js");
+            }
+            if (window.LyricsLabGame && !window.lyricsLabGame) {
+              window.lyricsLabGame = new window.LyricsLabGame(this.app);
+              window.lyricsLabGame.init();
+            }
+          } catch (err) {
+            this.logError("lyrics-lab init failed:", err);
+          }
+        })();
+        break;
     }
   }
 
@@ -1006,6 +1022,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "dialogue-tutor",
   "radical-decomposer",
   "skill-tree",
+  "lyrics-lab",
 ]);
 
 window.UIController = UIController;
