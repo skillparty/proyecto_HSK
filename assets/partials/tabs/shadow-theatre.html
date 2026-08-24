@@ -1,0 +1,90 @@
+    <div class="shadow-container">
+        <!-- Header Banner -->
+        <div class="shadow-header-banner">
+            <div class="shadow-title-group">
+                <h2 class="shadow-main-title">
+                    <span class="shadow-title-icon">🏮</span>
+                    <span data-i18n="shadowTheatreTitle">Teatro de Sombras & Leyendas Chinas</span>
+                </h2>
+                <p class="shadow-subtitle" data-i18n="shadowTheatreSubtitle">
+                    Descubre las fábulas, leyendas y Chengyu milenarios de China a través del arte tradicional del Teatro de Sombras (皮影戏).
+                </p>
+            </div>
+
+            <!-- Tales Selector Chips -->
+            <div class="shadow-story-chips" id="shadow-story-chips">
+                <!-- Story chips rendered dynamically -->
+            </div>
+        </div>
+
+        <!-- Main Stage & Story Workspace -->
+        <div class="shadow-stage-grid">
+            <!-- Left: Shadow Puppetry Stage -->
+            <div class="shadow-stage-card">
+                <!-- Glowing Puppet Stage Canvas / Screen -->
+                <div class="puppet-stage-screen" id="puppet-stage-screen">
+                    <div class="stage-curtain-top"></div>
+                    <div class="stage-parchment-glow">
+                        <div class="puppet-silhouette-wrap" id="puppet-silhouette-wrap">
+                            <span class="puppet-actor-emoji" id="stage-actor-emoji">🏹</span>
+                        </div>
+                        <div class="stage-scene-backdrop" id="stage-scene-backdrop">☀️☀️☀️</div>
+                    </div>
+                    <div class="stage-caption-overlay" id="stage-caption-overlay">
+                        <div class="stage-caption-hanzi" id="stage-caption-hanzi">很久很久以前，天上有十个太阳。</div>
+                        <div class="stage-caption-pinyin" id="stage-caption-pinyin">Hěnjiǔ hěnjiǔ yǐqián, tiānshang yǒu shí gè tàiyáng.</div>
+                        <div class="stage-caption-trans" id="stage-caption-trans">Hace mucho mucho tiempo, había diez soles en el cielo.</div>
+                    </div>
+                </div>
+
+                <!-- Playback & Scene Navigation Bar -->
+                <div class="shadow-controls-bar">
+                    <button type="button" class="btn btn-secondary shadow-nav-btn" id="shadow-prev-scene-btn">
+                        <span>⏮️</span> <span data-i18n="shadowPrevScene">Escena Anterior</span>
+                    </button>
+                    <button type="button" class="btn btn-primary shadow-play-btn" id="shadow-play-scene-btn">
+                        <span id="shadow-scene-play-icon">🔊</span> <span id="shadow-scene-play-label" data-i18n="shadowPlayNarrator">Escuchar Narración</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary shadow-nav-btn" id="shadow-next-scene-btn">
+                        <span data-i18n="shadowNextScene">Siguiente Escena</span> <span>⏭️</span>
+                    </button>
+                    <div class="shadow-progress-tag">
+                        <span id="shadow-scene-indicator">Escena 1 de 4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Tale Lore, Idiom Breakdown & Moral Quiz -->
+            <div class="shadow-side-column">
+                <!-- Tale Info & Moral Lesson -->
+                <div class="shadow-card tale-moral-card">
+                    <h4 class="shadow-card-title">
+                        <span>📜</span> <span data-i18n="taleMoralTitle">Enseñanza y Moraleja</span>
+                    </h4>
+                    <div class="tale-moral-content" id="tale-moral-content">
+                        <!-- Moral description -->
+                    </div>
+                </div>
+
+                <!-- Featured Idiom / Chengyu -->
+                <div class="shadow-card tale-chengyu-card">
+                    <h4 class="shadow-card-title">
+                        <span>💎</span> <span data-i18n="taleChengyuTitle">Chengyu / Modismo Destacado</span>
+                    </h4>
+                    <div class="tale-chengyu-box" id="tale-chengyu-box">
+                        <!-- Chengyu details -->
+                    </div>
+                </div>
+
+                <!-- Interactive Quiz: Story Comprehension -->
+                <div class="shadow-card tale-quiz-card">
+                    <h4 class="shadow-card-title">
+                        <span>🎯</span> <span data-i18n="taleQuizTitle">Reto de Comprensión</span>
+                    </h4>
+                    <p class="tale-quiz-question" id="tale-quiz-question"></p>
+                    <div class="tale-quiz-options" id="tale-quiz-options"></div>
+                    <div class="tale-quiz-feedback" id="tale-quiz-feedback" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>

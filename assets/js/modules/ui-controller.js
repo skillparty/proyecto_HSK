@@ -794,6 +794,22 @@ class UIController {
           }
         })();
         break;
+      case "shadow-theatre":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/shadow-theatre-styles.css", "shadow-theatre-stylesheet");
+            if (!window.ShadowTheatreGame) {
+              await this.loadScript("assets/js/shadow-theatre-game.js");
+            }
+            if (window.ShadowTheatreGame && !window.shadowTheatreGame) {
+              window.shadowTheatreGame = new window.ShadowTheatreGame(this.app);
+              window.shadowTheatreGame.init();
+            }
+          } catch (err) {
+            this.logError("shadow-theatre init failed:", err);
+          }
+        })();
+        break;
     }
   }
 
@@ -1023,6 +1039,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "radical-decomposer",
   "skill-tree",
   "lyrics-lab",
+  "shadow-theatre",
 ]);
 
 window.UIController = UIController;

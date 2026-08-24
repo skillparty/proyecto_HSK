@@ -54,6 +54,19 @@
                         </div>
                     </div>
 
+                    <div class="stats-certificate-banner" style="margin-top: 24px; padding: 20px; border-radius: 16px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 1px solid #f59e0b; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <div style="font-size: 2.4rem;">🎓</div>
+                            <div>
+                                <h3 style="margin: 0 0 4px 0; color: #78350f; font-size: 1.15rem; font-weight: 800;" data-i18n="certificateBannerTitle">Diploma Oficial de Certificación HSK</h3>
+                                <p style="margin: 0; color: #92400e; font-size: 0.85rem;" data-i18n="certificateBannerDesc">Genera e imprime tu diploma conmemorativo personalizado con sello imperial chino en PDF.</p>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="open-certificate-modal-btn" style="background: #b91c1c; border-color: #991b1b; font-weight: 700;">
+                            <span>📜</span> <span data-i18n="generateCertificateBtn">Generar Diploma</span>
+                        </button>
+                    </div>
+
                     <div id="stats-empty-state" class="stats-empty-state" style="display: none;">
                         <div class="stats-empty-icon">
                             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="m18 20-6-6-6 6"></path><path d="M12 4v2"></path></svg>
@@ -65,3 +78,45 @@
                 </div>
 
                 <button id="reset-stats" class="btn btn-error" data-i18n="resetStats">Reset Statistics</button>
+
+                <!-- Modal de Diploma de Certificación -->
+                <div id="hsk-certificate-modal" class="modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 9999; align-items: center; justify-content: center; padding: 16px; overflow-y: auto;">
+                    <div class="modal-content" style="background: var(--card-bg, #ffffff); max-width: 850px; width: 100%; border-radius: 20px; padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); max-height: 92vh; overflow-y: auto;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-color, #e5e7eb); padding-bottom: 12px;">
+                            <h3 style="margin: 0; display: flex; align-items: center; gap: 8px; font-weight: 800;">
+                                <span>🎓</span> <span data-i18n="certificateModalTitle">Personalizar Diploma HSK</span>
+                            </h3>
+                            <button type="button" id="close-certificate-modal-btn" class="modal-close" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary);">&times;</button>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;">
+                            <div style="flex: 1; min-width: 200px;">
+                                <label for="cert-student-name" style="font-size: 0.85rem; font-weight: 700; display: block; margin-bottom: 4px;" data-i18n="certStudentName">Nombre del Estudiante:</label>
+                                <input type="text" id="cert-student-name" class="form-control" value="Estudiante de Chino" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-color, #d1d5db);" />
+                            </div>
+                            <div style="width: 180px;">
+                                <label for="cert-hsk-level" style="font-size: 0.85rem; font-weight: 700; display: block; margin-bottom: 4px;" data-i18n="certHskLevel">Nivel a Certificar:</label>
+                                <select id="cert-hsk-level" class="form-control" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-color, #d1d5db);">
+                                    <option value="1" selected>HSK 1 (Principiante)</option>
+                                    <option value="2">HSK 2 (Básico)</option>
+                                    <option value="3">HSK 3 (Intermedio)</option>
+                                    <option value="4">HSK 4 (Avanzado)</option>
+                                    <option value="5">HSK 5 (Superior)</option>
+                                    <option value="6">HSK 6 (Maestría)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Live Certificate Preview Canvas/Container -->
+                        <div id="certificate-live-preview" style="margin-bottom: 16px; overflow-x: auto; background: #fafafa; padding: 12px; border-radius: 12px; border: 1px solid #e5e7eb;">
+                            <!-- Renderizado del Diploma -->
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                            <button type="button" class="btn btn-secondary" id="cancel-cert-btn" data-i18n="closeBtn">Cerrar</button>
+                            <button type="button" class="btn btn-primary" id="print-cert-btn" style="background: #b91c1c; border-color: #991b1b; font-weight: 700;">
+                                <span>🖨️</span> <span data-i18n="printCertBtn">Imprimir / Guardar PDF</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>

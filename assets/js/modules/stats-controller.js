@@ -18,6 +18,7 @@ class StatsController {
 
     async updateStats() {
         this.app.logDebug('[stats] Updating stats');
+        this.bindCertificateEvents();
 
         if (window.firebaseClient && window.firebaseClient.isAuthenticated()) {
             try {
@@ -588,6 +589,165 @@ class StatsController {
             this.app.showToast(this.app.getTranslation('statsResetFailed') || 'Could not reset statistics', 'error', 2400);
         }
     }
+
+    // --- Generador de Diplomas y Certificados HSK con Sello Imperial ---
+
+    bindCertificateEvents() {
+        const openBtn = document.getElementById('open-certificate-modal-btn');
+        const modal = document.getElementById('hsk-certificate-modal');
+        const closeBtn = document.getElementById('close-certificate-modal-btn');
+        const cancelBtn = document.getElementById('cancel-cert-btn');
+        const printBtn = document.getElementById('print-cert-btn');
+        const nameInput = document.getElementById('cert-student-name');
+        const levelSelect = document.getElementById('cert-hsk-level');
+
+        if (openBtn && modal) {
+            openBtn.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                this.renderCertificatePreview();
+            });
+        }
+
+        const closeModal = () => {
+            if (modal) modal.style.display = 'none';
+        };
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+        if (nameInput) {
+            nameInput.addEventListener('input', () => this.renderCertificatePreview());
+        }
+        if (levelSelect) {
+            levelSelect.addEventListener('change', () => this.renderCertificatePreview());
+        }
+
+        if (printBtn) {
+            printBtn.addEventListener('click', () => this.printCertificate());
+        }
+    }
+
+    renderCertificatePreview() {
+        const preview = document.getElementById('certificate-live-preview');
+        if (!preview) return;
+
+        const nameInput = document.getElementById('cert-student-name');
+        const levelSelect = document.getElementById('cert-hsk-level');
+
+        const studentName = (nameInput?.value || 'Estudiante de Chino').trim();
+        const level = levelSelect?.value || '1';
+
+        preview.innerHTML = this.generateCertificateHTML(studentName, level);
+    }
+
+    generateCertificateHTML(studentName, level) {
+        const isEs = this.app?.currentLanguage !== 'en';
+        const dateStr = new Date().toLocaleDateString(isEs ? 'es-ES' : 'en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        const stats = this.app?.stats || {};
+        const totalWords = stats.totalStudied || 0;
+        const accuracy = stats.totalStudied > 0 ? Math.round((stats.correctAnswers / stats.totalStudied) * 100) : 100;
+
+        return `
+            <div class="hsk-certificate-frame" style="background: #fffdfa; border: 12px double #b45309; border-radius: 12px; padding: 24px; text-align: center; color: #1e293b; font-family: 'Noto Serif SC', serif; position: relative; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+                <div style="font-size: 1.1rem; color: #b45309; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 4px;">孔夫子中文学院 · CONFUCIUS INSTITUTE PLATFORM</div>
+                <h1 style="font-size: 1.8rem; font-weight: 900; color: #991b1b; margin: 4px 0 12px; letter-spacing: 0.08em;">《 国际中文能力结业证书 》</h1>
+                <div style="font-size: 0.95rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;">Certificate of Chinese Language Proficiency</div>
+
+                <p style="font-size: 0.95rem; color: #475569; margin: 0 0 6px 0;">Por cuanto el estudiante / This is to certify that</p>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #0f172a; border-bottom: 2px solid #b45309; display: inline-block; padding: 0 24px 4px; margin-bottom: 14px;">
+                    ${studentName}
+                </div>
+
+                <p style="font-size: 0.95rem; color: #334155; max-width: 620px; margin: 0 auto 16px; line-height: 1.5;">
+                    Ha completado satisfactoriamente los módulos de estudio de <strong>HSK ${level}</strong>, demostrando dominio de vocabulario (${totalWords} palabras), destreza tonal con una precisión del <strong>${accuracy}%</strong> y dedicación a la cultura china.
+                </p>
+
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 24px; padding-top: 14px; border-top: 1px dashed #cbd5e1;">
+                    <div style="text-align: left; font-size: 0.85rem; color: #64748b;">
+                        <div><strong>Fecha / Date:</strong> ${dateStr}</div>
+                        <div><strong>ID de Certificado:</strong> HSK-${level}-${Date.now().toString(36).toUpperCase()}</div>
+                    </div>
+
+                    <!-- Chinese Imperial Red Seal (朱砂印章) -->
+                    <div class="imperial-red-seal" style="width: 64px; height: 64px; border: 3px solid #dc2626; border-radius: 8px; color: #dc2626; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; line-height: 1; transform: rotate(-5deg); box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);">
+                        <span style="font-size: 0.82rem;">孔夫子</span>
+                        <span style="font-size: 0.82rem;">学士印</span>
+                    </div>
+
+                    <div style="text-align: right; font-size: 0.85rem; color: #64748b;">
+                        <div style="font-family: 'Brush Script MT', cursive; font-size: 1.3rem; color: #1e293b;">Confucius Academy</div>
+                        <div style="border-top: 1px solid #94a3b8; margin-top: 2px; padding-top: 2px;">Comité Académico HSK</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    printCertificate() {
+        const nameInput = document.getElementById('cert-student-name');
+        const levelSelect = document.getElementById('cert-hsk-level');
+
+        const studentName = (nameInput?.value || 'Estudiante de Chino').trim();
+        const level = levelSelect?.value || '1';
+
+        const certHTML = this.generateCertificateHTML(studentName, level);
+
+        const printContent = `
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Diploma HSK ${level} - ${studentName}</title>
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 12mm;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+    </style>
+</head>
+<body>
+    ${certHTML}
+    <script>
+        window.onload = function() {
+            window.focus();
+            window.print();
+        };
+    </script>
+</body>
+</html>
+        `;
+
+        let frame = document.getElementById('certificate-print-frame');
+        if (!frame) {
+            frame = document.createElement('iframe');
+            frame.id = 'certificate-print-frame';
+            frame.style.position = 'fixed';
+            frame.style.right = '0';
+            frame.style.bottom = '0';
+            frame.style.width = '0';
+            frame.style.height = '0';
+            frame.style.border = '0';
+            document.body.appendChild(frame);
+        }
+
+        const doc = frame.contentWindow.document;
+        doc.open();
+        doc.write(printContent);
+        doc.close();
+    }
 }
 
 window.StatsController = StatsController;
+

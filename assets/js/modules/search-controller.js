@@ -125,6 +125,15 @@ class SearchController {
                     this.app.switchTab("lyrics-lab");
                 },
             },
+            {
+                id: "action-open-shadow-theatre",
+                title: "Abrir Teatro de Sombras y Leyendas Chinas",
+                titleEn: "Open Chinese Shadow Puppetry & Legends",
+                icon: "🏮",
+                execute: () => {
+                    this.app.switchTab("shadow-theatre");
+                },
+            },
         ];
     }
 

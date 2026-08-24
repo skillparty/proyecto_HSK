@@ -31,6 +31,7 @@ class NavigationController {
       "radical-decomposer",
       "skill-tree",
       "lyrics-lab",
+      "shadow-theatre",
     ]);
   }
 
