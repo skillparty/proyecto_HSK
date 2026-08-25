@@ -1,0 +1,116 @@
+<div id="chinese-names" class="tab-panel" data-tab="chinese-names">
+    <div class="chinese-names-container">
+        <!-- Header Banner -->
+        <div class="names-header-banner">
+            <div class="names-title-group">
+                <h2 class="names-main-title">
+                    <span class="names-title-icon">🧧</span>
+                    <span data-i18n="chineseNamesTitle">Buscador & Generador de Nombres Chinos Tradicionales</span>
+                </h2>
+                <p class="names-subtitle" data-i18n="chineseNamesSubtitle">
+                    Descubre tu nombre chino auténtico (中文名字) basado en la fonética de tu nombre occidental, tus aspiraciones, los 5 Elementos Wu Xing (五行) y los Cien Apellidos Clásicos (百家姓).
+                </p>
+            </div>
+        </div>
+
+        <!-- Main Workspace Grid -->
+        <div class="names-workspace-grid">
+            <!-- Left: Customizer & Generator Form -->
+            <div class="names-form-card">
+                <h3 class="names-card-heading">
+                    <span>✍️</span> <span data-i18n="nameFormHeading">Personaliza tu Nombre Chino</span>
+                </h3>
+
+                <div class="name-form-field">
+                    <label for="western-name-input" class="name-field-label" data-i18n="westernNameLabel">Tu Nombre Occidental / Español:</label>
+                    <input type="text" id="western-name-input" class="form-control" placeholder="Ej. Alejandro, Carlos, Elena, María..." value="Alejandro" />
+                </div>
+
+                <div class="name-form-row">
+                    <div class="name-form-field">
+                        <label for="name-gender-select" class="name-field-label" data-i18n="nameGenderLabel">Energía / Género:</label>
+                        <select id="name-gender-select" class="form-control">
+                            <option value="male" selected>Masculino / Yang (阳)</option>
+                            <option value="female">Femenino / Yin (阴)</option>
+                            <option value="neutral">Armónico / Neutro (和)</option>
+                        </select>
+                    </div>
+
+                    <div class="name-form-field">
+                        <label for="name-trait-select" class="name-field-label" data-i18n="nameTraitLabel">Aspiración / Rasgo Principal:</label>
+                        <select id="name-trait-select" class="form-control">
+                            <option value="wisdom" selected>Sabiduría & Erudición (智 / 睿)</option>
+                            <option value="bravery">Fuerza & Valentía (勇 / 刚)</option>
+                            <option value="elegance">Elegancia & Nobleza (雅 / 华)</option>
+                            <option value="peace">Paz & Serenidad (安 / 宁)</option>
+                            <option value="nature">Naturaleza & Libertad (木 / 翔)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="name-form-field">
+                    <label for="name-element-select" class="name-field-label" data-i18n="nameElementLabel">Elemento Wu Xing (五行):</label>
+                    <select id="name-element-select" class="form-control">
+                        <option value="wood" selected>Madera (木 - Crecimiento y Flexibilidad)</option>
+                        <option value="fire">Fuego (火 - Pasión y Brillantez)</option>
+                        <option value="earth">Tierra (土 - Estabilidad y Confianza)</option>
+                        <option value="metal">Metal (金 - Claridad y Firmeza)</option>
+                        <option value="water">Agua (水 - Sabiduría y Adaptabilidad)</option>
+                    </select>
+                </div>
+
+                <button type="button" class="btn btn-primary generate-name-btn" id="generate-name-btn">
+                    <span>✨</span> <span data-i18n="generateNameBtn">Generar Nombre Chino</span>
+                </button>
+            </div>
+
+            <!-- Right: Result Name Card & Cultural Badge -->
+            <div class="names-result-card" id="names-result-card">
+                <!-- Traditional Name Plate / Seal Display -->
+                <div class="chinese-identity-plate">
+                    <div class="plate-top-decor">中国传统雅名 · CULTURAL NAME CERTIFICATE</div>
+                    <div class="plate-hanzi-wrap">
+                        <span class="plate-main-hanzi" id="res-chinese-hanzi">罗安龙</span>
+                    </div>
+                    <div class="plate-pinyin-wrap" id="res-chinese-pinyin">Luó Ānlóng</div>
+                    <div class="plate-literal-wrap" id="res-chinese-literal">"Dragón Pacífico de la Dinastía de Seda"</div>
+
+                    <!-- Character-by-Character Breakdown -->
+                    <div class="characters-breakdown-grid" id="characters-breakdown-grid">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <!-- Seal Stamp & Actions -->
+                    <div class="plate-footer-bar">
+                        <div class="plate-actions">
+                            <button type="button" class="btn btn-secondary plate-audio-btn" id="play-name-audio-btn">
+                                <span>🔊</span> <span data-i18n="playNameAudioBtn">Pronunciar</span>
+                            </button>
+                            <button type="button" class="btn btn-secondary plate-copy-btn" id="copy-name-btn">
+                                <span>📋</span> <span data-i18n="copyNameBtn">Copiar Hanzi</span>
+                            </button>
+                        </div>
+                        <div class="imperial-mini-seal" id="imperial-mini-seal">
+                            <span>吉星</span>
+                            <span>高照</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hundred Family Surnames (百家姓) Explorer -->
+        <div class="surnames-explorer-card">
+            <h3 class="surnames-card-heading">
+                <span>📚</span> <span data-i18n="surnamesExplorerTitle">Explorador de los Cien Apellidos Chinos (百家姓)</span>
+            </h3>
+            <p class="surnames-desc" data-i18n="surnamesExplorerDesc">
+                En la cultura china, el apellido (姓) antecede siempre al nombre de pila (名). Explora los apellidos más antiguos y prestigiosos de la civilización china:
+            </p>
+
+            <div class="surnames-catalog-grid" id="surnames-catalog-grid">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+</div>

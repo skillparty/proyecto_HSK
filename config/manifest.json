@@ -4,8 +4,15 @@
   "description": "Advanced HSK Chinese learning platform with 5000 official vocabulary words, modern UI, dark mode, pronunciation, and multi-language support. Developed by Jose Alejandro Rollano Revollo",
   "version": "3.2.0",
   "author": "Jose Alejandro Rollano Revollo",
+  "id": "hsk-learning-app",
   "start_url": "./index.html",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
   "orientation": "any",
   "theme_color": "#d32f2f",
   "background_color": "#ffffff",
@@ -13,6 +20,10 @@
   "lang": "es",
   "dir": "ltr",
   "categories": ["education", "languages", "productivity"],
+  "launch_handler": {
+    "client_mode": "auto"
+  },
+  "handle_links": "preferred",
   "icons": [
     {
       "src": "../assets/images/logo05.png",
@@ -61,7 +72,7 @@
       "url": "./index.html?tab=practice",
       "icons": [
         {
-          "src": "./assets/images/logo05.png",
+          "src": "../assets/images/logo05.png",
           "sizes": "96x96"
         }
       ]
@@ -73,19 +84,19 @@
       "url": "./index.html?tab=tone-trainer",
       "icons": [
         {
-          "src": "./assets/images/logo05.png",
+          "src": "../assets/images/logo05.png",
           "sizes": "96x96"
         }
       ]
     },
     {
-      "name": "Constructor de Oraciones",
-      "short_name": "Oraciones",
-      "description": "Construye oraciones en mandarín",
-      "url": "./index.html?tab=sentence-builder",
+      "name": "Visualizador de Tonos",
+      "short_name": "Curva de Tonos",
+      "description": "Visualizador de espectrograma y entonación de tonos Chao",
+      "url": "./index.html?tab=tone-visualizer",
       "icons": [
         {
-          "src": "./assets/images/logo05.png",
+          "src": "../assets/images/logo05.png",
           "sizes": "96x96"
         }
       ]
@@ -97,7 +108,7 @@
       "url": "./index.html?tab=strokes-radicals",
       "icons": [
         {
-          "src": "./assets/images/logo05.png",
+          "src": "../assets/images/logo05.png",
           "sizes": "96x96"
         }
       ]
@@ -109,7 +120,7 @@
       "url": "./index.html?tab=past-exams",
       "icons": [
         {
-          "src": "./assets/images/logo05.png",
+          "src": "../assets/images/logo05.png",
           "sizes": "96x96"
         }
       ]

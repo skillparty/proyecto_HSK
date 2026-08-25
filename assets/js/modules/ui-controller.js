@@ -874,6 +874,22 @@ class UIController {
           }
         })();
         break;
+      case "chinese-names":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/chinese-names-styles.css", "chinese-names-stylesheet");
+            if (!window.ChineseNamesGame) {
+              await this.loadScript("assets/js/chinese-names-game.js");
+            }
+            if (window.ChineseNamesGame && !window.chineseNamesGame) {
+              window.chineseNamesGame = new window.ChineseNamesGame(this.app);
+              window.chineseNamesGame.init();
+            }
+          } catch (err) {
+            this.logError("chinese-names init failed:", err);
+          }
+        })();
+        break;
     }
   }
 
@@ -1108,6 +1124,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "china-cities",
   "tone-visualizer",
   "calligraphy-scroll",
+  "chinese-names",
 ]);
 
 window.UIController = UIController;

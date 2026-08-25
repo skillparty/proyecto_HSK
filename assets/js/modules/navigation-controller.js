@@ -36,6 +36,7 @@ class NavigationController {
       "china-cities",
       "tone-visualizer",
       "calligraphy-scroll",
+      "chinese-names",
     ]);
   }
 

@@ -170,6 +170,15 @@ class SearchController {
                     this.app.switchTab("calligraphy-scroll");
                 },
             },
+            {
+                id: "action-open-chinese-names",
+                title: "Abrir Buscador de Nombres Chinos Tradicionales",
+                titleEn: "Open Traditional Chinese Name Generator",
+                icon: "🧧",
+                execute: () => {
+                    this.app.switchTab("chinese-names");
+                },
+            },
         ];
     }
 
