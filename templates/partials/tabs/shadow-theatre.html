@@ -40,17 +40,23 @@
 
                 <!-- Playback & Scene Navigation Bar -->
                 <div class="shadow-controls-bar">
-                    <button type="button" class="btn btn-secondary shadow-nav-btn" id="shadow-prev-scene-btn">
-                        <span>⏮️</span> <span data-i18n="shadowPrevScene">Escena Anterior</span>
+                    <button type="button" class="btn btn-secondary shadow-nav-btn" id="shadow-prev-scene-btn" style="display:inline-flex; align-items:center; gap:6px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+                        <span data-i18n="shadowPrevScene">Escena Anterior</span>
                     </button>
-                    <button type="button" class="btn btn-primary shadow-play-btn" id="shadow-play-scene-btn">
-                        <span id="shadow-scene-play-icon">🔊</span> <span id="shadow-scene-play-label" data-i18n="shadowPlayNarrator">Escuchar Narración</span>
+                    <button type="button" class="btn btn-primary shadow-play-btn" id="shadow-play-scene-btn" style="display:inline-flex; align-items:center; gap:6px;">
+                        <span id="shadow-scene-play-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        </span>
+                        <span id="shadow-scene-play-label" data-i18n="shadowPlayNarrator">Escuchar Narración</span>
                     </button>
-                    <button type="button" class="btn btn-secondary shadow-autoplay-btn" id="shadow-autoplay-btn">
-                        <span>🎬</span> <span data-i18n="shadowAutoplayBtn">Modo Cinemático</span>
+                    <button type="button" class="btn btn-secondary shadow-autoplay-btn" id="shadow-autoplay-btn" style="display:inline-flex; align-items:center; gap:6px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                        <span data-i18n="shadowAutoplayBtn">Modo Cinemático</span>
                     </button>
-                    <button type="button" class="btn btn-secondary shadow-nav-btn" id="shadow-next-scene-btn">
-                        <span data-i18n="shadowNextScene">Siguiente Escena</span> <span>⏭️</span>
+                    <button type="button" class="btn btn-secondary shadow-nav-btn" id="shadow-next-scene-btn" style="display:inline-flex; align-items:center; gap:6px;">
+                        <span data-i18n="shadowNextScene">Siguiente Escena</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
                     </button>
                     <div class="shadow-progress-tag">
                         <span id="shadow-scene-indicator">Escena 1 de 4</span>
@@ -62,8 +68,9 @@
             <div class="shadow-side-column">
                 <!-- Tale Info & Moral Lesson -->
                 <div class="shadow-side-card">
-                    <h4 class="side-card-title">
-                        <span>📜</span> <span data-i18n="taleMoralTitle">Enseñanza y Moraleja</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        <span data-i18n="taleMoralTitle">Enseñanza y Moraleja</span>
                     </h4>
                     <div class="tale-moral-content" id="tale-moral-content">
                         <!-- Rendered dynamically -->
@@ -72,8 +79,9 @@
 
                 <!-- Featured Chengyu / Idiom -->
                 <div class="shadow-side-card chengyu-highlight-card">
-                    <h4 class="side-card-title">
-                        <span>🏮</span> <span data-i18n="taleChengyuTitle">Chengyu / Modismo Destacado</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span data-i18n="taleChengyuTitle">Chengyu / Modismo Destacado</span>
                     </h4>
                     <div class="tale-chengyu-box" id="tale-chengyu-box">
                         <!-- Rendered dynamically -->
@@ -82,8 +90,9 @@
 
                 <!-- Moral & Comprehension Challenge Quiz -->
                 <div class="shadow-side-card quiz-side-card">
-                    <h4 class="side-card-title">
-                        <span>🎯</span> <span data-i18n="taleQuizTitle">Reto de Comprensión</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        <span data-i18n="taleQuizTitle">Reto de Comprensión</span>
                     </h4>
                     <p class="tale-quiz-question" id="tale-quiz-question"></p>
                     <div class="tale-quiz-options" id="tale-quiz-options"></div>

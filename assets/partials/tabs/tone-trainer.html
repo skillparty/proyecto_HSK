@@ -17,7 +17,7 @@
                 </div>
                 <div class="tt-stat-item">
                     <span class="tt-stat-label" data-i18n="toneTrainerStreak">Racha:</span>
-                    <span id="tt-streak-val" class="tt-stat-val">0 🔥</span>
+                    <span id="tt-streak-val" class="tt-stat-val">0</span>
                 </div>
                 <div class="tt-stat-item">
                     <span class="tt-stat-label" data-i18n="toneTrainerAccuracy">Precisión:</span>
@@ -29,7 +29,9 @@
         <!-- Mode Selector Bar -->
         <div class="tt-modes-bar">
             <button class="tt-mode-tab active" data-mode="tones" id="tt-mode-tones-btn">
-                <span class="tt-mode-icon">📈</span>
+                <span class="tt-mode-icon" style="display:inline-flex; align-items:center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                </span>
                 <div class="tt-mode-info">
                     <strong data-i18n="toneTrainerModeTonesTitle">Identificación de Tonos</strong>
                     <small data-i18n="toneTrainerModeTonesDesc">Distingue entre 1º, 2º, 3º y 4º tono</small>
@@ -37,7 +39,9 @@
             </button>
 
             <button class="tt-mode-tab" data-mode="pairs" id="tt-mode-pairs-btn">
-                <span class="tt-mode-icon">⚖️</span>
+                <span class="tt-mode-icon" style="display:inline-flex; align-items:center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </span>
                 <div class="tt-mode-info">
                     <strong data-i18n="toneTrainerModePairsTitle">Pares Mínimos</strong>
                     <small data-i18n="toneTrainerModePairsDesc">Diferencia consonantes como zh/z, ch/c, sh/s</small>
@@ -45,7 +49,9 @@
             </button>
 
             <button class="tt-mode-tab" data-mode="vocab" id="tt-mode-vocab-btn">
-                <span class="tt-mode-icon">🔤</span>
+                <span class="tt-mode-icon" style="display:inline-flex; align-items:center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+                </span>
                 <div class="tt-mode-info">
                     <strong data-i18n="toneTrainerModeVocabTitle">Dictado de Vocabulario</strong>
                     <small data-i18n="toneTrainerModeVocabDesc">Identifica palabras HSK por su pronunciación</small>
@@ -132,7 +138,10 @@
         <!-- Tone Visual Reference Chart (Pitch Chart 5-level scale) -->
         <div class="tt-reference-card">
             <div class="tt-ref-header">
-                <h3 data-i18n="toneTrainerPitchChartTitle">📊 Guía de Curvas Acústicas (Escala 1 a 5 de Chao)</h3>
+                <h3 style="display:flex; align-items:center; gap:6px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    <span data-i18n="toneTrainerPitchChartTitle">Guía de Curvas Acústicas (Escala 1 a 5 de Chao)</span>
+                </h3>
                 <p data-i18n="toneTrainerPitchChartDesc">Representación fonética tradicional de la altura vocal en el mandarín estándar:</p>
             </div>
             <div class="tt-pitch-diagram">

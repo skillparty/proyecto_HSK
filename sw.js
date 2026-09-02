@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+bf6e6029";
+const SW_VERSION = "4.70.0+c8206504";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -67,7 +67,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=6c07d80a",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7a1e139f",
-  "./assets/js/modules/ui-controller.js?v=5f8fd643",
+  "./assets/js/modules/ui-controller.js?v=392a72a5",
   "./assets/js/modules/navigation-controller.js?v=869b0269",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",
@@ -100,7 +100,7 @@ const PRECACHE_FILES = [
   "./assets/js/matrix-game-events.js",
   "./assets/js/matrix-game-ui.js",
   "./assets/js/matrix-game-view.js",
-  "./assets/js/tones-invaders-game.js?v=3dde898f",
+  "./assets/js/tones-invaders-game.js?v=c37ddaf1",
   "./assets/js/tones-invaders-renderer.js",
   "./assets/js/hanzi-builder-game.js?v=745260cd",
   "./assets/js/word-linker-game.js?v=d263c1b3",

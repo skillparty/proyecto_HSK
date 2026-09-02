@@ -3,7 +3,9 @@
         <div class="decomposer-header-banner">
             <div class="decomposer-title-group">
                 <h2 class="decomposer-main-title">
-                    <span class="decomposer-title-icon">🔬</span>
+                    <span class="decomposer-title-icon" style="display:inline-flex; align-items:center;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </span>
                     <span data-i18n="radicalDecomposerTitle">Laboratorio de Radicales & Mnemotecnias</span>
                 </h2>
                 <p class="decomposer-subtitle" data-i18n="radicalDecomposerSubtitle">
@@ -14,7 +16,9 @@
             <!-- Search & Quick Filter Bar -->
             <div class="decomposer-search-bar">
                 <div class="decomposer-search-input-wrap">
-                    <span class="decomposer-search-icon">🔍</span>
+                    <span class="decomposer-search-icon" style="display:flex; align-items:center;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </span>
                     <input type="text" id="decomposer-search-input" class="decomposer-input" placeholder="Escribe un carácter o palabra (ej. 休, 明, 想, 好, 药, 家)..." autocomplete="off" spellcheck="false" />
                 </div>
                 <div class="decomposer-quick-chips" id="decomposer-quick-chips"></div>
@@ -35,7 +39,9 @@
                         <div class="char-hero-meta">
                             <span class="decomposer-tag" id="decomp-hsk-badge">HSK 2</span>
                             <span class="decomposer-tag" id="decomp-type-badge">会意字 (Ideograma compuesto)</span>
-                            <button id="decomp-audio-btn" class="decomposer-mini-btn" type="button" title="Escuchar">🔊</button>
+                            <button id="decomp-audio-btn" class="decomposer-mini-btn" type="button" title="Escuchar">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -48,8 +54,9 @@
 
                 <!-- Visual Mnemonic Story Box -->
                 <div class="decomposer-mnemonic-card">
-                    <div class="mnemonic-badge">
-                        <span>💡</span> <strong data-i18n="decompMnemonicBadge">Mnemotecnia Visual & Truco de Memoria:</strong>
+                    <div class="mnemonic-badge" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <strong data-i18n="decompMnemonicBadge">Mnemotecnia Visual & Truco de Memoria:</strong>
                     </div>
                     <p class="mnemonic-story" id="decomp-mnemonic-story">
                         Imagina a una <strong>persona (亻 / 人)</strong> apoyada y descansando bajo la sombra de un <strong>árbol (木)</strong> tras una larga caminata. ¡Persona + Árbol = <strong>Descansar (休)</strong>!
@@ -61,16 +68,18 @@
             <div class="decomposer-side-column">
                 <!-- Radical Kangxi Card -->
                 <div class="decomposer-card radical-info-card">
-                    <h4 class="side-card-title">
-                        <span>🎋</span> <span data-i18n="decompRadicalInfoTitle">Radical Principal (部首)</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v1H6a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h1v1a4 4 0 0 0 8 0v-1h1a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3h-2V6a4 4 0 0 0-4-4z"></path></svg>
+                        <span data-i18n="decompRadicalInfoTitle">Radical Principal (部首)</span>
                     </h4>
                     <div class="radical-highlight-flex" id="decomp-radical-highlight"></div>
                 </div>
 
                 <!-- Sibling Characters (Family Tree) -->
                 <div class="decomposer-card siblings-card">
-                    <h4 class="side-card-title">
-                        <span>🌟</span> <span data-i18n="decompSiblingsTitle">Familia de Caracteres con este Radical</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span data-i18n="decompSiblingsTitle">Familia de Caracteres con este Radical</span>
                     </h4>
                     <p class="siblings-subtitle" id="decomp-siblings-desc">Otros caracteres comunes construidos con el mismo componente:</p>
                     <div class="siblings-grid" id="decomp-siblings-grid"></div>
@@ -78,8 +87,9 @@
 
                 <!-- Interactive Mini-Challenge: Assemble the Hanzi -->
                 <div class="decomposer-card challenge-card">
-                    <h4 class="side-card-title">
-                        <span>🧩</span> <span data-i18n="decompChallengeTitle">Reto: Ensambla el Carácter</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        <span data-i18n="decompChallengeTitle">Reto: Ensambla el Carácter</span>
                     </h4>
                     <p class="challenge-prompt" id="decomp-challenge-prompt">Selecciona los componentes en orden para formar el carácter:</p>
                     <div class="challenge-slots" id="decomp-challenge-slots"></div>

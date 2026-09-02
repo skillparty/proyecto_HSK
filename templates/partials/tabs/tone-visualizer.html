@@ -4,7 +4,9 @@
         <div class="tone-vis-header-banner">
             <div class="tone-vis-title-group">
                 <h2 class="tone-vis-main-title">
-                    <span class="tone-vis-title-icon">📊</span>
+                    <span class="tone-vis-title-icon" style="display:inline-flex; align-items:center;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    </span>
                     <span data-i18n="toneVisualizerTitle">Visualizador de Curva de Tonos & Entonación</span>
                 </h2>
                 <p class="tone-vis-subtitle" data-i18n="toneVisualizerSubtitle">
@@ -59,14 +61,19 @@
 
                 <!-- Audio Controls & Practice Action Bar -->
                 <div class="tone-vis-actions-bar">
-                    <button type="button" class="btn btn-primary tone-action-btn" id="tone-play-audio-btn">
-                        <span>🔊</span> <span data-i18n="tonePlayModelBtn">Escuchar Modelo</span>
+                    <button type="button" class="btn btn-primary tone-action-btn" id="tone-play-audio-btn" style="display:inline-flex; align-items:center; gap:6px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <span data-i18n="tonePlayModelBtn">Escuchar Modelo</span>
                     </button>
-                    <button type="button" class="btn btn-secondary tone-action-btn" id="tone-slow-audio-btn">
-                        <span>🐢</span> <span data-i18n="toneSlowModelBtn">Lento (0.75x)</span>
+                    <button type="button" class="btn btn-secondary tone-action-btn" id="tone-slow-audio-btn" style="display:inline-flex; align-items:center; gap:6px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span data-i18n="toneSlowModelBtn">Lento (0.75x)</span>
                     </button>
-                    <button type="button" class="btn btn-secondary tone-action-btn" id="tone-record-btn">
-                        <span id="tone-record-icon">🎙️</span> <span id="tone-record-label" data-i18n="tonePracticeMicBtn">Practicar Entonación</span>
+                    <button type="button" class="btn btn-secondary tone-action-btn" id="tone-record-btn" style="display:inline-flex; align-items:center; gap:6px;">
+                        <span id="tone-record-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                        </span>
+                        <span id="tone-record-label" data-i18n="tonePracticeMicBtn">Practicar Entonación</span>
                     </button>
                 </div>
 
@@ -84,8 +91,9 @@
             <div class="tone-vis-side-column">
                 <!-- Tone Guide Rules Card -->
                 <div class="tone-vis-card tone-rules-card">
-                    <h4 class="side-card-title">
-                        <span>💡</span> <span data-i18n="toneRulesTitle">Regla Mnemotécnica del Tono</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <span data-i18n="toneRulesTitle">Regla Mnemotécnica del Tono</span>
                     </h4>
                     <p class="tone-rule-desc" id="tone-rule-desc">
                         Mantén la voz alta y plana como si cantaras una nota musical constante sin fluctuar.
@@ -97,8 +105,9 @@
 
                 <!-- Tone Minimal Pairs Bench -->
                 <div class="tone-vis-card minimal-pairs-card">
-                    <h4 class="side-card-title">
-                        <span>⚖️</span> <span data-i18n="minimalPairsTitle">Pares Mínimos de Contraste</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span data-i18n="minimalPairsTitle">Pares Mínimos de Contraste</span>
                     </h4>
                     <div class="minimal-pairs-list" id="minimal-pairs-list">
                         <!-- Populated dynamically -->

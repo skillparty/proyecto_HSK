@@ -482,7 +482,7 @@ class UIController {
               await this.loadScript("assets/js/tones-invaders-renderer.js");
             }
             if (!window.TonesInvadersGame) {
-              await this.loadScript("assets/js/tones-invaders-game.js?v=3dde898f");
+              await this.loadScript("assets/js/tones-invaders-game.js?v=c37ddaf1");
             }
             if (!window.tonesInvadersGame) {
               window.tonesInvadersGame = new TonesInvadersGame(this.app);

@@ -683,7 +683,9 @@ class WritingSheetsController {
         if (items.length === 0) {
             previewContainer.innerHTML = `
                 <div style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
-                    <div style="font-size: 2.5rem; margin-bottom: 8px;">✍️</div>
+                    <div style="display:flex; justify-content:center; margin-bottom: 12px; color: var(--text-muted); opacity: 0.6;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                    </div>
                     <h4>No hay caracteres en la plantilla</h4>
                     <p style="font-size: 0.9rem;">Escribe palabras en el campo de texto o selecciona un nivel HSK a la izquierda.</p>
                 </div>

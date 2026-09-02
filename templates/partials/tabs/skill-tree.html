@@ -4,7 +4,9 @@
         <div class="skill-tree-header">
             <div class="tree-header-info">
                 <h2 class="tree-main-title">
-                    <span class="tree-title-icon">🗺️</span>
+                    <span class="tree-title-icon" style="display:inline-flex; align-items:center;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                    </span>
                     <span data-i18n="skillTreeTitle">Mapa de Aventura & Árbol de Habilidades RPG</span>
                 </h2>
                 <p class="tree-subtitle" data-i18n="skillTreeSubtitle">
@@ -15,17 +17,23 @@
             <!-- Stats Bar -->
             <div class="tree-stats-bar">
                 <div class="tree-stat-pill">
-                    <span class="pill-icon">⭐</span>
+                    <span class="pill-icon" style="display:inline-flex; align-items:center; color:var(--color-accent, #facc15);">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </span>
                     <span class="pill-label" data-i18n="treeStarsLabel">Estrellas:</span>
                     <strong id="tree-total-stars">0</strong> / 45
                 </div>
                 <div class="tree-stat-pill">
-                    <span class="pill-icon">⚡</span>
+                    <span class="pill-icon" style="display:inline-flex; align-items:center; color:#eab308;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </span>
                     <span class="pill-label" data-i18n="treeLevelLabel">Nivel RPG:</span>
                     <strong id="tree-player-level">Nivel 1 (Novato)</strong>
                 </div>
                 <div class="tree-stat-pill">
-                    <span class="pill-icon">🔮</span>
+                    <span class="pill-icon" style="display:inline-flex; align-items:center; color:#8b5cf6;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </span>
                     <span class="pill-label" data-i18n="treeTalentsLabel">Talentos:</span>
                     <strong id="tree-unlocked-talents">0</strong> / 4
                 </div>
@@ -45,8 +53,9 @@
             <div class="tree-side-panel">
                 <!-- Talents Tree Card -->
                 <div class="tree-card talents-card">
-                    <h4 class="side-card-title">
-                        <span>🔮</span> <span data-i18n="talentsTitle">Árbol de Talentos Pasivos</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        <span data-i18n="talentsTitle">Árbol de Talentos Pasivos</span>
                     </h4>
                     <p class="talents-desc" data-i18n="talentsDesc">Desbloquea habilidades permanentes usando tus estrellas ganadas:</p>
                     <div class="talents-list" id="tree-talents-list"></div>
@@ -54,8 +63,9 @@
 
                 <!-- Lore & Character Class Card -->
                 <div class="tree-card character-lore-card">
-                    <h4 class="side-card-title">
-                        <span>🐉</span> <span data-i18n="characterClassTitle">Rango del Erudito</span>
+                    <h4 class="side-card-title" style="display:flex; align-items:center; gap:6px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                        <span data-i18n="characterClassTitle">Rango del Erudito</span>
                     </h4>
                     <div class="rank-badge-display">
                         <div class="rank-avatar" id="tree-rank-avatar">🥋</div>

@@ -54,8 +54,9 @@
                         </div>
 
                         <div class="deck-quick-bar" style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
-                            <button id="manage-decks-btn" class="btn btn-sm btn-secondary" type="button" style="font-size: 0.82rem; padding: 5px 12px; border-radius: 8px;">
-                                📦 <span data-i18n="manageDecksBtn">Mazos & Exportación Anki</span>
+                            <button id="manage-decks-btn" class="btn btn-sm btn-secondary" type="button" style="font-size: 0.82rem; padding: 5px 12px; border-radius: 8px; display:inline-flex; align-items:center; gap:6px;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                <span data-i18n="manageDecksBtn">Mazos & Exportación Anki</span>
                             </button>
                         </div>
 
@@ -64,7 +65,9 @@
                             <div id="flashcard" class="flashcard">
                                 <div class="flashcard-inner">
                                     <div class="card-face card-front">
-                                        <button type="button" id="flashcard-fav-btn" class="flashcard-fav-btn" title="Guardar en Favoritos" aria-label="Favorito">⭐</button>
+                                        <button type="button" id="flashcard-fav-btn" class="flashcard-fav-btn" title="Guardar en Favoritos" aria-label="Favorito">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                        </button>
                                         <div class="hsk-academic-seal">学</div>
                                         <div class="card-character-container" id="question-text"></div>
                                         <div class="card-front-meta" id="lesson-meta-front" style="display: none;"></div>

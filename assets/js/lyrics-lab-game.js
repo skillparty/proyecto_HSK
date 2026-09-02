@@ -356,7 +356,7 @@ class LyricsLabGame {
 
     startPlayAll() {
         this.isPlaying = true;
-        if (this.playIcon) this.playIcon.textContent = "⏹️";
+        if (this.playIcon) this.playIcon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><rect x="4" y="4" width="16" height="16" rx="2"></rect></svg>';
         if (this.playLabel) this.playLabel.textContent = "Detener";
 
         this.currentLineIndex = 0;
@@ -403,7 +403,7 @@ class LyricsLabGame {
         if ("speechSynthesis" in window) {
             speechSynthesis.cancel();
         }
-        if (this.playIcon) this.playIcon.textContent = "▶️";
+        if (this.playIcon) this.playIcon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
         if (this.playLabel) this.playLabel.textContent = "Cantar Canción";
         this.unhighlightAll();
     }
@@ -477,8 +477,8 @@ class LyricsLabGame {
         if (isCorrect) {
             this.scrambleFeedback.className = "scramble-feedback correct";
             this.scrambleFeedback.innerHTML = isEs
-                ? "🎉 ¡Excelente! Has ordenado la canción a la perfección. +50 XP"
-                : "🎉 Excellent! You ordered the song lyrics perfectly. +50 XP";
+                ? "¡Excelente! Has ordenado la canción a la perfección. +50 XP"
+                : "Excellent! You ordered the song lyrics perfectly. +50 XP";
             this.scrambleFeedback.style.display = "block";
 
             this.app?.audioController?.playCorrect?.();

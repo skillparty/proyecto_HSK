@@ -50,8 +50,8 @@ class HomeController {
         const titleEl = document.getElementById('dashboard-welcome-title');
         if (titleEl) {
             titleEl.textContent = isEs 
-              ? (name ? `¡Hola, ${name}! 🐉` : '¡Hola, Estudiante! 🐉')
-              : (name ? `Hello, ${name}! 🐉` : 'Hello, Scholar! 🐉');
+              ? (name ? `¡Hola, ${name}!` : '¡Hola, Estudiante!')
+              : (name ? `Hello, ${name}!` : 'Hello, Scholar!');
         }
 
         const subtitleEl = document.getElementById('dashboard-welcome-subtitle');
@@ -470,7 +470,7 @@ class HomeController {
         const quests = [
             {
                 id: 'srs',
-                icon: '🧠',
+                icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-primary);"><path d="M12 2a4 4 0 0 0-4 4v1H6a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h1v1a4 4 0 0 0 8 0v-1h1a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3h-2V6a4 4 0 0 0-4-4z"></path></svg>',
                 title: isEs ? 'Repasa 10 tarjetas SRS' : 'Review 10 SRS cards',
                 xp: '+30 XP',
                 done: Boolean(state.srs),
@@ -479,7 +479,7 @@ class HomeController {
             },
             {
                 id: 'reader',
-                icon: '📖',
+                icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-accent, #eab308);"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>',
                 title: isEs ? 'Lee 1 historia en el Lector Graduado' : 'Read 1 story in Graded Reader',
                 xp: '+25 XP',
                 done: Boolean(state.reader),
@@ -488,7 +488,7 @@ class HomeController {
             },
             {
                 id: 'tones',
-                icon: '🎧',
+                icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-tone-3, #2563eb);"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>',
                 title: isEs ? 'Entrena 1 ronda en el Entrenador de Tonos' : 'Train 1 round in Tone Trainer',
                 xp: '+20 XP',
                 done: Boolean(state.tones),
@@ -497,7 +497,7 @@ class HomeController {
             },
             {
                 id: 'tutor',
-                icon: '💬',
+                icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-success, #16a34a);"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>',
                 title: isEs ? 'Completa 1 diálogo en el Tutor' : 'Complete 1 Dialogue Scenario',
                 xp: '+25 XP',
                 done: Boolean(state.tutor),
@@ -517,12 +517,14 @@ class HomeController {
             }
         }
 
+        const doneCheckSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
+
         container.innerHTML = quests
             .map((q) => {
                 return `
                 <div class="quest-item" style="display:flex; align-items:center; justify-content:space-between; background:var(--color-bg-hover, rgba(0,0,0,0.03)); padding:10px 14px; border-radius:10px; font-size:0.88rem; transition:all 0.2s ease;">
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <span style="font-size:1.15rem;">${q.done ? '✅' : q.icon}</span>
+                        <span style="display:flex; align-items:center; justify-content:center; width:24px; height:24px;">${q.done ? doneCheckSvg : q.icon}</span>
                         <div>
                             <div style="font-weight:600; ${q.done ? 'text-decoration:line-through; color:var(--text-muted, #9ca3af);' : 'color:var(--text-primary);'}">
                                 ${q.title}
