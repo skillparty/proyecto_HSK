@@ -95,13 +95,13 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(135deg, #d32f2f 0%, #991b1b 100%);
+    background: linear-gradient(135deg, var(--color-primary, #e53935) 0%, var(--color-primary-hover, #c62828) 100%);
     color: #ffffff;
     padding: 8px 18px;
     border-radius: 24px;
     font-weight: 800;
     font-size: 0.95rem;
-    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.25);
     margin-bottom: 24px;
     z-index: 2;
 }
@@ -146,16 +146,16 @@
 
 /* Node States */
 .trail-node.available .node-orb {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, var(--color-primary, #e53935) 0%, var(--color-primary-hover, #c62828) 100%);
     color: #ffffff;
-    border-color: #93c5fd;
+    border-color: #fca5a5;
     animation: nodePulse 2s infinite;
 }
 
 .trail-node.completed .node-orb {
-    background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
     color: #ffffff;
-    border-color: #6ee7b7;
+    border-color: #86efac;
 }
 
 .trail-node.locked .node-orb {
@@ -169,21 +169,21 @@
 .trail-node.boss .node-orb {
     width: 84px;
     height: 84px;
-    background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
-    color: #ffffff;
-    border-color: #fde68a;
-    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
+    background: linear-gradient(135deg, var(--color-accent, #facc15) 0%, #ca8a04 100%);
+    color: #18181b;
+    border-color: #fef08a;
+    box-shadow: 0 8px 24px rgba(250, 204, 21, 0.4);
 }
 
 @keyframes nodePulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
+        box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.5);
     }
     70% {
-        box-shadow: 0 0 0 14px rgba(59, 130, 246, 0);
+        box-shadow: 0 0 0 14px rgba(229, 57, 53, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        box-shadow: 0 0 0 0 rgba(229, 57, 53, 0);
     }
 }
 
@@ -274,25 +274,25 @@
     font-size: 0.75rem;
     font-weight: 700;
     border-radius: 8px;
-    border: 1px solid #f59e0b;
-    background: #fffbeb;
-    color: #b45309;
+    border: 1px solid var(--color-accent, #facc15);
+    background: var(--color-accent-subtle, #fef9c3);
+    color: #854d0e;
     cursor: pointer;
     white-space: nowrap;
     transition: all 0.15s ease;
 }
 
 .talent-unlock-btn:hover:not(:disabled) {
-    background: #f59e0b;
-    color: #ffffff;
+    background: var(--color-accent, #facc15);
+    color: #18181b;
 }
 
 .talent-unlock-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    border-color: #d1d5db;
-    background: #f3f4f6;
-    color: #9ca3af;
+    border-color: var(--color-border, #d1d5db);
+    background: var(--color-bg-hover, #f3f4f6);
+    color: var(--color-text-dim, #9ca3af);
 }
 
 /* Character Lore */
@@ -438,20 +438,20 @@
 }
 
 .node-option-btn:hover {
-    border-color: var(--primary, #d32f2f);
-    background: rgba(211, 47, 47, 0.04);
+    border-color: var(--color-primary, #e53935);
+    background: var(--color-primary-subtle, #ffebee);
 }
 
 .node-option-btn.correct {
-    background: #ecfdf5;
-    border-color: #10b981;
-    color: #065f46;
+    background: var(--color-success-subtle, #dcfce7);
+    border-color: var(--color-success, #22c55e);
+    color: #14532d;
 }
 
 .node-option-btn.incorrect {
-    background: #fef2f2;
-    border-color: #ef4444;
-    color: #991b1b;
+    background: var(--color-error-subtle, #fee2e2);
+    border-color: var(--color-error, #ef4444);
+    color: #7f1d1d;
 }
 
 .tree-modal-result {

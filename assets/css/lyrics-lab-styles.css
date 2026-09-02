@@ -60,16 +60,16 @@
 }
 
 .song-chip-btn:hover {
-    border-color: var(--primary, #d32f2f);
-    color: var(--primary, #d32f2f);
+    border-color: var(--color-primary, #e53935);
+    color: var(--color-primary, #e53935);
     transform: translateY(-1px);
 }
 
 .song-chip-btn.active {
-    background: var(--primary, #d32f2f);
+    background: linear-gradient(135deg, var(--color-primary, #e53935) 0%, var(--color-primary-hover, #c62828) 100%);
     color: #ffffff;
-    border-color: var(--primary, #d32f2f);
-    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+    border-color: var(--color-primary-hover, #c62828);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.25);
 }
 
 /* Workspace Grid */
@@ -193,7 +193,7 @@
 }
 
 .lyrics-speed-btn.active {
-    background: var(--primary, #d32f2f);
+    background: var(--color-primary, #e53935);
     color: #ffffff;
 }
 
@@ -356,7 +356,7 @@
 .scramble-slot-item {
     padding: 8px 12px;
     border-radius: 8px;
-    background: var(--primary, #d32f2f);
+    background: var(--color-primary, #e53935);
     color: #ffffff;
     font-size: 0.88rem;
     font-weight: 700;
@@ -382,8 +382,8 @@
 }
 
 .scramble-opt-btn:hover {
-    border-color: var(--primary, #d32f2f);
-    background: rgba(211, 47, 47, 0.04);
+    border-color: var(--color-primary, #e53935);
+    background: var(--color-primary-subtle, #ffebee);
 }
 
 .scramble-feedback {

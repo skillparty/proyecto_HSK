@@ -60,16 +60,16 @@
 }
 
 .story-chip-btn:hover {
-    border-color: #b91c1c;
-    color: #b91c1c;
+    border-color: var(--color-primary, #e53935);
+    color: var(--color-primary, #e53935);
     transform: translateY(-1px);
 }
 
 .story-chip-btn.active {
-    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+    background: linear-gradient(135deg, var(--color-primary, #e53935) 0%, var(--color-primary-hover, #c62828) 100%);
     color: #ffffff;
-    border-color: #991b1b;
-    box-shadow: 0 4px 12px rgba(185, 28, 28, 0.25);
+    border-color: var(--color-primary-hover, #c62828);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.25);
 }
 
 /* Stage Layout */
@@ -220,8 +220,9 @@
     padding: 8px 18px;
     font-size: 0.9rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+    background: linear-gradient(135deg, var(--color-primary, #e53935) 0%, var(--color-primary-hover, #c62828) 100%);
     border: none;
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.25);
 }
 
 .shadow-progress-tag {

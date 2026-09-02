@@ -11,63 +11,42 @@
 /* Pantalla de configuración */
 .matrix-config-screen {
     background: 
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 10px,
-            rgba(255, 215, 0, 0.02) 10px,
-            rgba(255, 215, 0, 0.02) 20px
-        ),
-        linear-gradient(
-            135deg,
-            rgba(139, 69, 19, 0.15) 0%,
-            rgba(196, 30, 58, 0.12) 50%,
-            rgba(139, 69, 19, 0.15) 100%
-        );
-    border: 3px solid transparent;
-    border-image: linear-gradient(
-        135deg,
-        rgba(255, 215, 0, 0.5),
-        rgba(196, 30, 58, 0.3),
-        rgba(255, 215, 0, 0.5)
-    ) 1;
+        radial-gradient(ellipse at 20% 20%, rgba(229, 57, 53, 0.15), transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(250, 204, 21, 0.12), transparent 50%),
+        linear-gradient(135deg, rgba(24, 24, 27, 0.95) 0%, rgba(9, 9, 11, 0.98) 100%);
+    border: 2px solid rgba(250, 204, 21, 0.4);
     border-radius: 20px;
     padding: 24px;
     box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.3),
-        inset 0 1px 3px rgba(255, 215, 0, 0.1);
+        0 20px 60px rgba(0, 0, 0, 0.35),
+        inset 0 1px 3px rgba(250, 204, 21, 0.15);
     animation: slideIn 0.5s ease;
 }
 
 .matrix-title {
     font-size: 2rem;
-    color: white;
+    font-weight: 800;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 8px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 10px rgba(229, 57, 53, 0.5);
 }
 
 .matrix-subtitle {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.85);
     text-align: center;
     margin-bottom: 20px;
 }
 
 .matrix-settings {
-    background: 
-        linear-gradient(
-            135deg,
-            rgba(255, 215, 0, 0.08) 0%,
-            rgba(255, 255, 255, 0.1) 50%,
-            rgba(196, 30, 58, 0.08) 100%
-        );
-    border: 2px solid rgba(255, 215, 0, 0.2);
+    background: rgba(39, 39, 42, 0.6);
+    border: 1px solid rgba(250, 204, 21, 0.25);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: inset 0 1px 2px rgba(255, 215, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(250, 204, 21, 0.1);
 }
 
 .setting-group {
@@ -86,17 +65,17 @@
     width: 100%;
     padding: 12px 20px;
     font-size: 1rem;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(24, 24, 27, 0.8);
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .matrix-select:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(39, 39, 42, 0.9);
+    border-color: rgba(229, 57, 53, 0.6);
 }
 
 .matrix-select option {
@@ -164,29 +143,23 @@
 .matrix-start-btn {
     width: 100%;
     padding: 14px;
-    background: 
-        linear-gradient(
-            135deg,
-            rgba(255, 215, 0, 0.2) 0%,
-            rgba(196, 30, 58, 0.9) 50%,
-            rgba(139, 69, 19, 0.3) 100%
-        );
-    border: 2px solid rgba(255, 215, 0, 0.5);
+    background: linear-gradient(135deg, var(--color-primary, #e53935) 0%, var(--color-primary-hover, #c62828) 100%);
+    border: 2px solid var(--color-accent, #facc15);
     border-radius: 15px;
     color: white;
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 
-        0 10px 30px rgba(196, 30, 58, 0.4),
-        inset 0 1px 4px rgba(255, 215, 0, 0.3),
-        0 0 20px rgba(255, 215, 0, 0.2);
+        0 10px 30px rgba(229, 57, 53, 0.4),
+        inset 0 1px 4px rgba(250, 204, 21, 0.4),
+        0 0 20px rgba(229, 57, 53, 0.25);
 }
 
 .matrix-start-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(245, 87, 108, 0.4);
+    box-shadow: 0 15px 40px rgba(229, 57, 53, 0.6), 0 0 25px rgba(250, 204, 21, 0.3);
 }
 
 .matrix-start-btn:active {

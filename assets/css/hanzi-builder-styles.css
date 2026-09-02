@@ -88,7 +88,10 @@
     position: relative;
 }
 .hanzi-build-rules li::before {
-    content: '🧩';
+    content: '•';
+    color: var(--color-primary, #e53935);
+    font-size: 1.2rem;
+    line-height: 1;
     position: absolute;
     left: 0;
 }
@@ -100,46 +103,53 @@
 
 /* ── Buttons ─────────────────────────────────────────── */
 .hanzi-build-btn-primary {
-    background: linear-gradient(135deg, #10b981, #059669);
+    background: linear-gradient(135deg, var(--color-primary, #e53935), var(--color-primary-hover, #c62828));
     color: #fff;
     border: none;
     padding: .7rem 2rem;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-md, 8px);
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: transform .15s, box-shadow .2s;
+    box-shadow: 0 4px 14px var(--color-primary-glow, rgba(229, 57, 53, 0.25));
+    transition: transform .15s, box-shadow .2s, background .2s;
 }
 .hanzi-build-btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(16,185,129,.35);
+    box-shadow: 0 6px 20px rgba(229, 57, 53, 0.4);
 }
 
 .hanzi-build-btn-secondary {
-    background: var(--surface-2);
-    color: var(--text-1);
-    border: 1px solid var(--border);
+    background: var(--surface-2, var(--color-bg-card));
+    color: var(--text-1, var(--color-text-main));
+    border: 1px solid var(--border, var(--color-border));
     padding: .55rem 1.4rem;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-md, 8px);
     font-size: .9rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background .15s;
+    transition: background .15s, border-color .15s;
 }
 .hanzi-build-btn-secondary:hover {
-    background: var(--surface-3, var(--surface-1));
+    background: var(--surface-3, var(--color-bg-hover));
+    border-color: var(--color-primary, #e53935);
 }
 
 .hanzi-build-btn-neutral {
     background: transparent;
-    color: var(--text-2);
-    border: 1px solid var(--border);
+    color: var(--text-2, var(--color-text-muted));
+    border: 1px solid var(--border, var(--color-border));
     padding: .55rem 1.4rem;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-md, 8px);
     font-size: .9rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: color .15s;
+    transition: color .15s, border-color .15s;
 }
-.hanzi-build-btn-neutral:hover { color: var(--text-1); }
+.hanzi-build-btn-neutral:hover {
+    color: var(--text-1, var(--color-text-main));
+    border-color: var(--color-text-muted);
+}
 
 /* ── Game Area ───────────────────────────────────────── */
 .hanzi-build-game {

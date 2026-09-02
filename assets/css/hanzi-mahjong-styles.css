@@ -112,7 +112,7 @@
 
 .mahjong-mode-btn.active,
 .mahjong-diff-btn.active {
-    background: #047857;
+    background: var(--color-primary, #e53935);
     color: #ffffff;
 }
 
@@ -204,9 +204,9 @@
 
 .mahjong-tile.selected {
     transform: translateY(-8px);
-    border-color: #2563eb;
-    box-shadow: 0 14px 0 #1d4ed8, 0 0 20px rgba(37, 99, 235, 0.6);
-    background: #eff6ff;
+    border-color: var(--color-primary, #e53935);
+    box-shadow: 0 14px 0 #b91c1c, 0 0 20px rgba(229, 57, 53, 0.6);
+    background: #fff1f2;
 }
 
 .mahjong-tile.hinted {
@@ -245,7 +245,7 @@
 .mahjong-victory-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(6, 78, 59, 0.9);
+    background: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(6px);
     border-radius: 12px;
     display: flex;
@@ -256,7 +256,8 @@
 }
 
 .victory-modal-content {
-    background: #ffffff;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
     border-radius: 20px;
     padding: 30px 24px;
     max-width: 420px;
@@ -280,21 +281,22 @@
     margin: 0 0 8px 0;
     font-size: 1.4rem;
     font-weight: 800;
-    color: #065f46;
+    color: var(--color-primary, #e53935);
 }
 
 .victory-desc {
     font-size: 0.9rem;
-    color: #4b5563;
+    color: var(--text-secondary, #4b5563);
     margin: 0 0 16px 0;
 }
 
 .victory-score-badge {
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
+    background: var(--color-accent-subtle, #fef9c3);
+    border: 1px solid rgba(250, 204, 21, 0.4);
     padding: 10px 16px;
     border-radius: 12px;
     font-size: 1.05rem;
-    color: #065f46;
+    font-weight: 700;
+    color: #854d0e;
     margin-bottom: 20px;
 }

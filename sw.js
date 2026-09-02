@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+c8206504";
+const SW_VERSION = "4.70.0+845ea116";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -21,18 +21,18 @@ const PRECACHE_FILES = [
   "./assets/css/app-strokes.css?v=2a3bae39",
   "./assets/css/app-quiz.css?v=5d43a437",
   "./assets/css/app-stats.css?v=cd1fd78c",
-  "./assets/css/app-enhancements.css?v=2ea44515",
+  "./assets/css/app-enhancements.css?v=99d811b4",
   "./assets/css/app-dashboard-extras.css?v=e9f43713",
-  "./assets/css/matrix-game-styles.css?v=1864034e",
+  "./assets/css/matrix-game-styles.css?v=0572521c",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css?v=8292921d",
   "./assets/css/command-palette.css?v=86b01884",
   "./assets/css/achievements-styles.css?v=11478cfc",
   "./assets/css/deck-manager-styles.css?v=ed48188f",
-  "./assets/css/quantifier-snake-styles.css?v=73064cd6",
-  "./assets/css/tones-invaders-styles.css?v=5821d4f3",
-  "./assets/css/hanzi-builder-styles.css?v=6cfca79e",
-  "./assets/css/word-linker-styles.css?v=ba5d13f3",
+  "./assets/css/quantifier-snake-styles.css?v=48278d55",
+  "./assets/css/tones-invaders-styles.css?v=7dd57740",
+  "./assets/css/hanzi-builder-styles.css?v=2995e713",
+  "./assets/css/word-linker-styles.css?v=918db2e1",
   "./assets/css/sentence-builder-styles.css",
   "./assets/css/tone-trainer-styles.css",
   "./assets/css/graded-reader-styles.css",
@@ -67,7 +67,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=6c07d80a",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7a1e139f",
-  "./assets/js/modules/ui-controller.js?v=392a72a5",
+  "./assets/js/modules/ui-controller.js?v=75f9ad10",
   "./assets/js/modules/navigation-controller.js?v=869b0269",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",

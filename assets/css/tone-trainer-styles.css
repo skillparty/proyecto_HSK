@@ -74,7 +74,7 @@
 .tt-stat-val {
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--primary, #e11d48);
+    color: var(--color-primary, #e53935);
     font-family: var(--font-mono, monospace);
 }
 
@@ -100,14 +100,14 @@
 }
 
 .tt-mode-tab:hover {
-    border-color: rgba(225, 29, 72, 0.4);
+    border-color: rgba(229, 57, 53, 0.45);
     transform: translateY(-2px);
 }
 
 .tt-mode-tab.active {
-    border-color: var(--primary, #e11d48);
-    background: rgba(225, 29, 72, 0.08);
-    box-shadow: 0 4px 14px rgba(225, 29, 72, 0.15);
+    border-color: var(--color-primary, #e53935);
+    background: rgba(229, 57, 53, 0.08);
+    box-shadow: 0 4px 14px rgba(229, 57, 53, 0.15);
 }
 
 .tt-mode-icon {
@@ -156,7 +156,7 @@
 }
 
 .tt-big-audio-btn {
-    background: linear-gradient(135deg, var(--primary, #e11d48), #be123c);
+    background: linear-gradient(135deg, var(--color-primary, #e53935), var(--color-primary-hover, #c62828));
     color: white;
     border: none;
     border-radius: 9999px;
@@ -167,14 +167,14 @@
     font-size: 1.15rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(225, 29, 72, 0.35);
+    box-shadow: 0 8px 24px rgba(229, 57, 53, 0.35);
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
     user-select: none;
 }
 
 .tt-big-audio-btn:hover {
     transform: scale(1.05) translateY(-2px);
-    box-shadow: 0 12px 30px rgba(225, 29, 72, 0.5);
+    box-shadow: 0 12px 30px rgba(229, 57, 53, 0.5);
 }
 
 .tt-big-audio-btn:active {
@@ -252,8 +252,8 @@
 
 .tt-tone-card:hover {
     transform: translateY(-4px);
-    border-color: var(--primary, #e11d48);
-    background: rgba(225, 29, 72, 0.08);
+    border-color: var(--color-primary, #e53935);
+    background: rgba(229, 57, 53, 0.08);
 }
 
 .tt-tone-card.correct {
@@ -271,7 +271,7 @@
 .tt-tone-badge {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--primary, #e11d48);
+    color: var(--color-primary, #e53935);
 }
 
 .tt-tone-contour {
@@ -318,7 +318,7 @@
 
 .tt-choice-btn:hover {
     transform: translateY(-2px);
-    border-color: var(--primary, #e11d48);
+    border-color: var(--color-primary, #e53935);
 }
 
 .tt-choice-btn.correct {

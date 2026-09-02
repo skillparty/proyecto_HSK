@@ -316,7 +316,7 @@ class UIController {
       case "past-exams":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=73064cd6");
+            await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=48278d55");
             if (!window.PastExamsQuestionBank) {
               await this.loadScript("assets/js/modules/past-exams-question-bank.js");
             }
@@ -350,7 +350,7 @@ class UIController {
         break;
       case "snake-quantifiers":
         (async () => {
-          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=73064cd6");
+          await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=48278d55");
           try {
             if (!window.QuantifierSnakeUtils) {
               await this.loadScript("assets/js/modules/quantifier-snake-utils.js?v=cf878469");
@@ -419,7 +419,7 @@ class UIController {
       case "matrix":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/matrix-game-styles.css?v=1864034e");
+            await this.loadStylesheet("assets/css/matrix-game-styles.css?v=0572521c");
             if (!window.GameStateManager) {
               await this.loadScript("assets/js/modules/game-engine.js");
             }
@@ -477,7 +477,7 @@ class UIController {
       case "tones-invaders":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/tones-invaders-styles.css?v=5821d4f3");
+            await this.loadStylesheet("assets/css/tones-invaders-styles.css?v=7dd57740");
             if (!window.TonesInvadersRenderer) {
               await this.loadScript("assets/js/tones-invaders-renderer.js");
             }
@@ -496,7 +496,7 @@ class UIController {
       case "hanzi-builder":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/hanzi-builder-styles.css?v=6cfca79e");
+            await this.loadStylesheet("assets/css/hanzi-builder-styles.css?v=2995e713");
             if (!window.HanziBuilderGame) {
               await this.loadScript("assets/js/hanzi-builder-game.js?v=745260cd");
             }
@@ -512,7 +512,7 @@ class UIController {
       case "word-linker":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/word-linker-styles.css?v=ba5d13f3");
+            await this.loadStylesheet("assets/css/word-linker-styles.css?v=918db2e1");
             if (!window.WordLinkerGame) {
               await this.loadScript("assets/js/word-linker-game.js?v=d263c1b3");
             }

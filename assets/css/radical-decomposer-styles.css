@@ -72,9 +72,9 @@
 }
 
 .decomposer-input:focus {
-    border-color: var(--primary, #d32f2f);
+    border-color: var(--color-primary, #e53935);
     background: var(--card-bg, #ffffff);
-    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.15);
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.18);
     outline: none;
 }
 
@@ -97,15 +97,16 @@
 }
 
 .decomposer-chip:hover {
-    border-color: var(--primary, #d32f2f);
-    color: var(--primary, #d32f2f);
+    border-color: var(--color-primary, #e53935);
+    color: var(--color-primary, #e53935);
     transform: translateY(-1px);
 }
 
 .decomposer-chip.active {
-    background: var(--primary, #d32f2f);
+    background: linear-gradient(135deg, var(--color-primary, #e53935) 0%, var(--color-primary-hover, #c62828) 100%);
     color: #ffffff;
-    border-color: var(--primary, #d32f2f);
+    border-color: var(--color-primary-hover, #c62828);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.25);
 }
 
 /* Main Grid Layout */
@@ -143,13 +144,13 @@
     width: 100px;
     height: 100px;
     position: relative;
-    border: 2px solid var(--primary, #d32f2f);
+    border: 2px solid var(--color-primary, #e53935);
     border-radius: 14px;
     background: #fffdfa;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 18px rgba(211, 47, 47, 0.12);
+    box-shadow: 0 6px 18px rgba(229, 57, 53, 0.15);
 }
 
 .char-hero-mizige::before {
@@ -157,10 +158,10 @@
     position: absolute;
     inset: 0;
     background: 
-        linear-gradient(to right, transparent 49%, rgba(211, 47, 47, 0.15) 50%, transparent 51%),
-        linear-gradient(to bottom, transparent 49%, rgba(211, 47, 47, 0.15) 50%, transparent 51%),
-        linear-gradient(45deg, transparent 49%, rgba(211, 47, 47, 0.08) 50%, transparent 51%),
-        linear-gradient(-45deg, transparent 49%, rgba(211, 47, 47, 0.08) 50%, transparent 51%);
+        linear-gradient(to right, transparent 49%, rgba(229, 57, 53, 0.15) 50%, transparent 51%),
+        linear-gradient(to bottom, transparent 49%, rgba(229, 57, 53, 0.15) 50%, transparent 51%),
+        linear-gradient(45deg, transparent 49%, rgba(229, 57, 53, 0.08) 50%, transparent 51%),
+        linear-gradient(-45deg, transparent 49%, rgba(229, 57, 53, 0.08) 50%, transparent 51%);
     pointer-events: none;
 }
 
