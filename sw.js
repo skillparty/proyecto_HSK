@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+845ea116";
+const SW_VERSION = "4.70.0+3bdf042a";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -25,7 +25,7 @@ const PRECACHE_FILES = [
   "./assets/css/app-dashboard-extras.css?v=e9f43713",
   "./assets/css/matrix-game-styles.css?v=0572521c",
   "./assets/css/leaderboard-styles.css",
-  "./assets/css/user-profile-styles.css?v=8292921d",
+  "./assets/css/user-profile-styles.css?v=c3c180e3",
   "./assets/css/command-palette.css?v=86b01884",
   "./assets/css/achievements-styles.css?v=11478cfc",
   "./assets/css/deck-manager-styles.css?v=ed48188f",
@@ -55,7 +55,7 @@ const PRECACHE_FILES = [
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=eec23dcf",
   "./assets/js/translations.js?v=6fb8ddb4",
-  "./assets/js/firebase-client.js?v=0f2cb080",
+  "./assets/js/firebase-client.js?v=620f489f",
   "./assets/js/firebase-progress-sync.js?v=0739a27c",
   "./assets/js/modules/srs-engine.js?v=811fc44e",
   "./assets/js/modules/flashcard-manager.js?v=b0687a3a",
