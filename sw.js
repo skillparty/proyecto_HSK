@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+236bf0d7";
+const SW_VERSION = "4.70.0+bf6e6029";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -68,7 +68,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7a1e139f",
   "./assets/js/modules/ui-controller.js?v=5f8fd643",
-  "./assets/js/modules/navigation-controller.js?v=8aa925f5",
+  "./assets/js/modules/navigation-controller.js?v=869b0269",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",
   "./assets/js/modules/culture/traditional-medicine.js",

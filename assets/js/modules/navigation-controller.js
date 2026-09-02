@@ -72,11 +72,8 @@ class NavigationController {
     const allowedTabs = NavigationController.ALLOWED_TABS;
     const savedTab = this.loadLastVisitedTab();
 
-    if (!savedTab || !allowedTabs.has(savedTab)) {
-      return;
-    }
-
-    if (!document.getElementById(savedTab)) {
+    if (!savedTab || !allowedTabs.has(savedTab) || !document.getElementById(savedTab)) {
+      this.switchTab("home");
       return;
     }
 
