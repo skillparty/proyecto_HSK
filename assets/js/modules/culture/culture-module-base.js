@@ -33,9 +33,9 @@ class CultureModuleBase {
   renderLoading() {
     if (this.container) {
       this.container.innerHTML = `
-        <div class="culture-loading" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px;">
-          <div class="spinner" style="border: 4px solid rgba(0,0,0,0.1); width: 36px; height: 36px; border-radius: 50%; border-left-color: var(--primary-color, #e53e3e); animation: spin 1s linear infinite;"></div>
-          <p style="margin-top: 16px; color: var(--text-muted);">Cargando ${this.title}...</p>
+        <div class="culture-loading" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px 20px;">
+          <div class="spinner" style="border: 3px solid rgba(229, 57, 53, 0.15); width: 42px; height: 42px; border-radius: 50%; border-left-color: var(--color-primary, #e53935); animation: spin 0.8s linear infinite;"></div>
+          <p style="margin-top: 18px; color: var(--color-text-muted, #71717a); font-weight: 600; font-size: 0.95rem;">Cargando ${this.title}...</p>
         </div>
         <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
       `;
@@ -45,12 +45,12 @@ class CultureModuleBase {
   renderError(msg) {
     if (this.container) {
       this.container.innerHTML = `
-        <div style="padding: 2rem; text-align: center; color: var(--color-error, #dc2626);">
-          <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚠️</div>
-          <p style="font-weight: 600; margin-bottom: 0.5rem;">No se pudo cargar ${this.title}</p>
-          <p style="font-size: 0.85rem; color: var(--color-text-muted, #666); margin-bottom: 1.5rem;">${msg || "Error desconocido"}</p>
+        <div style="padding: 2.5rem 1.5rem; text-align: center; color: var(--color-error, #ef4444); background: var(--color-bg-panel, #ffffff); border-radius: var(--radius-lg, 14px); border: 1px solid var(--color-border, #e4e4e7); max-width: 600px; margin: 2rem auto;">
+          <div style="font-size: 2.8rem; margin-bottom: 1rem;">🏮</div>
+          <p style="font-weight: 700; font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--color-text-main, #18181b);">No se pudo cargar ${this.title}</p>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted, #71717a); margin-bottom: 1.5rem;">${msg || "Error desconocido"}</p>
           <button data-culture-action="retry"
-            style="padding: 0.5rem 1.5rem; background: var(--color-primary, #d32f2f); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+            style="padding: 0.6rem 1.8rem; background: linear-gradient(135deg, var(--color-primary, #e53935), var(--color-primary-hover, #c62828)); color: #fff; border: none; border-radius: 9999px; cursor: pointer; font-size: 0.92rem; font-weight: 700; box-shadow: 0 4px 12px rgba(229,57,53,0.3);">
             Reintentar
           </button>
         </div>
@@ -65,9 +65,55 @@ class CultureModuleBase {
     }
   }
 
-  // Vuelve a disparar la inicialización del tab que contiene este módulo.
-  // Antes esto vivía encadenado dentro de un onclick inline; se conserva el
-  // mismo recorrido del DOM, arrancando desde el propio botón.
+  // Pronounce Chinese text with synthesis engine
+  speakChinese(text) {
+    if (!text || typeof window === 'undefined') return;
+    const cleanText = text.trim();
+    if (!cleanText) return;
+
+    if (window.app?.audioSynthesizer?.speak) {
+      window.app.audioSynthesizer.speak(cleanText);
+      return;
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'zh-CN';
+      utterance.rate = 0.85;
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+
+  // Helper to generate a standardized audio speaker button
+  getSpeakerBtn(text, title = 'Escuchar pronunciación') {
+    const cleanText = (text || '').replace(/["'<>]/g, '').trim();
+    if (!cleanText) return '';
+    return `<button type="button" class="culture-audio-btn" data-culture-speak="${cleanText}" title="${title}" aria-label="${title}">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+      </svg>
+    </button>`;
+  }
+
+  // Bind audio clicks to all .culture-audio-btn / [data-culture-speak] in container
+  bindAudioButtons(container = this.container) {
+    if (!container) return;
+    container.querySelectorAll('[data-culture-speak]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const text = btn.getAttribute('data-culture-speak') || btn.dataset.cultureSpeak;
+        if (text) {
+          this.speakChinese(text);
+          btn.classList.add('playing');
+          setTimeout(() => btn.classList.remove('playing'), 800);
+        }
+      });
+    });
+  }
+
   retryTabInitialization(fromElement) {
     const tabPanel = fromElement?.closest("[id]")?.parentElement?.parentElement;
     const uiController = window.app?.uiController;
@@ -76,9 +122,6 @@ class CultureModuleBase {
     }
   }
 
-  // Hook para módulos que necesiten traer datos antes de render(). Los que hay
-  // hoy no lo usan: llevan su contenido bilingüe embebido en this.content, a
-  // propósito, para no depender de la red al abrir la pestaña.
   async loadData() {
     // To be implemented by subclasses
   }

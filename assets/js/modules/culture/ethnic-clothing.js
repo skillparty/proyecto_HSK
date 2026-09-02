@@ -141,46 +141,71 @@ class EthnicClothingModule extends (window.CultureModuleBase || CultureModuleBas
       const style = document.createElement('style');
       style.id = 'culture-clothing-styles';
       style.textContent = `
-        .clothing-intro {
-          padding: 1.5rem;
-          background: var(--color-bg-card, rgba(16, 185, 129, 0.03));
-          border-left: 4px solid var(--color-primary, #10b981);
-          border-radius: var(--radius-sm, 4px);
+        .culture-hero-banner {
           margin-bottom: 2rem;
+          border-radius: var(--radius-lg, 16px);
+          overflow: hidden;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          border: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
+          max-height: 280px;
+          position: relative;
+        }
+        .culture-hero-img {
+          width: 100%;
+          height: 260px;
+          object-fit: cover;
+          display: block;
+          filter: brightness(0.92) contrast(1.05);
+          transition: transform 0.4s ease;
+        }
+        .culture-hero-banner:hover .culture-hero-img {
+          transform: scale(1.02);
+        }
+        .clothing-intro {
+          padding: 1.8rem 2.2rem;
+          background: var(--color-bg-card, #fbfbfb);
+          border-left: 4px solid var(--color-primary, #e53935);
+          border-radius: var(--radius-lg, 14px);
+          margin-bottom: 2.2rem;
+          border: 1px solid var(--color-border, #e5e7eb);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
         }
         .clothing-intro p {
           margin: 0;
-          color: var(--color-text-main, #333);
-          line-height: 1.7;
-          font-size: 0.98rem;
+          color: var(--color-text-main, #27272a);
+          line-height: 1.8;
+          font-size: 1rem;
+          font-weight: 450;
         }
         .clothing-filters {
           display: flex;
           flex-wrap: wrap;
           gap: 0.75rem;
-          margin-bottom: 2rem;
+          margin-bottom: 2.2rem;
           padding-bottom: 1rem;
-          border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.06));
+          border-bottom: 1px solid var(--color-border, #e4e4e7);
         }
         .clothing-filter-btn {
-          background: var(--color-bg-panel, #fff);
-          border: 1px solid var(--color-border, rgba(0,0,0,0.08));
-          padding: 0.5rem 1.2rem;
-          border-radius: 20px;
+          background: var(--color-bg-panel, #ffffff);
+          border: 1px solid var(--color-border, #e4e4e7);
+          padding: 0.55rem 1.3rem;
+          border-radius: 9999px;
           font-size: 0.88rem;
           font-weight: 600;
-          color: var(--color-text-muted, #555);
+          color: var(--color-text-muted, #71717a);
           cursor: pointer;
-          transition: all 0.2s;
+          transition: all 0.2s ease;
         }
         .clothing-filter-btn:hover {
-          border-color: var(--color-primary, #10b981);
-          color: var(--color-primary, #10b981);
+          border-color: var(--color-primary, #e53935);
+          color: var(--color-primary, #e53935);
+          transform: translateY(-1px);
         }
         .clothing-filter-btn.active {
-          background: #c62828; /* darker red: white text ≈ 5.2:1 (WCAG AA) */
-          color: #fff;
-          border-color: #c62828;
+          background: linear-gradient(135deg, var(--color-primary, #e53935), var(--color-primary-hover, #c62828));
+          color: #ffffff;
+          border-color: var(--color-primary-hover, #c62828);
+          box-shadow: 0 4px 12px rgba(229, 57, 53, 0.25);
         }
         .clothing-grid {
           display: grid;
@@ -188,52 +213,95 @@ class EthnicClothingModule extends (window.CultureModuleBase || CultureModuleBas
           gap: 2rem;
         }
         .clothing-card {
-          background: var(--color-bg-panel, #fff);
-          border: 1px solid var(--color-border, rgba(0,0,0,0.08));
-          border-radius: var(--radius-lg, 12px);
+          background: var(--color-bg-panel, #ffffff);
+          border: 1px solid var(--color-border, #e4e4e7);
+          border-radius: var(--radius-lg, 16px);
           padding: 2rem;
-          box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.06));
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
           display: flex;
           flex-direction: column;
           gap: 1.2rem;
-          transition: transform 0.2s, box-shadow 0.2s;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .clothing-card:hover {
           transform: translateY(-2px);
-          box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.1));
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+          border-color: rgba(229, 57, 53, 0.3);
         }
         .clothing-card-header {
           display: flex;
-          align-items: baseline;
-          gap: 1rem;
-          border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.06));
+          align-items: center;
+          gap: 0.8rem;
+          border-bottom: 1px solid var(--color-border, #f4f4f5);
           padding-bottom: 0.8rem;
           flex-wrap: wrap;
         }
         .clothing-card-header h3 {
           margin: 0;
-          font-size: 1.6rem;
-          color: var(--color-primary, #10b981);
+          font-size: 1.55rem;
+          color: var(--color-primary, #e53935);
+          font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+          font-weight: 800;
         }
         .clothing-card-header .hanzi-tag {
-          font-family: 'Noto Sans SC', sans-serif;
+          font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
           font-size: 1.25rem;
-          font-weight: 700;
-          color: var(--color-primary, #10b981);
+          font-weight: 800;
+          color: var(--color-primary, #e53935);
         }
         .clothing-card-header .pinyin-tag {
           font-size: 1rem;
-          color: var(--color-text-muted, #666);
+          color: var(--color-text-main, #18181b);
+          font-weight: 700;
+          background: var(--color-bg-card, #f4f4f5);
+          padding: 2px 8px;
+          border-radius: 9999px;
+          border: 1px solid var(--color-border, #e4e4e7);
+        }
+        .culture-audio-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          min-width: 32px;
+          border-radius: 50%;
+          background: rgba(229, 57, 53, 0.08);
+          border: 1px solid rgba(229, 57, 53, 0.25);
+          color: var(--color-primary, #e53935);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+        }
+        .culture-audio-btn:hover {
+          background: var(--color-primary, #e53935);
+          color: #ffffff;
+          border-color: var(--color-primary, #e53935);
+          transform: scale(1.1);
+          box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+        }
+        .culture-audio-btn:active {
+          transform: scale(0.95);
+        }
+        .culture-audio-btn.playing {
+          animation: cultureAudioPulse 0.8s ease;
+          background: var(--color-primary, #e53935);
+          color: #ffffff;
+        }
+        @keyframes cultureAudioPulse {
+          0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.6); }
+          70% { box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
         }
         .clothing-meta-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 0.6rem;
-          background: var(--color-bg-card, rgba(0,0,0,0.015));
-          padding: 1rem;
-          border-radius: var(--radius-md, 8px);
-          border: 1px solid var(--color-border, rgba(0,0,0,0.03));
-          font-size: 0.9rem;
+          gap: 0.8rem;
+          background: var(--color-bg-card, #f9fafb);
+          padding: 1.2rem;
+          border-radius: var(--radius-md, 12px);
+          border: 1px solid var(--color-border, #e5e7eb);
+          font-size: 0.92rem;
         }
         @media (min-width: 640px) {
           .clothing-meta-grid {
@@ -244,51 +312,54 @@ class EthnicClothingModule extends (window.CultureModuleBase || CultureModuleBas
         .clothing-meta-item {
           display: flex;
           flex-direction: column;
-          gap: 0.2rem;
+          gap: 0.25rem;
         }
         .clothing-meta-label {
-          font-size: 0.75rem;
+          font-size: 0.76rem;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
-          color: var(--color-text-muted, #777);
+          letter-spacing: 0.6px;
+          color: var(--color-text-muted, #71717a);
           font-weight: 700;
         }
         .clothing-meta-val {
-          color: var(--color-text-main, #333);
-          font-weight: 500;
+          color: var(--color-text-main, #27272a);
+          font-weight: 600;
         }
         .clothing-desc {
           font-size: 0.96rem;
-          line-height: 1.7;
-          color: var(--color-text-main, #444);
+          line-height: 1.75;
+          color: var(--color-text-main, #27272a);
           text-align: justify;
           margin: 0;
         }
         .clothing-biblio {
-          font-size: 0.8rem;
-          color: var(--color-text-dim, #666);
-          border-left: 3px solid var(--color-border, #ccc);
-          padding-left: 0.75rem;
+          font-size: 0.82rem;
+          color: var(--color-text-muted, #71717a);
+          border-left: 3px solid var(--color-border, #d4d4d8);
+          padding-left: 0.85rem;
           margin-top: 0.5rem;
           font-style: italic;
         }
         .clothing-citations-section {
           margin-top: 4rem;
-          padding-top: 2rem;
-          border-top: 1px dashed var(--color-border, #ccc);
+          padding: 1.6rem 2rem;
+          background: var(--color-bg-panel, #ffffff);
+          border: 1px dashed var(--color-border, #d4d4d8);
+          border-radius: var(--radius-lg, 14px);
         }
         .clothing-citations-section h4 {
           margin: 0 0 1rem 0;
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           text-transform: uppercase;
           letter-spacing: 1px;
-          color: var(--color-text-muted, #555);
+          color: var(--color-primary, #e53935);
+          font-weight: 700;
         }
         .clothing-citations-section ul {
           margin: 0;
-          padding-left: 1.2rem;
-          color: var(--color-text-dim, #666);
-          font-size: 0.82rem;
+          padding-left: 1.4rem;
+          color: var(--color-text-muted, #71717a);
+          font-size: 0.88rem;
           line-height: 1.7;
         }
         .clothing-citations-section li {
@@ -337,6 +408,7 @@ class EthnicClothingModule extends (window.CultureModuleBase || CultureModuleBas
           <div class="clothing-card-header">
             <h3>${item.title}</h3>
             <span class="hanzi-tag">${item.hanzi}</span>
+            ${this.getSpeakerBtn(item.hanzi, `Escuchar ${item.hanzi}`)}
             <span class="pinyin-tag">${item.pinyin}</span>
           </div>
           
@@ -382,6 +454,7 @@ class EthnicClothingModule extends (window.CultureModuleBase || CultureModuleBas
     `;
 
     this.container.innerHTML = html;
+    this.bindAudioButtons();
 
     // Attach event listeners for filtering
     this.container.querySelectorAll('.clothing-filter-btn').forEach(btn => {

@@ -149,42 +149,65 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
       const style = document.createElement('style');
       style.id = 'culture-arts-styles';
       style.textContent = `
-        .arts-intro {
-          padding: 1.5rem;
-          background: var(--color-bg-card, rgba(139, 92, 246, 0.03));
-          border-left: 4px solid var(--color-primary, #8b5cf6);
-          border-radius: var(--radius-sm, 4px);
+        .culture-hero-banner {
           margin-bottom: 2rem;
+          border-radius: var(--radius-lg, 16px);
+          overflow: hidden;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          border: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
+          max-height: 280px;
+          position: relative;
+        }
+        .culture-hero-img {
+          width: 100%;
+          height: 260px;
+          object-fit: cover;
+          display: block;
+          filter: brightness(0.92) contrast(1.05);
+          transition: transform 0.4s ease;
+        }
+        .culture-hero-banner:hover .culture-hero-img {
+          transform: scale(1.02);
+        }
+        .arts-intro {
+          padding: 1.8rem 2.2rem;
+          background: var(--color-bg-card, #fbfbfb);
+          border-left: 4px solid var(--color-primary, #e53935);
+          border-radius: var(--radius-lg, 14px);
+          margin-bottom: 2.2rem;
+          border: 1px solid var(--color-border, #e5e7eb);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
         }
         .arts-intro p {
           margin: 0;
-          color: var(--color-text-main, #333);
-          line-height: 1.7;
-          font-size: 0.98rem;
+          color: var(--color-text-main, #27272a);
+          line-height: 1.8;
+          font-size: 1rem;
+          font-weight: 450;
         }
         .arts-sections-nav {
           display: flex;
-          border-bottom: 2px solid var(--color-border, #eaeaea);
-          margin-bottom: 2rem;
+          border-bottom: 2px solid var(--color-border, #e4e4e7);
+          margin-bottom: 2.2rem;
           gap: 1.5rem;
           flex-wrap: wrap;
         }
         .arts-section-btn {
           background: none;
           border: none;
-          padding: 0.8rem 0;
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--color-text-muted, #666);
+          padding: 0.8rem 0.4rem;
+          font-size: 1.05rem;
+          font-weight: 700;
+          color: var(--color-text-muted, #71717a);
           cursor: pointer;
           position: relative;
-          transition: color 0.2s;
+          transition: color 0.2s ease;
         }
         .arts-section-btn:hover {
-          color: var(--color-primary, #8b5cf6);
+          color: var(--color-primary, #e53935);
         }
         .arts-section-btn.active {
-          color: var(--color-primary, #8b5cf6);
+          color: var(--color-primary, #e53935);
         }
         .arts-section-btn.active::after {
           content: '';
@@ -192,8 +215,9 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
           bottom: -2px;
           left: 0;
           right: 0;
-          height: 2px;
-          background: var(--color-primary, #8b5cf6);
+          height: 3px;
+          background: linear-gradient(to right, var(--color-primary, #e53935), var(--color-accent, #facc15));
+          border-radius: 2px;
         }
         .arts-panel {
           display: flex;
@@ -201,23 +225,35 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
           gap: 2rem;
         }
         .arts-block-card {
-          background: var(--color-bg-panel, #fff);
-          border: 1px solid var(--color-border, rgba(0,0,0,0.08));
-          border-radius: var(--radius-lg, 12px);
+          background: var(--color-bg-panel, #ffffff);
+          border: 1px solid var(--color-border, #e4e4e7);
+          border-radius: var(--radius-lg, 16px);
           padding: 2rem;
-          box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.06));
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .arts-block-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+          border-color: rgba(229, 57, 53, 0.3);
         }
         .arts-block-card h3 {
           margin: 0 0 1.2rem 0;
-          font-size: 1.4rem;
-          color: var(--color-primary, #8b5cf6);
-          border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.06));
-          padding-bottom: 0.5rem;
+          font-size: 1.45rem;
+          color: var(--color-primary, #e53935);
+          border-bottom: 1px solid var(--color-border, #f4f4f5);
+          padding-bottom: 0.6rem;
+          font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+          font-weight: 800;
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          flex-wrap: wrap;
         }
         .arts-panel p {
           font-size: 0.96rem;
-          line-height: 1.7;
-          color: var(--color-text-main, #444);
+          line-height: 1.75;
+          color: var(--color-text-main, #27272a);
           margin-bottom: 1.5rem;
         }
         .arts-list {
@@ -226,55 +262,101 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 1.1rem;
         }
         .arts-list li {
-          padding-left: 1.5rem;
+          padding-left: 1.6rem;
           position: relative;
-          font-size: 0.95rem;
-          line-height: 1.6;
-          color: var(--color-text-main, #333);
+          font-size: 0.96rem;
+          line-height: 1.7;
+          color: var(--color-text-main, #27272a);
         }
         .arts-list li::before {
           content: '•';
-          color: var(--color-primary, #8b5cf6);
-          font-weight: 700;
-          font-size: 1.2rem;
+          color: var(--color-primary, #e53935);
+          font-weight: 800;
+          font-size: 1.3rem;
           position: absolute;
           left: 0;
-          top: -0.1rem;
+          top: -0.15rem;
+        }
+        .culture-audio-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 28px;
+          height: 28px;
+          min-width: 28px;
+          border-radius: 50%;
+          background: rgba(229, 57, 53, 0.08);
+          border: 1px solid rgba(229, 57, 53, 0.25);
+          color: var(--color-primary, #e53935);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+          vertical-align: middle;
+          margin-left: 6px;
+        }
+        .culture-audio-btn:hover {
+          background: var(--color-primary, #e53935);
+          color: #ffffff;
+          border-color: var(--color-primary, #e53935);
+          transform: scale(1.1);
+          box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+        }
+        .culture-audio-btn:active {
+          transform: scale(0.95);
+        }
+        .culture-audio-btn.playing {
+          animation: cultureAudioPulse 0.8s ease;
+          background: var(--color-primary, #e53935);
+          color: #ffffff;
+        }
+        @keyframes cultureAudioPulse {
+          0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.6); }
+          70% { box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
         }
         .arts-citations-block {
           margin-top: 4rem;
-          padding-top: 2rem;
-          border-top: 1px dashed var(--color-border, #ccc);
+          padding: 1.6rem 2rem;
+          background: var(--color-bg-panel, #ffffff);
+          border: 1px dashed var(--color-border, #d4d4d8);
+          border-radius: var(--radius-lg, 14px);
         }
         .arts-citations-block h4 {
           margin: 0 0 1rem 0;
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           text-transform: uppercase;
           letter-spacing: 1px;
-          color: var(--color-text-muted, #555);
+          color: var(--color-primary, #e53935);
+          font-weight: 700;
         }
         .arts-citations-block ul {
           margin: 0;
-          padding-left: 1.2rem;
-          color: var(--color-text-dim, #666);
-          font-size: 0.82rem;
+          padding-left: 1.4rem;
+          color: var(--color-text-muted, #71717a);
+          font-size: 0.88rem;
           line-height: 1.7;
         }
         .arts-citations-block li {
           margin-bottom: 0.5rem;
         }
         .arts-sub-desc {
-          margin-bottom: 1rem;
-          font-size: 0.95rem;
+          margin-bottom: 1.2rem;
+          font-size: 0.96rem;
           font-weight: 600;
-          color: var(--color-text-muted, #555);
+          color: var(--color-text-muted, #71717a);
         }
       `;
       document.head.appendChild(style);
     }
+
+    const renderItemWithAudio = (item) => {
+      const match = item.match(/[\u4e00-\u9fa5]{1,6}/);
+      const audioBtn = match ? this.getSpeakerBtn(match[0], `Escuchar ${match[0]}`) : '';
+      return `<li>${item} ${audioBtn}</li>`;
+    };
 
     let html = `
       <div class="culture-hero-banner">
@@ -303,29 +385,38 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
       const data = activeContent.calligraphy;
       html += `
         <div class="arts-block-card">
-          <h3>${lang === 'en' ? 'Introduction to Writing as Art' : 'Introducción a la Escritura como Arte'}</h3>
+          <h3>
+            ${lang === 'en' ? 'Introduction to Writing as Art' : 'Introducción a la Escritura como Arte'}
+            ${this.getSpeakerBtn('书法', 'Escuchar 书法 (Shūfǎ)')}
+          </h3>
           <p>${data.intro}</p>
         </div>
 
         <div class="arts-block-card">
-          <h3>${data.sixWritingsTitle}</h3>
+          <h3>
+            ${data.sixWritingsTitle}
+            ${this.getSpeakerBtn('六书', 'Escuchar 六书 (Liùshū)')}
+          </h3>
           <div class="arts-sub-desc">${data.sixWritingsDesc}</div>
           <ul class="arts-list">
       `;
       data.sixWritingsList.forEach(item => {
-        html += `<li>${item}</li>`;
+        html += renderItemWithAudio(item);
       });
       html += `
           </ul>
         </div>
 
         <div class="arts-block-card">
-          <h3>${data.fourTreasuresTitle}</h3>
+          <h3>
+            ${data.fourTreasuresTitle}
+            ${this.getSpeakerBtn('文房四宝', 'Escuchar 文房四宝 (Wénfáng Sìbǎo)')}
+          </h3>
           <div class="arts-sub-desc">${data.fourTreasuresDesc}</div>
           <ul class="arts-list">
       `;
       data.fourTreasuresList.forEach(item => {
-        html += `<li>${item}</li>`;
+        html += renderItemWithAudio(item);
       });
       html += `
           </ul>
@@ -336,7 +427,7 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
           <ul class="arts-list">
       `;
       data.philosophicalScrollsList.forEach(item => {
-        html += `<li>${item}</li>`;
+        html += renderItemWithAudio(item);
       });
       html += `
           </ul>
@@ -346,7 +437,10 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
       const data = activeContent.painting;
       html += `
         <div class="arts-block-card">
-          <h3>${lang === 'en' ? 'Core Concepts' : 'Concepto del Guohua'}</h3>
+          <h3>
+            ${lang === 'en' ? 'Core Concepts' : 'Concepto del Guohua'}
+            ${this.getSpeakerBtn('国画', 'Escuchar 国画 (Guóhuà)')}
+          </h3>
           <p>${data.intro}</p>
         </div>
 
@@ -355,7 +449,7 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
           <ul class="arts-list">
       `;
       data.corePrinciplesList.forEach(item => {
-        html += `<li>${item}</li>`;
+        html += renderItemWithAudio(item);
       });
       html += `
           </ul>
@@ -366,7 +460,7 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
           <ul class="arts-list">
       `;
       data.genresList.forEach(item => {
-        html += `<li>${item}</li>`;
+        html += renderItemWithAudio(item);
       });
       html += `
           </ul>
@@ -376,17 +470,26 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
       const data = activeContent.performing;
       html += `
         <div class="arts-block-card">
-          <h3>${data.lionDanceTitle}</h3>
+          <h3>
+            ${data.lionDanceTitle}
+            ${this.getSpeakerBtn('舞狮', 'Escuchar 舞狮 (Wǔshī)')}
+          </h3>
           <p>${data.lionDanceDesc}</p>
         </div>
 
         <div class="arts-block-card">
-          <h3>${data.palaceLanternsTitle}</h3>
+          <h3>
+            ${data.palaceLanternsTitle}
+            ${this.getSpeakerBtn('宫灯', 'Escuchar 宫灯 (Gōngdēng)')}
+          </h3>
           <p>${data.palaceLanternsDesc}</p>
         </div>
 
         <div class="arts-block-card">
-          <h3>${data.strawFansTitle}</h3>
+          <h3>
+            ${data.strawFansTitle}
+            ${this.getSpeakerBtn('扇子', 'Escuchar 扇子 (Shànzi)')}
+          </h3>
           <p>${data.strawFansDesc}</p>
         </div>
       `;
@@ -410,6 +513,7 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
     `;
 
     this.container.innerHTML = html;
+    this.bindAudioButtons();
 
     // Attach Event Listeners
     const btnCalligraphy = document.getElementById('arts-btn-calligraphy');

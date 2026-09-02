@@ -241,18 +241,42 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
       const style = document.createElement('style');
       style.id = 'culture-evolution-styles';
       style.textContent = `
-        .evolution-intro {
-          padding: 1.5rem;
-          background: var(--color-bg-card, rgba(229, 62, 62, 0.03));
-          border-left: 4px solid var(--color-primary, #e53e3e);
-          border-radius: var(--radius-sm, 4px);
+        .culture-hero-banner {
           margin-bottom: 2rem;
+          border-radius: var(--radius-lg, 16px);
+          overflow: hidden;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          border: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
+          max-height: 280px;
+          position: relative;
+        }
+        .culture-hero-img {
+          width: 100%;
+          height: 260px;
+          object-fit: cover;
+          display: block;
+          filter: brightness(0.92) contrast(1.05);
+          transition: transform 0.4s ease;
+        }
+        .culture-hero-banner:hover .culture-hero-img {
+          transform: scale(1.02);
+        }
+        .evolution-intro {
+          padding: 1.8rem 2.2rem;
+          background: var(--color-bg-card, #fbfbfb);
+          border-left: 4px solid var(--color-primary, #e53935);
+          border-radius: var(--radius-lg, 14px);
+          margin-bottom: 2.2rem;
+          border: 1px solid var(--color-border, #e5e7eb);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+          position: relative;
         }
         .evolution-intro p {
           margin: 0;
-          color: var(--color-text-main, #333);
-          line-height: 1.7;
-          font-size: 0.98rem;
+          color: var(--color-text-main, #27272a);
+          line-height: 1.8;
+          font-size: 1rem;
+          font-weight: 450;
         }
         .evolution-grid {
           display: flex;
@@ -260,70 +284,126 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
           gap: 2rem;
         }
         .character-evolution-card {
-          background: var(--color-bg-panel, #fff);
-          border-radius: var(--radius-lg, 12px);
-          padding: 1.8rem;
-          box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.06));
-          border: 1px solid var(--color-border, rgba(0,0,0,0.08));
+          background: var(--color-bg-panel, #ffffff);
+          border-radius: var(--radius-lg, 16px);
+          padding: 1.8rem 2rem;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+          border: 1px solid var(--color-border, #e4e4e7);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .character-evolution-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+          border-color: rgba(229, 57, 53, 0.3);
         }
         .char-header {
           margin-bottom: 1.5rem;
-          border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.06));
+          border-bottom: 1px solid var(--color-border, #f4f4f5);
           padding-bottom: 0.8rem;
           display: flex;
-          align-items: baseline;
-          gap: 1rem;
+          align-items: center;
+          gap: 0.9rem;
+          flex-wrap: wrap;
         }
         .char-header h3 {
           margin: 0;
-          font-size: 1.8rem;
-          color: var(--color-primary, #e53e3e);
-          font-family: 'Noto Sans SC', sans-serif;
+          font-size: 2rem;
+          color: var(--color-primary, #e53935);
+          font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+          font-weight: 800;
+          line-height: 1;
         }
         .char-header .pinyin-tag {
-          font-size: 1.1rem;
-          color: var(--color-text-muted, #666);
-          font-weight: 500;
+          font-size: 1.15rem;
+          color: var(--color-text-main, #18181b);
+          font-weight: 700;
+          background: var(--color-bg-card, #f4f4f5);
+          padding: 3px 10px;
+          border-radius: 9999px;
+          border: 1px solid var(--color-border, #e4e4e7);
         }
         .char-header .meaning-tag {
-          font-size: 0.95rem;
-          color: var(--color-text-dim, #999);
+          font-size: 0.98rem;
+          color: var(--color-text-muted, #71717a);
+          font-weight: 500;
           margin-left: auto;
+        }
+        .culture-audio-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          min-width: 32px;
+          border-radius: 50%;
+          background: rgba(229, 57, 53, 0.08);
+          border: 1px solid rgba(229, 57, 53, 0.25);
+          color: var(--color-primary, #e53935);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+        }
+        .culture-audio-btn:hover {
+          background: var(--color-primary, #e53935);
+          color: #ffffff;
+          border-color: var(--color-primary, #e53935);
+          transform: scale(1.1);
+          box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+        }
+        .culture-audio-btn:active {
+          transform: scale(0.95);
+        }
+        .culture-audio-btn.playing {
+          animation: cultureAudioPulse 0.8s ease;
+          background: var(--color-primary, #e53935);
+          color: #ffffff;
+        }
+        @keyframes cultureAudioPulse {
+          0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.6); }
+          70% { box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
         }
         .evolution-steps {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 1rem;
+          gap: 1.2rem;
           margin-bottom: 1.5rem;
-          background: var(--color-bg-card, rgba(0,0,0,0.02));
-          padding: 1.2rem;
-          border-radius: var(--radius-md, 8px);
+          background: var(--color-bg-card, #f9fafb);
+          padding: 1.4rem;
+          border-radius: var(--radius-lg, 14px);
+          border: 1px solid var(--color-border, #e5e7eb);
         }
         .step {
           display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
-          gap: 0.5rem;
+          gap: 0.6rem;
         }
         .step-label {
-          font-size: 0.75rem;
-          color: var(--color-text-muted, #666);
+          font-size: 0.78rem;
+          color: var(--color-primary, #e53935);
           text-transform: uppercase;
-          font-weight: 600;
-          letter-spacing: 0.5px;
+          font-weight: 700;
+          letter-spacing: 0.6px;
         }
         .step-graphic {
-          width: 60px;
-          height: 60px;
+          width: 68px;
+          height: 68px;
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 1.5px solid var(--color-border, rgba(0,0,0,0.08));
-          border-radius: var(--radius-md, 8px);
-          color: var(--color-text-main, #333);
-          background: var(--color-bg-panel, #fff);
-          padding: 6px;
+          border: 1.5px solid var(--color-border, #d4d4d8);
+          border-radius: var(--radius-md, 10px);
+          color: var(--color-text-main, #18181b);
+          background: var(--color-bg-panel, #ffffff);
+          padding: 8px;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+          transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .step:hover .step-graphic {
+          transform: translateY(-2px);
+          border-color: var(--color-primary, #e53935);
         }
         .svg-glyph {
           width: 100%;
@@ -332,48 +412,67 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
           stroke-linejoin: round;
         }
         .step-desc {
-          font-size: 0.72rem;
-          color: var(--color-text-dim, #777);
-          line-height: 1.3;
+          font-size: 0.76rem;
+          color: var(--color-text-muted, #71717a);
+          line-height: 1.35;
           margin: 0;
+          font-weight: 500;
         }
         .char-description-box {
-          font-size: 0.92rem;
-          line-height: 1.6;
-          color: var(--color-text-main, #444);
-          background: var(--color-bg-card, rgba(0,0,0,0.01));
-          padding: 1rem 1.2rem;
-          border-radius: var(--radius-sm, 4px);
-          border-left: 3px solid var(--color-border, #ddd);
+          font-size: 0.95rem;
+          line-height: 1.7;
+          color: var(--color-text-main, #27272a);
+          background: var(--color-bg-card, #f9fafb);
+          padding: 1.2rem 1.4rem;
+          border-radius: var(--radius-md, 10px);
+          border-left: 4px solid var(--color-primary, #e53935);
+          border: 1px solid var(--color-border, #e5e7eb);
+          border-left-width: 4px;
         }
-        .culture-bibliography {
-          margin-top: 3rem;
-          padding-top: 1.5rem;
-          border-top: 1px dashed var(--color-border, #ccc);
-        }
-        .culture-bibliography h4 {
-          margin: 0 0 1rem 0;
-          font-size: 1rem;
+        .section-header-academic {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 1.25rem;
+          font-weight: 800;
+          letter-spacing: 0.5px;
           text-transform: uppercase;
-          letter-spacing: 1px;
-          color: var(--color-text-muted, #555);
+          margin: 2.5rem 0 1.2rem 0;
+          color: var(--color-text-main, #18181b);
+          border-bottom: 2px solid var(--color-border, #e4e4e7);
+          padding-bottom: 0.6rem;
         }
-        .culture-bibliography ul {
+        .section-header-academic::before {
+          content: '';
+          display: inline-block;
+          width: 4px;
+          height: 20px;
+          background: linear-gradient(to bottom, var(--color-primary, #e53935), var(--color-accent, #facc15));
+          border-radius: 2px;
+        }
+        .citations-section {
+          margin-top: 3.5rem;
+          padding: 1.6rem 2rem;
+          background: var(--color-bg-panel, #ffffff);
+          border: 1px dashed var(--color-border, #d4d4d8);
+          border-radius: var(--radius-lg, 14px);
+        }
+        .citations-list {
           margin: 0;
-          padding-left: 1.2rem;
-          color: var(--color-text-dim, #666);
-          font-size: 0.82rem;
+          padding-left: 1.4rem;
+          color: var(--color-text-muted, #71717a);
+          font-size: 0.88rem;
           line-height: 1.7;
         }
-        .culture-bibliography li {
+        .citations-list li {
           margin-bottom: 0.5rem;
         }
 
         /* Responsive styling for steps */
-        @media (max-width: 600px) {
+        @media (max-width: 680px) {
           .evolution-steps {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 1rem;
           }
           .step {
             flex-direction: row;
@@ -381,8 +480,8 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
             gap: 1rem;
           }
           .step-graphic {
-            width: 50px;
-            height: 50px;
+            width: 54px;
+            height: 54px;
             flex-shrink: 0;
           }
           .step-info-block {
@@ -405,10 +504,12 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
     `;
 
     activeContent.characters.forEach(char => {
+      const cleanHanzi = char.character.split(' ')[0] || char.character;
       html += `
         <div class="character-evolution-card">
           <div class="char-header">
             <h3>${char.character}</h3>
+            ${this.getSpeakerBtn(cleanHanzi, `Escuchar ${cleanHanzi}`)}
             <span class="pinyin-tag">${char.pinyin}</span>
             <span class="meaning-tag">${char.meaning}</span>
           </div>
@@ -441,7 +542,7 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
             <div class="step">
               <span class="step-label">${activeContent.labels.regular}</span>
               <div class="step-graphic">
-                <span style="font-family: 'Noto Sans SC', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--color-primary, #e53e3e);">${char.character.split(' ')[0]}</span>
+                <span style="font-family: 'Noto Serif SC', 'Noto Sans SC', serif; font-size: 1.8rem; font-weight: 800; color: var(--color-primary, #e53935);">${char.character.split(' ')[0]}</span>
               </div>
               <div class="step-info-block">
                 <p class="step-desc">${char.modernDesc}</p>
@@ -470,13 +571,13 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
 
     if (activeContent.extraInfo) {
       html += `
-        <div class="extra-info-section" style="margin-top: 3rem;">
+        <div class="extra-info-section" style="margin-top: 3.5rem;">
           <h4 class="section-header-academic">Filosofía e Historia Adicional</h4>
           <div class="roles-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
             ${activeContent.extraInfo.map(info => `
-              <div class="role-card" style="background: var(--color-bg-panel, #fff); border: 1px solid var(--color-border, rgba(0,0,0,0.08)); border-radius: var(--radius-lg, 12px); padding: 1.5rem; box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.06));">
-                <h5 style="color: var(--color-primary, #dc2626); margin-top: 0; font-size: 1.1rem; border-bottom: 2px solid rgba(220, 38, 38, 0.2); padding-bottom: 0.5rem; margin-bottom: 1rem;">${info.title}</h5>
-                <p style="color: var(--color-text-main, #333); line-height: 1.6; font-size: 0.95rem; margin: 0;">${info.text}</p>
+              <div class="role-card" style="background: var(--color-bg-panel, #ffffff); border: 1px solid var(--color-border, #e4e4e7); border-radius: var(--radius-lg, 14px); padding: 1.6rem; box-shadow: 0 4px 14px rgba(0,0,0,0.04);">
+                <h5 style="color: var(--color-primary, #e53935); margin-top: 0; font-size: 1.12rem; font-weight: 700; border-bottom: 2px solid rgba(229, 57, 53, 0.2); padding-bottom: 0.6rem; margin-bottom: 1rem;">${info.title}</h5>
+                <p style="color: var(--color-text-main, #27272a); line-height: 1.7; font-size: 0.95rem; margin: 0;">${info.text}</p>
               </div>
             `).join('')}
           </div>
@@ -485,6 +586,7 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
     }
 
     this.container.innerHTML = html;
+    this.bindAudioButtons();
   }
 }
 

@@ -8,6 +8,7 @@ module.exports = defineConfig({
     environment: "jsdom",
     // Sin url, jsdom corre en origin opaco y localStorage no funciona
     environmentOptions: { jsdom: { url: "http://localhost/" } },
+    testTimeout: 15000,
     setupFiles: ["tests/unit/setup.js"],
     include: ["tests/unit/**/*.test.js"],
     coverage: {

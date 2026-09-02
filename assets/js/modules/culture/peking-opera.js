@@ -188,28 +188,70 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
         .role-header h3 {
           margin: 0;
           font-size: 1.3rem;
-          color: var(--color-primary, #dc2626);
+          font-size: 1.35rem;
+          color: var(--color-primary, #e53935);
+          font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+          font-weight: 800;
         }
-        .role-header .role-type {
-          font-size: 0.85rem;
-          color: var(--color-text-muted, #777);
-          text-transform: uppercase;
+        .role-type {
+          font-size: 0.88rem;
+          color: var(--color-text-muted, #71717a);
+          background: var(--color-bg-card, #f4f4f5);
+          padding: 2px 8px;
+          border-radius: 9999px;
+          border: 1px solid var(--color-border, #e4e4e7);
+          margin-left: auto;
           font-weight: 600;
         }
+        .culture-audio-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
+          min-width: 32px;
+          border-radius: 50%;
+          background: rgba(229, 57, 53, 0.08);
+          border: 1px solid rgba(229, 57, 53, 0.25);
+          color: var(--color-primary, #e53935);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+        }
+        .culture-audio-btn:hover {
+          background: var(--color-primary, #e53935);
+          color: #ffffff;
+          border-color: var(--color-primary, #e53935);
+          transform: scale(1.1);
+          box-shadow: 0 4px 12px rgba(229, 57, 53, 0.3);
+        }
+        .culture-audio-btn:active {
+          transform: scale(0.95);
+        }
+        .culture-audio-btn.playing {
+          animation: cultureAudioPulse 0.8s ease;
+          background: var(--color-primary, #e53935);
+          color: #ffffff;
+        }
+        @keyframes cultureAudioPulse {
+          0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.6); }
+          70% { box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
+        }
         .role-desc {
-          font-size: 0.92rem;
-          line-height: 1.6;
-          color: var(--color-text-main, #444);
+          font-size: 0.94rem;
+          line-height: 1.7;
+          color: var(--color-text-main, #27272a);
           margin: 0;
         }
         .lianpu-container {
           display: grid;
           grid-template-columns: 1fr 2fr;
           gap: 2rem;
-          background: var(--color-bg-card, rgba(0,0,0,0.02));
+          background: var(--color-bg-card, #f9fafb);
           padding: 2rem;
-          border-radius: var(--radius-lg, 12px);
-          border: 1px solid var(--color-border, rgba(0,0,0,0.06));
+          border-radius: var(--radius-lg, 16px);
+          border: 1px solid var(--color-border, #e5e7eb);
           margin-bottom: 3rem;
         }
         .color-list {
@@ -221,72 +263,78 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
           display: flex;
           align-items: center;
           gap: 1rem;
-          padding: 0.8rem 1rem;
-          background: var(--color-bg-panel, #fff);
-          border: 1px solid var(--color-border, rgba(0,0,0,0.08));
-          border-radius: var(--radius-md, 8px);
+          padding: 0.8rem 1.2rem;
+          background: var(--color-bg-panel, #ffffff);
+          border: 1px solid var(--color-border, #e4e4e7);
+          border-radius: var(--radius-md, 12px);
           cursor: pointer;
           font-weight: 600;
           font-size: 0.95rem;
-          transition: all 0.2s;
-          color: var(--color-text-main, #333);
+          transition: all 0.2s ease;
+          color: var(--color-text-main, #18181b);
         }
         .color-item:hover {
-          border-color: var(--color-primary, #dc2626);
+          border-color: var(--color-primary, #e53935);
           transform: translateX(4px);
         }
         .color-item.active {
-          border-color: var(--color-primary, #dc2626);
-          background: var(--color-bg-card, rgba(220,38,38,0.03));
-          box-shadow: var(--shadow-sm, 0 2px 4px rgba(0,0,0,0.05));
+          border-color: var(--color-primary, #e53935);
+          background: rgba(229, 57, 53, 0.05);
+          box-shadow: 0 2px 8px rgba(229, 57, 53, 0.15);
         }
         .color-swatch {
-          width: 28px;
-          height: 28px;
+          width: 26px;
+          height: 26px;
           border-radius: 50%;
-          border: 1px solid rgba(0,0,0,0.15);
+          border: 2px solid rgba(0, 0, 0, 0.15);
           flex-shrink: 0;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .color-details {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 1.5rem;
-          background: var(--color-bg-panel, #fff);
-          border-radius: var(--radius-md, 8px);
-          border: 1px solid var(--color-border, rgba(0,0,0,0.08));
+          padding: 1.8rem;
+          background: var(--color-bg-panel, #ffffff);
+          border-radius: var(--radius-lg, 14px);
+          border: 1px solid var(--color-border, #e4e4e7);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
         }
         .color-details h3 {
           margin: 0 0 1rem 0;
-          font-size: 1.4rem;
-          color: var(--color-primary, #dc2626);
+          font-size: 1.45rem;
+          color: var(--color-primary, #e53935);
           display: flex;
           align-items: center;
           gap: 0.8rem;
+          font-weight: 800;
         }
         .color-details p {
           margin: 0;
-          line-height: 1.65;
-          font-size: 0.95rem;
-          color: var(--color-text-main, #444);
+          line-height: 1.75;
+          font-size: 0.96rem;
+          color: var(--color-text-main, #27272a);
         }
         .opera-citations {
-          margin-top: 3rem;
-          padding-top: 1.5rem;
-          border-top: 1px dashed var(--color-border, #ccc);
+          margin-top: 3.5rem;
+          padding: 1.6rem 2rem;
+          background: var(--color-bg-panel, #ffffff);
+          border: 1px dashed var(--color-border, #d4d4d8);
+          border-radius: var(--radius-lg, 14px);
         }
         .opera-citations h4 {
           margin: 0 0 1rem 0;
-          font-size: 1rem;
+          font-size: 0.95rem;
           text-transform: uppercase;
           letter-spacing: 1px;
-          color: var(--color-text-muted, #555);
+          color: var(--color-primary, #e53935);
+          font-weight: 700;
         }
         .opera-citations ul {
           margin: 0;
-          padding-left: 1.2rem;
-          color: var(--color-text-dim, #666);
-          font-size: 0.82rem;
+          padding-left: 1.4rem;
+          color: var(--color-text-muted, #71717a);
+          font-size: 0.88rem;
           line-height: 1.7;
         }
         .opera-citations li {
@@ -297,7 +345,7 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
           .lianpu-container {
             grid-template-columns: 1fr;
             gap: 1.5rem;
-            padding: 1rem;
+            padding: 1.2rem;
           }
           .color-list {
             flex-direction: row;
@@ -305,8 +353,8 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
             justify-content: center;
           }
           .color-item {
-            padding: 0.6rem 0.8rem;
-            font-size: 0.85rem;
+            padding: 0.6rem 0.9rem;
+            font-size: 0.86rem;
           }
         }
       `;
@@ -328,10 +376,13 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
     `;
 
     activeContent.roles.forEach(role => {
+      const hanziMatch = role.name.match(/[\u4e00-\u9fa5]+/);
+      const speakText = hanziMatch ? hanziMatch[0] : role.name;
       html += `
         <div class="role-card">
           <div class="role-header">
             <h3>${role.name}</h3>
+            ${this.getSpeakerBtn(speakText, `Escuchar ${speakText}`)}
             <span class="role-type">${role.type}</span>
           </div>
           <p class="role-desc">${role.desc}</p>
@@ -348,9 +399,9 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
 
     activeContent.extraInfo.forEach(info => {
       html += `
-        <div class="role-card" style="border-left: 4px solid var(--color-primary, #dc2626);">
+        <div class="role-card" style="border-left: 4px solid var(--color-primary, #e53935);">
           <div class="role-header">
-            <h3 style="color: var(--color-text-main, #333); font-size: 1.15rem;">${info.title}</h3>
+            <h3 style="color: var(--color-text-main, #18181b); font-size: 1.15rem; font-weight: 700;">${info.title}</h3>
           </div>
           <p class="role-desc">${info.text}</p>
         </div>
@@ -379,8 +430,9 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
         </div>
         <div class="color-details">
           <h3>
-            <div class="color-swatch" style="background-color: ${selectedColor.hex}; width: 22px; height: 22px;"></div>
+            <div class="color-swatch" style="background-color: ${selectedColor.hex}; width: 24px; height: 24px;"></div>
             ${selectedColor.color}
+            ${this.getSpeakerBtn(selectedColor.color, `Escuchar ${selectedColor.color}`)}
           </h3>
           <p>${selectedColor.meaning}</p>
         </div>
@@ -402,6 +454,7 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
     `;
 
     this.container.innerHTML = html;
+    this.bindAudioButtons();
 
     // Attach click event listeners for lianpu colors
     const colorItems = this.container.querySelectorAll('.color-item');
