@@ -32,3 +32,11 @@ const storage = new MemoryStorage();
 
 Object.defineProperty(window, "localStorage", { value: storage, configurable: true });
 Object.defineProperty(globalThis, "localStorage", { value: storage, configurable: true });
+
+// Stub logger to avoid async console noise and teardown RPC conflicts in vitest
+window.hskLogger = {
+  debug: () => {},
+  info: () => {},
+  warn: () => {},
+  error: () => {},
+};

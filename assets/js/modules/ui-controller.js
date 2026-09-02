@@ -277,7 +277,7 @@ class UIController {
               await this.loadScript("assets/js/modules/hanzi-canvas-controller.js");
             }
             if (!window.StrokesRadicalsController) {
-              await this.loadScript("assets/js/modules/strokes-radicals-controller.js?v=6369da31");
+              await this.loadScript("assets/js/modules/strokes-radicals-controller.js?v=23cc2c2c");
             }
             if (!this.app.strokesRadicalsController) {
               this.app.strokesRadicalsController = new window.StrokesRadicalsController(this.app);
@@ -292,7 +292,7 @@ class UIController {
         (async () => {
           try {
             if (!window.QuizEngine) {
-              await this.loadScript("assets/js/modules/quiz-engine.js?v=0f8dc82d");
+              await this.loadScript("assets/js/modules/quiz-engine.js?v=6c07d80a");
             }
             if (!window.QuizLegacyController) {
               await this.loadScript("assets/js/modules/quiz-legacy-controller.js?v=0c8d314f");
@@ -405,7 +405,7 @@ class UIController {
         (async () => {
           try {
             if (!window.StatsController) {
-              await this.loadScript("assets/js/modules/stats-controller.js?v=df78e753");
+              await this.loadScript("assets/js/modules/stats-controller.js?v=7a1e139f");
             }
             if (!this.app.statsController) {
               this.app.statsController = new window.StatsController(this.app);
@@ -457,7 +457,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/leaderboard-styles.css");
             if (!window.LeaderboardManager) {
-              await this.loadScript("assets/js/leaderboard.js?v=104e8458");
+              await this.loadScript("assets/js/leaderboard.js?v=e6705e99");
             }
             // La instancia se crea acá, no en startup-controller: leaderboard.js
             // es lazy, así que al arrancar la app la clase todavía no existe y

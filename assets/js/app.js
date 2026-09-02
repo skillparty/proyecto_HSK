@@ -95,7 +95,8 @@ class HSKApp {
         };
 
         this.errorDigestStorageKey = 'hsk-error-digest-v1';
-        this.maxErrorDigestEntries = 10;
+        // Event Bus PubSub instance
+        this.eventBus = window.hskEventBus || (window.HSKEventBus ? new window.HSKEventBus() : null);
 
         // Core Modules Initialization
         this.uiController = new UIController(this);
@@ -384,12 +385,18 @@ class HSKApp {
         return this.legacyFlowController.showMatrixGameFallback();
     }
 
-    handleAuthChange(event, _session) {
+    handleAuthChange(event, session) {
+        if (this.eventBus) {
+            this.eventBus.emit('auth:change', { event, session });
+        }
         if (event === 'SIGNED_IN' && this.srsEngine) {
             this.srsEngine.syncFromFirebase().then(() => {
                 if (this.feedbackController) this.feedbackController.updateHeaderStats();
                 if (this.homeController && typeof this.homeController.renderSrsCard === 'function') {
                     this.homeController.renderSrsCard();
+                }
+                if (this.eventBus) {
+                    this.eventBus.emit('srs:synced');
                 }
             });
         }

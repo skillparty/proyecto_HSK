@@ -81,6 +81,9 @@ const APP_GLOBALS = [
   "gameAudioManager",
   "leaderboardManager",
   "createParticles",
+  "HSKEventBus",
+  "hskEventBus",
+  "FirebaseClient",
 ];
 
 const appGlobals = Object.fromEntries(APP_GLOBALS.map((name) => [name, "writable"]));

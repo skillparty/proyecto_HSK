@@ -78,17 +78,17 @@
     <link rel="stylesheet" href="assets/css/app-base.css?v=208eb12c" id="main-stylesheet">
     <link rel="stylesheet" href="assets/css/app-header-nav.css?v=33ffdc36">
     <link rel="stylesheet" href="assets/css/app-home.css?v=ce40ba46">
-    <link rel="stylesheet" href="assets/css/app-practice.css?v=54e3acd3">
+    <link rel="stylesheet" href="assets/css/app-practice.css?v=e71142db">
     <link rel="stylesheet" href="assets/css/app-browse.css?v=d5a7c864">
-    <link rel="stylesheet" href="assets/css/app-strokes.css?v=1249c158">
+    <link rel="stylesheet" href="assets/css/app-strokes.css?v=2a3bae39">
     <link rel="stylesheet" href="assets/css/app-quiz.css?v=5d43a437">
     <link rel="stylesheet" href="assets/css/app-stats.css?v=cd1fd78c">
-    <link rel="stylesheet" href="assets/css/app-enhancements.css?v=94e9d87b">
+    <link rel="stylesheet" href="assets/css/app-enhancements.css?v=2ea44515">
     <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=e9f43713">
     <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=8292921d" id="auth-stylesheet">
-    <link rel="stylesheet" href="assets/css/command-palette.css" id="command-palette-stylesheet">
-    <link rel="stylesheet" href="assets/css/achievements-styles.css" id="achievements-stylesheet">
-    <link rel="stylesheet" href="assets/css/deck-manager-styles.css" id="deck-manager-stylesheet">
+    <link rel="stylesheet" href="assets/css/command-palette.css?v=86b01884" id="command-palette-stylesheet">
+    <link rel="stylesheet" href="assets/css/achievements-styles.css?v=11478cfc" id="achievements-stylesheet">
+    <link rel="stylesheet" href="assets/css/deck-manager-styles.css?v=ed48188f" id="deck-manager-stylesheet">
 
     <!-- Game/leaderboard CSS injected on demand by ui-controller.js (see loadStylesheet) -->
     <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
@@ -108,6 +108,9 @@
 
     <!-- Escapado compartido: debe cargar antes que firebase-client/auth-backend/leaderboard -->
     <script src="assets/js/utils/html.js?v=8f3dabb2"></script>
+
+    <!-- Bus de eventos pub/sub para desacoplamiento de controladores -->
+    <script src="assets/js/utils/event-bus.js?v=731dc7f7"></script>
 
     <!-- Resource Validation Script -->
     <script src="assets/js/bootstrap-diagnostics.js?v=4dd221b0"></script>
@@ -693,10 +696,6 @@
                             <button id="next-card-next-btn" class="action-btn next-btn-hidden"
                                 style="display: none;" data-i18n="next">Next</button>
                         </div>
-
-                        <!-- Hidden legacy buttons (just in case) -->
-                        <div class="difficulty-buttons" style="display: none !important;"></div>
-                        <div id="simple-buttons" style="display: none !important;"></div>
                     </div>
                 </div>
 
@@ -1057,25 +1056,25 @@
     <script type="module" src="assets/js/firebase-bootstrap.js?v=39292ce5"></script>
 
     <!-- Firebase Client (Dependent on bridge) -->
-    <script src="assets/js/firebase-client.js?v=64c15ce8" defer></script>
+    <script src="assets/js/firebase-client.js?v=0f2cb080" defer></script>
 
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=aaf0b06c" defer></script>
-    <script src="assets/js/utils/idb-storage.js" defer></script>
+    <script src="assets/js/translations.js?v=6fb8ddb4" defer></script>
+    <script src="assets/js/utils/idb-storage.js?v=a79379d7" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=0739a27c" defer></script>
 
     <!-- Modules -->
-    <script src="assets/js/modules/srs-engine.js?v=513fe4f7" defer></script>
-    <script src="assets/js/modules/flashcard-manager.js?v=4907c12f" defer></script>
-    <script src="assets/js/modules/deck-manager.js" defer></script>
-    <script src="assets/js/modules/deck-controller.js" defer></script>
-    <script src="assets/js/modules/achievement-manager.js" defer></script>
+    <script src="assets/js/modules/srs-engine.js?v=811fc44e" defer></script>
+    <script src="assets/js/modules/flashcard-manager.js?v=b0687a3a" defer></script>
+    <script src="assets/js/modules/deck-manager.js?v=a5683a57" defer></script>
+    <script src="assets/js/modules/deck-controller.js?v=285c875d" defer></script>
+    <script src="assets/js/modules/achievement-manager.js?v=dc950149" defer></script>
     <!-- quiz-engine.js, quiz-legacy-controller.js, stats-controller.js loaded on demand by ui-controller.js -->
 
     <script src="assets/js/modules/theme-controller.js?v=ce3fcd01" defer></script>
-    <script src="assets/js/modules/audio-controller.js?v=bc9b1f37" defer></script>
+    <script src="assets/js/modules/audio-controller.js?v=c3447649" defer></script>
     <!-- browse-controller.js loaded on demand by ui-controller.js -->
 
     <!-- strokes-radicals-controller.js loaded on demand by ui-controller.js -->
@@ -1084,18 +1083,18 @@
     <script src="assets/js/modules/storage-controller.js?v=1707b7b5" defer></script>
     <script src="assets/js/modules/language-controller.js?v=57c17946" defer></script>
     <script src="assets/js/modules/progress-controller.js?v=34a14089" defer></script>
-    <script src="assets/js/modules/navigation-controller.js?v=aa469b9a" defer></script>
-    <script src="assets/js/modules/search-controller.js?v=2437bb5f" defer></script>
-    <script src="assets/js/modules/practice-view-controller.js?v=d2275c84" defer></script>
-    <script src="assets/js/modules/feedback-controller.js?v=5265417c" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=e5328943" defer></script>
+    <script src="assets/js/modules/navigation-controller.js?v=8aa925f5" defer></script>
+    <script src="assets/js/modules/search-controller.js?v=126ed121" defer></script>
+    <script src="assets/js/modules/practice-view-controller.js?v=1c0399bb" defer></script>
+    <script src="assets/js/modules/feedback-controller.js?v=91e61708" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=0b7e1bfd" defer></script>
     <!-- past-exams-controller.js, quantifier-snake-{utils,canvas,controller,versus}.js loaded on demand by ui-controller.js -->
     <script src="assets/js/modules/vocabulary-controller.js?v=ac8e0304" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=aa8b0d0c" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=714668c8" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=3cd700c2" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=5f8fd643" defer></script>
     <script src="assets/js/modules/home-cultural-portal-scene.js?v=4c0158bd" defer></script>
-    <script src="assets/js/modules/home-controller.js?v=74b15215" defer></script>
+    <script src="assets/js/modules/home-controller.js?v=5ca98494" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=6dd74492" defer></script>
 
     <!-- Culture modules loaded on demand by ui-controller.js (see loadScript) -->
@@ -1111,14 +1110,14 @@
             document.body.appendChild(script);
         }
     </script>
-    <script src="assets/js/app.js?v=9964893d" defer></script>
+    <script src="assets/js/app.js?v=fb6deef1" defer></script>
     <!-- matrix-game.js, tones-invaders-game.js, leaderboard.js loaded on demand by ui-controller.js -->
 
     <!-- Background Image Integration -->
     <!-- Background Image Integration (Removed hardcoded style) -->
 
 
-    <script src="assets/js/sw-register.js?v=4036af96" defer></script>
+    <script src="assets/js/sw-register.js?v=eec23dcf" defer></script>
 </body>
 
 </html>

@@ -677,7 +677,8 @@ class FirebaseClient {
   }
 }
 
-// Create global instance
+// Export class and create global instance
+window.FirebaseClient = FirebaseClient;
 window.firebaseClient = new FirebaseClient();
 
 // Auto-initialize

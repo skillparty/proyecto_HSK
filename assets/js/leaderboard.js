@@ -373,17 +373,17 @@ class LeaderboardManager {
     const getMainStat = () => {
       switch (this.currentType) {
         case "accuracy":
-          return `${user.accuracy_rate}%`;
+          return `${this.escapeHtml(String(user.accuracy_rate))}%`;
         case "streak":
-          return `${user.best_streak} streak`;
+          return `${this.escapeHtml(String(user.best_streak))} streak`;
         case "time_spent":
           return `${Math.round(user.total_time_spent / 60)}h`;
         case "achievements":
-          return `${user.total_achievements} achievements`;
+          return `${this.escapeHtml(String(user.total_achievements))} achievements`;
         case "study_streak":
-          return `${user.study_streak} days`;
+          return `${this.escapeHtml(String(user.study_streak))} days`;
         default:
-          return `${user.total_studied} words`;
+          return `${this.escapeHtml(String(user.total_studied))} words`;
       }
     };
 
@@ -393,11 +393,11 @@ class LeaderboardManager {
         return `
                     <div class="stat-item">
                         <span class="stat-label" data-i18n="accuracy">Accuracy</span>
-                        <span class="stat-value">${user.period_accuracy}%</span>
+                        <span class="stat-value">${this.escapeHtml(String(user.period_accuracy))}%</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label" data-i18n="activeDays">Active Days</span>
-                        <span class="stat-value">${user.active_days}</span>
+                        <span class="stat-value">${this.escapeHtml(String(user.active_days))}</span>
                     </div>
                 `;
       } else if (user.hsk_level !== undefined) {
@@ -405,11 +405,11 @@ class LeaderboardManager {
         return `
                     <div class="stat-item">
                         <span class="stat-label" data-i18n="accuracy">Accuracy</span>
-                        <span class="stat-value">${user.level_accuracy}%</span>
+                        <span class="stat-value">${this.escapeHtml(String(user.level_accuracy))}%</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label" data-i18n="correct">Correct</span>
-                        <span class="stat-value">${user.words_correct}</span>
+                        <span class="stat-value">${this.escapeHtml(String(user.words_correct))}</span>
                     </div>
                 `;
       } else {
@@ -417,11 +417,11 @@ class LeaderboardManager {
         return `
                     <div class="stat-item">
                         <span class="stat-label" data-i18n="accuracy">Accuracy</span>
-                        <span class="stat-value">${user.accuracy_rate}%</span>
+                        <span class="stat-value">${this.escapeHtml(String(user.accuracy_rate))}%</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label" data-i18n="streak">Streak</span>
-                        <span class="stat-value">${user.current_streak}</span>
+                        <span class="stat-value">${this.escapeHtml(String(user.current_streak))}</span>
                     </div>
                 `;
       }
@@ -465,23 +465,23 @@ class LeaderboardManager {
       container.innerHTML = `
                 <div class="user-position-card">
                     <div class="position-info">
-                        <div class="position-rank">#${position}</div>
+                        <div class="position-rank">#${this.escapeHtml(String(position))}</div>
                         <div class="position-text">
                             <span data-i18n="yourRank">Your Rank</span>
-                            <span class="total-users">of ${total_users} users</span>
+                            <span class="total-users">of ${this.escapeHtml(String(total_users))} users</span>
                         </div>
                     </div>
                     <div class="position-stats">
                         <div class="stat-item">
-                            <span class="stat-value">${user_stats.total_studied}</span>
+                            <span class="stat-value">${this.escapeHtml(String(user_stats.total_studied))}</span>
                             <span class="stat-label" data-i18n="wordsStudied">Words Studied</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-value">${user_stats.accuracy_rate}%</span>
+                            <span class="stat-value">${this.escapeHtml(String(user_stats.accuracy_rate))}%</span>
                             <span class="stat-label" data-i18n="accuracy">Accuracy</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-value">${user_stats.best_streak}</span>
+                            <span class="stat-value">${this.escapeHtml(String(user_stats.best_streak))}</span>
                             <span class="stat-label" data-i18n="bestStreak">Best Streak</span>
                         </div>
                     </div>
@@ -514,7 +514,7 @@ class LeaderboardManager {
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">${this.stats.total_active_users}</div>
+                        <div class="stat-value">${this.escapeHtml(String(this.stats.total_active_users))}</div>
                         <div class="stat-label" data-i18n="totalUsers">Total Users</div>
                     </div>
                 </div>
@@ -523,7 +523,7 @@ class LeaderboardManager {
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">${this.formatNumber(this.stats.total_words_studied)}</div>
+                        <div class="stat-value">${this.escapeHtml(String(this.formatNumber(this.stats.total_words_studied)))}</div>
                         <div class="stat-label" data-i18n="totalWordsStudied">Total Words Studied</div>
                     </div>
                 </div>
@@ -532,7 +532,7 @@ class LeaderboardManager {
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">${Math.round(this.stats.avg_words_per_user)}</div>
+                        <div class="stat-value">${this.escapeHtml(String(Math.round(this.stats.avg_words_per_user)))}</div>
                         <div class="stat-label" data-i18n="avgWordsPerUser">Avg Words/User</div>
                     </div>
                 </div>
@@ -541,7 +541,7 @@ class LeaderboardManager {
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s4 4.5 4 8a4 4 0 0 1-8 0c0-3.5 4-8 4-8z"></path><path d="M8 14a4 4 0 0 0 8 0"></path></svg>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">${this.stats.max_streak}</div>
+                        <div class="stat-value">${this.escapeHtml(String(this.stats.max_streak))}</div>
                         <div class="stat-label" data-i18n="maxStreak">Max Streak</div>
                     </div>
                 </div>
@@ -550,7 +550,7 @@ class LeaderboardManager {
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">${this.stats.weekly_active_users}</div>
+                        <div class="stat-value">${this.escapeHtml(String(this.stats.weekly_active_users))}</div>
                         <div class="stat-label" data-i18n="weeklyActiveUsers">Weekly Active</div>
                     </div>
                 </div>
@@ -559,7 +559,7 @@ class LeaderboardManager {
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><line x1="8" y1="14" x2="8" y2="18"></line><line x1="12" y1="14" x2="12" y2="18"></line><line x1="16" y1="14" x2="16" y2="18"></line></svg>
                     </div>
                     <div class="stat-info">
-                        <div class="stat-value">${this.stats.monthly_active_users}</div>
+                        <div class="stat-value">${this.escapeHtml(String(this.stats.monthly_active_users))}</div>
                         <div class="stat-label" data-i18n="monthlyActiveUsers">Monthly Active</div>
                     </div>
                 </div>
@@ -601,7 +601,7 @@ class LeaderboardManager {
       container.innerHTML = `
                 <div class="leaderboard-error">
                     <div class="error-icon"></div>
-                    <div class="error-message">${message}</div>
+                    <div class="error-message">${this.escapeHtml(message)}</div>
                     <button data-leaderboard-action="retry" class="retry-btn">
                         <span data-i18n="tryAgain">Retry</span>
                     </button>
