@@ -45,11 +45,12 @@
 
     <!-- PWA Meta Tags -->
     <meta name="description" content="Modern HSK Chinese learning app with flashcards, quizzes, and progress tracking">
-    <meta name="theme-color" content="#d32f2f">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#09090b">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="HSK Learning">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Confuc10++">
 
     <!-- Icons -->
     <link rel="icon" type="image/png" href="assets/images/logo05.png" id="app-favicon">
@@ -73,13 +74,13 @@
     </script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/design-tokens.css?v=ce688d54" id="design-tokens">
+    <link rel="stylesheet" href="assets/css/design-tokens.css?v=e01267d0" id="design-tokens">
     <!-- Split de styles-professional.css: el orden de estos <link> ES la cascada, no reordenar -->
-    <link rel="stylesheet" href="assets/css/app-base.css?v=208eb12c" id="main-stylesheet">
-    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=33ffdc36">
-    <link rel="stylesheet" href="assets/css/app-home.css?v=ce40ba46">
-    <link rel="stylesheet" href="assets/css/app-practice.css?v=e71142db">
-    <link rel="stylesheet" href="assets/css/app-browse.css?v=d5a7c864">
+    <link rel="stylesheet" href="assets/css/app-base.css?v=c28c9407" id="main-stylesheet">
+    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=92913f61">
+    <link rel="stylesheet" href="assets/css/app-home.css?v=360134b4">
+    <link rel="stylesheet" href="assets/css/app-practice.css?v=89c300b3">
+    <link rel="stylesheet" href="assets/css/app-browse.css?v=fbb33c28">
     <link rel="stylesheet" href="assets/css/app-strokes.css?v=2a3bae39">
     <link rel="stylesheet" href="assets/css/app-quiz.css?v=5d43a437">
     <link rel="stylesheet" href="assets/css/app-stats.css?v=cd1fd78c">
@@ -167,6 +168,17 @@
                             </svg>
                         </button>
 
+                        <!-- Sync Status Indicator (Offline / Online / Syncing) -->
+                        <div id="sync-status-indicator" class="sync-status-indicator is-synced" role="status" title="Estado de sincronización" data-tooltip="Sincronizado con la nube" aria-label="Estado de sincronización">
+                            <svg class="sync-icon sync-icon-cloud" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                            </svg>
+                            <svg class="sync-icon sync-icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span class="sync-badge" id="sync-pending-badge" style="display: none;">0</span>
+                        </div>
+
                         <!-- Settings (idioma, voz, audio) -->
                         <button id="mobile-settings-toggle" class="header-control" title="Settings"
                             data-tooltip="Configure language, voice and audio" aria-haspopup="true" aria-expanded="false">
@@ -207,6 +219,29 @@
                                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                         <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                                     </svg>
+                                </button>
+                            </div>
+
+                            <div class="settings-row pwa-install-row" id="pwa-install-row" style="display: none;">
+                                <span class="settings-row-label" data-i18n="installAppLabel">App PWA</span>
+                                <button id="pwa-install-btn" class="settings-action-btn" type="button" data-i18n-title="installAppBtnTitle" aria-label="Instalar aplicación">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                    <span data-i18n="installAppText">Instalar</span>
+                                </button>
+                            </div>
+
+                            <div class="settings-row reminder-row" id="study-reminder-row">
+                                <span class="settings-row-label" data-i18n="reminderLabel">Recordatorio</span>
+                                <button id="reminder-toggle-btn" class="settings-action-btn" type="button" title="Activar recordatorios diarios de racha" aria-label="Recordatorio diario">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                    </svg>
+                                    <span id="reminder-btn-text" data-i18n="reminderActivateText">Notificar</span>
                                 </button>
                             </div>
                         </div>
@@ -656,7 +691,11 @@
                             </select>
                         </div>
 
-                        <div class="deck-quick-bar" style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
+                        <div class="deck-quick-bar" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <button id="hands-free-toggle-btn" class="btn btn-sm btn-outline-primary" type="button" style="font-size: 0.82rem; padding: 5px 12px; border-radius: 8px; display:inline-flex; align-items:center; gap:6px;" title="Modo Manos Libres: reproduce automáticamente las palabras en bucle con soporte para pantalla de bloqueo">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                                <span data-i18n="handsFreeModeBtn">Modo Manos Libres</span>
+                            </button>
                             <button id="manage-decks-btn" class="btn btn-sm btn-secondary" type="button" style="font-size: 0.82rem; padding: 5px 12px; border-radius: 8px; display:inline-flex; align-items:center; gap:6px;">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                                 <span data-i18n="manageDecksBtn">Mazos & Exportación Anki</span>
@@ -704,6 +743,33 @@
                             <button id="next-card-next-btn" class="action-btn next-btn-hidden"
                                 style="display: none;" data-i18n="next">Next</button>
                         </div>
+
+                        <!-- Hands-Free Floating Player Bar -->
+                        <aside id="hands-free-player" class="hands-free-player" style="display: none;" aria-label="Reproductor Manos Libres">
+                            <div class="hf-track-info">
+                                <span class="hf-char" id="hf-char">--</span>
+                                <span class="hf-pinyin" id="hf-pinyin">--</span>
+                                <span class="hf-meaning" id="hf-meaning">--</span>
+                            </div>
+                            <div class="hf-controls">
+                                <button type="button" id="hf-prev-btn" class="hf-btn" title="Palabra anterior" aria-label="Anterior">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+                                </button>
+                                <button type="button" id="hf-play-btn" class="hf-btn hf-play-pause" title="Pausar / Reanudar" aria-label="Pausa">
+                                    <svg id="hf-play-icon" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                    <svg id="hf-pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                                </button>
+                                <button type="button" id="hf-next-btn" class="hf-btn" title="Siguiente palabra" aria-label="Siguiente">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+                                </button>
+                                <select id="hf-speed-select" class="hf-speed-select" title="Intervalo entre palabras" aria-label="Intervalo">
+                                    <option value="3000">3s</option>
+                                    <option value="5000" selected>5s</option>
+                                    <option value="8000">8s</option>
+                                </select>
+                                <button type="button" id="hf-close-btn" class="hf-btn hf-close" title="Cerrar modo manos libres" aria-label="Cerrar">✕</button>
+                            </div>
+                        </aside>
                     </div>
                 </div>
 
@@ -1050,6 +1116,76 @@
     </footer>
     </div>
 
+    <!-- PWA Smart Install Banner (Mobile & Tablet) -->
+    <aside id="pwa-smart-banner" class="pwa-smart-banner" style="display: none;" aria-label="Instalar aplicación">
+        <div class="pwa-banner-content">
+            <img src="assets/images/logo05.png" alt="" class="pwa-banner-icon" width="40" height="40">
+            <div class="pwa-banner-text">
+                <strong class="pwa-banner-title">Confuc10++ HSK</strong>
+                <span class="pwa-banner-desc" data-i18n="pwaBannerDesc">Estudia chino offline y en pantalla completa</span>
+            </div>
+        </div>
+        <div class="pwa-banner-actions">
+            <button type="button" id="pwa-banner-install-btn" class="btn btn-sm btn-primary pwa-banner-btn" data-i18n="pwaInstallAction">Instalar</button>
+            <button type="button" id="pwa-banner-dismiss-btn" class="pwa-banner-dismiss" aria-label="Cerrar banner" title="Cerrar">✕</button>
+        </div>
+    </aside>
+
+    <!-- iOS PWA Install Instructions Modal -->
+    <dialog id="ios-install-dialog" class="ios-install-modal" aria-labelledby="ios-modal-title">
+        <div class="ios-modal-card">
+            <header class="ios-modal-header">
+                <div class="ios-modal-brand">
+                    <img src="assets/images/logo05.png" alt="Confuc10++" class="ios-modal-icon" width="44" height="44">
+                    <div>
+                        <h3 id="ios-modal-title" data-i18n="iosInstallTitle">Instalar en iPhone / iPad</h3>
+                        <p class="ios-modal-subtitle" data-i18n="iosInstallSubtitle">Disfruta de Confuc10++ a pantalla completa y sin conexión</p>
+                    </div>
+                </div>
+                <button type="button" id="ios-modal-close" class="modal-close-btn" aria-label="Cerrar">✕</button>
+            </header>
+            <div class="ios-install-steps">
+                <div class="ios-step-item">
+                    <div class="ios-step-badge">1</div>
+                    <div class="ios-step-content">
+                        <span data-i18n="iosStep1">En Safari, toca el botón <strong>Compartir</strong> en la barra inferior:</span>
+                        <div class="ios-step-icon-hint">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                <polyline points="16 6 12 2 8 6"></polyline>
+                                <line x1="12" y1="2" x2="12" y2="15"></line>
+                            </svg>
+                            <span>Compartir</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ios-step-item">
+                    <div class="ios-step-badge">2</div>
+                    <div class="ios-step-content">
+                        <span data-i18n="iosStep2">Desplázate hacia abajo y selecciona:</span>
+                        <div class="ios-step-icon-hint">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="12" y1="8" x2="12" y2="16"></line>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                            </svg>
+                            <strong data-i18n="iosAddToHome">Añadir a la pantalla de inicio</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="ios-step-item">
+                    <div class="ios-step-badge">3</div>
+                    <div class="ios-step-content">
+                        <span data-i18n="iosStep3">Pulsa <strong>Añadir</strong> en la esquina superior derecha.</span>
+                    </div>
+                </div>
+            </div>
+            <footer class="ios-modal-footer">
+                <button type="button" id="ios-modal-got-it" class="btn btn-primary" data-i18n="iosGotIt">¡Entendido!</button>
+            </footer>
+        </div>
+    </dialog>
+
     <!-- Firebase Modular SDK v10 -->
     <script type="importmap">
     {
@@ -1069,9 +1205,9 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=6fb8ddb4" defer></script>
+    <script src="assets/js/translations.js?v=cfd785b6" defer></script>
     <script src="assets/js/utils/idb-storage.js?v=a79379d7" defer></script>
-    <script src="assets/js/firebase-progress-sync.js?v=0739a27c" defer></script>
+    <script src="assets/js/firebase-progress-sync.js?v=bf85fc76" defer></script>
 
     <!-- Modules -->
     <script src="assets/js/modules/srs-engine.js?v=811fc44e" defer></script>
@@ -1081,7 +1217,7 @@
     <script src="assets/js/modules/achievement-manager.js?v=dc950149" defer></script>
     <!-- quiz-engine.js, quiz-legacy-controller.js, stats-controller.js loaded on demand by ui-controller.js -->
 
-    <script src="assets/js/modules/theme-controller.js?v=ce3fcd01" defer></script>
+    <script src="assets/js/modules/theme-controller.js?v=01706794" defer></script>
     <script src="assets/js/modules/audio-controller.js?v=c3447649" defer></script>
     <!-- browse-controller.js loaded on demand by ui-controller.js -->
 
@@ -1094,13 +1230,14 @@
     <script src="assets/js/modules/navigation-controller.js?v=869b0269" defer></script>
     <script src="assets/js/modules/search-controller.js?v=126ed121" defer></script>
     <script src="assets/js/modules/practice-view-controller.js?v=1c0399bb" defer></script>
+    <script src="assets/js/modules/hands-free-controller.js?v=f4f3d811" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=91e61708" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=0b7e1bfd" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=0c5572bf" defer></script>
     <!-- past-exams-controller.js, quantifier-snake-{utils,canvas,controller,versus}.js loaded on demand by ui-controller.js -->
     <script src="assets/js/modules/vocabulary-controller.js?v=ac8e0304" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=aa8b0d0c" defer></script>
-    <script src="assets/js/modules/startup-controller.js?v=714668c8" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=75f9ad10" defer></script>
+    <script src="assets/js/modules/startup-controller.js?v=d5ffbd82" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=d32ecb1f" defer></script>
     <script src="assets/js/modules/home-cultural-portal-scene.js?v=4c0158bd" defer></script>
     <script src="assets/js/modules/home-controller.js?v=d4fd2306" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=6dd74492" defer></script>
@@ -1108,7 +1245,7 @@
     <!-- Culture modules loaded on demand by ui-controller.js (see loadScript) -->
 
     <script src="assets/js/progress-integrator.js?v=0f7f559e" defer></script>
-    <script src="assets/js/auth-backend.js?v=3885d457" defer></script>
+    <script src="assets/js/auth-backend.js?v=816f190e" defer></script>
     <script src="assets/js/user-progress-backend.js?v=2dc1518b" defer></script>
     <script>
         // Load diagnostic system only when requested via ?diagnostic=true
@@ -1118,14 +1255,14 @@
             document.body.appendChild(script);
         }
     </script>
-    <script src="assets/js/app.js?v=fb6deef1" defer></script>
+    <script src="assets/js/app.js?v=4428c583" defer></script>
     <!-- matrix-game.js, tones-invaders-game.js, leaderboard.js loaded on demand by ui-controller.js -->
 
     <!-- Background Image Integration -->
     <!-- Background Image Integration (Removed hardcoded style) -->
 
 
-    <script src="assets/js/sw-register.js?v=eec23dcf" defer></script>
+    <script src="assets/js/sw-register.js?v=dc64ea60" defer></script>
 </body>
 
 </html>

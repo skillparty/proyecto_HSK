@@ -114,9 +114,14 @@ class HanziCanvasController {
 
     getCanvasCoordinates(e) {
         const rect = this.canvas.getBoundingClientRect();
+        // Support Apple Pencil / Stylus pressure (0.0 to 1.0)
+        const hasPressure = typeof e.pressure === "number" && e.pressure > 0;
+        const pressure = hasPressure ? e.pressure : 0.5;
         return {
             x: e.clientX - rect.left,
             y: e.clientY - rect.top,
+            pressure: pressure,
+            pointerType: e.pointerType || "touch",
         };
     }
 
@@ -126,7 +131,8 @@ class HanziCanvasController {
         this.isDrawing = true;
         const pt = this.getCanvasCoordinates(e);
         this.currentStroke = [pt];
-        this.drawDot(pt.x, pt.y);
+        const dotWidth = this.brushWidth * (0.4 + 1.2 * pt.pressure);
+        this.drawDot(pt.x, pt.y, dotWidth);
     }
 
     handlePointerMove(e) {
@@ -151,10 +157,11 @@ class HanziCanvasController {
         this.redraw();
     }
 
-    drawDot(x, y) {
+    drawDot(x, y, width) {
+        const w = width || this.brushWidth;
         this.ctx.fillStyle = this.brushColor;
         this.ctx.beginPath();
-        this.ctx.arc(x, y, this.brushWidth / 2, 0, Math.PI * 2);
+        this.ctx.arc(x, y, Math.max(1, w / 2), 0, Math.PI * 2);
         this.ctx.fill();
     }
 
@@ -217,28 +224,33 @@ class HanziCanvasController {
         const ctx = this.ctx;
         ctx.save();
         ctx.strokeStyle = stroke.color || this.brushColor;
-        ctx.lineWidth = stroke.width || this.brushWidth;
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
 
+        const baseWidth = stroke.width || this.brushWidth;
+
         if (pts.length === 1) {
-            this.drawDot(pts[0].x, pts[0].y);
+            const dotWidth = baseWidth * (0.4 + 1.2 * (pts[0].pressure || 0.5));
+            this.drawDot(pts[0].x, pts[0].y, dotWidth);
             ctx.restore();
             return;
         }
 
-        ctx.beginPath();
-        ctx.moveTo(pts[0].x, pts[0].y);
+        // Draw segmented strokes with variable brush width based on stylus pressure
+        for (let i = 0; i < pts.length - 1; i++) {
+            const p1 = pts[i];
+            const p2 = pts[i + 1];
+            const p1Width = baseWidth * (0.4 + 1.2 * (p1.pressure || 0.5));
+            const p2Width = baseWidth * (0.4 + 1.2 * (p2.pressure || 0.5));
+            const avgWidth = (p1Width + p2Width) / 2;
 
-        for (let i = 1; i < pts.length - 1; i++) {
-            const xc = (pts[i].x + pts[i + 1].x) / 2;
-            const yc = (pts[i].y + pts[i + 1].y) / 2;
-            ctx.quadraticCurveTo(pts[i].x, pts[i].y, xc, yc);
+            ctx.lineWidth = Math.max(2, avgWidth);
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
         }
 
-        const last = pts[pts.length - 1];
-        ctx.lineTo(last.x, last.y);
-        ctx.stroke();
         ctx.restore();
     }
 

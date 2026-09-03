@@ -90,12 +90,12 @@
                                 <div class="sr-canvas-title-group">
                                     <h3 style="display:flex; align-items:center; gap:6px;">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
-                                        Lienzo de Escritura y Caligrafía
+                                        <span data-i18n="strokesCanvasTitle">Lienzo de Escritura y Caligrafía</span>
                                     </h3>
-                                    <p>Dibuja el carácter en la cuadrícula 米字格 con guía de trazo y pronunciación.</p>
+                                    <p data-i18n="strokesDrawPrompt">Dibuja el carácter en la cuadrícula 米字格 con guía de trazo y pronunciación.</p>
                                 </div>
                                 <div class="hz-active-char-badge">
-                                    <span>Carácter activo:</span>
+                                    <span data-i18n="strokesActiveCharLabel">Carácter activo:</span>
                                     <strong id="hanzi-canvas-char-display">中</strong>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
 
                                 <div class="sr-canvas-side-tools">
                                     <div class="sr-tool-group">
-                                        <label for="hanzi-canvas-char-input" class="control-label">Escribir otro carácter:</label>
+                                        <label for="hanzi-canvas-char-input" class="control-label" data-i18n="strokesWriteOtherCharLabel">Escribir otro carácter:</label>
                                         <div class="hz-char-input-wrap">
                                             <input type="text" id="hanzi-canvas-char-input" maxlength="2" placeholder="中" value="中" class="search-input" />
                                             <button id="hanzi-canvas-audio-btn" class="btn btn-secondary" title="Escuchar pronunciación" type="button">
@@ -120,7 +120,7 @@
                                     </div>
 
                                     <div class="sr-tool-group">
-                                        <label class="control-label">Accesos rápidos:</label>
+                                        <label class="control-label" data-i18n="strokesQuickCharsLabel">Accesos rápidos:</label>
                                         <div class="hz-quick-chars-list">
                                             <button type="button" class="hz-quick-char">你</button>
                                             <button type="button" class="hz-quick-char">好</button>
@@ -134,7 +134,7 @@
                                     </div>
 
                                     <div class="sr-tool-group">
-                                        <label class="control-label">Color de tinta:</label>
+                                        <label class="control-label" data-i18n="strokesInkColorLabel">Color de tinta:</label>
                                         <div class="hz-color-chips-list">
                                             <button type="button" class="hz-color-chip active" data-color="#e11d48" style="background: #e11d48;" title="Rojo Cinabrio"></button>
                                             <button type="button" class="hz-color-chip" data-color="#f8fafc" style="background: #f8fafc;" title="Tinta Blanca / Plata"></button>

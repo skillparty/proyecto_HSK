@@ -26,22 +26,22 @@
                 <div class="control-group">
                     <label for="scroll-preset-select" class="control-label" data-i18n="scrollPresetLabel">Seleccionar Obra Clásica:</label>
                     <select id="scroll-preset-select" class="form-control">
-                        <option value="quiet-night" selected>《静夜思》- 李白 (Pensamiento en Noche Tranquila)</option>
-                        <option value="spring-dawn">《春晓》- 孟浩然 (Amanecer de Primavera)</option>
-                        <option value="stork-tower">《登鹳雀楼》- 王之涣 (Torre de la Cigüeña)</option>
-                        <option value="thousand-miles">《千里之行，始于足下》 (El viaje de mil millas)</option>
-                        <option value="water-stone">《水滴石穿》 (La constancia vence)</option>
-                        <option value="custom">Personalizado (Escribir mis propios caracteres)</option>
+                        <option value="quiet-night" data-i18n="scrollPresetQuietNight" selected>《静夜思》- 李白 (Pensamiento en Noche Tranquila)</option>
+                        <option value="spring-dawn" data-i18n="scrollPresetSpringDawn">《春晓》- 孟浩然 (Amanecer de Primavera)</option>
+                        <option value="stork-tower" data-i18n="scrollPresetStorkTower">《登鹳雀楼》- 王之涣 (Torre de la Cigüeña)</option>
+                        <option value="thousand-miles" data-i18n="scrollPresetThousandMiles">《千里之行，始于足下》 (El viaje de mil millas)</option>
+                        <option value="water-stone" data-i18n="scrollPresetWaterStone">《水滴石穿》 (La constancia vence)</option>
+                        <option value="custom" data-i18n="scrollPresetCustom">Personalizado (Escribir mis propios caracteres)</option>
                     </select>
                 </div>
 
                 <!-- Custom Text Inputs (Visible if custom chosen) -->
                 <div class="control-group" id="scroll-custom-inputs" style="display: none;">
-                    <label for="scroll-custom-title" class="control-label">Título del Rollo:</label>
-                    <input type="text" id="scroll-custom-title" class="form-control" placeholder="Ej. 《学海无涯》" value="《学无止境》" />
+                    <label for="scroll-custom-title" class="control-label" data-i18n="scrollCustomTitleLabel">Título del Rollo:</label>
+                    <input type="text" id="scroll-custom-title" class="form-control" data-i18n-placeholder="scrollCustomTitlePlaceholder" placeholder="Ej. 《学海无涯》" value="《学无止境》" />
 
-                    <label for="scroll-custom-content" class="control-label" style="margin-top: 8px;">Contenido Vertical (Hanzi):</label>
-                    <textarea id="scroll-custom-content" class="form-control" rows="4" placeholder="Escribe tus caracteres aquí...">书山有路勤为径
+                    <label for="scroll-custom-content" class="control-label" style="margin-top: 8px;" data-i18n="scrollCustomContentLabel">Contenido Vertical (Hanzi):</label>
+                    <textarea id="scroll-custom-content" class="form-control" rows="4" data-i18n-placeholder="scrollCustomContentPlaceholder" placeholder="Escribe tus caracteres aquí...">书山有路勤为径
 学海无涯苦作舟</textarea>
                 </div>
 
@@ -49,9 +49,9 @@
                 <div class="control-group">
                     <label for="scroll-font-style" class="control-label" data-i18n="scrollFontLabel">Estilo Caligráfico:</label>
                     <select id="scroll-font-style" class="form-control">
-                        <option value="kaishu" selected>Estilo Regular / Kaishu (楷书 - Claridad y Elegancia)</option>
-                        <option value="xingshu">Estilo Cursivo / Xingshu (行书 - Fluidez y Dinamismo)</option>
-                        <option value="zhuanshu">Estilo de Sello Arcaico / Zhuanshu (篆书 - Tradición Imperial)</option>
+                        <option value="kaishu" data-i18n="scrollFontKaishu" selected>Estilo Regular / Kaishu (楷书 - Claridad y Elegancia)</option>
+                        <option value="xingshu" data-i18n="scrollFontXingshu">Estilo Cursivo / Xingshu (行书 - Fluidez y Dinamismo)</option>
+                        <option value="zhuanshu" data-i18n="scrollFontZhuanshu">Estilo de Sello Arcaico / Zhuanshu (篆书 - Tradición Imperial)</option>
                     </select>
                 </div>
 
@@ -59,10 +59,10 @@
                 <div class="control-group">
                     <label for="scroll-silk-theme" class="control-label" data-i18n="scrollSilkThemeLabel">Color del Brocado de Seda (装裱):</label>
                     <select id="scroll-silk-theme" class="form-control">
-                        <option value="imperial-gold" selected>Brocado Dorado Imperial (皇家织锦金)</option>
-                        <option value="celadon-jade">Jade Celadón Song (青瓷玉碧)</option>
-                        <option value="crimson-silk">Seda Carmesí Palacio (朱砂宫廷红)</option>
-                        <option value="ink-sapphire">Zafiro Índigo (水墨靛蓝)</option>
+                        <option value="imperial-gold" data-i18n="scrollThemeImperialGold" selected>Brocado Dorado Imperial (皇家织锦金)</option>
+                        <option value="celadon-jade" data-i18n="scrollThemeCeladonJade">Jade Celadón Song (青瓷玉碧)</option>
+                        <option value="crimson-silk" data-i18n="scrollThemeCrimsonSilk">Seda Carmesí Palacio (朱砂宫廷红)</option>
+                        <option value="ink-sapphire" data-i18n="scrollThemeInkSapphire">Zafiro Índigo (水墨靛蓝)</option>
                     </select>
                 </div>
 

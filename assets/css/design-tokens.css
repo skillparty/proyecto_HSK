@@ -225,12 +225,19 @@ html[data-theme="dark"] {
     --color-text-muted: #a1a1aa; /* Zinc 400 */
     --color-text-dim: #9ca3af; /* Zinc 400/500 — lightened to meet 4.5:1 on dark cards */
 
+    /* Primary Brand Color brightened for WCAG AA 4.5:1 contrast on dark zinc surfaces */
+    --color-primary: #f87171;
+    --color-primary-hover: #fca5a5;
+    --primary: var(--color-primary);
+    --primary-hover: var(--color-primary-hover);
+    --primary-color: var(--color-primary);
+
     /* Subtle fills: translucent so they sit on dark surfaces without glare */
-    --color-primary-subtle: rgba(229, 57, 53, 0.16);
+    --color-primary-subtle: rgba(248, 113, 113, 0.16);
     --color-accent-subtle: rgba(250, 204, 21, 0.14);
     --color-success-subtle: rgba(34, 197, 94, 0.14);
     --color-warning-subtle: rgba(250, 204, 21, 0.14);
-    --color-error-subtle: rgba(239, 68, 68, 0.16);
+    --color-error-subtle: rgba(248, 113, 113, 0.16);
 
     /* Tone colors brightened one step for contrast on dark backgrounds (scheme A) */
     --color-tone-1: #ef4444; /* Rojo */

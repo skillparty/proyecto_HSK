@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+9b62d1ef";
+const SW_VERSION = "4.70.0+8115bafc";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -12,12 +12,12 @@ const PRECACHE_FILES = [
   "./",
   "./index.html",
   "./config/manifest.json",
-  "./assets/css/design-tokens.css?v=ce688d54",
-  "./assets/css/app-base.css?v=208eb12c",
-  "./assets/css/app-header-nav.css?v=33ffdc36",
-  "./assets/css/app-home.css?v=ce40ba46",
-  "./assets/css/app-practice.css?v=e71142db",
-  "./assets/css/app-browse.css?v=d5a7c864",
+  "./assets/css/design-tokens.css?v=e01267d0",
+  "./assets/css/app-base.css?v=c28c9407",
+  "./assets/css/app-header-nav.css?v=92913f61",
+  "./assets/css/app-home.css?v=360134b4",
+  "./assets/css/app-practice.css?v=89c300b3",
+  "./assets/css/app-browse.css?v=fbb33c28",
   "./assets/css/app-strokes.css?v=2a3bae39",
   "./assets/css/app-quiz.css?v=5d43a437",
   "./assets/css/app-stats.css?v=cd1fd78c",
@@ -53,10 +53,10 @@ const PRECACHE_FILES = [
   "./assets/js/utils/idb-storage.js?v=a79379d7",
   "./assets/js/bootstrap-diagnostics.js?v=4dd221b0",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
-  "./assets/js/sw-register.js?v=eec23dcf",
-  "./assets/js/translations.js?v=6fb8ddb4",
+  "./assets/js/sw-register.js?v=dc64ea60",
+  "./assets/js/translations.js?v=cfd785b6",
   "./assets/js/firebase-client.js?v=620f489f",
-  "./assets/js/firebase-progress-sync.js?v=0739a27c",
+  "./assets/js/firebase-progress-sync.js?v=bf85fc76",
   "./assets/js/modules/srs-engine.js?v=811fc44e",
   "./assets/js/modules/flashcard-manager.js?v=b0687a3a",
   "./assets/js/modules/deck-manager.js?v=a5683a57",
@@ -67,7 +67,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=6c07d80a",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7a1e139f",
-  "./assets/js/modules/ui-controller.js?v=75f9ad10",
+  "./assets/js/modules/ui-controller.js?v=d32ecb1f",
   "./assets/js/modules/navigation-controller.js?v=869b0269",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",
@@ -79,7 +79,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/memories-controller.js",
   "./assets/js/modules/language-controller.js?v=57c17946",
   "./assets/js/modules/browse-controller.js?v=6c8c3c15",
-  "./assets/js/modules/interaction-controller.js?v=0b7e1bfd",
+  "./assets/js/modules/interaction-controller.js?v=0c5572bf",
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-question-bank.js",
   "./assets/js/modules/past-exams-controller.js?v=380d4198",
@@ -93,9 +93,9 @@ const PRECACHE_FILES = [
   "./assets/js/modules/hanzi-canvas-controller.js",
   "./assets/js/modules/strokes-radicals-controller.js?v=23cc2c2c",
   "./assets/js/progress-integrator.js?v=0f7f559e",
-  "./assets/js/auth-backend.js?v=3885d457",
+  "./assets/js/auth-backend.js?v=816f190e",
   "./assets/js/user-progress-backend.js?v=2dc1518b",
-  "./assets/js/app.js?v=fb6deef1",
+  "./assets/js/app.js?v=4428c583",
   "./assets/js/matrix-game.js?v=9da2483d",
   "./assets/js/matrix-game-events.js",
   "./assets/js/matrix-game-ui.js",
@@ -395,4 +395,52 @@ self.addEventListener("message", (event) => {
   if (event.data.type === "GET_VERSION" && event.ports?.[0]) {
     event.ports[0].postMessage({ version: SW_VERSION });
   }
+});
+
+// Web Push & Daily Streak Reminder Handlers for PWA
+self.addEventListener("push", (event) => {
+  let data = {
+    title: "Confuc10++ HSK",
+    body: "🔥 ¡Mantén tu racha activa! Tienes palabras pendientes de repasar hoy.",
+    icon: "./assets/images/logo05.png",
+    badge: "./assets/images/logo05.png",
+    data: { url: "./index.html?tab=practice" },
+  };
+  if (event.data) {
+    try {
+      data = { ...data, ...event.data.json() };
+    } catch {
+      data.body = event.data.text();
+    }
+  }
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: data.icon,
+      badge: data.badge,
+      data: data.data,
+      vibrate: [100, 50, 100],
+    })
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const urlToOpen = (event.notification.data && event.notification.data.url) || "./index.html?tab=practice";
+
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then((windowClients) => {
+      for (const client of windowClients) {
+        if ("focus" in client) {
+          if (client.url.includes("index.html")) {
+            client.navigate(urlToOpen);
+            return client.focus();
+          }
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow(urlToOpen);
+      }
+    })
+  );
 });

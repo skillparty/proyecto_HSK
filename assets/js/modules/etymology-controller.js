@@ -351,7 +351,7 @@ class EtymologyController {
           return `
           <div class="etym-card-wrap ${isSelected ? "is-card-selected" : ""}">
             <label class="etym-card-select-label" title="Seleccionar para PDF">
-              <input type="checkbox" class="etym-card-checkbox" data-hanzi="${entry.hanzi}" ${isSelected ? "checked" : ""}>
+              <input type="checkbox" class="etym-card-checkbox" data-hanzi="${entry.hanzi}" aria-label="Seleccionar ${entry.hanzi} para PDF" ${isSelected ? "checked" : ""}>
               <span class="etym-card-select-custom"></span>
             </label>
             <button class="etym-card ${

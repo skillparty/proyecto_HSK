@@ -11,6 +11,7 @@ const HSK_DIALOGUE_SCENARIOS = [
         turns: [
             {
                 speaker: "服务员 (Camarero)",
+                speakerEn: "服务员 (Waiter)",
                 hanzi: "您好！欢迎光临，请问几位？",
                 pinyin: "Nín hǎo! Huānyíng guānglín, qǐngwèn jǐ wèi?",
                 meaning: "¡Hola! Bienvenidos, ¿cuántas personas son?",
@@ -36,6 +37,7 @@ const HSK_DIALOGUE_SCENARIOS = [
             },
             {
                 speaker: "服务员 (Camarero)",
+                speakerEn: "服务员 (Waiter)",
                 hanzi: "好的，请坐！这是菜单，请问想吃点什么？",
                 pinyin: "Hǎo de, qǐng zuò! Zhè shì càidān, qǐngwèn xiǎng chī diǎn shénme?",
                 meaning: "Muy bien, ¡tomen asiento! Aquí está el menú, ¿qué desean comer?",
@@ -61,31 +63,33 @@ const HSK_DIALOGUE_SCENARIOS = [
             },
             {
                 speaker: "服务员 (Camarero)",
-                hanzi: "好的！请问宫保鸡丁需要微辣还是不要辣？",
-                pinyin: "Hǎo de! Qǐngwèn gōngbǎo jīdīng xūyào wēilà háishì bù yào là?",
+                speakerEn: "服务员 (Waiter)",
+                hanzi: "没问题！请问宫保鸡丁要微辣还是不辣？",
+                pinyin: "Méi wèntí! Qǐngwèn gōngbǎo jīdīng yào wēilà háishì bù là?",
                 meaning: "¡De acuerdo! ¿El pollo Kung Pao lo desean poco picante o nada picante?",
-                meaningEn: "Alright! Would you like the Kung Pao chicken mildly spicy or not spicy at all?",
-                cultureTip: "'微辣' (wēilà - poco picante) es ideal para extranjeros no acostumbrados al picante de Sichuan.",
-                cultureTipEn: "'微辣' (wēilà - mildly spicy) is ideal for foreigners not accustomed to Sichuan spice.",
+                meaningEn: "No problem! Would you like the Kung Pao chicken mild spicy or non-spicy?",
+                cultureTip: "En Sichuan y Hunan, '微辣' (wēilà) aún puede ser bastante picante para extranjeros.",
+                cultureTipEn: "In Sichuan and Hunan, '微辣' (wēilà) might still be quite spicy for foreigners.",
                 options: [
                     {
-                        hanzi: "微辣就好，谢谢！我们不要太辣。",
-                        pinyin: "Wēilà jiù hǎo, xièxie! Wǒmen bù yào tài là.",
+                        hanzi: "微辣就好，谢谢！我们不太能吃辣。",
+                        pinyin: "Wēilà jiù hǎo, xièxie! Wǒmen bù tài néng chī là.",
                         meaning: "Poco picante está bien, ¡gracias! No lo queremos muy picante.",
-                        meaningEn: "Mildly spicy is fine, thanks! We don't want it too spicy.",
+                        meaningEn: "Mild spicy is good, thanks! We can't handle very spicy food.",
                         score: 100
                     },
                     {
-                        hanzi: "我不喜欢吃鸡肉。",
-                        pinyin: "Wǒ bù xǐhuan chī jīròu.",
-                        meaning: "No me gusta comer pollo.",
-                        meaningEn: "I don't like eating chicken.",
+                        hanzi: "都要。",
+                        pinyin: "Dōu yào.",
+                        meaning: "Quiero ambos.",
+                        meaningEn: "Want both.",
                         score: 40
                     }
                 ]
             },
             {
                 speaker: "服务员 (Camarero)",
+                speakerEn: "服务员 (Waiter)",
                 hanzi: "菜都上齐了，请慢用！有需要请随时叫我。",
                 pinyin: "Cài dōu shàng qí le, qǐng màn yòng! Yǒu xūyào qǐng suíshí jiào wǒ.",
                 meaning: "Todos los platos están servidos, ¡buen provecho! Si necesitan algo, llámenme.",
@@ -121,6 +125,7 @@ const HSK_DIALOGUE_SCENARIOS = [
         turns: [
             {
                 speaker: "售票员 (Ventanilla)",
+                speakerEn: "售票员 (Ticket Clerk)",
                 hanzi: "您好，请问您想买去哪里的车票？",
                 pinyin: "Nín hǎo, qǐngwèn nín xiǎng mǎi qù nǎlǐ de chēpiào?",
                 meaning: "Hola, ¿para dónde desea comprar su billete de tren?",
@@ -146,6 +151,7 @@ const HSK_DIALOGUE_SCENARIOS = [
             },
             {
                 speaker: "售票员 (Ventanilla)",
+                speakerEn: "售票员 (Ticket Clerk)",
                 hanzi: "明天早上九点有一趟G1次列车，请问要一等座还是二等座？",
                 pinyin: "Míngtiān zǎoshang jiǔ diǎn yǒu yī tàng G1 cì lièchē, qǐngwèn yào yīděngzuò háishì èrděngzuò?",
                 meaning: "Mañana a las 9 AM sale el tren G1, ¿desea asiento de primera clase o de segunda?",
@@ -181,6 +187,7 @@ const HSK_DIALOGUE_SCENARIOS = [
         turns: [
             {
                 speaker: "摊主 (Vendedor)",
+                speakerEn: "摊主 (Vendor)",
                 hanzi: "来看看新鲜的苹果和西瓜！帅哥/美女，想买点什么水果？",
                 pinyin: "Lái kànkan xīnxiān de píngguǒ hé xīguā! Shuàigē / Měinǚ, xiǎng mǎi diǎn shénme shuǐguǒ?",
                 meaning: "¡Vengan a ver manzanas y sandías frescas! Joven / Señorita, ¿qué fruta desea comprar?",
@@ -206,6 +213,7 @@ const HSK_DIALOGUE_SCENARIOS = [
             },
             {
                 speaker: "摊主 (Vendedor)",
+                speakerEn: "摊主 (Vendor)",
                 hanzi: "保证非常甜！三块钱一斤，一个大概十斤，三十块钱。",
                 pinyin: "Bǎozhèng fēicháng tián! Sān kuài qián yī jīn, yī gè dàgài shí jīn, sānshí kuài qián.",
                 meaning: "¡Garantizado muy dulce! Tres yuanes el medio kilo, una sandía pesa unos 5 kilos, son treinta yuanes.",
@@ -359,7 +367,7 @@ class DialogueTutorGame {
         msgEl.className = "tutor-chat-message bot";
         msgEl.innerHTML = `
             <div class="tutor-bubble">
-                <div class="tutor-bubble-speaker">${turn.speaker}</div>
+                <div class="tutor-bubble-speaker">${isEs ? turn.speaker : (turn.speakerEn || turn.speaker)}</div>
                 <div class="tutor-bubble-hanzi">${turn.hanzi}</div>
                 <div class="tutor-bubble-pinyin">${turn.pinyin}</div>
                 <div class="tutor-bubble-meaning">${meaning}</div>
@@ -386,7 +394,7 @@ class DialogueTutorGame {
         msgEl.className = "tutor-chat-message user";
         msgEl.innerHTML = `
             <div class="tutor-bubble">
-                <div class="tutor-bubble-speaker">Tú (我)</div>
+                <div class="tutor-bubble-speaker">${isEs ? "Tú (我)" : "You (我)"}</div>
                 <div class="tutor-bubble-hanzi">${option.hanzi}</div>
                 <div class="tutor-bubble-pinyin">${option.pinyin}</div>
                 <div class="tutor-bubble-meaning">${meaning}</div>

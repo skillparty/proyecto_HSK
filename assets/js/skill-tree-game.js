@@ -24,6 +24,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Cuál es el tono de '谢' en '谢谢' (xièxie)?",
                         promptEn: "What is the tone of '谢' in '谢谢' (xièxie)?",
                         options: ["1º Tono", "2º Tono", "3º Tono", "4º Tono (Descendente)"],
+                        optionsEn: ["1st Tone", "2nd Tone", "3rd Tone", "4th Tone (Falling)"],
                         correct: 3
                     },
                     {
@@ -57,6 +58,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Qué significa '今天' (jīntiān)?",
                         promptEn: "What does '今天' (jīntiān) mean?",
                         options: ["Ayer", "Hoy", "Mañana", "El año pasado"],
+                        optionsEn: ["Yesterday", "Today", "Tomorrow", "Last year"],
                         correct: 1
                     }
                 ]
@@ -72,6 +74,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Qué significa '爸爸' (bàba)?",
                         promptEn: "What does '爸爸' (bàba) mean?",
                         options: ["Papá", "Mamá", "Hermano", "Abuelo"],
+                        optionsEn: ["Dad", "Mom", "Brother", "Grandfather"],
                         correct: 0
                     },
                     {
@@ -134,6 +137,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Qué significa '米饭' (mǐfàn)?",
                         promptEn: "What does '米饭' (mǐfàn) mean?",
                         options: ["Arroz cocido", "Fideos", "Té verde", "Agua caliente"],
+                        optionsEn: ["Cooked rice", "Noodles", "Green tea", "Hot water"],
                         correct: 0
                     },
                     {
@@ -146,6 +150,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Qué significa '多少钱' (duōshao qián)?",
                         promptEn: "What does '多少钱' (duōshao qián) mean?",
                         options: ["¿Cuánto cuesta?", "¿Dónde está?", "¿Quién es?", "¿Qué hora es?"],
+                        optionsEn: ["How much is it?", "Where is it?", "Who is it?", "What time is it?"],
                         correct: 0
                     }
                 ]
@@ -250,6 +255,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Para qué sirve la estructura 把 (bǎ)?",
                         promptEn: "What is the '把' (bǎ) construction used for?",
                         options: ["Disposición / Acción directa sobre el objeto", "Voz pasiva", "Comparación", "Pregunta"],
+                        optionsEn: ["Disposal / Direct action on the object", "Passive voice", "Comparison", "Question"],
                         correct: 0
                     },
                     {
@@ -262,6 +268,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "Orden correcto: 'Wǒ bǎ píngguǒ ____ le.'",
                         promptEn: "Correct word: 'Wǒ bǎ píngguǒ ____ le.'",
                         options: ["chī (吃 - comí)", "kàn (看 - miré)", "zài (在)", "shì (是)"],
+                        optionsEn: ["chī (吃 - ate)", "kàn (看 - watched)", "zài (在)", "shì (是)"],
                         correct: 0
                     }
                 ]
@@ -283,6 +290,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Qué significa '因为...所以...'?",
                         promptEn: "What does '因为...所以...' mean?",
                         options: ["Porque... por eso...", "Si... entonces...", "Tanto... como...", "Primero... luego..."],
+                        optionsEn: ["Because... therefore...", "If... then...", "Both... and...", "First... then..."],
                         correct: 0
                     },
                     {
@@ -316,6 +324,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Qué indica '了' (le) al final de la oración?",
                         promptEn: "What does sentence-final '了' indicate?",
                         options: ["Cambio de estado o acción completada", "Pregunta", "Posesión", "Negación"],
+                        optionsEn: ["Change of state or completed action", "Question", "Possession", "Negation"],
                         correct: 0
                     }
                 ]
@@ -343,6 +352,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Qué significa '越...越...' (yuè... yuè...)?",
                         promptEn: "What does '越...越...' mean?",
                         options: ["Cuanto más... más...", "Ni... ni...", "A veces... a veces...", "Primero... después..."],
+                        optionsEn: ["The more... the more...", "Neither... nor...", "Sometimes... sometimes...", "First... then..."],
                         correct: 0
                     }
                 ]
@@ -366,18 +376,21 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Qué significa el proverbio '一心一意' (yī xīn yī yì)?",
                         promptEn: "What does '一心一意' mean?",
                         options: ["Concentrado de todo corazón / con devoción plena", "Estar confundido", "Tener dos opiniones", "Comenzar desde cero"],
+                        optionsEn: ["Wholeheartedly / with full devotion", "Being confused", "Having mixed feelings", "Starting from scratch"],
                         correct: 0
                     },
                     {
                         prompt: "¿Cuántos caracteres componen tradicionalmente un Chengyu (成语)?",
                         promptEn: "How many characters make up a traditional Chengyu?",
                         options: ["4 caracteres", "2 caracteres", "6 caracteres", "8 caracteres"],
+                        optionsEn: ["4 characters", "2 characters", "6 characters", "8 characters"],
                         correct: 0
                     },
                     {
                         prompt: "¿Qué significa '马马虎虎' (mǎmǎhūhū)?",
                         promptEn: "What does '马马虎虎' mean?",
                         options: ["Más o menos / regular / descuidado", "Rápido como un caballo", "Fuerte como un tigre", "Muy peligroso"],
+                        optionsEn: ["So-so / careless / mediocre", "Fast as a horse", "Strong as a tiger", "Very dangerous"],
                         correct: 0
                     }
                 ]
@@ -393,6 +406,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Qué significa '我认为' (wǒ rènwéi)?",
                         promptEn: "What does '我认为' (wǒ rènwéi) mean?",
                         options: ["En mi opinión / yo considero", "Yo no sé", "Él me dijo", "Es imposible"],
+                        optionsEn: ["In my opinion / I consider", "I do not know", "He told me", "It is impossible"],
                         correct: 0
                     },
                     {
@@ -420,6 +434,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¿Cuál es el significado profundo de '学无止境' (xué wú zhǐ jìng)?",
                         promptEn: "What does '学无止境' mean?",
                         options: ["El aprendizaje no tiene límites / nunca termina", "El examen fue fácil", "La escuela está cerrada", "Aprender rápido es mejor"],
+                        optionsEn: ["Learning has no bounds / never ends", "The test was easy", "The school is closed", "Learning fast is better"],
                         correct: 0
                     },
                     {
@@ -432,6 +447,7 @@ const HSK_ADVENTURE_ZONES = [
                         prompt: "¡Última prueba! ¿Qué nivel has alcanzado al completar el Camino del Dragón?",
                         promptEn: "What level have you reached upon completing the Dragon Path?",
                         options: ["Gran Maestro del Mandarín HSK 🐉", "Principiante", "Turista", "Oyente"],
+                        optionsEn: ["Grand Master of HSK Mandarin 🐉", "Beginner", "Tourist", "Listener"],
                         correct: 0
                     }
                 ]
@@ -771,14 +787,17 @@ class SkillTreeGame {
 
         const isEs = this.app?.currentLanguage !== "en";
         if (this.modalStepIndicator) {
-            this.modalStepIndicator.textContent = `Pregunta ${this.currentStep + 1} de ${this.currentNode.questions.length}`;
+            this.modalStepIndicator.textContent = isEs
+                ? `Pregunta ${this.currentStep + 1} de ${this.currentNode.questions.length}`
+                : `Question ${this.currentStep + 1} of ${this.currentNode.questions.length}`;
         }
         if (this.modalQuestionText) {
             this.modalQuestionText.textContent = isEs ? q.prompt : (q.promptEn || q.prompt);
         }
 
         if (this.modalOptionsGrid) {
-            this.modalOptionsGrid.innerHTML = q.options.map((opt, idx) => `
+            const opts = isEs ? q.options : (q.optionsEn || q.options);
+            this.modalOptionsGrid.innerHTML = opts.map((opt, idx) => `
                 <button type="button" class="node-option-btn" data-opt-idx="${idx}">
                     ${opt}
                 </button>

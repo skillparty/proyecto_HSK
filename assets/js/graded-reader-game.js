@@ -18,6 +18,7 @@ const HSK_GRADED_STORIES = [
                 question: "¿De dónde es David (大卫)?",
                 questionEn: "Where is David (大卫) from?",
                 options: ["中国 (China)", "美国 (Estados Unidos)", "英国 (Reino Unido)", "日本 (Japón)"],
+                optionsEn: ["中国 (China)", "美国 (United States)", "英国 (United Kingdom)", "日本 (Japan)"],
                 correct: 1
             },
             {
@@ -30,6 +31,7 @@ const HSK_GRADED_STORIES = [
                 question: "¿Qué le gusta beber a Li Ming?",
                 questionEn: "What does Li Ming like to drink?",
                 options: ["咖啡 (Café)", "牛奶 (Leche)", "茶 (Té)", "果汁 (Jugo)"],
+                optionsEn: ["咖啡 (Coffee)", "牛奶 (Milk)", "茶 (Tea)", "果汁 (Juice)"],
                 correct: 2
             }
         ]
@@ -78,6 +80,7 @@ const HSK_GRADED_STORIES = [
                 question: "¿De qué color quería la ropa la hermana?",
                 questionEn: "What color clothes did the sister want?",
                 options: ["黑色 (Negro)", "红色 (Rojo)", "白色 (Blanco)", "蓝色 (Azul)"],
+                optionsEn: ["黑色 (Black)", "红色 (Red)", "白色 (White)", "蓝色 (Blue)"],
                 correct: 1
             },
             {
@@ -112,6 +115,7 @@ const HSK_GRADED_STORIES = [
                 question: "¿A qué le temía más el monstruo Nian?",
                 questionEn: "What was the Nian monster most afraid of?",
                 options: ["水和雪", "红色、火光和巨大声响", "冬天和寒冷", "医生和草药"],
+                optionsEn: ["Water and snow", "Red color, fire and loud noises", "Winter and cold", "Doctors and herbal medicine"],
                 correct: 1
             }
         ]
@@ -272,10 +276,13 @@ class GradedReaderGame {
         this.stopReadAloud();
         this.hidePopover();
 
+        const isEs = this.app?.currentLanguage !== "en";
         if (this.storyTitle) this.storyTitle.textContent = story.title;
         if (this.storyPinyinTitle) this.storyPinyinTitle.textContent = story.pinyinTitle;
         if (this.storyLevelBadge) this.storyLevelBadge.textContent = `HSK ${story.level}`;
-        if (this.storyWordCount) this.storyWordCount.textContent = `${story.wordCount} palabras`;
+        if (this.storyWordCount) {
+            this.storyWordCount.textContent = isEs ? `${story.wordCount} palabras` : `${story.wordCount} words`;
+        }
 
         this.renderStoryContent(story);
         this.renderQuiz(story);
@@ -448,7 +455,8 @@ class GradedReaderGame {
         this.quizQuestions.innerHTML = story.quiz
             .map((q, qIndex) => {
                 const title = isEs ? q.question : (q.questionEn || q.question);
-                const optionsHtml = q.options
+                const opts = isEs ? q.options : (q.optionsEn || q.options);
+                const optionsHtml = opts
                     .map((opt, optIndex) => `
                     <button type="button" class="reader-quiz-option" data-qindex="${qIndex}" data-optindex="${optIndex}">
                         <span>${String.fromCharCode(65 + optIndex)}. ${opt}</span>

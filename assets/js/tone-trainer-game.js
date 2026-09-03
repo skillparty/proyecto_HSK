@@ -182,13 +182,14 @@ class ToneTrainerGame {
 
     generateToneQuestion() {
         const syllableObj = this.syllableToneBank[Math.floor(Math.random() * this.syllableToneBank.length)];
+        const isEs = this.app?.currentLanguage !== "en";
         const targetTone = Math.floor(Math.random() * 4) + 1; // 1 to 4
         const targetPinyin = syllableObj.tones[targetTone - 1];
         const targetChar = syllableObj.chars[targetTone - 1];
 
         this.state.currentQuestion = {
             audioText: targetChar,
-            prompt: "¿Qué tono escuchas en esta sílaba?",
+            prompt: isEs ? "¿Qué tono escuchas en esta sílaba?" : "Which tone do you hear in this syllable?",
             correctAnswer: targetTone,
             targetPinyin,
             targetChar,
@@ -198,7 +199,7 @@ class ToneTrainerGame {
         const promptEl = document.getElementById("tt-question-prompt");
         const clueEl = document.getElementById("tt-clue-text");
 
-        if (promptEl) promptEl.textContent = "¿Qué tono escuchas en esta sílaba?";
+        if (promptEl) promptEl.textContent = isEs ? "¿Qué tono escuchas en esta sílaba?" : "Which tone do you hear in this syllable?";
         if (clueEl) clueEl.textContent = `${syllableObj.base}`;
 
         for (let i = 1; i <= 4; i++) {
@@ -208,12 +209,13 @@ class ToneTrainerGame {
     }
 
     generatePairQuestion() {
+        const isEs = this.app?.currentLanguage !== "en";
         const pairGroup = this.minimalPairsBank[Math.floor(Math.random() * this.minimalPairsBank.length)];
         const targetOption = pairGroup.options[Math.floor(Math.random() * pairGroup.options.length)];
 
         this.state.currentQuestion = {
             audioText: targetOption.audio,
-            prompt: `Escucha y distingue el sonido (${pairGroup.title}):`,
+            prompt: isEs ? `Escucha y distingue el sonido (${pairGroup.title}):` : `Listen and distinguish the sound (${pairGroup.title}):`,
             correctAnswer: targetOption.text,
             targetOption,
         };
@@ -221,7 +223,7 @@ class ToneTrainerGame {
         const promptEl = document.getElementById("tt-question-prompt");
         const clueEl = document.getElementById("tt-clue-text");
 
-        if (promptEl) promptEl.textContent = `Pares Mínimos: ¿Cuál de estas palabras escuchas?`;
+        if (promptEl) promptEl.textContent = isEs ? "Pares Mínimos: ¿Cuál de estas palabras escuchas?" : "Minimal Pairs: Which of these words do you hear?";
         if (clueEl) clueEl.textContent = pairGroup.title;
 
         this.renderChoiceButtons(pairGroup.options.map((opt) => ({
@@ -233,6 +235,7 @@ class ToneTrainerGame {
     }
 
     generateVocabQuestion() {
+        const isEs = this.app?.currentLanguage !== "en";
         let pool = this.fallbackVocabBank;
         if (this.app.vocabulary && Array.isArray(this.app.vocabulary) && this.app.vocabulary.length >= 4) {
             pool = this.app.vocabulary;
@@ -243,7 +246,7 @@ class ToneTrainerGame {
             key: w.character,
             primary: w.character,
             secondary: w.pinyin,
-            meaning: w.spanish || w.translation || w.english || "",
+            meaning: (isEs ? w.spanish : w.english) || w.translation || w.english || w.spanish || "",
             audio: w.character,
         }));
 
@@ -251,7 +254,7 @@ class ToneTrainerGame {
 
         this.state.currentQuestion = {
             audioText: target.audio,
-            prompt: "Dictado: ¿Qué palabra escuchas?",
+            prompt: isEs ? "Dictado: ¿Qué palabra escuchas?" : "Dictation: Which word do you hear?",
             correctAnswer: target.key,
             target,
         };
@@ -300,13 +303,22 @@ class ToneTrainerGame {
         const targetCard = document.querySelector(`.tt-tone-card[data-tone="${selectedTone}"]`);
         const correctCard = document.querySelector(`.tt-tone-card[data-tone="${this.state.currentQuestion.correctAnswer}"]`);
 
+        const isEs = this.app?.currentLanguage !== "en";
         if (isCorrect) {
             targetCard?.classList.add("correct");
-            this.handleSuccess(`¡Correcto! Era el ${selectedTone}º tono (${this.state.currentQuestion.targetPinyin} — ${this.state.currentQuestion.targetChar})`);
+            this.handleSuccess(
+                isEs
+                    ? `¡Correcto! Era el ${selectedTone}º tono (${this.state.currentQuestion.targetPinyin} — ${this.state.currentQuestion.targetChar})`
+                    : `Correct! It was tone ${selectedTone} (${this.state.currentQuestion.targetPinyin} — ${this.state.currentQuestion.targetChar})`
+            );
         } else {
             targetCard?.classList.add("incorrect");
             correctCard?.classList.add("correct");
-            this.handleFailure(`Incorrecto. La respuesta correcta era el ${this.state.currentQuestion.correctAnswer}º tono (${this.state.currentQuestion.targetPinyin} — ${this.state.currentQuestion.targetChar})`);
+            this.handleFailure(
+                isEs
+                    ? `Incorrecto. La respuesta correcta era el ${this.state.currentQuestion.correctAnswer}º tono (${this.state.currentQuestion.targetPinyin} — ${this.state.currentQuestion.targetChar})`
+                    : `Incorrect. The correct answer was tone ${this.state.currentQuestion.correctAnswer} (${this.state.currentQuestion.targetPinyin} — ${this.state.currentQuestion.targetChar})`
+            );
         }
     }
 
@@ -315,10 +327,11 @@ class ToneTrainerGame {
         this.state.answered = true;
 
         const isCorrect = selectedKey === this.state.currentQuestion.correctAnswer;
+        const isEs = this.app?.currentLanguage !== "en";
 
         if (isCorrect) {
             clickedBtn?.classList.add("correct");
-            this.handleSuccess("¡Excelente! Respuesta correcta.");
+            this.handleSuccess(isEs ? "¡Excelente! Respuesta correcta." : "Excellent! Correct answer.");
         } else {
             clickedBtn?.classList.add("incorrect");
             document.querySelectorAll(".tt-choice-btn").forEach((btn) => {
@@ -326,7 +339,11 @@ class ToneTrainerGame {
                     btn.classList.add("correct");
                 }
             });
-            this.handleFailure("Casi, revisa la opción correcta resaltada en verde.");
+            this.handleFailure(
+                isEs
+                    ? "Casi, revisa la opción correcta resaltada en verde."
+                    : "Almost! Review the correct option highlighted in green."
+            );
         }
     }
 

@@ -150,6 +150,8 @@ describe("MemoriesController (Baúl de los Recuerdos)", () => {
       const nicole = controller.memoriesData.find((m) => m.id === "nicole_recuerdo");
       expect(nicole.seal).toBe("冠军");
       expect(nicole.title).toContain("1.er Lugar");
+      expect(nicole.title).toContain("Bolivia");
+      expect(nicole.desc).toContain("a nivel Bolivia");
     });
   });
 

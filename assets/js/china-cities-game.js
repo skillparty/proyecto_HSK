@@ -34,9 +34,9 @@ const CHINA_CITIES_DATABASE = [
             question: "¿Qué monumento de Pekín tiene más de 21.000 kilómetros de extensión total?",
             questionEn: "Which Beijing wonder spans over 21,000 kilometers in total length?",
             options: [
-                { text: "La Gran Muralla China (万里长城)", isCorrect: true },
-                { text: "El Gran Canal de Beijing-Hangzhou", isCorrect: false },
-                { text: "El Palacio de Verano (颐和园)", isCorrect: false }
+                { text: "La Gran Muralla China (万里长城)", textEn: "The Great Wall of China (万里长城)", isCorrect: true },
+                { text: "El Gran Canal de Beijing-Hangzhou", textEn: "The Grand Canal of Beijing-Hangzhou", isCorrect: false },
+                { text: "El Palacio de Verano (颐和园)", textEn: "The Summer Palace (颐和园)", isCorrect: false }
             ]
         }
     },
@@ -73,9 +73,9 @@ const CHINA_CITIES_DATABASE = [
             question: "¿Cómo se llama el famoso plato típico de Shanghái servido en canastas de bambú con caldo caliente por dentro?",
             questionEn: "What is Shanghai's iconic dish served in bamboo steamers with hot broth inside?",
             options: [
-                { text: "Xiaolongbao (小笼包)", isCorrect: true },
-                { text: "Pato Pekinés (北京烤鸭)", isCorrect: false },
-                { text: "Fideos Lanzhou (兰州拉面)", isCorrect: false }
+                { text: "Xiaolongbao (小笼包)", textEn: "Xiaolongbao Soup Dumplings (小笼包)", isCorrect: true },
+                { text: "Pato Pekinés (北京烤鸭)", textEn: "Peking Roast Duck (北京烤鸭)", isCorrect: false },
+                { text: "Fideos Lanzhou (兰州拉面)", textEn: "Lanzhou Pulled Noodles (兰州拉面)", isCorrect: false }
             ]
         }
     },
@@ -112,9 +112,9 @@ const CHINA_CITIES_DATABASE = [
             question: "¿Quién ordenó la creación del ejército de los Guerreros de Terracota en Xi'an?",
             questionEn: "Who commissioned the Terracotta Warriors in Xi'an?",
             options: [
-                { text: "El Primer Emperador Qin Shi Huang (秦始皇)", isCorrect: true },
-                { text: "El Emperador de Jade (玉皇大帝)", isCorrect: false },
-                { text: "El poeta Li Bai (李白)", isCorrect: false }
+                { text: "El Primer Emperador Qin Shi Huang (秦始皇)", textEn: "First Emperor Qin Shi Huang (秦始皇)", isCorrect: true },
+                { text: "El Emperador de Jade (玉皇大帝)", textEn: "The Jade Emperor (玉皇大帝)", isCorrect: false },
+                { text: "El poeta Li Bai (李白)", textEn: "Poet Li Bai (李白)", isCorrect: false }
             ]
         }
     },
@@ -151,9 +151,9 @@ const CHINA_CITIES_DATABASE = [
             question: "¿Qué técnica mágica de la Ópera de Sichuan cambia de máscara en fracciones de segundo?",
             questionEn: "What magical Sichuan Opera technique changes masks in fractions of a second?",
             options: [
-                { text: "Bian Lian / Cambio de Rostros (变脸)", isCorrect: true },
-                { text: "Danza del Dragón (舞龙)", isCorrect: false },
-                { text: "Acrobacia con Platos (转碟)", isCorrect: false }
+                { text: "Bian Lian / Cambio de Rostros (变脸)", textEn: "Bian Lian / Face-Changing (变脸)", isCorrect: true },
+                { text: "Danza del Dragón (舞龙)", textEn: "Dragon Dance (舞龙)", isCorrect: false },
+                { text: "Acrobacia con Platos (转碟)", textEn: "Plate Spinning Acrobacy (转碟)", isCorrect: false }
             ]
         }
     },
@@ -190,9 +190,9 @@ const CHINA_CITIES_DATABASE = [
             question: "¿En qué billete oficial de la moneda de China (RMB) aparece dibujado el paisaje de Guilin?",
             questionEn: "On which official Chinese RMB banknote is the Guilin scenery depicted?",
             options: [
-                { text: "Billete de 20 Yuanes (20元)", isCorrect: true },
-                { text: "Billete de 100 Yuanes (100元)", isCorrect: false },
-                { text: "Billete de 1 Yuan (1元)", isCorrect: false }
+                { text: "Billete de 20 Yuanes (20元)", textEn: "20 Yuan Banknote (20元)", isCorrect: true },
+                { text: "Billete de 100 Yuanes (100元)", textEn: "100 Yuan Banknote (100元)", isCorrect: false },
+                { text: "Billete de 1 Yuan (1元)", textEn: "1 Yuan Banknote (1元)", isCorrect: false }
             ]
         }
     },
@@ -229,9 +229,9 @@ const CHINA_CITIES_DATABASE = [
             question: "¿Qué famoso té verde imperial se cultiva en las colinas de Hangzhou?",
             questionEn: "Which famous imperial green tea is cultivated in the hills of Hangzhou?",
             options: [
-                { text: "Té del Pozo del Dragón / Longjing (龙井茶)", isCorrect: true },
-                { text: "Té Pu-erh (普洱茶)", isCorrect: false },
-                { text: "Té Oolong Tieguanyin (铁观音)", isCorrect: false }
+                { text: "Té del Pozo del Dragón / Longjing (龙井茶)", textEn: "Dragon Well Tea / Longjing (龙井茶)", isCorrect: true },
+                { text: "Té Pu-erh (普洱茶)", textEn: "Pu-erh Tea (普洱茶)", isCorrect: false },
+                { text: "Té Oolong Tieguanyin (铁观音)", textEn: "Tieguanyin Oolong Tea (铁观音)", isCorrect: false }
             ]
         }
     },
@@ -268,9 +268,9 @@ const CHINA_CITIES_DATABASE = [
             question: "¿Qué icónico medio de transporte histórico cruza el puerto Victoria de Hong Kong desde 1888?",
             questionEn: "Which iconic historic ferry has crossed Hong Kong's Victoria Harbour since 1888?",
             options: [
-                { text: "El Ferry Star Ferry (天星小轮)", isCorrect: true },
-                { text: "El Tren Bala Maglev", isCorrect: false },
-                { text: "El Hidroala del Río de las Perlas", isCorrect: false }
+                { text: "El Ferry Star Ferry (天星小轮)", textEn: "Star Ferry (天星小轮)", isCorrect: true },
+                { text: "El Tren Bala Maglev", textEn: "Maglev Bullet Train", isCorrect: false },
+                { text: "El Hidroala del Río de las Perlas", textEn: "Pearl River Hydrofoil", isCorrect: false }
             ]
         }
     }
@@ -494,7 +494,7 @@ class ChinaCitiesGame {
 
         this.quizOptions.innerHTML = q.options.map((opt, idx) => `
             <button type="button" class="city-quiz-opt-btn" data-idx="${idx}">
-                ${opt.text}
+                ${isEs ? opt.text : (opt.textEn || opt.text)}
             </button>
         `).join("");
 

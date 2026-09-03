@@ -3,20 +3,122 @@
 
 class FirebaseProgressSync {
     constructor() {
-        this.isOnline = navigator.onLine;
+        this.isOnline = typeof navigator !== 'undefined' ? navigator.onLine : true;
         this.currentUser = null;
+        this.queueKey = 'hsk_offline_sync_queue';
         
-        window.addEventListener('online', () => {
-            this.isOnline = true;
-            (window.hskLogger || console).debug('🌐 Firebase Sync: Online');
-        });
+        if (typeof window !== 'undefined') {
+            window.addEventListener('online', () => {
+                this.isOnline = true;
+                (window.hskLogger || console).debug('🌐 Firebase Sync: Online');
+                this.flushQueue();
+            });
 
-        window.addEventListener('offline', () => {
-            this.isOnline = false;
-            (window.hskLogger || console).debug('📱 Firebase Sync: Offline');
-        });
+            window.addEventListener('offline', () => {
+                this.isOnline = false;
+                (window.hskLogger || console).debug('📱 Firebase Sync: Offline');
+                this.updateIndicator();
+            });
+
+            if (typeof document !== 'undefined') {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => this.updateIndicator());
+                } else {
+                    this.updateIndicator();
+                }
+            }
+        }
         
         (window.hskLogger || console).debug('🔄 Firebase Progress Sync initialized');
+    }
+
+    getQueue() {
+        if (typeof localStorage === 'undefined') return [];
+        try {
+            const raw = localStorage.getItem(this.queueKey);
+            return raw ? JSON.parse(raw) : [];
+        } catch {
+            return [];
+        }
+    }
+
+    saveQueue(q) {
+        if (typeof localStorage === 'undefined') return;
+        try {
+            localStorage.setItem(this.queueKey, JSON.stringify(q));
+        } catch { /* quota exceeded */ }
+        this.updateIndicator();
+    }
+
+    enqueue(item) {
+        const q = this.getQueue();
+        q.push({ ...item, timestamp: Date.now() });
+        this.saveQueue(q);
+    }
+
+    async flushQueue() {
+        const q = this.getQueue();
+        if (q.length === 0) {
+            this.updateIndicator();
+            return;
+        }
+
+        this.setIndicatorState('syncing');
+        const remaining = [];
+
+        for (const item of q) {
+            try {
+                if (item.type === 'word' && window.firebaseClient) {
+                    await window.firebaseClient.saveWordProgress(item.data);
+                }
+            } catch {
+                remaining.push(item);
+            }
+        }
+
+        this.saveQueue(remaining);
+        this.setIndicatorState(remaining.length > 0 ? 'offline' : 'synced');
+    }
+
+    updateIndicator() {
+        if (typeof document === 'undefined') return;
+        const q = this.getQueue();
+        const badge = document.getElementById('sync-pending-badge');
+        const indicator = document.getElementById('sync-status-indicator');
+
+        if (!indicator) return;
+
+        if (!this.isOnline || q.length > 0) {
+            indicator.className = 'sync-status-indicator is-offline';
+            if (badge) {
+                badge.textContent = String(q.length);
+                badge.style.display = q.length > 0 ? 'inline-block' : 'none';
+            }
+            indicator.setAttribute('data-tooltip', q.length > 0 
+                ? `${q.length} cambios pendientes de sincronizar` 
+                : 'Modo sin conexión');
+        } else {
+            indicator.className = 'sync-status-indicator is-synced';
+            if (badge) badge.style.display = 'none';
+            indicator.setAttribute('data-tooltip', 'Sincronizado con la nube');
+        }
+    }
+
+    setIndicatorState(state) {
+        if (typeof document === 'undefined') return;
+        const indicator = document.getElementById('sync-status-indicator');
+        if (!indicator) return;
+
+        if (state === 'syncing') {
+            indicator.className = 'sync-status-indicator is-syncing';
+            indicator.setAttribute('data-tooltip', 'Sincronizando con la nube...');
+        } else if (state === 'synced') {
+            indicator.className = 'sync-status-indicator is-synced';
+            indicator.setAttribute('data-tooltip', 'Sincronizado');
+            setTimeout(() => this.updateIndicator(), 3000);
+        } else {
+            this.updateIndicator();
+        }
     }
 
     // Set current user for sync operations
@@ -87,15 +189,20 @@ class FirebaseProgressSync {
     }
 
     async recordWordStudy(wordData) {
-        if (!window.firebaseClient) return { success: false };
+        if (!window.firebaseClient) {
+            this.enqueue({ type: 'word', data: wordData });
+            return { success: false };
+        }
         try {
             await window.firebaseClient.saveWordProgress(wordData);
+            this.updateIndicator();
             return { success: true };
         } catch (error) {
             // Nadie mira el valor de retorno, así que sin este warn un rechazo
             // de firestore.rules desaparece sin dejar rastro. Fue exactamente
             // lo que pasó con las escrituras en camelCase.
             console.warn('⚠️ word_progress no se pudo guardar:', error.message);
+            this.enqueue({ type: 'word', data: wordData });
             return { success: false, error: error.message };
         }
     }

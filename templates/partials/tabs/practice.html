@@ -53,7 +53,11 @@
                             </select>
                         </div>
 
-                        <div class="deck-quick-bar" style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
+                        <div class="deck-quick-bar" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+                            <button id="hands-free-toggle-btn" class="btn btn-sm btn-outline-primary" type="button" style="font-size: 0.82rem; padding: 5px 12px; border-radius: 8px; display:inline-flex; align-items:center; gap:6px;" title="Modo Manos Libres: reproduce automáticamente las palabras en bucle con soporte para pantalla de bloqueo">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                                <span data-i18n="handsFreeModeBtn">Modo Manos Libres</span>
+                            </button>
                             <button id="manage-decks-btn" class="btn btn-sm btn-secondary" type="button" style="font-size: 0.82rem; padding: 5px 12px; border-radius: 8px; display:inline-flex; align-items:center; gap:6px;">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                                 <span data-i18n="manageDecksBtn">Mazos & Exportación Anki</span>
@@ -101,5 +105,32 @@
                             <button id="next-card-next-btn" class="action-btn next-btn-hidden"
                                 style="display: none;" data-i18n="next">Next</button>
                         </div>
+
+                        <!-- Hands-Free Floating Player Bar -->
+                        <aside id="hands-free-player" class="hands-free-player" style="display: none;" aria-label="Reproductor Manos Libres">
+                            <div class="hf-track-info">
+                                <span class="hf-char" id="hf-char">--</span>
+                                <span class="hf-pinyin" id="hf-pinyin">--</span>
+                                <span class="hf-meaning" id="hf-meaning">--</span>
+                            </div>
+                            <div class="hf-controls">
+                                <button type="button" id="hf-prev-btn" class="hf-btn" title="Palabra anterior" aria-label="Anterior">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+                                </button>
+                                <button type="button" id="hf-play-btn" class="hf-btn hf-play-pause" title="Pausar / Reanudar" aria-label="Pausa">
+                                    <svg id="hf-play-icon" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                    <svg id="hf-pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                                </button>
+                                <button type="button" id="hf-next-btn" class="hf-btn" title="Siguiente palabra" aria-label="Siguiente">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+                                </button>
+                                <select id="hf-speed-select" class="hf-speed-select" title="Intervalo entre palabras" aria-label="Intervalo">
+                                    <option value="3000">3s</option>
+                                    <option value="5000" selected>5s</option>
+                                    <option value="8000">8s</option>
+                                </select>
+                                <button type="button" id="hf-close-btn" class="hf-btn hf-close" title="Cerrar modo manos libres" aria-label="Cerrar">✕</button>
+                            </div>
+                        </aside>
                     </div>
                 </div>

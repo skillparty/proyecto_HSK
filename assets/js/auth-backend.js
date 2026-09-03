@@ -14,11 +14,13 @@ class BackendAuth {
       window.HSK_ENABLE_LEGACY_BACKEND_API === true;
 
     // Initialize auth system after DOM is ready
-    if (document.readyState === "loading") {
+    if (typeof document !== "undefined" && document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", () => this.init());
     } else {
       // DOM is already ready
-      setTimeout(() => this.init(), 100);
+      setTimeout(() => {
+        if (typeof document !== "undefined") this.init();
+      }, 100);
     }
   }
 
@@ -241,6 +243,7 @@ class BackendAuth {
 
   // Update UI based on authentication state
   updateUI() {
+    if (typeof document === "undefined") return;
     const authContainer = document.getElementById("auth-container");
     if (!authContainer) {
       console.warn("⚠️ Auth container not found");
@@ -314,6 +317,7 @@ class BackendAuth {
 
   // Show guest mode UI
   showGuestMode() {
+    if (typeof document === "undefined") return;
     const authContainer = document.getElementById("auth-container");
     if (!authContainer) return;
 

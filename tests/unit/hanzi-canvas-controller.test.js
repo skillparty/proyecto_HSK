@@ -135,4 +135,19 @@ describe("HanziCanvasController", () => {
 
     expect(app.audioController.playAudio).toHaveBeenCalledWith("中");
   });
+
+  test("captures stylus pressure and pointerType from pointer events", () => {
+    controller.initialize();
+    const mockPenEvent = {
+      clientX: 50,
+      clientY: 60,
+      pressure: 0.85,
+      pointerType: "pen",
+    };
+    const coords = controller.getCanvasCoordinates(mockPenEvent);
+    expect(coords.x).toBe(40);
+    expect(coords.y).toBe(40);
+    expect(coords.pressure).toBe(0.85);
+    expect(coords.pointerType).toBe("pen");
+  });
 });

@@ -217,6 +217,31 @@ ul {
         width: 100%;
         max-width: 100%;
     }
+
+    /* Prevent unwanted iOS auto-zoom when focusing form inputs */
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    button,
+    .btn,
+    .header-control,
+    .nav-tab,
+    .action-btn {
+        touch-action: manipulation;
+    }
+}
+
+/* Standalone PWA adjustments */
+html.is-pwa-standalone .app-header {
+    padding-top: max(10px, env(safe-area-inset-top, 0px)) !important;
+}
+
+html.is-pwa-standalone .pwa-smart-banner,
+html.is-pwa-standalone #pwa-install-row {
+    display: none !important;
 }
 
 /* ============================================================================

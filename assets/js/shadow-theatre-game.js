@@ -18,9 +18,9 @@ const SHADOW_TALES_DATABASE = [
             question: "¿Por qué Hou Yi decidió disparar a los soles con su arco mágico?",
             questionEn: "Why did Hou Yi decide to shoot down the suns with his bow?",
             options: [
-                { text: "Porque 10 soles quemaban la tierra y secaban los ríos", isCorrect: true },
-                { text: "Porque quería que siempre fuera de noche", isCorrect: false },
-                { text: "Para competir con otros arqueros de la aldea", isCorrect: false }
+                { text: "Porque 10 soles quemaban la tierra y secaban los ríos", textEn: "Because 10 suns scorched the earth and dried up rivers", isCorrect: true },
+                { text: "Porque quería que siempre fuera de noche", textEn: "Because he wanted it to be night forever", isCorrect: false },
+                { text: "Para competir con otros arqueros de la aldea", textEn: "To compete with other village archers", isCorrect: false }
             ]
         },
         scenes: [
@@ -75,9 +75,9 @@ const SHADOW_TALES_DATABASE = [
             question: "¿Qué tres cosas aterrorizaban al monstruo Nian cada víspera de año nuevo?",
             questionEn: "What three things terrified the Nian beast on New Year's Eve?",
             options: [
-                { text: "El color rojo, el fuego brillante y el ruido de los petardos", isCorrect: true },
-                { text: "El agua fría, la nieve y las espadas de bronce", isCorrect: false },
-                { text: "Los tambores gigantes y las canciones solemnes", isCorrect: false }
+                { text: "El color rojo, el fuego brillante y el ruido de los petardos", textEn: "The color red, bright fires, and loud firecracker noises", isCorrect: true },
+                { text: "El agua fría, la nieve y las espadas de bronce", textEn: "Cold water, snow, and bronze swords", isCorrect: false },
+                { text: "Los tambores gigantes y las canciones solemnes", textEn: "Giant drums and solemn songs", isCorrect: false }
             ]
         },
         scenes: [
@@ -132,9 +132,9 @@ const SHADOW_TALES_DATABASE = [
             question: "¿De dónde nació el legendario Rey Mono Sun Wukong?",
             questionEn: "Where was the legendary Monkey King Sun Wukong born from?",
             options: [
-                { text: "De una piedra mágica inmortal en la Montaña Huaguo", isCorrect: true },
-                { text: "De una semilla dorada del Árbol de Melocotones del Cielo", isCorrect: false },
-                { text: "De un rayo celestial sobre el Palacio de Jade", isCorrect: false }
+                { text: "De una piedra mágica inmortal en la Montaña Huaguo", textEn: "From a magic immortal stone on Mount Huaguo", isCorrect: true },
+                { text: "De una semilla dorada del Árbol de Melocotones del Cielo", textEn: "From a golden seed of Heaven's Peach Tree", isCorrect: false },
+                { text: "De un rayo celestial sobre el Palacio de Jade", textEn: "From a heavenly lightning bolt over the Jade Palace", isCorrect: false }
             ]
         },
         scenes: [
@@ -189,9 +189,9 @@ const SHADOW_TALES_DATABASE = [
             question: "¿Por qué el campesino dejó de cultivar su campo en la fábula?",
             questionEn: "Why did the farmer stop farming his fields in the fable?",
             options: [
-                { text: "Esperaba que otro conejo chocara contra el árbol por pura suerte", isCorrect: true },
-                { text: "Porque se rompió su azadón de hierro", isCorrect: false },
-                { text: "Porque comenzó la temporada de invierno", isCorrect: false }
+                { text: "Esperaba que otro conejo chocara contra el árbol por pura suerte", textEn: "He hoped another rabbit would hit the tree by pure luck", isCorrect: true },
+                { text: "Porque se rompió su azadón de hierro", textEn: "Because his iron hoe broke", isCorrect: false },
+                { text: "Porque comenzó la temporada de invierno", textEn: "Because winter season began", isCorrect: false }
             ]
         },
         scenes: [
@@ -444,7 +444,7 @@ class ShadowTheatreGame {
 
         this.quizOptions.innerHTML = q.options.map((opt, idx) => `
             <button type="button" class="tale-quiz-opt-btn" data-idx="${idx}">
-                ${opt.text}
+                ${isEs ? opt.text : (opt.textEn || opt.text)}
             </button>
         `).join("");
 

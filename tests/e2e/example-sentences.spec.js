@@ -1,5 +1,5 @@
 const { test, expect } = require("@playwright/test");
-const { gotoApp, expectNoPageErrors } = require("./helpers");
+const { gotoApp, openTab, expectNoPageErrors } = require("./helpers");
 
 test.describe("frases de ejemplo", () => {
   // El corpus pesa 238 KB gzip y solo se ve en el reverso de la tarjeta, así
@@ -69,11 +69,13 @@ test.describe("frases de ejemplo", () => {
       { timeout: 20000 },
     );
 
+    await openTab(page, "practice", "study");
     await page.evaluate(() => {
       const word = window.app.vocabulary.find((w) => w.character === "虽然......但是......");
       window.app.currentWord = word;
       window.app.flashcardManager.currentWord = word;
       window.app.flashcardManager.updateCard();
+      window.app.flashcardManager.flipCard();
     });
 
     const chinese = page.locator("#full-info .example-section .example-chinese");
@@ -92,12 +94,14 @@ test.describe("frases de ejemplo", () => {
       { timeout: 20000 },
     );
 
-    // Forzar una palabra con ejemplo conocido y re-renderizar la tarjeta.
+    await openTab(page, "practice", "study");
+    // Forzar una palabra con ejemplo conocido y re-renderizar la tarjeta volteada.
     await page.evaluate(() => {
       const word = window.app.vocabulary.find((w) => w.character === "爱");
       window.app.currentWord = word;
       window.app.flashcardManager.currentWord = word;
       window.app.flashcardManager.updateCard();
+      window.app.flashcardManager.flipCard();
     });
 
     const example = page.locator("#full-info .example-section");

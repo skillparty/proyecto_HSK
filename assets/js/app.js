@@ -125,6 +125,7 @@ class HSKApp {
         this.navigationController = new NavigationController(this);
         this.searchController = new SearchController(this);
         this.practiceViewController = new PracticeViewController(this);
+        this.handsFreeController = (typeof window !== 'undefined' && window.HandsFreeController) ? new window.HandsFreeController(this) : null;
         this.feedbackController = new FeedbackController(this);
         this.interactionController = new InteractionController(this);
         // pastExamsController, quantifierSnakeController: lazy — instantiated

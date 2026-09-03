@@ -459,3 +459,26 @@ html[data-theme="dark"] .vocab-character-box {
     background-color: rgba(229, 57, 53, 0.03);
     box-shadow: 0 0 0 1.5px var(--primary, #e53935);
 }
+
+/* Tablet Responsive Browse Layout (641px - 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .search-section {
+        padding: 18px;
+    }
+
+    .search-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .search-input {
+        flex: 1 1 240px;
+        min-height: 44px;
+    }
+
+    .vocabulary-grid {
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        gap: 14px;
+    }
+}

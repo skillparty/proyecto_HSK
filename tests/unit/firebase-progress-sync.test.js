@@ -220,4 +220,81 @@ describe("resto del puente de sync", () => {
       expect((await call).success).toBe(false);
     }
   });
+
+  test("encola y procesa elementos en la cola offline", async () => {
+    localStorage.removeItem(sync.queueKey);
+    sync.enqueue({ type: "word", data: { character: "水" } });
+    expect(sync.getQueue()).toHaveLength(1);
+    expect(sync.getQueue()[0].data.character).toBe("水");
+
+    const flushed = [];
+    window.firebaseClient = {
+      saveWordProgress: (data) => {
+        flushed.push(data);
+        return Promise.resolve();
+      },
+    };
+
+    await sync.flushQueue();
+    expect(flushed).toHaveLength(1);
+    expect(flushed[0].character).toBe("水");
+    expect(sync.getQueue()).toHaveLength(0);
+  });
+
+  test("maneja errores de parseo en la cola de localStorage", () => {
+    localStorage.setItem(sync.queueKey, "{ invalid json");
+    expect(sync.getQueue()).toEqual([]);
+  });
+
+  test("retiene elementos fallidos durante flushQueue", async () => {
+    localStorage.removeItem(sync.queueKey);
+    sync.enqueue({ type: "word", data: { character: "火" } });
+
+    window.firebaseClient = {
+      saveWordProgress: () => Promise.reject(new Error("Network Error")),
+    };
+
+    await sync.flushQueue();
+    expect(sync.getQueue()).toHaveLength(1);
+    expect(sync.getQueue()[0].data.character).toBe("火");
+  });
+
+  test("actualiza el indicador DOM de sincronización en online y offline", () => {
+    document.body.innerHTML = `
+      <span id="sync-status-indicator" class="sync-status-indicator"></span>
+      <span id="sync-pending-badge" style="display:none;"></span>
+    `;
+
+    sync.isOnline = false;
+    sync.saveQueue([{ type: "word", data: { character: "木" } }]);
+    sync.updateIndicator();
+
+    const indicator = document.getElementById("sync-status-indicator");
+    const badge = document.getElementById("sync-pending-badge");
+    expect(indicator.classList.contains("is-offline")).toBe(true);
+    expect(badge.textContent).toBe("1");
+    expect(badge.style.display).toBe("inline-block");
+
+    sync.isOnline = true;
+    sync.saveQueue([]);
+    sync.updateIndicator();
+    expect(indicator.classList.contains("is-synced")).toBe(true);
+    expect(badge.style.display).toBe("none");
+
+    sync.setIndicatorState("syncing");
+    expect(indicator.classList.contains("is-syncing")).toBe(true);
+
+    sync.setIndicatorState("synced");
+    expect(indicator.classList.contains("is-synced")).toBe(true);
+
+    sync.setIndicatorState("other");
+  });
+
+  test("responde a eventos online y offline del window", () => {
+    window.dispatchEvent(new Event("offline"));
+    expect(sync.isOnline).toBe(false);
+
+    window.dispatchEvent(new Event("online"));
+    expect(sync.isOnline).toBe(true);
+  });
 });

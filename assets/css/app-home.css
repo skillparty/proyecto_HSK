@@ -613,6 +613,27 @@ html[data-theme="light"] .achievement-item.lock {
     }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding-bottom: 28px;
+    }
+
+    .welcome-card {
+        padding: 20px;
+    }
+
+    .home-hero {
+        padding: 40px 20px;
+        margin-bottom: 24px;
+    }
+
+    .home-hero h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+    }
+}
+
 .past-exams-note {
     margin-top: 10px;
     margin-bottom: 16px;

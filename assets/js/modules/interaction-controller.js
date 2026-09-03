@@ -712,10 +712,13 @@ class InteractionController {
                 const targetChar = (this.app.currentWord?.character || '').trim();
 
                 const isMatch = results.some(text => text.includes(targetChar) || targetChar.includes(text));
+                const isEs = this.app?.currentLanguage !== 'en';
 
                 if (isMatch) {
                     if (feedback) {
-                        feedback.textContent = `🎯 ¡Excelente pronunciación! (${transcript}) — 100% de precisión`;
+                        feedback.textContent = isEs
+                            ? `🎯 ¡Excelente pronunciación! (${transcript}) — 100% de precisión`
+                            : `🎯 Excellent pronunciation! (${transcript}) — 100% accuracy`;
                         feedback.className = 'feedback-message correct';
                     }
                     this.app.audioController?.playCorrect?.();
@@ -725,7 +728,9 @@ class InteractionController {
                     }
                 } else {
                     if (feedback) {
-                        feedback.textContent = `🎙️ Escuchado: "${transcript}" (Objetivo: "${targetChar}") — ¡Inténtalo de nuevo!`;
+                        feedback.textContent = isEs
+                            ? `🎙️ Escuchado: "${transcript}" (Objetivo: "${targetChar}") — ¡Inténtalo de nuevo!`
+                            : `🎙️ Heard: "${transcript}" (Target: "${targetChar}") — Try again!`;
                         feedback.className = 'feedback-message incorrect';
                     }
                     this.app.audioController?.playIncorrect?.();
@@ -736,7 +741,10 @@ class InteractionController {
             recognition.onerror = () => {
                 if (btn) btn.classList.remove('recording');
                 if (feedback) {
-                    feedback.textContent = 'No se detectó voz o se canceló el permiso del micrófono.';
+                    const isEs = this.app?.currentLanguage !== 'en';
+                    feedback.textContent = isEs
+                        ? 'No se detectó voz o se canceló el permiso del micrófono.'
+                        : 'No voice detected or microphone permission was denied.';
                     feedback.className = 'feedback-message warning';
                 }
             };

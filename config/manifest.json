@@ -5,7 +5,7 @@
   "version": "3.2.0",
   "author": "Jose Alejandro Rollano Revollo",
   "id": "hsk-learning-app",
-  "start_url": "./index.html",
+  "start_url": "../index.html",
   "display": "standalone",
   "display_override": [
     "window-controls-overlay",
@@ -16,7 +16,7 @@
   "orientation": "any",
   "theme_color": "#d32f2f",
   "background_color": "#ffffff",
-  "scope": "./",
+  "scope": "../",
   "lang": "es",
   "dir": "ltr",
   "categories": ["education", "languages", "productivity"],
@@ -69,7 +69,7 @@
       "name": "Práctica SRS",
       "short_name": "Práctica",
       "description": "Repaso diario de vocabulario inteligente",
-      "url": "./index.html?tab=practice",
+      "url": "../index.html?tab=practice",
       "icons": [
         {
           "src": "../assets/images/logo05.png",
@@ -81,7 +81,7 @@
       "name": "Entrenador de Oído",
       "short_name": "Tonos",
       "description": "Entrenador de 4 tonos y pares mínimos",
-      "url": "./index.html?tab=tone-trainer",
+      "url": "../index.html?tab=tone-trainer",
       "icons": [
         {
           "src": "../assets/images/logo05.png",
@@ -93,7 +93,7 @@
       "name": "Visualizador de Tonos",
       "short_name": "Curva de Tonos",
       "description": "Visualizador de espectrograma y entonación de tonos Chao",
-      "url": "./index.html?tab=tone-visualizer",
+      "url": "../index.html?tab=tone-visualizer",
       "icons": [
         {
           "src": "../assets/images/logo05.png",
@@ -105,7 +105,7 @@
       "name": "Lienzo de Caligrafía",
       "short_name": "Trazos",
       "description": "Practica la escritura de Hanzi en cuadrícula Mi Zi Ge",
-      "url": "./index.html?tab=strokes-radicals",
+      "url": "../index.html?tab=strokes-radicals",
       "icons": [
         {
           "src": "../assets/images/logo05.png",
@@ -117,13 +117,29 @@
       "name": "Exámenes HSK",
       "short_name": "Exámenes",
       "description": "Simulador de exámenes oficiales HSK",
-      "url": "./index.html?tab=past-exams",
+      "url": "../index.html?tab=past-exams",
       "icons": [
         {
           "src": "../assets/images/logo05.png",
           "sizes": "96x96"
         }
       ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "../assets/images/screenshots/screenshot-mobile.png",
+      "sizes": "780x1688",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Confuc10++ en Móvil - Práctica Inteligente HSK"
+    },
+    {
+      "src": "../assets/images/screenshots/screenshot-tablet.png",
+      "sizes": "2048x1536",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Confuc10++ en Tablet - Plataforma Integral HSK"
     }
   ],
   "related_applications": [],

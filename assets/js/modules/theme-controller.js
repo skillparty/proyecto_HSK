@@ -41,6 +41,14 @@ class ThemeController {
             document.documentElement.classList.remove('dark-theme');
         }
 
+        const themeColor = this.app.isDarkMode ? '#09090b' : '#ffffff';
+        const themeMetas = document.querySelectorAll('meta[name="theme-color"]');
+        themeMetas.forEach(meta => {
+            if (!meta.hasAttribute('media')) {
+                meta.setAttribute('content', themeColor);
+            }
+        });
+
         const voice = this.app.selectedVoice || 'female';
         const logoPath = (voice === 'male') ? 'assets/images/logo06.png' : 'assets/images/logo05.png';
 

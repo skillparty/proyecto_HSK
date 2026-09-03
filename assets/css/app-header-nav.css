@@ -637,12 +637,13 @@ html[data-theme="light"] .nav-dropdown-item.active {
         display: none !important;
     }
 
-    /* Position the dropdowns above the bottom navigation bar */
+    /* Position the dropdowns above the bottom navigation bar, centered to viewport */
     .nav-dropdown {
-        position: absolute !important;
+        position: fixed !important;
         top: auto !important;
-        bottom: calc(100% + 8px) !important;
+        bottom: calc(60px + var(--safe-area-bottom, 0px) + 8px) !important;
         left: 50% !important;
+        right: auto !important;
         transform: translateX(-50%) translateY(8px) !important;
         opacity: 0 !important;
         visibility: hidden !important;
@@ -651,6 +652,10 @@ html[data-theme="light"] .nav-dropdown-item.active {
         border-color: var(--color-border) !important;
         min-width: 170px !important;
         max-width: calc(100vw - 16px) !important;
+        max-height: calc(100dvh - 120px) !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain !important;
+        -webkit-overflow-scrolling: touch !important;
         border-radius: var(--radius-lg) !important;
         z-index: 1100 !important;
         transition: transform var(--transition-fast), opacity var(--transition-fast), visibility var(--transition-fast);
@@ -665,31 +670,12 @@ html[data-theme="light"] .nav-dropdown-item.active {
         transform: translateX(-50%) translateY(0) !important;
     }
 
-    /* Boundary-aware alignment for side groups */
-    .nav-group[data-group="study"] .nav-dropdown {
-        left: 0 !important;
-        right: auto !important;
-        transform: translateY(8px) !important;
-    }
-    .nav-group[data-group="study"].open .nav-dropdown,
-    .nav-group[data-group="study"]:hover .nav-dropdown,
-    .nav-group[data-group="study"]:focus-within .nav-dropdown {
-        transform: translateY(0) !important;
-    }
-
+    .nav-group[data-group="study"] .nav-dropdown,
+    .nav-group[data-group="games"] .nav-dropdown,
     .nav-group[data-group="culture"] .nav-dropdown,
     .nav-group[data-group="progress"] .nav-dropdown {
-        left: auto !important;
-        right: 0 !important;
-        transform: translateY(8px) !important;
-    }
-    .nav-group[data-group="culture"].open .nav-dropdown,
-    .nav-group[data-group="culture"]:hover .nav-dropdown,
-    .nav-group[data-group="culture"]:focus-within .nav-dropdown,
-    .nav-group[data-group="progress"].open .nav-dropdown,
-    .nav-group[data-group="progress"]:hover .nav-dropdown,
-    .nav-group[data-group="progress"]:focus-within .nav-dropdown {
-        transform: translateY(0) !important;
+        left: 50% !important;
+        right: auto !important;
     }
 
     .nav-dropdown-item {
@@ -702,6 +688,359 @@ html[data-theme="light"] .nav-dropdown-item.active {
     .app-footer {
         padding-bottom: calc(76px + var(--safe-area-bottom, 0px)) !important;
     }
+}
+
+/* ============================================================================
+   TABLET RESPONSIVE NAVIGATION (769px - 1100px)
+   ============================================================================ */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .nav-tabs {
+        gap: clamp(6px, 1.4vw, 14px);
+        padding: 0 10px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-tab {
+        padding: 10px 8px;
+        font-size: 0.88rem;
+    }
+
+    .nav-tab svg {
+        margin-right: 4px;
+        width: 15px;
+        height: 15px;
+    }
+}
+
+/* ============================================================================
+   PWA SMART INSTALL BANNER & ACTIONS
+   ============================================================================ */
+.settings-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-fast) ease, transform var(--transition-fast) ease;
+    touch-action: manipulation;
+}
+
+.settings-action-btn:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-1px);
+}
+
+.pwa-smart-banner {
+    position: fixed;
+    bottom: calc(60px + var(--safe-area-bottom, 0px) + 10px);
+    left: 12px;
+    right: 12px;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    animation: pwaBannerSlideUp 0.3s ease-out;
+}
+
+@keyframes pwaBannerSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 769px) {
+    .pwa-smart-banner {
+        left: auto;
+        right: 24px;
+        bottom: 24px;
+        max-width: 380px;
+    }
+}
+
+.pwa-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1;
+}
+
+.pwa-banner-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.pwa-banner-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.pwa-banner-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pwa-banner-desc {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pwa-banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.pwa-banner-btn {
+    padding: 7px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    min-height: 36px;
+    touch-action: manipulation;
+}
+
+.pwa-banner-dismiss {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.pwa-banner-dismiss:hover {
+    color: var(--text-main);
+    background: var(--color-bg-hover);
+}
+
+/* ============================================================================
+   IOS INSTALL MODAL DIALOG
+   ============================================================================ */
+.ios-install-modal {
+    border: none;
+    border-radius: var(--radius-xl);
+    background: transparent;
+    padding: 0;
+    max-width: 460px;
+    width: calc(100vw - 32px);
+    box-shadow: var(--shadow-xl);
+}
+
+.ios-install-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.ios-modal-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ios-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.ios-modal-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.ios-modal-icon {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.ios-modal-header h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: var(--text-main);
+}
+
+.ios-modal-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.ios-install-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ios-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--color-bg-hover);
+    padding: 12px 14px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-subtle);
+}
+
+.ios-step-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ios-step-content {
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: var(--text-main);
+    flex: 1;
+}
+
+.ios-step-icon-hint {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-primary);
+    font-size: 0.84rem;
+    font-weight: 600;
+}
+
+.ios-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ios-modal-footer .btn {
+    width: 100%;
+    min-height: 44px;
+    font-size: 0.95rem;
+}
+
+/* ============================================================================
+   OFFLINE SYNC STATUS INDICATOR
+   ============================================================================ */
+.sync-status-indicator {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-muted);
+    transition: all var(--transition-fast) ease;
+    cursor: default;
+    flex-shrink: 0;
+}
+
+.sync-status-indicator .sync-icon-check {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    color: #22c55e;
+    stroke-width: 3;
+    transition: opacity var(--transition-fast) ease;
+}
+
+.sync-status-indicator.is-offline {
+    color: #f59e0b;
+}
+
+.sync-status-indicator.is-offline .sync-icon-check {
+    opacity: 0;
+}
+
+.sync-status-indicator.is-syncing .sync-icon-cloud {
+    animation: syncSpin 1.4s linear infinite;
+    color: var(--color-primary);
+}
+
+.sync-status-indicator.is-syncing .sync-icon-check {
+    opacity: 0;
+}
+
+@keyframes syncSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.sync-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: #f59e0b;
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 8px;
+    line-height: 1;
 }
 
 
