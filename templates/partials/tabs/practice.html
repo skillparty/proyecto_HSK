@@ -1,82 +1,120 @@
                 <!-- Practice Tab -->
                 <div id="practice" class="tab-panel">
                     <div class="practice-container">
-                        <div class="study-progress">
-                            <div class="study-progress-header">
-                                <span class="study-progress-title" data-i18n="todayProgress">Today's Progress</span>
-                                <span class="study-progress-value" id="today-progress">0 / 20</span>
+                        <!-- Top Practice Header Hub: Progress + Streak + Controls -->
+                        <div class="practice-hub-header">
+                            <div class="study-progress">
+                                <div class="study-progress-header">
+                                    <div class="study-progress-info">
+                                        <span class="study-progress-badge" aria-hidden="true">🎯</span>
+                                        <span class="study-progress-title" data-i18n="todayProgress">Today's Progress</span>
+                                    </div>
+                                    <span class="study-progress-value" id="today-progress">0 / 20</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" aria-label="Progreso de estudio diario">
+                                    <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="study-streak" aria-label="Racha de estudio semanal">
+                                    <div class="streak-day" data-day="M">M</div>
+                                    <div class="streak-day" data-day="T">T</div>
+                                    <div class="streak-day" data-day="W">W</div>
+                                    <div class="streak-day active" data-day="T">T</div>
+                                    <div class="streak-day active" data-day="F">F</div>
+                                    <div class="streak-day active" data-day="S">S</div>
+                                    <div class="streak-day today" data-day="S">S</div>
+                                </div>
                             </div>
-                            <div class="progress-bar">
-                                <div class="progress-bar-fill" id="progress-fill" style="width: 0%"></div>
+
+                            <!-- Unified Practice Toolbar Strip -->
+                            <div class="practice-toolbar">
+                                <div class="practice-toolbar-controls">
+                                    <!-- HSK Level -->
+                                    <div class="practice-control-group level-selector">
+                                        <label for="level-select" class="practice-control-label">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                                            <span data-i18n="levelLabel">HSK Level</span>
+                                        </label>
+                                        <select id="level-select" class="select-input" data-tooltip="Choose your HSK level to start practicing">
+                                            <option value="" data-i18n="selectLevel">Select level...</option>
+                                            <option value="1" selected>HSK 1</option>
+                                            <option value="2">HSK 2</option>
+                                            <option value="3">HSK 3</option>
+                                            <option value="4">HSK 4</option>
+                                            <option value="5">HSK 5</option>
+                                            <option value="6">HSK 6</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Study Order -->
+                                    <div class="practice-control-group level-selector">
+                                        <label for="practice-order-mode" class="practice-control-label">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+                                            <span data-i18n="practiceOrderLabel">Orden de estudio</span>
+                                        </label>
+                                        <select id="practice-order-mode" class="select-input" data-tooltip="Choose lesson sequence order or mixed order">
+                                            <option value="srs" data-i18n="practiceOrderSrs">Repaso inteligente (SRS)</option>
+                                            <option value="lesson" data-i18n="practiceOrderLesson">Lección (recomendado)</option>
+                                            <option value="mixed" data-i18n="practiceOrderMixed">Mezclado aleatorio</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Tone Check -->
+                                    <div class="practice-control-group level-selector">
+                                        <label for="tone-check-select" class="practice-control-label">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                                            <span data-i18n="toneCheckLabel">Validación de tonos</span>
+                                        </label>
+                                        <select id="tone-check-select" class="select-input" data-tooltip="Enforce strict tone verification for pinyin input">
+                                            <option value="standard" data-i18n="toneCheckStandard">Estándar (sin tonos)</option>
+                                            <option value="strict" data-i18n="toneCheckStrict">Estricto (requiere tonos, ej: hao3)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Action Tools -->
+                                <div class="deck-quick-bar">
+                                    <button id="hands-free-toggle-btn" class="btn btn-sm btn-outline-primary practice-action-btn" type="button" title="Modo Manos Libres: reproduce automáticamente las palabras en bucle con soporte para pantalla de bloqueo">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                                        <span data-i18n="handsFreeModeBtn">Modo Manos Libres</span>
+                                    </button>
+                                    <button id="manage-decks-btn" class="btn btn-sm btn-secondary practice-action-btn" type="button" title="Gestionar mazos y exportación a Anki">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                        <span data-i18n="manageDecksBtn">Mazos & Exportación Anki</span>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="study-streak">
-                                <div class="streak-day" data-day="M">M</div>
-                                <div class="streak-day" data-day="T">T</div>
-                                <div class="streak-day" data-day="W">W</div>
-                                <div class="streak-day active" data-day="T">T</div>
-                                <div class="streak-day active" data-day="F">F</div>
-                                <div class="streak-day active" data-day="S">S</div>
-                                <div class="streak-day today" data-day="S">S</div>
-                            </div>
                         </div>
 
-                        <div class="level-selector">
-                            <label for="level-select" data-i18n="levelLabel">HSK Level</label>
-                            <select id="level-select" class="select-input"
-                                data-tooltip="Choose your HSK level to start practicing">
-                                <option value="" data-i18n="selectLevel">Select level...</option>
-                                <option value="1" selected>HSK 1</option>
-                                <option value="2">HSK 2</option>
-                                <option value="3">HSK 3</option>
-                                <option value="4">HSK 4</option>
-                                <option value="5">HSK 5</option>
-                                <option value="6">HSK 6</option>
-                            </select>
-                        </div>
-
-                        <div class="level-selector">
-                            <label for="practice-order-mode" data-i18n="practiceOrderLabel">Orden de estudio</label>
-                            <select id="practice-order-mode" class="select-input"
-                                data-tooltip="Choose lesson sequence order or mixed order">
-                                <option value="srs" data-i18n="practiceOrderSrs">Repaso inteligente (SRS)</option>
-                                <option value="lesson" data-i18n="practiceOrderLesson">Lección (recomendado)</option>
-                                <option value="mixed" data-i18n="practiceOrderMixed">Mezclado aleatorio</option>
-                            </select>
-                        </div>
-
-                        <div class="level-selector">
-                            <label for="tone-check-select" data-i18n="toneCheckLabel">Validación de tonos</label>
-                            <select id="tone-check-select" class="select-input"
-                                data-tooltip="Enforce strict tone verification for pinyin input">
-                                <option value="standard" data-i18n="toneCheckStandard">Estándar (sin tonos)</option>
-                                <option value="strict" data-i18n="toneCheckStrict">Estricto (requiere tonos, ej: hao3)</option>
-                            </select>
-                        </div>
-
-                        <div class="deck-quick-bar" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
-                            <button id="hands-free-toggle-btn" class="btn btn-sm btn-outline-primary" type="button" style="font-size: 0.82rem; padding: 5px 12px; border-radius: 8px; display:inline-flex; align-items:center; gap:6px;" title="Modo Manos Libres: reproduce automáticamente las palabras en bucle con soporte para pantalla de bloqueo">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
-                                <span data-i18n="handsFreeModeBtn">Modo Manos Libres</span>
-                            </button>
-                            <button id="manage-decks-btn" class="btn btn-sm btn-secondary" type="button" style="font-size: 0.82rem; padding: 5px 12px; border-radius: 8px; display:inline-flex; align-items:center; gap:6px;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                                <span data-i18n="manageDecksBtn">Mazos & Exportación Anki</span>
-                            </button>
-                        </div>
-
-                        <!-- Flashcard Display -->
-                        <div class="flashcard-area">
-                            <div id="flashcard" class="flashcard">
+                        <!-- Flashcard Display Area -->
+                        <div class="flashcard-area" aria-label="Tarjeta de estudio">
+                            <div id="flashcard" class="flashcard" tabindex="0" role="region" aria-label="Tarjeta flashcard">
                                 <div class="flashcard-inner">
+                                    <!-- Front Face -->
                                     <div class="card-face card-front">
-                                        <button type="button" id="flashcard-fav-btn" class="flashcard-fav-btn" title="Guardar en Favoritos" aria-label="Favorito">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                                        </button>
-                                        <div class="hsk-academic-seal">学</div>
+                                        <div class="card-top-bar">
+                                            <div class="hsk-academic-seal">学</div>
+                                            <div class="card-top-actions">
+                                                <button type="button" id="flashcard-front-audio-btn" class="card-action-icon-btn" title="Escuchar pronunciación" aria-label="Escuchar pronunciación">
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                                                </button>
+                                                <button type="button" id="flashcard-fav-btn" class="flashcard-fav-btn card-action-icon-btn" title="Guardar en Favoritos" aria-label="Favorito">
+                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+
                                         <div class="card-character-container" id="question-text"></div>
                                         <div class="card-front-meta" id="lesson-meta-front" style="display: none;"></div>
-                                        <div class="card-hint" id="hint-text"></div>
+                                        <div class="card-hint" id="hint-text" title="Toca para revelar pista"></div>
+
+                                        <div class="card-flip-prompt">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>
+                                            <span data-i18n="flipCardPrompt">Toca para voltear</span>
+                                            <span class="desktop-kbd-hint"><kbd>Espacio</kbd></span>
+                                        </div>
                                     </div>
+
+                                    <!-- Back Face -->
                                     <div class="card-face card-back">
                                         <div class="hsk-academic-seal">德</div>
                                         <div class="card-answer" id="answer-text"></div>
@@ -86,24 +124,82 @@
                             </div>
                         </div>
 
-                        <!-- Flashcard Controls Removed (replaced by Pinyin Input) -->
+                        <!-- Study Console: Pinyin Input + Navigation + SRS Ratings -->
+                        <div class="practice-study-console" aria-label="Consola de práctica">
+                            <!-- Pinyin Input Section -->
+                            <div class="pinyin-input-container">
+                                <div class="pinyin-input-wrapper">
+                                    <span class="pinyin-input-icon" aria-hidden="true">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    </span>
+                                    <input type="text" id="pinyin-input" class="pinyin-input" data-i18n-placeholder="typePinyin" placeholder="Type Pinyin..."
+                                        autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text" enterkeyhint="go">
+                                    <button type="button" id="speech-rec-btn" class="speech-rec-btn" title="Pronunciar en voz alta (Web Speech API)" data-i18n-title="speechMicTitle" aria-label="Evaluar pronunciación">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div id="feedback-message" class="feedback-message" role="status" aria-live="polite"></div>
+                                <button id="check-btn" class="action-btn check-submit-btn" style="display: none;" data-i18n="submit">Submit</button>
+                            </div>
 
-                        <!-- Pinyin Input Section -->
-                        <div class="pinyin-input-container">
-                            <input type="text" id="pinyin-input" class="pinyin-input" data-i18n-placeholder="typePinyin" placeholder="Type Pinyin..."
-                                autocomplete="off" autocapitalize="off" spellcheck="false">
-                            <button type="button" id="speech-rec-btn" class="speech-rec-btn" title="Pronunciar en voz alta (Web Speech API)" data-i18n-title="speechMicTitle" aria-label="Evaluar pronunciación">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                                    <line x1="12" y1="19" x2="12" y2="23"></line>
-                                    <line x1="8" y1="23" x2="16" y2="23"></line>
-                                </svg>
-                            </button>
-                            <div id="feedback-message" class="feedback-message"></div>
-                            <button id="check-btn" class="action-btn" style="display: none;" data-i18n="submit">Submit</button>
-                            <button id="next-card-next-btn" class="action-btn next-btn-hidden"
-                                style="display: none;" data-i18n="next">Next</button>
+                            <!-- Controls Row: Card Navigation & SRS Difficulty Ratings -->
+                            <div class="practice-controls-row">
+                                <!-- Card Navigation Buttons -->
+                                <div class="card-nav-group">
+                                    <button type="button" id="prev-card-btn" class="card-nav-btn btn btn-sm btn-outline-secondary" title="Palabra anterior (Flecha izquierda)" aria-label="Palabra anterior">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                        <span class="nav-btn-text" data-i18n="prevCard">Anterior</span>
+                                    </button>
+                                    <button type="button" id="flip-btn" class="card-flip-btn btn btn-sm btn-primary" title="Voltear tarjeta (Barra espaciadora)">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                        <span id="flip-btn-text" data-i18n="showAnswer">Show answer</span>
+                                    </button>
+                                    <button id="next-card-next-btn" class="action-btn next-btn-hidden card-nav-btn btn btn-sm btn-secondary" style="display: none;" data-i18n="next">
+                                        <span class="nav-btn-text">Next</span>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    </button>
+                                </div>
+
+                                <!-- SRS Difficulty Rating Bar -->
+                                <div class="srs-rating-bar" role="group" aria-label="Calificación SRS">
+                                    <button type="button" class="difficulty-button srs-btn srs-again" data-difficulty="again" title="Repasar de nuevo (Tecla 1)">
+                                        <span class="srs-key">1</span>
+                                        <span class="srs-label" data-i18n="srsAgain">Otra vez</span>
+                                        <span class="srs-sub">&lt;1m</span>
+                                    </button>
+                                    <button type="button" class="difficulty-button srs-btn srs-hard" data-difficulty="hard" title="Difícil (Tecla 2)">
+                                        <span class="srs-key">2</span>
+                                        <span class="srs-label" data-i18n="srsHard">Difícil</span>
+                                        <span class="srs-sub">10m</span>
+                                    </button>
+                                    <button type="button" class="difficulty-button srs-btn srs-good" data-difficulty="good" title="Bien (Tecla 3)">
+                                        <span class="srs-key">3</span>
+                                        <span class="srs-label" data-i18n="srsGood">Bien</span>
+                                        <span class="srs-sub">1d</span>
+                                    </button>
+                                    <button type="button" class="difficulty-button srs-btn srs-easy" data-difficulty="easy" title="Fácil (Tecla 4)">
+                                        <span class="srs-key">4</span>
+                                        <span class="srs-label" data-i18n="srsEasy">Fácil</span>
+                                        <span class="srs-sub">4d</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Desktop Keyboard Hints -->
+                            <div class="practice-keyboard-hints" aria-hidden="true">
+                                <span class="hint-item"><kbd>Espacio</kbd> Voltear</span>
+                                <span class="hint-dot">•</span>
+                                <span class="hint-item"><kbd>Enter</kbd> Comprobar</span>
+                                <span class="hint-dot">•</span>
+                                <span class="hint-item"><kbd>←</kbd><kbd>→</kbd> Tarjetas</span>
+                                <span class="hint-dot">•</span>
+                                <span class="hint-item"><kbd>1-4</kbd> SRS</span>
+                            </div>
                         </div>
 
                         <!-- Hands-Free Floating Player Bar -->

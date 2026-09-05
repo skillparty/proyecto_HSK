@@ -115,8 +115,15 @@ class HanziMahjongGame {
 
     playTileClickSound() {
         try {
-            const ctx = window.AudioContext ? new (window.AudioContext || window.webkitAudioContext)() : null;
-            if (!ctx) return;
+            if (!this.audioCtx) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                this.audioCtx = new AudioCtx();
+            }
+            if (this.audioCtx.state === 'suspended') {
+                this.audioCtx.resume();
+            }
+            const ctx = this.audioCtx;
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = "triangle";
@@ -233,6 +240,10 @@ class HanziMahjongGame {
         // Limpiar hints
         this.boardEl?.querySelectorAll(".hinted").forEach((el) => el.classList.remove("hinted"));
 
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            navigator.vibrate(15);
+        }
+
         if (!this.selectedTile) {
             // Primer click
             this.selectedTile = { idx, tile, el: tileEl };
@@ -276,7 +287,23 @@ class HanziMahjongGame {
 
         this.updateStatsDisplay();
 
-        this.app?.audioController?.playCorrect?.();
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            navigator.vibrate(35);
+        }
+
+        if (this.combo >= 4) {
+            this.app?.audioController?.playStreakFanfare?.();
+        } else if (this.combo >= 2) {
+            this.app?.audioController?.playGameCoin?.();
+        } else {
+            this.app?.audioController?.playCorrect?.();
+        }
+
+        // Pronounce completed character / compound word
+        if (this.app && typeof this.app.playAudio === 'function' && first.tile?.result) {
+            this.app.playAudio(first.tile.result);
+        }
+
         this.app?.showToast?.(`¡Emparejado! ${first.tile.hanzi} + ${second.tile.hanzi} = ${first.tile.result} (${first.tile.meaning})`, "success", 1500);
 
         if (this.pairsRemaining <= 0) {
@@ -287,6 +314,10 @@ class HanziMahjongGame {
     handleMatchFail(first, second) {
         this.combo = 0;
         this.updateStatsDisplay();
+
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            navigator.vibrate([50, 30, 50]);
+        }
 
         first.el.style.transform = "translateX(-6px)";
         second.el.style.transform = "translateX(6px)";
@@ -354,6 +385,10 @@ class HanziMahjongGame {
 
         if (this.finalScoreEl) this.finalScoreEl.textContent = this.score;
         if (this.victoryOverlay) this.victoryOverlay.style.display = "flex";
+
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            navigator.vibrate([100, 50, 150]);
+        }
 
         this.app?.audioController?.playStreakFanfare?.();
         this.app?.achievementManager?.fireConfetti?.();

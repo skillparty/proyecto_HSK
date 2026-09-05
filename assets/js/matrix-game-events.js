@@ -40,6 +40,16 @@ function setupMatrixGameEventListeners() {
                 g.quitGame();
             }
 
+            // Botón de audio para pronunciar la palabra objetivo
+            if (e.target.id === 'matrix-audio-btn' || e.target.closest('#matrix-audio-btn')) {
+                if (g.currentWord?.character && window.app && typeof window.app.playAudio === 'function') {
+                    window.app.playAudio(g.currentWord.character);
+                    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                        navigator.vibrate(15);
+                    }
+                }
+            }
+
             // Botones de resultados
             if (e.target.id === 'play-again-btn' || e.target.closest('#play-again-btn')) {
                 g.playAgain();

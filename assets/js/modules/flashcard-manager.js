@@ -553,10 +553,14 @@ class FlashcardManager {
         hintEl.classList.add("hint-revealed");
       }
       const flipBtn = document.getElementById("flip-btn");
-      if (flipBtn) {
-        flipBtn.textContent =
-          this.app.getTranslation("showAnswer") || "Show answer";
+      const flipBtnText = document.getElementById("flip-btn-text");
+      const showAnswerText = this.app.getTranslation("showAnswer") || "Show answer";
+      if (flipBtnText) {
+        flipBtnText.textContent = showAnswerText;
+      } else if (flipBtn) {
+        flipBtn.textContent = showAnswerText;
       }
+      try { navigator.vibrate?.(15); } catch { void 0; }
       this.app.logDebug("[卡] Pinyin revealed (step 1)");
       return;
     }
@@ -567,9 +571,12 @@ class FlashcardManager {
       flashcard.classList.add("flipped");
       this.isFlipped = true;
       this.app.isFlipped = true;
+      const practiceContainer = document.querySelector(".practice-container");
+      if (practiceContainer) practiceContainer.classList.add("card-is-flipped");
       if (input) input.disabled = true;
       this.enableKnowledgeButtons();
       this.app.audioController?.playFlip();
+      try { navigator.vibrate?.(15); } catch { void 0; }
       this.app.logDebug("[卡] Card flipped");
     }
   }
@@ -602,14 +609,25 @@ class FlashcardManager {
 
   resetCardState() {
     const flipBtn = document.getElementById("flip-btn");
+    const flipBtnText = document.getElementById("flip-btn-text");
     const mode = this.app.practiceMode || "char-to-english";
     this.isFlipped = false;
     this.revealStep = 0;
+
+    const practiceContainer = document.querySelector(".practice-container");
+    if (practiceContainer) practiceContainer.classList.remove("card-is-flipped");
+
+    const labelText = mode === "char-to-english"
+      ? (this.app.getTranslation("revealPinyin") || "Reveal Pinyin")
+      : (this.app.getTranslation("showAnswer") || "Show answer");
+
+    if (flipBtnText) {
+      flipBtnText.textContent = labelText;
+    } else if (flipBtn) {
+      flipBtn.textContent = labelText;
+    }
     if (flipBtn) {
       flipBtn.disabled = false;
-      flipBtn.textContent = mode === "char-to-english"
-        ? (this.app.getTranslation("revealPinyin") || "Reveal Pinyin")
-        : (this.app.getTranslation("showAnswer") || "Show answer");
       flipBtn.style.opacity = "1";
     }
     this.disableKnowledgeButtons();
@@ -623,6 +641,11 @@ class FlashcardManager {
         btn.style.opacity = "1";
       }
     });
+    document.querySelectorAll(".difficulty-button").forEach((btn) => {
+      btn.disabled = false;
+      btn.style.opacity = "1";
+      btn.style.pointerEvents = "auto";
+    });
   }
 
   disableKnowledgeButtons() {
@@ -632,6 +655,11 @@ class FlashcardManager {
         btn.disabled = true;
         btn.style.opacity = "0.6";
       }
+    });
+    document.querySelectorAll(".difficulty-button").forEach((btn) => {
+      btn.disabled = true;
+      btn.style.opacity = "0.5";
+      btn.style.pointerEvents = "none";
     });
   }
 
@@ -644,6 +672,7 @@ class FlashcardManager {
   handleDifficulty(difficulty) {
     if (!this.currentWord || !this.isFlipped) return;
 
+    try { navigator.vibrate?.(25); } catch { void 0; }
     const isKnown = ["easy", "good"].includes(difficulty);
     this.app.logDebug(`🧠 Rated as: ${difficulty} (Known: ${isKnown})`);
 

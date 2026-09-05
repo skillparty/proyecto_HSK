@@ -69,6 +69,18 @@ class WordLinkerGame {
         if (quitBtn) {
             quitBtn.addEventListener('click', () => this.quitGame());
         }
+
+        const audioBtn = document.getElementById('word-link-audio-btn');
+        if (audioBtn) {
+            audioBtn.addEventListener('click', () => {
+                if (this.state.currentClueWord?.character && window.app && typeof window.app.playAudio === 'function') {
+                    window.app.playAudio(this.state.currentClueWord.character);
+                    if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                        navigator.vibrate(15);
+                    }
+                }
+            });
+        }
         
         this.isInitialized = true;
     }
@@ -244,12 +256,18 @@ class WordLinkerGame {
             // Deselect it
             this.state.selectedIndices.splice(selectionIndex, 1);
             element.classList.remove('selected');
+            if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                navigator.vibrate(15);
+            }
             this.playSynth(400, 'sine', 0.08, 0.05);
         } else {
             // Select it (max 2 characters, as target words are length 2)
             if (this.state.selectedIndices.length < 2) {
                 this.state.selectedIndices.push(index);
                 element.classList.add('selected');
+                if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                    navigator.vibrate(15);
+                }
                 this.playSynth(500 + (this.state.selectedIndices.length * 100), 'sine', 0.1, 0.06);
             }
         }
@@ -275,6 +293,14 @@ class WordLinkerGame {
             // Match success!
             this.state.foundWords.push(this.state.currentClueWord);
             this.state.score += 25;
+
+            // Pronounce word with SpeechSynthesis
+            if (window.app && typeof window.app.playAudio === 'function' && this.state.currentClueWord?.character) {
+                window.app.playAudio(this.state.currentClueWord.character);
+            }
+            if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                navigator.vibrate(35);
+            }
             
             // Record correct word match
             window.progressIntegrator?.recordWordStudy({
@@ -312,6 +338,9 @@ class WordLinkerGame {
             
         } else {
             // Failure buzzer
+            if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                navigator.vibrate([50, 30, 50]);
+            }
             this.playSynth(140, 'sawtooth', 0.18, 0.22);
             
             // Record incorrect word match
@@ -391,8 +420,12 @@ class WordLinkerGame {
     updateHUD() {
         const scoreVal = document.getElementById('word-link-score');
         const timerVal = document.getElementById('word-link-timer');
+        const foundVal = document.getElementById('word-link-found-count');
         
         if (scoreVal) scoreVal.textContent = this.state.score;
+        if (foundVal) {
+            foundVal.textContent = `${this.state.foundWords.length}/${this.state.wordsInGrid.length}`;
+        }
         if (timerVal) {
             const minutes = Math.floor(this.state.timeLeft / 60);
             const seconds = this.state.timeLeft % 60;
@@ -422,10 +455,15 @@ class WordLinkerGame {
             return;
         }
         try {
-            const AudioCtx = window.AudioContext || window.webkitAudioContext;
-            if (!AudioCtx) return;
-            
-            const audioCtx = new AudioCtx();
+            if (!this.audioCtx) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                this.audioCtx = new AudioCtx();
+            }
+            if (this.audioCtx.state === 'suspended') {
+                this.audioCtx.resume();
+            }
+            const audioCtx = this.audioCtx;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             

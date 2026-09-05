@@ -526,11 +526,23 @@ class PracticeViewController {
             flashcard.classList.remove('flipped');
         }
 
+        const practiceContainer = document.querySelector('.practice-container');
+        if (practiceContainer) {
+            practiceContainer.classList.remove('card-is-flipped');
+        }
+
+        const flipBtnText = document.getElementById('flip-btn-text');
+        const labelText = mode === 'char-to-english'
+            ? (this.app.getTranslation('revealPinyin') || 'Reveal Pinyin')
+            : (this.app.getTranslation('showAnswer') || 'Show answer');
+
+        if (flipBtnText) {
+            flipBtnText.textContent = labelText;
+        } else if (flipBtn) {
+            flipBtn.textContent = labelText;
+        }
         if (flipBtn) {
             flipBtn.disabled = false;
-            flipBtn.textContent = mode === 'char-to-english'
-                ? (this.app.getTranslation('revealPinyin') || 'Reveal Pinyin')
-                : (this.app.getTranslation('showAnswer') || 'Show answer');
             flipBtn.style.opacity = '1';
         }
 

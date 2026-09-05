@@ -130,16 +130,99 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
       style.textContent = `
         .culture-hero-banner {
           width: 100%;
-          margin-bottom: 1.5rem;
-          border-radius: var(--radius-lg, 12px);
+          margin-bottom: 2rem;
+          border-radius: var(--radius-lg, 16px);
           overflow: hidden;
-          box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.1));
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          border: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
+          position: relative;
+          background: #000;
+        }
+        .culture-hero-video {
+          width: 100%;
+          max-height: 400px;
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          display: block;
+          background: #000;
         }
         .culture-hero-img {
           width: 100%;
-          max-height: 340px;
+          height: 280px;
           object-fit: cover;
           display: block;
+          filter: brightness(0.92) contrast(1.05);
+          transition: transform 0.4s ease;
+        }
+        .culture-hero-banner:hover .culture-hero-img {
+          transform: scale(1.02);
+        }
+        .culture-video-badge {
+          position: absolute;
+          top: 14px;
+          right: 14px;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          color: #ffffff;
+          padding: 5px 12px;
+          border-radius: 20px;
+          font-size: 0.78rem;
+          font-weight: 600;
+          letter-spacing: 0.03em;
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          pointer-events: none;
+          z-index: 2;
+        }
+        .culture-media-toggle-btn {
+          position: absolute;
+          top: 14px;
+          left: 14px;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          color: #ffffff;
+          padding: 6px 14px;
+          border-radius: 20px;
+          font-size: 0.78rem;
+          font-weight: 600;
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          cursor: pointer;
+          z-index: 3;
+          transition: background 0.2s ease, transform 0.15s ease;
+        }
+        .culture-media-toggle-btn:hover {
+          background: rgba(0, 0, 0, 0.85);
+          transform: translateY(-1px);
+        }
+        @media (max-width: 640px) {
+          .culture-hero-banner {
+            margin-bottom: 1.4rem;
+          }
+          .culture-hero-video {
+            max-height: 240px;
+          }
+          .culture-hero-img {
+            height: 200px;
+          }
+          .culture-video-badge {
+            top: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+          }
+          .culture-media-toggle-btn {
+            top: 10px;
+            left: 10px;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+          }
         }
         .opera-intro {
           padding: 1.5rem;
@@ -364,8 +447,34 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
     const selectedColor = activeContent.masks[this.selectedColorIndex];
 
     let html = `
-      <div class="culture-hero-banner">
-        <img src="assets/images/culture/peking_opera.jpg" alt="Ópera de Pekín" class="culture-hero-img" loading="lazy" />
+      <div class="culture-hero-banner" id="culture-opera-hero">
+        <video class="culture-hero-video" 
+               id="culture-opera-video"
+               src="assets/videos/operaPekin.mp4" 
+               poster="assets/images/culture/peking_opera.jpg" 
+               controls 
+               loop 
+               muted 
+               autoplay 
+               playsinline 
+               preload="metadata"
+               aria-label="${lang === 'en' ? 'Peking Opera Video' : 'Vídeo de Ópera de Pekín'}">
+          <img src="assets/images/culture/peking_opera.jpg" alt="Ópera de Pekín" class="culture-hero-img" loading="lazy" />
+        </video>
+        <img src="assets/images/culture/peking_opera.jpg" 
+             alt="Ópera de Pekín" 
+             class="culture-hero-img" 
+             id="culture-opera-img"
+             style="display: none;" 
+             loading="lazy" />
+        <span class="culture-video-badge" id="culture-opera-badge" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>${lang === 'en' ? 'Featured Video' : 'Vídeo Ilustrativo'}</span>
+        </span>
+        <button type="button" class="culture-media-toggle-btn" id="culture-opera-toggle" title="${lang === 'en' ? 'Switch to Photo view' : 'Cambiar a vista Foto'}">
+          <span class="toggle-icon">🖼️</span>
+          <span class="toggle-text">${lang === 'en' ? 'View Photo' : 'Ver Foto'}</span>
+        </button>
       </div>
       <div class="opera-intro">
         <p>${activeContent.intro}</p>
@@ -455,6 +564,9 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
 
     this.container.innerHTML = html;
     this.bindAudioButtons();
+    if (typeof this.bindMediaToggle === 'function') {
+      this.bindMediaToggle('opera', lang);
+    }
 
     // Attach click event listeners for lianpu colors
     const colorItems = this.container.querySelectorAll('.color-item');

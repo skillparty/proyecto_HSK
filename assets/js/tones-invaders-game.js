@@ -159,6 +159,9 @@ class TonesInvadersGame {
         toneBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const tone = parseInt(btn.getAttribute('data-tone'));
+                if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                    navigator.vibrate(15);
+                }
                 this.fireLaser(tone);
             });
         });
@@ -217,6 +220,15 @@ class TonesInvadersGame {
             }
         }, { passive: false });
         
+        this.canvas.addEventListener('click', () => {
+            if (!this.state.isPlaying) {
+                const gameArea = document.getElementById('tones-inv-game-area');
+                if (gameArea && gameArea.style.display !== 'none') {
+                    this.startGame();
+                }
+            }
+        });
+
         this.isInitialized = true;
     }
     
@@ -439,6 +451,9 @@ class TonesInvadersGame {
                 this.updateHUD();
                 
                 // Red flash / error noise
+                if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                    navigator.vibrate([70, 30, 70]);
+                }
                 this.playSynthesizerSound(100, 'triangle', 0.3, 0.3);
                 
                 if (this.state.lives <= 0) {
@@ -495,6 +510,14 @@ class TonesInvadersGame {
                         
                         this.updateHUD();
                         
+                        // Pronounce character when destroyed with correct tone
+                        if (window.app && typeof window.app.playAudio === "function" && inv.char) {
+                            window.app.playAudio(inv.char);
+                        }
+                        if (typeof navigator !== "undefined" && navigator.vibrate) {
+                            navigator.vibrate(30);
+                        }
+
                         // Record correct tone match
                         window.progressIntegrator?.recordWordStudy({
                             character: inv.char,
@@ -509,6 +532,9 @@ class TonesInvadersGame {
                     } else {
                         // Wrong tone -> laser simply passes through or vanishes
                         this.lasers.splice(l, 1);
+                        if (typeof navigator !== "undefined" && navigator.vibrate) {
+                            navigator.vibrate([40, 20, 40]);
+                        }
                         this.playSynthesizerSound(150, 'sawtooth', 0.05, 0.15); // buzzer noise
                         
                         // Record incorrect tone match
@@ -619,7 +645,17 @@ class TonesInvadersGame {
         this.ctx.fillStyle = '#ffffff';
         this.ctx.font = '18px "Inter", sans-serif';
         this.ctx.fillText(`${finalScoreLabel}: ${this.state.score}`, this.logicalWidth / 2, this.logicalHeight / 2 + 25);
+
+        const replayHint = window.languageManager?.currentLanguage === 'en' ? "Tap to Play Again" : "Toca para jugar de nuevo";
+        this.ctx.fillStyle = '#10b981';
+        this.ctx.font = 'bold 15px "Inter", sans-serif';
+        this.ctx.fillText(replayHint, this.logicalWidth / 2, this.logicalHeight / 2 + 65);
         
+        // Haptic feedback
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            navigator.vibrate(180);
+        }
+
         // Sound
         this.playSynthesizerSound(180, 'sawtooth', 0.3, 0.4);
         setTimeout(() => this.playSynthesizerSound(90, 'triangle', 0.4, 0.6), 250);
@@ -650,10 +686,15 @@ class TonesInvadersGame {
             return;
         }
         try {
-            const AudioCtx = window.AudioContext || window.webkitAudioContext;
-            if (!AudioCtx) return;
-            
-            const audioCtx = new AudioCtx();
+            if (!this.audioCtx) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                this.audioCtx = new AudioCtx();
+            }
+            if (this.audioCtx.state === 'suspended') {
+                this.audioCtx.resume();
+            }
+            const audioCtx = this.audioCtx;
             
             // Noise generator helper
             if (type === 'noise') {

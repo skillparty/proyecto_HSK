@@ -347,6 +347,18 @@ class MatrixGame {
             window.app.playAudio(this.currentWord.character);
         }
 
+        // Haptic feedback
+        if (typeof navigator !== "undefined" && navigator.vibrate) {
+            navigator.vibrate(25);
+        }
+
+        // Play streak fanfare on multiples of 5
+        if (this.sessionStats.streak > 0 && this.sessionStats.streak % 5 === 0) {
+            if (window.app && window.app.audioController) {
+                window.app.audioController.playStreakFanfare();
+            }
+        }
+
         // Play game coin sound effect
         if (window.app && window.app.audioController) {
             window.app.audioController.playGameCoin();
@@ -397,6 +409,11 @@ class MatrixGame {
         // Feedback visual
         element.classList.add('wrong');
         this.viewController.showFeedback('wrong', `-${penalty} puntos`);
+
+        // Haptic feedback
+        if (typeof navigator !== "undefined" && navigator.vibrate) {
+            navigator.vibrate([60, 30, 60]);
+        }
 
         // Play game hit sound effect
         if (window.app && window.app.audioController) {

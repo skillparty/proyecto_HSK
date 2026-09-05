@@ -265,6 +265,10 @@ class HandsFreeController {
     }
 }
 
+if (typeof window !== "undefined") {
+    window.HandsFreeController = HandsFreeController;
+}
+
 if (typeof module !== "undefined" && module.exports) {
     module.exports = HandsFreeController;
 }

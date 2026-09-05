@@ -36,6 +36,10 @@
                                 <span id="word-link-score" class="word-link-metric-value">0</span>
                             </div>
                             <div class="word-link-metric">
+                                <span class="word-link-metric-label" data-i18n="wordLinkHudFound">PALABRAS</span>
+                                <span id="word-link-found-count" class="word-link-metric-value">0/0</span>
+                            </div>
+                            <div class="word-link-metric">
                                 <span class="word-link-metric-label" data-i18n="wordLinkHudTimer">TIEMPO</span>
                                 <span id="word-link-timer" class="word-link-metric-value">1:30</span>
                             </div>
@@ -44,7 +48,12 @@
                         <!-- Clue Display -->
                         <div class="word-link-clue-card">
                             <div class="word-link-clue-label" data-i18n="wordLinkClueLabel">Encuentra la palabra:</div>
-                            <div id="word-link-clue" class="word-link-clue-text">-</div>
+                            <div class="word-link-clue-row" style="display:inline-flex; align-items:center; gap:8px; justify-content:center;">
+                                <div id="word-link-clue" class="word-link-clue-text">-</div>
+                                <button id="word-link-audio-btn" class="word-link-audio-btn" type="button" aria-label="Escuchar pista" title="Escuchar pista" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:50%; width:32px; height:32px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:inherit; transition:transform 0.15s;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                                </button>
+                            </div>
                         </div>
                         
                         <!-- Grid Board -->

@@ -72,6 +72,8 @@ class QuantifierSnakeController {
     return {
       difficulty: "easy",
       score: 0,
+      combo: 0,
+      maxCombo: 0,
       lives: this.maxLives,
       isRunning: false,
       isPaused: false,
@@ -210,6 +212,28 @@ class QuantifierSnakeController {
         this.state.difficulty = selected;
         this.updateModeLabel();
         this.updateTargetBadge();
+      });
+    }
+
+    if (this.targetBadge) {
+      this.targetBadge.style.cursor = "pointer";
+      this.targetBadge.setAttribute("role", "button");
+      this.targetBadge.setAttribute("tabindex", "0");
+      this.targetBadge.title = "Haz clic para escuchar el clasificador";
+      const speakTarget = () => {
+        if (this.state.targetQuantifier?.hanzi && this.app && typeof this.app.playAudio === "function") {
+          this.app.playAudio(this.state.targetQuantifier.hanzi);
+          if (typeof navigator !== "undefined" && navigator.vibrate) {
+            navigator.vibrate(15);
+          }
+        }
+      };
+      this.targetBadge.addEventListener("click", speakTarget);
+      this.targetBadge.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          speakTarget();
+        }
       });
     }
 
@@ -587,20 +611,34 @@ class QuantifierSnakeController {
       const config =
         this.difficultyConfig[this.state.difficulty] ||
         this.difficultyConfig.easy;
-      this.state.score += config.pointsPerHit;
+      this.state.combo = (this.state.combo || 0) + 1;
+      if (this.state.combo > (this.state.maxCombo || 0)) {
+        this.state.maxCombo = this.state.combo;
+      }
+      const comboBonus = Math.min(this.state.combo * 2, 20);
+      this.state.score += (config.pointsPerHit + comboBonus);
 
+      const comboText = this.state.combo >= 2 ? ` 🔥 x${this.state.combo}` : "";
       this.setFeedback(
         "snakeQuantifierCorrectFeedback",
         {
-          word: eatenFood.word?.hanzi ?? "",
+          word: (eatenFood.word?.hanzi ?? "") + comboText,
           quantifier: this.state.targetQuantifier?.hanzi ?? "",
         },
         "success",
       );
 
-      // Play audio pronunciation of the eaten word
+      // Play audio pronunciation of classifier + eaten word together
       if (this.app && typeof this.app.playAudio === "function" && eatenFood.word?.hanzi) {
-        this.app.playAudio(eatenFood.word.hanzi);
+        const fullPhrase = this.state.targetQuantifier?.hanzi
+          ? `${this.state.targetQuantifier.hanzi} ${eatenFood.word.hanzi}`
+          : eatenFood.word.hanzi;
+        this.app.playAudio(fullPhrase);
+      }
+
+      // Haptic feedback for tactile feel
+      if (typeof navigator !== "undefined" && navigator.vibrate) {
+        navigator.vibrate(25);
       }
 
       // Play game coin sound
@@ -640,6 +678,11 @@ class QuantifierSnakeController {
   consumeLife(reason, word) {
     this.state.lives = Math.max(0, this.state.lives - 1);
 
+    this.state.combo = 0;
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      navigator.vibrate([70, 30, 70]);
+    }
+
     // Play game explosion sound
     if (this.app.audioController) {
       this.app.audioController.playGameExplosion();
@@ -674,6 +717,10 @@ class QuantifierSnakeController {
     this.state.isRunning = false;
     this.state.isPaused = false;
     this.stopLoop();
+
+    if (typeof navigator !== "undefined" && navigator.vibrate) {
+      navigator.vibrate(180);
+    }
 
     // Play game over sound
     if (this.app.audioController) {

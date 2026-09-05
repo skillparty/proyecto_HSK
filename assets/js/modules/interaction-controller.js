@@ -191,6 +191,27 @@ class InteractionController {
             });
         }
 
+        const closeAllNavDropdowns = () => {
+            document.querySelectorAll('.nav-group').forEach((g) => {
+                g.classList.remove('open');
+                const trigger = g.querySelector('.nav-group-trigger');
+                if (trigger) trigger.setAttribute('aria-expanded', 'false');
+            });
+            const headerActions = document.querySelector('.header-actions');
+            const isSettingsOpen = headerActions && headerActions.classList.contains('settings-open');
+            if (!isSettingsOpen) {
+                document.body.classList.remove('nav-menu-open');
+            }
+        };
+
+        const openNavDropdown = (parentGroup) => {
+            closeAllNavDropdowns();
+            parentGroup.classList.add('open');
+            const trigger = parentGroup.querySelector('.nav-group-trigger');
+            if (trigger) trigger.setAttribute('aria-expanded', 'true');
+            document.body.classList.add('nav-menu-open');
+        };
+
         document.querySelectorAll('.nav-tab').forEach((btn) => {
             btn.addEventListener('click', (event) => {
                 const tabButton = event.target.closest('.nav-tab');
@@ -202,9 +223,10 @@ class InteractionController {
                     const parentGroup = tabButton.closest('.nav-group');
                     if (parentGroup) {
                         const isOpen = parentGroup.classList.contains('open');
-                        document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
-                        if (!isOpen) {
-                            parentGroup.classList.add('open');
+                        if (isOpen) {
+                            closeAllNavDropdowns();
+                        } else {
+                            openNavDropdown(parentGroup);
                         }
                     }
                     return;
@@ -212,6 +234,7 @@ class InteractionController {
 
                 const tabName = tabButton.dataset.tab;
                 if (tabName) {
+                    closeAllNavDropdowns();
                     this.app.uiController.switchTab(tabName);
                 }
             });
@@ -225,16 +248,69 @@ class InteractionController {
                 if (tabName) {
                     this.app.uiController.switchTab(tabName);
                 }
-                // Close all dropdowns
-                document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
+                closeAllNavDropdowns();
             });
         });
+
+        // Setup mobile sheet close buttons
+        document.querySelectorAll('.nav-dropdown-close').forEach((closeBtn) => {
+            closeBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const parentGroup = closeBtn.closest('.nav-group');
+                closeAllNavDropdowns();
+                const trigger = parentGroup ? parentGroup.querySelector('.nav-group-trigger') : null;
+                if (trigger) trigger.focus();
+            });
+        });
+
+        // Close dropdowns when clicking on the mobile backdrop
+        const navBackdrop = document.getElementById('nav-backdrop');
+        if (navBackdrop) {
+            navBackdrop.addEventListener('click', () => {
+                closeAllNavDropdowns();
+                const headerActions = document.querySelector('.header-actions');
+                if (headerActions && headerActions.classList.contains('settings-open')) {
+                    headerActions.classList.remove('settings-open');
+                    const settingsToggle = document.getElementById('mobile-settings-toggle');
+                    if (settingsToggle) settingsToggle.setAttribute('aria-expanded', 'false');
+                }
+                document.body.classList.remove('nav-menu-open');
+            });
+        }
 
         // Close dropdowns on clicking anywhere outside (touch-safe validation)
         document.addEventListener('click', (event) => {
             const isClickInsideGroup = event.target.closest('.nav-group');
             if (!isClickInsideGroup) {
-                document.querySelectorAll('.nav-group').forEach((g) => g.classList.remove('open'));
+                closeAllNavDropdowns();
+            }
+        });
+
+        // Keyboard handling: Escape to close and Arrow navigation
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const openGroup = document.querySelector('.nav-group.open');
+                if (openGroup) {
+                    const trigger = openGroup.querySelector('.nav-group-trigger');
+                    closeAllNavDropdowns();
+                    if (trigger) trigger.focus();
+                }
+            } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+                const openGroup = document.querySelector('.nav-group.open');
+                if (openGroup) {
+                    const items = Array.from(openGroup.querySelectorAll('.nav-dropdown-item'));
+                    const currentIndex = items.indexOf(document.activeElement);
+                    if (items.length > 0) {
+                        event.preventDefault();
+                        if (event.key === 'ArrowDown') {
+                            const nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+                            items[nextIndex].focus();
+                        } else {
+                            const prevIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+                            items[prevIndex].focus();
+                        }
+                    }
+                }
             }
         });
 
@@ -277,10 +353,42 @@ class InteractionController {
             nextCardBtn.addEventListener('click', () => this.app.flashcardManager.nextCard());
         }
 
+        const prevCardBtn = document.getElementById('prev-card-btn');
+        if (prevCardBtn) {
+            prevCardBtn.addEventListener('click', () => {
+                try { navigator.vibrate?.(15); } catch { void 0; }
+                this.app.flashcardManager.previousCard();
+            });
+        }
+
+        const frontAudioBtn = document.getElementById('flashcard-front-audio-btn');
+        if (frontAudioBtn) {
+            frontAudioBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                try { navigator.vibrate?.(15); } catch { void 0; }
+                if (this.app.currentWord?.character) {
+                    this.app.playAudio(this.app.currentWord.character);
+                }
+            });
+        }
+
+        const hintEl = document.getElementById('hint-text');
+        if (hintEl) {
+            hintEl.addEventListener('click', (event) => {
+                event.stopPropagation();
+                if (hintEl.classList.contains('hint-hidden')) {
+                    hintEl.classList.remove('hint-hidden');
+                    hintEl.classList.add('hint-revealed');
+                    try { navigator.vibrate?.(15); } catch { void 0; }
+                }
+            });
+        }
+
         const flipBtn = document.getElementById('flip-btn');
         if (flipBtn) {
             flipBtn.addEventListener('click', (event) => {
                 event.stopPropagation();
+                try { navigator.vibrate?.(15); } catch { void 0; }
                 this.app.flipCard();
             });
         }
@@ -288,7 +396,7 @@ class InteractionController {
         const flashcard = document.getElementById('flashcard');
         if (flashcard) {
             flashcard.addEventListener('click', (event) => {
-                if (event.target.closest('button, input, textarea, a, select, [data-action], .vocab-audio-btn, .speaker-btn')) {
+                if (event.target.closest('button, input, textarea, a, select, [data-action], .vocab-audio-btn, .speaker-btn, .card-action-icon-btn, .flashcard-fav-btn')) {
                     return;
                 }
                 this.app.flipCard();
@@ -297,8 +405,12 @@ class InteractionController {
 
         document.querySelectorAll('.difficulty-button').forEach((btn) => {
             btn.addEventListener('click', (event) => {
-                const difficulty = event.target.dataset.difficulty;
-                this.app.flashcardManager.handleDifficulty(difficulty);
+                const targetBtn = event.currentTarget || event.target.closest('.difficulty-button');
+                const difficulty = targetBtn?.dataset?.difficulty;
+                if (difficulty) {
+                    try { navigator.vibrate?.(25); } catch { void 0; }
+                    this.app.flashcardManager.handleDifficulty(difficulty);
+                }
             });
         });
 
@@ -513,6 +625,15 @@ class InteractionController {
                 if (!headerActions) return;
                 headerActions.classList.toggle('settings-open', isOpen);
                 settingsToggle.setAttribute('aria-expanded', String(isOpen));
+                if (isOpen) {
+                    closeAllNavDropdowns();
+                    document.body.classList.add('nav-menu-open');
+                } else {
+                    const hasOpenNav = !!document.querySelector('.nav-group.open');
+                    if (!hasOpenNav) {
+                        document.body.classList.remove('nav-menu-open');
+                    }
+                }
             };
 
             settingsToggle.addEventListener('click', () => {

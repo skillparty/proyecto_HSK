@@ -49,11 +49,29 @@ class HanziBuilderGame {
             "们": { parts: ["亻", "门"], pinyin: "men", translation: "sufijo plural" },
             "位": { parts: ["亻", "立"], pinyin: "wèi", translation: "clasificador de personas" },
             "信": { parts: ["亻", "言"], pinyin: "xìn", translation: "carta / creer" },
-            "化": { parts: ["亻", "匕"], pinyin: "huà", translation: "cambiar / derretir" }
+            "化": { parts: ["亻", "匕"], pinyin: "huà", translation: "cambiar / derretir" },
+            "朋": { parts: ["月", "月"], pinyin: "péng", translation: "amigo" },
+            "友": { parts: ["𠂇", "又"], pinyin: "yǒu", translation: "amistad" },
+            "会": { parts: ["人", "云"], pinyin: "huì", translation: "saber / reunión" },
+            "姐": { parts: ["女", "且"], pinyin: "jiě", translation: "hermana mayor" },
+            "妹": { parts: ["女", "未"], pinyin: "mèi", translation: "hermana menor" },
+            "哥": { parts: ["可", "可"], pinyin: "gē", translation: "hermano mayor" },
+            "饭": { parts: ["饣", "反"], pinyin: "fàn", translation: "comida / arroz" },
+            "饮": { parts: ["饣", "欠"], pinyin: "yǐn", translation: "beber / bebida" },
+            "玩": { parts: ["王", "元"], pinyin: "wán", translation: "jugar" },
+            "跑": { parts: ["𧾷", "包"], pinyin: "pǎo", translation: "correr" },
+            "跳": { parts: ["𧾷", "兆"], pinyin: "tiào", translation: "saltar" },
+            "喝": { parts: ["口", "曷"], pinyin: "hē", translation: "beber" },
+            "打": { parts: ["扌", "丁"], pinyin: "dǎ", translation: "golpear / jugar" },
+            "找": { parts: ["扌", "戈"], pinyin: "zhǎo", translation: "buscar" },
+            "海": { parts: ["氵", "每"], pinyin: "hǎi", translation: "mar" },
+            "江": { parts: ["氵", "工"], pinyin: "jiāng", translation: "río" },
+            "河": { parts: ["氵", "可"], pinyin: "hé", translation: "río" },
+            "洗": { parts: ["氵", "先"], pinyin: "xǐ", translation: "lavar" }
         };
         
         // Decoy components pool to spice up the game
-        this.decoys = ["木", "口", "讠", "亻", "女", "宀", "日", "门", "囗", "子", "也", "马", "目", "力", "田", "十", "寸", "大", "小", "父"];
+        this.decoys = ["木", "口", "讠", "亻", "女", "宀", "日", "门", "囗", "子", "也", "马", "目", "力", "田", "十", "寸", "大", "小", "父", "月", "云", "且", "未", "可", "饣", "王", "元", "𧾷", "扌", "氵", "先", "每"];
         
         // State
         this.state = this.getInitialState();
@@ -213,9 +231,12 @@ class HanziBuilderGame {
         const assemblyZone = document.getElementById('hanzi-build-slots');
         assemblyZone.innerHTML = '';
         
-        this.state.currentWord.parts.forEach(() => {
+        this.state.currentWord.parts.forEach((_, idx) => {
             const slot = document.createElement('div');
             slot.className = 'hanzi-build-slot';
+            slot.setAttribute('data-slot-idx', idx);
+            slot.title = 'Haz clic para retirar';
+            slot.addEventListener('click', () => this.onSlotClick(idx));
             assemblyZone.appendChild(slot);
         });
         
@@ -253,6 +274,35 @@ class HanziBuilderGame {
         
         this.updateHUD();
     }
+
+    // Handle clicking an assembled slot to undo/return component
+    onSlotClick(slotIdx) {
+        if (!this.state.isPlaying || this.state.isPaused) return;
+        if (this.state.assembledParts.length === 0) return;
+        if (slotIdx !== this.state.assembledParts.length - 1) return;
+
+        const removedPart = this.state.assembledParts.pop();
+        if (!removedPart) return;
+
+        const slots = document.querySelectorAll('.hanzi-build-slot');
+        if (slots[slotIdx]) {
+            slots[slotIdx].textContent = '';
+            slots[slotIdx].classList.remove('filled');
+        }
+
+        const paletteParts = document.querySelectorAll('.hanzi-build-part.used');
+        for (const p of paletteParts) {
+            if (p.textContent === removedPart) {
+                p.classList.remove('used');
+                break;
+            }
+        }
+
+        if (typeof navigator !== "undefined" && navigator.vibrate) {
+            navigator.vibrate(15);
+        }
+        this.playSynth(240, 'sine', 0.1, 0.08);
+    }
     
     // Handle component selection clicks
     onPartClick(part, element) {
@@ -266,6 +316,10 @@ class HanziBuilderGame {
             this.state.assembledParts.push(part);
             element.classList.add('used');
             
+            if (typeof navigator !== "undefined" && navigator.vibrate) {
+                navigator.vibrate(15);
+            }
+
             // Fill slots
             const slots = document.querySelectorAll('.hanzi-build-slot');
             if (slots[nextIndexNeeded]) {
@@ -282,6 +336,9 @@ class HanziBuilderGame {
             }
         } else {
             // Wrong component selected!
+            if (typeof navigator !== "undefined" && navigator.vibrate) {
+                navigator.vibrate([50, 30, 50]);
+            }
             this.playSynth(130, 'sawtooth', 0.2, 0.25); // buzzer noise
             
             // Flash red on target card
@@ -311,6 +368,14 @@ class HanziBuilderGame {
         // Score points
         this.state.score += 20;
         
+        // Pronounce completed character with SpeechSynthesis
+        if (window.app && typeof window.app.playAudio === "function" && this.state.currentWord?.character) {
+            window.app.playAudio(this.state.currentWord.character);
+        }
+        if (typeof navigator !== "undefined" && navigator.vibrate) {
+            navigator.vibrate(35);
+        }
+
         // Record word study progress
         window.progressIntegrator?.recordWordStudy({
             character: this.state.currentWord.character,
@@ -404,10 +469,15 @@ class HanziBuilderGame {
             return;
         }
         try {
-            const AudioCtx = window.AudioContext || window.webkitAudioContext;
-            if (!AudioCtx) return;
-            
-            const audioCtx = new AudioCtx();
+            if (!this.audioCtx) {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                this.audioCtx = new AudioCtx();
+            }
+            if (this.audioCtx.state === 'suspended') {
+                this.audioCtx.resume();
+            }
+            const audioCtx = this.audioCtx;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             

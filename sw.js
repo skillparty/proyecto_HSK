@@ -180,6 +180,10 @@ const PRECACHE_FILES = [
   "./assets/images/background01.webp",
   "./assets/videos/snakeGame.mp4",
   "./assets/videos/toneInvader.mp4",
+  "./assets/videos/characterEvolution.mp4",
+  "./assets/videos/operaPekin.mp4",
+  "./assets/videos/technologyEvolution.mp4",
+  "./assets/videos/traditionalMedicine.mp4",
 ];
 
 // PRECACHE_FILES es la fuente única (scripts/build/apply-cache-versions.js

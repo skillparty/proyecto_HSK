@@ -122,6 +122,44 @@ class CultureModuleBase {
     }
   }
 
+  // Helper to toggle between video and photo in hero banner
+  bindMediaToggle(prefix, lang = 'es') {
+    if (!this.container) return;
+    const toggleBtn = this.container.querySelector(`#culture-${prefix}-toggle`);
+    if (!toggleBtn) return;
+    toggleBtn.addEventListener('click', () => {
+      const video = this.container.querySelector(`#culture-${prefix}-video`);
+      const img = this.container.querySelector(`#culture-${prefix}-img`);
+      const badge = this.container.querySelector(`#culture-${prefix}-badge`);
+      const isVideo = video && video.style.display !== 'none';
+      if (isVideo) {
+        if (video) {
+          video.pause();
+          video.style.display = 'none';
+        }
+        if (img) img.style.display = 'block';
+        if (badge) badge.style.display = 'none';
+        const icon = toggleBtn.querySelector('.toggle-icon');
+        const text = toggleBtn.querySelector('.toggle-text');
+        if (icon) icon.textContent = '🎬';
+        if (text) text.textContent = lang === 'en' ? 'View Video' : 'Ver Vídeo';
+        toggleBtn.title = lang === 'en' ? 'Switch to Video view' : 'Cambiar a vista Vídeo';
+      } else {
+        if (img) img.style.display = 'none';
+        if (video) {
+          video.style.display = 'block';
+          video.play().catch(() => {});
+        }
+        if (badge) badge.style.display = 'inline-flex';
+        const icon = toggleBtn.querySelector('.toggle-icon');
+        const text = toggleBtn.querySelector('.toggle-text');
+        if (icon) icon.textContent = '🖼️';
+        if (text) text.textContent = lang === 'en' ? 'View Photo' : 'Ver Foto';
+        toggleBtn.title = lang === 'en' ? 'Switch to Photo view' : 'Cambiar a vista Foto';
+      }
+    });
+  }
+
   async loadData() {
     // To be implemented by subclasses
   }

@@ -247,12 +247,20 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
           overflow: hidden;
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
           border: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
-          max-height: 280px;
           position: relative;
+          background: #000;
+        }
+        .culture-hero-video {
+          width: 100%;
+          max-height: 400px;
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          display: block;
+          background: #000;
         }
         .culture-hero-img {
           width: 100%;
-          height: 260px;
+          height: 280px;
           object-fit: cover;
           display: block;
           filter: brightness(0.92) contrast(1.05);
@@ -260,6 +268,73 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
         }
         .culture-hero-banner:hover .culture-hero-img {
           transform: scale(1.02);
+        }
+        .culture-video-badge {
+          position: absolute;
+          top: 14px;
+          right: 14px;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          color: #ffffff;
+          padding: 5px 12px;
+          border-radius: 20px;
+          font-size: 0.78rem;
+          font-weight: 600;
+          letter-spacing: 0.03em;
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          pointer-events: none;
+          z-index: 2;
+        }
+        .culture-media-toggle-btn {
+          position: absolute;
+          top: 14px;
+          left: 14px;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          color: #ffffff;
+          padding: 6px 14px;
+          border-radius: 20px;
+          font-size: 0.78rem;
+          font-weight: 600;
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          cursor: pointer;
+          z-index: 3;
+          transition: background 0.2s ease, transform 0.15s ease;
+        }
+        .culture-media-toggle-btn:hover {
+          background: rgba(0, 0, 0, 0.85);
+          transform: translateY(-1px);
+        }
+        @media (max-width: 640px) {
+          .culture-hero-banner {
+            margin-bottom: 1.4rem;
+          }
+          .culture-hero-video {
+            max-height: 240px;
+          }
+          .culture-hero-img {
+            height: 200px;
+          }
+          .culture-video-badge {
+            top: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+          }
+          .culture-media-toggle-btn {
+            top: 10px;
+            left: 10px;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+          }
         }
         .evolution-intro {
           padding: 1.8rem 2.2rem;
@@ -494,8 +569,34 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
     }
 
     let html = `
-      <div class="culture-hero-banner">
-        <img src="assets/images/culture/character_evolution.jpg" alt="Evolución de Caracteres" class="culture-hero-img" loading="lazy" />
+      <div class="culture-hero-banner" id="culture-characters-hero">
+        <video class="culture-hero-video" 
+               id="culture-characters-video"
+               src="assets/videos/characterEvolution.mp4" 
+               poster="assets/images/culture/character_evolution.jpg" 
+               controls 
+               loop 
+               muted 
+               autoplay 
+               playsinline 
+               preload="metadata"
+               aria-label="${lang === 'en' ? 'Character Evolution Video' : 'Vídeo de Evolución de Caracteres'}">
+          <img src="assets/images/culture/character_evolution.jpg" alt="Evolución de Caracteres" class="culture-hero-img" loading="lazy" />
+        </video>
+        <img src="assets/images/culture/character_evolution.jpg" 
+             alt="Evolución de Caracteres" 
+             class="culture-hero-img" 
+             id="culture-characters-img"
+             style="display: none;" 
+             loading="lazy" />
+        <span class="culture-video-badge" id="culture-characters-badge" aria-hidden="true">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>${lang === 'en' ? 'Featured Video' : 'Vídeo Ilustrativo'}</span>
+        </span>
+        <button type="button" class="culture-media-toggle-btn" id="culture-characters-toggle" title="${lang === 'en' ? 'Switch to Photo view' : 'Cambiar a vista Foto'}">
+          <span class="toggle-icon">🖼️</span>
+          <span class="toggle-text">${lang === 'en' ? 'View Photo' : 'Ver Foto'}</span>
+        </button>
       </div>
       <div class="evolution-intro">
         <p>${activeContent.intro}</p>
@@ -587,6 +688,9 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
 
     this.container.innerHTML = html;
     this.bindAudioButtons();
+    if (typeof this.bindMediaToggle === 'function') {
+      this.bindMediaToggle('characters', lang);
+    }
   }
 }
 

@@ -91,7 +91,12 @@ function renderMatrixGameInterface() {
             <!-- Palabra objetivo -->
             <div class="target-word">
                 <div class="target-label" data-i18n="matrixFindCharacterFor">Find the character for:</div>
-                <div id="target-pinyin" class="target-pinyin">nǐ hǎo</div>
+                <div class="target-pinyin-wrap" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+                    <div id="target-pinyin" class="target-pinyin">nǐ hǎo</div>
+                    <button id="matrix-audio-btn" class="matrix-audio-btn" type="button" aria-label="Escuchar pronunciación" title="Escuchar pronunciación" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); border-radius:50%; width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; color:inherit; transition:transform 0.15s, background 0.15s;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                    </button>
+                </div>
                 <div id="target-meaning" class="target-meaning">hola</div>
             </div>
             

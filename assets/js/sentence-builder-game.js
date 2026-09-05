@@ -416,6 +416,11 @@ class SentenceBuilderGame {
         tile.isPlaced = true;
         this.state.placedTiles.push({ id: tile.id, text: tile.text });
 
+        this.app?.audioController?.playFlip?.();
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            navigator.vibrate(15);
+        }
+
         this.renderTargetSlots();
         this.renderBankTiles();
     }
@@ -427,6 +432,11 @@ class SentenceBuilderGame {
 
         const bankTile = this.state.bankTiles.find((t) => t.id === removed.id);
         if (bankTile) bankTile.isPlaced = false;
+
+        this.app?.audioController?.playFlip?.();
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+            navigator.vibrate(15);
+        }
 
         this.renderTargetSlots();
         this.renderBankTiles();
@@ -514,10 +524,19 @@ class SentenceBuilderGame {
             if (checkBtn) checkBtn.style.display = "none";
             if (nextBtn) nextBtn.style.display = "inline-flex";
 
+            if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                navigator.vibrate(40);
+            }
+
             if (this.state.streak > 0 && this.state.streak % 5 === 0) {
                 this.app?.audioController?.playStreakFanfare?.();
             } else {
                 this.app?.audioController?.playCorrect?.();
+            }
+
+            if (typeof window.createParticles === 'function' && container) {
+                const rect = container.getBoundingClientRect();
+                window.createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, '#10b981');
             }
 
             // Pronounce Chinese sentence
@@ -526,6 +545,10 @@ class SentenceBuilderGame {
             // Incorrect
             this.state.streak = 0;
             this.updateStatsDisplay();
+
+            if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                navigator.vibrate([60, 40, 60]);
+            }
 
             if (container) {
                 container.classList.add("shake");
