@@ -578,8 +578,51 @@ html[data-theme="light"] .achievement-item.lock {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .home-hero {
+        padding: 28px 14px;
+        margin-bottom: 20px;
+        border-radius: var(--radius-md, 12px);
+    }
+
+    .home-hero h2 {
+        font-size: clamp(1.5rem, 5.5vw, 2.2rem);
+        margin-bottom: 10px;
+    }
+
+    .home-hero p {
+        font-size: 0.88rem;
+        margin-bottom: 20px;
+        line-height: 1.45;
+    }
+
+    .welcome-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        width: 100%;
+    }
+
+    .welcome-stat {
+        padding: 10px 6px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.08);
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .welcome-stat .stat-value {
+        font-size: 1.3rem;
+    }
+
+    .welcome-stat .stat-label {
+        font-size: 0.72rem;
+    }
+
     .dashboard-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
     }
     
     .welcome-card {
@@ -590,6 +633,7 @@ html[data-theme="light"] .achievement-item.lock {
     .daily-char-card {
         flex-direction: column;
         align-items: flex-start;
+        padding: 16px;
     }
 
     .welcome-header {
@@ -600,11 +644,6 @@ html[data-theme="light"] .achievement-item.lock {
 
     .welcome-stamp {
         display: none;
-    }
-
-    .welcome-stats {
-        justify-content: space-around;
-        gap: 8px;
     }
 
     .daily-quests-card,

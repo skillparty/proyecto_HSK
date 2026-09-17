@@ -650,13 +650,71 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .provinces-header-banner {
+        padding: 20px 16px;
+    }
+
+    .province-search-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .province-search-input {
+        width: 100%;
+    }
+
     .topography-steps-grid {
         grid-template-columns: 1fr;
     }
+
     .province-stats-strip {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
+
     .provinces-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .province-card {
+        padding: 12px;
+    }
+
+    .province-detail-dialog {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: auto 0 0 0 !important;
+        border-radius: 20px 20px 0 0 !important;
+        max-height: calc(100dvh - 20px) !important;
+    }
+
+    .province-modal-content {
+        max-height: calc(100dvh - 20px) !important;
+        padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+        position: relative;
+    }
+
+    .province-modal-content::before {
+        content: '';
+        display: block;
+        width: 38px;
+        height: 4px;
+        background: rgba(120, 120, 120, 0.35);
+        border-radius: 2px;
+        margin: 8px auto 2px auto;
+    }
+
+    .province-modal-header {
+        padding: 14px 16px;
+    }
+
+    .province-modal-body {
+        padding: 16px;
+    }
+
+    .province-features-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 }

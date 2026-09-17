@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+350d53ab";
+const SW_VERSION = "4.70.0+4404a8c0";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -13,13 +13,13 @@ const PRECACHE_FILES = [
   "./index.html",
   "./config/manifest.json",
   "./assets/css/design-tokens.css?v=e01267d0",
-  "./assets/css/app-base.css?v=c28c9407",
-  "./assets/css/app-header-nav.css?v=7ca83452",
-  "./assets/css/app-home.css?v=360134b4",
-  "./assets/css/app-practice.css?v=f8cd7b7c",
+  "./assets/css/app-base.css?v=a184c466",
+  "./assets/css/app-header-nav.css?v=5cbfccff",
+  "./assets/css/app-home.css?v=75bd62da",
+  "./assets/css/app-practice.css?v=39e55333",
   "./assets/css/app-browse.css?v=fbb33c28",
   "./assets/css/app-strokes.css?v=2a3bae39",
-  "./assets/css/app-quiz.css?v=fe8f04d4",
+  "./assets/css/app-quiz.css?v=a56de94f",
   "./assets/css/app-stats.css?v=cd1fd78c",
   "./assets/css/app-enhancements.css?v=99d811b4",
   "./assets/css/app-dashboard-extras.css?v=e9f43713",
@@ -49,7 +49,7 @@ const PRECACHE_FILES = [
   "./assets/css/culture-provinces.css",
   "./assets/css/app-videos.css?v=f5735c3e",
   "./assets/css/app-memories.css",
-  "./assets/css/offline-manager.css?v=7cdbd1ca",
+  "./assets/css/offline-manager.css?v=9da53d67",
   "./assets/css/etymology-styles.css?v=b73c0ecf",
   "./assets/css/app-writing-sheets.css",
   "./assets/css/flashcard-pdf-styles.css",

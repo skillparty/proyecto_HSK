@@ -725,16 +725,42 @@
     .tt-tone-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+    .tt-challenge-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 }
 
 @media (max-width: 640px) {
     .tt-modes-bar {
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 6px;
+        padding-bottom: 6px;
+        scrollbar-width: none;
+    }
+    .tt-modes-bar::-webkit-scrollbar {
+        display: none;
+    }
+    .tt-mode-tab {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 8px 14px;
+        font-size: 0.82rem;
     }
     .tt-tone-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .tt-tone-card {
+        padding: 10px 8px;
     }
     .tt-choices-grid {
+        grid-template-columns: 1fr;
+    }
+    .tt-sandhi-cards-grid {
         grid-template-columns: 1fr;
     }
 }

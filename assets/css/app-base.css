@@ -213,9 +213,10 @@ ul {
     }
 
     .main-content {
-        padding: 12px 12px calc(var(--bottom-nav-height, 60px) + var(--safe-area-bottom, 0px) + 24px) 12px;
+        padding: 10px max(10px, env(safe-area-inset-left, 0px)) calc(var(--bottom-nav-height, 60px) + var(--safe-area-bottom, 0px) + 24px) max(10px, env(safe-area-inset-right, 0px));
         width: 100%;
         max-width: 100%;
+        box-sizing: border-box;
     }
 
     /* Prevent unwanted iOS auto-zoom when focusing form inputs */
@@ -229,8 +230,35 @@ ul {
     .btn,
     .header-control,
     .nav-tab,
-    .action-btn {
+    .action-btn,
+    .tone-pill-btn,
+    .syllable-chip,
+    .word-chip-btn,
+    .vocab-card,
+    .quiz-option-btn {
         touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Universal Bottom-Sheet Dialogs for Mobile */
+    dialog {
+        position: fixed !important;
+        bottom: 0 !important;
+        top: auto !important;
+        left: 0 !important;
+        right: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: calc(100dvh - 36px) !important;
+        border-radius: 20px 20px 0 0 !important;
+        padding-bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
+        box-sizing: border-box;
+    }
+
+    dialog::backdrop {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
     }
 }
 

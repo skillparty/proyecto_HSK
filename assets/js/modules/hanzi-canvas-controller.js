@@ -33,7 +33,10 @@ class HanziCanvasController {
         if (!this.canvas) return;
         const rect = this.canvas.getBoundingClientRect();
         const dpr = window.devicePixelRatio || 1;
-        const size = Math.min(360, Math.max(280, rect.width || 320));
+        const parentWidth = this.canvas.parentElement ? this.canvas.parentElement.clientWidth : 320;
+        const availableWidth = parentWidth > 0 ? parentWidth - 8 : 320;
+        const targetWidth = Math.min(availableWidth, rect.width || 320);
+        const size = Math.min(360, Math.max(220, targetWidth));
 
         this.canvas.width = size * dpr;
         this.canvas.height = size * dpr;

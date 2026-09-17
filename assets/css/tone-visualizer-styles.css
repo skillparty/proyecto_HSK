@@ -583,3 +583,63 @@
     from { opacity: 0; transform: translateY(4px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 640px) {
+    .tone-vis-header-banner {
+        padding: 16px;
+    }
+
+    .tone-selector-pills {
+        gap: 6px;
+    }
+
+    .tone-pill-btn {
+        padding: 6px 10px;
+    }
+
+    .tone-pill-char {
+        font-size: 0.95rem;
+    }
+
+    .syllable-chips-group,
+    .word-chips-group {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 6px;
+        padding-bottom: 4px;
+        width: 100%;
+        scrollbar-width: none;
+    }
+
+    .syllable-chips-group::-webkit-scrollbar,
+    .word-chips-group::-webkit-scrollbar {
+        display: none;
+    }
+
+    .syllable-chip,
+    .word-chip-btn {
+        flex: 0 0 auto;
+    }
+
+    #pitch-graph-canvas {
+        height: 220px;
+    }
+
+    .tone-vis-actions-bar {
+        gap: 8px;
+    }
+
+    .tone-action-btn {
+        flex: 1 1 auto;
+        min-height: 44px;
+        justify-content: center;
+    }
+
+    .audio-speed-pills {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+}

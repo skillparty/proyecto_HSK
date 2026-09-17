@@ -1308,5 +1308,70 @@
     max-width: 320px;
 }
 
+/* Responsive adjustments for Past Exams & Certificates on Mobile */
+@media (max-width: 640px) {
+    .past-exam-nav-wrapper {
+        position: static !important;
+        margin-bottom: 14px;
+    }
+
+    .past-exam-nav-grid {
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 6px;
+    }
+
+    .past-exam-audio-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .past-exam-audio-btn {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+    }
+
+    .past-exam-actions-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .past-exam-nav-btns {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .past-exam-finish-btn,
+    .past-exam-flag-btn {
+        width: 100%;
+        min-height: 44px;
+        justify-content: center;
+    }
+
+    .hsk-certificate-card {
+        padding: 20px 16px;
+    }
+
+    .cert-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .cert-table th,
+    .cert-table td {
+        padding: 8px 6px;
+        font-size: 0.8rem;
+    }
+
+    .cert-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        text-align: center;
+    }
+}
+
 
 
