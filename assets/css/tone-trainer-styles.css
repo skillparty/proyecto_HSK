@@ -1,11 +1,11 @@
 /* tone-trainer-styles.css — Entrenador de Oído y Tonos */
 
 .tone-trainer-container {
-    max-width: 860px;
+    max-width: 900px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
     padding: 10px;
 }
 
@@ -53,6 +53,7 @@
     display: flex;
     gap: 12px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .tt-stat-item {
@@ -78,21 +79,21 @@
     font-family: var(--font-mono, monospace);
 }
 
-/* Modes Selector Bar */
+/* Modes Selector Bar (5 Modes) */
 .tt-modes-bar {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
 }
 
 .tt-mode-tab {
     background: var(--bg-panel);
     border: 2px solid var(--color-border);
     border-radius: var(--radius-md, 12px);
-    padding: 14px 16px;
+    padding: 12px 14px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
     text-align: left;
     transition: all 0.2s ease;
@@ -111,7 +112,9 @@
 }
 
 .tt-mode-icon {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    color: var(--color-primary, #e53935);
+    flex-shrink: 0;
 }
 
 .tt-mode-info {
@@ -122,16 +125,123 @@
 }
 
 .tt-mode-info strong {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .tt-mode-info small {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     color: var(--text-muted);
     line-height: 1.2;
+}
+
+/* Controls Toolbar */
+.tt-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 8px 14px;
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    font-size: 0.85rem;
+}
+
+.tt-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.tt-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tt-filter-label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.tt-filter-select {
+    padding: 4px 8px;
+    font-size: 0.84rem;
+    min-height: 32px;
+    border-radius: 6px;
+}
+
+.tt-shortcut-pill {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+}
+
+/* Challenge Mode Banner */
+.tt-challenge-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 12px;
+    padding: 12px 18px;
+}
+
+.tt-challenge-timer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.tt-challenge-timer .timer-val {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #ef4444;
+    font-family: var(--font-mono, monospace);
+}
+
+.tt-challenge-progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.tt-challenge-progress-bar .progress-fill {
+    height: 100%;
+    background: #ef4444;
+    border-radius: 4px;
+    transition: width 0.9s linear;
+}
+
+.tt-challenge-combo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tt-challenge-combo .combo-val {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #f59e0b;
+}
+
+.tt-challenge-combo .combo-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #f59e0b;
 }
 
 /* Arena Card */
@@ -139,11 +249,11 @@
     background: var(--bg-panel);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg, 16px);
-    padding: 32px 24px;
+    padding: 28px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
     box-shadow: var(--shadow-md, 0 4px 14px rgba(0,0,0,0.08));
 }
 
@@ -152,56 +262,99 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
 .tt-big-audio-btn {
-    background: linear-gradient(135deg, var(--color-primary, #e53935), var(--color-primary-hover, #c62828));
-    color: white;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary, #e53935), #b71c1c);
     border: none;
-    border-radius: 9999px;
-    padding: 16px 36px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 1.15rem;
-    font-weight: 700;
+    color: #ffffff;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
     box-shadow: 0 8px 24px rgba(229, 57, 53, 0.35);
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
-    user-select: none;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
 }
 
 .tt-big-audio-btn:hover {
-    transform: scale(1.05) translateY(-2px);
+    transform: scale(1.05);
     box-shadow: 0 12px 30px rgba(229, 57, 53, 0.5);
 }
 
 .tt-big-audio-btn:active {
-    transform: scale(0.97);
+    transform: scale(0.95);
+}
+
+.tt-play-text {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    opacity: 0.95;
+    text-align: center;
+    padding: 0 6px;
+}
+
+.tt-audio-waves {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 12px;
+    margin-bottom: 2px;
+}
+
+.tt-audio-waves span {
+    width: 3px;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 2px;
+    animation: audioWave 1.2s infinite ease-in-out;
+}
+
+.tt-audio-waves span:nth-child(2) { animation-delay: 0.2s; }
+.tt-audio-waves span:nth-child(3) { animation-delay: 0.4s; }
+.tt-audio-waves span:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes audioWave {
+    0%, 100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
 }
 
 .tt-audio-speed-controls {
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .tt-speed-btn {
-    background: var(--color-bg-input, rgba(255, 255, 255, 0.05));
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.04));
     border: 1px solid var(--color-border);
-    border-radius: 6px;
-    padding: 4px 12px;
-    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
     font-weight: 600;
     color: var(--text-muted);
     cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: all 0.15s ease;
+}
+
+.tt-speed-btn:hover {
+    color: var(--text-main);
+    border-color: var(--text-muted);
 }
 
 .tt-speed-btn.active {
-    background: var(--primary, #e11d48);
-    color: white;
-    border-color: var(--primary, #e11d48);
+    background: var(--color-primary, #e53935);
+    border-color: var(--color-primary, #e53935);
+    color: #ffffff;
 }
 
 /* Prompt Box */
@@ -210,7 +363,7 @@
 }
 
 .tt-question-prompt {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 600;
     color: var(--text-main);
     margin: 0 0 6px 0;
@@ -222,131 +375,149 @@
 }
 
 .tt-syllable-clue strong {
-    color: var(--primary, #e11d48);
-    font-size: 1.15rem;
-    font-family: var(--font-mono, monospace);
+    color: var(--color-primary, #e53935);
+    font-size: 1.1rem;
+    margin-left: 4px;
 }
 
-/* Tone Cards Grid */
+/* Tone Grid (5 Tones: 1, 2, 3, 4, Neutral) */
 .tt-tone-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
     width: 100%;
-    max-width: 680px;
 }
 
 .tt-tone-card {
     background: var(--color-bg-input, rgba(255, 255, 255, 0.03));
     border: 2px solid var(--color-border);
     border-radius: var(--radius-md, 12px);
-    padding: 18px 12px;
+    padding: 16px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     cursor: pointer;
-    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    transition: all 0.2s ease;
     color: var(--text-main);
+    position: relative;
 }
 
 .tt-tone-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     border-color: var(--color-primary, #e53935);
-    background: rgba(229, 57, 53, 0.08);
+    background: rgba(229, 57, 53, 0.05);
 }
 
 .tt-tone-card.correct {
+    background: rgba(34, 197, 94, 0.18) !important;
     border-color: #22c55e !important;
-    background: rgba(34, 197, 94, 0.15) !important;
-    box-shadow: 0 0 16px rgba(34, 197, 94, 0.4);
+    color: #22c55e !important;
 }
 
 .tt-tone-card.incorrect {
+    background: rgba(239, 68, 68, 0.18) !important;
     border-color: #ef4444 !important;
-    background: rgba(239, 68, 68, 0.15) !important;
-    opacity: 0.6;
+    color: #ef4444 !important;
 }
 
 .tt-tone-badge {
-    font-size: 0.85rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}
+
+.tt-tone-contour {
+    font-family: var(--font-mono, monospace);
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.tt-contour-1 { color: #e11d48; }
+.tt-contour-2 { color: #f59e0b; }
+.tt-contour-3 { color: #3b82f6; }
+.tt-contour-4 { color: #10b981; }
+.tt-contour-5 { color: #8b5cf6; }
+
+.tt-tone-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.tt-tone-example {
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--color-primary, #e53935);
 }
 
-.tt-tone-contour {
-    font-size: 1.25rem;
-    font-weight: 700;
-    font-family: var(--font-mono, monospace);
-}
-
-.tt-tone-label {
-    font-size: 0.78rem;
+.tt-key-hint {
+    font-size: 0.65rem;
     color: var(--text-muted);
+    opacity: 0.7;
+    margin-top: 2px;
 }
 
-.tt-tone-example {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--text-main);
-}
-
-/* Choices Grid (for Pairs & Vocab) */
+/* Generic Choices Grid (Tone Pairs, Minimal Pairs & Vocab) */
 .tt-choices-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 12px;
     width: 100%;
-    max-width: 620px;
 }
 
 .tt-choice-btn {
-    background: var(--color-bg-input, rgba(255, 255, 255, 0.04));
+    background: var(--color-bg-input, rgba(255, 255, 255, 0.03));
     border: 2px solid var(--color-border);
     border-radius: var(--radius-md, 12px);
-    padding: 16px 20px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-main);
-    cursor: pointer;
+    padding: 16px 14px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 4px;
-    transition: all 0.18s ease;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-main);
+    font-size: 1.05rem;
+    font-weight: 600;
+    min-height: 70px;
 }
 
 .tt-choice-btn:hover {
-    transform: translateY(-2px);
     border-color: var(--color-primary, #e53935);
+    background: rgba(229, 57, 53, 0.06);
+    transform: translateY(-2px);
 }
 
 .tt-choice-btn.correct {
-    border-color: #22c55e !important;
     background: rgba(34, 197, 94, 0.18) !important;
+    border-color: #22c55e !important;
+    color: #22c55e !important;
 }
 
 .tt-choice-btn.incorrect {
-    border-color: #ef4444 !important;
     background: rgba(239, 68, 68, 0.18) !important;
+    border-color: #ef4444 !important;
+    color: #ef4444 !important;
 }
 
 .tt-choice-sub {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
-    font-weight: 400;
+    font-weight: normal;
 }
 
 /* Feedback Card */
 .tt-feedback-card {
-    padding: 14px 24px;
-    border-radius: var(--radius-md, 12px);
-    font-size: 1.05rem;
-    font-weight: 600;
-    text-align: center;
     width: 100%;
-    max-width: 580px;
-    animation: fadeIn 0.3s ease-out;
+    padding: 14px 18px;
+    border-radius: var(--radius-md, 10px);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
 }
 
 .tt-feedback-card.correct {
@@ -361,7 +532,36 @@
     color: #ef4444;
 }
 
-/* Reference Card */
+/* Challenge Summary Card */
+.tt-challenge-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.tt-challenge-summary h4 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: #22c55e;
+}
+
+.tt-challenge-medal {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 4px 0;
+}
+
+.tt-summary-metrics {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+/* Reference Card with Tabs */
 .tt-reference-card {
     background: var(--bg-panel);
     border: 1px solid var(--color-border);
@@ -369,18 +569,48 @@
     padding: 24px;
 }
 
-.tt-ref-header h3 {
-    margin: 0 0 6px 0;
-    font-size: 1.1rem;
-    color: var(--text-main);
+.tt-ref-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 10px;
+    flex-wrap: wrap;
 }
 
-.tt-ref-header p {
-    margin: 0 0 16px 0;
+.tt-ref-tab {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.tt-ref-tab:hover {
+    color: var(--text-main);
+    border-color: var(--text-muted);
+}
+
+.tt-ref-tab.active {
+    background: var(--color-primary, #e53935);
+    border-color: var(--color-primary, #e53935);
+    color: #fff;
+}
+
+.tt-ref-desc {
+    margin: 0 0 14px 0;
     font-size: 0.85rem;
     color: var(--text-muted);
 }
 
+/* Pitch Diagram (Chao Scale) */
 .tt-pitch-diagram {
     display: flex;
     flex-direction: column;
@@ -413,14 +643,93 @@
     align-items: center;
 }
 
-.tt-line-t1 { color: #e11d48; font-weight: 700; font-family: monospace; font-size: 1.05rem; }
-.tt-line-t2 { color: #f59e0b; font-weight: 700; font-family: monospace; font-size: 1.05rem; }
-.tt-line-t3 { color: #3b82f6; font-weight: 700; font-family: monospace; font-size: 1.05rem; }
-.tt-line-t4 { color: #10b981; font-weight: 700; font-family: monospace; font-size: 1.05rem; }
+.tt-line-t1 { color: #e11d48; font-weight: 700; font-family: monospace; font-size: 0.95rem; }
+.tt-line-t2 { color: #f59e0b; font-weight: 700; font-family: monospace; font-size: 0.95rem; }
+.tt-line-t3 { color: #3b82f6; font-weight: 700; font-family: monospace; font-size: 0.95rem; }
+.tt-line-t4 { color: #10b981; font-weight: 700; font-family: monospace; font-size: 0.95rem; }
+.tt-line-t0 { color: #8b5cf6; font-weight: 700; font-family: monospace; font-size: 0.95rem; }
+
+/* Sandhi Rules Cards Grid */
+.tt-sandhi-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+}
+
+.tt-sandhi-card {
+    background: var(--bg-app);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sandhi-rule-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-primary, #e53935);
+    background: rgba(229, 57, 53, 0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+    align-self: flex-start;
+}
+
+.tt-sandhi-card h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--text-main);
+}
+
+.tt-sandhi-card p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.sandhi-example-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+.sandhi-hanzi {
+    font-weight: 600;
+}
+
+.sandhi-arrow {
+    color: var(--color-primary, #e53935);
+}
+
+.sandhi-pron {
+    font-weight: 700;
+    color: var(--success, #10b981);
+    flex: 1;
+}
+
+.tt-play-sandhi-btn {
+    padding: 2px 8px;
+    font-size: 0.8rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .tt-tone-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
 @media (max-width: 640px) {
     .tt-modes-bar {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
     .tt-tone-grid {
         grid-template-columns: repeat(2, 1fr);

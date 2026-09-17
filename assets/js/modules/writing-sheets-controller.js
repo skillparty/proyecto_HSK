@@ -405,10 +405,29 @@ class WritingSheetsController {
             return this.strokeCache.get(char);
         }
 
+        const url = `assets/data/etymology/strokes/${encodeURIComponent(char)}.json`;
+
+        // 1. Cache-First: instant local cache check
+        if (typeof window !== "undefined" && "caches" in window) {
+            try {
+                const cache = await caches.open("hsk-strokes-data");
+                const cached = await cache.match(url);
+                if (cached) {
+                    try {
+                        const data = await cached.json();
+                        if (data && Array.isArray(data.strokes)) {
+                            this.strokeCache.set(char, data.strokes);
+                            return data.strokes;
+                        }
+                    } catch { /* if cached data corrupted, fall through to fetch */ }
+                }
+            } catch { /* ignore cache read error */ }
+        }
+
+        // 2. Network fetch fallback
         try {
-            const url = `assets/data/etymology/strokes/${encodeURIComponent(char)}.json`;
             const res = await fetch(url);
-            if (res.ok) {
+            if (res && res.ok) {
                 const data = await res.json();
                 if (data && Array.isArray(data.strokes)) {
                     this.strokeCache.set(char, data.strokes);

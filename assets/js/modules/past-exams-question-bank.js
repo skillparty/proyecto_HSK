@@ -79,6 +79,9 @@ class PastExamsQuestionBank {
         const bank = Array.isArray(this.app.pastExamQuestionBank) ? this.app.pastExamQuestionBank : [];
         return bank.filter((item) => {
             const matchesLevel = level === 'all' || String(item.hskLevel) === String(level);
+            if (section === 'listening') {
+                return matchesLevel && item.sectionType === 'listening';
+            }
             const matchesSection = section === 'all' || item.sectionType === section;
             const noAudioRequired = item.audioRequired !== true;
             return matchesLevel && matchesSection && noAudioRequired;
@@ -219,6 +222,45 @@ class PastExamsQuestionBank {
 
         const meaningEs = this.getWordMeaning(word, 'es');
         const meaningEn = this.getWordMeaning(word, 'en');
+
+        if (sectionType === 'listening') {
+            const distractors = this.collectDistractorWords(vocabularyPool, word, (item) => this.getWordMeaning(item, 'en'), 3);
+            const wrongLabels = distractors.map((item) => this.createLocalizedLabel(
+                this.getWordMeaning(item, 'es'),
+                this.getWordMeaning(item, 'en')
+            ));
+            const optionSet = this.buildOptions(
+                this.createLocalizedLabel(meaningEs, meaningEn),
+                wrongLabels
+            );
+
+            if (!optionSet) {
+                return null;
+            }
+
+            return {
+                id: `generated-listening-${word.level}-${index}-${this.hashText(character + pinyin)}`,
+                hskLevel: Number(word.level) || 1,
+                examSetId: 'generated-vocabulary',
+                sectionType: 'listening',
+                audioRequired: true,
+                audioText: character,
+                prompt: {
+                    es: 'Escucha el audio y selecciona el significado correspondiente:',
+                    en: 'Listen to the audio and select the corresponding meaning:'
+                },
+                hint: {
+                    es: `Pinyin: ${pinyin}`,
+                    en: `Pinyin: ${pinyin}`
+                },
+                explanation: {
+                    es: `El término escuchado es "${character}" (${pinyin}), que significa "${meaningEs}".`,
+                    en: `The heard word is "${character}" (${pinyin}), meaning "${meaningEn}".`
+                },
+                options: optionSet.options,
+                answer: optionSet.answer
+            };
+        }
 
         if (sectionType === 'writing') {
             const distractors = this.collectDistractorWords(vocabularyPool, word, (item) => String(item.character || '').trim(), 3);

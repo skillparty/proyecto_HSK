@@ -2,7 +2,7 @@
                 <div id="past-exams" class="tab-panel" tabindex="0">
                     <div class="quiz-setup" id="past-exams-setup">
                         <h2 data-i18n="pastExamsTitle">Exámenes pasados HSK</h2>
-                        <p class="past-exams-note" data-i18n="pastExamsNoAudioNotice">Esta versión no incluye ejercicios de audio (listening).</p>
+                        <p class="past-exams-note" data-i18n="pastExamsIntroNotice">Formatos oficiales HSK con comprensión auditiva (listening), lectura, escritura y gramática, además de simulación cronometrada oficial.</p>
                         <div class="quiz-options">
                             <div class="control-group">
                                 <label for="past-exam-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
@@ -19,7 +19,8 @@
                             <div class="control-group">
                                 <label for="past-exam-section" class="control-label" data-i18n="pastExamsSectionLabel">Sección</label>
                                 <select id="past-exam-section" class="select-input">
-                                    <option value="all" data-i18n="pastExamsSectionAll">Todas</option>
+                                    <option value="all" data-i18n="pastExamsSectionAll">Todas (Lectura, Escritura, Gramática)</option>
+                                    <option value="listening" data-i18n="pastExamsSectionListening">Comprensión Auditiva (听力)</option>
                                     <option value="reading" data-i18n="pastExamsSectionReading">Lectura</option>
                                     <option value="writing" data-i18n="pastExamsSectionWriting">Escritura</option>
                                     <option value="grammar" data-i18n="pastExamsSectionGrammar">Gramática</option>
@@ -29,9 +30,25 @@
                                 <label for="past-exam-questions" class="control-label" data-i18n="numberOfQuestions">Number of questions</label>
                                 <select id="past-exam-questions" class="select-input">
                                     <option value="5">5</option>
-                                    <option value="10">10</option>
+                                    <option value="10" selected>10</option>
                                     <option value="20">20</option>
                                 </select>
+                            </div>
+                            <div class="control-group" id="past-exam-timer-group">
+                                <label for="past-exam-time-limit" class="control-label" data-i18n="pastExamsTimeLimit">Límite de tiempo</label>
+                                <select id="past-exam-time-limit" class="select-input">
+                                    <option value="auto" selected data-i18n="pastExamsTimeAuto">Oficial sugerido (según preguntas)</option>
+                                    <option value="10">10 min</option>
+                                    <option value="20">20 min</option>
+                                    <option value="35">35 min</option>
+                                    <option value="none" data-i18n="pastExamsTimeUnlimited">Sin límite</option>
+                                </select>
+                            </div>
+                            <div class="control-group control-group-checkbox">
+                                <label class="control-checkbox-label" for="past-exam-sim-mode">
+                                    <input id="past-exam-sim-mode" type="checkbox" class="control-checkbox-input" checked>
+                                    <span data-i18n="pastExamsSimMode">Modo Simulación Oficial (con navegador libre y entrega final)</span>
+                                </label>
                             </div>
                             <div class="control-group control-group-checkbox">
                                 <label class="control-checkbox-label" for="past-exam-official-only">
@@ -52,33 +69,128 @@
                                 <span id="past-exam-total">10</span>
                             </div>
                             <div class="quiz-score-display">
-                                <span data-i18n="score">Score</span>:
+                                <span id="past-exam-score-label" data-i18n="score">Score</span>:
                                 <span id="past-exam-score">0</span>
                             </div>
+                            <div id="past-exam-timer-badge" class="quiz-timer-badge" style="display: none;">
+                                <span class="timer-icon">⏱️</span>
+                                <span id="past-exam-timer-val">15:00</span>
+                            </div>
                         </div>
+
+                        <!-- Question Navigator Grid for Official Simulation -->
+                        <div class="past-exam-nav-wrapper" id="past-exam-nav-wrapper">
+                            <div class="past-exam-nav-header">
+                                <span class="nav-title" data-i18n="pastExamsNavigator">Navegador de preguntas</span>
+                                <div class="past-exam-nav-legend">
+                                    <span class="legend-item"><span class="legend-dot current"></span> <span data-i18n="pastExamsNavCurrent">Actual</span></span>
+                                    <span class="legend-item"><span class="legend-dot answered"></span> <span data-i18n="pastExamsNavAnswered">Respondida</span></span>
+                                    <span class="legend-item"><span class="legend-dot flagged"></span> <span data-i18n="pastExamsNavFlagged">Marcada 🚩</span></span>
+                                </div>
+                            </div>
+                            <div class="past-exam-nav-grid" id="past-exam-nav-grid"></div>
+                        </div>
+
                         <div id="past-exam-pool-summary" class="past-exams-pool-summary" style="display: none;"></div>
+
                         <div class="quiz-content" id="past-exam-content">
+                            <!-- Listening Audio Box -->
+                            <div id="past-exam-audio-container" class="past-exam-audio-box" style="display: none;">
+                                <button id="past-exam-play-audio-btn" type="button" class="btn btn-secondary past-exam-audio-btn">
+                                    <span class="audio-icon">🔊</span>
+                                    <span id="past-exam-audio-btn-text" data-i18n="pastExamsPlayAudio">Escuchar audio (听力)</span>
+                                </button>
+                                <span id="past-exam-audio-plays" class="past-exam-audio-plays"></span>
+                            </div>
+
                             <div class="question-text" id="past-exam-question"></div>
                             <div class="quiz-options" id="past-exam-options"></div>
-                            <div class="quiz-actions">
-                                <button id="past-exam-submit" class="btn btn-primary" disabled data-i18n="submit">Enviar</button>
-                                <button id="past-exam-next" class="btn btn-primary" style="display: none;" data-i18n="next">Siguiente</button>
+
+                            <div class="past-exam-actions-bar">
+                                <button id="past-exam-flag-btn" type="button" class="btn btn-outline past-exam-flag-btn" data-i18n="pastExamsFlagQuestion">🚩 Marcar para revisar</button>
+                                <div class="past-exam-nav-btns">
+                                    <button id="past-exam-prev" type="button" class="btn btn-secondary" style="display: none;" data-i18n="previous">Anterior</button>
+                                    <button id="past-exam-submit" class="btn btn-primary" disabled data-i18n="submit">Enviar</button>
+                                    <button id="past-exam-next" class="btn btn-primary" style="display: none;" data-i18n="next">Siguiente</button>
+                                    <button id="past-exam-finish-btn" type="button" class="btn btn-danger past-exam-finish-btn" style="display: none;" data-i18n="pastExamsFinishExam">Entregar examen</button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="quiz-results" id="past-exams-results" style="display: none;">
                         <h2 data-i18n="pastExamsCompleted">Examen completado</h2>
-                        <div class="results-summary">
-                            <div>
-                                <span data-i18n="finalScore">Final Score</span>:
-                                <strong id="past-exam-final-score">0/0</strong>
-                                (<span id="past-exam-final-percentage">0%</span>)
+                        <div class="results-summary past-exams-results-summary">
+                            <div class="past-exam-score-card">
+                                <div class="score-main">
+                                    <span data-i18n="finalScore">Final Score</span>:
+                                    <strong id="past-exam-final-score">0/0</strong>
+                                    (<span id="past-exam-final-percentage">0%</span>)
+                                </div>
+                                <div id="past-exam-scaled-score" class="past-exam-scaled-score"></div>
+                                <div id="past-exam-grade-badge" class="past-exam-grade-badge"></div>
                             </div>
+
+                            <!-- Section Breakdown -->
+                            <div id="past-exam-sections-breakdown" class="past-exam-sections-breakdown"></div>
                         </div>
+
                         <div class="results-actions">
                             <button id="restart-past-exam" class="btn btn-primary" data-i18n="tryAgain">Reintentar</button>
+                            <button id="past-exam-retry-mistakes" class="btn btn-secondary" style="display: none;" data-i18n="pastExamsRetryMistakes">Repasar fallos</button>
+                            <button id="past-exam-view-cert" class="btn btn-accent" style="display: none;" data-i18n="pastExamsViewCert">Ver Certificado Simulado</button>
                             <button id="new-past-exam" class="btn btn-secondary" data-i18n="newQuiz">Nuevo set</button>
+                        </div>
+
+                        <!-- Question-by-Question Review Breakdown -->
+                        <div id="past-exam-review-wrapper" class="past-exam-review-wrapper">
+                            <h3 class="past-exam-review-title" data-i18n="pastExamsReviewTitle">Revisión detallada de preguntas y explicaciones</h3>
+                            <div id="past-exam-review-list" class="past-exam-review-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- Simulated HSK Certificate Modal -->
+                    <div id="past-exam-cert-modal" class="past-exam-modal-backdrop" style="display: none;">
+                        <div class="past-exam-modal-content">
+                            <button id="past-exam-cert-close" type="button" class="past-exam-modal-close" aria-label="Close">&times;</button>
+                            <div id="past-exam-certificate-card" class="hsk-certificate-card">
+                                <div class="cert-header">
+                                    <div class="cert-emblem">漢考</div>
+                                    <div class="cert-titles">
+                                        <h4>汉语水平考试（HSK）成绩报告</h4>
+                                        <h5>CHINESE PROFICIENCY TEST SCORE REPORT</h5>
+                                        <p class="cert-sub">Confuc10++ Simulated Certification</p>
+                                    </div>
+                                </div>
+                                <div class="cert-body">
+                                    <div class="cert-field"><span class="cert-label">考生姓名 / Candidate:</span> <strong id="cert-candidate-name">HSK Student</strong></div>
+                                    <div class="cert-field"><span class="cert-label">考试等级 / HSK Level:</span> <strong id="cert-level">HSK 1</strong></div>
+                                    <div class="cert-field"><span class="cert-label">考试日期 / Test Date:</span> <strong id="cert-date">2026-09-17</strong></div>
+                                    <div class="cert-scores-table">
+                                        <div class="table-header">
+                                            <span>项目 / Section</span>
+                                            <span>满分 / Max</span>
+                                            <span>得分 / Score</span>
+                                        </div>
+                                        <div id="cert-table-rows" class="table-rows"></div>
+                                        <div class="table-footer">
+                                            <span>总分 / Total Score</span>
+                                            <span id="cert-max-score">300</span>
+                                            <strong id="cert-total-score">240</strong>
+                                        </div>
+                                    </div>
+                                    <div class="cert-status-row">
+                                        <span>考试结果 / Result:</span>
+                                        <strong id="cert-status-badge" class="cert-badge pass">合格 / PASSED</strong>
+                                    </div>
+                                </div>
+                                <div class="cert-footer">
+                                    <div class="cert-seal">
+                                        <div class="seal-inner">汉考国际<br>HSK CERTIFIED</div>
+                                    </div>
+                                    <p class="cert-disclaimer">Simulación para fines de preparación académica y estudio personal.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

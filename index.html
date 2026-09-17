@@ -77,12 +77,12 @@
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=e01267d0" id="design-tokens">
     <!-- Split de styles-professional.css: el orden de estos <link> ES la cascada, no reordenar -->
     <link rel="stylesheet" href="assets/css/app-base.css?v=c28c9407" id="main-stylesheet">
-    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=92913f61">
+    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=7ca83452">
     <link rel="stylesheet" href="assets/css/app-home.css?v=360134b4">
-    <link rel="stylesheet" href="assets/css/app-practice.css?v=89c300b3">
+    <link rel="stylesheet" href="assets/css/app-practice.css?v=f8cd7b7c">
     <link rel="stylesheet" href="assets/css/app-browse.css?v=fbb33c28">
     <link rel="stylesheet" href="assets/css/app-strokes.css?v=2a3bae39">
-    <link rel="stylesheet" href="assets/css/app-quiz.css?v=5d43a437">
+    <link rel="stylesheet" href="assets/css/app-quiz.css?v=fe8f04d4">
     <link rel="stylesheet" href="assets/css/app-stats.css?v=cd1fd78c">
     <link rel="stylesheet" href="assets/css/app-enhancements.css?v=99d811b4">
     <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=e9f43713">
@@ -90,6 +90,7 @@
     <link rel="stylesheet" href="assets/css/command-palette.css?v=86b01884" id="command-palette-stylesheet">
     <link rel="stylesheet" href="assets/css/achievements-styles.css?v=11478cfc" id="achievements-stylesheet">
     <link rel="stylesheet" href="assets/css/deck-manager-styles.css?v=ed48188f" id="deck-manager-stylesheet">
+    <link rel="stylesheet" href="assets/css/offline-manager.css?v=7cdbd1ca" id="offline-manager-stylesheet">
 
     <!-- Game/leaderboard CSS injected on demand by ui-controller.js (see loadStylesheet) -->
     <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
@@ -242,6 +243,19 @@
                                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                                     </svg>
                                     <span id="reminder-btn-text" data-i18n="reminderActivateText">Notificar</span>
+                                </button>
+                            </div>
+
+                            <div class="settings-row offline-manager-row" id="offline-manager-row">
+                                <span class="settings-row-label" data-i18n="offlineManagerLabel">Modo Offline</span>
+                                <button id="offline-manager-btn" class="settings-action-btn" type="button" title="Gestionar datos y caracteres sin conexión" aria-label="Gestionar datos offline">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                    <span id="offline-btn-badge" class="badge-count" style="display: none;">0%</span>
+                                    <span data-i18n="offlineManagerBtnText">Descargar</span>
                                 </button>
                             </div>
                         </div>
@@ -478,6 +492,9 @@
                         </button>
                         <button class="nav-dropdown-item" data-tab="china-cities">
                             <span data-i18n="chinaCitiesTab">Ciudades de China</span>
+                        </button>
+                        <button class="nav-dropdown-item" data-tab="culture-provinces">
+                            <span data-i18n="cultureProvincesTab">Provincias y Geografía</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="calligraphy-scroll">
                             <span data-i18n="calligraphyScrollTab">Rollos de Caligrafía</span>
@@ -1026,7 +1043,7 @@
                 <div id="quiz" class="tab-panel" tabindex="0">
                     <div class="quiz-setup" id="quiz-setup">
                         <h2 data-i18n="configureQuiz">Configure Quiz</h2>
-                        <div class="quiz-options">
+                        <div class="quiz-options-grid">
                             <div class="control-group">
                                 <label for="quiz-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
                                 <select id="quiz-level" class="select-input">
@@ -1040,12 +1057,29 @@
                                 </select>
                             </div>
                             <div class="control-group">
-                                <label for="quiz-questions" class="control-label" data-i18n="numberOfQuestions">Number
-                                    of Questions</label>
+                                <label for="quiz-mode" class="control-label" data-i18n="quizModeLabel">Modo de Quiz</label>
+                                <select id="quiz-mode" class="select-input">
+                                    <option value="meaning" data-i18n="quizModeMeaning">Hanzi ➔ Significado (Estándar)</option>
+                                    <option value="reverse" data-i18n="quizModeReverse">Significado ➔ Hanzi (Inverso)</option>
+                                    <option value="listening" data-i18n="quizModeListening">Auditivo ➔ Significado (Comprensión)</option>
+                                    <option value="pinyin" data-i18n="quizModePinyin">Hanzi ➔ Pinyin & Tonos</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="quiz-questions" class="control-label" data-i18n="numberOfQuestions">Number of Questions</label>
                                 <select id="quiz-questions" class="select-input">
                                     <option value="10">10</option>
                                     <option value="20">20</option>
                                     <option value="30">30</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="quiz-timer" class="control-label" data-i18n="quizTimerLabel">Límite de Tiempo</label>
+                                <select id="quiz-timer" class="select-input">
+                                    <option value="none" data-i18n="quizTimerNone">Sin límite (Relajado)</option>
+                                    <option value="15" data-i18n="quizTimer15">15 segundos por pregunta</option>
+                                    <option value="10" data-i18n="quizTimer10">10 segundos (Rápido)</option>
+                                    <option value="5" data-i18n="quizTimer5">5 segundos (Relámpago)</option>
                                 </select>
                             </div>
                         </div>
@@ -1060,6 +1094,10 @@
                                 <span data-i18n="of">of</span>
                                 <span id="quiz-total">10</span>
                             </div>
+                            <div id="quiz-timer-badge" class="quiz-timer-badge" style="display: none;">
+                                <span class="timer-icon">⏱️</span>
+                                <span id="quiz-timer-val">15</span>s
+                            </div>
                             <div class="quiz-score-display">
                                 <span data-i18n="score">Score</span>:
                                 <span id="quiz-score">0</span>
@@ -1071,10 +1109,8 @@
                                 <!-- Quiz options will be populated here -->
                             </div>
                             <div class="quiz-actions">
-                                <button id="quiz-submit" class="btn btn-primary" disabled
-                                    data-i18n="submit">Submit</button>
-                                <button id="quiz-next" class="btn btn-primary" style="display: none;"
-                                    data-i18n="next">Next</button>
+                                <button id="quiz-submit" class="btn btn-primary" disabled data-i18n="submit">Submit</button>
+                                <button id="quiz-next" class="btn btn-primary" style="display: none;" data-i18n="next">Next</button>
                             </div>
                         </div>
                     </div>
@@ -1082,15 +1118,22 @@
                     <div class="quiz-results" id="quiz-results" style="display: none;">
                         <h2 data-i18n="quizComplete">Quiz Complete!</h2>
                         <div class="results-summary" id="results-summary">
-                            <div>
+                            <div class="results-score-box">
                                 <span data-i18n="finalScore">Final Score</span>:
                                 <strong id="final-score">0/0</strong>
                                 (<span id="final-percentage">0%</span>)
                             </div>
+                            <div id="quiz-grade-banner" class="quiz-grade-banner"></div>
                         </div>
                         <div class="results-actions">
                             <button id="restart-quiz" class="btn btn-primary" data-i18n="tryAgain">Retry</button>
+                            <button id="retry-mistakes-btn" class="btn btn-warning" style="display: none;" data-i18n="quizRetryMistakes">Repasar solo errores</button>
+                            <button id="save-mistakes-deck-btn" class="btn btn-secondary" style="display: none;" data-i18n="quizSaveMistakesToDeck">Guardar fallos en mazo</button>
                             <button id="new-quiz" class="btn btn-secondary" data-i18n="newQuiz">New Quiz</button>
+                        </div>
+                        <div id="quiz-breakdown-wrapper" class="quiz-breakdown-wrapper" style="display: none;">
+                            <h3 class="breakdown-title" data-i18n="quizReviewTitle">Desglose de Preguntas y Respuestas</h3>
+                            <div id="quiz-breakdown-list" class="quiz-breakdown-list"></div>
                         </div>
                     </div>
                 </div>
@@ -1099,7 +1142,7 @@
                 <div id="past-exams" class="tab-panel" tabindex="0">
                     <div class="quiz-setup" id="past-exams-setup">
                         <h2 data-i18n="pastExamsTitle">Exámenes pasados HSK</h2>
-                        <p class="past-exams-note" data-i18n="pastExamsNoAudioNotice">Esta versión no incluye ejercicios de audio (listening).</p>
+                        <p class="past-exams-note" data-i18n="pastExamsIntroNotice">Formatos oficiales HSK con comprensión auditiva (listening), lectura, escritura y gramática, además de simulación cronometrada oficial.</p>
                         <div class="quiz-options">
                             <div class="control-group">
                                 <label for="past-exam-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
@@ -1116,7 +1159,8 @@
                             <div class="control-group">
                                 <label for="past-exam-section" class="control-label" data-i18n="pastExamsSectionLabel">Sección</label>
                                 <select id="past-exam-section" class="select-input">
-                                    <option value="all" data-i18n="pastExamsSectionAll">Todas</option>
+                                    <option value="all" data-i18n="pastExamsSectionAll">Todas (Lectura, Escritura, Gramática)</option>
+                                    <option value="listening" data-i18n="pastExamsSectionListening">Comprensión Auditiva (听力)</option>
                                     <option value="reading" data-i18n="pastExamsSectionReading">Lectura</option>
                                     <option value="writing" data-i18n="pastExamsSectionWriting">Escritura</option>
                                     <option value="grammar" data-i18n="pastExamsSectionGrammar">Gramática</option>
@@ -1126,9 +1170,25 @@
                                 <label for="past-exam-questions" class="control-label" data-i18n="numberOfQuestions">Number of questions</label>
                                 <select id="past-exam-questions" class="select-input">
                                     <option value="5">5</option>
-                                    <option value="10">10</option>
+                                    <option value="10" selected>10</option>
                                     <option value="20">20</option>
                                 </select>
+                            </div>
+                            <div class="control-group" id="past-exam-timer-group">
+                                <label for="past-exam-time-limit" class="control-label" data-i18n="pastExamsTimeLimit">Límite de tiempo</label>
+                                <select id="past-exam-time-limit" class="select-input">
+                                    <option value="auto" selected data-i18n="pastExamsTimeAuto">Oficial sugerido (según preguntas)</option>
+                                    <option value="10">10 min</option>
+                                    <option value="20">20 min</option>
+                                    <option value="35">35 min</option>
+                                    <option value="none" data-i18n="pastExamsTimeUnlimited">Sin límite</option>
+                                </select>
+                            </div>
+                            <div class="control-group control-group-checkbox">
+                                <label class="control-checkbox-label" for="past-exam-sim-mode">
+                                    <input id="past-exam-sim-mode" type="checkbox" class="control-checkbox-input" checked>
+                                    <span data-i18n="pastExamsSimMode">Modo Simulación Oficial (con navegador libre y entrega final)</span>
+                                </label>
                             </div>
                             <div class="control-group control-group-checkbox">
                                 <label class="control-checkbox-label" for="past-exam-official-only">
@@ -1149,33 +1209,128 @@
                                 <span id="past-exam-total">10</span>
                             </div>
                             <div class="quiz-score-display">
-                                <span data-i18n="score">Score</span>:
+                                <span id="past-exam-score-label" data-i18n="score">Score</span>:
                                 <span id="past-exam-score">0</span>
                             </div>
+                            <div id="past-exam-timer-badge" class="quiz-timer-badge" style="display: none;">
+                                <span class="timer-icon">⏱️</span>
+                                <span id="past-exam-timer-val">15:00</span>
+                            </div>
                         </div>
+
+                        <!-- Question Navigator Grid for Official Simulation -->
+                        <div class="past-exam-nav-wrapper" id="past-exam-nav-wrapper">
+                            <div class="past-exam-nav-header">
+                                <span class="nav-title" data-i18n="pastExamsNavigator">Navegador de preguntas</span>
+                                <div class="past-exam-nav-legend">
+                                    <span class="legend-item"><span class="legend-dot current"></span> <span data-i18n="pastExamsNavCurrent">Actual</span></span>
+                                    <span class="legend-item"><span class="legend-dot answered"></span> <span data-i18n="pastExamsNavAnswered">Respondida</span></span>
+                                    <span class="legend-item"><span class="legend-dot flagged"></span> <span data-i18n="pastExamsNavFlagged">Marcada 🚩</span></span>
+                                </div>
+                            </div>
+                            <div class="past-exam-nav-grid" id="past-exam-nav-grid"></div>
+                        </div>
+
                         <div id="past-exam-pool-summary" class="past-exams-pool-summary" style="display: none;"></div>
+
                         <div class="quiz-content" id="past-exam-content">
+                            <!-- Listening Audio Box -->
+                            <div id="past-exam-audio-container" class="past-exam-audio-box" style="display: none;">
+                                <button id="past-exam-play-audio-btn" type="button" class="btn btn-secondary past-exam-audio-btn">
+                                    <span class="audio-icon">🔊</span>
+                                    <span id="past-exam-audio-btn-text" data-i18n="pastExamsPlayAudio">Escuchar audio (听力)</span>
+                                </button>
+                                <span id="past-exam-audio-plays" class="past-exam-audio-plays"></span>
+                            </div>
+
                             <div class="question-text" id="past-exam-question"></div>
                             <div class="quiz-options" id="past-exam-options"></div>
-                            <div class="quiz-actions">
-                                <button id="past-exam-submit" class="btn btn-primary" disabled data-i18n="submit">Enviar</button>
-                                <button id="past-exam-next" class="btn btn-primary" style="display: none;" data-i18n="next">Siguiente</button>
+
+                            <div class="past-exam-actions-bar">
+                                <button id="past-exam-flag-btn" type="button" class="btn btn-outline past-exam-flag-btn" data-i18n="pastExamsFlagQuestion">🚩 Marcar para revisar</button>
+                                <div class="past-exam-nav-btns">
+                                    <button id="past-exam-prev" type="button" class="btn btn-secondary" style="display: none;" data-i18n="previous">Anterior</button>
+                                    <button id="past-exam-submit" class="btn btn-primary" disabled data-i18n="submit">Enviar</button>
+                                    <button id="past-exam-next" class="btn btn-primary" style="display: none;" data-i18n="next">Siguiente</button>
+                                    <button id="past-exam-finish-btn" type="button" class="btn btn-danger past-exam-finish-btn" style="display: none;" data-i18n="pastExamsFinishExam">Entregar examen</button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="quiz-results" id="past-exams-results" style="display: none;">
                         <h2 data-i18n="pastExamsCompleted">Examen completado</h2>
-                        <div class="results-summary">
-                            <div>
-                                <span data-i18n="finalScore">Final Score</span>:
-                                <strong id="past-exam-final-score">0/0</strong>
-                                (<span id="past-exam-final-percentage">0%</span>)
+                        <div class="results-summary past-exams-results-summary">
+                            <div class="past-exam-score-card">
+                                <div class="score-main">
+                                    <span data-i18n="finalScore">Final Score</span>:
+                                    <strong id="past-exam-final-score">0/0</strong>
+                                    (<span id="past-exam-final-percentage">0%</span>)
+                                </div>
+                                <div id="past-exam-scaled-score" class="past-exam-scaled-score"></div>
+                                <div id="past-exam-grade-badge" class="past-exam-grade-badge"></div>
                             </div>
+
+                            <!-- Section Breakdown -->
+                            <div id="past-exam-sections-breakdown" class="past-exam-sections-breakdown"></div>
                         </div>
+
                         <div class="results-actions">
                             <button id="restart-past-exam" class="btn btn-primary" data-i18n="tryAgain">Reintentar</button>
+                            <button id="past-exam-retry-mistakes" class="btn btn-secondary" style="display: none;" data-i18n="pastExamsRetryMistakes">Repasar fallos</button>
+                            <button id="past-exam-view-cert" class="btn btn-accent" style="display: none;" data-i18n="pastExamsViewCert">Ver Certificado Simulado</button>
                             <button id="new-past-exam" class="btn btn-secondary" data-i18n="newQuiz">Nuevo set</button>
+                        </div>
+
+                        <!-- Question-by-Question Review Breakdown -->
+                        <div id="past-exam-review-wrapper" class="past-exam-review-wrapper">
+                            <h3 class="past-exam-review-title" data-i18n="pastExamsReviewTitle">Revisión detallada de preguntas y explicaciones</h3>
+                            <div id="past-exam-review-list" class="past-exam-review-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- Simulated HSK Certificate Modal -->
+                    <div id="past-exam-cert-modal" class="past-exam-modal-backdrop" style="display: none;">
+                        <div class="past-exam-modal-content">
+                            <button id="past-exam-cert-close" type="button" class="past-exam-modal-close" aria-label="Close">&times;</button>
+                            <div id="past-exam-certificate-card" class="hsk-certificate-card">
+                                <div class="cert-header">
+                                    <div class="cert-emblem">漢考</div>
+                                    <div class="cert-titles">
+                                        <h4>汉语水平考试（HSK）成绩报告</h4>
+                                        <h5>CHINESE PROFICIENCY TEST SCORE REPORT</h5>
+                                        <p class="cert-sub">Confuc10++ Simulated Certification</p>
+                                    </div>
+                                </div>
+                                <div class="cert-body">
+                                    <div class="cert-field"><span class="cert-label">考生姓名 / Candidate:</span> <strong id="cert-candidate-name">HSK Student</strong></div>
+                                    <div class="cert-field"><span class="cert-label">考试等级 / HSK Level:</span> <strong id="cert-level">HSK 1</strong></div>
+                                    <div class="cert-field"><span class="cert-label">考试日期 / Test Date:</span> <strong id="cert-date">2026-09-17</strong></div>
+                                    <div class="cert-scores-table">
+                                        <div class="table-header">
+                                            <span>项目 / Section</span>
+                                            <span>满分 / Max</span>
+                                            <span>得分 / Score</span>
+                                        </div>
+                                        <div id="cert-table-rows" class="table-rows"></div>
+                                        <div class="table-footer">
+                                            <span>总分 / Total Score</span>
+                                            <span id="cert-max-score">300</span>
+                                            <strong id="cert-total-score">240</strong>
+                                        </div>
+                                    </div>
+                                    <div class="cert-status-row">
+                                        <span>考试结果 / Result:</span>
+                                        <strong id="cert-status-badge" class="cert-badge pass">合格 / PASSED</strong>
+                                    </div>
+                                </div>
+                                <div class="cert-footer">
+                                    <div class="cert-seal">
+                                        <div class="seal-inner">汉考国际<br>HSK CERTIFIED</div>
+                                    </div>
+                                    <p class="cert-disclaimer">Simulación para fines de preparación académica y estudio personal.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1254,6 +1409,8 @@
                 <div id="hanzi-mahjong" class="tab-panel" data-tab="hanzi-mahjong"></div>
                 <!-- china-cities: markup diferido, se baja de assets/partials/tabs/china-cities.html al abrir la pestaña -->
                 <div id="china-cities" class="tab-panel" data-tab="china-cities"></div>
+                <!-- culture-provinces: markup diferido, se baja de assets/partials/tabs/culture-provinces.html al abrir la pestaña -->
+                <div id="culture-provinces" class="tab-panel" tabindex="0"></div>
                 <!-- tone-visualizer: markup diferido, se baja de assets/partials/tabs/tone-visualizer.html al abrir la pestaña -->
                 <div id="tone-visualizer" class="tab-panel" data-tab="tone-visualizer"></div>
                 <!-- calligraphy-scroll: markup diferido, se baja de assets/partials/tabs/calligraphy-scroll.html al abrir la pestaña -->
@@ -1294,6 +1451,197 @@
             <button type="button" id="pwa-banner-dismiss-btn" class="pwa-banner-dismiss" aria-label="Cerrar banner" title="Cerrar">✕</button>
         </div>
     </aside>
+
+    <!-- Offline Practice Manager Modal -->
+    <dialog id="offline-manager-dialog" class="offline-manager-modal" aria-labelledby="offline-modal-title">
+        <div class="offline-modal-card">
+            <header class="offline-modal-header">
+                <div class="offline-modal-brand">
+                    <div class="offline-modal-icon-badge" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 id="offline-modal-title" data-i18n="offlineManagerTitle">Práctica sin Conexión (Modo Offline)</h3>
+                        <p class="offline-modal-subtitle" data-i18n="offlineManagerSubtitle">Descarga los recursos y trazos necesarios para practicar la escritura y vocabulario de los caracteres chinos sin conexión a internet.</p>
+                    </div>
+                </div>
+                <button type="button" id="offline-modal-close" class="modal-close-btn" aria-label="Cerrar" title="Cerrar">✕</button>
+            </header>
+
+            <!-- Status Overview -->
+            <div class="offline-status-grid">
+                <div class="offline-stat-card">
+                    <div class="offline-stat-header">
+                        <span class="offline-stat-title" data-i18n="offlineStatusStrokesLabel">Trazos Hanzi</span>
+                        <span class="offline-stat-indicator">✍️</span>
+                    </div>
+                    <div class="offline-stat-value" id="offline-stat-strokes-val">0 / 1841</div>
+                    <div class="offline-stat-detail">Animaciones SVG</div>
+                </div>
+
+                <div class="offline-stat-card">
+                    <div class="offline-stat-header">
+                        <span class="offline-stat-title" data-i18n="offlineStatusPercentLabel">Disponible</span>
+                        <span class="offline-stat-indicator" id="offline-modal-network-status">🟢</span>
+                    </div>
+                    <div class="offline-stat-value" id="offline-stat-percent-val">0%</div>
+                    <div class="offline-stat-detail">En almacenamiento local</div>
+                </div>
+
+                <div class="offline-stat-card">
+                    <div class="offline-stat-header">
+                        <span class="offline-stat-title" data-i18n="offlineStatusStorageLabel">Almacenamiento App</span>
+                        <span class="offline-stat-indicator" id="offline-persist-badge" title="Almacenamiento local">Estándar</span>
+                    </div>
+                    <div class="offline-stat-value" id="offline-stat-storage-val">-- MB</div>
+                    <div class="offline-stat-detail" id="offline-stat-storage-detail">de -- GB libres</div>
+                </div>
+
+                <div class="offline-stat-card">
+                    <div class="offline-stat-header">
+                        <span class="offline-stat-title" data-i18n="offlineStatusVoiceLabel">Voz del Sistema</span>
+                        <button type="button" id="offline-voice-help-btn" class="offline-card-action-btn" title="Ver detalles de audio">ℹ️</button>
+                    </div>
+                    <div class="offline-stat-value offline-voice-val" id="offline-voice-status-badge">Detectando...</div>
+                    <div class="offline-stat-detail" id="offline-voice-status-desc">Pronunciación offline</div>
+                </div>
+            </div>
+
+            <!-- Pack Selection -->
+            <div class="offline-pack-section">
+                <h4 class="offline-section-heading" data-i18n="offlinePackChoiceTitle">Selecciona el paquete a descargar</h4>
+                <div class="offline-pack-options">
+                    <label class="offline-pack-option is-selected">
+                        <input type="radio" name="offline-pack-choice" value="all" checked>
+                        <div class="offline-pack-info">
+                            <span class="offline-pack-title" data-i18n="offlinePackFull">Colección Completa (1.841 caracteres)</span>
+                            <span class="offline-pack-desc" data-i18n="offlinePackFullDesc">Todos los trazos animados, etimología Ceinos y caracteres Kangxi (~7.6 MB).</span>
+                        </div>
+                        <span class="offline-pack-badge">Recomendado</span>
+                    </label>
+
+                    <label class="offline-pack-option">
+                        <input type="radio" name="offline-pack-choice" value="hsk13">
+                        <div class="offline-pack-info">
+                            <span class="offline-pack-title" data-i18n="offlinePackHsk13">HSK 1 al 3 Esenciales (~535 caracteres)</span>
+                            <span class="offline-pack-desc" data-i18n="offlinePackHsk13Desc">Trazos de vocabulario elemental e intermedio (~2.2 MB).</span>
+                        </div>
+                        <span class="offline-pack-badge">Rápido</span>
+                    </label>
+
+                    <label class="offline-pack-option">
+                        <input type="radio" name="offline-pack-choice" value="hsk1">
+                        <div class="offline-pack-info">
+                            <span class="offline-pack-title" data-i18n="offlinePackHsk1">HSK 1 Básico (~130 caracteres)</span>
+                            <span class="offline-pack-desc" data-i18n="offlinePackHsk1Desc">Trazos fundamentales para comenzar (~500 KB).</span>
+                        </div>
+                        <span class="offline-pack-badge">Básico</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Progress Indicator Section -->
+            <div id="offline-progress-section" class="offline-progress-section" style="display: none;">
+                <div class="offline-progress-header">
+                    <span id="offline-progress-status-text" class="offline-progress-status" data-i18n="offlineNoneDownloaded">Sin datos descargados</span>
+                    <span id="offline-progress-percent-text" class="offline-progress-percent">0%</span>
+                </div>
+                <div class="offline-progress-bar-track">
+                    <div id="offline-progress-bar-fill" class="offline-progress-bar-fill"></div>
+                </div>
+                <div class="offline-progress-subtext">
+                    <span>Progreso de descarga</span>
+                    <span id="offline-progress-subtext-counts">0 / 1841</span>
+                </div>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="offline-modal-actions">
+                <button type="button" id="offline-start-download-btn" class="btn btn-primary offline-btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span id="offline-download-btn-text" data-i18n="offlineDownloadBtn">Descargar Paquete Offline</span>
+                </button>
+                <button type="button" id="offline-retry-download-btn" class="btn btn-warning offline-btn-retry" style="display: none;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    <span id="offline-retry-btn-text" data-i18n="offlineRetryBtn">Reintentar pendientes</span>
+                </button>
+                <button type="button" id="offline-request-persist-btn" class="btn btn-outline offline-btn-secondary" title="Proteger datos contra borrado del navegador">🛡️ Persistencia</button>
+                <button type="button" id="offline-clear-cache-btn" class="btn btn-outline offline-btn-secondary" data-i18n="offlineClearBtn">Liberar espacio</button>
+                <button type="button" id="offline-modal-got-it" class="btn btn-secondary offline-btn-secondary" data-i18n="iosGotIt">¡Entendido!</button>
+            </div>
+
+            <!-- Local Progress Backup & Restore -->
+            <div class="offline-backup-section">
+                <div class="offline-backup-header">
+                    <h4 class="offline-section-heading" data-i18n="offlineBackupTitle">Copia de Seguridad de Progreso (Local)</h4>
+                    <p class="offline-section-subheading" data-i18n="offlineBackupDesc">Exporta o restaura tus repasos SRS, rachas, estadísticas y mazos personalizados en un archivo .JSON sin depender de internet.</p>
+                </div>
+                <div class="offline-backup-actions">
+                    <button type="button" id="offline-export-backup-btn" class="btn btn-outline offline-backup-btn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span data-i18n="offlineExportBtn">Exportar progreso (.json)</span>
+                    </button>
+                    <button type="button" id="offline-import-backup-btn" class="btn btn-outline offline-backup-btn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span data-i18n="offlineImportBtn">Restaurar progreso</span>
+                    </button>
+                    <input type="file" id="offline-restore-input" accept=".json,application/json" style="display: none;" aria-label="Seleccionar archivo de copia de seguridad">
+                </div>
+            </div>
+
+            <!-- Offline Guide Accordions -->
+            <div class="offline-guide-section">
+                <details id="offline-guide-audio-details" class="offline-guide-item">
+                    <summary class="offline-guide-summary">
+                        <span data-i18n="offlineAudioHelpTitle">🔊 Audio y pronunciación sin internet</span>
+                        <span>▾</span>
+                    </summary>
+                    <div class="offline-guide-content" data-i18n="offlineAudioHelpDesc">
+                        La app utiliza la síntesis de voz nativa de tu dispositivo. Para escuchar la pronunciación offline, asegúrate de activar la voz china en los ajustes de tu sistema (en iOS/Mac: Accesibilidad &gt; Contenido leído &gt; Voces &gt; Chino; en Android: Ajustes &gt; Texto a voz &gt; Chino).
+                    </div>
+                </details>
+
+                <details class="offline-guide-item">
+                    <summary class="offline-guide-summary">
+                        <span data-i18n="offlineHowToStudyTitle">📱 ¿Cómo practicar sin conexión?</span>
+                        <span>▾</span>
+                    </summary>
+                    <div class="offline-guide-content" data-i18n="offlineHowToStudyDesc">
+                        Una vez descargado el paquete, puedes abrir la app sin conexión a internet. El lienzo de escritura, el orden animado de trazos, los exámenes, cuestionarios y tarjetas flashcards funcionarán al 100% de manera offline.
+                    </div>
+                </details>
+
+                <details class="offline-guide-item">
+                    <summary class="offline-guide-summary">
+                        <span data-i18n="offlineLocalHelpTitle">💻 Disponible en tu ordenador en local</span>
+                        <span>▾</span>
+                    </summary>
+                    <div class="offline-guide-content" data-i18n="offlineLocalHelpDesc">
+                        Puedes instalar la app como aplicación de escritorio desde el botón 'Instalar App' de Chrome/Edge/Safari, o ejecutar tu propio servidor local con <code>npx serve .</code> o <code>npm run dev</code> si tienes la carpeta del proyecto.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </dialog>
 
     <!-- iOS PWA Install Instructions Modal -->
     <dialog id="ios-install-dialog" class="ios-install-modal" aria-labelledby="ios-modal-title">
@@ -1369,13 +1717,13 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=cfd785b6" defer></script>
-    <script src="assets/js/utils/idb-storage.js?v=a79379d7" defer></script>
+    <script src="assets/js/translations.js?v=549c57e3" defer></script>
+    <script src="assets/js/utils/idb-storage.js?v=1a3ee4b2" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=bf85fc76" defer></script>
 
     <!-- Modules -->
     <script src="assets/js/modules/srs-engine.js?v=811fc44e" defer></script>
-    <script src="assets/js/modules/flashcard-manager.js?v=b0687a3a" defer></script>
+    <script src="assets/js/modules/flashcard-manager.js?v=1dd7cb7c" defer></script>
     <script src="assets/js/modules/deck-manager.js?v=a5683a57" defer></script>
     <script src="assets/js/modules/deck-controller.js?v=285c875d" defer></script>
     <script src="assets/js/modules/achievement-manager.js?v=dc950149" defer></script>
@@ -1391,17 +1739,18 @@
     <script src="assets/js/modules/storage-controller.js?v=1707b7b5" defer></script>
     <script src="assets/js/modules/language-controller.js?v=57c17946" defer></script>
     <script src="assets/js/modules/progress-controller.js?v=34a14089" defer></script>
-    <script src="assets/js/modules/navigation-controller.js?v=869b0269" defer></script>
-    <script src="assets/js/modules/search-controller.js?v=126ed121" defer></script>
-    <script src="assets/js/modules/practice-view-controller.js?v=1c0399bb" defer></script>
-    <script src="assets/js/modules/hands-free-controller.js?v=f4f3d811" defer></script>
+    <script src="assets/js/modules/navigation-controller.js?v=952afc11" defer></script>
+    <script src="assets/js/modules/search-controller.js?v=5acce051" defer></script>
+    <script src="assets/js/modules/practice-view-controller.js?v=2e2fa952" defer></script>
+    <script src="assets/js/modules/hands-free-controller.js?v=ce2a191f" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=91e61708" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=0c5572bf" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=582ac734" defer></script>
     <!-- past-exams-controller.js, quantifier-snake-{utils,canvas,controller,versus}.js loaded on demand by ui-controller.js -->
     <script src="assets/js/modules/vocabulary-controller.js?v=ac8e0304" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=aa8b0d0c" defer></script>
-    <script src="assets/js/modules/startup-controller.js?v=d5ffbd82" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=d32ecb1f" defer></script>
+    <script src="assets/js/modules/startup-controller.js?v=97afe69b" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=d910ba0a" defer></script>
+    <script src="assets/js/modules/offline-manager.js?v=73131c6e" defer></script>
     <script src="assets/js/modules/home-cultural-portal-scene.js?v=4c0158bd" defer></script>
     <script src="assets/js/modules/home-controller.js?v=d4fd2306" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=6dd74492" defer></script>
@@ -1419,7 +1768,7 @@
             document.body.appendChild(script);
         }
     </script>
-    <script src="assets/js/app.js?v=4428c583" defer></script>
+    <script src="assets/js/app.js?v=1cb98709" defer></script>
     <!-- matrix-game.js, tones-invaders-game.js, leaderboard.js loaded on demand by ui-controller.js -->
 
     <!-- Background Image Integration -->

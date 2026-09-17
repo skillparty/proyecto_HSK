@@ -58,6 +58,7 @@ const APP_GLOBALS = [
   "ToneTrainerGame",
   "CultureModuleBase",
   "CharacterEvolutionModule",
+  "ChinaProvincesModule",
   "ChineseTechnologyModule",
   "EthnicClothingModule",
   "PekingOperaModule",

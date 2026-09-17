@@ -98,6 +98,7 @@ class StartupController {
             this.app.updateHeaderControlMicrocopy();
             this.app.uiController.restoreLastVisitedTab();
             this.app.handsFreeController?.init();
+            await this.app.offlineManager?.initialize();
             await this.app.initHealthCheckPanelIfRequested();
 
             this.app.logDebug('[✓] HSK Learning App initialized successfully!');

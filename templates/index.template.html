@@ -77,12 +77,12 @@
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=e01267d0" id="design-tokens">
     <!-- Split de styles-professional.css: el orden de estos <link> ES la cascada, no reordenar -->
     <link rel="stylesheet" href="assets/css/app-base.css?v=c28c9407" id="main-stylesheet">
-    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=92913f61">
+    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=7ca83452">
     <link rel="stylesheet" href="assets/css/app-home.css?v=360134b4">
-    <link rel="stylesheet" href="assets/css/app-practice.css?v=89c300b3">
+    <link rel="stylesheet" href="assets/css/app-practice.css?v=f8cd7b7c">
     <link rel="stylesheet" href="assets/css/app-browse.css?v=fbb33c28">
     <link rel="stylesheet" href="assets/css/app-strokes.css?v=2a3bae39">
-    <link rel="stylesheet" href="assets/css/app-quiz.css?v=5d43a437">
+    <link rel="stylesheet" href="assets/css/app-quiz.css?v=fe8f04d4">
     <link rel="stylesheet" href="assets/css/app-stats.css?v=cd1fd78c">
     <link rel="stylesheet" href="assets/css/app-enhancements.css?v=99d811b4">
     <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=e9f43713">
@@ -90,6 +90,7 @@
     <link rel="stylesheet" href="assets/css/command-palette.css?v=86b01884" id="command-palette-stylesheet">
     <link rel="stylesheet" href="assets/css/achievements-styles.css?v=11478cfc" id="achievements-stylesheet">
     <link rel="stylesheet" href="assets/css/deck-manager-styles.css?v=ed48188f" id="deck-manager-stylesheet">
+    <link rel="stylesheet" href="assets/css/offline-manager.css?v=7cdbd1ca" id="offline-manager-stylesheet">
 
     <!-- Game/leaderboard CSS injected on demand by ui-controller.js (see loadStylesheet) -->
     <!-- DNS preconnect for Google Fonts — eliminates extra DNS+TLS round-trip on every load -->
@@ -242,6 +243,19 @@
                                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                                     </svg>
                                     <span id="reminder-btn-text" data-i18n="reminderActivateText">Notificar</span>
+                                </button>
+                            </div>
+
+                            <div class="settings-row offline-manager-row" id="offline-manager-row">
+                                <span class="settings-row-label" data-i18n="offlineManagerLabel">Modo Offline</span>
+                                <button id="offline-manager-btn" class="settings-action-btn" type="button" title="Gestionar datos y caracteres sin conexión" aria-label="Gestionar datos offline">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="7 10 12 15 17 10"></polyline>
+                                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                                    </svg>
+                                    <span id="offline-btn-badge" class="badge-count" style="display: none;">0%</span>
+                                    <span data-i18n="offlineManagerBtnText">Descargar</span>
                                 </button>
                             </div>
                         </div>
@@ -479,6 +493,9 @@
                         <button class="nav-dropdown-item" data-tab="china-cities">
                             <span data-i18n="chinaCitiesTab">Ciudades de China</span>
                         </button>
+                        <button class="nav-dropdown-item" data-tab="culture-provinces">
+                            <span data-i18n="cultureProvincesTab">Provincias y Geografía</span>
+                        </button>
                         <button class="nav-dropdown-item" data-tab="calligraphy-scroll">
                             <span data-i18n="calligraphyScrollTab">Rollos de Caligrafía</span>
                         </button>
@@ -588,6 +605,7 @@
                 <!-- defer-include:templates/partials/tabs/shadow-theatre.html -->
                 <!-- defer-include:templates/partials/tabs/hanzi-mahjong.html -->
                 <!-- defer-include:templates/partials/tabs/china-cities.html -->
+                <!-- defer-include:templates/partials/tabs/culture-provinces.html -->
                 <!-- defer-include:templates/partials/tabs/tone-visualizer.html -->
                 <!-- defer-include:templates/partials/tabs/calligraphy-scroll.html -->
                 <!-- defer-include:templates/partials/tabs/chinese-names.html -->
@@ -625,6 +643,197 @@
             <button type="button" id="pwa-banner-dismiss-btn" class="pwa-banner-dismiss" aria-label="Cerrar banner" title="Cerrar">✕</button>
         </div>
     </aside>
+
+    <!-- Offline Practice Manager Modal -->
+    <dialog id="offline-manager-dialog" class="offline-manager-modal" aria-labelledby="offline-modal-title">
+        <div class="offline-modal-card">
+            <header class="offline-modal-header">
+                <div class="offline-modal-brand">
+                    <div class="offline-modal-icon-badge" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 id="offline-modal-title" data-i18n="offlineManagerTitle">Práctica sin Conexión (Modo Offline)</h3>
+                        <p class="offline-modal-subtitle" data-i18n="offlineManagerSubtitle">Descarga los recursos y trazos necesarios para practicar la escritura y vocabulario de los caracteres chinos sin conexión a internet.</p>
+                    </div>
+                </div>
+                <button type="button" id="offline-modal-close" class="modal-close-btn" aria-label="Cerrar" title="Cerrar">✕</button>
+            </header>
+
+            <!-- Status Overview -->
+            <div class="offline-status-grid">
+                <div class="offline-stat-card">
+                    <div class="offline-stat-header">
+                        <span class="offline-stat-title" data-i18n="offlineStatusStrokesLabel">Trazos Hanzi</span>
+                        <span class="offline-stat-indicator">✍️</span>
+                    </div>
+                    <div class="offline-stat-value" id="offline-stat-strokes-val">0 / 1841</div>
+                    <div class="offline-stat-detail">Animaciones SVG</div>
+                </div>
+
+                <div class="offline-stat-card">
+                    <div class="offline-stat-header">
+                        <span class="offline-stat-title" data-i18n="offlineStatusPercentLabel">Disponible</span>
+                        <span class="offline-stat-indicator" id="offline-modal-network-status">🟢</span>
+                    </div>
+                    <div class="offline-stat-value" id="offline-stat-percent-val">0%</div>
+                    <div class="offline-stat-detail">En almacenamiento local</div>
+                </div>
+
+                <div class="offline-stat-card">
+                    <div class="offline-stat-header">
+                        <span class="offline-stat-title" data-i18n="offlineStatusStorageLabel">Almacenamiento App</span>
+                        <span class="offline-stat-indicator" id="offline-persist-badge" title="Almacenamiento local">Estándar</span>
+                    </div>
+                    <div class="offline-stat-value" id="offline-stat-storage-val">-- MB</div>
+                    <div class="offline-stat-detail" id="offline-stat-storage-detail">de -- GB libres</div>
+                </div>
+
+                <div class="offline-stat-card">
+                    <div class="offline-stat-header">
+                        <span class="offline-stat-title" data-i18n="offlineStatusVoiceLabel">Voz del Sistema</span>
+                        <button type="button" id="offline-voice-help-btn" class="offline-card-action-btn" title="Ver detalles de audio">ℹ️</button>
+                    </div>
+                    <div class="offline-stat-value offline-voice-val" id="offline-voice-status-badge">Detectando...</div>
+                    <div class="offline-stat-detail" id="offline-voice-status-desc">Pronunciación offline</div>
+                </div>
+            </div>
+
+            <!-- Pack Selection -->
+            <div class="offline-pack-section">
+                <h4 class="offline-section-heading" data-i18n="offlinePackChoiceTitle">Selecciona el paquete a descargar</h4>
+                <div class="offline-pack-options">
+                    <label class="offline-pack-option is-selected">
+                        <input type="radio" name="offline-pack-choice" value="all" checked>
+                        <div class="offline-pack-info">
+                            <span class="offline-pack-title" data-i18n="offlinePackFull">Colección Completa (1.841 caracteres)</span>
+                            <span class="offline-pack-desc" data-i18n="offlinePackFullDesc">Todos los trazos animados, etimología Ceinos y caracteres Kangxi (~7.6 MB).</span>
+                        </div>
+                        <span class="offline-pack-badge">Recomendado</span>
+                    </label>
+
+                    <label class="offline-pack-option">
+                        <input type="radio" name="offline-pack-choice" value="hsk13">
+                        <div class="offline-pack-info">
+                            <span class="offline-pack-title" data-i18n="offlinePackHsk13">HSK 1 al 3 Esenciales (~535 caracteres)</span>
+                            <span class="offline-pack-desc" data-i18n="offlinePackHsk13Desc">Trazos de vocabulario elemental e intermedio (~2.2 MB).</span>
+                        </div>
+                        <span class="offline-pack-badge">Rápido</span>
+                    </label>
+
+                    <label class="offline-pack-option">
+                        <input type="radio" name="offline-pack-choice" value="hsk1">
+                        <div class="offline-pack-info">
+                            <span class="offline-pack-title" data-i18n="offlinePackHsk1">HSK 1 Básico (~130 caracteres)</span>
+                            <span class="offline-pack-desc" data-i18n="offlinePackHsk1Desc">Trazos fundamentales para comenzar (~500 KB).</span>
+                        </div>
+                        <span class="offline-pack-badge">Básico</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Progress Indicator Section -->
+            <div id="offline-progress-section" class="offline-progress-section" style="display: none;">
+                <div class="offline-progress-header">
+                    <span id="offline-progress-status-text" class="offline-progress-status" data-i18n="offlineNoneDownloaded">Sin datos descargados</span>
+                    <span id="offline-progress-percent-text" class="offline-progress-percent">0%</span>
+                </div>
+                <div class="offline-progress-bar-track">
+                    <div id="offline-progress-bar-fill" class="offline-progress-bar-fill"></div>
+                </div>
+                <div class="offline-progress-subtext">
+                    <span>Progreso de descarga</span>
+                    <span id="offline-progress-subtext-counts">0 / 1841</span>
+                </div>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="offline-modal-actions">
+                <button type="button" id="offline-start-download-btn" class="btn btn-primary offline-btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span id="offline-download-btn-text" data-i18n="offlineDownloadBtn">Descargar Paquete Offline</span>
+                </button>
+                <button type="button" id="offline-retry-download-btn" class="btn btn-warning offline-btn-retry" style="display: none;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    <span id="offline-retry-btn-text" data-i18n="offlineRetryBtn">Reintentar pendientes</span>
+                </button>
+                <button type="button" id="offline-request-persist-btn" class="btn btn-outline offline-btn-secondary" title="Proteger datos contra borrado del navegador">🛡️ Persistencia</button>
+                <button type="button" id="offline-clear-cache-btn" class="btn btn-outline offline-btn-secondary" data-i18n="offlineClearBtn">Liberar espacio</button>
+                <button type="button" id="offline-modal-got-it" class="btn btn-secondary offline-btn-secondary" data-i18n="iosGotIt">¡Entendido!</button>
+            </div>
+
+            <!-- Local Progress Backup & Restore -->
+            <div class="offline-backup-section">
+                <div class="offline-backup-header">
+                    <h4 class="offline-section-heading" data-i18n="offlineBackupTitle">Copia de Seguridad de Progreso (Local)</h4>
+                    <p class="offline-section-subheading" data-i18n="offlineBackupDesc">Exporta o restaura tus repasos SRS, rachas, estadísticas y mazos personalizados en un archivo .JSON sin depender de internet.</p>
+                </div>
+                <div class="offline-backup-actions">
+                    <button type="button" id="offline-export-backup-btn" class="btn btn-outline offline-backup-btn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span data-i18n="offlineExportBtn">Exportar progreso (.json)</span>
+                    </button>
+                    <button type="button" id="offline-import-backup-btn" class="btn btn-outline offline-backup-btn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span data-i18n="offlineImportBtn">Restaurar progreso</span>
+                    </button>
+                    <input type="file" id="offline-restore-input" accept=".json,application/json" style="display: none;" aria-label="Seleccionar archivo de copia de seguridad">
+                </div>
+            </div>
+
+            <!-- Offline Guide Accordions -->
+            <div class="offline-guide-section">
+                <details id="offline-guide-audio-details" class="offline-guide-item">
+                    <summary class="offline-guide-summary">
+                        <span data-i18n="offlineAudioHelpTitle">🔊 Audio y pronunciación sin internet</span>
+                        <span>▾</span>
+                    </summary>
+                    <div class="offline-guide-content" data-i18n="offlineAudioHelpDesc">
+                        La app utiliza la síntesis de voz nativa de tu dispositivo. Para escuchar la pronunciación offline, asegúrate de activar la voz china en los ajustes de tu sistema (en iOS/Mac: Accesibilidad &gt; Contenido leído &gt; Voces &gt; Chino; en Android: Ajustes &gt; Texto a voz &gt; Chino).
+                    </div>
+                </details>
+
+                <details class="offline-guide-item">
+                    <summary class="offline-guide-summary">
+                        <span data-i18n="offlineHowToStudyTitle">📱 ¿Cómo practicar sin conexión?</span>
+                        <span>▾</span>
+                    </summary>
+                    <div class="offline-guide-content" data-i18n="offlineHowToStudyDesc">
+                        Una vez descargado el paquete, puedes abrir la app sin conexión a internet. El lienzo de escritura, el orden animado de trazos, los exámenes, cuestionarios y tarjetas flashcards funcionarán al 100% de manera offline.
+                    </div>
+                </details>
+
+                <details class="offline-guide-item">
+                    <summary class="offline-guide-summary">
+                        <span data-i18n="offlineLocalHelpTitle">💻 Disponible en tu ordenador en local</span>
+                        <span>▾</span>
+                    </summary>
+                    <div class="offline-guide-content" data-i18n="offlineLocalHelpDesc">
+                        Puedes instalar la app como aplicación de escritorio desde el botón 'Instalar App' de Chrome/Edge/Safari, o ejecutar tu propio servidor local con <code>npx serve .</code> o <code>npm run dev</code> si tienes la carpeta del proyecto.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </dialog>
 
     <!-- iOS PWA Install Instructions Modal -->
     <dialog id="ios-install-dialog" class="ios-install-modal" aria-labelledby="ios-modal-title">
@@ -700,13 +909,13 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=cfd785b6" defer></script>
-    <script src="assets/js/utils/idb-storage.js?v=a79379d7" defer></script>
+    <script src="assets/js/translations.js?v=549c57e3" defer></script>
+    <script src="assets/js/utils/idb-storage.js?v=1a3ee4b2" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=bf85fc76" defer></script>
 
     <!-- Modules -->
     <script src="assets/js/modules/srs-engine.js?v=811fc44e" defer></script>
-    <script src="assets/js/modules/flashcard-manager.js?v=b0687a3a" defer></script>
+    <script src="assets/js/modules/flashcard-manager.js?v=1dd7cb7c" defer></script>
     <script src="assets/js/modules/deck-manager.js?v=a5683a57" defer></script>
     <script src="assets/js/modules/deck-controller.js?v=285c875d" defer></script>
     <script src="assets/js/modules/achievement-manager.js?v=dc950149" defer></script>
@@ -722,17 +931,18 @@
     <script src="assets/js/modules/storage-controller.js?v=1707b7b5" defer></script>
     <script src="assets/js/modules/language-controller.js?v=57c17946" defer></script>
     <script src="assets/js/modules/progress-controller.js?v=34a14089" defer></script>
-    <script src="assets/js/modules/navigation-controller.js?v=869b0269" defer></script>
-    <script src="assets/js/modules/search-controller.js?v=126ed121" defer></script>
-    <script src="assets/js/modules/practice-view-controller.js?v=1c0399bb" defer></script>
-    <script src="assets/js/modules/hands-free-controller.js?v=f4f3d811" defer></script>
+    <script src="assets/js/modules/navigation-controller.js?v=952afc11" defer></script>
+    <script src="assets/js/modules/search-controller.js?v=5acce051" defer></script>
+    <script src="assets/js/modules/practice-view-controller.js?v=2e2fa952" defer></script>
+    <script src="assets/js/modules/hands-free-controller.js?v=ce2a191f" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=91e61708" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=0c5572bf" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=582ac734" defer></script>
     <!-- past-exams-controller.js, quantifier-snake-{utils,canvas,controller,versus}.js loaded on demand by ui-controller.js -->
     <script src="assets/js/modules/vocabulary-controller.js?v=ac8e0304" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=aa8b0d0c" defer></script>
-    <script src="assets/js/modules/startup-controller.js?v=d5ffbd82" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=d32ecb1f" defer></script>
+    <script src="assets/js/modules/startup-controller.js?v=97afe69b" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=d910ba0a" defer></script>
+    <script src="assets/js/modules/offline-manager.js?v=73131c6e" defer></script>
     <script src="assets/js/modules/home-cultural-portal-scene.js?v=4c0158bd" defer></script>
     <script src="assets/js/modules/home-controller.js?v=d4fd2306" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=6dd74492" defer></script>
@@ -750,7 +960,7 @@
             document.body.appendChild(script);
         }
     </script>
-    <script src="assets/js/app.js?v=4428c583" defer></script>
+    <script src="assets/js/app.js?v=1cb98709" defer></script>
     <!-- matrix-game.js, tones-invaders-game.js, leaderboard.js loaded on demand by ui-controller.js -->
 
     <!-- Background Image Integration -->

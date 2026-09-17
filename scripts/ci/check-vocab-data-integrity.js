@@ -94,6 +94,7 @@ const cultureFiles = [
   "chinese-technology.json",
   "peking-opera.json",
   "traditional-medicine.json",
+  "china-provinces.json",
 ];
 cultureFiles.forEach((file) => {
   const rel = `assets/data/culture/${file}`;

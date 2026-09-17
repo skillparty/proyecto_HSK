@@ -14,28 +14,96 @@
                 </p>
             </div>
 
-            <!-- Tone Quick Selector (1st, 2nd, 3rd, 4th, Neutral) -->
-            <div class="tone-selector-pills" id="tone-selector-pills">
-                <button type="button" class="tone-pill-btn active" data-tone="1">
-                    <span class="tone-pill-badge">1º Tono (55)</span>
-                    <span class="tone-pill-char">mā 妈</span>
+            <!-- Mode Switcher Tabs (Monosyllabic vs Bisyllabic Words) -->
+            <div class="tone-mode-switcher" id="tone-mode-switcher">
+                <button type="button" class="tone-mode-tab-btn active" data-mode="mono" id="tone-tab-mono">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line></svg>
+                    <span data-i18n="toneModeMono">Sílaba Individual (单字)</span>
                 </button>
-                <button type="button" class="tone-pill-btn" data-tone="2">
-                    <span class="tone-pill-badge">2º Tono (35)</span>
-                    <span class="tone-pill-char">má 麻</span>
+                <button type="button" class="tone-mode-tab-btn" data-mode="bisyllabic" id="tone-tab-bisyllabic">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="12" r="4"></circle><circle cx="17" cy="12" r="4"></circle><line x1="11" y1="12" x2="13" y2="12"></line></svg>
+                    <span data-i18n="toneModeBisyllabic">Palabras Bisilábicas (双字词)</span>
                 </button>
-                <button type="button" class="tone-pill-btn" data-tone="3">
-                    <span class="tone-pill-badge">3º Tono (214)</span>
-                    <span class="tone-pill-char">mǎ 马</span>
-                </button>
-                <button type="button" class="tone-pill-btn" data-tone="4">
-                    <span class="tone-pill-badge">4º Tono (51)</span>
-                    <span class="tone-pill-char">mà 骂</span>
-                </button>
-                <button type="button" class="tone-pill-btn" data-tone="0">
-                    <span class="tone-pill-badge">Neutro (·)</span>
-                    <span class="tone-pill-char">ma 吗</span>
-                </button>
+            </div>
+
+            <!-- Monosyllabic Tone & Syllable Selectors -->
+            <div class="mono-controls-panel" id="mono-controls-panel">
+                <!-- Tone Quick Selector Pills (1st, 2nd, 3rd, 4th, Neutral) -->
+                <div class="tone-selector-pills" id="tone-selector-pills">
+                    <button type="button" class="tone-pill-btn active" data-tone="1">
+                        <span class="tone-pill-badge">1º Tono (55)</span>
+                        <span class="tone-pill-char">mā 妈</span>
+                    </button>
+                    <button type="button" class="tone-pill-btn" data-tone="2">
+                        <span class="tone-pill-badge">2º Tono (35)</span>
+                        <span class="tone-pill-char">má 麻</span>
+                    </button>
+                    <button type="button" class="tone-pill-btn" data-tone="3">
+                        <span class="tone-pill-badge">3º Tono (214)</span>
+                        <span class="tone-pill-char">mǎ 马</span>
+                    </button>
+                    <button type="button" class="tone-pill-btn" data-tone="4">
+                        <span class="tone-pill-badge">4º Tono (51)</span>
+                        <span class="tone-pill-char">mà 骂</span>
+                    </button>
+                    <button type="button" class="tone-pill-btn" data-tone="0">
+                        <span class="tone-pill-badge">Neutro (·)</span>
+                        <span class="tone-pill-char">ma 吗</span>
+                    </button>
+                </div>
+
+                <!-- Syllable Filter Row -->
+                <div class="syllable-selector-row" id="syllable-selector-row">
+                    <span class="selector-inline-label" data-i18n="toneSyllableLabel">Sílaba Base:</span>
+                    <div class="syllable-chips-group" id="syllable-chips-group">
+                        <button type="button" class="syllable-chip active" data-syllable="ma">ma</button>
+                        <button type="button" class="syllable-chip" data-syllable="ba">ba</button>
+                        <button type="button" class="syllable-chip" data-syllable="da">da</button>
+                        <button type="button" class="syllable-chip" data-syllable="shi">shi</button>
+                        <button type="button" class="syllable-chip" data-syllable="ni">ni</button>
+                        <button type="button" class="syllable-chip" data-syllable="hao">hao</button>
+                        <button type="button" class="syllable-chip" data-syllable="guo">guo</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bisyllabic Word Selector Panel (Hidden by default) -->
+            <div class="bisyllabic-controls-panel" id="bisyllabic-controls-panel" style="display: none;">
+                <span class="selector-inline-label" data-i18n="toneWordLabel">Palabra HSK:</span>
+                <div class="word-chips-group" id="word-chips-group">
+                    <button type="button" class="word-chip-btn active" data-word-id="nihao">
+                        <span class="word-chip-hanzi">你好</span>
+                        <span class="word-chip-tones">3+3➔2+3</span>
+                    </button>
+                    <button type="button" class="word-chip-btn" data-word-id="zhongguo">
+                        <span class="word-chip-hanzi">中国</span>
+                        <span class="word-chip-tones">1+2 (55-35)</span>
+                    </button>
+                    <button type="button" class="word-chip-btn" data-word-id="xiexie">
+                        <span class="word-chip-hanzi">谢谢</span>
+                        <span class="word-chip-tones">4+0 (51-·)</span>
+                    </button>
+                    <button type="button" class="word-chip-btn" data-word-id="zaijian">
+                        <span class="word-chip-hanzi">再见</span>
+                        <span class="word-chip-tones">4+4 (51-51)</span>
+                    </button>
+                    <button type="button" class="word-chip-btn" data-word-id="xuexi">
+                        <span class="word-chip-hanzi">学习</span>
+                        <span class="word-chip-tones">2+2 (35-35)</span>
+                    </button>
+                    <button type="button" class="word-chip-btn" data-word-id="mingtian">
+                        <span class="word-chip-hanzi">明天</span>
+                        <span class="word-chip-tones">2+1 (35-55)</span>
+                    </button>
+                    <button type="button" class="word-chip-btn" data-word-id="laoshi">
+                        <span class="word-chip-hanzi">老师</span>
+                        <span class="word-chip-tones">3+1 (21-55)</span>
+                    </button>
+                    <button type="button" class="word-chip-btn" data-word-id="kaishi">
+                        <span class="word-chip-hanzi">开始</span>
+                        <span class="word-chip-tones">1+3 (55-214)</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -50,6 +118,7 @@
                     </div>
                     <div class="canvas-legend">
                         <span class="legend-item"><span class="legend-dot native"></span> <span data-i18n="toneLegendNative">Modelo Nativo</span></span>
+                        <span class="legend-item"><span class="legend-tolerance-box"></span> <span data-i18n="toneLegendTolerance">Tolerancia</span></span>
                         <span class="legend-item"><span class="legend-dot user"></span> <span data-i18n="toneLegendUser">Tu Entonación</span></span>
                     </div>
                 </div>
@@ -57,6 +126,7 @@
                 <!-- 5-Level Pitch Scale Canvas (Chao System) -->
                 <div class="pitch-canvas-wrapper">
                     <canvas id="pitch-graph-canvas" width="620" height="280"></canvas>
+                    <div class="pitch-canvas-status-badge" id="tone-canvas-status" data-i18n="toneMicReady">Listo para practicar</div>
                 </div>
 
                 <!-- Audio Controls & Practice Action Bar -->
@@ -75,6 +145,13 @@
                         </span>
                         <span id="tone-record-label" data-i18n="tonePracticeMicBtn">Practicar Entonación</span>
                     </button>
+                    
+                    <!-- Speed Selector Buttons -->
+                    <div class="audio-speed-pills" id="tone-speed-pills">
+                        <button type="button" class="speed-pill-btn active" data-speed="1.0" data-i18n="toneSpeedNormal">1.0x</button>
+                        <button type="button" class="speed-pill-btn" data-speed="0.75" data-i18n="toneSpeedSlow">0.75x</button>
+                        <button type="button" class="speed-pill-btn" data-speed="0.5" data-i18n="toneSpeedVerySlow">0.5x</button>
+                    </div>
                 </div>
 
                 <!-- Live Score Feedback Banner -->
@@ -83,6 +160,11 @@
                     <div class="feedback-text-group">
                         <h4 class="feedback-heading" id="feedback-heading">¡Excelente Curva Tonal!</h4>
                         <p class="feedback-desc" id="feedback-desc">Has mantenido el tono alto y firme en el nivel 5 de forma precisa.</p>
+                        <div class="feedback-metrics-row" id="feedback-metrics-row">
+                            <span class="metric-tag"><strong data-i18n="toneMetricAccuracy">Precisión:</strong> <span id="val-metric-acc">95%</span></span>
+                            <span class="metric-tag"><strong data-i18n="toneMetricHeight">Altura:</strong> <span id="val-metric-height">Nivel 5</span></span>
+                            <span class="metric-tag"><strong data-i18n="toneMetricContour">Contorno:</strong> <span id="val-metric-contour">Plano (55)</span></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,6 +182,15 @@
                     </p>
                     <div class="tone-frequence-badge" id="tone-freq-badge">
                         <span>Frecuencia:</span> <strong>Nivel 5 ➔ Nivel 5 (Constante)</strong>
+                    </div>
+
+                    <!-- Chao Levels Visual Micro-Scale -->
+                    <div class="chao-levels-visual-scale">
+                        <div class="chao-scale-row"><span class="chao-num">5</span><span class="chao-name">高 (Alto / High)</span><div class="chao-bar c5"></div></div>
+                        <div class="chao-scale-row"><span class="chao-num">4</span><span class="chao-name">半高 (Medio-Alto)</span><div class="chao-bar c4"></div></div>
+                        <div class="chao-scale-row"><span class="chao-num">3</span><span class="chao-name">中 (Medio / Mid)</span><div class="chao-bar c3"></div></div>
+                        <div class="chao-scale-row"><span class="chao-num">2</span><span class="chao-name">半低 (Medio-Bajo)</span><div class="chao-bar c2"></div></div>
+                        <div class="chao-scale-row"><span class="chao-num">1</span><span class="chao-name">低 (Bajo / Low)</span><div class="chao-bar c1"></div></div>
                     </div>
                 </div>
 

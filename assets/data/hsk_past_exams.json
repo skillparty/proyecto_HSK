@@ -10,10 +10,34 @@
       "en": "Select the correct translation for 你好"
     },
     "options": [
-      { "key": "A", "label": { "es": "gracias", "en": "thank you" } },
-      { "key": "B", "label": { "es": "hola", "en": "hello" } },
-      { "key": "C", "label": { "es": "adiós", "en": "goodbye" } },
-      { "key": "D", "label": { "es": "perdón", "en": "sorry" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "gracias",
+          "en": "thank you"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "hola",
+          "en": "hello"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "adiós",
+          "en": "goodbye"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "perdón",
+          "en": "sorry"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -28,10 +52,34 @@
       "en": "Complete: 我___学生。"
     },
     "options": [
-      { "key": "A", "label": { "es": "是", "en": "是" } },
-      { "key": "B", "label": { "es": "在", "en": "在" } },
-      { "key": "C", "label": { "es": "有", "en": "有" } },
-      { "key": "D", "label": { "es": "不", "en": "不" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "是",
+          "en": "是"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "在",
+          "en": "在"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "有",
+          "en": "有"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "不",
+          "en": "不"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -46,10 +94,34 @@
       "en": "Select the correct translation for 苹果"
     },
     "options": [
-      { "key": "A", "label": { "es": "manzana", "en": "apple" } },
-      { "key": "B", "label": { "es": "platano", "en": "banana" } },
-      { "key": "C", "label": { "es": "naranja", "en": "orange" } },
-      { "key": "D", "label": { "es": "uva", "en": "grape" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "manzana",
+          "en": "apple"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "platano",
+          "en": "banana"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "naranja",
+          "en": "orange"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "uva",
+          "en": "grape"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -64,10 +136,34 @@
       "en": "Select the correct translation for 医生"
     },
     "options": [
-      { "key": "A", "label": { "es": "profesor", "en": "teacher" } },
-      { "key": "B", "label": { "es": "estudiante", "en": "student" } },
-      { "key": "C", "label": { "es": "médico/doctor", "en": "doctor" } },
-      { "key": "D", "label": { "es": "policía", "en": "police" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "profesor",
+          "en": "teacher"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "estudiante",
+          "en": "student"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "médico/doctor",
+          "en": "doctor"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "policía",
+          "en": "police"
+        }
+      }
     ],
     "answer": "C"
   },
@@ -82,10 +178,34 @@
       "en": "Select the correct translation for 衣服"
     },
     "options": [
-      { "key": "A", "label": { "es": "comida", "en": "food" } },
-      { "key": "B", "label": { "es": "ropa", "en": "clothes" } },
-      { "key": "C", "label": { "es": "agua", "en": "water" } },
-      { "key": "D", "label": { "es": "libro", "en": "book" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "comida",
+          "en": "food"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "ropa",
+          "en": "clothes"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "agua",
+          "en": "water"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "libro",
+          "en": "book"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -100,10 +220,34 @@
       "en": "Which number represents 三?"
     },
     "options": [
-      { "key": "A", "label": { "es": "dos (2)", "en": "two (2)" } },
-      { "key": "B", "label": { "es": "tres (3)", "en": "three (3)" } },
-      { "key": "C", "label": { "es": "cuatro (4)", "en": "four (4)" } },
-      { "key": "D", "label": { "es": "cinco (5)", "en": "five (5)" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "dos (2)",
+          "en": "two (2)"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "tres (3)",
+          "en": "three (3)"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "cuatro (4)",
+          "en": "four (4)"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "cinco (5)",
+          "en": "five (5)"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -118,10 +262,34 @@
       "en": "Select the correct pinyin for 谢谢"
     },
     "options": [
-      { "key": "A", "label": { "es": "xièxie", "en": "xièxie" } },
-      { "key": "B", "label": { "es": "nǐhǎo", "en": "nǐhǎo" } },
-      { "key": "C", "label": { "es": "zàijiàn", "en": "zàijiàn" } },
-      { "key": "D", "label": { "es": "bùkèqi", "en": "bùkèqi" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "xièxie",
+          "en": "xièxie"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "nǐhǎo",
+          "en": "nǐhǎo"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "zàijiàn",
+          "en": "zàijiàn"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "bùkèqi",
+          "en": "bùkèqi"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -136,10 +304,34 @@
       "en": "Complete: 我有三___书。"
     },
     "options": [
-      { "key": "A", "label": { "es": "个", "en": "个" } },
-      { "key": "B", "label": { "es": "本", "en": "本" } },
-      { "key": "C", "label": { "es": "只", "en": "只" } },
-      { "key": "D", "label": { "es": "杯", "en": "杯" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "个",
+          "en": "个"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "本",
+          "en": "本"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "只",
+          "en": "只"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "杯",
+          "en": "杯"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -154,10 +346,34 @@
       "en": "Complete: 你的家___哪里？"
     },
     "options": [
-      { "key": "A", "label": { "es": "在", "en": "在" } },
-      { "key": "B", "label": { "es": "是", "en": "是" } },
-      { "key": "C", "label": { "es": "有", "en": "有" } },
-      { "key": "D", "label": { "es": "去", "en": "去" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "在",
+          "en": "在"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "是",
+          "en": "是"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "有",
+          "en": "有"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "去",
+          "en": "去"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -172,10 +388,34 @@
       "en": "Complete: 王先生不___喝茶，他喝水。"
     },
     "options": [
-      { "key": "A", "label": { "es": "在", "en": "在" } },
-      { "key": "B", "label": { "es": "喜欢", "en": "喜欢" } },
-      { "key": "C", "label": { "es": "什么", "en": "什么" } },
-      { "key": "D", "label": { "es": "多少", "en": "多少" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "在",
+          "en": "在"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "喜欢",
+          "en": "喜欢"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "什么",
+          "en": "什么"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "多少",
+          "en": "多少"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -190,10 +430,34 @@
       "en": "Complete: 今天___二号，明天是三号。"
     },
     "options": [
-      { "key": "A", "label": { "es": "是", "en": "是" } },
-      { "key": "B", "label": { "es": "有", "en": "有" } },
-      { "key": "C", "label": { "es": "号", "en": "号" } },
-      { "key": "D", "label": { "es": "在", "en": "in/at" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "是",
+          "en": "是"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "有",
+          "en": "有"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "号",
+          "en": "号"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "在",
+          "en": "in/at"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -208,10 +472,34 @@
       "en": "Complete: 你的猫在椅子___下面。"
     },
     "options": [
-      { "key": "A", "label": { "es": "的", "en": "的" } },
-      { "key": "B", "label": { "es": "有", "en": "有" } },
-      { "key": "C", "label": { "es": "是", "en": "是" } },
-      { "key": "D", "label": { "es": "在", "en": "在" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "的",
+          "en": "的"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "有",
+          "en": "有"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "是",
+          "en": "是"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "在",
+          "en": "在"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -226,10 +514,34 @@
       "en": "What does 医院 mean?"
     },
     "options": [
-      { "key": "A", "label": { "es": "escuela", "en": "school" } },
-      { "key": "B", "label": { "es": "restaurante", "en": "restaurant" } },
-      { "key": "C", "label": { "es": "hospital", "en": "hospital" } },
-      { "key": "D", "label": { "es": "aeropuerto", "en": "airport" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "escuela",
+          "en": "school"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "restaurante",
+          "en": "restaurant"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "hospital",
+          "en": "hospital"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "aeropuerto",
+          "en": "airport"
+        }
+      }
     ],
     "answer": "C"
   },
@@ -244,10 +556,34 @@
       "en": "Order the sentence: 今天 / 我 / 去 / 公司"
     },
     "options": [
-      { "key": "A", "label": { "es": "我今天公司去", "en": "我今天公司去" } },
-      { "key": "B", "label": { "es": "今天我去公司", "en": "今天我去公司" } },
-      { "key": "C", "label": { "es": "去今天我公司", "en": "去今天我公司" } },
-      { "key": "D", "label": { "es": "公司今天我去", "en": "公司今天我去" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "我今天公司去",
+          "en": "我今天公司去"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "今天我去公司",
+          "en": "今天我去公司"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "去今天我公司",
+          "en": "去今天我公司"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "公司今天我去",
+          "en": "公司今天我去"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -262,10 +598,34 @@
       "en": "Select the translation for 电脑"
     },
     "options": [
-      { "key": "A", "label": { "es": "televisor", "en": "television" } },
-      { "key": "B", "label": { "es": "teléfono", "en": "telephone" } },
-      { "key": "C", "label": { "es": "computadora", "en": "computer" } },
-      { "key": "D", "label": { "es": "reloj", "en": "clock" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "televisor",
+          "en": "television"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "teléfono",
+          "en": "telephone"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "computadora",
+          "en": "computer"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "reloj",
+          "en": "clock"
+        }
+      }
     ],
     "answer": "C"
   },
@@ -280,10 +640,34 @@
       "en": "Select the translation for 跑步"
     },
     "options": [
-      { "key": "A", "label": { "es": "nadar", "en": "swim" } },
-      { "key": "B", "label": { "es": "correr/hacer jogging", "en": "run/jog" } },
-      { "key": "C", "label": { "es": "cantar", "en": "sing" } },
-      { "key": "D", "label": { "es": "bailar", "en": "dance" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "nadar",
+          "en": "swim"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "correr/hacer jogging",
+          "en": "run/jog"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "cantar",
+          "en": "sing"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "bailar",
+          "en": "dance"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -298,10 +682,34 @@
       "en": "Select the translation for 火车站"
     },
     "options": [
-      { "key": "A", "label": { "es": "aeropuerto", "en": "airport" } },
-      { "key": "B", "label": { "es": "parada de autobús", "en": "bus stop" } },
-      { "key": "C", "label": { "es": "estación de tren", "en": "train station" } },
-      { "key": "D", "label": { "es": "estación de metro", "en": "subway station" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "aeropuerto",
+          "en": "airport"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "parada de autobús",
+          "en": "bus stop"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "estación de tren",
+          "en": "train station"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "estación de metro",
+          "en": "subway station"
+        }
+      }
     ],
     "answer": "C"
   },
@@ -316,10 +724,34 @@
       "en": "What does 便宜 mean?"
     },
     "options": [
-      { "key": "A", "label": { "es": "caro", "en": "expensive" } },
-      { "key": "B", "label": { "es": "barato", "en": "cheap" } },
-      { "key": "C", "label": { "es": "bonito", "en": "beautiful" } },
-      { "key": "D", "label": { "es": "rápido", "en": "fast" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "caro",
+          "en": "expensive"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "barato",
+          "en": "cheap"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "bonito",
+          "en": "beautiful"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "rápido",
+          "en": "fast"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -334,10 +766,34 @@
       "en": "Select the translation for 鸡蛋"
     },
     "options": [
-      { "key": "A", "label": { "es": "leche", "en": "milk" } },
-      { "key": "B", "label": { "es": "arroz", "en": "rice" } },
-      { "key": "C", "label": { "es": "huevo", "en": "egg" } },
-      { "key": "D", "label": { "es": "carne", "en": "meat" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "leche",
+          "en": "milk"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "arroz",
+          "en": "rice"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "huevo",
+          "en": "egg"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "carne",
+          "en": "meat"
+        }
+      }
     ],
     "answer": "C"
   },
@@ -352,10 +808,34 @@
       "en": "Order the sentence: 喜欢 / 妹妹 / 唱歌"
     },
     "options": [
-      { "key": "A", "label": { "es": "喜欢妹妹唱歌", "en": "喜欢妹妹唱歌" } },
-      { "key": "B", "label": { "es": "妹妹喜欢唱歌", "en": "妹妹喜欢唱歌" } },
-      { "key": "C", "label": { "es": "唱歌妹妹喜欢", "en": "唱歌妹妹喜欢" } },
-      { "key": "D", "label": { "es": "妹妹唱歌喜欢", "en": "妹妹唱歌喜欢" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "喜欢妹妹唱歌",
+          "en": "喜欢妹妹唱歌"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "妹妹喜欢唱歌",
+          "en": "妹妹喜欢唱歌"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "唱歌妹妹喜欢",
+          "en": "唱歌妹妹喜欢"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "妹妹唱歌喜欢",
+          "en": "妹妹唱歌喜欢"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -370,10 +850,34 @@
       "en": "Order the sentence: 今天 / 天气 / 怎么样"
     },
     "options": [
-      { "key": "A", "label": { "es": "今天天气怎么样", "en": "今天天气怎么样" } },
-      { "key": "B", "label": { "es": "怎么样今天天气", "en": "怎么样今天天气" } },
-      { "key": "C", "label": { "es": "天气怎么样今天", "en": "天气怎么样今天" } },
-      { "key": "D", "label": { "es": "天气今天怎么样", "en": "天气今天怎么样" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "今天天气怎么样",
+          "en": "今天天气怎么样"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "怎么样今天天气",
+          "en": "怎么样今天天气"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "天气怎么样今天",
+          "en": "天气怎么样今天"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "天气今天怎么样",
+          "en": "天气今天怎么样"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -388,10 +892,34 @@
       "en": "Order the sentence: 比 / 哥哥 / 我 / 高"
     },
     "options": [
-      { "key": "A", "label": { "es": "比哥哥我高", "en": "比哥哥我高" } },
-      { "key": "B", "label": { "es": "哥哥比我高", "en": "哥哥比我高" } },
-      { "key": "C", "label": { "es": "我哥哥比高", "en": "我哥哥比高" } },
-      { "key": "D", "label": { "es": "高哥哥比我", "en": "高哥哥比我" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "比哥哥我高",
+          "en": "比哥哥我高"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "哥哥比我高",
+          "en": "哥哥比我高"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "我哥哥比高",
+          "en": "我哥哥比高"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "高哥哥比我",
+          "en": "高哥哥比我"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -406,10 +934,34 @@
       "en": "Order the sentence: 咖啡 / 喝 / 别 / 了"
     },
     "options": [
-      { "key": "A", "label": { "es": "喝咖啡别了", "en": "喝咖啡别了" } },
-      { "key": "B", "label": { "es": "别喝咖啡了", "en": "别喝咖啡了" } },
-      { "key": "C", "label": { "es": "咖啡别喝了", "en": "咖啡别喝了" } },
-      { "key": "D", "label": { "es": "别了喝咖啡", "en": "别了喝咖啡" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "喝咖啡别了",
+          "en": "喝咖啡别了"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "别喝咖啡了",
+          "en": "别喝咖啡了"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "咖啡别喝了",
+          "en": "咖啡别喝了"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "别了喝咖啡",
+          "en": "别了喝咖啡"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -424,10 +976,34 @@
       "en": "Order the sentence: 买 / 了 / 两 / 本 / 书 / 我"
     },
     "options": [
-      { "key": "A", "label": { "es": "我买了书两本", "en": "我买了书两本" } },
-      { "key": "B", "label": { "es": "我买了两本书", "en": "我买了两本书" } },
-      { "key": "C", "label": { "es": "两本书我买了", "en": "两本书我买了" } },
-      { "key": "D", "label": { "es": "买了两本书我", "en": "买了两本书我" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "我买了书两本",
+          "en": "我买了书两本"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "我买了两本书",
+          "en": "我买了两本书"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "两本书我买了",
+          "en": "两本书我买了"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "买了两本书我",
+          "en": "买了两本书我"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -442,10 +1018,34 @@
       "en": "Choose the closest meaning to 高兴"
     },
     "options": [
-      { "key": "A", "label": { "es": "triste", "en": "sad" } },
-      { "key": "B", "label": { "es": "cansado", "en": "tired" } },
-      { "key": "C", "label": { "es": "feliz", "en": "happy" } },
-      { "key": "D", "label": { "es": "enojado", "en": "angry" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "triste",
+          "en": "sad"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "cansado",
+          "en": "tired"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "feliz",
+          "en": "happy"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "enojado",
+          "en": "angry"
+        }
+      }
     ],
     "answer": "C"
   },
@@ -460,10 +1060,34 @@
       "en": "Complete: 他跑得___。"
     },
     "options": [
-      { "key": "A", "label": { "es": "快", "en": "快" } },
-      { "key": "B", "label": { "es": "快地", "en": "快地" } },
-      { "key": "C", "label": { "es": "很快", "en": "很快" } },
-      { "key": "D", "label": { "es": "地快", "en": "地快" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "快",
+          "en": "快"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "快地",
+          "en": "快地"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "很快",
+          "en": "很快"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "地快",
+          "en": "地快"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -478,10 +1102,34 @@
       "en": "Select the opposite of 便宜"
     },
     "options": [
-      { "key": "A", "label": { "es": "方便", "en": "convenient" } },
-      { "key": "B", "label": { "es": "贵", "en": "expensive" } },
-      { "key": "C", "label": { "es": "简单", "en": "simple" } },
-      { "key": "D", "label": { "es": "难看", "en": "ugly" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "方便",
+          "en": "convenient"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "贵",
+          "en": "expensive"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "简单",
+          "en": "simple"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "难看",
+          "en": "ugly"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -496,10 +1144,34 @@
       "en": "Select the meaning of 经常"
     },
     "options": [
-      { "key": "A", "label": { "es": "a menudo / frecuentemente", "en": "often / frequently" } },
-      { "key": "B", "label": { "es": "ocasionalmente", "en": "occasionally" } },
-      { "key": "C", "label": { "es": "raramente", "en": "rarely" } },
-      { "key": "D", "label": { "es": "nunca", "en": "never" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "a menudo / frecuentemente",
+          "en": "often / frequently"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "ocasionalmente",
+          "en": "occasionally"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "raramente",
+          "en": "rarely"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "nunca",
+          "en": "never"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -514,10 +1186,34 @@
       "en": "Which place represents 银行?"
     },
     "options": [
-      { "key": "A", "label": { "es": "escuela", "en": "school" } },
-      { "key": "B", "label": { "es": "banco", "en": "bank" } },
-      { "key": "C", "label": { "es": "supermercado", "en": "supermarket" } },
-      { "key": "D", "label": { "es": "parque", "en": "park" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "escuela",
+          "en": "school"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "banco",
+          "en": "bank"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "supermercado",
+          "en": "supermarket"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "parque",
+          "en": "park"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -532,10 +1228,34 @@
       "en": "Select the translation for 检查"
     },
     "options": [
-      { "key": "A", "label": { "es": "inspeccionar / revisar / chequear", "en": "check / inspect" } },
-      { "key": "B", "label": { "es": "comenzar", "en": "start" } },
-      { "key": "C", "label": { "es": "terminar", "en": "finish" } },
-      { "key": "D", "label": { "es": "olvidar", "en": "forget" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "inspeccionar / revisar / chequear",
+          "en": "check / inspect"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "comenzar",
+          "en": "start"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "terminar",
+          "en": "finish"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "olvidar",
+          "en": "forget"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -550,10 +1270,34 @@
       "en": "Select the translation for 突然"
     },
     "options": [
-      { "key": "A", "label": { "es": "lentamente", "en": "slowly" } },
-      { "key": "B", "label": { "es": "de repente / repentinamente", "en": "suddenly" } },
-      { "key": "C", "label": { "es": "claramente", "en": "clearly" } },
-      { "key": "D", "label": { "es": "seguramente", "en": "surely" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "lentamente",
+          "en": "slowly"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "de repente / repentinamente",
+          "en": "suddenly"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "claramente",
+          "en": "clearly"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "seguramente",
+          "en": "surely"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -568,10 +1312,34 @@
       "en": "Complete: 我___把作业写完了。"
     },
     "options": [
-      { "key": "A", "label": { "es": "已经", "en": "已经" } },
-      { "key": "B", "label": { "es": "经常", "en": "经常" } },
-      { "key": "C", "label": { "es": "突然", "en": "突然" } },
-      { "key": "D", "label": { "es": "虽然", "en": "虽然" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "已经",
+          "en": "已经"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "经常",
+          "en": "经常"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "突然",
+          "en": "突然"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "虽然",
+          "en": "虽然"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -586,10 +1354,34 @@
       "en": "Complete: ___下雨，我们还是去公园了。"
     },
     "options": [
-      { "key": "A", "label": { "es": "不但", "en": "不但" } },
-      { "key": "B", "label": { "es": "虽然", "en": "虽然" } },
-      { "key": "C", "label": { "es": "因为", "en": "因为" } },
-      { "key": "D", "label": { "es": "除了", "en": "除了" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "不但",
+          "en": "不但"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "虽然",
+          "en": "虽然"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "因为",
+          "en": "因为"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "除了",
+          "en": "除了"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -604,10 +1396,34 @@
       "en": "Complete: 苹果被妹妹___了。"
     },
     "options": [
-      { "key": "A", "label": { "es": "吃", "en": "吃" } },
-      { "key": "B", "label": { "es": "看见", "en": "看见" } },
-      { "key": "C", "label": { "es": "买了", "en": "买了" } },
-      { "key": "D", "label": { "es": "在", "en": "在" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "吃",
+          "en": "吃"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "看见",
+          "en": "看见"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "买了",
+          "en": "买了"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "在",
+          "en": "在"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -622,10 +1438,34 @@
       "en": "Complete: 除了唱歌___，她 juga 喜欢跳舞。"
     },
     "options": [
-      { "key": "A", "label": { "es": "以外", "en": "以外" } },
-      { "key": "B", "label": { "es": "因为", "en": "因为" } },
-      { "key": "C", "label": { "es": "所以", "en": "所以" } },
-      { "key": "D", "label": { "es": "而且", "en": "而且" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "以外",
+          "en": "以外"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "因为",
+          "en": "因为"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "所以",
+          "en": "所以"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "而且",
+          "en": "而且"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -640,10 +1480,34 @@
       "en": "Complete: 外面很冷，你___多穿件衣服。"
     },
     "options": [
-      { "key": "A", "label": { "es": "必须", "en": "必须" } },
-      { "key": "B", "label": { "es": "经常", "en": "经常" } },
-      { "key": "C", "label": { "es": "突然", "en": "突然" } },
-      { "key": "D", "label": { "es": "正在", "en": "正在" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "必须",
+          "en": "必须"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "经常",
+          "en": "经常"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "突然",
+          "en": "突然"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "正在",
+          "en": "正在"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -658,10 +1522,34 @@
       "en": "Which word expresses 'continue' in: 继续学习?"
     },
     "options": [
-      { "key": "A", "label": { "es": "学习", "en": "study" } },
-      { "key": "B", "label": { "es": "继续", "en": "continue" } },
-      { "key": "C", "label": { "es": "已经", "en": "already" } },
-      { "key": "D", "label": { "es": "马上", "en": "immediately" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "学习",
+          "en": "study"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "继续",
+          "en": "continue"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "已经",
+          "en": "already"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "马上",
+          "en": "immediately"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -676,10 +1564,34 @@
       "en": "Choose the most natural sentence:"
     },
     "options": [
-      { "key": "A", "label": { "es": "因为下雨，所以我们取消了比赛。", "en": "因为下雨，所以我们取消了比赛。" } },
-      { "key": "B", "label": { "es": "so 很多下雨，因为我们取消了比赛。", "en": "so 很多下雨，因为我们取消了比赛。" } },
-      { "key": "C", "label": { "es": "我们取消比赛因为了下雨。", "en": "us cancel match because of rain" } },
-      { "key": "D", "label": { "es": "因为我们比赛，所以下雨取消了。", "en": "因为我们比赛，所以下雨取消了。" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "因为下雨，所以我们取消了比赛。",
+          "en": "因为下雨，所以我们取消了比赛。"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "so 很多下雨，因为我们取消了比赛。",
+          "en": "so 很多下雨，因为我们取消了比赛。"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "我们取消比赛因为了下雨。",
+          "en": "us cancel match because of rain"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "因为我们比赛，所以下雨取消了。",
+          "en": "因为我们比赛，所以下雨取消了。"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -694,10 +1606,34 @@
       "en": "Select the meaning of 顺便"
     },
     "options": [
-      { "key": "A", "label": { "es": "apropiadamente", "en": "appropriately" } },
-      { "key": "B", "label": { "es": "de paso / convenientemente", "en": "by the way / in passing" } },
-      { "key": "C", "label": { "es": "especialmente", "en": "especially" } },
-      { "key": "D", "label": { "es": "seguramente", "en": "surely" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "apropiadamente",
+          "en": "appropriately"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "de paso / convenientemente",
+          "en": "by the way / in passing"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "especialmente",
+          "en": "especially"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "seguramente",
+          "en": "surely"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -712,10 +1648,34 @@
       "en": "Select the meaning of 拒绝"
     },
     "options": [
-      { "key": "A", "label": { "es": "aceptar", "en": "accept" } },
-      { "key": "B", "label": { "es": "rechazar / rehusar", "en": "reject / refuse" } },
-      { "key": "C", "label": { "es": "recomendar", "en": "recommend" } },
-      { "key": "D", "label": { "es": "admitir", "en": "admit" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "aceptar",
+          "en": "accept"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "rechazar / rehusar",
+          "en": "reject / refuse"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "recomendar",
+          "en": "recommend"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "admitir",
+          "en": "admit"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -730,10 +1690,34 @@
       "en": "Select the antonym of 骄傲"
     },
     "options": [
-      { "key": "A", "label": { "es": "humilde (谦虚)", "en": "humble (谦虚)" } },
-      { "key": "B", "label": { "es": "orgulloso (骄傲)", "en": "proud (骄傲)" } },
-      { "key": "C", "label": { "es": "seguro", "en": "confident" } },
-      { "key": "D", "label": { "es": "feliz", "en": "happy" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "humilde (谦虚)",
+          "en": "humble (谦虚)"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "orgulloso (骄傲)",
+          "en": "proud (骄傲)"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "seguro",
+          "en": "confident"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "feliz",
+          "en": "happy"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -748,10 +1732,34 @@
       "en": "Select the translation for 估计"
     },
     "options": [
-      { "key": "A", "label": { "es": "estimar / evaluar / calcular", "en": "estimate / calculate" } },
-      { "key": "B", "label": { "es": "garantizar", "en": "guarantee" } },
-      { "key": "C", "label": { "es": "decidir", "en": "decide" } },
-      { "key": "D", "label": { "es": "ignorar", "en": "ignore" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "estimar / evaluar / calcular",
+          "en": "estimate / calculate"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "garantizar",
+          "en": "guarantee"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "decidir",
+          "en": "decide"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "ignorar",
+          "en": "ignore"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -766,10 +1774,34 @@
       "en": "What does 质量 mean?"
     },
     "options": [
-      { "key": "A", "label": { "es": "cantidad", "en": "quantity" } },
-      { "key": "B", "label": { "es": "calidad", "en": "quality" } },
-      { "key": "C", "label": { "es": "peso", "en": "weight" } },
-      { "key": "D", "label": { "es": "altura", "en": "height" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "cantidad",
+          "en": "quantity"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "calidad",
+          "en": "quality"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "peso",
+          "en": "weight"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "altura",
+          "en": "height"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -784,10 +1816,34 @@
       "en": "Order the sentence: 不管 / 都 / 学习 / 汉语 / 难 / 努力 / 我 / 有多"
     },
     "options": [
-      { "key": "A", "label": { "es": "不管汉语有多难，我都会努力学习。", "en": "不管汉语有多难，我都会努力学习。" } },
-      { "key": "B", "label": { "es": "我不管汉语有多难都努力学习。", "en": "我不管汉语有多难都努力学习。" } },
-      { "key": "C", "label": { "es": "汉语有多难，不管我都努力学习。", "en": "汉语有多难，不管我都努力学习。" } },
-      { "key": "D", "label": { "es": "都会努力学习不管汉语有多难我。", "en": "都会努力学习不管汉语有多难我。" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "不管汉语有多难，我都会努力学习。",
+          "en": "不管汉语有多难，我都会努力学习。"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "我不管汉语有多难都努力学习。",
+          "en": "我不管汉语有多难都努力学习。"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "汉语有多难，不管我都努力学习。",
+          "en": "汉语有多难，不管我都努力学习。"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "都会努力学习不管汉语有多难我。",
+          "en": "都会努力学习不管汉语有多难我。"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -802,10 +1858,34 @@
       "en": "Order the sentence: 既然 / 身体 / 舒服 / 不 / 休息 / 就 / 你 / 回家 / 吧"
     },
     "options": [
-      { "key": "A", "label": { "es": "既然你身体不舒服，就回家休息吧。", "en": "既然你身体不舒服，就回家休息吧。" } },
-      { "key": "B", "label": { "es": "你就回家休息吧既然身体不舒服你。", "en": "你就回家休息吧既然身体不舒服你。" } },
-      { "key": "C", "label": { "es": "身体不舒服，既然你就回家休息吧。", "en": "身体不舒服，既然你就回家休息吧。" } },
-      { "key": "D", "label": { "es": "既然身体不舒服你，就回家吧休息。", "en": "Since you feel unwell, go home to rest." } }
+      {
+        "key": "A",
+        "label": {
+          "es": "既然你身体不舒服，就回家休息吧。",
+          "en": "既然你身体不舒服，就回家休息吧。"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "你就回家休息吧既然身体不舒服你。",
+          "en": "你就回家休息吧既然身体不舒服你。"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "身体不舒服，既然你就回家休息吧。",
+          "en": "身体不舒服，既然你就回家休息吧。"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "既然身体不舒服你，就回家吧休息。",
+          "en": "Since you feel unwell, go home to rest."
+        }
+      }
     ],
     "answer": "A"
   },
@@ -820,10 +1900,34 @@
       "en": "Order the sentence: 顺便 / 超市 / 帮 / 我 / 去 / 买 / 瓶 / 水 / 吧 / 你"
     },
     "options": [
-      { "key": "A", "label": { "es": "你顺便去超市，帮我买瓶水吧。", "en": "你顺便去超市，帮我买瓶水吧。" } },
-      { "key": "B", "label": { "es": "你去超市，顺便帮我买瓶水吧。", "en": "你去超市，顺便帮我买瓶水吧。" } },
-      { "key": "C", "label": { "es": "帮我买瓶水你顺便去超市吧。", "en": "帮 me buy bottle water you in passing go supermarket" } },
-      { "key": "D", "label": { "es": "超市顺便你去帮我买瓶水吧。", "en": "超市顺便你去帮我买瓶水吧。" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "你顺便去超市，帮我买瓶水吧。",
+          "en": "你顺便去超市，帮我买瓶水吧。"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "你去超市，顺便帮我买瓶水吧。",
+          "en": "你去超市，顺便帮我买瓶水吧。"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "帮我买瓶水你顺便去超市吧。",
+          "en": "帮 me buy bottle water you in passing go supermarket"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "超市顺便你去帮我买瓶水吧。",
+          "en": "超市顺便你去帮我买瓶水吧。"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -838,10 +1942,34 @@
       "en": "Order the sentence: 经历 / 成功 / 许多 / 才能 / 失败 / 最终 / 获得 / 你"
     },
     "options": [
-      { "key": "A", "label": { "es": "你成功经历许多失败，才能最终获得。", "en": "你成功经历许多失败，才能最终获得。" } },
-      { "key": "B", "label": { "es": "你必须经历许多失败，才能最终获得成功。", "en": "You must experience many failures to finally achieve success." } },
-      { "key": "C", "label": { "es": "成功经历许多失败你才能最终获得。", "en": "成功经历许多失败你才能最终获得。" } },
-      { "key": "D", "label": { "es": "最终获得成功你才能经历许多失败。", "en": "最终获得成功你才能经历许多失败。" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "你成功经历许多失败，才能最终获得。",
+          "en": "你成功经历许多失败，才能最终获得。"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "你必须经历许多失败，才能最终获得成功。",
+          "en": "You must experience many failures to finally achieve success."
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "成功经历许多失败你才能最终获得。",
+          "en": "成功经历许多失败你才能最终获得。"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "最终获得成功你才能经历许多失败。",
+          "en": "最终获得成功你才能经历许多失败。"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -856,10 +1984,34 @@
       "en": "Order the sentence: 受到 / 的 / 鼓励 / 老师 / 极大的 / 了 / 他"
     },
     "options": [
-      { "key": "A", "label": { "es": "老师受到极大的鼓励了他。", "en": "老师受到极大的鼓励了他。" } },
-      { "key": "B", "label": { "es": "他受到了老师极大的鼓励。", "en": "He received great encouragement from the teacher." } },
-      { "key": "C", "label": { "es": "他极大的鼓励了受到老师。", "en": "他极大的鼓励了受到老师。" } },
-      { "key": "D", "label": { "es": "受到了极大的鼓励老师他的。", "en": "受到了极大的鼓励老师他的。" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "老师受到极大的鼓励了他。",
+          "en": "老师受到极大的鼓励了他。"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "他受到了老师极大的鼓励。",
+          "en": "He received great encouragement from the teacher."
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "他极大的鼓励了受到老师。",
+          "en": "他极大的鼓励了受到老师。"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "受到了极大的鼓励老师他的。",
+          "en": "受到了极大的鼓励老师他的。"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -874,10 +2026,34 @@
       "en": "Select the closest synonym for 建议"
     },
     "options": [
-      { "key": "A", "label": { "es": "要求", "en": "demand" } },
-      { "key": "B", "label": { "es": "提议", "en": "proposal" } },
-      { "key": "C", "label": { "es": "拒绝", "en": "reject" } },
-      { "key": "D", "label": { "es": "怀疑", "en": "doubt" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "要求",
+          "en": "demand"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "提议",
+          "en": "proposal"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "拒绝",
+          "en": "reject"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "怀疑",
+          "en": "doubt"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -892,10 +2068,34 @@
       "en": "Complete: 这个计划不仅提高了效率，___降低了成本。"
     },
     "options": [
-      { "key": "A", "label": { "es": "而且", "en": "而且" } },
-      { "key": "B", "label": { "es": "但是", "en": "但是" } },
-      { "key": "C", "label": { "es": "虽然", "en": "虽然" } },
-      { "key": "D", "label": { "es": "如果", "en": "如果" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "而且",
+          "en": "而且"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "但是",
+          "en": "但是"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "虽然",
+          "en": "虽然"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "如果",
+          "en": "如果"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -910,10 +2110,34 @@
       "en": "Select the word that best defines 启发"
     },
     "options": [
-      { "key": "A", "label": { "es": "inspirar / dar ideas", "en": "inspire / enlighten" } },
-      { "key": "B", "label": { "es": "limitar", "en": "limit" } },
-      { "key": "C", "label": { "es": "rechazar", "en": "reject" } },
-      { "key": "D", "label": { "es": "repetir", "en": "repeat" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "inspirar / dar ideas",
+          "en": "inspire / enlighten"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "limitar",
+          "en": "limit"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "rechazar",
+          "en": "reject"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "repetir",
+          "en": "repeat"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -928,10 +2152,34 @@
       "en": "Select the translation for 反应"
     },
     "options": [
-      { "key": "A", "label": { "es": "reflexionar", "en": "reflect" } },
-      { "key": "B", "label": { "es": "reaccionar / reacción", "en": "react / reaction" } },
-      { "key": "C", "label": { "es": "planear", "en": "plan" } },
-      { "key": "D", "label": { "es": "recordar", "en": "remember" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "reflexionar",
+          "en": "reflect"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "reaccionar / reacción",
+          "en": "react / reaction"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "planear",
+          "en": "plan"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "recordar",
+          "en": "remember"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -946,10 +2194,34 @@
       "en": "What does 满足 express?"
     },
     "options": [
-      { "key": "A", "label": { "es": "satisfacer / estar satisfecho", "en": "satisfy / be satisfied" } },
-      { "key": "B", "label": { "es": "desear más", "en": "wish for more" } },
-      { "key": "C", "label": { "es": "carecer", "en": "lack" } },
-      { "key": "D", "label": { "es": "perder", "en": "lose" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "satisfacer / estar satisfecho",
+          "en": "satisfy / be satisfied"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "desear más",
+          "en": "wish for more"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "carecer",
+          "en": "lack"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "perder",
+          "en": "lose"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -964,10 +2236,34 @@
       "en": "Select the translation for 稍微"
     },
     "options": [
-      { "key": "A", "label": { "es": "un poco / ligeramente", "en": "slightly / a bit" } },
-      { "key": "B", "label": { "es": "mucho", "en": "a lot" } },
-      { "key": "C", "label": { "es": "nunca", "en": "never" } },
-      { "key": "D", "label": { "es": "siempre", "en": "always" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "un poco / ligeramente",
+          "en": "slightly / a bit"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "mucho",
+          "en": "a lot"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "nunca",
+          "en": "never"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "siempre",
+          "en": "always"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -982,10 +2278,34 @@
       "en": "Select the translation for 核心"
     },
     "options": [
-      { "key": "A", "label": { "es": "periferia", "en": "outskirts" } },
-      { "key": "B", "label": { "es": "núcleo / centro / clave", "en": "core / center / key" } },
-      { "key": "C", "label": { "es": "superficie", "en": "surface" } },
-      { "key": "D", "label": { "es": "capa", "en": "layer" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "periferia",
+          "en": "outskirts"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "núcleo / centro / clave",
+          "en": "core / center / key"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "superficie",
+          "en": "surface"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "capa",
+          "en": "layer"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -1000,10 +2320,34 @@
       "en": "Complete: 与其坐着抱怨，___主动寻找解决办法。"
     },
     "options": [
-      { "key": "A", "label": { "es": "不如", "en": "不如" } },
-      { "key": "B", "label": { "es": "而且", "en": "而且" } },
-      { "key": "C", "label": { "es": "因为", "en": "因为" } },
-      { "key": "D", "label": { "es": "宁可", "en": "宁可" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "不如",
+          "en": "不如"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "而且",
+          "en": "而且"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "因为",
+          "en": "因为"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "宁可",
+          "en": "宁可"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1018,10 +2362,34 @@
       "en": "Complete: 他___牺牲自己的休息时间，也要把任务完成。"
     },
     "options": [
-      { "key": "A", "label": { "es": "宁可", "en": "宁可" } },
-      { "key": "B", "label": { "es": "不如", "en": "不如" } },
-      { "key": "C", "label": { "es": "甚至", "en": "甚至" } },
-      { "key": "D", "label": { "es": "稍微", "en": "稍微" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "宁可",
+          "en": "宁可"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "不如",
+          "en": "不如"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "甚至",
+          "en": "甚至"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "稍微",
+          "en": "稍微"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1036,10 +2404,34 @@
       "en": "Complete: 尽管面临很多困难，___我们没有放弃。"
     },
     "options": [
-      { "key": "A", "label": { "es": "但是", "en": "但是" } },
-      { "key": "B", "label": { "es": "而且", "en": "而且" } },
-      { "key": "C", "label": { "es": "如果", "en": "如果" } },
-      { "key": "D", "label": { "es": "因此", "en": "因此" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "但是",
+          "en": "但是"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "而且",
+          "en": "而且"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "如果",
+          "en": "如果"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "因此",
+          "en": "因此"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1054,10 +2446,34 @@
       "en": "Complete: 他对这个问题做出了___深刻的分析。"
     },
     "options": [
-      { "key": "A", "label": { "es": "非常", "en": "非常" } },
-      { "key": "B", "label": { "es": "极为", "en": "极为" } },
-      { "key": "C", "label": { "es": "稍微", "en": "稍微" } },
-      { "key": "D", "label": { "es": "核心", "en": "核心" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "非常",
+          "en": "非常"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "极为",
+          "en": "极为"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "稍微",
+          "en": "稍微"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "核心",
+          "en": "核心"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -1072,10 +2488,34 @@
       "en": "Complete: 随着科技的发展，人们的生活发生了___的变化。"
     },
     "options": [
-      { "key": "A", "label": { "es": "巨大", "en": "巨大" } },
-      { "key": "B", "label": { "es": "核心", "en": "核心" } },
-      { "key": "C", "label": { "es": "经常", "en": "经常" } },
-      { "key": "D", "label": { "es": "稍微", "en": "稍微" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "巨大",
+          "en": "巨大"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "核心",
+          "en": "核心"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "经常",
+          "en": "经常"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "稍微",
+          "en": "稍微"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1090,10 +2530,34 @@
       "en": "In an academic context, 推敲 is closest to:"
     },
     "options": [
-      { "key": "A", "label": { "es": "analizar cuidadosamente", "en": "carefully deliberate" } },
-      { "key": "B", "label": { "es": "difundir rápidamente", "en": "spread quickly" } },
-      { "key": "C", "label": { "es": "evitar discutir", "en": "avoid discussing" } },
-      { "key": "D", "label": { "es": "recordar de memoria", "en": "memorize" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "analizar cuidadosamente",
+          "en": "carefully deliberate"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "difundir rápidamente",
+          "en": "spread quickly"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "evitar discutir",
+          "en": "avoid discussing"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "recordar de memoria",
+          "en": "memorize"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1108,10 +2572,34 @@
       "en": "Choose the most appropriate connector: 结论已经明确，___无需赘述。"
     },
     "options": [
-      { "key": "A", "label": { "es": "因此", "en": "therefore" } },
-      { "key": "B", "label": { "es": "不过", "en": "however" } },
-      { "key": "C", "label": { "es": "否则", "en": "otherwise" } },
-      { "key": "D", "label": { "es": "即使", "en": "even if" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "因此",
+          "en": "therefore"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "不过",
+          "en": "however"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "否则",
+          "en": "otherwise"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "即使",
+          "en": "even if"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1126,10 +2614,34 @@
       "en": "Select the meaning of the Chengyu 半途而废"
     },
     "options": [
-      { "key": "A", "label": { "es": "esforzarse hasta el final", "en": "strive to the end" } },
-      { "key": "B", "label": { "es": "rendirse a mitad de camino", "en": "give up halfway" } },
-      { "key": "C", "label": { "es": "comenzar con entusiasmo", "en": "start with enthusiasm" } },
-      { "key": "D", "label": { "es": "lograr un gran éxito", "en": "achieve great success" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "esforzarse hasta el final",
+          "en": "strive to the end"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "rendirse a mitad de camino",
+          "en": "give up halfway"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "comenzar con entusiasmo",
+          "en": "start with enthusiasm"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "lograr un gran éxito",
+          "en": "achieve great success"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -1144,10 +2656,34 @@
       "en": "Select the meaning of the Chengyu 锲而不舍"
     },
     "options": [
-      { "key": "A", "label": { "es": "perseverar incansablemente", "en": "perseverance untiringly" } },
-      { "key": "B", "label": { "es": "dar explicaciones simples", "en": "give simple explanations" } },
-      { "key": "C", "label": { "es": "perder el tiempo", "en": "waste time" } },
-      { "key": "D", "label": { "es": "hablar con arrogancia", "en": "talk arrogantly" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "perseverar incansablemente",
+          "en": "perseverance untiringly"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "dar explicaciones simples",
+          "en": "give simple explanations"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "perder el tiempo",
+          "en": "waste time"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "hablar con arrogancia",
+          "en": "talk arrogantly"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1162,10 +2698,34 @@
       "en": "Select the translation for 逻辑"
     },
     "options": [
-      { "key": "A", "label": { "es": "intuición", "en": "intuition" } },
-      { "key": "B", "label": { "es": "lógica", "en": "logic" } },
-      { "key": "C", "label": { "es": "emoción", "en": "emotion" } },
-      { "key": "D", "label": { "es": "fantasía", "en": "fantasy" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "intuición",
+          "en": "intuition"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "lógica",
+          "en": "logic"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "emoción",
+          "en": "emotion"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "fantasía",
+          "en": "fantasy"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -1180,10 +2740,34 @@
       "en": "Select the definition of 荒谬"
     },
     "options": [
-      { "key": "A", "label": { "es": "razonable", "en": "reasonable" } },
-      { "key": "B", "label": { "es": "absurdo / ridículo", "en": "absurd / ridiculous" } },
-      { "key": "C", "label": { "es": "importante", "en": "important" } },
-      { "key": "D", "label": { "es": "misterioso", "en": "mysterious" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "razonable",
+          "en": "reasonable"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "absurdo / ridículo",
+          "en": "absurd / ridiculous"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "importante",
+          "en": "important"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "misterioso",
+          "en": "mysterious"
+        }
+      }
     ],
     "answer": "B"
   },
@@ -1198,10 +2782,34 @@
       "en": "Select the translation for 琢磨"
     },
     "options": [
-      { "key": "A", "label": { "es": "reflexionar / ponderar / pulir", "en": "ponder / deliberate / polish" } },
-      { "key": "B", "label": { "es": "olvidar de inmediato", "en": "forget immediately" } },
-      { "key": "C", "label": { "es": "correr de prisa", "en": "run in a hurry" } },
-      { "key": "D", "label": { "es": "copiar sin pensar", "en": "copy without thinking" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "reflexionar / ponderar / pulir",
+          "en": "ponder / deliberate / polish"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "olvidar de inmediato",
+          "en": "forget immediately"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "correr de prisa",
+          "en": "run in a hurry"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "copiar sin pensar",
+          "en": "copy without thinking"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1216,10 +2824,34 @@
       "en": "Complete the literary sentence: 他虽身处逆境，___依然保持乐观的心态。"
     },
     "options": [
-      { "key": "A", "label": { "es": "却", "en": "却" } },
-      { "key": "B", "label": { "es": "而且", "en": "而且" } },
-      { "key": "C", "label": { "es": "所以", "en": "所以" } },
-      { "key": "D", "label": { "es": "因为", "en": "因为" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "却",
+          "en": "却"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "而且",
+          "en": "而且"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "所以",
+          "en": "所以"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "因为",
+          "en": "因为"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1234,10 +2866,34 @@
       "en": "Complete: 设立该奖项的宗旨，___鼓励更多的青年学者从事科学研究。"
     },
     "options": [
-      { "key": "A", "label": { "es": "在于", "en": "在于" } },
-      { "key": "B", "label": { "es": "由于", "en": "由于" } },
-      { "key": "C", "label": { "es": "关于", "en": "关于" } },
-      { "key": "D", "label": { "es": "对于", "en": "对于" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "在于",
+          "en": "在于"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "由于",
+          "en": "由于"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "关于",
+          "en": "关于"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "对于",
+          "en": "对于"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1252,10 +2908,34 @@
       "en": "Complete: 他的成功并非偶然，___长期不懈努力的结果。"
     },
     "options": [
-      { "key": "A", "label": { "es": "而是", "en": "而是" } },
-      { "key": "B", "label": { "es": "但是", "en": "但是" } },
-      { "key": "C", "label": { "es": "由于", "en": "由于" } },
-      { "key": "D", "label": { "es": "即使", "en": "即使" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "而是",
+          "en": "而是"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "但是",
+          "en": "但是"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "由于",
+          "en": "由于"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "即使",
+          "en": "即使"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1270,10 +2950,34 @@
       "en": "Complete: 这一决议的通过，___了双方合作的新纪元。"
     },
     "options": [
-      { "key": "A", "label": { "es": "开创", "en": "开创" } },
-      { "key": "B", "label": { "es": "开辟", "en": "开辟" } },
-      { "key": "C", "label": { "es": "开始", "en": "开始" } },
-      { "key": "D", "label": { "es": "建立", "en": "建立" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "开创",
+          "en": "开创"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "开辟",
+          "en": "开辟"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "开始",
+          "en": "开始"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "建立",
+          "en": "建立"
+        }
+      }
     ],
     "answer": "A"
   },
@@ -1288,11 +2992,1445 @@
       "en": "Complete: 他在工作中所展现的敬业精神，令人___感佩。"
     },
     "options": [
-      { "key": "A", "label": { "es": "由衷", "en": "由衷" } },
-      { "key": "B", "label": { "es": "非常", "en": "非常" } },
-      { "key": "C", "label": { "es": "稍微", "en": "稍微" } },
-      { "key": "D", "label": { "es": "已经", "en": "已经" } }
+      {
+        "key": "A",
+        "label": {
+          "es": "由衷",
+          "en": "由衷"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "非常",
+          "en": "非常"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "稍微",
+          "en": "稍微"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "已经",
+          "en": "已经"
+        }
+      }
     ],
     "answer": "A"
+  },
+  {
+    "id": "hsk1-listening-01",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "你好！请问，洗手间在哪儿？",
+    "prompt": {
+      "es": "Escucha el audio y responde: ¿Qué está buscando la persona?",
+      "en": "Listen to the audio and answer: What is the person looking for?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "El baño / servicio",
+          "en": "The restroom / bathroom"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Un restaurante",
+          "en": "A restaurant"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "La estación de tren",
+          "en": "The train station"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Un hospital",
+          "en": "A hospital"
+        }
+      }
+    ],
+    "answer": "A",
+    "explanation": {
+      "es": "La persona pregunta: '请问，洗手间在哪儿？' (Disculpe, ¿dónde está el baño?). '洗手间' (xǐshǒujiān) significa baño.",
+      "en": "The speaker asks: '请问，洗手间在哪儿？' (Excuse me, where is the restroom?). '洗手间' (xǐshǒujiān) means restroom."
+    }
+  },
+  {
+    "id": "hsk1-listening-02",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "今天天气很好，我们去公园喝茶吧。",
+    "prompt": {
+      "es": "¿Qué propone hacer el hablante?",
+      "en": "What does the speaker propose to do?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Comprar ropa",
+          "en": "Buy clothes"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Ir al parque a tomar té",
+          "en": "Go to the park to drink tea"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Estudiar en casa",
+          "en": "Study at home"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Dormir",
+          "en": "Sleep"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "El hablante dice: '我们去公园喝茶吧' (Vamos al parque a tomar té). '公园' es parque y '喝茶' es tomar té.",
+      "en": "The speaker says: '我们去公园喝茶吧' (Let's go to the park to drink tea). '公园' is park and '喝茶' is drink tea."
+    }
+  },
+  {
+    "id": "hsk1-listening-03",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "对不起，我今天太忙了，明天见。",
+    "prompt": {
+      "es": "¿Por qué no puede encontrarse hoy?",
+      "en": "Why can't the person meet today?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Está enfermo",
+          "en": "Is sick"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "No tiene dinero",
+          "en": "Has no money"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Está demasiado ocupado hoy",
+          "en": "Is too busy today"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Perdió el autobús",
+          "en": "Missed the bus"
+        }
+      }
+    ],
+    "answer": "C",
+    "explanation": {
+      "es": "El hablante dice '我今天太忙了' (Hoy estoy demasiado ocupado). '忙' (máng) significa ocupado.",
+      "en": "The speaker says '我今天太忙了' (Today I am too busy). '忙' (máng) means busy."
+    }
+  },
+  {
+    "id": "hsk1-listening-04",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "这个苹果三块钱，太贵了。",
+    "prompt": {
+      "es": "¿Qué opina la persona sobre la manzana?",
+      "en": "What does the person think of the apple?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Es muy barata",
+          "en": "It is very cheap"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Es muy cara",
+          "en": "It is too expensive"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Es muy dulce",
+          "en": "It is very sweet"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "No es fresca",
+          "en": "It is not fresh"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "Dice: '这个苹果三块钱，太贵了' (Esta manzana cuesta tres yuanes, ¡es muy cara!). '贵' (guì) significa caro.",
+      "en": "The speaker says: '这个苹果三块钱，太贵了' (This apple is three yuan, it's too expensive!). '贵' (guì) means expensive."
+    }
+  },
+  {
+    "id": "hsk1-listening-05",
+    "hskLevel": 1,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "喂，大卫，你在哪儿呢？我在出租车上。",
+    "prompt": {
+      "es": "¿Dónde está David?",
+      "en": "Where is David?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "En el avión",
+          "en": "On the airplane"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "En el metro",
+          "en": "On the subway"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "En el taxi",
+          "en": "In the taxi"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "En el colegio",
+          "en": "At school"
+        }
+      }
+    ],
+    "answer": "C",
+    "explanation": {
+      "es": "David responde '我在出租车上' (Estoy en el taxi). '出租车' (chūzūchē) significa taxi.",
+      "en": "David answers '我在出租车上' (I am in the taxi). '出租车' (chūzūchē) means taxi."
+    }
+  },
+  {
+    "id": "hsk2-listening-01",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "医生说你需要多休息，不要再跑步了。",
+    "prompt": {
+      "es": "¿Qué recomendó el médico?",
+      "en": "What did the doctor advise?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Descansar más y no correr",
+          "en": "Rest more and stop running"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Comer más fruta",
+          "en": "Eat more fruit"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Ir a trabajar temprano",
+          "en": "Go to work early"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Nadar todos los días",
+          "en": "Swim every day"
+        }
+      }
+    ],
+    "answer": "A",
+    "explanation": {
+      "es": "'医生说你需要多休息，不要再跑步了' -> El médico dice que descanses más y dejes de correr.",
+      "en": "'医生说你需要多休息，不要再跑步了' -> The doctor says you need more rest and shouldn't run anymore."
+    }
+  },
+  {
+    "id": "hsk2-listening-02",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "虽然今天下雪了，但是外边一点儿也不冷。",
+    "prompt": {
+      "es": "¿Cómo está el tiempo hoy?",
+      "en": "How is the weather today?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Hace mucho calor",
+          "en": "It is very hot"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Nieva, pero afuera no hace nada de frío",
+          "en": "It snows, but it's not cold at all outside"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Hay mucho viento y frío",
+          "en": "It is very windy and cold"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Está soleado y agradable",
+          "en": "It is sunny and pleasant"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'虽然...但是...' expresa contraste: Aunque nieva (下雪), no hace nada de frío (一点儿也不冷).",
+      "en": "'虽然...但是...' shows contrast: Although it's snowing, outside is not cold at all."
+    }
+  },
+  {
+    "id": "hsk2-listening-03",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "服务员，这件红色的衣服有大一点儿的吗？",
+    "prompt": {
+      "es": "¿Qué pide el cliente?",
+      "en": "What is the customer asking for?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Una talla más grande de la ropa roja",
+          "en": "A larger size of the red clothes"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Una prenda azul más barata",
+          "en": "A cheaper blue garment"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Pagar con tarjeta",
+          "en": "Pay by credit card"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Un descuento",
+          "en": "A discount"
+        }
+      }
+    ],
+    "answer": "A",
+    "explanation": {
+      "es": "'红色的衣服有大一点儿的吗' pide una talla más grande ('大一点儿') de la ropa roja.",
+      "en": "'红色的衣服有大一点儿的吗' asks for a slightly bigger size ('大一点儿') of the red clothing."
+    }
+  },
+  {
+    "id": "hsk2-listening-04",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "火车站离这里很近，走路十分钟就到了。",
+    "prompt": {
+      "es": "¿Cuánto se tarda en llegar a la estación a pie?",
+      "en": "How long does it take to walk to the train station?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Media hora",
+          "en": "Half an hour"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Diez minutos",
+          "en": "Ten minutes"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Una hora",
+          "en": "One hour"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Dos horas",
+          "en": "Two hours"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'走路十分钟就到了' significa que caminando toma solo diez minutos.",
+      "en": "'走路十分钟就到了' indicates walking takes only ten minutes."
+    }
+  },
+  {
+    "id": "hsk2-listening-05",
+    "hskLevel": 2,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "时间过得真快，我们认识已经三年了。",
+    "prompt": {
+      "es": "¿Cuánto tiempo hace que se conocen?",
+      "en": "How long have they known each other?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Tres meses",
+          "en": "Three months"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Tres días",
+          "en": "Three days"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Tres años",
+          "en": "Three years"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Treinta días",
+          "en": "Thirty days"
+        }
+      }
+    ],
+    "answer": "C",
+    "explanation": {
+      "es": "'我们认识已经三年了' -> '三年' son tres años.",
+      "en": "'我们认识已经三年了' -> '三年' means three years."
+    }
+  },
+  {
+    "id": "hsk3-listening-01",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "男：请问去国家图书馆应该坐哪路公交车？女：坐302路，大概过五站就到了。",
+    "prompt": {
+      "es": "¿Qué autobús debe tomar el hombre?",
+      "en": "Which bus should the man take?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "El autobús 302",
+          "en": "Bus 302"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "El autobús 203",
+          "en": "Bus 203"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "El autobús 502",
+          "en": "Bus 502"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "El metro línea 5",
+          "en": "Subway line 5"
+        }
+      }
+    ],
+    "answer": "A",
+    "explanation": {
+      "es": "La mujer indica claramente: '坐302路' (tome la línea 302).",
+      "en": "The woman clearly indicates: '坐302路' (take bus line 302)."
+    }
+  },
+  {
+    "id": "hsk3-listening-02",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "男：这个周末你有什么打算？女：我打算先把作业写完，然后去爬山。",
+    "prompt": {
+      "es": "¿Qué hará la mujer en primer lugar?",
+      "en": "What will the woman do first?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Ir de excursión a la montaña",
+          "en": "Go mountain climbing"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Terminar sus deberes",
+          "en": "Finish her homework"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Ir de compras",
+          "en": "Go shopping"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Visitar a sus abuelos",
+          "en": "Visit her grandparents"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "La estructura '先...然后...' indica orden: '先把作业写完' (primero terminar los deberes).",
+      "en": "The pattern '先...然后...' shows sequence: '先把作业写完' (finish homework first)."
+    }
+  },
+  {
+    "id": "hsk3-listening-03",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "女：先生，您的航班因为大雾推迟起飞了。男：那我大概需要等多久？",
+    "prompt": {
+      "es": "¿Por qué se retrasó el vuelo?",
+      "en": "Why was the flight delayed?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Por avería mecánica",
+          "en": "Due to mechanical failure"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Por culpa del tráfico",
+          "en": "Due to traffic"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Por intensa niebla",
+          "en": "Due to heavy fog"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Por falta de combustible",
+          "en": "Due to lack of fuel"
+        }
+      }
+    ],
+    "answer": "C",
+    "explanation": {
+      "es": "'因为大雾推迟起飞' -> '大雾' (dàwù) significa niebla densa.",
+      "en": "'因为大雾推迟起飞' -> '大雾' (dàwù) means heavy fog."
+    }
+  },
+  {
+    "id": "hsk3-listening-04",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "男：你最近怎么总是喝咖啡？女：最近准备考试，每天都睡得很晚。",
+    "prompt": {
+      "es": "¿Por qué bebe café la mujer?",
+      "en": "Why is the woman drinking coffee?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Porque le gusta mucho el sabor",
+          "en": "Because she loves the taste"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Porque duerme tarde preparando exámenes",
+          "en": "Because she sleeps late preparing for exams"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Porque trabaja en una cafetería",
+          "en": "Because she works in a coffee shop"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Porque el té es muy caro",
+          "en": "Because tea is too expensive"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'准备考试，每天都睡得很晚' explica que trasnocha para estudiar para sus exámenes.",
+      "en": "'准备考试，每天都睡得很晚' explains she stays up late studying for exams."
+    }
+  },
+  {
+    "id": "hsk3-listening-05",
+    "hskLevel": 3,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "女：小李，把这份会议资料复印十份，分给参会的人。男：好的，经理，我马上办。",
+    "prompt": {
+      "es": "¿Cuántas copias debe sacar Xiao Li?",
+      "en": "How many copies should Xiao Li make?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "5 copias",
+          "en": "5 copies"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "10 copias",
+          "en": "10 copies"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "20 copias",
+          "en": "20 copies"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "100 copias",
+          "en": "100 copies"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'复印十份' significa fotocopiar diez copias ('十份').",
+      "en": "'复印十份' means photocopy ten copies ('十份')."
+    }
+  },
+  {
+    "id": "hsk4-listening-01",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "男：这份合同的细节我们还需要重新核对一下。女：没问题，我把法律顾问也请过来一起确认。",
+    "prompt": {
+      "es": "¿Qué van a hacer con el contrato?",
+      "en": "What are they going to do about the contract?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Revisar los detalles con el asesor legal",
+          "en": "Review the details with the legal advisor"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Firmarlo inmediatamente",
+          "en": "Sign it immediately"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Cancelar el acuerdo",
+          "en": "Cancel the agreement"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Enviarlo por correo ordinario",
+          "en": "Send it by regular mail"
+        }
+      }
+    ],
+    "answer": "A",
+    "explanation": {
+      "es": "'重新核对一下' (revisar de nuevo) y '把法律顾问也请过来' (invitar al asesor legal).",
+      "en": "'重新核对一下' (re-check) and '把法律顾问也请过来' (bring the legal advisor over)."
+    }
+  },
+  {
+    "id": "hsk4-listening-02",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "女：招聘会上有几个应聘者的简历非常优秀。男：太好了，通知他们明天上午来公司参加面试吧。",
+    "prompt": {
+      "es": "¿A qué se convoca a los candidatos?",
+      "en": "What are the candidates invited to?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "A firmar el contrato laboral",
+          "en": "To sign the employment contract"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "A una entrevista de trabajo mañana",
+          "en": "To a job interview tomorrow"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "A presentar un nuevo currículum",
+          "en": "To submit a new resume"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "A un curso de formación",
+          "en": "To a training course"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'参加面试' significa participar en una entrevista de trabajo.",
+      "en": "'参加面试' means take part in an interview."
+    }
+  },
+  {
+    "id": "hsk4-listening-03",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "男：养成良好的阅读习惯，不仅能丰富知识，还能缓解生活中的压力。女：确实，我现在每天睡前都会读半小时书。",
+    "prompt": {
+      "es": "¿Qué hábito beneficia según la conversación?",
+      "en": "What habit brings benefits according to the dialogue?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Hacer ejercicio matutino",
+          "en": "Morning exercise"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "La costumbre de leer libros con regularidad",
+          "en": "The habit of reading books regularly"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Viajar al extranjero",
+          "en": "Traveling abroad"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Beber té verde",
+          "en": "Drinking green tea"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'良好的阅读习惯' se refiere a tener un buen hábito de lectura.",
+      "en": "'良好的阅读习惯' refers to good reading habits."
+    }
+  },
+  {
+    "id": "hsk4-listening-04",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "女：这次旅行你打算报名跟团游还是自己自由行？男：我喜欢自由行，时间安排更轻松，可以慢慢体会当地的风土人情。",
+    "prompt": {
+      "es": "¿Qué modalidad de viaje prefiere el hombre?",
+      "en": "What travel style does the man prefer?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Viaje organizado en grupo",
+          "en": "Group tour package"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Viaje libre e independiente",
+          "en": "Independent free travel"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Quedarse en casa descansando",
+          "en": "Stay home and rest"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Viaje de negocios",
+          "en": "Business trip"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "El hombre afirma '我喜欢自由行' (prefiero viajar por mi cuenta / viaje libre).",
+      "en": "The man states '我喜欢自由行' (I like independent travel)."
+    }
+  },
+  {
+    "id": "hsk4-listening-05",
+    "hskLevel": 4,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "男：遇到困难时千万不要轻易放弃，坚持到底往往才能看到希望。女：你说得对，我会继续努力克服挑战的。",
+    "prompt": {
+      "es": "¿Cuál es el consejo principal del hombre?",
+      "en": "What is the man's main advice?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Cambiar de profesión rápido",
+          "en": "Change profession quickly"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "No rendirse fácilmente y perseverar",
+          "en": "Do not give up easily and persevere"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Pedir ayuda económica a la familia",
+          "en": "Ask family for financial help"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Tomarse unas largas vacaciones",
+          "en": "Take a long vacation"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'不要轻易放弃，坚持到底' anima a no rendirse y perseverar hasta el final.",
+      "en": "'不要轻易放弃，坚持到底' encourages not giving up easily and persevering until the end."
+    }
+  },
+  {
+    "id": "hsk5-listening-01",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "男：随着数字化技术的普及，传统实体书店纷纷通过打造文化复合空间来吸引读者。女：这种转变不仅保留了阅读氛围，还增加了咖啡、文创等多元消费体验。",
+    "prompt": {
+      "es": "¿Cómo se están transformando las librerías tradicionales?",
+      "en": "How are traditional bookstores transforming?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Cerrando sedes para vender únicamente por internet",
+          "en": "Closing locations to sell exclusively online"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Creando espacios culturales polivalentes con café y productos creativos",
+          "en": "Creating multi-functional cultural spaces with coffee and creative goods"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Reduciendo drásticamente el precio de los libros",
+          "en": "Drastically lowering book prices"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Vendiendo únicamente libros electrónicos",
+          "en": "Selling only e-books"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "Se menciona '打造文化复合空间' (crear espacios culturales combinados) con café y productos culturales.",
+      "en": "Mentions '打造文化复合空间' (creating multi-functional cultural spaces) with coffee and cultural products."
+    }
+  },
+  {
+    "id": "hsk5-listening-02",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "女：环境保护不仅需要政府制定严格的法律规范，更需要每位公民在日常生活中践行低碳绿色的生活方式。男：确实，减少塑料制品的使用就是一个很好的起点。",
+    "prompt": {
+      "es": "¿Qué medida cotidiana se destaca para proteger el medio ambiente?",
+      "en": "What daily measure is highlighted to protect the environment?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Disminuir el consumo de productos plásticos",
+          "en": "Reduce the use of plastic products"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Comprar vehículos de gran cilindrada",
+          "en": "Buy large cylinder vehicles"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Instalar placas solares obligatoriamente",
+          "en": "Mandatory solar panel installation"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Dejar de usar electricidad por completo",
+          "en": "Completely stop using electricity"
+        }
+      }
+    ],
+    "answer": "A",
+    "explanation": {
+      "es": "'减少塑料制品的使用' (reducir el uso de productos plásticos) como acción cotidiana de bajo carbono.",
+      "en": "'减少塑料制品的使用' (reducing plastic product usage) as a low-carbon daily action."
+    }
+  },
+  {
+    "id": "hsk5-listening-03",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "男：我们在做市场调研时，不能只关注消费者的表面评价，更要深入挖掘其潜在的真实需求。女：非常有同感，用户行为数据的系统分析在这方面能提供关键支撑。",
+    "prompt": {
+      "es": "¿Qué es fundamental al realizar estudios de mercado?",
+      "en": "What is essential when conducting market research?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Conocer únicamente a los competidores directos",
+          "en": "Only knowing direct competitors"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Profundizar en las necesidades reales y latentes de los usuarios",
+          "en": "Digging deep into users' latent and real needs"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Hacer encuestas rápidas de una sola pregunta",
+          "en": "Conducting quick one-question surveys"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Gastar todo el presupuesto en publicidad televisiva",
+          "en": "Spending the whole budget on TV advertising"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'深入挖掘其潜在的真实需求' destaca investigar las necesidades profundas reales.",
+      "en": "'深入挖掘其潜在的真实需求' emphasizes uncovering users' latent real needs."
+    }
+  },
+  {
+    "id": "hsk5-listening-04",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "女：李总，针对新项目的预算审批方案，财务部已经提出了优化意见，主要是控制初期固定资产的投资规模。男：很好，把风险控制在合理范围内是项目稳健推進的前提。",
+    "prompt": {
+      "es": "¿Cuál es el enfoque principal de las observaciones de finanzas?",
+      "en": "What is the main focus of finance department's feedback?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Aumentar al doble el personal contratado",
+          "en": "Double hired staff numbers"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Controlar el tamaño de la inversión inicial en activos fijos",
+          "en": "Control initial investment size in fixed assets"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Cancelar el proyecto de forma inmediata",
+          "en": "Immediately cancel the project"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Adquirir una nueva sede corporativa",
+          "en": "Purchase a new corporate headquarters"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'控制初期固定资产的投资规模' busca limitar el gasto inicial en activos fijos para gestionar riesgos.",
+      "en": "'控制初期固定资产的投资规模' focuses on controlling initial fixed-asset investment to manage risk."
+    }
+  },
+  {
+    "id": "hsk5-listening-05",
+    "hskLevel": 5,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "男：心理学研究表明，适度的压力能够激发人的工作潜力，但长期处于高压状态则会严重损害身心健康。女：所以保持规律作息和适度运动是维持工作与生活平衡的良方。",
+    "prompt": {
+      "es": "¿Qué efecto tiene la presión prolongada según el diálogo?",
+      "en": "What effect does prolonged high pressure have according to the dialogue?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Incrementa permanentemente la memoria",
+          "en": "Permanently increases memory"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Daña gravemente la salud física y mental",
+          "en": "Severely damages physical and mental health"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Facilita la relajación muscular",
+          "en": "Facilitates muscle relaxation"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Mejora automáticamente el sueño",
+          "en": "Automatically improves sleep quality"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'长期处于高压状态则会严重损害身心健康' señala el peligro del estrés crónico prolongado.",
+      "en": "'长期处于高压状态则会严重损害身心健康' points out the harm of chronic prolonged stress."
+    }
+  },
+  {
+    "id": "hsk6-listening-01",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "学者指出，在全球化与本土化的博弈中，文化认同并非封闭排他的概念，而是在文明互鉴与包容对话中不断生发新的时代内涵。",
+    "prompt": {
+      "es": "¿Cómo concibe el ponente la identidad cultural en el contexto global?",
+      "en": "How does the speaker view cultural identity in a global context?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Un concepto dinámico enriquecido por el diálogo mutuo y la inclusión",
+          "en": "A dynamic concept enriched through mutual dialogue and inclusiveness"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Una estructura rígida y aislada de influencias externas",
+          "en": "A rigid structure isolated from foreign influences"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Un fenómeno pasajero destinado a desaparecer",
+          "en": "A fleeting phenomenon destined to disappear"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Un obstáculo insalvable para el comercio internacional",
+          "en": "An insurmountable barrier to international trade"
+        }
+      }
+    ],
+    "answer": "A",
+    "explanation": {
+      "es": "'并非封闭排他...在文明互鉴与包容对话中不断生发新的时代内涵' expresa que la identidad evoluciona mediante diálogo e intercambio.",
+      "en": "'在文明互鉴与包容对话中不断生发新的时代内涵' conveys that identity evolves through mutual learning and dialogue."
+    }
+  },
+  {
+    "id": "hsk6-listening-02",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "报告显示，人工智能在医疗影像诊断领域的精准度已取得长足进步，但在临床决策伦理、隐私保护以及算法透明度方面仍亟待构建健全的法律与伦理监管框架。",
+    "prompt": {
+      "es": "¿Qué aspecto requiere aún una regulación urgente en el uso de IA médica?",
+      "en": "What aspect still urgently needs regulation in medical AI use?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "La potencia de cálculo computacional de los servidores",
+          "en": "Server computational processing power"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "La ética en decisiones clínicas, privacidad y transparencia algorítmica",
+          "en": "Clinical decision ethics, privacy, and algorithmic transparency"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "La reducción de costes en pantallas de visualización",
+          "en": "Cost reduction in display monitors"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "La velocidad de conexión a internet de los hospitales",
+          "en": "Hospital internet connection speed"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "Se enfatiza la necesidad de marco legal y ético para '临床决策伦理、隐私保护以及算法透明度'.",
+      "en": "Highlights the need for legal and ethical oversight in clinical decision ethics, privacy, and algorithm transparency."
+    }
+  },
+  {
+    "id": "hsk6-listening-03",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "传统手工艺的传承若仅止步于博物馆式的陈列，其生命力终将枯竭；唯有将其精湛技艺融入当代生活美学，才能实现创造性转化与创新性发展。",
+    "prompt": {
+      "es": "¿Cómo se asegura la vitalidad de la artesanía tradicional según el texto?",
+      "en": "How is the vitality of traditional craftsmanship preserved according to the text?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Guardando todas las piezas exclusivamente en almacenes subterráneos",
+          "en": "Keeping all artifacts exclusively in underground vaults"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Integrando su técnica en la estética de la vida contemporánea",
+          "en": "Integrating its techniques into contemporary lifestyle aesthetics"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Sustituyendo artesanos humanos por robots industriales",
+          "en": "Replacing human craftsmen with industrial robots"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Prohibiendo cualquier tipo de innovación o cambio de diseño",
+          "en": "Prohibiting any kind of innovation or design changes"
+        }
+      }
+    ],
+    "answer": "B",
+    "explanation": {
+      "es": "'将其精湛技艺融入当代生活美学' es la clave para la revitalización e innovación de la artesanía tradicional.",
+      "en": "'将其精湛技艺融入当代生活美学' highlights integrating craftsmanship into modern lifestyle aesthetics."
+    }
+  },
+  {
+    "id": "hsk6-listening-04",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "在应对全球气候变化的系统工程中，碳交易市场机制通过市场化定价手段，倒逼高排放企业加大低碳技术研发投入，从而促成经济结构向绿色转型。",
+    "prompt": {
+      "es": "¿Cuál es el objetivo principal del mecanismo del mercado de carbono?",
+      "en": "What is the main objective of the carbon market mechanism?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "Acelerar la transición económica verde mediante incentivos y precios de mercado",
+          "en": "Accelerate green economic transition through market pricing incentives"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "Aumentar las tarifas de electricidad doméstica sin distinción",
+          "en": "Indiscriminately increase domestic electricity tariffs"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "Eliminar el comercio internacional de mercancías pesadas",
+          "en": "Eliminate international trade in heavy goods"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "Subvencionar el uso de combustibles fósiles tradicionales",
+          "en": "Subsidize traditional fossil fuel consumption"
+        }
+      }
+    ],
+    "answer": "A",
+    "explanation": {
+      "es": "'通过市场化定价手段...促成经济结构向绿色转型' indica la transformación verde mediante mecanismos de mercado.",
+      "en": "'促成经济结构向绿色转型' explains driving green economic restructuring through market mechanisms."
+    }
+  },
+  {
+    "id": "hsk6-listening-05",
+    "hskLevel": 6,
+    "examSetId": "sample-a",
+    "sectionType": "listening",
+    "audioRequired": true,
+    "audioText": "现代天体物理学通过引力波探测与射电望远镜阵列的联合观测，使人类得以在极端引力场环境下检验广义相对论的预言，开启了多信使天文学的新纪元。",
+    "prompt": {
+      "es": "¿Qué hito científico se destaca en el fragmento?",
+      "en": "What scientific milestone is highlighted in the excerpt?"
+    },
+    "options": [
+      {
+        "key": "A",
+        "label": {
+          "es": "El inicio de la era de la astronomía multimensajero para verificar la relatividad",
+          "en": "The dawn of multi-messenger astronomy to test general relativity"
+        }
+      },
+      {
+        "key": "B",
+        "label": {
+          "es": "El descubrimiento de agua líquida en la superficie de Mercurio",
+          "en": "The discovery of liquid water on Mercury's surface"
+        }
+      },
+      {
+        "key": "C",
+        "label": {
+          "es": "La construcción del primer cohete con propulsión de vapor",
+          "en": "The construction of the first steam-propelled rocket"
+        }
+      },
+      {
+        "key": "D",
+        "label": {
+          "es": "La refutación absoluta de las leyes de la física clásica",
+          "en": "The absolute disproof of the laws of classical physics"
+        }
+      }
+    ],
+    "answer": "A",
+    "explanation": {
+      "es": "'开启了多信使天文学的新纪元' y '检验广义相对论' señalan la apertura de la astronomía multimensajero.",
+      "en": "'开启了多信使天文学的新纪元' points to the beginning of the era of multi-messenger astronomy."
+    }
   }
 ]

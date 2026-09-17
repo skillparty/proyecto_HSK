@@ -34,6 +34,7 @@ class NavigationController {
       "shadow-theatre",
       "hanzi-mahjong",
       "china-cities",
+      "culture-provinces",
       "tone-visualizer",
       "calligraphy-scroll",
       "chinese-names",

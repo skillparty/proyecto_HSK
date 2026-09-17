@@ -8,7 +8,7 @@
                     <span data-i18n="toneTrainerTitle">Entrenador de Oído y Tonos</span>
                 </h2>
                 <p class="tt-subtitle" data-i18n="toneTrainerSubtitle">
-                    Entrena tu oído para reconocer con precisión los 4 tonos y los pares mínimos del mandarín.
+                    Entrena tu oído para reconocer con precisión los 4 tonos, el tono neutro, los pares mínimos y las combinaciones tonales del mandarín.
                 </p>
             </div>
             <div class="tt-stats-bar">
@@ -27,37 +27,100 @@
             </div>
         </div>
 
-        <!-- Mode Selector Bar -->
+        <!-- Mode Selector Bar (5 Modes) -->
         <div class="tt-modes-bar">
-            <button class="tt-mode-tab active" data-mode="tones" id="tt-mode-tones-btn">
+            <button class="tt-mode-tab active" data-mode="tones" id="tt-mode-tones-btn" type="button">
                 <span class="tt-mode-icon" style="display:inline-flex; align-items:center;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
                 </span>
                 <div class="tt-mode-info">
                     <strong data-i18n="toneTrainerModeTonesTitle">Identificación de Tonos</strong>
-                    <small data-i18n="toneTrainerModeTonesDesc">Distingue entre 1º, 2º, 3º y 4º tono</small>
+                    <small data-i18n="toneTrainerModeTonesDesc">1º, 2º, 3º, 4º y neutro</small>
                 </div>
             </button>
 
-            <button class="tt-mode-tab" data-mode="pairs" id="tt-mode-pairs-btn">
+            <button class="tt-mode-tab" data-mode="tone-pairs" id="tt-mode-tone-pairs-btn" type="button">
+                <span class="tt-mode-icon" style="display:inline-flex; align-items:center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="12" r="4"></circle><circle cx="17" cy="12" r="4"></circle><line x1="11" y1="12" x2="13" y2="12"></line></svg>
+                </span>
+                <div class="tt-mode-info">
+                    <strong data-i18n="toneTrainerModeTonePairsTitle">Pares Tónicos</strong>
+                    <small data-i18n="toneTrainerModeTonePairsDesc">Combinaciones bisilábicas</small>
+                </div>
+            </button>
+
+            <button class="tt-mode-tab" data-mode="pairs" id="tt-mode-pairs-btn" type="button">
                 <span class="tt-mode-icon" style="display:inline-flex; align-items:center;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                 </span>
                 <div class="tt-mode-info">
                     <strong data-i18n="toneTrainerModePairsTitle">Pares Mínimos</strong>
-                    <small data-i18n="toneTrainerModePairsDesc">Diferencia consonantes como zh/z, ch/c, sh/s</small>
+                    <small data-i18n="toneTrainerModePairsDesc">zh/z, ch/c, sh/s, -n/-ng</small>
                 </div>
             </button>
 
-            <button class="tt-mode-tab" data-mode="vocab" id="tt-mode-vocab-btn">
+            <button class="tt-mode-tab" data-mode="vocab" id="tt-mode-vocab-btn" type="button">
                 <span class="tt-mode-icon" style="display:inline-flex; align-items:center;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
                 </span>
                 <div class="tt-mode-info">
                     <strong data-i18n="toneTrainerModeVocabTitle">Dictado de Vocabulario</strong>
-                    <small data-i18n="toneTrainerModeVocabDesc">Identifica palabras HSK por su pronunciación</small>
+                    <small data-i18n="toneTrainerModeVocabDesc">Palabras completas HSK</small>
                 </div>
             </button>
+
+            <button class="tt-mode-tab" data-mode="challenge" id="tt-mode-challenge-btn" type="button">
+                <span class="tt-mode-icon" style="display:inline-flex; align-items:center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </span>
+                <div class="tt-mode-info">
+                    <strong data-i18n="toneTrainerModeChallengeTitle">Desafío 60s</strong>
+                    <small data-i18n="toneTrainerModeChallengeDesc">Velocidad y reflejos</small>
+                </div>
+            </button>
+        </div>
+
+        <!-- Controls Toolbar (Level Filter, Neutral Tone Toggle, Shortcuts) -->
+        <div class="tt-toolbar">
+            <div class="tt-toolbar-left">
+                <div class="tt-filter-group" id="tt-level-filter-group" style="display: none;">
+                    <label for="tt-level-select" class="tt-filter-label" data-i18n="levelLabel">Nivel HSK:</label>
+                    <select id="tt-level-select" class="select-input tt-filter-select">
+                        <option value="all" data-i18n="allLevels">Todos los niveles</option>
+                        <option value="1">HSK 1</option>
+                        <option value="2">HSK 2</option>
+                        <option value="3">HSK 3</option>
+                    </select>
+                </div>
+
+                <div class="tt-filter-group" id="tt-neutral-toggle-group">
+                    <label class="control-checkbox-label" for="tt-include-neutral">
+                        <input id="tt-include-neutral" type="checkbox" class="control-checkbox-input" checked>
+                        <span data-i18n="toneTrainerIncludeNeutral">Incluir tono neutro (轻声)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="tt-toolbar-right">
+                <span class="tt-shortcut-pill" title="Atajos de teclado activos" data-i18n="toneTrainerShortcutsPill">
+                    ⌨️ 1-5 = Tonos · Espacio = Audio · Enter = Siguiente
+                </span>
+            </div>
+        </div>
+
+        <!-- Challenge Timer & Combo Banner (visible in challenge mode) -->
+        <div id="tt-challenge-banner" class="tt-challenge-banner" style="display: none;">
+            <div class="tt-challenge-timer">
+                <span class="timer-label" data-i18n="toneTrainerTimeRemaining">Tiempo restante:</span>
+                <span id="tt-challenge-countdown" class="timer-val">60s</span>
+            </div>
+            <div class="tt-challenge-progress-bar">
+                <div id="tt-challenge-bar-fill" class="progress-fill" style="width: 100%;"></div>
+            </div>
+            <div class="tt-challenge-combo">
+                <span id="tt-challenge-combo-val" class="combo-val">x1</span>
+                <span class="combo-label">COMBO 🔥</span>
+            </div>
         </div>
 
         <!-- Interactive Question Arena -->
@@ -78,6 +141,8 @@
                 <div class="tt-audio-speed-controls">
                     <button class="tt-speed-btn active" data-speed="1.0" type="button">1.0x (Normal)</button>
                     <button class="tt-speed-btn" data-speed="0.75" type="button">0.75x (Lento)</button>
+                    <button class="tt-speed-btn" data-speed="0.5" type="button">0.5x (Guiado)</button>
+                    <button id="tt-auto-repeat-btn" class="tt-speed-btn" type="button" title="Repetir dos veces automáticamente">🔁 Auto 2x</button>
                 </div>
             </div>
 
@@ -87,13 +152,14 @@
                 <div id="tt-syllable-clue" class="tt-syllable-clue">Sílaba: <strong id="tt-clue-text">ma</strong></div>
             </div>
 
-            <!-- Tone Options (for Tone Identification Mode) -->
+            <!-- Tone Options (for Tone Identification Mode: 1º, 2º, 3º, 4º, 5º) -->
             <div id="tt-tone-options" class="tt-tone-grid">
                 <button class="tt-tone-card" data-tone="1" type="button">
                     <div class="tt-tone-badge">1º Tono</div>
                     <div class="tt-tone-contour tt-contour-1">55 —</div>
                     <div class="tt-tone-label" data-i18n="tone1Label">Alto y Plano</div>
                     <div class="tt-tone-example" id="tt-ex-1">mā</div>
+                    <span class="tt-key-hint">Tecla 1</span>
                 </button>
 
                 <button class="tt-tone-card" data-tone="2" type="button">
@@ -101,6 +167,7 @@
                     <div class="tt-tone-contour tt-contour-2">35 ↗</div>
                     <div class="tt-tone-label" data-i18n="tone2Label">Ascendente</div>
                     <div class="tt-tone-example" id="tt-ex-2">má</div>
+                    <span class="tt-key-hint">Tecla 2</span>
                 </button>
 
                 <button class="tt-tone-card" data-tone="3" type="button">
@@ -108,6 +175,7 @@
                     <div class="tt-tone-contour tt-contour-3">214 ↘↗</div>
                     <div class="tt-tone-label" data-i18n="tone3Label">Bajo y Curvo</div>
                     <div class="tt-tone-example" id="tt-ex-3">mǎ</div>
+                    <span class="tt-key-hint">Tecla 3</span>
                 </button>
 
                 <button class="tt-tone-card" data-tone="4" type="button">
@@ -115,13 +183,22 @@
                     <div class="tt-tone-contour tt-contour-4">51 ↘</div>
                     <div class="tt-tone-label" data-i18n="tone4Label">Descendente</div>
                     <div class="tt-tone-example" id="tt-ex-4">mà</div>
+                    <span class="tt-key-hint">Tecla 4</span>
+                </button>
+
+                <button class="tt-tone-card" data-tone="5" id="tt-card-tone-5" type="button">
+                    <div class="tt-tone-badge">Tono Neutro</div>
+                    <div class="tt-tone-contour tt-contour-5">· 轻声</div>
+                    <div class="tt-tone-label" data-i18n="toneNeutralLabel">Ligero / Corto</div>
+                    <div class="tt-tone-example" id="tt-ex-5">ma</div>
+                    <span class="tt-key-hint">Tecla 5</span>
                 </button>
             </div>
 
-            <!-- Generic Multi-Choice Options (for Minimal Pairs and Vocab modes) -->
+            <!-- Generic Multi-Choice Options (for Tone Pairs, Minimal Pairs and Vocab modes) -->
             <div id="tt-choice-options" class="tt-choices-grid" style="display: none;"></div>
 
-            <!-- Feedback Bar -->
+            <!-- Feedback Bar with Phonetic Contour / Explanation -->
             <div id="tt-feedback" class="tt-feedback-card" style="display: none;" role="status" aria-live="polite"></div>
 
             <!-- Next Button Bar -->
@@ -136,42 +213,112 @@
             </div>
         </div>
 
-        <!-- Tone Visual Reference Chart (Pitch Chart 5-level scale) -->
+        <!-- Tone Visual Reference & Sandhi Guide Section -->
         <div class="tt-reference-card">
-            <div class="tt-ref-header">
-                <h3 style="display:flex; align-items:center; gap:6px;">
+            <div class="tt-ref-nav">
+                <button class="tt-ref-tab active" data-ref="chao" id="tt-ref-chao-btn" type="button">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                    <span data-i18n="toneTrainerPitchChartTitle">Guía de Curvas Acústicas (Escala 1 a 5 de Chao)</span>
-                </h3>
-                <p data-i18n="toneTrainerPitchChartDesc">Representación fonética tradicional de la altura vocal en el mandarín estándar:</p>
+                    <span data-i18n="toneTrainerPitchChartTitle">Guía de Curvas Acústicas (Escala de Chao 1-5)</span>
+                </button>
+                <button class="tt-ref-tab" data-ref="sandhi" id="tt-ref-sandhi-btn" type="button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+                    <span data-i18n="toneTrainerSandhiTitle">Reglas de Sandhi Tonal (变调)</span>
+                </button>
             </div>
-            <div class="tt-pitch-diagram">
-                <div class="tt-pitch-row">
-                    <span class="tt-pitch-level">5 (Alto)</span>
-                    <div class="tt-pitch-track">
-                        <div class="tt-line-t1" title="1º Tono (5-5): mā">1º Tono (55) ━━━━━</div>
+
+            <!-- Panel 1: Escala Acústica de Chao -->
+            <div id="tt-ref-chao-panel" class="tt-ref-panel">
+                <p class="tt-ref-desc" data-i18n="toneTrainerPitchChartDesc">Representación fonética tradicional de la altura vocal en el mandarín estándar:</p>
+                <div class="tt-pitch-diagram">
+                    <div class="tt-pitch-row">
+                        <span class="tt-pitch-level">5 (Alto)</span>
+                        <div class="tt-pitch-track">
+                            <div class="tt-line-t1" title="1º Tono (5-5): mā">1º Tono (55) ━━━━━ [Alto y plano: tono sostenido constante]</div>
+                        </div>
+                    </div>
+                    <div class="tt-pitch-row">
+                        <span class="tt-pitch-level">4 (Medio-Alto)</span>
+                        <div class="tt-pitch-track">
+                            <div class="tt-line-t2" title="2º Tono (3-5): má">2º Tono (35) ╱ [Ascendente: similar a preguntar ¿sí?]</div>
+                        </div>
+                    </div>
+                    <div class="tt-pitch-row">
+                        <span class="tt-pitch-level">3 (Medio)</span>
+                        <div class="tt-pitch-track">
+                            <div class="tt-line-t4" title="4º Tono (5-1): mà">4º Tono (51) ╲ [Descendente: tajante y firme como una orden]</div>
+                        </div>
+                    </div>
+                    <div class="tt-pitch-row">
+                        <span class="tt-pitch-level">2 (Medio-Bajo)</span>
+                        <div class="tt-pitch-track">
+                            <div class="tt-line-t0" title="Tono Neutro: ma">Tono Neutro · [Ligero, corto y sin acento métrico]</div>
+                        </div>
+                    </div>
+                    <div class="tt-pitch-row">
+                        <span class="tt-pitch-level">1 (Bajo)</span>
+                        <div class="tt-pitch-track">
+                            <div class="tt-line-t3" title="3º Tono (2-1-4): mǎ">3º Tono (214) ╲_╱ [Bajo y curvo: desciende a lo más grave y luego sube]</div>
+                        </div>
                     </div>
                 </div>
-                <div class="tt-pitch-row">
-                    <span class="tt-pitch-level">4 (Medio-Alto)</span>
-                    <div class="tt-pitch-track">
-                        <div class="tt-line-t2" title="2º Tono (3-5): má">2º Tono (35) ╱</div>
+            </div>
+
+            <!-- Panel 2: Reglas de Sandhi Tonal (变调) -->
+            <div id="tt-ref-sandhi-panel" class="tt-ref-panel" style="display: none;">
+                <p class="tt-ref-desc" data-i18n="toneTrainerSandhiDesc">En mandarín natural, ciertos tonos cambian automáticamente cuando se combinan con otros:</p>
+                <div class="tt-sandhi-cards-grid">
+                    <div class="tt-sandhi-card">
+                        <div class="sandhi-rule-badge">Regla 1: Dos 3º Tonos Seguidos</div>
+                        <h4>3º + 3º ➔ 2º + 3º</h4>
+                        <p>Cuando dos terceros tonos se juntan, el primero se pronuncia como <strong>2º tono</strong>.</p>
+                        <div class="sandhi-example-row">
+                            <span class="sandhi-hanzi">你好 (nǐ + hǎo)</span>
+                            <span class="sandhi-arrow">➔</span>
+                            <span class="sandhi-pron">ní hǎo</span>
+                            <button class="btn btn-outline btn-sm tt-play-sandhi-btn" data-audio="你好" type="button">🔊</button>
+                        </div>
+                        <div class="sandhi-example-row">
+                            <span class="sandhi-hanzi">可以 (kě + yǐ)</span>
+                            <span class="sandhi-arrow">➔</span>
+                            <span class="sandhi-pron">ké yǐ</span>
+                            <button class="btn btn-outline btn-sm tt-play-sandhi-btn" data-audio="可以" type="button">🔊</button>
+                        </div>
                     </div>
-                </div>
-                <div class="tt-pitch-row">
-                    <span class="tt-pitch-level">3 (Medio)</span>
-                    <div class="tt-pitch-track">
-                        <div class="tt-line-t4" title="4º Tono (5-1): mà">4º Tono (51) ╲</div>
+
+                    <div class="tt-sandhi-card">
+                        <div class="sandhi-rule-badge">Regla 2: Sandhi de 不 (bù)</div>
+                        <h4>不 (bù) + 4º Tono ➔ 2º Tono (bú)</h4>
+                        <p>El adverbio <strong>不</strong> (bù, 4º tono) cambia a <strong>2º tono (bú)</strong> cuando la siguiente palabra también es 4º tono.</p>
+                        <div class="sandhi-example-row">
+                            <span class="sandhi-hanzi">不是 (bù + shì)</span>
+                            <span class="sandhi-arrow">➔</span>
+                            <span class="sandhi-pron">bú shì</span>
+                            <button class="btn btn-outline btn-sm tt-play-sandhi-btn" data-audio="不是" type="button">🔊</button>
+                        </div>
+                        <div class="sandhi-example-row">
+                            <span class="sandhi-hanzi">不对 (bù + duì)</span>
+                            <span class="sandhi-arrow">➔</span>
+                            <span class="sandhi-pron">bú duì</span>
+                            <button class="btn btn-outline btn-sm tt-play-sandhi-btn" data-audio="不对" type="button">🔊</button>
+                        </div>
                     </div>
-                </div>
-                <div class="tt-pitch-row">
-                    <span class="tt-pitch-level">2 (Medio-Bajo)</span>
-                    <div class="tt-pitch-track"></div>
-                </div>
-                <div class="tt-pitch-row">
-                    <span class="tt-pitch-level">1 (Bajo)</span>
-                    <div class="tt-pitch-track">
-                        <div class="tt-line-t3" title="3º Tono (2-1-4): mǎ">3º Tono (214) ╲_╱</div>
+
+                    <div class="tt-sandhi-card">
+                        <div class="sandhi-rule-badge">Regla 3: Sandhi de 一 (yī)</div>
+                        <h4>一 ante 4º ➔ 2º (yí) · ante 1º/2º/3º ➔ 4º (yì)</h4>
+                        <p><strong>一</strong> cambia según el tono que le sigue, garantizando fluidez rítmica.</p>
+                        <div class="sandhi-example-row">
+                            <span class="sandhi-hanzi">一个 (yī + gè)</span>
+                            <span class="sandhi-arrow">➔</span>
+                            <span class="sandhi-pron">yí gè</span>
+                            <button class="btn btn-outline btn-sm tt-play-sandhi-btn" data-audio="一个" type="button">🔊</button>
+                        </div>
+                        <div class="sandhi-example-row">
+                            <span class="sandhi-hanzi">一起 (yī + qǐ)</span>
+                            <span class="sandhi-arrow">➔</span>
+                            <span class="sandhi-pron">yì qǐ</span>
+                            <button class="btn btn-outline btn-sm tt-play-sandhi-btn" data-audio="一起" type="button">🔊</button>
+                        </div>
                     </div>
                 </div>
             </div>

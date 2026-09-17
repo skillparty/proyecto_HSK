@@ -132,6 +132,7 @@ class HSKApp {
         // by ui-controller.js on first tab open (scripts aren't loaded until then).
         this.vocabularyController = new VocabularyController(this);
         this.legacyFlowController = new LegacyFlowController(this);
+        this.offlineManager = (typeof window !== 'undefined' && window.OfflineManager) ? new window.OfflineManager(this) : null;
         this.startupController = new StartupController(this);
 
         // Load onboarding state

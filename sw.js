@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+8115bafc";
+const SW_VERSION = "4.70.0+350d53ab";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -14,12 +14,12 @@ const PRECACHE_FILES = [
   "./config/manifest.json",
   "./assets/css/design-tokens.css?v=e01267d0",
   "./assets/css/app-base.css?v=c28c9407",
-  "./assets/css/app-header-nav.css?v=92913f61",
+  "./assets/css/app-header-nav.css?v=7ca83452",
   "./assets/css/app-home.css?v=360134b4",
-  "./assets/css/app-practice.css?v=89c300b3",
+  "./assets/css/app-practice.css?v=f8cd7b7c",
   "./assets/css/app-browse.css?v=fbb33c28",
   "./assets/css/app-strokes.css?v=2a3bae39",
-  "./assets/css/app-quiz.css?v=5d43a437",
+  "./assets/css/app-quiz.css?v=fe8f04d4",
   "./assets/css/app-stats.css?v=cd1fd78c",
   "./assets/css/app-enhancements.css?v=99d811b4",
   "./assets/css/app-dashboard-extras.css?v=e9f43713",
@@ -46,29 +46,34 @@ const PRECACHE_FILES = [
   "./assets/css/tone-visualizer-styles.css",
   "./assets/css/calligraphy-scroll-styles.css",
   "./assets/css/chinese-names-styles.css",
+  "./assets/css/culture-provinces.css",
   "./assets/css/app-videos.css?v=f5735c3e",
   "./assets/css/app-memories.css",
+  "./assets/css/offline-manager.css?v=7cdbd1ca",
+  "./assets/css/etymology-styles.css?v=b73c0ecf",
+  "./assets/css/app-writing-sheets.css",
+  "./assets/css/flashcard-pdf-styles.css",
   "./assets/js/utils/html.js?v=8f3dabb2",
   "./assets/js/utils/event-bus.js?v=731dc7f7",
-  "./assets/js/utils/idb-storage.js?v=a79379d7",
+  "./assets/js/utils/idb-storage.js?v=1a3ee4b2",
   "./assets/js/bootstrap-diagnostics.js?v=4dd221b0",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=dc64ea60",
-  "./assets/js/translations.js?v=cfd785b6",
+  "./assets/js/translations.js?v=549c57e3",
   "./assets/js/firebase-client.js?v=620f489f",
   "./assets/js/firebase-progress-sync.js?v=bf85fc76",
   "./assets/js/modules/srs-engine.js?v=811fc44e",
-  "./assets/js/modules/flashcard-manager.js?v=b0687a3a",
+  "./assets/js/modules/flashcard-manager.js?v=1dd7cb7c",
   "./assets/js/modules/deck-manager.js?v=a5683a57",
   "./assets/js/modules/deck-controller.js?v=285c875d",
   "./assets/js/modules/achievement-manager.js?v=dc950149",
-  "./assets/js/modules/practice-view-controller.js?v=1c0399bb",
+  "./assets/js/modules/practice-view-controller.js?v=2e2fa952",
   "./assets/js/modules/audio-controller.js?v=c3447649",
-  "./assets/js/modules/quiz-engine.js?v=6c07d80a",
+  "./assets/js/modules/quiz-engine.js?v=d2adccf2",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7a1e139f",
-  "./assets/js/modules/ui-controller.js?v=d32ecb1f",
-  "./assets/js/modules/navigation-controller.js?v=869b0269",
+  "./assets/js/modules/ui-controller.js?v=d910ba0a",
+  "./assets/js/modules/navigation-controller.js?v=952afc11",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",
   "./assets/js/modules/culture/traditional-medicine.js",
@@ -76,16 +81,17 @@ const PRECACHE_FILES = [
   "./assets/js/modules/culture/chinese-technology.js",
   "./assets/js/modules/culture/ethnic-clothing.js",
   "./assets/js/modules/culture/traditional-arts.js",
+  "./assets/js/modules/culture/china-provinces.js",
   "./assets/js/modules/memories-controller.js",
   "./assets/js/modules/language-controller.js?v=57c17946",
   "./assets/js/modules/browse-controller.js?v=6c8c3c15",
-  "./assets/js/modules/interaction-controller.js?v=0c5572bf",
+  "./assets/js/modules/interaction-controller.js?v=582ac734",
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-question-bank.js",
-  "./assets/js/modules/past-exams-controller.js?v=380d4198",
+  "./assets/js/modules/past-exams-controller.js?v=9063c6a3",
   "./assets/js/modules/quantifier-snake-utils.js?v=cf878469",
   "./assets/js/modules/quantifier-snake-canvas.js?v=11c68752",
-  "./assets/js/modules/quantifier-snake-controller.js?v=a9fbbef3",
+  "./assets/js/modules/quantifier-snake-controller.js?v=7d0e3c3d",
   "./assets/js/modules/quantifier-snake-versus-renderer.js",
   "./assets/js/modules/quantifier-snake-versus.js?v=ff794386",
   "./assets/js/modules/strokes-radicals-catalog-data.js",
@@ -95,15 +101,15 @@ const PRECACHE_FILES = [
   "./assets/js/progress-integrator.js?v=0f7f559e",
   "./assets/js/auth-backend.js?v=816f190e",
   "./assets/js/user-progress-backend.js?v=2dc1518b",
-  "./assets/js/app.js?v=4428c583",
-  "./assets/js/matrix-game.js?v=9da2483d",
+  "./assets/js/app.js?v=1cb98709",
+  "./assets/js/matrix-game.js?v=ca5b9b2e",
   "./assets/js/matrix-game-events.js",
   "./assets/js/matrix-game-ui.js",
   "./assets/js/matrix-game-view.js",
-  "./assets/js/tones-invaders-game.js?v=c37ddaf1",
+  "./assets/js/tones-invaders-game.js?v=5a68c907",
   "./assets/js/tones-invaders-renderer.js",
-  "./assets/js/hanzi-builder-game.js?v=745260cd",
-  "./assets/js/word-linker-game.js?v=d263c1b3",
+  "./assets/js/hanzi-builder-game.js?v=26cf9a62",
+  "./assets/js/word-linker-game.js?v=f8871030",
   "./assets/js/sentence-builder-game.js",
   "./assets/js/tone-trainer-game.js",
   "./assets/js/graded-reader-game.js",
@@ -118,6 +124,11 @@ const PRECACHE_FILES = [
   "./assets/js/calligraphy-scroll-game.js",
   "./assets/js/chinese-names-game.js",
   "./assets/js/leaderboard.js?v=e6705e99",
+  "./assets/js/modules/offline-manager.js?v=73131c6e",
+  "./assets/js/modules/etymology-controller.js?v=6921fd07",
+  "./assets/js/modules/writing-sheets-controller.js",
+  "./assets/js/modules/flashcard-pdf-controller.js",
+  "./assets/vendor/hanzi-writer.min.js",
   "./assets/partials/tabs/strokes-radicals.html",
   "./assets/partials/tabs/snake-quantifiers.html",
   "./assets/partials/tabs/tones-invaders.html",
@@ -145,6 +156,7 @@ const PRECACHE_FILES = [
   "./assets/partials/tabs/shadow-theatre.html",
   "./assets/partials/tabs/hanzi-mahjong.html",
   "./assets/partials/tabs/china-cities.html",
+  "./assets/partials/tabs/culture-provinces.html",
   "./assets/partials/tabs/tone-visualizer.html",
   "./assets/partials/tabs/calligraphy-scroll.html",
   "./assets/partials/tabs/chinese-names.html",
@@ -153,6 +165,7 @@ const PRECACHE_FILES = [
   "./assets/data/culture/chinese-technology.json",
   "./assets/data/culture/peking-opera.json",
   "./assets/data/culture/traditional-medicine.json",
+  "./assets/data/culture/china-provinces.json",
   "./assets/images/culture/peking_opera.jpg",
   "./assets/images/culture/traditional_medicine.jpg",
   "./assets/images/culture/character_evolution.jpg",
@@ -174,6 +187,10 @@ const PRECACHE_FILES = [
   "./assets/data/hsk_past_exams.json",
   "./assets/data/hsk_example_sentences.json",
   "./assets/data/quantifier_snake_words.json",
+  "./assets/data/etymology/seccion-a.json",
+  "./assets/data/etymology/seccion-b.json",
+  "./assets/data/etymology/seccion-c.json",
+  "./assets/data/etymology/strokes-index.json",
   "./assets/images/logoICUMSSAPP.png",
   "./assets/images/logo05.png",
   "./assets/images/logo06.png",
@@ -209,6 +226,10 @@ const OPTIONAL_PRECACHE_PATTERNS = [
   "strokes-radicals",
   "past-exams",
   "leaderboard",
+  "etymology",
+  "writing-sheets",
+  "flashcard-pdf",
+  "culture-provinces",
 ];
 
 function isOptionalPrecache(path) {
@@ -221,11 +242,24 @@ const CRITICAL_PRECACHE = PRECACHE_FILES.filter(
 );
 const OPTIONAL_PRECACHE = PRECACHE_FILES.filter(isOptionalPrecache);
 
+function isFontRequest(request) {
+  try {
+    const url = new URL(request.url);
+    return (
+      url.hostname === "fonts.googleapis.com" ||
+      url.hostname === "fonts.gstatic.com"
+    );
+  } catch {
+    return false;
+  }
+}
+
 function isSameOrigin(url) {
   return new URL(url).origin === self.location.origin;
 }
 
 function isApiLikeRequest(request) {
+  if (isFontRequest(request)) return false;
   const url = new URL(request.url);
   return (
     url.pathname.startsWith("/api/") ||
@@ -235,6 +269,7 @@ function isApiLikeRequest(request) {
 }
 
 function shouldCacheRuntime(request) {
+  if (isFontRequest(request)) return true;
   if (!isSameOrigin(request.url)) return false;
 
   const url = new URL(request.url);
@@ -326,7 +361,7 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
-  if (!isSameOrigin(event.request.url)) return;
+  if (!isSameOrigin(event.request.url) && !isFontRequest(event.request)) return;
   if (isApiLikeRequest(event.request)) return;
 
   const isNavigation =
@@ -342,7 +377,7 @@ self.addEventListener("fetch", (event) => {
           cache.put(event.request, networkResponse.clone());
           return networkResponse;
         } catch {
-          const cachedResponse = await caches.match(event.request);
+          const cachedResponse = await caches.match(event.request, { ignoreSearch: true });
           if (cachedResponse) return cachedResponse;
           return caches.match("./index.html");
         }

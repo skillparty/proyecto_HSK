@@ -216,6 +216,14 @@ class EtymologyController {
             </svg>
             <span>Exportar PDF</span>
           </button>
+          <button type="button" class="btn btn-secondary btn-sm etym-offline-btn" id="etym-offline-btn" title="Descargar caracteres y trazos para practicar offline" style="display:inline-flex; align-items:center; gap:6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span id="etym-offline-status">Practicar Offline</span>
+          </button>
           <button type="button" class="btn btn-outline btn-sm etym-select-btn ${this.isSelectionMode ? "is-active" : ""}" id="etym-select-mode-btn" title="Activar/desactivar modo selección">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:4px;">
               <polyline points="9 11 12 14 22 4"></polyline>
@@ -497,15 +505,35 @@ class EtymologyController {
     }
   }
 
-  loadStroke(char, onComplete) {
+  async loadStroke(char, onComplete) {
     const url = `${this.strokeBaseUrl}${encodeURIComponent(char)}.json`;
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) throw new Error(`stroke ${res.status}`);
-        return res.json();
-      })
-      .then((json) => onComplete(json))
-      .catch(() => onComplete(null));
+
+    // 1. Cache-First: instant 0ms response when stroke file is cached
+    if (typeof window !== "undefined" && "caches" in window) {
+      try {
+        const cache = await caches.open("hsk-strokes-data");
+        const cached = await cache.match(url);
+        if (cached) {
+          try {
+            const json = await cached.json();
+            if (json) {
+              onComplete(json);
+              return;
+            }
+          } catch { /* if cached data corrupted, continue to fetch */ }
+        }
+      } catch { /* ignore cache read error and fallback to network */ }
+    }
+
+    // 2. Network fetch fallback
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`stroke ${res.status}`);
+      const json = await res.json();
+      onComplete(json);
+    } catch {
+      onComplete(null);
+    }
   }
 
   animateStrokes() {
@@ -566,6 +594,15 @@ class EtymologyController {
 
     const pdfBtn = root.querySelector("#etym-export-pdf-btn");
     if (pdfBtn) pdfBtn.addEventListener("click", () => this.openPdfModal());
+
+    const offlineBtn = root.querySelector("#etym-offline-btn");
+    if (offlineBtn) {
+      offlineBtn.addEventListener("click", () => {
+        if (this.app?.offlineManager?.openModal) {
+          this.app.offlineManager.openModal();
+        }
+      });
+    }
 
     const selectBtn = root.querySelector("#etym-select-mode-btn");
     if (selectBtn) selectBtn.addEventListener("click", () => this.toggleSelectionMode());

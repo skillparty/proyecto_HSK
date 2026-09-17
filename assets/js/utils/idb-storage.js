@@ -78,6 +78,30 @@
                 return false;
             }
         },
+
+        async getAllEntries() {
+            try {
+                const db = await getDB();
+                return new Promise((resolve, reject) => {
+                    const tx = db.transaction(STORE_NAME, "readonly");
+                    const store = tx.objectStore(STORE_NAME);
+                    const entries = {};
+                    const req = store.openCursor();
+                    req.onsuccess = (event) => {
+                        const cursor = event.target.result;
+                        if (cursor) {
+                            entries[cursor.key] = cursor.value;
+                            cursor.continue();
+                        } else {
+                            resolve(entries);
+                        }
+                    };
+                    req.onerror = () => reject(req.error);
+                });
+            } catch {
+                return {};
+            }
+        },
     };
 
     window.idbStorage = idbStorage;

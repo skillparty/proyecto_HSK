@@ -153,6 +153,15 @@ class SearchController {
                 },
             },
             {
+                id: "action-open-culture-provinces",
+                title: "Abrir Mapa Físico y Provincias de China (Cultura)",
+                titleEn: "Open China Physical Map & Provinces (Culture)",
+                icon: "🏔️",
+                execute: () => {
+                    this.app.switchTab("culture-provinces");
+                },
+            },
+            {
                 id: "action-open-tone-visualizer",
                 title: "Abrir Visualizador de Curva de Tonos",
                 titleEn: "Open Pitch Curve & Intonation Visualizer",

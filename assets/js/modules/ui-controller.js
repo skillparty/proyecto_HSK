@@ -292,7 +292,7 @@ class UIController {
         (async () => {
           try {
             if (!window.QuizEngine) {
-              await this.loadScript("assets/js/modules/quiz-engine.js?v=6c07d80a");
+              await this.loadScript("assets/js/modules/quiz-engine.js?v=d2adccf2");
             }
             if (!window.QuizLegacyController) {
               await this.loadScript("assets/js/modules/quiz-legacy-controller.js?v=0c8d314f");
@@ -321,7 +321,7 @@ class UIController {
               await this.loadScript("assets/js/modules/past-exams-question-bank.js");
             }
             if (!window.PastExamsController) {
-              await this.loadScript("assets/js/modules/past-exams-controller.js?v=380d4198");
+              await this.loadScript("assets/js/modules/past-exams-controller.js?v=9063c6a3");
             }
             if (!this.app.pastExamsController) {
               this.app.pastExamsController = new window.PastExamsController(this.app);
@@ -359,7 +359,7 @@ class UIController {
               await this.loadScript("assets/js/modules/quantifier-snake-canvas.js?v=11c68752");
             }
             if (!window.QuantifierSnakeController) {
-              await this.loadScript("assets/js/modules/quantifier-snake-controller.js?v=a9fbbef3");
+              await this.loadScript("assets/js/modules/quantifier-snake-controller.js?v=7d0e3c3d");
             }
             if (!window.QuantifierSnakeVersusRenderer) {
               await this.loadScript("assets/js/modules/quantifier-snake-versus-renderer.js");
@@ -436,7 +436,7 @@ class UIController {
               await this.loadScript("assets/js/matrix-game-view.js");
             }
             if (!window.MatrixGame) {
-              await this.loadScript("assets/js/matrix-game.js?v=9da2483d");
+              await this.loadScript("assets/js/matrix-game.js?v=ca5b9b2e");
             }
             if (typeof renderMatrixGameInterface === "undefined") {
               await this.loadScript("assets/js/matrix-game-ui.js");
@@ -482,7 +482,7 @@ class UIController {
               await this.loadScript("assets/js/tones-invaders-renderer.js");
             }
             if (!window.TonesInvadersGame) {
-              await this.loadScript("assets/js/tones-invaders-game.js?v=c37ddaf1");
+              await this.loadScript("assets/js/tones-invaders-game.js?v=5a68c907");
             }
             if (!window.tonesInvadersGame) {
               window.tonesInvadersGame = new TonesInvadersGame(this.app);
@@ -498,7 +498,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/hanzi-builder-styles.css?v=2995e713");
             if (!window.HanziBuilderGame) {
-              await this.loadScript("assets/js/hanzi-builder-game.js?v=745260cd");
+              await this.loadScript("assets/js/hanzi-builder-game.js?v=26cf9a62");
             }
             if (!window.hanziBuilderGame) {
               window.hanziBuilderGame = new HanziBuilderGame(this.app);
@@ -514,7 +514,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/word-linker-styles.css?v=918db2e1");
             if (!window.WordLinkerGame) {
-              await this.loadScript("assets/js/word-linker-game.js?v=d263c1b3");
+              await this.loadScript("assets/js/word-linker-game.js?v=f8871030");
             }
             if (!window.wordLinkerGame) {
               window.wordLinkerGame = new WordLinkerGame(this.app);
@@ -546,7 +546,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/etymology-styles.css?v=b73c0ecf");
             if (!window.EtymologyController) {
-              await this.loadScript("assets/js/modules/etymology-controller.js?v=a1020150");
+              await this.loadScript("assets/js/modules/etymology-controller.js?v=6921fd07");
             }
             if (!window.etymologyController) {
               window.etymologyController = new EtymologyController(this.app);
@@ -663,6 +663,25 @@ class UIController {
             await window.traditionalArtsModule.initialize();
           } catch (err) {
             this.logError("culture-arts init failed:", err);
+          }
+        })();
+        break;
+      case "culture-provinces":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/culture-provinces.css", "culture-provinces-stylesheet");
+            if (!window.CultureModuleBase) {
+              await this.loadScript("assets/js/modules/culture/culture-module-base.js");
+            }
+            if (!window.ChinaProvincesModule) {
+              await this.loadScript("assets/js/modules/culture/china-provinces.js");
+            }
+            if (!window.chinaProvincesModule) {
+              window.chinaProvincesModule = new ChinaProvincesModule(this.app);
+            }
+            await window.chinaProvincesModule.initialize();
+          } catch (err) {
+            this.logError("culture-provinces init failed:", err);
           }
         })();
         break;
@@ -1111,6 +1130,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "culture-technology",
   "culture-clothing",
   "culture-arts",
+  "culture-provinces",
   "videos",
   "memories",
   "writing-sheets",

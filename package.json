@@ -4,7 +4,7 @@
   "description": "HSK Chinese Learning Application - Static site with GitHub Pages and Firebase",
   "scripts": {
     "dev": "npm run assemble && npx serve . -p 3369",
-    "assemble": "node scripts/build/assemble-index.js",
+    "assemble": "node scripts/build/generate-strokes-index.js && node scripts/build/assemble-index.js",
     "build": "npm run assemble && node scripts/build/build-dist.js",
     "check:cache-versions": "node scripts/build/apply-cache-versions.js",
     "check:index-assembled": "node scripts/ci/check-index-assembled.js",

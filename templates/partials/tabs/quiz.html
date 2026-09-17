@@ -2,7 +2,7 @@
                 <div id="quiz" class="tab-panel" tabindex="0">
                     <div class="quiz-setup" id="quiz-setup">
                         <h2 data-i18n="configureQuiz">Configure Quiz</h2>
-                        <div class="quiz-options">
+                        <div class="quiz-options-grid">
                             <div class="control-group">
                                 <label for="quiz-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
                                 <select id="quiz-level" class="select-input">
@@ -16,12 +16,29 @@
                                 </select>
                             </div>
                             <div class="control-group">
-                                <label for="quiz-questions" class="control-label" data-i18n="numberOfQuestions">Number
-                                    of Questions</label>
+                                <label for="quiz-mode" class="control-label" data-i18n="quizModeLabel">Modo de Quiz</label>
+                                <select id="quiz-mode" class="select-input">
+                                    <option value="meaning" data-i18n="quizModeMeaning">Hanzi ➔ Significado (Estándar)</option>
+                                    <option value="reverse" data-i18n="quizModeReverse">Significado ➔ Hanzi (Inverso)</option>
+                                    <option value="listening" data-i18n="quizModeListening">Auditivo ➔ Significado (Comprensión)</option>
+                                    <option value="pinyin" data-i18n="quizModePinyin">Hanzi ➔ Pinyin & Tonos</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="quiz-questions" class="control-label" data-i18n="numberOfQuestions">Number of Questions</label>
                                 <select id="quiz-questions" class="select-input">
                                     <option value="10">10</option>
                                     <option value="20">20</option>
                                     <option value="30">30</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="quiz-timer" class="control-label" data-i18n="quizTimerLabel">Límite de Tiempo</label>
+                                <select id="quiz-timer" class="select-input">
+                                    <option value="none" data-i18n="quizTimerNone">Sin límite (Relajado)</option>
+                                    <option value="15" data-i18n="quizTimer15">15 segundos por pregunta</option>
+                                    <option value="10" data-i18n="quizTimer10">10 segundos (Rápido)</option>
+                                    <option value="5" data-i18n="quizTimer5">5 segundos (Relámpago)</option>
                                 </select>
                             </div>
                         </div>
@@ -36,6 +53,10 @@
                                 <span data-i18n="of">of</span>
                                 <span id="quiz-total">10</span>
                             </div>
+                            <div id="quiz-timer-badge" class="quiz-timer-badge" style="display: none;">
+                                <span class="timer-icon">⏱️</span>
+                                <span id="quiz-timer-val">15</span>s
+                            </div>
                             <div class="quiz-score-display">
                                 <span data-i18n="score">Score</span>:
                                 <span id="quiz-score">0</span>
@@ -47,10 +68,8 @@
                                 <!-- Quiz options will be populated here -->
                             </div>
                             <div class="quiz-actions">
-                                <button id="quiz-submit" class="btn btn-primary" disabled
-                                    data-i18n="submit">Submit</button>
-                                <button id="quiz-next" class="btn btn-primary" style="display: none;"
-                                    data-i18n="next">Next</button>
+                                <button id="quiz-submit" class="btn btn-primary" disabled data-i18n="submit">Submit</button>
+                                <button id="quiz-next" class="btn btn-primary" style="display: none;" data-i18n="next">Next</button>
                             </div>
                         </div>
                     </div>
@@ -58,15 +77,22 @@
                     <div class="quiz-results" id="quiz-results" style="display: none;">
                         <h2 data-i18n="quizComplete">Quiz Complete!</h2>
                         <div class="results-summary" id="results-summary">
-                            <div>
+                            <div class="results-score-box">
                                 <span data-i18n="finalScore">Final Score</span>:
                                 <strong id="final-score">0/0</strong>
                                 (<span id="final-percentage">0%</span>)
                             </div>
+                            <div id="quiz-grade-banner" class="quiz-grade-banner"></div>
                         </div>
                         <div class="results-actions">
                             <button id="restart-quiz" class="btn btn-primary" data-i18n="tryAgain">Retry</button>
+                            <button id="retry-mistakes-btn" class="btn btn-warning" style="display: none;" data-i18n="quizRetryMistakes">Repasar solo errores</button>
+                            <button id="save-mistakes-deck-btn" class="btn btn-secondary" style="display: none;" data-i18n="quizSaveMistakesToDeck">Guardar fallos en mazo</button>
                             <button id="new-quiz" class="btn btn-secondary" data-i18n="newQuiz">New Quiz</button>
+                        </div>
+                        <div id="quiz-breakdown-wrapper" class="quiz-breakdown-wrapper" style="display: none;">
+                            <h3 class="breakdown-title" data-i18n="quizReviewTitle">Desglose de Preguntas y Respuestas</h3>
+                            <div id="quiz-breakdown-list" class="quiz-breakdown-list"></div>
                         </div>
                     </div>
                 </div>
