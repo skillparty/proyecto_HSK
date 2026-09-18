@@ -16,8 +16,9 @@ async function gotoApp(page) {
 // Tabs de nivel superior (home, etymology) no tienen grupo.
 async function openTab(page, tabName, groupName = null) {
   if (groupName) {
-    await page.locator(`.nav-group[data-group="${groupName}"] .nav-group-trigger`).click();
-    await page.locator(`.nav-dropdown-item[data-tab="${tabName}"]`).click();
+    const groupEl = page.locator(`.nav-group[data-group="${groupName}"]`);
+    await groupEl.locator(".nav-group-trigger").click();
+    await groupEl.locator(`.nav-dropdown-item[data-tab="${tabName}"]`).click();
   } else {
     await page.locator(`.nav-tab[data-tab="${tabName}"]`).click();
   }

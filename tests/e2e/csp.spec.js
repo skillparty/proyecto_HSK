@@ -77,7 +77,7 @@ test.describe("Content-Security-Policy", () => {
     // Los tabs se descubren del DOM real en vez de hardcodear la lista, así un
     // tab nuevo queda cubierto sin tocar este spec.
     const groups = await page
-      .locator(".nav-group[data-group]")
+      .locator(".nav-group[data-group]:visible")
       .evaluateAll((nodes) => nodes.map((n) => n.dataset.group));
 
     for (const group of groups) {
@@ -93,7 +93,7 @@ test.describe("Content-Security-Policy", () => {
         await page
           .locator(`.nav-group[data-group="${group}"] .nav-group-trigger`)
           .click();
-        await page.locator(`.nav-dropdown-item[data-tab="${tab}"]`).click();
+        await page.locator(`.nav-group[data-group="${group}"] .nav-dropdown-item[data-tab="${tab}"]`).click();
         await expect(page.locator(`#${tab}`)).toHaveClass(/active/);
         // Los controllers lazy inyectan script y CSS al abrirse; darles margen
         // para que una carga bloqueada llegue a reportarse.
@@ -102,7 +102,7 @@ test.describe("Content-Security-Policy", () => {
     }
 
     const topLevelTabs = await page
-      .locator(".nav-tab[data-tab]")
+      .locator(".nav-tab[data-tab]:visible")
       .evaluateAll((nodes) => nodes.map((n) => n.dataset.tab));
 
     for (const tab of topLevelTabs) {

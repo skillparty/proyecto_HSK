@@ -128,6 +128,14 @@
     display: none !important;
 }
 
+.desktop-only {
+    display: inline-flex;
+}
+
+div.nav-group.desktop-only {
+    display: flex;
+}
+
 /* Panel de ajustes (idioma, voz, audio): dropdown bajo el engranaje,
    cerrado por defecto en todos los viewports */
 .header-settings-group {
@@ -442,6 +450,10 @@ html[data-theme="light"] .nav-dropdown-item.active {
         display: flex !important;
     }
 
+    .desktop-only {
+        display: none !important;
+    }
+
     .app-header {
         height: 64px !important;
         padding: 0 12px !important;
@@ -663,15 +675,15 @@ html[data-theme="light"] .nav-dropdown-item.active {
     }
 
     .nav-tab {
-        font-size: 0.65rem !important;
-        padding: 4px 1px !important;
+        font-size: 0.72rem !important;
+        padding: 4px 2px !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 2px !important;
+        gap: 3px !important;
         width: 100% !important;
-        min-height: 46px !important;
+        min-height: 50px !important;
         color: var(--text-muted) !important;
         background: transparent !important;
         height: auto !important;
@@ -680,12 +692,18 @@ html[data-theme="light"] .nav-dropdown-item.active {
         text-overflow: ellipsis;
         overflow: visible !important;
         touch-action: manipulation;
+        transition: color 0.15s ease, transform 0.1s ease !important;
+    }
+
+    .nav-tab:active {
+        transform: scale(0.95);
     }
 
     .nav-tab span {
-        font-size: 0.64rem !important;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
+        font-size: 0.72rem !important;
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        font-weight: 500;
         display: inline-flex;
         align-items: center;
         gap: 1px;
@@ -693,8 +711,8 @@ html[data-theme="light"] .nav-dropdown-item.active {
 
     .nav-tab svg:not(.dropdown-chevron) {
         margin-right: 0 !important;
-        width: 18px !important;
-        height: 18px !important;
+        width: 20px !important;
+        height: 20px !important;
         flex-shrink: 0;
     }
 
@@ -800,9 +818,27 @@ html[data-theme="light"] .nav-dropdown-item.active {
     .nav-group[data-group="evaluate"] .nav-dropdown,
     .nav-group[data-group="games"] .nav-dropdown,
     .nav-group[data-group="culture"] .nav-dropdown,
-    .nav-group[data-group="progress"] .nav-dropdown {
+    .nav-group[data-group="progress"] .nav-dropdown,
+    .nav-group[data-group="more"] .nav-dropdown {
         left: 8px !important;
         right: 8px !important;
+    }
+
+    .nav-dropdown-section-title {
+        font-size: 0.72rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.08em !important;
+        color: var(--primary) !important;
+        padding: 12px 14px 4px 14px !important;
+        margin-top: 4px !important;
+        border-top: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.08)) !important;
+    }
+
+    .nav-dropdown-section-title:first-of-type {
+        margin-top: 0 !important;
+        border-top: none !important;
+        padding-top: 4px !important;
     }
 
     /* Mobile Bottom Sheet Header */

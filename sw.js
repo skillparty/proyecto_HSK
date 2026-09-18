@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+4404a8c0";
+const SW_VERSION = "4.70.0+1ad11b12";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -14,7 +14,7 @@ const PRECACHE_FILES = [
   "./config/manifest.json",
   "./assets/css/design-tokens.css?v=e01267d0",
   "./assets/css/app-base.css?v=a184c466",
-  "./assets/css/app-header-nav.css?v=5cbfccff",
+  "./assets/css/app-header-nav.css?v=690efec1",
   "./assets/css/app-home.css?v=75bd62da",
   "./assets/css/app-practice.css?v=39e55333",
   "./assets/css/app-browse.css?v=fbb33c28",
@@ -59,7 +59,7 @@ const PRECACHE_FILES = [
   "./assets/js/bootstrap-diagnostics.js?v=4dd221b0",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=dc64ea60",
-  "./assets/js/translations.js?v=549c57e3",
+  "./assets/js/translations.js?v=db2b21b1",
   "./assets/js/firebase-client.js?v=620f489f",
   "./assets/js/firebase-progress-sync.js?v=bf85fc76",
   "./assets/js/modules/srs-engine.js?v=811fc44e",
@@ -72,7 +72,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=d2adccf2",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7a1e139f",
-  "./assets/js/modules/ui-controller.js?v=d910ba0a",
+  "./assets/js/modules/ui-controller.js?v=a1141ea1",
   "./assets/js/modules/navigation-controller.js?v=952afc11",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",

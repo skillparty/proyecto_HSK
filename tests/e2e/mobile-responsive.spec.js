@@ -52,10 +52,10 @@ test.describe("Mobile Responsive Design", () => {
       const pageErrors = await gotoApp(page);
 
       // Test each nav-group dropdown
-      const groups = ["study", "evaluate", "games", "culture", "progress"];
+      const groups = ["study", "evaluate", "games", "more", "culture", "progress"];
       for (const group of groups) {
         const groupEl = page.locator(`.nav-group[data-group="${group}"]`);
-        if (await groupEl.count() === 0) continue;
+        if (await groupEl.count() === 0 || !(await groupEl.isVisible())) continue;
 
         const trigger = groupEl.locator(".nav-group-trigger");
         await trigger.click();

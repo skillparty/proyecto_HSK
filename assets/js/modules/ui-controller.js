@@ -188,15 +188,15 @@ class UIController {
       });
 
       // If the target tab is inside a dropdown group, make that group parent-active
-      const activeDropdownItem = document.querySelector(
+      const activeDropdownItems = document.querySelectorAll(
         `.nav-dropdown-item[data-tab="${tabName}"]`,
       );
-      if (activeDropdownItem) {
-        const parentGroup = activeDropdownItem.closest(".nav-group");
+      activeDropdownItems.forEach((item) => {
+        const parentGroup = item.closest(".nav-group");
         if (parentGroup) {
           parentGroup.classList.add("parent-active");
         }
-      }
+      });
     };
 
     const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
