@@ -123,7 +123,7 @@ const PWAInstallManager = {
             if (window.app?.uiController?.showToast) {
                 const isEs = window.app.currentLanguage !== 'en';
                 window.app.uiController.showToast(
-                    isEs ? '🎉 ¡App instalada con éxito! Ahora puedes abrirla desde tu pantalla de inicio' : '🎉 App installed! You can now open it from your home screen',
+                    isEs ? '¡App instalada con éxito! Ahora puedes abrirla desde tu pantalla de inicio' : 'App installed! You can now open it from your home screen',
                     'success',
                     3500
                 );
@@ -240,7 +240,7 @@ const PWAInstallManager = {
                 if (window.app?.uiController?.showToast) {
                     const isEs = window.app.currentLanguage !== 'en';
                     window.app.uiController.showToast(
-                        isEs ? '🔔 Recordatorios diarios ya están activos' : '🔔 Daily reminders are already active',
+                        isEs ? 'Recordatorios diarios ya están activos' : 'Daily reminders are already active',
                         'success'
                     );
                 }
@@ -254,7 +254,7 @@ const PWAInstallManager = {
                     if (navigator.serviceWorker?.ready) {
                         const reg = await navigator.serviceWorker.ready;
                         reg.showNotification('Confuc10++ HSK', {
-                            body: '🔔 ¡Recordatorios activados! Te avisaremos para mantener tu racha diaria.',
+                            body: '¡Recordatorios activados! Te avisaremos para mantener tu racha diaria.',
                             icon: 'assets/images/logo05.png',
                             badge: 'assets/images/logo05.png',
                         });
@@ -298,7 +298,7 @@ window.addEventListener('online', () => {
     if (window.app?.uiController?.showToast) {
         const isEs = window.app.currentLanguage !== 'en';
         window.app.uiController.showToast(
-            isEs ? '🟢 Conexión restablecida - Modo Online' : '🟢 Connection restored - Online Mode',
+            isEs ? 'Conexión restablecida - Modo Online' : 'Connection restored - Online Mode',
             'success',
             2200
         );
@@ -309,7 +309,7 @@ window.addEventListener('offline', () => {
     if (window.app?.uiController?.showToast) {
         const isEs = window.app.currentLanguage !== 'en';
         window.app.uiController.showToast(
-            isEs ? '📡 Modo Sin Conexión - Todo el contenido y audios están disponibles offline' : '📡 Offline Mode - All content and audio available offline',
+            isEs ? 'Modo Sin Conexión - Todo el contenido y audios están disponibles offline' : 'Offline Mode - All content and audio available offline',
             'info',
             3500
         );

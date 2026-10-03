@@ -472,7 +472,7 @@ class PekingOperaModule extends (window.CultureModuleBase || CultureModuleBase) 
           <span>${lang === 'en' ? 'Featured Video' : 'Vídeo Ilustrativo'}</span>
         </span>
         <button type="button" class="culture-media-toggle-btn" id="culture-opera-toggle" title="${lang === 'en' ? 'Switch to Photo view' : 'Cambiar a vista Foto'}">
-          <span class="toggle-icon">🖼️</span>
+          <span class="toggle-icon">${window.hskIcons?.render?.('image', { size: 14 }) || ''}</span>
           <span class="toggle-text">${lang === 'en' ? 'View Photo' : 'Ver Foto'}</span>
         </button>
       </div>

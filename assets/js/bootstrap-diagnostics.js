@@ -38,7 +38,7 @@ window.addEventListener('error', (event) => {
     `;
     const filename = event.filename ? event.filename.split('/').pop() : 'inline';
     errorDiv.innerHTML = `
-        <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">❌ JS Runtime Error</div>
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">JS Runtime Error</div>
         <div style="margin-bottom: 8px;">${event.message}</div>
         <div style="color: #fca5a5; font-size: 12px;">File: ${filename} (Line ${event.lineno}:${event.colno})</div>
         <button type="button" class="dismiss-err-btn" style="margin-top: 10px; background: white; color: #b91c1c; border: none; padding: 4px 8px; border-radius: 4px; font-weight: bold; cursor: pointer;">Dismiss</button>
@@ -65,7 +65,7 @@ window.addEventListener('unhandledrejection', (event) => {
     const reasonMsg = event.reason?.message || event.reason;
     const stack = event.reason?.stack ? event.reason.stack.split('\n')[0] : 'No stack trace';
     errorDiv.innerHTML = `
-        <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">⚠️ Promise Rejection</div>
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">Promise Rejection</div>
         <div style="margin-bottom: 8px;">${reasonMsg}</div>
         <div style="color: #ffedd5; font-size: 12px; white-space: pre-wrap;">Trace: ${stack}</div>
         <button type="button" class="dismiss-rejection-btn" style="margin-top: 10px; background: white; color: #ea580c; border: none; padding: 4px 8px; border-radius: 4px; font-weight: bold; cursor: pointer;">Dismiss</button>

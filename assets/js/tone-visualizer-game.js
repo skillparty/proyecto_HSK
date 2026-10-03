@@ -1143,11 +1143,11 @@ class ToneVisualizerGame {
 
         if (this.feedbackHeading) {
             if (score >= 90) {
-                this.feedbackHeading.textContent = isEs ? "¡Excelente Curva Tonal! 👏" : "Excellent Tone Curve! 👏";
+                this.feedbackHeading.textContent = isEs ? "¡Excelente Curva Tonal!" : "Excellent Tone Curve!";
             } else if (score >= 78) {
-                this.feedbackHeading.textContent = isEs ? "¡Muy Buen Intento! 👍" : "Very Good Attempt! 👍";
+                this.feedbackHeading.textContent = isEs ? "¡Muy Buen Intento!" : "Very Good Attempt!";
             } else {
-                this.feedbackHeading.textContent = isEs ? "Sigue Practicando 💪" : "Keep Practicing 💪";
+                this.feedbackHeading.textContent = isEs ? "Sigue Practicando" : "Keep Practicing";
             }
         }
 

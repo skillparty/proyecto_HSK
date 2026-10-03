@@ -343,11 +343,11 @@ class MatrixGame {
         const streak = this.sessionStats.streak;
         let comboText = `+${roundPoints} puntos`;
         if (streak >= 10) {
-            comboText = `💥 ULTRA COMBO x4! +${roundPoints}`;
+            comboText = `ULTRA COMBO x4! +${roundPoints}`;
         } else if (streak >= 6) {
-            comboText = `⚡ MEGA COMBO x3! +${roundPoints}`;
+            comboText = `MEGA COMBO x3! +${roundPoints}`;
         } else if (streak >= 3) {
-            comboText = `🔥 COMBO x2! +${roundPoints}`;
+            comboText = `COMBO x2! +${roundPoints}`;
         }
         this.viewController.showFeedback('correct', comboText);
 

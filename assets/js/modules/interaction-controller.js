@@ -876,7 +876,7 @@ class InteractionController {
 
             if (btn) btn.classList.add('recording');
             if (feedback) {
-                feedback.textContent = 'Escuchando tu pronunciación en mandarín... 🎙️';
+                feedback.textContent = 'Escuchando tu pronunciación en mandarín...';
                 feedback.className = 'feedback-message info';
                 feedback.style.display = 'block';
             }
@@ -893,8 +893,8 @@ class InteractionController {
                 if (isMatch) {
                     if (feedback) {
                         feedback.textContent = isEs
-                            ? `🎯 ¡Excelente pronunciación! (${transcript}) — 100% de precisión`
-                            : `🎯 Excellent pronunciation! (${transcript}) — 100% accuracy`;
+                            ? `¡Excelente pronunciación! (${transcript}) — 100% de precisión`
+                            : `Excellent pronunciation! (${transcript}) — 100% accuracy`;
                         feedback.className = 'feedback-message correct';
                     }
                     this.app.audioController?.playCorrect?.();
@@ -905,8 +905,8 @@ class InteractionController {
                 } else {
                     if (feedback) {
                         feedback.textContent = isEs
-                            ? `🎙️ Escuchado: "${transcript}" (Objetivo: "${targetChar}") — ¡Inténtalo de nuevo!`
-                            : `🎙️ Heard: "${transcript}" (Target: "${targetChar}") — Try again!`;
+                            ? `Escuchado: "${transcript}" (Objetivo: "${targetChar}") — ¡Inténtalo de nuevo!`
+                            : `Heard: "${transcript}" (Target: "${targetChar}") — Try again!`;
                         feedback.className = 'feedback-message incorrect';
                     }
                     this.app.audioController?.playIncorrect?.();

@@ -19,7 +19,7 @@ class AchievementManager {
                 category: "study",
                 tier: "bronze",
                 points: 10,
-                icon: "🌱",
+                icon: "sprout",
                 titleEs: "Primeros Pasos",
                 titleEn: "First Steps",
                 descEs: "Estudia tu primera palabra de vocabulario en el sistema.",
@@ -32,7 +32,7 @@ class AchievementManager {
                 category: "study",
                 tier: "silver",
                 points: 25,
-                icon: "📚",
+                icon: "book",
                 titleEs: "Erudito en Marcha",
                 titleEn: "Scholar on the Rise",
                 descEs: "Alcanza 50 palabras estudiadas en repetición espaciada.",
@@ -45,7 +45,7 @@ class AchievementManager {
                 category: "study",
                 tier: "gold",
                 points: 50,
-                icon: "🎓",
+                icon: "graduation",
                 titleEs: "Maestro del Léxico",
                 titleEn: "Lexicon Master",
                 descEs: "Domina 200 palabras con el algoritmo SRS.",
@@ -58,7 +58,7 @@ class AchievementManager {
                 category: "study",
                 tier: "silver",
                 points: 25,
-                icon: "🔥",
+                icon: "flame",
                 titleEs: "Llama Imparable",
                 titleEn: "Unstoppable Flame",
                 descEs: "Mantén una racha de estudio de 7 días consecutivos.",
@@ -71,7 +71,7 @@ class AchievementManager {
                 category: "study",
                 tier: "platinum",
                 points: 100,
-                icon: "⚡",
+                icon: "zap",
                 titleEs: "Disciplina de Acero",
                 titleEn: "Steel Discipline",
                 descEs: "Alcanza una legendaria racha de 30 días de estudio.",
@@ -86,7 +86,7 @@ class AchievementManager {
                 category: "writing",
                 tier: "bronze",
                 points: 10,
-                icon: "🖌️",
+                icon: "brush",
                 titleEs: "Trazador de Hanzi",
                 titleEn: "Hanzi Inker",
                 descEs: "Practica tu primer carácter en el Lienzo de Caligrafía.",
@@ -99,7 +99,7 @@ class AchievementManager {
                 category: "writing",
                 tier: "gold",
                 points: 50,
-                icon: "📜",
+                icon: "scroll",
                 titleEs: "Calígrafo Imperial",
                 titleEn: "Imperial Calligrapher",
                 descEs: "Completa 20 caracteres trazados en el lienzo 米字格.",
@@ -114,7 +114,7 @@ class AchievementManager {
                 category: "audio",
                 tier: "silver",
                 points: 25,
-                icon: "🎧",
+                icon: "headphones",
                 titleEs: "Oído Absoluto",
                 titleEn: "Absolute Pitch",
                 descEs: "Acierta 10 ejercicios seguidos en el Entrenador de Tonos.",
@@ -127,7 +127,7 @@ class AchievementManager {
                 category: "audio",
                 tier: "silver",
                 points: 25,
-                icon: "🎙️",
+                icon: "mic",
                 titleEs: "Voz de Pekín",
                 titleEn: "Beijing Voice",
                 descEs: "Consigue una evaluación oral 100% precisa con el micrófono.",
@@ -142,7 +142,7 @@ class AchievementManager {
                 category: "games",
                 tier: "silver",
                 points: 25,
-                icon: "🧩",
+                icon: "puzzle",
                 titleEs: "Arquitecto de Frases",
                 titleEn: "Phrase Architect",
                 descEs: "Construye con éxito 5 oraciones en el Constructor de Oraciones.",
@@ -155,7 +155,7 @@ class AchievementManager {
                 category: "games",
                 tier: "silver",
                 points: 25,
-                icon: "🐍",
+                icon: "snake",
                 titleEs: "Viborita Legendaria",
                 titleEn: "Legendary Snake",
                 descEs: "Logra más de 60 puntos en la Viborita de Clasificadores.",
@@ -168,7 +168,7 @@ class AchievementManager {
                 category: "games",
                 tier: "gold",
                 points: 50,
-                icon: "🌌",
+                icon: "sparkles",
                 titleEs: "Hacker de la Matriz",
                 titleEn: "Matrix Hacker",
                 descEs: "Supera 1,000 puntos en el juego de Matriz de Fusión.",
@@ -183,7 +183,7 @@ class AchievementManager {
                 category: "culture",
                 tier: "bronze",
                 points: 10,
-                icon: "🏮",
+                icon: "lantern",
                 titleEs: "Viajero Cultural",
                 titleEn: "Cultural Explorer",
                 descEs: "Explora los módulos de Cultura y evolución de caracteres.",
@@ -290,10 +290,12 @@ class AchievementManager {
         const isEs = this.app?.currentLanguage !== "en";
         const toast = document.createElement("div");
         toast.className = "ach-toast";
+        const toastIconSvg = window.hskIcons?.render?.(ach.icon, { size: 28 }) || ach.icon;
+        const toastTrophySvg = window.hskIcons?.render?.("trophy", { size: 16 }) || "";
         toast.innerHTML = `
-            <div class="ach-toast-icon">${ach.icon}</div>
+            <div class="ach-toast-icon">${toastIconSvg}</div>
             <div class="ach-toast-text">
-                <div class="ach-toast-heading">🏆 ${isEs ? "¡Logro Desbloqueado!" : "Achievement Unlocked!"} (+${ach.points} pts)</div>
+                <div class="ach-toast-heading">${toastTrophySvg} ${isEs ? "¡Logro Desbloqueado!" : "Achievement Unlocked!"} (+${ach.points} pts)</div>
                 <div class="ach-toast-title">${ach.title}</div>
                 <div class="ach-toast-desc">${ach.desc}</div>
             </div>
@@ -379,19 +381,21 @@ class AchievementManager {
         const totalPoints = this.getTotalPoints();
         const unlockedCount = this.unlockedIds.size;
         const totalCount = this.catalogue.length;
+        const largeTrophySvg = window.hskIcons?.render?.("trophy", { size: 36 }) || "";
+        const starSvg = window.hskIcons?.render?.("star", { size: 16, fill: "currentColor" }) || "";
 
         container.innerHTML = `
             <div class="achievements-showcase-container">
                 <div class="ach-summary-banner">
                     <div class="ach-summary-left">
-                        <div class="ach-trophy-large-icon">🏆</div>
+                        <div class="ach-trophy-large-icon">${largeTrophySvg}</div>
                         <div class="ach-summary-text">
                             <h3>${isEs ? "Vitrina de Trofeos & Medallas" : "Trophy & Medal Showcase"}</h3>
                             <p>${isEs ? `Has desbloqueado ${unlockedCount} de ${totalCount} logros.` : `You have unlocked ${unlockedCount} of ${totalCount} achievements.`}</p>
                         </div>
                     </div>
                     <div class="ach-points-pill">
-                        <span>⭐</span>
+                        <span>${starSvg}</span>
                         <span>${totalPoints} ${isEs ? "Puntos" : "Pts"}</span>
                     </div>
                 </div>
@@ -423,12 +427,13 @@ class AchievementManager {
                 const desc = isEs ? ach.descEs : ach.descEn;
                 const current = ach.getProgress(stats);
                 const pct = Math.min(100, Math.round((current / ach.target) * 100));
+                const cardIconSvg = window.hskIcons?.render?.(ach.icon, { size: 28 }) || ach.icon;
 
                 const card = document.createElement("div");
                 card.className = `ach-card ${isUnlocked ? "unlocked" : "locked"}`;
                 card.innerHTML = `
                     <div class="ach-card-top">
-                        <div class="ach-icon-box">${ach.icon}</div>
+                        <div class="ach-icon-box">${cardIconSvg}</div>
                         <div class="ach-info-box">
                             <div class="ach-title">${title}</div>
                             <span class="ach-tier-badge ach-tier-${ach.tier}">${ach.tier} · ${ach.points} pts</span>

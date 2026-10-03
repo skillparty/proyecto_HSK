@@ -380,9 +380,11 @@ class PastExamsController {
             if (flagBtn) {
                 const isFlagged = this.state.flaggedQuestions.has(this.state.currentQuestion);
                 flagBtn.classList.toggle('active', isFlagged);
-                flagBtn.textContent = isFlagged
-                    ? (this.app.getTranslation('pastExamsQuestionFlagged') || '🚩 Marcada para revisar')
-                    : (this.app.getTranslation('pastExamsFlagQuestion') || '🚩 Marcar para revisar');
+                const flagIcon = window.hskIcons?.render?.('flag', { size: 14 }) || '';
+                const flagText = isFlagged
+                    ? (this.app.getTranslation('pastExamsQuestionFlagged') || 'Marcada para revisar')
+                    : (this.app.getTranslation('pastExamsFlagQuestion') || 'Marcar para revisar');
+                flagBtn.innerHTML = `${flagIcon} <span>${String(flagText).replace(/^🚩\s*/, '')}</span>`;
             }
         } else {
             const submitBtn = document.getElementById('past-exam-submit');
@@ -450,9 +452,11 @@ class PastExamsController {
         if (flagBtn) {
             const isFlagged = this.state.flaggedQuestions.has(curr);
             flagBtn.classList.toggle('active', isFlagged);
-            flagBtn.textContent = isFlagged
-                ? (this.app.getTranslation('pastExamsQuestionFlagged') || '🚩 Marcada para revisar')
-                : (this.app.getTranslation('pastExamsFlagQuestion') || '🚩 Marcar para revisar');
+            const flagIcon = window.hskIcons?.render?.('flag', { size: 14 }) || '';
+            const flagText = isFlagged
+                ? (this.app.getTranslation('pastExamsQuestionFlagged') || 'Marcada para revisar')
+                : (this.app.getTranslation('pastExamsFlagQuestion') || 'Marcar para revisar');
+            flagBtn.innerHTML = `${flagIcon} <span>${String(flagText).replace(/^🚩\s*/, '')}</span>`;
         }
 
         this.updateNavGrid();
@@ -877,8 +881,8 @@ class PastExamsController {
             if (isListening && q.audioText) {
                 audioButtonHtml = `
                     <div class="review-audio-row">
-                        <button type="button" class="btn btn-outline btn-sm review-audio-btn" data-audio="${encodeURIComponent(q.audioText)}">
-                            🔊 ${this.app.getTranslation('pastExamsReplayAudio') || 'Escuchar audio'}
+                        <button type="button" class="btn btn-outline btn-sm review-audio-btn" data-audio="${encodeURIComponent(q.audioText)}" style="display:inline-flex; align-items:center; gap:6px;">
+                            ${window.hskIcons?.render?.("volume", { size: 14 }) || ""} <span>${this.app.getTranslation('pastExamsReplayAudio') || 'Escuchar audio'}</span>
                         </button>
                         <span class="review-audio-script">"${q.audioText}"</span>
                     </div>
@@ -905,7 +909,7 @@ class PastExamsController {
                     </div>
                 </div>
                 <div class="review-explanation">
-                    <span class="exp-icon">💡</span>
+                    <span class="exp-icon">${window.hskIcons?.render?.("lightbulb", { size: 14 }) || ""}</span>
                     <div class="exp-text">${explanationText}</div>
                 </div>
             `;

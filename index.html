@@ -85,7 +85,7 @@
     <link rel="stylesheet" href="assets/css/app-quiz.css?v=a56de94f">
     <link rel="stylesheet" href="assets/css/app-stats.css?v=cd1fd78c">
     <link rel="stylesheet" href="assets/css/app-enhancements.css?v=99d811b4">
-    <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=e9f43713">
+    <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=da016a08">
     <link rel="stylesheet" href="assets/css/user-profile-styles.css?v=c3c180e3" id="auth-stylesheet">
     <link rel="stylesheet" href="assets/css/command-palette.css?v=7cdcaaa7" id="command-palette-stylesheet">
     <link rel="stylesheet" href="assets/css/achievements-styles.css?v=84df079b" id="achievements-stylesheet">
@@ -110,12 +110,13 @@
 
     <!-- Escapado compartido: debe cargar antes que firebase-client/auth-backend/leaderboard -->
     <script src="assets/js/utils/html.js?v=1c9811b7"></script>
+    <script src="assets/js/utils/icons.js?v=1b0c0084"></script>
 
     <!-- Bus de eventos pub/sub para desacoplamiento de controladores -->
     <script src="assets/js/utils/event-bus.js?v=731dc7f7"></script>
 
     <!-- Resource Validation Script -->
-    <script src="assets/js/bootstrap-diagnostics.js?v=4dd221b0"></script>
+    <script src="assets/js/bootstrap-diagnostics.js?v=3422f458"></script>
 
     <!-- Scripts moved to end of body for proper loading order -->
 </head>
@@ -148,7 +149,11 @@
                     <!-- Stats Section: solo racha + tarjetas vencidas (el resto vive en Inicio/Progreso) -->
                     <div class="header-stats">
                         <div class="header-stat" id="header-streak-stat" title="Racha de estudio">
-                            <span class="header-streak-icon" id="header-streak-icon" aria-hidden="true">🔥</span>
+                            <span class="header-streak-icon" id="header-streak-icon" aria-hidden="true">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+                                </svg>
+                            </span>
                             <div class="header-stat-value" id="header-streak">0</div>
                             <div class="header-stat-label" data-i18n="currentStreak">Streak</div>
                             <span class="header-due-badge" id="header-due-badge" style="display:none;" aria-label="tarjetas vencidas"></span>
@@ -818,7 +823,13 @@
                             <div class="study-progress">
                                 <div class="study-progress-header">
                                     <div class="study-progress-info">
-                                        <span class="study-progress-badge" aria-hidden="true">🎯</span>
+                                        <span class="study-progress-badge" aria-hidden="true">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <circle cx="12" cy="12" r="6"></circle>
+                                                <circle cx="12" cy="12" r="2"></circle>
+                                            </svg>
+                                        </span>
                                         <span class="study-progress-title" data-i18n="todayProgress">Today's Progress</span>
                                     </div>
                                     <span class="study-progress-value" id="today-progress">0 / 20</span>
@@ -1184,7 +1195,12 @@
                                 <span id="quiz-total">10</span>
                             </div>
                             <div id="quiz-timer-badge" class="quiz-timer-badge" style="display: none;">
-                                <span class="timer-icon">⏱️</span>
+                                <span class="timer-icon" aria-hidden="true">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </span>
                                 <span id="quiz-timer-val">15</span>s
                             </div>
                             <div class="quiz-score-display">
@@ -1302,7 +1318,12 @@
                                 <span id="past-exam-score">0</span>
                             </div>
                             <div id="past-exam-timer-badge" class="quiz-timer-badge" style="display: none;">
-                                <span class="timer-icon">⏱️</span>
+                                <span class="timer-icon" aria-hidden="true">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </span>
                                 <span id="past-exam-timer-val">15:00</span>
                             </div>
                         </div>
@@ -1314,7 +1335,7 @@
                                 <div class="past-exam-nav-legend">
                                     <span class="legend-item"><span class="legend-dot current"></span> <span data-i18n="pastExamsNavCurrent">Actual</span></span>
                                     <span class="legend-item"><span class="legend-dot answered"></span> <span data-i18n="pastExamsNavAnswered">Respondida</span></span>
-                                    <span class="legend-item"><span class="legend-dot flagged"></span> <span data-i18n="pastExamsNavFlagged">Marcada 🚩</span></span>
+                                    <span class="legend-item"><span class="legend-dot flagged"></span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:2px;" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg><span data-i18n="pastExamsNavFlagged">Marcada</span></span>
                                 </div>
                             </div>
                             <div class="past-exam-nav-grid" id="past-exam-nav-grid"></div>
@@ -1326,7 +1347,13 @@
                             <!-- Listening Audio Box -->
                             <div id="past-exam-audio-container" class="past-exam-audio-box" style="display: none;">
                                 <button id="past-exam-play-audio-btn" type="button" class="btn btn-secondary past-exam-audio-btn">
-                                    <span class="audio-icon">🔊</span>
+                                    <span class="audio-icon" aria-hidden="true">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                        </svg>
+                                    </span>
                                     <span id="past-exam-audio-btn-text" data-i18n="pastExamsPlayAudio">Escuchar audio (听力)</span>
                                 </button>
                                 <span id="past-exam-audio-plays" class="past-exam-audio-plays"></span>
@@ -1336,7 +1363,13 @@
                             <div class="quiz-options" id="past-exam-options"></div>
 
                             <div class="past-exam-actions-bar">
-                                <button id="past-exam-flag-btn" type="button" class="btn btn-outline past-exam-flag-btn" data-i18n="pastExamsFlagQuestion">🚩 Marcar para revisar</button>
+                                <button id="past-exam-flag-btn" type="button" class="btn btn-outline past-exam-flag-btn">
+                                    <svg class="flag-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px; vertical-align:-2px;" aria-hidden="true">
+                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                                        <line x1="4" y1="22" x2="4" y2="15"></line>
+                                    </svg>
+                                    <span id="past-exam-flag-btn-text" data-i18n="pastExamsFlagQuestion">Marcar para revisar</span>
+                                </button>
                                 <div class="past-exam-nav-btns">
                                     <button id="past-exam-prev" type="button" class="btn btn-secondary" style="display: none;" data-i18n="previous">Anterior</button>
                                     <button id="past-exam-submit" class="btn btn-primary" disabled data-i18n="submit">Enviar</button>
@@ -1566,7 +1599,11 @@
                 <div class="offline-stat-card">
                     <div class="offline-stat-header">
                         <span class="offline-stat-title" data-i18n="offlineStatusStrokesLabel">Trazos Hanzi</span>
-                        <span class="offline-stat-indicator">✍️</span>
+                        <span class="offline-stat-indicator" aria-hidden="true">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                            </svg>
+                        </span>
                     </div>
                     <div class="offline-stat-value" id="offline-stat-strokes-val">0 / 1841</div>
                     <div class="offline-stat-detail">Animaciones SVG</div>
@@ -1575,7 +1612,11 @@
                 <div class="offline-stat-card">
                     <div class="offline-stat-header">
                         <span class="offline-stat-title" data-i18n="offlineStatusPercentLabel">Disponible</span>
-                        <span class="offline-stat-indicator" id="offline-modal-network-status">🟢</span>
+                        <span class="offline-stat-indicator" id="offline-modal-network-status" aria-hidden="true">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                <circle cx="12" cy="12" r="8"></circle>
+                            </svg>
+                        </span>
                     </div>
                     <div class="offline-stat-value" id="offline-stat-percent-val">0%</div>
                     <div class="offline-stat-detail">En almacenamiento local</div>
@@ -1593,7 +1634,13 @@
                 <div class="offline-stat-card">
                     <div class="offline-stat-header">
                         <span class="offline-stat-title" data-i18n="offlineStatusVoiceLabel">Voz del Sistema</span>
-                        <button type="button" id="offline-voice-help-btn" class="offline-card-action-btn" title="Ver detalles de audio">ℹ️</button>
+                        <button type="button" id="offline-voice-help-btn" class="offline-card-action-btn" title="Ver detalles de audio" aria-label="Ver detalles de audio">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                        </button>
                     </div>
                     <div class="offline-stat-value offline-voice-val" id="offline-voice-status-badge">Detectando...</div>
                     <div class="offline-stat-detail" id="offline-voice-status-desc">Pronunciación offline</div>
@@ -1665,7 +1712,12 @@
                     </svg>
                     <span id="offline-retry-btn-text" data-i18n="offlineRetryBtn">Reintentar pendientes</span>
                 </button>
-                <button type="button" id="offline-request-persist-btn" class="btn btn-outline offline-btn-secondary" title="Proteger datos contra borrado del navegador">🛡️ Persistencia</button>
+                <button type="button" id="offline-request-persist-btn" class="btn btn-outline offline-btn-secondary" title="Proteger datos contra borrado del navegador">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: -2px;">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    <span>Persistencia</span>
+                </button>
                 <button type="button" id="offline-clear-cache-btn" class="btn btn-outline offline-btn-secondary" data-i18n="offlineClearBtn">Liberar espacio</button>
                 <button type="button" id="offline-modal-got-it" class="btn btn-secondary offline-btn-secondary" data-i18n="iosGotIt">¡Entendido!</button>
             </div>
@@ -1701,7 +1753,14 @@
             <div class="offline-guide-section">
                 <details id="offline-guide-audio-details" class="offline-guide-item">
                     <summary class="offline-guide-summary">
-                        <span data-i18n="offlineAudioHelpTitle">🔊 Audio y pronunciación sin internet</span>
+                        <span style="display:inline-flex; align-items:center;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                            </svg>
+                            <span data-i18n="offlineAudioHelpTitle">Audio y pronunciación sin internet</span>
+                        </span>
                         <span>▾</span>
                     </summary>
                     <div class="offline-guide-content" data-i18n="offlineAudioHelpDesc">
@@ -1711,7 +1770,13 @@
 
                 <details class="offline-guide-item">
                     <summary class="offline-guide-summary">
-                        <span data-i18n="offlineHowToStudyTitle">📱 ¿Cómo practicar sin conexión?</span>
+                        <span style="display:inline-flex; align-items:center;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            </svg>
+                            <span data-i18n="offlineHowToStudyTitle">¿Cómo practicar sin conexión?</span>
+                        </span>
                         <span>▾</span>
                     </summary>
                     <div class="offline-guide-content" data-i18n="offlineHowToStudyDesc">
@@ -1721,7 +1786,14 @@
 
                 <details class="offline-guide-item">
                     <summary class="offline-guide-summary">
-                        <span data-i18n="offlineLocalHelpTitle">💻 Disponible en tu ordenador en local</span>
+                        <span style="display:inline-flex; align-items:center;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                            <span data-i18n="offlineLocalHelpTitle">Disponible en tu ordenador en local</span>
+                        </span>
                         <span>▾</span>
                     </summary>
                     <div class="offline-guide-content" data-i18n="offlineLocalHelpDesc">
@@ -1806,16 +1878,16 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=04a29ce2" defer></script>
+    <script src="assets/js/translations.js?v=a8669dd4" defer></script>
     <script src="assets/js/utils/idb-storage.js?v=1a3ee4b2" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=bf85fc76" defer></script>
 
     <!-- Modules -->
     <script src="assets/js/modules/srs-engine.js?v=49945573" defer></script>
     <script src="assets/js/modules/flashcard-manager.js?v=12a64823" defer></script>
-    <script src="assets/js/modules/deck-manager.js?v=a5683a57" defer></script>
-    <script src="assets/js/modules/deck-controller.js?v=285c875d" defer></script>
-    <script src="assets/js/modules/achievement-manager.js?v=dc950149" defer></script>
+    <script src="assets/js/modules/deck-manager.js?v=b5d13f21" defer></script>
+    <script src="assets/js/modules/deck-controller.js?v=6c176e95" defer></script>
+    <script src="assets/js/modules/achievement-manager.js?v=59794665" defer></script>
     <!-- quiz-engine.js, quiz-legacy-controller.js, stats-controller.js loaded on demand by ui-controller.js -->
 
     <script src="assets/js/modules/theme-controller.js?v=01706794" defer></script>
@@ -1829,26 +1901,26 @@
     <script src="assets/js/modules/language-controller.js?v=57c17946" defer></script>
     <script src="assets/js/modules/progress-controller.js?v=34a14089" defer></script>
     <script src="assets/js/modules/navigation-controller.js?v=952afc11" defer></script>
-    <script src="assets/js/modules/search-controller.js?v=5acce051" defer></script>
+    <script src="assets/js/modules/search-controller.js?v=54d430b0" defer></script>
     <script src="assets/js/modules/practice-view-controller.js?v=e37ce237" defer></script>
     <script src="assets/js/modules/hands-free-controller.js?v=ce2a191f" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=91e61708" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=02409c34" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=e9b006fc" defer></script>
     <!-- past-exams-controller.js, quantifier-snake-{utils,canvas,controller,versus}.js loaded on demand by ui-controller.js -->
     <script src="assets/js/modules/vocabulary-controller.js?v=597710da" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=aa8b0d0c" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=99c4153a" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=07938151" defer></script>
-    <script src="assets/js/modules/offline-manager.js?v=73131c6e" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=b31cc83d" defer></script>
+    <script src="assets/js/modules/offline-manager.js?v=cbdc5843" defer></script>
     <script src="assets/js/modules/home-cultural-portal-scene.js?v=68416bcb" defer></script>
-    <script src="assets/js/modules/home-controller.js?v=db69acfb" defer></script>
+    <script src="assets/js/modules/home-controller.js?v=88500735" defer></script>
     <script src="assets/js/modules/matrix-controller.js?v=6dd74492" defer></script>
 
     <!-- Culture modules loaded on demand by ui-controller.js (see loadScript) -->
 
     <script src="assets/js/progress-integrator.js?v=0f7f559e" defer></script>
     <script src="assets/js/auth-backend.js?v=816f190e" defer></script>
-    <script src="assets/js/user-progress-backend.js?v=2dc1518b" defer></script>
+    <script src="assets/js/user-progress-backend.js?v=f5b2ec4e" defer></script>
     <script>
         // Load diagnostic system only when requested via ?diagnostic=true
         if (window.location.search.includes('diagnostic=true')) {
@@ -1864,7 +1936,7 @@
     <!-- Background Image Integration (Removed hardcoded style) -->
 
 
-    <script src="assets/js/sw-register.js?v=dc64ea60" defer></script>
+    <script src="assets/js/sw-register.js?v=fdbcd458" defer></script>
 </body>
 
 </html>

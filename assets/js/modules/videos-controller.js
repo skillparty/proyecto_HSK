@@ -747,11 +747,11 @@ class VideosController {
             <div class="videos-phrase-meaning">${this.escapeHtml(phrase.meaning)}</div>
           </div>
           <div class="videos-phrase-actions">
-            <button type="button" class="videos-btn videos-btn-outline phrase-speak-btn" data-hanzi="${this.escapeHtml(phrase.hanzi)}" title="Escuchar frase">
-              🔊 Escuchar
+            <button type="button" class="videos-btn videos-btn-outline phrase-speak-btn" data-hanzi="${this.escapeHtml(phrase.hanzi)}" title="Escuchar frase" style="display:inline-flex; align-items:center; gap:6px;">
+              ${window.hskIcons?.render?.("volume", { size: 14 }) || ""} <span>Escuchar</span>
             </button>
-            <button type="button" class="videos-btn videos-btn-secondary phrase-shadow-btn" data-hanzi="${this.escapeHtml(phrase.hanzi)}" data-pinyin="${this.escapeHtml(phrase.pinyin)}" title="Repetir y evaluar voz">
-              🎙️ Repetir
+            <button type="button" class="videos-btn videos-btn-secondary phrase-shadow-btn" data-hanzi="${this.escapeHtml(phrase.hanzi)}" data-pinyin="${this.escapeHtml(phrase.pinyin)}" title="Repetir y evaluar voz" style="display:inline-flex; align-items:center; gap:6px;">
+              ${window.hskIcons?.render?.("mic", { size: 14 }) || ""} <span>Repetir</span>
             </button>
           </div>
         </div>
@@ -795,18 +795,18 @@ class VideosController {
           <div class="videos-vocab-meaning">${this.escapeHtml(item.meaning)}</div>
           <div class="videos-vocab-actions" style="display:flex; flex-direction:column; gap:0.4rem;">
             <div style="display:flex; gap:0.35rem;">
-              <button type="button" class="videos-btn videos-btn-outline vocab-speak-btn" style="flex:1;" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Escuchar pronunciación">
-                🔊 Audio
+              <button type="button" class="videos-btn videos-btn-outline vocab-speak-btn" style="flex:1; display:inline-flex; align-items:center; justify-content:center; gap:4px;" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Escuchar pronunciación">
+                ${window.hskIcons?.render?.("volume", { size: 14 }) || ""} <span>Audio</span>
               </button>
-              <button type="button" class="videos-btn videos-btn-secondary vocab-shadowing-btn" style="flex:1;" data-hanzi="${this.escapeHtml(item.hanzi)}" data-pinyin="${this.escapeHtml(item.pinyin)}" title="Modo Shadowing">
-                🎙️ Repetir
+              <button type="button" class="videos-btn videos-btn-secondary vocab-shadowing-btn" style="flex:1; display:inline-flex; align-items:center; justify-content:center; gap:4px;" data-hanzi="${this.escapeHtml(item.hanzi)}" data-pinyin="${this.escapeHtml(item.pinyin)}" title="Modo Shadowing">
+                ${window.hskIcons?.render?.("mic", { size: 14 }) || ""} <span>Repetir</span>
               </button>
             </div>
-            <button type="button" class="videos-btn videos-btn-primary vocab-add-srs-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" data-pinyin="${this.escapeHtml(item.pinyin)}" data-meaning="${this.escapeHtml(item.meaning)}" data-level="${this.escapeHtml(item.level || "HSK 1")}" title="Agregar a Mis Tarjetas SRS">
-              + Agregar a SRS
+            <button type="button" class="videos-btn videos-btn-primary vocab-add-srs-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" data-pinyin="${this.escapeHtml(item.pinyin)}" data-meaning="${this.escapeHtml(item.meaning)}" data-level="${this.escapeHtml(item.level || "HSK 1")}" title="Agregar a Mis Tarjetas SRS" style="display:inline-flex; align-items:center; justify-content:center; gap:4px;">
+              ${window.hskIcons?.render?.("plus", { size: 14 }) || ""} <span>Agregar a SRS</span>
             </button>
-            <button type="button" class="videos-btn videos-btn-outline vocab-etym-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Ver descomposición de radicales y trazos">
-              🔍 Trazos / Etimología
+            <button type="button" class="videos-btn videos-btn-outline vocab-etym-btn" data-hanzi="${this.escapeHtml(item.hanzi)}" title="Ver descomposición de radicales y trazos" style="display:inline-flex; align-items:center; justify-content:center; gap:4px;">
+              ${window.hskIcons?.render?.("search", { size: 14 }) || ""} <span>Trazos / Etimología</span>
             </button>
           </div>
         </div>

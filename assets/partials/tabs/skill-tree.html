@@ -67,7 +67,12 @@
                         <span data-i18n="characterClassTitle">Rango del Erudito</span>
                     </h4>
                     <div class="rank-badge-display">
-                        <div class="rank-avatar" id="tree-rank-avatar">🥋</div>
+                        <div class="rank-avatar" id="tree-rank-avatar">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="7"></circle>
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                            </svg>
+                        </div>
                         <div class="rank-info">
                             <h5 class="rank-name" id="tree-rank-name">Aprendiz de la Aldea</h5>
                             <p class="rank-desc" id="tree-rank-desc">Has comenzado tu viaje por los senderos del mandarín antiguo.</p>
@@ -83,7 +88,12 @@
         <div class="tree-modal-content">
             <button type="button" class="tree-modal-close" id="tree-modal-close-btn">&times;</button>
             <div class="tree-modal-header">
-                <span class="node-modal-icon" id="modal-node-icon">🏮</span>
+                <span class="node-modal-icon" id="modal-node-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                    </svg>
+                </span>
                 <div>
                     <h3 class="node-modal-title" id="modal-node-title">Nodo 1: Saludos y Cortesía</h3>
                     <span class="node-modal-zone" id="modal-node-zone">Zona 1: La Aldea de los Primeros Trazos</span>
@@ -101,10 +111,10 @@
 
             <!-- Result Banner -->
             <div class="tree-modal-result" id="modal-result-banner" style="display: none;">
-                <div class="result-stars" id="modal-result-stars">⭐⭐⭐</div>
+                <div class="result-stars" id="modal-result-stars"></div>
                 <h4 class="result-title" id="modal-result-title">¡Nodo Conquistado!</h4>
                 <p class="result-desc" id="modal-result-desc">+50 XP y 3 Estrellas ganadas.</p>
-                <button type="button" class="btn btn-primary" id="modal-result-continue-btn">Continuar Viaje ➔</button>
+                <button type="button" class="btn btn-primary" id="modal-result-continue-btn">Continuar Viaje</button>
             </div>
         </div>
     </div>

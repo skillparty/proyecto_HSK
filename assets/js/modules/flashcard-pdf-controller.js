@@ -234,7 +234,7 @@ class FlashcardPdfController {
                                 <label class="pdf-radio-card is-selected" id="pdf-format-card-flashcards">
                                     <input type="radio" name="pdf-format" value="flashcards" checked>
                                     <div class="pdf-radio-content">
-                                        <span class="pdf-radio-title">🎴 ${this.t("pdfFormatFlashcards")}</span>
+                                        <span class="pdf-radio-title">${window.hskIcons?.render?.("cards", { size: 14 }) || ""} ${this.t("pdfFormatFlashcards")}</span>
                                         <span class="pdf-radio-desc">${this.t("pdfFormatFlashcardsDesc")}</span>
                                     </div>
                                 </label>
@@ -242,7 +242,7 @@ class FlashcardPdfController {
                                 <label class="pdf-radio-card" id="pdf-format-card-practice">
                                     <input type="radio" name="pdf-format" value="practice">
                                     <div class="pdf-radio-content">
-                                        <span class="pdf-radio-title">✍️ ${this.t("pdfFormatPractice")}</span>
+                                        <span class="pdf-radio-title">${window.hskIcons?.render?.("pen", { size: 14 }) || ""} ${this.t("pdfFormatPractice")}</span>
                                         <span class="pdf-radio-desc">${this.t("pdfFormatPracticeDesc")}</span>
                                     </div>
                                 </label>
@@ -251,7 +251,7 @@ class FlashcardPdfController {
                                     <label class="pdf-radio-card" id="pdf-format-card-etymology">
                                         <input type="radio" name="pdf-format" value="etymology">
                                         <div class="pdf-radio-content">
-                                            <span class="pdf-radio-title">📖 ${this.t("pdfFormatEtymology")}</span>
+                                            <span class="pdf-radio-title">${window.hskIcons?.render?.("scroll", { size: 14 }) || ""} ${this.t("pdfFormatEtymology")}</span>
                                             <span class="pdf-radio-desc">${this.t("pdfFormatEtymologyDesc")}</span>
                                         </div>
                                     </label>
@@ -260,7 +260,7 @@ class FlashcardPdfController {
                                 <label class="pdf-radio-card" id="pdf-format-card-duplex">
                                     <input type="radio" name="pdf-format" value="duplex">
                                     <div class="pdf-radio-content">
-                                        <span class="pdf-radio-title">📖 ${this.t("pdfFormatDuplex")}</span>
+                                        <span class="pdf-radio-title">${window.hskIcons?.render?.("book", { size: 14 }) || ""} ${this.t("pdfFormatDuplex")}</span>
                                         <span class="pdf-radio-desc">${this.t("pdfFormatDuplexDesc")}</span>
                                     </div>
                                 </label>
@@ -290,7 +290,7 @@ class FlashcardPdfController {
                     <!-- Preview column -->
                     <div class="pdf-modal-preview-col">
                         <div class="pdf-preview-header">
-                            <span class="pdf-preview-title">👁️ Vista Previa (Hoja A4)</span>
+                            <span class="pdf-preview-title">${window.hskIcons?.render?.("eye", { size: 14 }) || ""} Vista Previa (Hoja A4)</span>
                             <span class="pdf-preview-badge" id="pdf-preview-item-count">0 items</span>
                         </div>
                         <div class="pdf-preview-viewport" id="pdf-preview-container">

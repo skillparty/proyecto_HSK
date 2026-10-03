@@ -56,14 +56,23 @@
 
                     <div class="stats-certificate-banner" style="margin-top: 24px; padding: 20px; border-radius: 16px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 1px solid #f59e0b; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
                         <div style="display: flex; align-items: center; gap: 14px;">
-                            <div style="font-size: 2.4rem;">🎓</div>
+                            <div style="display:flex; align-items:center; justify-content:center; color:#78350f;">
+                                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                </svg>
+                            </div>
                             <div>
                                 <h3 style="margin: 0 0 4px 0; color: #78350f; font-size: 1.15rem; font-weight: 800;" data-i18n="certificateBannerTitle">Diploma Oficial de Certificación HSK</h3>
                                 <p style="margin: 0; color: #92400e; font-size: 0.85rem;" data-i18n="certificateBannerDesc">Genera e imprime tu diploma conmemorativo personalizado con sello imperial chino en PDF.</p>
                             </div>
                         </div>
                         <button type="button" class="btn btn-primary" id="open-certificate-modal-btn" style="background: #b91c1c; border-color: #991b1b; font-weight: 700;">
-                            <span>📜</span> <span data-i18n="generateCertificateBtn">Generar Diploma</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px; vertical-align:-2px;" aria-hidden="true">
+                                <path d="M8 2h8a2 2 0 0 1 2 2v14a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h2"></path>
+                                <path d="M18 18a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2"></path>
+                            </svg>
+                            <span data-i18n="generateCertificateBtn">Generar Diploma</span>
                         </button>
                     </div>
 
@@ -84,7 +93,11 @@
                     <div class="modal-content" style="background: var(--card-bg, #ffffff); max-width: 850px; width: 100%; border-radius: 20px; padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); max-height: 92vh; overflow-y: auto;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-color, #e5e7eb); padding-bottom: 12px;">
                             <h3 style="margin: 0; display: flex; align-items: center; gap: 8px; font-weight: 800;">
-                                <span>🎓</span> <span data-i18n="certificateModalTitle">Personalizar Diploma HSK</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                </svg>
+                                <span data-i18n="certificateModalTitle">Personalizar Diploma HSK</span>
                             </h3>
                             <button type="button" id="close-certificate-modal-btn" class="modal-close" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary);">&times;</button>
                         </div>

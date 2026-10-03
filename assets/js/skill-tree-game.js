@@ -5,11 +5,11 @@ const HSK_ADVENTURE_ZONES = [
         id: "zone-1",
         name: "La Aldea de los Primeros Trazos",
         nameEn: "Village of First Strokes",
-        badge: "🏮 Zona 1: HSK 1 Inicial",
+        badge: "Zona 1: HSK 1 Inicial",
         nodes: [
             {
                 id: "node-1",
-                icon: "👋",
+                icon: "users",
                 title: "Saludos y Cortesía",
                 titleEn: "Greetings & Politeness",
                 isBoss: false,
@@ -37,7 +37,7 @@ const HSK_ADVENTURE_ZONES = [
             },
             {
                 id: "node-2",
-                icon: "🔢",
+                icon: "grid",
                 title: "Números y Fechas",
                 titleEn: "Numbers & Dates",
                 isBoss: false,
@@ -65,7 +65,7 @@ const HSK_ADVENTURE_ZONES = [
             },
             {
                 id: "node-3",
-                icon: "👨‍👩‍👧",
+                icon: "heart",
                 title: "Familia y Amigos",
                 titleEn: "Family & Friends",
                 isBoss: false,
@@ -93,7 +93,7 @@ const HSK_ADVENTURE_ZONES = [
             },
             {
                 id: "node-4",
-                icon: "👑",
+                icon: "crown",
                 title: "Guardián de la Aldea",
                 titleEn: "Village Guardian Boss",
                 isBoss: true,
@@ -124,11 +124,11 @@ const HSK_ADVENTURE_ZONES = [
         id: "zone-2",
         name: "La Casa de Té y el Mercado Imperial",
         nameEn: "Teahouse & Imperial Market",
-        badge: "🍵 Zona 2: HSK 1-2 Cotidiano",
+        badge: "Zona 2: HSK 1-2 Cotidiano",
         nodes: [
             {
                 id: "node-5",
-                icon: "🥢",
+                icon: "utensils",
                 title: "Comida y Bebida",
                 titleEn: "Food & Drinks",
                 isBoss: false,
@@ -157,7 +157,7 @@ const HSK_ADVENTURE_ZONES = [
             },
             {
                 id: "node-6",
-                icon: "🏥",
+                icon: "building",
                 title: "Lugares y Ciudad",
                 titleEn: "Places & Town",
                 isBoss: false,
@@ -184,7 +184,7 @@ const HSK_ADVENTURE_ZONES = [
             },
             {
                 id: "node-7",
-                icon: "🎭",
+                icon: "mask",
                 title: "Verbos y Gustos",
                 titleEn: "Verbs & Preferences",
                 isBoss: false,
@@ -211,7 +211,7 @@ const HSK_ADVENTURE_ZONES = [
             },
             {
                 id: "node-8",
-                icon: "👑",
+                icon: "crown",
                 title: "El Mercader Maestro",
                 titleEn: "Master Merchant Boss",
                 isBoss: true,
@@ -242,11 +242,11 @@ const HSK_ADVENTURE_ZONES = [
         id: "zone-3",
         name: "La Ciudad Prohibida de la Gramática",
         nameEn: "Forbidden City of Grammar",
-        badge: "🏯 Zona 3: HSK 2-3 Estructuras",
+        badge: "Zona 3: HSK 2-3 Estructuras",
         nodes: [
             {
                 id: "node-9",
-                icon: "⚖️",
+                icon: "shield",
                 title: "La Estructura 把 y 被",
                 titleEn: "Ba & Bei Structures",
                 isBoss: false,
@@ -275,7 +275,7 @@ const HSK_ADVENTURE_ZONES = [
             },
             {
                 id: "node-10",
-                icon: "🔗",
+                icon: "link",
                 title: "Conectores Lógicos",
                 titleEn: "Logical Connectors",
                 isBoss: false,
@@ -363,11 +363,11 @@ const HSK_ADVENTURE_ZONES = [
         id: "zone-4",
         name: "La Cumbre del Dragón Celestial",
         nameEn: "Celestial Dragon Summit",
-        badge: "🐉 Zona 4: HSK 3-4 Maestría",
+        badge: "Zona 4: HSK 3-4 Maestría",
         nodes: [
             {
                 id: "node-13",
-                icon: "📜",
+                icon: "scroll",
                 title: "Modismos y Chengyu",
                 titleEn: "Idioms & Chengyu",
                 isBoss: false,
@@ -397,7 +397,7 @@ const HSK_ADVENTURE_ZONES = [
             },
             {
                 id: "node-14",
-                icon: "🗣️",
+                icon: "volume",
                 title: "Argumentación y Debates",
                 titleEn: "Arguments & Discussions",
                 isBoss: false,
@@ -425,7 +425,7 @@ const HSK_ADVENTURE_ZONES = [
             },
             {
                 id: "node-15",
-                icon: "🐲",
+                icon: "award",
                 title: "Gran Maestro del Dragón",
                 titleEn: "Dragon Grandmaster Summit",
                 isBoss: true,
@@ -446,8 +446,8 @@ const HSK_ADVENTURE_ZONES = [
                     {
                         prompt: "¡Última prueba! ¿Qué nivel has alcanzado al completar el Camino del Dragón?",
                         promptEn: "What level have you reached upon completing the Dragon Path?",
-                        options: ["Gran Maestro del Mandarín HSK 🐉", "Principiante", "Turista", "Oyente"],
-                        optionsEn: ["Grand Master of HSK Mandarin 🐉", "Beginner", "Tourist", "Listener"],
+                        options: ["Gran Maestro del Mandarín HSK", "Principiante", "Turista", "Oyente"],
+                        optionsEn: ["Grand Master of HSK Mandarin", "Beginner", "Tourist", "Listener"],
                         correct: 0
                     }
                 ]
@@ -459,7 +459,7 @@ const HSK_ADVENTURE_ZONES = [
 const HSK_PASSIVE_TALENTS = [
     {
         id: "streak-shield",
-        icon: "🛡️",
+        icon: "shield",
         name: "Escudo de Racha",
         nameEn: "Streak Shield",
         cost: 5,
@@ -468,7 +468,7 @@ const HSK_PASSIVE_TALENTS = [
     },
     {
         id: "xp-boost",
-        icon: "⚡",
+        icon: "zap",
         name: "Multiplicador de XP (+25%)",
         nameEn: "XP Multiplier (+25%)",
         cost: 10,
@@ -477,7 +477,7 @@ const HSK_PASSIVE_TALENTS = [
     },
     {
         id: "scholar-eye",
-        icon: "👁️",
+        icon: "eye",
         name: "Ojo del Erudito",
         nameEn: "Scholar's Eye",
         cost: 15,
@@ -486,7 +486,7 @@ const HSK_PASSIVE_TALENTS = [
     },
     {
         id: "dragon-aurora",
-        icon: "🐉",
+        icon: "award",
         name: "Aura del Dragón Imperial",
         nameEn: "Imperial Dragon Aura",
         cost: 25,
@@ -636,16 +636,19 @@ class SkillTreeGame {
                 else if (isAvailable) stateClass = "available";
                 if (node.isBoss) stateClass += " boss";
 
-                const starsDisplay = "⭐".repeat(starsCount) + "☆".repeat(3 - starsCount);
+                const starFilled = window.hskIcons?.render?.('star', { size: 12, fill: 'currentColor' }) || '★';
+                const starEmpty = window.hskIcons?.render?.('star', { size: 12, fill: 'none' }) || '☆';
+                const starsDisplay = Array(starsCount).fill(starFilled).concat(Array(3 - starsCount).fill(starEmpty)).join('');
                 const title = isEs ? node.title : (node.titleEn || node.title);
+                const nodeIconSvg = window.hskIcons?.render?.(node.icon, { size: 18 }) || '';
 
                 return `
                     <div class="trail-node ${stateClass}" data-node-id="${node.id}">
                         <div class="node-orb">
-                            <span>${node.icon}</span>
+                            <span style="display:inline-flex; align-items:center;">${nodeIconSvg}</span>
                         </div>
                         <div class="node-title-label">${title}</div>
-                        <div class="node-stars-row">${starsDisplay}</div>
+                        <div class="node-stars-row" style="display:flex; justify-content:center; gap:2px;">${starsDisplay}</div>
                     </div>
                 `;
             }).join("");
@@ -677,17 +680,20 @@ class SkillTreeGame {
         if (!this.talentsList) return;
         const isEs = this.app?.currentLanguage !== "en";
         const currentStars = this.state.totalStars || 0;
+        const checkSvg = window.hskIcons?.render?.('check', { size: 12 }) || '✓';
+        const starCostSvg = window.hskIcons?.render?.('star', { size: 12, fill: 'currentColor' }) || '★';
 
         this.talentsList.innerHTML = HSK_PASSIVE_TALENTS.map((talent) => {
             const isUnlocked = this.state.talents?.includes(talent.id);
             const canAfford = currentStars >= talent.cost;
             const name = isEs ? talent.name : (talent.nameEn || talent.name);
             const desc = isEs ? talent.desc : (talent.descEn || talent.desc);
+            const talentIconSvg = window.hskIcons?.render?.(talent.icon, { size: 20 }) || '';
 
             return `
                 <div class="talent-card-item ${isUnlocked ? "unlocked" : ""}">
                     <div class="talent-left">
-                        <span class="talent-icon">${talent.icon}</span>
+                        <span class="talent-icon" style="display:inline-flex; align-items:center;">${talentIconSvg}</span>
                         <div>
                             <div class="talent-name">${name}</div>
                             <div class="talent-desc">${desc}</div>
@@ -695,9 +701,10 @@ class SkillTreeGame {
                     </div>
                     ${
                         isUnlocked
-                            ? `<span style="font-size:0.75rem; font-weight:700; color:#10b981;">✅ Activo</span>`
-                            : `<button type="button" class="talent-unlock-btn" data-talent-id="${talent.id}" ${canAfford ? "" : "disabled"}>
-                                ${talent.cost} ⭐
+                            ? `<span style="display:inline-flex; align-items:center; gap:4px; font-size:0.75rem; font-weight:700; color:#10b981;">${checkSvg} Activo</span>`
+                            : `<button type="button" class="talent-unlock-btn" data-talent-id="${talent.id}" ${canAfford ? "" : "disabled"} style="display:inline-flex; align-items:center; gap:4px;">
+                                <span>${talent.cost}</span>
+                                ${starCostSvg}
                                </button>`
                     }
                 </div>
@@ -725,7 +732,7 @@ class SkillTreeGame {
         if (!this.state.talents.includes(talentId)) {
             this.state.talents.push(talentId);
             this.saveState();
-            this.app?.showToast?.(`🔮 ¡Talento '${talent.name}' desbloqueado!`, "success");
+            this.app?.showToast?.(`¡Talento '${talent.name}' desbloqueado!`, "success");
             this.app?.audioController?.playChime?.(587.33);
             this.app?.achievementManager?.fireConfetti?.();
             this.renderAll();
@@ -734,25 +741,27 @@ class SkillTreeGame {
 
     renderRank() {
         const stars = this.state.totalStars || 0;
-        let avatar = "🥋";
+        let avatarIcon = "book";
         let name = "Aprendiz de la Aldea";
         let desc = "Has comenzado tu viaje por los senderos del mandarín antiguo.";
 
         if (stars >= 35) {
-            avatar = "🐉";
+            avatarIcon = "crown";
             name = "Gran Maestro del Dragón";
             desc = "Has alcanzado la cima celestial de la fluidez y dominio del chino.";
         } else if (stars >= 20) {
-            avatar = "📜";
+            avatarIcon = "scroll";
             name = "Erudito Imperial";
             desc = "Dominas las estructuras clave y la gramática de la Ciudad Prohibida.";
         } else if (stars >= 10) {
-            avatar = "🗡️";
+            avatarIcon = "shield";
             name = "Viajero del Camino de Seda";
             desc = "Te desenvuelves con soltura en los mercados y situaciones cotidianas.";
         }
 
-        if (this.rankAvatar) this.rankAvatar.textContent = avatar;
+        if (this.rankAvatar) {
+            this.rankAvatar.innerHTML = window.hskIcons?.render?.(avatarIcon, { size: 28 }) || "";
+        }
         if (this.rankName) this.rankName.textContent = name;
         if (this.rankDesc) this.rankDesc.textContent = desc;
     }
@@ -765,10 +774,12 @@ class SkillTreeGame {
         const isEs = this.app?.currentLanguage !== "en";
         const title = isEs ? node.title : (node.titleEn || node.title);
 
-        if (this.modalIcon) this.modalIcon.textContent = node.icon;
+        if (this.modalIcon) {
+            this.modalIcon.innerHTML = window.hskIcons?.render?.(node.icon, { size: 24 }) || "";
+        }
         if (this.modalTitle) this.modalTitle.textContent = title;
         if (this.modalZone) {
-            this.modalZone.textContent = node.isBoss ? "👑 Desafío de Guardián de Zona" : "Nodo de Aventura";
+            this.modalZone.textContent = node.isBoss ? "Desafío de Guardián de Zona" : "Nodo de Aventura";
         }
 
         if (this.modalResultBanner) this.modalResultBanner.style.display = "none";
@@ -850,7 +861,10 @@ class SkillTreeGame {
             this.saveState();
         }
 
-        if (this.modalResultStars) this.modalResultStars.textContent = "⭐".repeat(stars);
+        if (this.modalResultStars) {
+            const starSvg = window.hskIcons?.render?.('star', { size: 24, fill: 'currentColor' }) || '★';
+            this.modalResultStars.innerHTML = Array(stars).fill(starSvg).join(' ');
+        }
         if (this.modalResultTitle) {
             this.modalResultTitle.textContent = stars === 3 ? "¡Victoria Perfecta!" : "¡Nodo Conquistado!";
         }

@@ -264,7 +264,7 @@ class SentenceBuilderGame {
         if (arena) arena.style.display = "none";
         if (gameOverCard) gameOverCard.style.display = "flex";
         if (finalScore) finalScore.textContent = this.state.score;
-        if (finalStreak) finalStreak.textContent = `${this.state.bestStreak} 🔥`;
+        if (finalStreak) finalStreak.innerHTML = `${this.state.bestStreak} ${window.hskIcons?.render?.('flame', { size: 14 }) || ''}`;
 
         if (this.state.score >= 50) {
             this.app?.audioController?.playStreakFanfare?.();
@@ -471,7 +471,7 @@ class SentenceBuilderGame {
 
         const feedback = document.getElementById("sb-feedback");
         if (feedback) {
-            feedback.textContent = `💡 Siguiente palabra: "${expectedText}"`;
+            feedback.innerHTML = `<span style="display:inline-flex; align-items:center; gap:6px;">${window.hskIcons?.render?.('lightbulb', { size: 14 }) || ''} <span>Siguiente palabra: "${expectedText}"</span></span>`;
             feedback.className = "sb-feedback hint";
             feedback.style.display = "block";
         }
@@ -578,7 +578,7 @@ class SentenceBuilderGame {
         const streakVal = document.getElementById("sb-streak-val");
 
         if (scoreVal) scoreVal.textContent = this.state.score;
-        if (streakVal) streakVal.textContent = `${this.state.streak} 🔥`;
+        if (streakVal) streakVal.textContent = this.state.streak;
     }
 }
 

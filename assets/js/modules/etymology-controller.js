@@ -154,7 +154,7 @@ class EtymologyController {
     if (!this.container) return;
     this.container.innerHTML = `
       <div class="etym-error" role="alert">
-        <div class="etym-error-icon" aria-hidden="true">⚠️</div>
+        <div class="etym-error-icon" aria-hidden="true">${window.hskIcons?.render?.('alert-circle', { size: 36 }) || ''}</div>
         <p class="etym-error-title">No se pudo cargar el módulo</p>
         <p class="etym-error-msg">${this.escape(msg)}</p>
         <button class="etym-retry" type="button">Reintentar</button>
@@ -232,8 +232,9 @@ class EtymologyController {
             <span id="etym-select-mode-text">Seleccionar</span>
             <span id="etym-selected-badge" class="badge-count" style="display:${selCount > 0 ? "inline-block" : "none"};">${selCount}</span>
           </button>
-          <span class="etym-lang-badge" title="Próximamente en inglés">
-            🌐 English coming soon
+          <span class="etym-lang-badge" title="Próximamente en inglés" style="display:inline-flex; align-items:center; gap:4px;">
+            ${window.hskIcons?.render?.('globe', { size: 14 }) || ''}
+            <span>English coming soon</span>
           </span>
         </div>
       </header>`;

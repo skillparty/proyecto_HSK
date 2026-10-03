@@ -298,7 +298,7 @@ class BackendUserProgress {
                 id: 'first-word',
                 title: 'First Steps',
                 description: 'Studied your first Chinese character!',
-                icon: '🎯'
+                icon: 'target'
             });
         }
         
@@ -308,7 +308,7 @@ class BackendUserProgress {
                 id: 'streak-10',
                 title: 'On Fire!',
                 description: 'Answered 10 words correctly in a row',
-                icon: '🔥'
+                icon: 'flame'
             });
         }
         
@@ -320,7 +320,7 @@ class BackendUserProgress {
                     id: `milestone-${milestone}`,
                     title: `${milestone} Words!`,
                     description: `Studied ${milestone} Chinese characters`,
-                    icon: milestone >= 1000 ? '🏆' : milestone >= 500 ? '🥇' : '⭐'
+                    icon: milestone >= 1000 ? 'trophy' : milestone >= 500 ? 'medal' : 'star'
                 });
             }
         });
@@ -379,8 +379,9 @@ class BackendUserProgress {
             max-width: 400px;
         `;
         
+        const iconSvg = window.hskIcons?.render?.(achievement.icon, { size: 56 }) || '';
         notification.innerHTML = `
-            <div style="font-size: 4rem; margin-bottom: 10px;">${achievement.icon}</div>
+            <div style="display:flex; justify-content:center; margin-bottom: 10px;">${iconSvg}</div>
             <h3 style="margin: 0 0 10px 0; font-size: 1.5rem;">Achievement Unlocked!</h3>
             <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 5px;">${achievement.title}</div>
             <div style="opacity: 0.9;">${achievement.description}</div>
@@ -498,19 +499,19 @@ class BackendUserProgress {
             
             switch (status) {
                 case 'synced':
-                    indicator.textContent = '☁️';
+                    indicator.innerHTML = window.hskIcons?.render?.('cloud', { size: 16 }) || '';
                     indicator.title = 'Progress synced to cloud';
                     break;
                 case 'syncing':
-                    indicator.textContent = '🔄';
+                    indicator.innerHTML = window.hskIcons?.render?.('refresh-cw', { size: 16 }) || '';
                     indicator.title = 'Syncing progress...';
                     break;
                 case 'error':
-                    indicator.textContent = '⚠️';
+                    indicator.innerHTML = window.hskIcons?.render?.('alert-circle', { size: 16 }) || '';
                     indicator.title = 'Sync error - will retry';
                     break;
                 default:
-                    indicator.textContent = '💾';
+                    indicator.innerHTML = window.hskIcons?.render?.('save', { size: 16 }) || '';
                     indicator.title = 'Progress saved locally only';
             }
         });

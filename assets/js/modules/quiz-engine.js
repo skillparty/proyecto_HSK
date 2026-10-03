@@ -155,7 +155,7 @@ class QuizEngine {
         mainDisplay = `
           <div class="quiz-character-wrap">
             <div class="quiz-character">${this.escapeHtml(question.character)}</div>
-            <button type="button" class="quiz-audio-btn" id="quiz-speak-btn" title="${this.escapeHtml(this.app.getTranslation("quizPlayAudio") || "Escuchar pronunciación")}">🔊</button>
+            <button type="button" class="quiz-audio-btn" id="quiz-speak-btn" title="${this.escapeHtml(this.app.getTranslation("quizPlayAudio") || "Escuchar pronunciación")}">${window.hskIcons?.render?.("volume", { size: 18 }) || ""}</button>
           </div>
         `;
         subDisplay = `<div class="quiz-pinyin">${this.escapeHtml(question.pinyin)}</div>`;
@@ -169,9 +169,9 @@ class QuizEngine {
           <div class="quiz-listening-hero">
             <button type="button" class="quiz-big-audio-btn" id="quiz-speak-btn" title="${this.escapeHtml(this.app.getTranslation("quizPlayAudio") || "Escuchar pronunciación")}">
               <span class="quiz-audio-wave"><span></span><span></span><span></span></span>
-              <span>🔊 ${this.escapeHtml(this.app.getTranslation("quizPlayAudio") || "Escuchar audio")}</span>
+              <span>${window.hskIcons?.render?.("volume", { size: 16 }) || ""} ${this.escapeHtml(this.app.getTranslation("quizPlayAudio") || "Escuchar audio")}</span>
             </button>
-            <div class="quiz-character quiz-masked-char" id="quiz-masked-char">🎧 ?</div>
+            <div class="quiz-character quiz-masked-char" id="quiz-masked-char">${window.hskIcons?.render?.("headphones", { size: 36 }) || ""} ?</div>
           </div>
         `;
         subDisplay = `<div class="quiz-pinyin quiz-masked-pinyin" id="quiz-masked-pinyin">---</div>`;
@@ -180,7 +180,7 @@ class QuizEngine {
         mainDisplay = `
           <div class="quiz-character-wrap">
             <div class="quiz-character">${this.escapeHtml(question.character)}</div>
-            <button type="button" class="quiz-audio-btn" id="quiz-speak-btn" title="${this.escapeHtml(this.app.getTranslation("quizPlayAudio") || "Escuchar pronunciación")}">🔊</button>
+            <button type="button" class="quiz-audio-btn" id="quiz-speak-btn" title="${this.escapeHtml(this.app.getTranslation("quizPlayAudio") || "Escuchar pronunciación")}">${window.hskIcons?.render?.("volume", { size: 18 }) || ""}</button>
           </div>
         `;
         subDisplay = `<div class="quiz-pinyin-meaning">${this.escapeHtml(correctAnswerMeaning)}</div>`;
@@ -572,20 +572,20 @@ class QuizEngine {
       let gradeHtml = "";
       if (percentage >= 90) {
         gradeHtml = `
-          <div class="grade-pill grade-excellent">
-            ${this.escapeHtml(this.app.getTranslation("quizGradeExcellent") || "¡Dominio Excepcional! 🏆")}
+          <div class="grade-pill grade-excellent" style="display:inline-flex; align-items:center; gap:6px;">
+            ${window.hskIcons?.render?.("trophy", { size: 16 }) || ""} <span>${this.escapeHtml(String(this.app.getTranslation("quizGradeExcellent") || "¡Dominio Excepcional!").replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "").trim())}</span>
           </div>
         `;
       } else if (percentage >= 70) {
         gradeHtml = `
-          <div class="grade-pill grade-good">
-            ${this.escapeHtml(this.app.getTranslation("quizGradeGood") || "¡Muy Buen Trabajo! 🌟")}
+          <div class="grade-pill grade-good" style="display:inline-flex; align-items:center; gap:6px;">
+            ${window.hskIcons?.render?.("star", { size: 16, fill: "currentColor" }) || ""} <span>${this.escapeHtml(String(this.app.getTranslation("quizGradeGood") || "¡Muy Buen Trabajo!").replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "").trim())}</span>
           </div>
         `;
       } else {
         gradeHtml = `
-          <div class="grade-pill grade-practice">
-            ${this.escapeHtml(this.app.getTranslation("quizGradePractice") || "¡Sigue Practicando! 💪")}
+          <div class="grade-pill grade-practice" style="display:inline-flex; align-items:center; gap:6px;">
+            ${window.hskIcons?.render?.("target", { size: 16 }) || ""} <span>${this.escapeHtml(String(this.app.getTranslation("quizGradePractice") || "¡Sigue Practicando!").replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "").trim())}</span>
           </div>
         `;
       }
@@ -657,16 +657,20 @@ class QuizEngine {
         const meaning = this.app.getMeaningForLanguage(q);
         const isOk = item.isCorrect;
 
+        const statusIcon = isOk
+          ? (window.hskIcons?.render?.("check", { size: 14 }) || "✓")
+          : (window.hskIcons?.render?.("cross", { size: 14 }) || "✕");
+
         return `
           <div class="quiz-breakdown-card ${isOk ? "is-correct" : "is-wrong"}">
             <div class="breakdown-card-header">
-              <span class="breakdown-status-badge">${isOk ? "✅" : "❌"} #${idx + 1}</span>
+              <span class="breakdown-status-badge" style="display:inline-flex; align-items:center; gap:4px;">${statusIcon} #${idx + 1}</span>
               <span class="breakdown-hsk-badge">HSK ${q.level || 1}</span>
             </div>
             <div class="breakdown-char-row">
               <span class="breakdown-char">${this.escapeHtml(q.character)}</span>
               <span class="breakdown-pinyin">${this.escapeHtml(q.pinyin)}</span>
-              <button type="button" class="breakdown-audio-btn" data-char="${this.escapeHtml(q.character)}" title="Audio">🔊</button>
+              <button type="button" class="breakdown-audio-btn" data-char="${this.escapeHtml(q.character)}" title="Audio">${window.hskIcons?.render?.("volume", { size: 14 }) || ""}</button>
             </div>
             <div class="breakdown-meaning">${this.escapeHtml(meaning)}</div>
             <div class="breakdown-answers-row">
@@ -736,7 +740,7 @@ class QuizEngine {
       return;
     }
 
-    const deckName = "⚠️ Errores de Quiz HSK";
+    const deckName = "Errores de Quiz HSK";
     let targetDeck = deckManager.getAllDecks().find((d) => d.name === deckName);
 
     if (!targetDeck) {

@@ -618,7 +618,7 @@ class QuantifierSnakeController {
       const comboBonus = Math.min(this.state.combo * 2, 20);
       this.state.score += (config.pointsPerHit + comboBonus);
 
-      const comboText = this.state.combo >= 2 ? ` 🔥 x${this.state.combo}` : "";
+      const comboText = this.state.combo >= 2 ? ` (x${this.state.combo})` : "";
       this.setFeedback(
         "snakeQuantifierCorrectFeedback",
         {
@@ -747,7 +747,7 @@ class QuantifierSnakeController {
     this.render();
 
     const toastMsg = isNewRecord
-      ? `🎉 ¡Nuevo récord en Viborita HSK! Puntaje: ${this.state.score}`
+      ? `¡Nuevo récord en Viborita HSK! Puntaje: ${this.state.score}`
       : this.app.getTranslation("snakeQuantifierGameOverToast", { score: this.state.score });
 
     this.app.showToast(

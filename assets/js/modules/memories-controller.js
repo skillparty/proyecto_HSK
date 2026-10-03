@@ -346,8 +346,8 @@ class MemoriesController {
         img: "assets/images/memories/puenteChino.jpg",
         seal: "荣耀",
         category: "contests",
-        title: "Concurso Puente Chino (汉语桥) — Gran Triunfo de Nicole a Nivel Bolivia 🏆",
-        titleEn: "Chinese Bridge Competition (汉语桥) — Nicole's 1st Place Victory in Bolivia 🏆",
+        title: "Concurso Puente Chino (汉语桥) — Gran Triunfo de Nicole a Nivel Bolivia",
+        titleEn: "Chinese Bridge Competition (汉语桥) — Nicole's 1st Place Victory in Bolivia",
         hanzi: "追梦中文 · 荣获桂冠 — 汉语桥玻利维亚赛区",
         pinyin: "Zhuīmèng Zhōngwén · Rónghuò Guìguān — Hànyǔ Qiáo Bōlìwéiyà Sàiqū",
         desc: "El certamen de elocuencia, conocimiento y cultura china más prestigioso, donde Nicole brilló alcanzando el 1.er Lugar a nivel Bolivia (冠军) en una destacadísima participación que llenó de gloria y orgullo a todo el ICUMSS.",
@@ -488,8 +488,8 @@ class MemoriesController {
         img: "assets/images/memories/nicole_recuerdo.jpg",
         seal: "冠军",
         category: "friendship",
-        title: "Nicole — 1.er Lugar a Nivel Bolivia en Puente Chino & Amistad Inolvidable 🏆",
-        titleEn: "Nicole — 1st Place in Bolivia at Chinese Bridge & Cherished Friendship 🏆",
+        title: "Nicole — 1.er Lugar a Nivel Bolivia en Puente Chino & Amistad Inolvidable",
+        titleEn: "Nicole — 1st Place in Bolivia at Chinese Bridge & Cherished Friendship",
         hanzi: "并肩同行 · 玻利维亚汉语桥冠军 — 璀璨荣耀与真挚情谊",
         pinyin: "Bìngjiān Tóngxíng · Bōlìwéiyà Hànyǔ Qiáo Guànjūn — Cuǐcàn Róngyào",
         desc: "¡Celebrando el histórico 1.er Lugar de Nicole a nivel Bolivia en el Concurso Puente Chino (汉语桥)! Un testimonio de talento, perseverancia y elocuencia que celebramos con inmenso orgullo, compartiendo momentos inolvidables de complicidad, estudio y amistad que perduran para siempre.",
@@ -638,10 +638,10 @@ class MemoriesController {
               <div class="memories-title-group">
                 <div class="memories-badge-row">
                   <span class="memories-badge">
-                    <span>🏮</span> ICUMSS · Confucio UMSS
+                    ${window.hskIcons?.render?.("lantern", { size: 14 }) || ""} ICUMSS · Confucio UMSS
                   </span>
                   <span class="memories-badge memories-badge-icumss">
-                    <span>📜</span> ${isEs ? "27 Momentos Inolvidables" : "27 Unforgettable Memories"}
+                    ${window.hskIcons?.render?.("scroll", { size: 14 }) || ""} ${isEs ? "27 Momentos Inolvidables" : "27 Unforgettable Memories"}
                   </span>
                 </div>
                 <h1 class="memories-title">
@@ -660,10 +660,10 @@ class MemoriesController {
               <!-- Action buttons -->
               <div class="memories-hero-actions">
                 <button type="button" class="memories-hero-btn memories-hero-btn-primary" id="memories-chest-btn">
-                  <span>🎁</span> ${isEs ? "Abrir el Baúl (Al Azar)" : "Open Mystery Chest"}
+                  ${window.hskIcons?.render?.("gift", { size: 16 }) || ""} ${isEs ? "Abrir el Baúl (Al Azar)" : "Open Mystery Chest"}
                 </button>
                 <button type="button" class="memories-hero-btn memories-hero-btn-secondary" id="memories-slideshow-btn">
-                  <span>🎬</span> ${isEs ? "Presentación" : "Slideshow"}
+                  ${window.hskIcons?.render?.("video", { size: 16 }) || ""} ${isEs ? "Presentación" : "Slideshow"}
                 </button>
               </div>
             </div>
@@ -684,7 +684,7 @@ class MemoriesController {
               </div>
               <div class="memories-stat-item">
                 <span class="memories-stat-val">${this.favorites.length}</span>
-                <span class="memories-stat-lbl">${isEs ? "Favoritos" : "Favorites"} ❤️</span>
+                <span class="memories-stat-lbl">${isEs ? "Favoritos" : "Favorites"} ${window.hskIcons?.render?.("heart", { size: 13, fill: "currentColor" }) || ""}</span>
               </div>
             </div>
           </div>
@@ -716,7 +716,7 @@ class MemoriesController {
                 data-view="grid"
                 title="${isEs ? "Vista de Mosaico" : "Grid View"}"
               >
-                <span>🔲</span> ${isEs ? "Mosaico" : "Grid"}
+                ${window.hskIcons?.render?.("grid", { size: 14 }) || ""} ${isEs ? "Mosaico" : "Grid"}
               </button>
               <button
                 type="button"
@@ -724,7 +724,7 @@ class MemoriesController {
                 data-view="timeline"
                 title="${isEs ? "Vista de Línea de Tiempo" : "Timeline View"}"
               >
-                <span>⏳</span> ${isEs ? "Línea de Tiempo" : "Timeline"}
+                ${window.hskIcons?.render?.("clock", { size: 14 }) || ""} ${isEs ? "Línea de Tiempo" : "Timeline"}
               </button>
               <button
                 type="button"
@@ -732,7 +732,7 @@ class MemoriesController {
                 data-view="slideshow"
                 title="${isEs ? "Modo Presentación" : "Slideshow Mode"}"
               >
-                <span>🎬</span> ${isEs ? "Presentación" : "Slideshow"}
+                ${window.hskIcons?.render?.("video", { size: 14 }) || ""} ${isEs ? "Presentación" : "Slideshow"}
               </button>
             </div>
           </div>
@@ -740,31 +740,31 @@ class MemoriesController {
           <!-- Category Chips -->
           <div class="memories-categories" role="group" aria-label="Categorías">
             <button type="button" class="memories-cat-chip ${this.currentCategory === "all" ? "is-active" : ""}" data-cat="all">
-              <span>🌟</span> ${isEs ? "Todos" : "All"}
+              ${window.hskIcons?.render?.("star", { size: 14 }) || ""} ${isEs ? "Todos" : "All"}
               <span class="memories-cat-count">${this.getCategoryCount("all")}</span>
             </button>
             <button type="button" class="memories-cat-chip ${this.currentCategory === "teachers" ? "is-active" : ""}" data-cat="teachers">
-              <span>👨‍🏫</span> ${isEs ? "Maestros & Liderazgo" : "Teachers & Leaders"}
+              ${window.hskIcons?.render?.("users", { size: 14 }) || ""} ${isEs ? "Maestros & Liderazgo" : "Teachers & Leaders"}
               <span class="memories-cat-count">${this.getCategoryCount("teachers")}</span>
             </button>
             <button type="button" class="memories-cat-chip ${this.currentCategory === "milestones" ? "is-active" : ""}" data-cat="milestones">
-              <span>🎓</span> ${isEs ? "Hitos & Exámenes HSK" : "HSK Milestones"}
+              ${window.hskIcons?.render?.("graduation", { size: 14 }) || ""} ${isEs ? "Hitos & Exámenes HSK" : "HSK Milestones"}
               <span class="memories-cat-count">${this.getCategoryCount("milestones")}</span>
             </button>
             <button type="button" class="memories-cat-chip ${this.currentCategory === "contests" ? "is-active" : ""}" data-cat="contests">
-              <span>🖌️</span> ${isEs ? "Concursos & Caligrafía" : "Contests & Calligraphy"}
+              ${window.hskIcons?.render?.("brush", { size: 14 }) || ""} ${isEs ? "Concursos & Caligrafía" : "Contests & Calligraphy"}
               <span class="memories-cat-count">${this.getCategoryCount("contests")}</span>
             </button>
             <button type="button" class="memories-cat-chip ${this.currentCategory === "events" ? "is-active" : ""}" data-cat="events">
-              <span>🏮</span> ${isEs ? "Cultura & Eventos" : "Culture & Events"}
+              ${window.hskIcons?.render?.("lantern", { size: 14 }) || ""} ${isEs ? "Cultura & Eventos" : "Culture & Events"}
               <span class="memories-cat-count">${this.getCategoryCount("events")}</span>
             </button>
             <button type="button" class="memories-cat-chip ${this.currentCategory === "friendship" ? "is-active" : ""}" data-cat="friendship">
-              <span>💖</span> ${isEs ? "Momentos Especiales" : "Special Moments"}
+              ${window.hskIcons?.render?.("heart", { size: 14, fill: "currentColor" }) || ""} ${isEs ? "Momentos Especiales" : "Special Moments"}
               <span class="memories-cat-count">${this.getCategoryCount("friendship")}</span>
             </button>
             <button type="button" class="memories-cat-chip ${this.currentCategory === "favorites" ? "is-active" : ""}" data-cat="favorites">
-              <span>❤️</span> ${isEs ? "Mis Favoritos" : "Favorites"}
+              ${window.hskIcons?.render?.("heart", { size: 14, fill: "currentColor" }) || ""} ${isEs ? "Mis Favoritos" : "Favorites"}
               <span class="memories-cat-count">${this.getCategoryCount("favorites")}</span>
             </button>
           </div>
@@ -821,7 +821,7 @@ class MemoriesController {
             <p class="memory-lightbox-desc" id="memory-lightbox-desc"></p>
 
             <button type="button" class="memory-lightbox-audio-btn" id="memory-lightbox-audio">
-              <span>🔊</span> ${isEs ? "Pronunciar en Chino" : "Hear Pronunciation"}
+              ${window.hskIcons?.render?.("volume", { size: 16 }) || ""} ${isEs ? "Pronunciar en Chino" : "Hear Pronunciation"}
             </button>
 
             <div class="memory-lightbox-vocab-box">
@@ -832,7 +832,7 @@ class MemoriesController {
             <!-- Private user note editor -->
             <div class="memory-lightbox-notes-box">
               <div class="memory-notes-label">
-                <span>📝 ${isEs ? "Mis Apuntes de este Recuerdo" : "My Personal Notes"}</span>
+                <span>${window.hskIcons?.render?.("pen", { size: 14 }) || ""} ${isEs ? "Mis Apuntes de este Recuerdo" : "My Personal Notes"}</span>
                 <span class="memory-notes-save-msg" id="memory-notes-save-msg">Guardado ✓</span>
               </div>
               <textarea
@@ -848,7 +848,7 @@ class MemoriesController {
       <!-- 5. MYSTERY CHEST (BAÚL MÁGICO) MODAL -->
       <div id="memory-chest-modal" class="memory-chest-modal" aria-hidden="true" role="dialog">
         <div class="memory-chest-dialog">
-          <div class="memory-chest-icon-wrap">🎁</div>
+          <div class="memory-chest-icon-wrap">${window.hskIcons?.render?.("gift", { size: 48 }) || ""}</div>
           <h2 style="font-family: var(--font-display); color: var(--color-primary); margin: 0 0 6px;">
             ${isEs ? "¡Has Abierto el Baúl de los Recuerdos!" : "You opened the Memory Chest!"}
           </h2>
@@ -887,7 +887,7 @@ class MemoriesController {
       const isEs = this.lang === "es";
       return `
         <div class="memories-empty">
-          <div class="memories-empty-icon">📭</div>
+          <div class="memories-empty-icon">${window.hskIcons?.render?.("inbox", { size: 48 }) || ""}</div>
           <h3>${isEs ? "No se encontraron recuerdos" : "No memories found"}</h3>
           <p>${isEs ? "Intenta con otro término de búsqueda o selecciona otra categoría." : "Try another search keyword or pick a different category."}</p>
         </div>
@@ -943,7 +943,7 @@ class MemoriesController {
                         .map((t) => `<span class="memory-card-tag">#${t}</span>`)
                         .join("")}
                     </div>
-                    ${userNote ? `<span class="memory-card-note-badge" title="Tiene apuntes personales">📝</span>` : ""}
+                    ${userNote ? `<span class="memory-card-note-badge" title="Tiene apuntes personales">${window.hskIcons?.render?.("pen", { size: 12 }) || ""}</span>` : ""}
                   </div>
                 </div>
               </article>
@@ -1002,21 +1002,23 @@ class MemoriesController {
         </div>
 
         <div class="slideshow-controls-bar">
-          <button type="button" class="slideshow-ctrl-btn" id="slideshow-prev-btn">
-            ◀ ${isEs ? "Anterior" : "Prev"}
+          <button type="button" class="slideshow-ctrl-btn" id="slideshow-prev-btn" style="display:inline-flex; align-items:center; gap:6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            <span>${isEs ? "Anterior" : "Prev"}</span>
           </button>
           
           <div style="display: flex; align-items: center; gap: 12px;">
-            <button type="button" class="slideshow-ctrl-btn" id="slideshow-play-btn">
-              ${this.isSlideshowPlaying ? "⏸ " + (isEs ? "Pausar" : "Pause") : "▶ " + (isEs ? "Reproducir" : "Play")}
+            <button type="button" class="slideshow-ctrl-btn" id="slideshow-play-btn" style="display:inline-flex; align-items:center; gap:6px;">
+              ${this.isSlideshowPlaying ? (window.hskIcons?.render?.("pause", { size: 14 }) || "") + " " + (isEs ? "Pausar" : "Pause") : (window.hskIcons?.render?.("play", { size: 14 }) || "") + " " + (isEs ? "Reproducir" : "Play")}
             </button>
             <span style="font-family: var(--font-mono); font-size: 0.85rem;">
               ${(this.slideshowIndex % list.length) + 1} / ${list.length}
             </span>
           </div>
 
-          <button type="button" class="slideshow-ctrl-btn" id="slideshow-next-btn">
-            ${isEs ? "Siguiente" : "Next"} ▶
+          <button type="button" class="slideshow-ctrl-btn" id="slideshow-next-btn" style="display:inline-flex; align-items:center; gap:6px;">
+            <span>${isEs ? "Siguiente" : "Next"}</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </button>
         </div>
       </div>

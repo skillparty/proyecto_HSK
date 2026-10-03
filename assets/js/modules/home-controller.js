@@ -120,8 +120,8 @@ class HomeController {
         if (goalFeedback) {
             if (progressPercent >= 100) {
                 goalFeedback.textContent = isEs
-                  ? '🏆 ¡Excelente! Has completado tu meta diaria hoy. ¡Increíble trabajo!'
-                  : '🏆 Outstanding! You have reached your daily goal today. Keep it up!';
+                  ? '¡Excelente! Has completado tu meta diaria hoy. ¡Increíble trabajo!'
+                  : 'Outstanding! You have reached your daily goal today. Keep it up!';
             } else {
                 goalFeedback.textContent = isEs
                   ? `Estás al ${progressPercent}% de completar tu meta de hoy. ¡Tú puedes!`
@@ -204,51 +204,51 @@ class HomeController {
         const achievementsList = [
             {
                 id: 'first-steps',
-                title: isEs ? 'Primeros Pasos 👣' : 'First Steps 👣',
+                title: isEs ? 'Primeros Pasos' : 'First Steps',
                 desc: isEs ? 'Estudia tu primera tarjeta de vocabulario.' : 'Study your first vocabulary card.',
-                icon: '👣',
+                icon: 'footprints',
                 unlocked: (stats.totalStudied || 0) >= 1
             },
             {
                 id: 'streak-fire',
-                title: isEs ? 'Racha de Fuego 🔥' : 'On Fire 🔥',
+                title: isEs ? 'Racha de Fuego' : 'On Fire',
                 desc: isEs ? 'Mantén una racha de estudio de al menos 3 días.' : 'Keep a study streak of at least 3 days.',
-                icon: '🔥',
+                icon: 'flame',
                 unlocked: (stats.currentStreak || 0) >= 3
             },
             {
                 id: 'snake-amateur',
-                title: isEs ? 'Viborita Amateur 🐍' : 'Snake Amateur 🐍',
+                title: isEs ? 'Viborita Amateur' : 'Snake Amateur',
                 desc: isEs ? 'Logra 20 puntos en el juego de clasificadores.' : 'Score 20 points in the Quantifier Snake game.',
-                icon: '🐍',
+                icon: 'snake',
                 unlocked: (stats.snakeHighScore || 0) >= 20
             },
             {
                 id: 'snake-master',
-                title: isEs ? 'Viborita Master 👑' : 'Snake Master 👑',
+                title: isEs ? 'Viborita Master' : 'Snake Master',
                 desc: isEs ? 'Logra 60 puntos en el juego de clasificadores.' : 'Score 60 points in the Quantifier Snake game.',
-                icon: '👑',
+                icon: 'crown',
                 unlocked: (stats.snakeHighScore || 0) >= 60
             },
             {
                 id: 'exam-done',
-                title: isEs ? 'Estrella del Examen 📝' : 'Test Taker 📝',
+                title: isEs ? 'Estrella del Examen' : 'Test Taker',
                 desc: isEs ? 'Completa 1 examen oficial HSK de práctica.' : 'Complete 1 official HSK practice exam.',
-                icon: '📝',
+                icon: 'clipboard',
                 unlocked: (stats.quizzesCompleted || 0) >= 1
             },
             {
                 id: 'matrix-done',
-                title: isEs ? 'Fusión de Caracteres 🌌' : 'Character Fusion 🌌',
+                title: isEs ? 'Fusión de Caracteres' : 'Character Fusion',
                 desc: isEs ? 'Completa una ronda de la Matriz de Fusión.' : 'Complete a round of the Fusion Matrix game.',
-                icon: '🌌',
+                icon: 'zap',
                 unlocked: (stats.matrixRounds || 0) >= 1
             },
             {
                 id: 'accuracy-expert',
-                title: isEs ? 'Precisión HSK 🎯' : 'HSK Accuracy Pro 🎯',
+                title: isEs ? 'Precisión HSK' : 'HSK Accuracy Pro',
                 desc: isEs ? 'Precisión >= 85% con al menos 15 tarjetas estudiadas.' : 'Accuracy >= 85% with at least 15 cards studied.',
-                icon: '🎯',
+                icon: 'target',
                 unlocked: (() => {
                     const acc = stats.totalStudied > 0 ? (stats.correctAnswers / stats.totalStudied) * 100 : 0;
                     return stats.totalStudied >= 15 && acc >= 85;
@@ -256,23 +256,23 @@ class HomeController {
             },
             {
                 id: 'hanzi-builder-star',
-                title: isEs ? 'Constructor de Hanzi ✍️' : 'Hanzi Builder ✍️',
+                title: isEs ? 'Constructor de Hanzi' : 'Hanzi Builder',
                 desc: isEs ? 'Logra 100 puntos en el Constructor de Hanzi.' : 'Score 100 points in Hanzi Builder.',
-                icon: '✍️',
+                icon: 'pen',
                 unlocked: (stats.hanziBuilderHighScore || 0) >= 100
             },
             {
                 id: 'tone-defender',
-                title: isEs ? 'Defensor de Tonos 🎵' : 'Tone Defender 🎵',
+                title: isEs ? 'Defensor de Tonos' : 'Tone Defender',
                 desc: isEs ? 'Logra 50 puntos en Invasores de Tonos.' : 'Score 50 points in Tones Invaders.',
-                icon: '🎵',
+                icon: 'music',
                 unlocked: (stats.tonesInvadersHighScore || 0) >= 50
             },
             {
                 id: 'word-connector',
-                title: isEs ? 'Conector de Palabras 🔗' : 'Word Connector 🔗',
+                title: isEs ? 'Conector de Palabras' : 'Word Connector',
                 desc: isEs ? 'Logra 100 puntos en el Enlazador de Palabras.' : 'Score 100 points in Word Linker.',
-                icon: '🔗',
+                icon: 'link',
                 unlocked: (stats.wordLinkerHighScore || 0) >= 100
             }
         ];
@@ -288,9 +288,13 @@ class HomeController {
                 const achItem = document.createElement('div');
                 achItem.className = `achievement-item ${ach.unlocked ? 'unlocked' : 'lock'}`;
                 
+                const iconContent = ach.unlocked
+                    ? (window.hskIcons?.render?.(ach.icon, { size: 20 }) || ach.icon)
+                    : (window.hskIcons?.render?.('lock', { size: 20 }) || '');
+
                 achItem.innerHTML = `
                     <div class="achievement-icon" style="${ach.unlocked ? '' : 'background: rgba(148, 163, 184, 0.12); opacity: 0.5;'}">
-                        ${ach.unlocked ? ach.icon : '🔒'}
+                        ${iconContent}
                     </div>
                     <div class="achievement-info">
                         <div class="achievement-name">${ach.title}</div>
@@ -443,7 +447,7 @@ class HomeController {
             if (this.app.showToast) {
                 const isEs = this.app.currentLanguage !== 'en';
                 this.app.showToast(
-                    isEs ? '🏆 ¡Todas las misiones del día completadas! +100 XP' : '🏆 All daily quests completed! +100 XP',
+                    isEs ? '¡Todas las misiones del día completadas! +100 XP' : 'All daily quests completed! +100 XP',
                     'success',
                     3500
                 );
@@ -548,7 +552,7 @@ class HomeController {
         const shareFooterHtml = `
             <div class="quest-share-footer" style="display:flex; justify-content:space-between; align-items:center; margin-top:6px; padding-top:10px; border-top:1px dashed var(--border-color, rgba(0,0,0,0.12));">
                 <div style="display:flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:600; color:var(--text-secondary);">
-                    <span>🔥</span>
+                    <span>${window.hskIcons?.render?.('flame', { size: 14 }) || ''}</span>
                     <span>${isEs ? 'Racha actual:' : 'Current streak:'} <strong style="color:var(--color-primary);">${streakCount} ${isEs ? (streakCount === 1 ? 'día' : 'días') : (streakCount === 1 ? 'day' : 'days')}</strong></span>
                 </div>
                 <button id="share-daily-quests-btn" class="btn btn-xs btn-outline quest-share-btn" style="display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:600; padding:4px 10px; border-radius:8px;" title="${isEs ? 'Compartir tu racha y misiones de hoy' : 'Share your streak and daily quests'}">
@@ -616,7 +620,7 @@ class HomeController {
                 await navigator.clipboard.writeText(shareText);
                 if (this.app.showToast) {
                     this.app.showToast(
-                        isEs ? '📋 ¡Progreso copiado al portapapeles!' : '📋 Progress copied to clipboard!',
+                        isEs ? '¡Progreso copiado al portapapeles!' : 'Progress copied to clipboard!',
                         'success',
                         3000
                     );

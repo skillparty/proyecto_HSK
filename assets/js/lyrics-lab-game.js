@@ -5,7 +5,7 @@ const HSK_SONGS_DATABASE = [
         id: "two-tigers",
         title: "《两只老虎》 (Dos Tigres)",
         titleEn: "Two Tigers (Liǎng Zhī Lǎohǔ)",
-        icon: "🐅",
+        icon: "music",
         level: "HSK 1",
         tempo: "120 BPM",
         desc: "Canción infantil clásica y divertida para aprender animales y partes del cuerpo.",
@@ -55,7 +55,7 @@ const HSK_SONGS_DATABASE = [
         id: "find-friend",
         title: "《找朋友》 (Buscando Amigos)",
         titleEn: "Looking for a Friend (Zhǎo Péngyou)",
-        icon: "🤝",
+        icon: "users",
         level: "HSK 1",
         tempo: "110 BPM",
         desc: "Canción tradicional china de socialización y saludos de cortesía.",
@@ -146,7 +146,7 @@ const HSK_SONGS_DATABASE = [
         id: "jasmine-flower",
         title: "《茉莉花》 (Flor de Jazmín)",
         titleEn: "Jasmine Flower (Mòlìhuā)",
-        icon: "🌸",
+        icon: "sprout",
         level: "HSK 2-3",
         tempo: "90 BPM",
         desc: "La melodía folclórica tradicional más célebre de China.",
@@ -248,9 +248,10 @@ class LyricsLabGame {
         if (!this.songChips) return;
         this.songChips.innerHTML = HSK_SONGS_DATABASE.map((song) => {
             const isActive = song.id === this.currentSong.id;
+            const iconSvg = window.hskIcons?.render?.(song.icon, { size: 16 }) || "";
             return `
                 <button type="button" class="song-chip-btn ${isActive ? "active" : ""}" data-song-id="${song.id}">
-                    <span>${song.icon}</span>
+                    <span style="display:inline-flex; align-items:center;">${iconSvg}</span>
                     <span>${song.title}</span>
                 </button>
             `;
@@ -273,7 +274,7 @@ class LyricsLabGame {
         this.currentSong = song;
         const isEs = this.app?.currentLanguage !== "en";
 
-        if (this.heroIcon) this.heroIcon.textContent = song.icon;
+        if (this.heroIcon) this.heroIcon.innerHTML = window.hskIcons?.render?.(song.icon, { size: 28 }) || "";
         if (this.heroTitle) this.heroTitle.textContent = isEs ? song.title : (song.titleEn || song.title);
         if (this.heroDesc) this.heroDesc.textContent = isEs ? song.desc : (song.descEn || song.desc);
         if (this.hskLevel) this.hskLevel.textContent = song.level;
@@ -287,12 +288,13 @@ class LyricsLabGame {
     renderLines() {
         if (!this.linesFeed) return;
         const isEs = this.app?.currentLanguage !== "en";
+        const audioSvg = window.hskIcons?.render?.("volume-2", { size: 16 }) || "";
 
         this.linesFeed.innerHTML = this.currentSong.lines.map((line, idx) => {
             const meaning = isEs ? line.meaning : (line.meaningEn || line.meaning);
             return `
                 <div class="lyric-line-card" data-line-idx="${idx}">
-                    <button type="button" class="lyric-line-play-btn" title="Reproducir verso">🔊</button>
+                    <button type="button" class="lyric-line-play-btn" title="Reproducir verso" aria-label="Reproducir verso">${audioSvg}</button>
                     <div class="lyric-line-text-wrap">
                         <div class="lyric-hanzi">${line.hanzi}</div>
                         ${this.showPinyin ? `<div class="lyric-pinyin">${line.pinyin}</div>` : ""}
@@ -486,8 +488,8 @@ class LyricsLabGame {
         } else {
             this.scrambleFeedback.className = "scramble-feedback incorrect";
             this.scrambleFeedback.innerHTML = isEs
-                ? "❌ El orden de los versos no es correcto. Vuelve a intentarlo."
-                : "❌ The lyric order is not correct. Try again.";
+                ? "El orden de los versos no es correcto. Vuelve a intentarlo."
+                : "The lyric order is not correct. Try again.";
             this.scrambleFeedback.style.display = "block";
 
             this.app?.audioController?.playIncorrect?.();

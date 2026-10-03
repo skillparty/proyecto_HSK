@@ -46,7 +46,9 @@ class CultureModuleBase {
     if (this.container) {
       this.container.innerHTML = `
         <div style="padding: 2.5rem 1.5rem; text-align: center; color: var(--color-error, #ef4444); background: var(--color-bg-panel, #ffffff); border-radius: var(--radius-lg, 14px); border: 1px solid var(--color-border, #e4e4e7); max-width: 600px; margin: 2rem auto;">
-          <div style="font-size: 2.8rem; margin-bottom: 1rem;">🏮</div>
+          <div style="margin-bottom: 1rem; color: var(--color-primary, #e53935); display: flex; justify-content: center;">
+            ${window.hskIcons?.render?.('lantern', { size: 44 }) || ''}
+          </div>
           <p style="font-weight: 700; font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--color-text-main, #18181b);">No se pudo cargar ${this.title}</p>
           <p style="font-size: 0.88rem; color: var(--color-text-muted, #71717a); margin-bottom: 1.5rem;">${msg || "Error desconocido"}</p>
           <button data-culture-action="retry"
@@ -141,7 +143,7 @@ class CultureModuleBase {
         if (badge) badge.style.display = 'none';
         const icon = toggleBtn.querySelector('.toggle-icon');
         const text = toggleBtn.querySelector('.toggle-text');
-        if (icon) icon.textContent = '🎬';
+        if (icon) icon.innerHTML = window.hskIcons?.render?.('video', { size: 14 }) || '';
         if (text) text.textContent = lang === 'en' ? 'View Video' : 'Ver Vídeo';
         toggleBtn.title = lang === 'en' ? 'Switch to Video view' : 'Cambiar a vista Vídeo';
       } else {
@@ -153,7 +155,7 @@ class CultureModuleBase {
         if (badge) badge.style.display = 'inline-flex';
         const icon = toggleBtn.querySelector('.toggle-icon');
         const text = toggleBtn.querySelector('.toggle-text');
-        if (icon) icon.textContent = '🖼️';
+        if (icon) icon.innerHTML = window.hskIcons?.render?.('image', { size: 14 }) || '';
         if (text) text.textContent = lang === 'en' ? 'View Photo' : 'Ver Foto';
         toggleBtn.title = lang === 'en' ? 'Switch to Photo view' : 'Cambiar a vista Foto';
       }

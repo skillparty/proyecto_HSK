@@ -648,19 +648,19 @@ class HSKDiagnosticSystem {
 
     getStatusEmoji(status) {
         switch (status) {
-            case 'critical': return '🔴';
-            case 'warning': return '🟡';
-            case 'good': return '🟢';
-            default: return '⚪';
+            case 'critical': return '[✗]';
+            case 'warning': return '[!]';
+            case 'good': return '[✓]';
+            default: return '[-]';
         }
     }
 
     getSeverityEmoji(severity) {
         switch (severity) {
-            case 'critical': return '🔴';
-            case 'warning': return '🟡';
-            case 'info': return '🔵';
-            default: return '⚪';
+            case 'critical': return '[✗]';
+            case 'warning': return '[!]';
+            case 'info': return '[i]';
+            default: return '[-]';
         }
     }
 }

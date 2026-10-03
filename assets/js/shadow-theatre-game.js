@@ -5,7 +5,7 @@ const SHADOW_TALES_DATABASE = [
         id: "hou-yi",
         title: "《后羿射日》 (Hou Yi y los Diez Soles)",
         titleEn: "Hou Yi Shoots the Suns (Hòuyì Shè Rì)",
-        icon: "🏹",
+        icon: "target",
         moral: "La valentía, la perseverancia y la destreza puesta al servicio de la comunidad pueden superar las adversidades más abrumadoras.",
         moralEn: "Courage, dedication and mastery serving the community can overcome even the most overwhelming catastrophes.",
         chengyu: {
@@ -62,7 +62,7 @@ const SHADOW_TALES_DATABASE = [
         id: "nian-monster",
         title: "《年兽的传说》 (La Leyenda del Monstruo Nian)",
         titleEn: "Legend of the Nian Monster (Niánshòu de Chuánshuō)",
-        icon: "🦁",
+        icon: "flame",
         moral: "La unión colectiva y la sabiduría ancestral transforman el miedo en una celebración eterna de alegría y renovación.",
         moralEn: "Collective unity and ancestral wisdom transform ancient fear into an everlasting celebration of joy.",
         chengyu: {
@@ -119,7 +119,7 @@ const SHADOW_TALES_DATABASE = [
         id: "monkey-king",
         title: "《美猴王》 (El Rey Mono - Sun Wukong)",
         titleEn: "The Monkey King (Měi Hóuwáng)",
-        icon: "🐒",
+        icon: "crown",
         moral: "La curiosidad insaciable y el ingenio no tienen límites cuando van acompañados de lealtad y rectitud.",
         moralEn: "Boundless curiosity, cleverness and courage know no limits when guided by loyalty.",
         chengyu: {
@@ -176,7 +176,7 @@ const SHADOW_TALES_DATABASE = [
         id: "wait-rabbit",
         title: "《守株待兔》 (Esperar al Conejo junto al Árbol)",
         titleEn: "Waiting for a Rabbit by a Tree (Shǒu Zhū Dài Tù)",
-        icon: "🐢",
+        icon: "leaf",
         moral: "No se puede confiar en la suerte o la casualidad; el verdadero éxito proviene del trabajo constante y el esfuerzo propio.",
         moralEn: "One cannot rely on pure luck; true achievement comes from diligence and dedicated effort.",
         chengyu: {
@@ -334,9 +334,10 @@ class ShadowTheatreGame {
         if (!this.chipsContainer) return;
         this.chipsContainer.innerHTML = SHADOW_TALES_DATABASE.map((tale) => {
             const isActive = tale.id === this.currentTale.id;
+            const iconSvg = window.hskIcons?.render?.(tale.icon, { size: 16 }) || "";
             return `
                 <button type="button" class="story-chip-btn ${isActive ? "active" : ""}" data-tale-id="${tale.id}">
-                    <span>${tale.icon}</span>
+                    <span style="display:inline-flex; align-items:center;">${iconSvg}</span>
                     <span>${tale.title}</span>
                 </button>
             `;
@@ -464,8 +465,8 @@ class ShadowTheatreGame {
         if (opt.isCorrect) {
             this.quizFeedback.className = "tale-quiz-feedback correct";
             this.quizFeedback.innerHTML = isEs
-                ? "🎉 ¡Respuesta Correcta! Has captado la sabiduría de la leyenda. +50 XP"
-                : "🎉 Correct Answer! You grasped the wisdom of the legend. +50 XP";
+                ? "¡Respuesta Correcta! Has captado la sabiduría de la leyenda. +50 XP"
+                : "Correct Answer! You grasped the wisdom of the legend. +50 XP";
             this.quizFeedback.style.display = "block";
 
             this.app?.audioController?.playCorrect?.();
@@ -473,8 +474,8 @@ class ShadowTheatreGame {
         } else {
             this.quizFeedback.className = "tale-quiz-feedback incorrect";
             this.quizFeedback.innerHTML = isEs
-                ? "❌ Intenta de nuevo y presta atención a los detalles de la historia."
-                : "❌ Try again and pay close attention to the details in the tale.";
+                ? "Intenta de nuevo y presta atención a los detalles de la historia."
+                : "Try again and pay close attention to the details in the tale.";
             this.quizFeedback.style.display = "block";
 
             this.app?.audioController?.playIncorrect?.();

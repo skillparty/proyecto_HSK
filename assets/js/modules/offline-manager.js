@@ -264,7 +264,7 @@ class OfflineManager {
             if (barPercent) barPercent.textContent = `${percent}%`;
             if (barStatus) {
                 if (percent === 100) {
-                    barStatus.textContent = this.t("offlineReadyFull") || "✅ Todos los caracteres listos offline";
+                    barStatus.textContent = this.t("offlineReadyFull") || "Todos los caracteres listos offline";
                 } else if (percent > 0) {
                     barStatus.textContent = `${cached} ${this.t("offlineCharsDownloaded") || "caracteres guardados"}`;
                 } else {
@@ -302,7 +302,7 @@ class OfflineManager {
             this.isPersisted = persisted;
             this.updateStorageUI();
             if (persisted) {
-                this.toast(this.t("offlinePersistGranted") || "🛡️ Almacenamiento persistente activado. Los datos no se borrarán automáticamente.", "success");
+                this.toast(this.t("offlinePersistGranted") || "Almacenamiento persistente activado. Los datos no se borrarán automáticamente.", "success");
             } else {
                 this.toast(this.t("offlinePersistDenied") || "El navegador no concedió almacenamiento persistente.", "info");
             }
@@ -356,7 +356,7 @@ class OfflineManager {
 
         if (persistBadge) {
             if (this.isPersisted) {
-                persistBadge.textContent = "🛡️ Persistente";
+                persistBadge.textContent = "Persistente";
                 persistBadge.className = "badge-success";
                 persistBadge.title = this.t("offlinePersistActive") || "Almacenamiento protegido contra borrado automático";
             } else {
@@ -407,10 +407,10 @@ class OfflineManager {
 
         if (voiceBadge) {
             if (this.chineseVoiceInfo.hasChineseVoice) {
-                voiceBadge.textContent = `🟢 Voz China: ${this.chineseVoiceInfo.voiceName || "OK"}`;
+                voiceBadge.textContent = `Voz China: ${this.chineseVoiceInfo.voiceName || "OK"}`;
                 voiceBadge.className = "badge-success";
             } else {
-                voiceBadge.textContent = "⚠️ Sin voz china instalada";
+                voiceBadge.textContent = "Sin voz china instalada";
                 voiceBadge.className = "badge-warning";
             }
         }
@@ -528,7 +528,7 @@ class OfflineManager {
                 this.toast(warnMsg, "warning");
                 this.updateRetryButton();
             } else {
-                this.toast(this.t("offlineDownloadSuccess") || "🎉 ¡Caracteres descargados para uso 100% offline!", "success");
+                this.toast(this.t("offlineDownloadSuccess") || "¡Caracteres descargados para uso 100% offline!", "success");
             }
         } catch (err) {
             this.app?.logError?.("[offline-manager] Download failed:", err);
@@ -583,7 +583,7 @@ class OfflineManager {
         if (barPercent) barPercent.textContent = `${percent}%`;
         if (barStatus) {
             if (percent === 100) {
-                barStatus.textContent = this.t("offlineDownloadComplete") || "✅ ¡Descarga completada!";
+                barStatus.textContent = this.t("offlineDownloadComplete") || "¡Descarga completada!";
             } else {
                 barStatus.textContent = `${this.t("offlineDownloading") || "Descargando:"} ${currentChar || ""}`;
             }
@@ -612,7 +612,7 @@ class OfflineManager {
             this.hideRetryButton();
             await this.checkCacheState();
             await this.updateStorageInfo();
-            this.toast(this.t("offlineClearedSuccess") || "🗑️ Caché de trazos liberado correctamente.", "info");
+            this.toast(this.t("offlineClearedSuccess") || "Caché de trazos liberado correctamente.", "info");
         } catch (err) {
             this.app?.logError?.("[offline-manager] Clear cache failed:", err);
         }
@@ -657,7 +657,7 @@ class OfflineManager {
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
 
-            this.toast(this.t("offlineExportSuccess") || "💾 Copia de seguridad exportada correctamente.", "success");
+            this.toast(this.t("offlineExportSuccess") || "Copia de seguridad exportada correctamente.", "success");
         } catch (err) {
             this.app?.logError?.("[offline-manager] Export progress failed:", err);
             this.toast(this.t("offlineExportError") || "Error al exportar la copia de seguridad.", "error");
@@ -696,7 +696,7 @@ class OfflineManager {
                 }
             }
 
-            this.toast(this.t("offlineImportSuccess") || "🎉 ¡Progreso restaurado correctamente! Actualizando datos...", "success");
+            this.toast(this.t("offlineImportSuccess") || "¡Progreso restaurado correctamente! Actualizando datos...", "success");
 
             setTimeout(() => {
                 if (typeof window !== "undefined" && window.location) {
@@ -713,8 +713,8 @@ class OfflineManager {
         const networkBadge = document.getElementById("offline-modal-network-status");
         if (networkBadge) {
             networkBadge.textContent = isOnline
-                ? (this.t("onlineStatus") || "🟢 En línea")
-                : (this.t("offlineStatus") || "📡 Sin conexión (Offline)");
+                ? (this.t("onlineStatus") || "En línea")
+                : (this.t("offlineStatus") || "Sin conexión (Offline)");
             networkBadge.className = isOnline ? "badge-success" : "badge-warning";
         }
     }

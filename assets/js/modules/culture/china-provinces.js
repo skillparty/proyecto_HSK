@@ -41,7 +41,7 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
                 <!-- Hero & Physical Geography Overview -->
                 <header class="provinces-hero">
                     <div class="provinces-hero-header">
-                        <div class="provinces-hero-icon" aria-hidden="true">🗺️</div>
+                        <div class="provinces-hero-icon" aria-hidden="true">${window.hskIcons?.render?.('map', { size: 36 }) || ''}</div>
                         <div>
                             <h2 class="provinces-hero-title">${isEs ? "Geografía Física y Provincias de China" : "Physical Geography & Provinces of China"}</h2>
                             <p class="provinces-hero-subtitle">${isEs ? "Descubre el relieve, dialectos, clima, vestimentas y gastronomía de las 34 divisiones provinciales" : "Explore terrain, dialects, climate, attire, and cuisine across all 34 provincial divisions"}</p>
@@ -67,21 +67,21 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
                     <div class="provinces-top-controls">
                         <div class="provinces-view-switcher">
                             <button type="button" class="provinces-view-btn ${this.activeView === "map" ? "is-active" : ""}" data-view="map">
-                                <span>🗺️</span>
+                                <span>${window.hskIcons?.render?.('map', { size: 16 }) || ''}</span>
                                 <span>${isEs ? "Mapa Físico" : "Physical Map"}</span>
                             </button>
                             <button type="button" class="provinces-view-btn ${this.activeView === "cards" ? "is-active" : ""}" data-view="cards">
-                                <span>📋</span>
+                                <span>${window.hskIcons?.render?.('clipboard', { size: 16 }) || ''}</span>
                                 <span>${isEs ? "Fichas de Provincias" : "Province Cards"}</span>
                             </button>
                             <button type="button" class="provinces-view-btn ${this.activeView === "quiz" ? "is-active" : ""}" data-view="quiz">
-                                <span>🎓</span>
+                                <span>${window.hskIcons?.render?.('award', { size: 16 }) || ''}</span>
                                 <span>${isEs ? "Quiz Geográfico" : "Geography Quiz"}</span>
                             </button>
                         </div>
 
                         <div class="provinces-search-box">
-                            <span class="provinces-search-icon">🔍</span>
+                            <span class="provinces-search-icon">${window.hskIcons?.render?.('search', { size: 16 }) || ''}</span>
                             <input type="text" id="provinces-search-input" class="provinces-search-input" 
                                 placeholder="${isEs ? "Buscar provincia, capital, dialecto o comida..." : "Search province, capital, dialect or food..."}"
                                 value="${this.escapeHtml(this.searchQuery)}">
@@ -169,17 +169,17 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
                             <span class="province-card-abbr" title="Abreviatura oficial china">${selected.abbr}</span>
                         </div>
                         <div class="province-card-meta">
-                            <span class="province-meta-badge">🏛️ ${selected.capital}</span>
-                            <span class="province-meta-badge">👥 ${selected.population}</span>
-                            <span class="province-meta-badge">⛅ ${selected.climate.split(".")[0]}</span>
+                            <span class="province-meta-badge">${window.hskIcons?.render?.('building', { size: 12 }) || ''} ${selected.capital}</span>
+                            <span class="province-meta-badge">${window.hskIcons?.render?.('users', { size: 12 }) || ''} ${selected.population}</span>
+                            <span class="province-meta-badge">${window.hskIcons?.render?.('cloud', { size: 12 }) || ''} ${selected.climate.split(".")[0]}</span>
                         </div>
                         <div class="province-card-snippets">
-                            <div class="province-snippet-row">🗣️ <strong>Lengua:</strong> ${selected.language}</div>
-                            <div class="province-snippet-row">🍲 <strong>Comida típica:</strong> ${selected.food.split(":")[1]?.split("(")[0] || selected.food.split(".")[0]}</div>
-                            <div class="province-snippet-row">👘 <strong>Traje:</strong> ${selected.attire.split(".")[0]}</div>
+                            <div class="province-snippet-row">${window.hskIcons?.render?.('mic', { size: 12 }) || ''} <strong>Lengua:</strong> ${selected.language}</div>
+                            <div class="province-snippet-row">${window.hskIcons?.render?.('utensils', { size: 12 }) || ''} <strong>Comida típica:</strong> ${selected.food.split(":")[1]?.split("(")[0] || selected.food.split(".")[0]}</div>
+                            <div class="province-snippet-row">${window.hskIcons?.render?.('shirt', { size: 12 }) || ''} <strong>Traje:</strong> ${selected.attire.split(".")[0]}</div>
                         </div>
                         <div class="province-card-footer">
-                            <span style="font-size: 0.8rem; color: var(--text-muted, #71717a);">🏔️ ${selected.geography.split(".")[0]}</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted, #71717a); display: inline-flex; align-items: center; gap: 4px;">${window.hskIcons?.render?.('mountain', { size: 12 }) || ''} ${selected.geography.split(".")[0]}</span>
                             <button type="button" class="btn btn-outline province-open-btn" data-prov-id="${selected.id}" style="padding: 4px 12px; font-size: 0.8rem; font-weight: 700;">
                                 ${isEs ? "Ver Ficha Completa →" : "View Full Profile →"}
                             </button>
@@ -346,15 +346,15 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
                         </div>
 
                         <div class="province-card-meta">
-                            <span class="province-meta-badge">🏛️ ${prov.capital}</span>
-                            <span class="province-meta-badge">👥 ${prov.population}</span>
-                            <span class="province-meta-badge">⛅ ${prov.climate.split(".")[0].slice(0, 30)}...</span>
+                            <span class="province-meta-badge">${window.hskIcons?.render?.('building', { size: 12 }) || ''} ${prov.capital}</span>
+                            <span class="province-meta-badge">${window.hskIcons?.render?.('users', { size: 12 }) || ''} ${prov.population}</span>
+                            <span class="province-meta-badge">${window.hskIcons?.render?.('cloud', { size: 12 }) || ''} ${prov.climate.split(".")[0].slice(0, 30)}...</span>
                         </div>
 
                         <div class="province-card-snippets">
-                            <div class="province-snippet-row">🗣️ <strong>Lengua:</strong> ${prov.language.slice(0, 36)}...</div>
-                            <div class="province-snippet-row">🍲 <strong>Comida:</strong> ${prov.food.split(":")[1]?.slice(0, 38) || prov.food.slice(0, 38)}...</div>
-                            <div class="province-snippet-row">👘 <strong>Traje:</strong> ${prov.attire.slice(0, 38)}...</div>
+                            <div class="province-snippet-row">${window.hskIcons?.render?.('mic', { size: 12 }) || ''} <strong>Lengua:</strong> ${prov.language.slice(0, 36)}...</div>
+                            <div class="province-snippet-row">${window.hskIcons?.render?.('utensils', { size: 12 }) || ''} <strong>Comida:</strong> ${prov.food.split(":")[1]?.slice(0, 38) || prov.food.slice(0, 38)}...</div>
+                            <div class="province-snippet-row">${window.hskIcons?.render?.('shirt', { size: 12 }) || ''} <strong>Traje:</strong> ${prov.attire.slice(0, 38)}...</div>
                         </div>
 
                         <div class="province-card-footer">
@@ -433,7 +433,7 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
                         </h3>
                         <span class="province-modal-sub">${isEs ? prov.nameEs : prov.nameEn} (${prov.type})</span>
                     </div>
-                    <button type="button" class="modal-close-btn" id="modal-prov-close" aria-label="Cerrar">✕</button>
+                    <button type="button" class="modal-close-btn" id="modal-prov-close" aria-label="Cerrar">${window.hskIcons?.render?.('cross', { size: 16 }) || '&times;'}</button>
                 </header>
 
                 <div class="province-modal-body">
@@ -462,39 +462,39 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
 
                     <!-- Languages -->
                     <div class="province-section-card">
-                        <h4 class="province-section-title">🗣️ ${isEs ? "Lenguas y Dialectos Hablados" : "Languages & Dialects"}</h4>
+                        <h4 class="province-section-title">${window.hskIcons?.render?.('mic', { size: 16 }) || ''} ${isEs ? "Lenguas y Dialectos Hablados" : "Languages & Dialects"}</h4>
                         <p class="province-section-body">${prov.language}</p>
                     </div>
 
                     <!-- Climate & Physical Geography -->
                     <div class="province-section-card">
-                        <h4 class="province-section-title">⛅ ${isEs ? "Clima y Geografía Física" : "Climate & Physical Geography"}</h4>
+                        <h4 class="province-section-title">${window.hskIcons?.render?.('cloud', { size: 16 }) || ''} ${isEs ? "Clima y Geografía Física" : "Climate & Physical Geography"}</h4>
                         <p class="province-section-body"><strong>Clima:</strong> ${prov.climate}</p>
                         <p class="province-section-body" style="margin-top: 6px;"><strong>Relieve:</strong> ${prov.geography}</p>
                     </div>
 
                     <!-- Traditional Attire -->
                     <div class="province-section-card">
-                        <h4 class="province-section-title">👘 ${isEs ? "Vestimenta y Trajes Tradicionales" : "Traditional Attire & Costumes"}</h4>
+                        <h4 class="province-section-title">${window.hskIcons?.render?.('shirt', { size: 16 }) || ''} ${isEs ? "Vestimenta y Trajes Tradicionales" : "Traditional Attire & Costumes"}</h4>
                         <p class="province-section-body">${prov.attire}</p>
                     </div>
 
                     <!-- Cuisine & Food -->
                     <div class="province-section-card">
-                        <h4 class="province-section-title">🍲 ${isEs ? "Gastronomía y Comidas Típicas" : "Cuisine & Signature Dishes"}</h4>
+                        <h4 class="province-section-title">${window.hskIcons?.render?.('utensils', { size: 16 }) || ''} ${isEs ? "Gastronomía y Comidas Típicas" : "Cuisine & Signature Dishes"}</h4>
                         <p class="province-section-body">${prov.food}</p>
                     </div>
 
                     <!-- Cultural Highlights -->
                     <div class="province-section-card">
-                        <h4 class="province-section-title">🏞️ ${isEs ? "Patrimonio y Lugares Icónicos" : "Heritage & Iconic Sites"}</h4>
+                        <h4 class="province-section-title">${window.hskIcons?.render?.('mountain', { size: 16 }) || ''} ${isEs ? "Patrimonio y Lugares Icónicos" : "Heritage & Iconic Sites"}</h4>
                         <p class="province-section-body">${prov.highlights}</p>
                     </div>
 
                     <!-- Trivia -->
                     ${prov.trivia ? `
                         <div class="province-section-card" style="background: #fffbeb; border-color: #fde68a;">
-                            <h4 class="province-section-title" style="color: #92400e;">💡 ${isEs ? "¿Sabías que...?" : "Did you know?"}</h4>
+                            <h4 class="province-section-title" style="color: #92400e;">${window.hskIcons?.render?.('lightbulb', { size: 16 }) || ''} ${isEs ? "¿Sabías que...?" : "Did you know?"}</h4>
                             <p class="province-section-body" style="color: #78350f;">${prov.trivia}</p>
                         </div>
                     ` : ""}
@@ -640,8 +640,8 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
                 if (feedback) {
                     feedback.style.display = "block";
                     feedback.innerHTML = `
-                        <p style="margin: 0; font-weight: 700; color: ${isCorrect ? "#065f46" : "#991b1b"};">
-                            ${isCorrect ? "✅ ¡Correcto!" : "❌ Respuesta incorrecta"}
+                        <p style="margin: 0; font-weight: 700; color: ${isCorrect ? "#065f46" : "#991b1b"}; display: flex; align-items: center; gap: 6px;">
+                            ${isCorrect ? `${window.hskIcons?.render?.('check', { size: 16, stroke: '#065f46' }) || ''} ¡Correcto!` : `${window.hskIcons?.render?.('cross', { size: 16, stroke: '#991b1b' }) || ''} Respuesta incorrecta`}
                         </p>
                         <p style="margin: 4px 0 0; font-size: 0.86rem;">${q.explanation}</p>
                     `;
@@ -661,7 +661,7 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
                     this.quizAnswered = false;
                     this.render();
                 } else {
-                    alert(`🎉 ¡Quiz completado! Tu puntuación final es: ${this.quizScore} de ${quizList.length}`);
+                    alert(`¡Quiz completado! Tu puntuación final es: ${this.quizScore} de ${quizList.length}`);
                     this.quizIndex = 0;
                     this.quizScore = 0;
                     this.quizAnswered = false;

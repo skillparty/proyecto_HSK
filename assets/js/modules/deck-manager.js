@@ -22,8 +22,8 @@ class DeckManager {
         if (!this.decks[DeckManager.FAVORITES_DECK_ID]) {
             this.decks[DeckManager.FAVORITES_DECK_ID] = {
                 id: DeckManager.FAVORITES_DECK_ID,
-                name: "⭐ Palabras Favoritas / Difíciles",
-                nameEn: "⭐ Favorite / Hard Words",
+                name: "Palabras Favoritas / Difíciles",
+                nameEn: "Favorite / Hard Words",
                 description: "Palabras marcadas durante el estudio diario",
                 createdAt: new Date().toISOString(),
                 words: [],

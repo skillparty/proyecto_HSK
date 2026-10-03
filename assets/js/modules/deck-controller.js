@@ -49,7 +49,7 @@ class DeckController {
             <div class="deck-modal-dialog" role="dialog" aria-modal="true">
                 <div class="deck-modal-header">
                     <h3 class="deck-modal-title">
-                        <span>📦</span>
+                        <span>${window.hskIcons?.render?.("package", { size: 18 }) || ""}</span>
                         <span>${isEs ? "Gestor de Mazos & Exportación" : "Deck Manager & Export"}</span>
                     </h3>
                     <button class="deck-modal-close" type="button" aria-label="Cerrar">&times;</button>
@@ -135,18 +135,18 @@ class DeckController {
                 </div>
                 <div class="deck-actions-group">
                     <button class="deck-btn-sm deck-btn-study" data-action="study" data-id="${deck.id}" type="button">
-                        ▶ ${isEs ? "Estudiar" : "Study"}
+                        ${window.hskIcons?.render?.("play", { size: 12 }) || ""} ${isEs ? "Estudiar" : "Study"}
                     </button>
                     <button class="deck-btn-sm" data-action="anki" data-id="${deck.id}" title="Exportar para Anki (.txt)" type="button">
-                        📥 Anki
+                        ${window.hskIcons?.render?.("download", { size: 12 }) || ""} Anki
                     </button>
                     <button class="deck-btn-sm" data-action="pleco" data-id="${deck.id}" title="Exportar para Pleco (.txt)" type="button">
-                        📑 Pleco
+                        ${window.hskIcons?.render?.("file-text", { size: 12 }) || ""} Pleco
                     </button>
                     <button class="deck-btn-sm" data-action="csv" data-id="${deck.id}" title="Exportar CSV para Excel" type="button">
-                        📊 CSV
+                        ${window.hskIcons?.render?.("bar-chart", { size: 12 }) || ""} CSV
                     </button>
-                    ${deck.id !== "favorites" ? `<button class="deck-btn-sm" data-action="delete" data-id="${deck.id}" title="Eliminar mazo" style="color: #ef4444;" type="button">🗑️</button>` : ""}
+                    ${deck.id !== "favorites" ? `<button class="deck-btn-sm" data-action="delete" data-id="${deck.id}" title="Eliminar mazo" style="color: #ef4444;" type="button">${window.hskIcons?.render?.("trash", { size: 13 }) || ""}</button>` : ""}
                 </div>
             `;
 
@@ -213,7 +213,7 @@ class DeckController {
                     <input id="new-deck-desc" placeholder="${isEs ? "Breve resumen de este mazo" : "Brief summary of this deck"}" />
                 </div>
                 <button class="btn btn-primary" type="submit" style="align-self: flex-start; margin-top: 8px;">
-                    ➕ ${isEs ? "Crear Mazo" : "Create Deck"}
+                    ${window.hskIcons?.render?.("plus", { size: 14 }) || ""} ${isEs ? "Crear Mazo" : "Create Deck"}
                 </button>
             </form>
         `;
@@ -246,7 +246,7 @@ class DeckController {
                     <input type="file" id="import-deck-file" accept=".csv,.txt,.tsv" />
                 </div>
                 <button class="btn btn-primary" type="submit" style="align-self: flex-start; margin-top: 8px;">
-                    📥 ${isEs ? "Importar Mazo" : "Import Deck"}
+                    ${window.hskIcons?.render?.("download", { size: 14 }) || ""} ${isEs ? "Importar Mazo" : "Import Deck"}
                 </button>
             </form>
         `;

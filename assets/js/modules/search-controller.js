@@ -8,29 +8,29 @@ class SearchController {
         this.paletteItems = [];
         this.selectedIndex = 0;
         this.navDefinitions = [
-            { id: "home", title: "Inicio", titleEn: "Home", icon: "🏠", group: "nav" },
-            { id: "practice", title: "Práctica Flashcards (SRS)", titleEn: "Practice Flashcards (SRS)", icon: "🃏", group: "nav" },
-            { id: "browse", title: "Explorar Vocabulario", titleEn: "Browse Vocabulary", icon: "📖", group: "nav" },
-            { id: "strokes-radicals", title: "Trazos & Radicales", titleEn: "Strokes & Radicals", icon: "✍️", group: "nav" },
-            { id: "writing-sheets", title: "Plantillas de Escritura (PDF)", titleEn: "Writing Sheets (PDF)", icon: "📝", group: "nav" },
-            { id: "quiz", title: "Quiz de Evaluación", titleEn: "Evaluation Quiz", icon: "⏱️", group: "nav" },
-            { id: "past-exams", title: "Exámenes Oficiales HSK", titleEn: "Past HSK Exams", icon: "📋", group: "nav" },
-            { id: "snake-quantifiers", title: "Juego: Viborita de Clasificadores", titleEn: "Game: Quantifier Snake", icon: "🐍", group: "nav" },
-            { id: "matrix", title: "Juego: Matrix Vocabulario", titleEn: "Game: Matrix Vocabulary", icon: "⚡", group: "nav" },
-            { id: "tones-invaders", title: "Juego: Invasores de Tonos", titleEn: "Game: Tones Invaders", icon: "👾", group: "nav" },
-            { id: "hanzi-builder", title: "Juego: Constructor de Hanzi", titleEn: "Game: Hanzi Builder", icon: "🧱", group: "nav" },
-            { id: "word-linker", title: "Juego: Conector de Palabras", titleEn: "Game: Word Linker", icon: "🔗", group: "nav" },
-            { id: "sentence-builder", title: "Juego: Constructor de Oraciones", titleEn: "Game: Sentence Builder", icon: "🧩", group: "nav" },
-            { id: "etymology", title: "Etimología de Caracteres", titleEn: "Character Etymology", icon: "📜", group: "nav" },
-            { id: "culture-characters", title: "Cultura: Evolución de Caracteres", titleEn: "Culture: Character Evolution", icon: "🏮", group: "nav" },
-            { id: "culture-medicine", title: "Cultura: Medicina Tradicional", titleEn: "Culture: Traditional Medicine", icon: "🌿", group: "nav" },
-            { id: "culture-opera", title: "Cultura: Ópera de Pekín", titleEn: "Culture: Peking Opera", icon: "🎭", group: "nav" },
-            { id: "culture-technology", title: "Cultura: Tecnología China", titleEn: "Culture: Chinese Technology", icon: "🚀", group: "nav" },
-            { id: "culture-clothing", title: "Cultura: Vestimenta Étnica", titleEn: "Culture: Ethnic Clothing", icon: "👘", group: "nav" },
-            { id: "culture-arts", title: "Cultura: Artes y Caligrafía", titleEn: "Culture: Arts and Calligraphy", icon: "🖌️", group: "nav" },
-            { id: "videos", title: "Videos de Aprendizaje HSK", titleEn: "HSK Learning Videos", icon: "🎬", group: "nav" },
-            { id: "stats", title: "Estadísticas y Progreso", titleEn: "Statistics and Progress", icon: "📊", group: "nav" },
-            { id: "leaderboard", title: "Tabla de Clasificación (Ranking)", titleEn: "Leaderboard", icon: "🏆", group: "nav" },
+            { id: "home", title: "Inicio", titleEn: "Home", icon: "home", group: "nav" },
+            { id: "practice", title: "Práctica Flashcards (SRS)", titleEn: "Practice Flashcards (SRS)", icon: "cards", group: "nav" },
+            { id: "browse", title: "Explorar Vocabulario", titleEn: "Browse Vocabulary", icon: "book", group: "nav" },
+            { id: "strokes-radicals", title: "Trazos & Radicales", titleEn: "Strokes & Radicals", icon: "pen", group: "nav" },
+            { id: "writing-sheets", title: "Plantillas de Escritura (PDF)", titleEn: "Writing Sheets (PDF)", icon: "file-text", group: "nav" },
+            { id: "quiz", title: "Quiz de Evaluación", titleEn: "Evaluation Quiz", icon: "clock", group: "nav" },
+            { id: "past-exams", title: "Exámenes Oficiales HSK", titleEn: "Past HSK Exams", icon: "clipboard", group: "nav" },
+            { id: "snake-quantifiers", title: "Juego: Viborita de Clasificadores", titleEn: "Game: Quantifier Snake", icon: "snake", group: "nav" },
+            { id: "matrix", title: "Juego: Matrix Vocabulario", titleEn: "Game: Matrix Vocabulary", icon: "zap", group: "nav" },
+            { id: "tones-invaders", title: "Juego: Invasores de Tonos", titleEn: "Game: Tones Invaders", icon: "rocket", group: "nav" },
+            { id: "hanzi-builder", title: "Juego: Constructor de Hanzi", titleEn: "Game: Hanzi Builder", icon: "puzzle", group: "nav" },
+            { id: "word-linker", title: "Juego: Conector de Palabras", titleEn: "Game: Word Linker", icon: "link", group: "nav" },
+            { id: "sentence-builder", title: "Juego: Constructor de Oraciones", titleEn: "Game: Sentence Builder", icon: "puzzle", group: "nav" },
+            { id: "etymology", title: "Etimología de Caracteres", titleEn: "Character Etymology", icon: "scroll", group: "nav" },
+            { id: "culture-characters", title: "Cultura: Evolución de Caracteres", titleEn: "Culture: Character Evolution", icon: "lantern", group: "nav" },
+            { id: "culture-medicine", title: "Cultura: Medicina Tradicional", titleEn: "Culture: Traditional Medicine", icon: "leaf", group: "nav" },
+            { id: "culture-opera", title: "Cultura: Ópera de Pekín", titleEn: "Culture: Peking Opera", icon: "mask", group: "nav" },
+            { id: "culture-technology", title: "Cultura: Tecnología China", titleEn: "Culture: Chinese Technology", icon: "rocket", group: "nav" },
+            { id: "culture-clothing", title: "Cultura: Vestimenta Étnica", titleEn: "Culture: Ethnic Clothing", icon: "sparkles", group: "nav" },
+            { id: "culture-arts", title: "Cultura: Artes y Caligrafía", titleEn: "Culture: Arts and Calligraphy", icon: "brush", group: "nav" },
+            { id: "videos", title: "Videos de Aprendizaje HSK", titleEn: "HSK Learning Videos", icon: "video", group: "nav" },
+            { id: "stats", title: "Estadísticas y Progreso", titleEn: "Statistics and Progress", icon: "bar-chart", group: "nav" },
+            { id: "leaderboard", title: "Tabla de Clasificación (Ranking)", titleEn: "Leaderboard", icon: "trophy", group: "nav" },
         ];
 
         this.quickActions = [
@@ -38,14 +38,14 @@ class SearchController {
                 id: "action-toggle-theme",
                 title: "Alternar Modo Oscuro / Claro",
                 titleEn: "Toggle Dark / Light Theme",
-                icon: "🌓",
+                icon: "moon",
                 execute: () => this.app.themeController?.toggleTheme?.(),
             },
             {
                 id: "action-toggle-lang",
                 title: "Cambiar Idioma (Español / English)",
                 titleEn: "Toggle Language (Spanish / English)",
-                icon: "🌐",
+                icon: "globe",
                 execute: () => {
                     const nextLang = this.app.currentLanguage === "es" ? "en" : "es";
                     window.languageManager?.setLanguage?.(nextLang);
@@ -56,14 +56,14 @@ class SearchController {
                 id: "action-toggle-audio",
                 title: "Activar / Desactivar Sonido",
                 titleEn: "Toggle Audio FX",
-                icon: "🔊",
+                icon: "volume",
                 execute: () => this.app.audioController?.toggleAudio?.(),
             },
             {
                 id: "action-start-quiz",
                 title: "Iniciar Nuevo Quiz de 10 Preguntas",
                 titleEn: "Start New 10-Question Quiz",
-                icon: "🎯",
+                icon: "target",
                 execute: () => {
                     this.app.switchTab("quiz");
                     setTimeout(() => {
@@ -75,7 +75,7 @@ class SearchController {
                 id: "action-manage-decks",
                 title: "Gestionar Mazos Personalizados & Exportar a Anki",
                 titleEn: "Manage Custom Decks & Export to Anki",
-                icon: "📦",
+                icon: "package",
                 execute: () => {
                     this.app.deckController?.openModal?.();
                 },
@@ -84,7 +84,7 @@ class SearchController {
                 id: "action-open-reader",
                 title: "Abrir Lector Graduado HSK con Diccionario Flotante",
                 titleEn: "Open HSK Graded Reader with Popup Dictionary",
-                icon: "📖",
+                icon: "book",
                 execute: () => {
                     this.app.switchTab("graded-reader");
                 },
@@ -93,7 +93,7 @@ class SearchController {
                 id: "action-open-tutor",
                 title: "Iniciar Tutor Conversacional y Simulación de Diálogos",
                 titleEn: "Start Dialogue Tutor & Scenario Simulator",
-                icon: "💬",
+                icon: "users",
                 execute: () => {
                     this.app.switchTab("dialogue-tutor");
                 },
@@ -102,7 +102,7 @@ class SearchController {
                 id: "action-open-decomposer",
                 title: "Abrir Laboratorio de Radicales y Mnemotecnias Visuales",
                 titleEn: "Open Radical Decomposer & Visual Mnemonics Lab",
-                icon: "🔬",
+                icon: "grid",
                 execute: () => {
                     this.app.switchTab("radical-decomposer");
                 },
@@ -111,7 +111,7 @@ class SearchController {
                 id: "action-open-skill-tree",
                 title: "Abrir Mapa de Aventura y Árbol de Habilidades RPG",
                 titleEn: "Open RPG Adventure Map & Skill Tree",
-                icon: "🗺️",
+                icon: "compass",
                 execute: () => {
                     this.app.switchTab("skill-tree");
                 },
@@ -120,7 +120,7 @@ class SearchController {
                 id: "action-open-lyrics-lab",
                 title: "Abrir Laboratorio de Canciones y Rimas Chinas",
                 titleEn: "Open Chinese Nursery Rhymes & Lyrics Lab",
-                icon: "🎵",
+                icon: "music",
                 execute: () => {
                     this.app.switchTab("lyrics-lab");
                 },
@@ -129,7 +129,7 @@ class SearchController {
                 id: "action-open-shadow-theatre",
                 title: "Abrir Teatro de Sombras y Leyendas Chinas",
                 titleEn: "Open Chinese Shadow Puppetry & Legends",
-                icon: "🏮",
+                icon: "lantern",
                 execute: () => {
                     this.app.switchTab("shadow-theatre");
                 },
@@ -138,7 +138,7 @@ class SearchController {
                 id: "action-open-mahjong",
                 title: "Abrir Laboratorio de Mahjong de Caracteres",
                 titleEn: "Open Hanzi Mahjong Tiles Lab",
-                icon: "🀄",
+                icon: "layers",
                 execute: () => {
                     this.app.switchTab("hanzi-mahjong");
                 },
@@ -147,7 +147,7 @@ class SearchController {
                 id: "action-open-china-cities",
                 title: "Abrir Explorador de Ciudades y Rutas de China",
                 titleEn: "Open Interactive China Cities Explorer",
-                icon: "🗺️",
+                icon: "building",
                 execute: () => {
                     this.app.switchTab("china-cities");
                 },
@@ -156,7 +156,7 @@ class SearchController {
                 id: "action-open-culture-provinces",
                 title: "Abrir Mapa Físico y Provincias de China (Cultura)",
                 titleEn: "Open China Physical Map & Provinces (Culture)",
-                icon: "🏔️",
+                icon: "mountain",
                 execute: () => {
                     this.app.switchTab("culture-provinces");
                 },
@@ -165,7 +165,7 @@ class SearchController {
                 id: "action-open-tone-visualizer",
                 title: "Abrir Visualizador de Curva de Tonos",
                 titleEn: "Open Pitch Curve & Intonation Visualizer",
-                icon: "📊",
+                icon: "bar-chart",
                 execute: () => {
                     this.app.switchTab("tone-visualizer");
                 },
@@ -174,7 +174,7 @@ class SearchController {
                 id: "action-open-calligraphy-scroll",
                 title: "Abrir Estudio de Rollos de Caligrafía Tradicional",
                 titleEn: "Open Traditional Calligraphy Scroll Studio",
-                icon: "📜",
+                icon: "scroll",
                 execute: () => {
                     this.app.switchTab("calligraphy-scroll");
                 },
@@ -183,7 +183,7 @@ class SearchController {
                 id: "action-open-chinese-names",
                 title: "Abrir Buscador de Nombres Chinos Tradicionales",
                 titleEn: "Open Traditional Chinese Name Generator",
-                icon: "🧧",
+                icon: "award",
                 execute: () => {
                     this.app.switchTab("chinese-names");
                 },
@@ -334,7 +334,7 @@ class SearchController {
                     word: w,
                     title: `${w.character} (${w.pinyin})`,
                     subtitle: meaning,
-                    icon: "🔤",
+                    icon: "font",
                     level: w.level || 1,
                     execute: () => this.selectHeaderSearchResult(w),
                 });
@@ -387,9 +387,13 @@ class SearchController {
                 `;
             }
 
+            const renderedIcon = (window.hskIcons && typeof window.hskIcons.render === "function")
+                ? window.hskIcons.render(item.icon, { size: 18 })
+                : item.icon;
+
             itemEl.innerHTML = `
                 <div class="cmd-item-left">
-                    <span class="cmd-item-icon">${item.icon}</span>
+                    <span class="cmd-item-icon">${renderedIcon}</span>
                     <div class="cmd-item-text">
                         <span class="cmd-item-title">${item.title}</span>
                         <span class="cmd-item-sub">${item.subtitle}</span>

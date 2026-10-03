@@ -3,7 +3,11 @@
         <div class="sb-header-banner">
             <div class="sb-title-group">
                 <h2 class="sb-main-title">
-                    <span class="sb-title-icon">🧩</span>
+                    <span class="sb-title-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19.439 7.85c-.049-.915-.28-1.782-.676-2.56L15.5 6.5a2 2 0 0 1-2.828 0l-.707-.707a2 2 0 0 1 0-2.828L13.207.727A8.04 8.04 0 0 0 10.647.051C6.223.051 2.64 3.633 2.64 8.058c0 1.25.29 2.433.805 3.486L4.5 10.5a2 2 0 0 1 2.828 0l.707.707a2 2 0 0 1 0 2.828l-1.055 1.055a8.04 8.04 0 0 0 2.56.676c.915.049 1.782.28 2.56.676l-1.242 3.242a2 2 0 0 1 0 2.828l.707.707a2 2 0 0 1 2.828 0l1.055-1.055a8.04 8.04 0 0 0 3.486-.805c4.425 0 8.007-3.582 8.007-8.007 0-.915-.227-1.782-.676-2.56l-3.242 1.242a2 2 0 0 1-2.828 0l-.707-.707a2 2 0 0 1 0-2.828l1.242-3.242Z"></path>
+                        </svg>
+                    </span>
                     <span data-i18n="sentenceBuilderTitle">Constructor de Oraciones</span>
                 </h2>
                 <p class="sb-subtitle" data-i18n="sentenceBuilderSubtitle">
@@ -17,7 +21,12 @@
                 </div>
                 <div class="sb-stat-item">
                     <span class="sb-stat-label" data-i18n="sentenceBuilderStreak">Racha:</span>
-                    <span id="sb-streak-val" class="sb-stat-val">0 🔥</span>
+                    <span class="sb-stat-val" style="display:inline-flex; align-items:center; gap:3px;">
+                        <span id="sb-streak-val">0</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-primary);" aria-hidden="true">
+                            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+                        </svg>
+                    </span>
                 </div>
                 <div id="sb-timer-box" class="sb-stat-item" style="display: none;">
                     <span class="sb-stat-label" data-i18n="sentenceBuilderTime">Tiempo:</span>

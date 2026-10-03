@@ -6,18 +6,18 @@ const CHINA_CITIES_DATABASE = [
         name: "北京 · Běijīng",
         spanishName: "Pekín / Beijing (Capital Imperial)",
         englishName: "Beijing (Imperial Capital)",
-        avatar: "🏯",
+        avatar: "building",
         tagline: "El corazón político, cultural y educativo de China con más de 3.000 años de historia.",
         taglineEn: "China's political and cultural heart with over 3,000 years of living history.",
         highlights: [
-            { icon: "🏛️", hanzi: "故宫", pinyin: "Gùgōng", trans: "La Ciudad Prohibida", transEn: "Forbidden City" },
-            { icon: "🧱", hanzi: "万里长城", pinyin: "Wànlǐ Chángchéng", trans: "La Gran Muralla China", transEn: "Great Wall of China" },
-            { icon: "⛩️", hanzi: "天坛", pinyin: "Tiāntán", trans: "El Templo del Cielo", transEn: "Temple of Heaven" },
-            { icon: "🎭", hanzi: "京剧", pinyin: "Jīngjù", trans: "Ópera de Pekín", transEn: "Peking Opera" }
+            { icon: "building", hanzi: "故宫", pinyin: "Gùgōng", trans: "La Ciudad Prohibida", transEn: "Forbidden City" },
+            { icon: "shield", hanzi: "万里长城", pinyin: "Wànlǐ Chángchéng", trans: "La Gran Muralla China", transEn: "Great Wall of China" },
+            { icon: "lantern", hanzi: "天坛", pinyin: "Tiāntán", trans: "El Templo del Cielo", transEn: "Temple of Heaven" },
+            { icon: "mask", hanzi: "京剧", pinyin: "Jīngjù", trans: "Ópera de Pekín", transEn: "Peking Opera" }
         ],
         food: [
-            { icon: "🦆", hanzi: "北京烤鸭", pinyin: "Běijīng kǎoyā", trans: "Pato Laqueado Pekinés", transEn: "Peking Roast Duck" },
-            { icon: "🥟", hanzi: "水饺", pinyin: "shuǐjiǎo", trans: "Empanadillas Jiaozi", transEn: "Boiled Dumplings" }
+            { icon: "utensils", hanzi: "北京烤鸭", pinyin: "Běijīng kǎoyā", trans: "Pato Laqueado Pekinés", transEn: "Peking Roast Duck" },
+            { icon: "utensils", hanzi: "水饺", pinyin: "shuǐjiǎo", trans: "Empanadillas Jiaozi", transEn: "Boiled Dumplings" }
         ],
         survival: [
             { hanzi: "请问，去长城怎么走？", pinyin: "Qǐngwèn, qù Chángchéng zěnme zǒu?", trans: "¿Disculpe, cómo voy a la Gran Muralla?", transEn: "Excuse me, how do I get to the Great Wall?" },
@@ -45,18 +45,18 @@ const CHINA_CITIES_DATABASE = [
         name: "上海 · Shànghǎi",
         spanishName: "Shanghái (La Metrópolis del Futuro)",
         englishName: "Shanghai (The Futuristic Metropolis)",
-        avatar: "🏙️",
+        avatar: "building",
         tagline: "La capital financiera y vanguardista situada en la desembocadura del río Yangtsé.",
         taglineEn: "The financial and ultra-modern powerhouse on the Yangtze River Delta.",
         highlights: [
-            { icon: "🌃", hanzi: "外滩", pinyin: "Wàitān", trans: "El Bund / Paseo fluvial", transEn: "The Bund" },
-            { icon: "🗼", hanzi: "东方明珠", pinyin: "Dōngfāng Míngzhū", trans: "Torre Perla Oriental", transEn: "Oriental Pearl Tower" },
-            { icon: "🚆", hanzi: "磁悬浮列车", pinyin: "Cíxuánfú lièchē", trans: "Tren de Levitación Maglev", transEn: "Maglev Train" },
-            { icon: "🌳", hanzi: "豫园", pinyin: "Yùyuán", trans: "Jardín Yuyuan tradicional", transEn: "Yuyuan Garden" }
+            { icon: "compass", hanzi: "外滩", pinyin: "Wàitān", trans: "El Bund / Paseo fluvial", transEn: "The Bund" },
+            { icon: "rocket", hanzi: "东方明珠", pinyin: "Dōngfāng Míngzhū", trans: "Torre Perla Oriental", transEn: "Oriental Pearl Tower" },
+            { icon: "zap", hanzi: "磁悬浮列车", pinyin: "Cíxuánfú lièchē", trans: "Tren de Levitación Maglev", transEn: "Maglev Train" },
+            { icon: "sprout", hanzi: "豫园", pinyin: "Yùyuán", trans: "Jardín Yuyuan tradicional", transEn: "Yuyuan Garden" }
         ],
         food: [
-            { icon: "🥟", hanzi: "小笼包", pinyin: "xiǎolóngbāo", trans: "Baozi al vapor con caldo", transEn: "Soup Dumplings" },
-            { icon: "🦀", hanzi: "大闸蟹", pinyin: "dàzháxiè", trans: "Cangrejo de río de Shanghái", transEn: "Hairy Crab" }
+            { icon: "utensils", hanzi: "小笼包", pinyin: "xiǎolóngbāo", trans: "Baozi al vapor con caldo", transEn: "Soup Dumplings" },
+            { icon: "utensils", hanzi: "大闸蟹", pinyin: "dàzháxiè", trans: "Cangrejo de río de Shanghái", transEn: "Hairy Crab" }
         ],
         survival: [
             { hanzi: "请问去外滩坐几号线？", pinyin: "Qǐngwèn qù Wàitān zuò jǐ hào xiàn?", trans: "¿Qué línea de metro tomo para ir al Bund?", transEn: "Which metro line goes to the Bund?" },
@@ -84,18 +84,18 @@ const CHINA_CITIES_DATABASE = [
         name: "西安 · Xī'ān",
         spanishName: "Xi'an (Cuna de la Ruta de la Seda)",
         englishName: "Xi'an (Cradle of the Silk Road)",
-        avatar: "🏛️",
+        avatar: "shield",
         tagline: "Antigua capital de trece dinastías y punto de partida de la legendaria Ruta de la Seda.",
         taglineEn: "Ancient capital of 13 dynasties and starting point of the Silk Road.",
         highlights: [
-            { icon: "💂", hanzi: "兵马俑", pinyin: "Bīngmǎyǒng", trans: "Guerreros de Terracota", transEn: "Terracotta Army" },
-            { icon: "🧱", hanzi: "西安城墙", pinyin: "Xī'ān Chéngqiáng", trans: "Muralla Antigua de Xi'an", transEn: "Ancient City Wall" },
-            { icon: "🏯", hanzi: "大雁塔", pinyin: "Dàyàn Tǎ", trans: "Gran Pagoda de la Oca Salvaje", transEn: "Giant Wild Goose Pagoda" },
-            { icon: "🐪", hanzi: "丝绸之路", pinyin: "Sīchóu zhī Lù", trans: "Ruta de la Seda", transEn: "The Silk Road" }
+            { icon: "users", hanzi: "兵马俑", pinyin: "Bīngmǎyǒng", trans: "Guerreros de Terracota", transEn: "Terracotta Army" },
+            { icon: "shield", hanzi: "西安城墙", pinyin: "Xī'ān Chéngqiáng", trans: "Muralla Antigua de Xi'an", transEn: "Ancient City Wall" },
+            { icon: "building", hanzi: "大雁塔", pinyin: "Dàyàn Tǎ", trans: "Gran Pagoda de la Oca Salvaje", transEn: "Giant Wild Goose Pagoda" },
+            { icon: "map", hanzi: "丝绸之路", pinyin: "Sīchóu zhī Lù", trans: "Ruta de la Seda", transEn: "The Silk Road" }
         ],
         food: [
-            { icon: "🍜", hanzi: "biángbiáng面", pinyin: "biángbiáng miàn", trans: "Fideos anchos Biangbiang", transEn: "Biangbiang Belt Noodles" },
-            { icon: "🍔", hanzi: "肉夹馍", pinyin: "ròujiāmó", trans: "Hamburguesa china Roujiamo", transEn: "Chinese Roujiamo Burger" }
+            { icon: "utensils", hanzi: "biángbiáng面", pinyin: "biángbiáng miàn", trans: "Fideos anchos Biangbiang", transEn: "Biangbiang Belt Noodles" },
+            { icon: "utensils", hanzi: "肉夹馍", pinyin: "ròujiāmó", trans: "Hamburguesa china Roujiamo", transEn: "Chinese Roujiamo Burger" }
         ],
         survival: [
             { hanzi: "我想在古城墙上骑自行车。", pinyin: "Wǒ xiǎng zài gǔ chéngqiáng shang qí zìxíngchē.", trans: "Quiero montar en bicicleta sobre la muralla.", transEn: "I want to ride a bicycle on the city wall." },
@@ -123,18 +123,18 @@ const CHINA_CITIES_DATABASE = [
         name: "成都 · Chéngdū",
         spanishName: "Chengdu (Tierra de los Pandas y la Gastronomía)",
         englishName: "Chengdu (Land of Pandas & Spicy Cuisine)",
-        avatar: "🐼",
+        avatar: "sprout",
         tagline: "Hogar de los osos panda gigantes, capital culinaria de Sichuan y vida relajada de casas de té.",
         taglineEn: "Home of giant pandas, spicy Sichuan hotpot, and relaxed teahouse lifestyle.",
         highlights: [
-            { icon: "🐼", hanzi: "大熊猫基地", pinyin: "Dàxióngmāo Jīdì", trans: "Base de Cría de Pandas", transEn: "Giant Panda Breeding Base" },
-            { icon: "🎭", hanzi: "川剧变脸", pinyin: "Chuānjù Biànliǎn", trans: "Teatro de Cambio de Rostros", transEn: "Face-Changing Opera" },
-            { icon: "⛩️", hanzi: "武侯祠", pinyin: "Wǔhóu Cí", trans: "Templo Memorial Wuhou", transEn: "Wuhou Shrine" },
-            { icon: "🏮", hanzi: "锦里古街", pinyin: "Jǐnlǐ Gǔjiē", trans: "Callejejo histórico Jinli", transEn: "Jinli Ancient Street" }
+            { icon: "heart", hanzi: "大熊猫基地", pinyin: "Dàxióngmāo Jīdì", trans: "Base de Cría de Pandas", transEn: "Giant Panda Breeding Base" },
+            { icon: "mask", hanzi: "川剧变脸", pinyin: "Chuānjù Biànliǎn", trans: "Teatro de Cambio de Rostros", transEn: "Face-Changing Opera" },
+            { icon: "lantern", hanzi: "武侯祠", pinyin: "Wǔhóu Cí", trans: "Templo Memorial Wuhou", transEn: "Wuhou Shrine" },
+            { icon: "scroll", hanzi: "锦里古街", pinyin: "Jǐnlǐ Gǔjiē", trans: "Callejejo histórico Jinli", transEn: "Jinli Ancient Street" }
         ],
         food: [
-            { icon: "🍲", hanzi: "四川火锅", pinyin: "Sìchuān huǒguō", trans: "Hot Pot picante de Sichuan", transEn: "Sichuan Spicy Hotpot" },
-            { icon: "🌶️", hanzi: "麻婆豆腐", pinyin: "mápó dòufu", trans: "Tofu picante Mapo", transEn: "Mapo Tofu" }
+            { icon: "flame", hanzi: "四川火锅", pinyin: "Sìchuān huǒguō", trans: "Hot Pot picante de Sichuan", transEn: "Sichuan Spicy Hotpot" },
+            { icon: "utensils", hanzi: "麻婆豆腐", pinyin: "mápó dòufu", trans: "Tofu picante Mapo", transEn: "Mapo Tofu" }
         ],
         survival: [
             { hanzi: "这个火锅不太辣吧？", pinyin: "Zhège huǒguō bù tài là ba?", trans: "¿Este Hot Pot no es demasiado picante?", transEn: "Is this hot pot not too spicy?" },
@@ -162,18 +162,18 @@ const CHINA_CITIES_DATABASE = [
         name: "桂林 · Guìlín",
         spanishName: "Guilin (El Paisaje más Bello Bajo el Cielo)",
         englishName: "Guilin (Finest Scenery Under Heaven)",
-        avatar: "🏞️",
+        avatar: "mountain",
         tagline: "Famosa en todo el mundo por sus montañas kársticas de ensueño y las aguas cristalinas del río Li.",
         taglineEn: "World-famous for its magical karst limestone peaks and crystal Li River waters.",
         highlights: [
-            { icon: "🚣", hanzi: "漓江山水", pinyin: "Líjiāng Shānshuǐ", trans: "Crucero por el Río Li", transEn: "Li River Karst Cruise" },
-            { icon: "🌾", hanzi: "龙脊梯田", pinyin: "Lóngjǐ Tītián", trans: "Terrazas de Arroz de Longji", transEn: "Longji Rice Terraces" },
-            { icon: "🪨", hanzi: "象鼻山", pinyin: "Xiàngbí Shān", trans: "Colina de la Trompa del Elefante", transEn: "Elephant Trunk Hill" },
-            { icon: "🎋", hanzi: "芦笛岩", pinyin: "Lúdí Yán", trans: "Cueva de la Flauta de Caña", transEn: "Reed Flute Cave" }
+            { icon: "compass", hanzi: "漓江山水", pinyin: "Líjiāng Shānshuǐ", trans: "Crucero por el Río Li", transEn: "Li River Karst Cruise" },
+            { icon: "sprout", hanzi: "龙脊梯田", pinyin: "Lóngjǐ Tītián", trans: "Terrazas de Arroz de Longji", transEn: "Longji Rice Terraces" },
+            { icon: "mountain", hanzi: "象鼻山", pinyin: "Xiàngbí Shān", trans: "Colina de la Trompa del Elefante", transEn: "Elephant Trunk Hill" },
+            { icon: "leaf", hanzi: "芦笛岩", pinyin: "Lúdí Yán", trans: "Cueva de la Flauta de Caña", transEn: "Reed Flute Cave" }
         ],
         food: [
-            { icon: "🍜", hanzi: "桂林米粉", pinyin: "Guìlín mǐfěn", trans: "Fideos de arroz de Guilin", transEn: "Guilin Rice Noodles" },
-            { icon: "🐟", hanzi: "啤酒鱼", pinyin: "píjiǔ yú", trans: "Pescado guisado a la cerveza", transEn: "Beer Fish" }
+            { icon: "utensils", hanzi: "桂林米粉", pinyin: "Guìlín mǐfěn", trans: "Fideos de arroz de Guilin", transEn: "Guilin Rice Noodles" },
+            { icon: "utensils", hanzi: "啤酒鱼", pinyin: "píjiǔ yú", trans: "Pescado guisado a la cerveza", transEn: "Beer Fish" }
         ],
         survival: [
             { hanzi: "这里的山水美极了！", pinyin: "Zhèlǐ de shānshuǐ měi jí le!", trans: "¡El paisaje aquí es bellísimo!", transEn: "The landscape here is breathtaking!" },
@@ -201,18 +201,18 @@ const CHINA_CITIES_DATABASE = [
         name: "杭州 · Hángzhōu",
         spanishName: "Hangzhou (El Paraíso en la Tierra)",
         englishName: "Hangzhou (Paradise on Earth)",
-        avatar: "🍵",
+        avatar: "leaf",
         tagline: "Famosa por el idílico Lago del Oeste (西湖), el té verde Longjing y el proverbio 'Arriba está el cielo, abajo Hangzhou'.",
         taglineEn: "Famous for the idyllic West Lake, Longjing green tea and the ancient proverb 'Heaven above, Hangzhou below'.",
         highlights: [
-            { icon: "🌊", hanzi: "西湖", pinyin: "Xī Hú", trans: "El Lago del Oeste", transEn: "West Lake" },
-            { icon: "🍃", hanzi: "龙井茶园", pinyin: "Lóngjǐng Cháyuán", trans: "Plantaciones de Té Longjing", transEn: "Longjing Tea Fields" },
-            { icon: "🛕", hanzi: "灵隐寺", pinyin: "Língyǐn Sì", trans: "Templo del Retiro de las Almas", transEn: "Lingyin Temple" },
-            { icon: "🌉", hanzi: "断桥残雪", pinyin: "Duànqiáo Cánxuě", trans: "Puente Roto de la Leyenda", transEn: "Broken Bridge" }
+            { icon: "compass", hanzi: "西湖", pinyin: "Xī Hú", trans: "El Lago del Oeste", transEn: "West Lake" },
+            { icon: "leaf", hanzi: "龙井茶园", pinyin: "Lóngjǐng Cháyuán", trans: "Plantaciones de Té Longjing", transEn: "Longjing Tea Fields" },
+            { icon: "lantern", hanzi: "灵隐寺", pinyin: "Língyǐn Sì", trans: "Templo del Retiro de las Almas", transEn: "Lingyin Temple" },
+            { icon: "map", hanzi: "断桥残雪", pinyin: "Duànqiáo Cánxuě", trans: "Puente Roto de la Leyenda", transEn: "Broken Bridge" }
         ],
         food: [
-            { icon: "🐟", hanzi: "西湖醋鱼", pinyin: "Xīhú cùyú", trans: "Pescado al vinagre del Lago del Oeste", transEn: "West Lake Vinegar Fish" },
-            { icon: "🍤", hanzi: "龙井虾仁", pinyin: "Lóngjǐng xiārén", trans: "Camarones al té Longjing", transEn: "Shrimp with Longjing Tea" }
+            { icon: "utensils", hanzi: "西湖醋鱼", pinyin: "Xīhú cùyú", trans: "Pescado al vinagre del Lago del Oeste", transEn: "West Lake Vinegar Fish" },
+            { icon: "utensils", hanzi: "龙井虾仁", pinyin: "Lóngjǐng xiārén", trans: "Camarones al té Longjing", transEn: "Shrimp with Longjing Tea" }
         ],
         survival: [
             { hanzi: "我想租一条游船游览西湖。", pinyin: "Wǒ xiǎng zū yī tiáo yóuchuán yóulǎn Xī Hú.", trans: "Quiero alquilar un barco para recorrer el Lago del Oeste.", transEn: "I'd like to rent a boat to tour West Lake." },
@@ -240,18 +240,18 @@ const CHINA_CITIES_DATABASE = [
         name: "香港 · Xiānggǎng",
         spanishName: "Hong Kong (La Perla de Oriente)",
         englishName: "Hong Kong (Pearl of the Orient)",
-        avatar: "⛵",
+        avatar: "compass",
         tagline: "Metrópolis vibrante donde la tradición cantonesa se encuentra con la bahía de Victoria y rascacielos iluminados.",
         taglineEn: "Vibrant metropolis where Cantonese traditions meet Victoria Harbour and illuminated skylines.",
         highlights: [
-            { icon: "⛰️", hanzi: "太平山顶", pinyin: "Tàipíng Shāndǐng", trans: "Pico Victoria (The Peak)", transEn: "Victoria Peak" },
-            { icon: "⛴️", hanzi: "天星小轮", pinyin: "Tiānxīng Xiǎolún", trans: "Ferry Star Ferry", transEn: "Star Ferry" },
-            { icon: "🚋", hanzi: "叮叮车", pinyin: "Dīngdīng chē", trans: "Tranvía Ding Ding de 2 pisos", transEn: "Ding Ding Tram" },
-            { icon: "🧘", hanzi: "天坛大佛", pinyin: "Tiāntán Dàfó", trans: "Gran Buda de Tian Tan", transEn: "Tian Tan Big Buddha" }
+            { icon: "mountain", hanzi: "太平山顶", pinyin: "Tàipíng Shāndǐng", trans: "Pico Victoria (The Peak)", transEn: "Victoria Peak" },
+            { icon: "compass", hanzi: "天星小轮", pinyin: "Tiānxīng Xiǎolún", trans: "Ferry Star Ferry", transEn: "Star Ferry" },
+            { icon: "zap", hanzi: "叮叮车", pinyin: "Dīngdīng chē", trans: "Tranvía Ding Ding de 2 pisos", transEn: "Ding Ding Tram" },
+            { icon: "sun", hanzi: "天坛大佛", pinyin: "Tiāntán Dàfó", trans: "Gran Buda de Tian Tan", transEn: "Tian Tan Big Buddha" }
         ],
         food: [
-            { icon: "🥟", hanzi: "点心 / Dim Sum", pinyin: "diǎnxin", trans: "Dim Sum tradicional cantonés", transEn: "Cantonese Dim Sum" },
-            { icon: "🧋", hanzi: "丝袜奶茶", pinyin: "sīwà nǎichá", trans: "Té con leche estilo Hong Kong", transEn: "Hong Kong Milk Tea" }
+            { icon: "utensils", hanzi: "点心 / Dim Sum", pinyin: "diǎnxin", trans: "Dim Sum tradicional cantonés", transEn: "Cantonese Dim Sum" },
+            { icon: "utensils", hanzi: "丝袜奶茶", pinyin: "sīwà nǎichá", trans: "Té con leche estilo Hong Kong", transEn: "Hong Kong Milk Tea" }
         ],
         survival: [
             { hanzi: "请问去太平山顶坐缆车在哪里？", pinyin: "Qǐngwèn qù Tàipíng Shāndǐng zuò lǎnchē zài nǎlǐ?", trans: "¿Dónde se toma el funicular para subir al Pico Victoria?", transEn: "Where do I board the Peak Tram to Victoria Peak?" },
@@ -339,9 +339,12 @@ class ChinaCitiesGame {
         this.stampsContainer.innerHTML = CHINA_CITIES_DATABASE.map((city) => {
             const isUnlocked = this.unlockedStamps.includes(city.id);
             const cityName = city.name.split("·")[0].trim();
+            const iconHtml = isUnlocked
+                ? (window.hskIcons?.render?.("award", { size: 16, stroke: "#d97706" }) || "")
+                : (window.hskIcons?.render?.("lock", { size: 16 }) || "");
             return `
                 <div class="passport-stamp ${isUnlocked ? "unlocked" : "locked"}">
-                    <span>${isUnlocked ? "💮" : "🔒"}</span>
+                    <span>${iconHtml}</span>
                     <span>${cityName} ${isUnlocked ? "(已打卡)" : ""}</span>
                 </div>
             `;
@@ -352,9 +355,10 @@ class ChinaCitiesGame {
         if (!this.pillsContainer) return;
         this.pillsContainer.innerHTML = CHINA_CITIES_DATABASE.map((city) => {
             const isActive = city.id === this.currentCity.id;
+            const avatarHtml = window.hskIcons?.render?.(city.avatar, { size: 16 }) || "";
             return `
                 <button type="button" class="city-pill-btn ${isActive ? "active" : ""}" data-city-id="${city.id}">
-                    <span>${city.avatar}</span>
+                    <span>${avatarHtml}</span>
                     <span>${city.name.split("·")[0].trim()}</span>
                 </button>
             `;
@@ -376,7 +380,9 @@ class ChinaCitiesGame {
         this.currentCity = city;
         const isEs = this.app?.currentLanguage !== "en";
 
-        if (this.avatarBadge) this.avatarBadge.textContent = city.avatar;
+        if (this.avatarBadge) {
+            this.avatarBadge.innerHTML = window.hskIcons?.render?.(city.avatar, { size: 32 }) || "";
+        }
         if (this.chineseName) this.chineseName.textContent = city.name;
         if (this.spanishName) this.spanishName.textContent = isEs ? city.spanishName : (city.englishName || city.spanishName);
         if (this.tagline) this.tagline.textContent = isEs ? city.tagline : (city.taglineEn || city.tagline);
@@ -395,9 +401,10 @@ class ChinaCitiesGame {
 
         this.highlightsGrid.innerHTML = this.currentCity.highlights.map((item) => {
             const trans = isEs ? item.trans : (item.transEn || item.trans);
+            const iconHtml = window.hskIcons?.render?.(item.icon, { size: 20 }) || "";
             return `
                 <div class="highlight-item-card" data-hanzi="${item.hanzi}">
-                    <span class="item-icon">${item.icon}</span>
+                    <span class="item-icon">${iconHtml}</span>
                     <div class="item-info">
                         <div class="item-hanzi">${item.hanzi}</div>
                         <div class="item-pinyin">${item.pinyin}</div>
@@ -421,9 +428,10 @@ class ChinaCitiesGame {
 
         this.foodGrid.innerHTML = this.currentCity.food.map((item) => {
             const trans = isEs ? item.trans : (item.transEn || item.trans);
+            const iconHtml = window.hskIcons?.render?.(item.icon, { size: 20 }) || "";
             return `
                 <div class="food-item-card" data-hanzi="${item.hanzi}">
-                    <span class="item-icon">${item.icon}</span>
+                    <span class="item-icon">${iconHtml}</span>
                     <div class="item-info">
                         <div class="item-hanzi">${item.hanzi}</div>
                         <div class="item-pinyin">${item.pinyin}</div>
@@ -448,14 +456,15 @@ class ChinaCitiesGame {
 
         this.survivalList.innerHTML = survivalItems.map((item) => {
             const trans = isEs ? item.trans : (item.transEn || item.trans);
+            const volumeIcon = window.hskIcons?.render?.("volume", { size: 16 }) || "";
             return `
                 <div class="survival-phrase-card" data-hanzi="${item.hanzi}">
                     <div class="survival-info">
-                        <div class="survival-hanzi">🗣️ ${item.hanzi}</div>
+                        <div class="survival-hanzi">${item.hanzi}</div>
                         <div class="survival-pinyin">${item.pinyin}</div>
                         <div class="survival-trans">${trans}</div>
                     </div>
-                    <span class="survival-play-icon">🔊</span>
+                    <span class="survival-play-icon">${volumeIcon}</span>
                 </div>
             `;
         }).join("");
@@ -519,18 +528,22 @@ class ChinaCitiesGame {
             }
 
             this.quizFeedback.className = "city-quiz-feedback correct";
-            this.quizFeedback.innerHTML = isEs
-                ? "🎉 ¡Correcto! Has conseguido el Sello de Viaje Oficial de esta ciudad. +50 XP"
-                : "🎉 Correct! You unlocked the Official Travel Stamp for this city. +50 XP";
+            const checkIcon = window.hskIcons?.render?.("check", { size: 16, stroke: "#065f46" }) || "";
+            const msg = isEs
+                ? "¡Correcto! Has conseguido el Sello de Viaje Oficial de esta ciudad. +50 XP"
+                : "Correct! You unlocked the Official Travel Stamp for this city. +50 XP";
+            this.quizFeedback.innerHTML = `<span style="display:inline-flex; align-items:center; gap:6px;">${checkIcon} <span>${msg}</span></span>`;
             this.quizFeedback.style.display = "block";
 
             this.app?.audioController?.playCorrect?.();
             this.app?.achievementManager?.fireConfetti?.();
         } else {
             this.quizFeedback.className = "city-quiz-feedback incorrect";
-            this.quizFeedback.innerHTML = isEs
-                ? "❌ No es correcto. Revisa los puntos clave de la ciudad e inténtalo de nuevo."
-                : "❌ That's not correct. Review the city highlights and try again.";
+            const crossIcon = window.hskIcons?.render?.("cross", { size: 16, stroke: "#991b1b" }) || "";
+            const msg = isEs
+                ? "No es correcto. Revisa los puntos clave de la ciudad e inténtalo de nuevo."
+                : "That's not correct. Review the city highlights and try again.";
+            this.quizFeedback.innerHTML = `<span style="display:inline-flex; align-items:center; gap:6px;">${crossIcon} <span>${msg}</span></span>`;
             this.quizFeedback.style.display = "block";
 
             this.app?.audioController?.playIncorrect?.();

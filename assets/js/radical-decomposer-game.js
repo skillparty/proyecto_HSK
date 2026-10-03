@@ -446,18 +446,22 @@ class RadicalDecomposerGame {
 
         if (isCorrect) {
             this.challengeFeedback.className = "challenge-feedback correct";
-            this.challengeFeedback.innerHTML = isEs
-                ? `🎉 ¡Excelente! Has ensamblado correctamente <strong>${this.currentCharacter.char}</strong> (${this.currentCharacter.pinyin}).`
-                : `🎉 Excellent! You correctly assembled <strong>${this.currentCharacter.char}</strong> (${this.currentCharacter.pinyin}).`;
+            const checkIcon = window.hskIcons?.render?.("check", { size: 16, stroke: "#065f46" }) || "";
+            const msg = isEs
+                ? `¡Excelente! Has ensamblado correctamente <strong>${this.currentCharacter.char}</strong> (${this.currentCharacter.pinyin}).`
+                : `Excellent! You correctly assembled <strong>${this.currentCharacter.char}</strong> (${this.currentCharacter.pinyin}).`;
+            this.challengeFeedback.innerHTML = `<span style="display:inline-flex; align-items:center; gap:6px;">${checkIcon} <span>${msg}</span></span>`;
             this.challengeFeedback.style.display = "block";
 
             this.app.audioController?.playCorrect?.();
             this.app.achievementManager?.fireConfetti?.();
         } else {
             this.challengeFeedback.className = "challenge-feedback incorrect";
-            this.challengeFeedback.innerHTML = isEs
-                ? "❌ Orden o componentes incorrectos. Vuelve a intentarlo."
-                : "❌ Incorrect components or order. Try again.";
+            const crossIcon = window.hskIcons?.render?.("cross", { size: 16, stroke: "#991b1b" }) || "";
+            const msg = isEs
+                ? "Orden o componentes incorrectos. Vuelve a intentarlo."
+                : "Incorrect components or order. Try again.";
+            this.challengeFeedback.innerHTML = `<span style="display:inline-flex; align-items:center; gap:6px;">${crossIcon} <span>${msg}</span></span>`;
             this.challengeFeedback.style.display = "block";
 
             this.app.audioController?.playIncorrect?.();

@@ -254,7 +254,7 @@ class UIController {
         (async () => {
           try {
             if (!window.BrowseController) {
-              await this.loadScript("assets/js/modules/browse-controller.js?v=0b2cc599");
+              await this.loadScript("assets/js/modules/browse-controller.js?v=8863de49");
             }
             if (!this.app.browseController) {
               this.app.browseController = new window.BrowseController(this.app);
@@ -298,7 +298,7 @@ class UIController {
         (async () => {
           try {
             if (!window.QuizEngine) {
-              await this.loadScript("assets/js/modules/quiz-engine.js?v=d2adccf2");
+              await this.loadScript("assets/js/modules/quiz-engine.js?v=19134431");
             }
             if (!window.QuizLegacyController) {
               await this.loadScript("assets/js/modules/quiz-legacy-controller.js?v=0c8d314f");
@@ -327,7 +327,7 @@ class UIController {
               await this.loadScript("assets/js/modules/past-exams-question-bank.js");
             }
             if (!window.PastExamsController) {
-              await this.loadScript("assets/js/modules/past-exams-controller.js?v=9063c6a3");
+              await this.loadScript("assets/js/modules/past-exams-controller.js?v=04dc220c");
             }
             if (!this.app.pastExamsController) {
               this.app.pastExamsController = new window.PastExamsController(this.app);
@@ -365,7 +365,7 @@ class UIController {
               await this.loadScript("assets/js/modules/quantifier-snake-canvas.js?v=11c68752");
             }
             if (!window.QuantifierSnakeController) {
-              await this.loadScript("assets/js/modules/quantifier-snake-controller.js?v=7d0e3c3d");
+              await this.loadScript("assets/js/modules/quantifier-snake-controller.js?v=dd2830f0");
             }
             if (!window.QuantifierSnakeVersusRenderer) {
               await this.loadScript("assets/js/modules/quantifier-snake-versus-renderer.js");
@@ -411,7 +411,7 @@ class UIController {
         (async () => {
           try {
             if (!window.StatsController) {
-              await this.loadScript("assets/js/modules/stats-controller.js?v=7a1e139f");
+              await this.loadScript("assets/js/modules/stats-controller.js?v=7ef71be1");
             }
             if (!this.app.statsController) {
               this.app.statsController = new window.StatsController(this.app);
@@ -442,7 +442,7 @@ class UIController {
               await this.loadScript("assets/js/matrix-game-view.js");
             }
             if (!window.MatrixGame) {
-              await this.loadScript("assets/js/matrix-game.js?v=8f3eff3a");
+              await this.loadScript("assets/js/matrix-game.js?v=df081dfc");
             }
             if (typeof renderMatrixGameInterface === "undefined") {
               await this.loadScript("assets/js/matrix-game-ui.js");
@@ -552,7 +552,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/etymology-styles.css?v=b73c0ecf");
             if (!window.EtymologyController) {
-              await this.loadScript("assets/js/modules/etymology-controller.js?v=6921fd07");
+              await this.loadScript("assets/js/modules/etymology-controller.js?v=17a6e3a2");
             }
             if (!window.etymologyController) {
               window.etymologyController = new EtymologyController(this.app);
@@ -696,7 +696,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/app-videos.css?v=f5735c3e");
             if (!window.VideosController) {
-              await this.loadScript("assets/js/modules/videos-controller.js?v=b25d2a46");
+              await this.loadScript("assets/js/modules/videos-controller.js?v=0acd6107");
             }
             if (!this.app.videosController) {
               this.app.videosController = new window.VideosController(this.app);
@@ -1084,10 +1084,10 @@ class UIController {
     hint.className = `onboarding-hint onboarding-hint--${hintType}`;
     hint.innerHTML = `
             <div class="onboarding-hint-content">
-                <span class="onboarding-hint-icon" aria-hidden="true">💡</span>
+                <span class="onboarding-hint-icon" aria-hidden="true">${window.hskIcons?.render?.('lightbulb', { size: 16 }) || ''}</span>
                 <span class="onboarding-hint-text">${hintMessage}</span>
             </div>
-            <button type="button" class="onboarding-hint-close" aria-label="Close">×</button>
+            <button type="button" class="onboarding-hint-close" aria-label="Close">&times;</button>
         `;
 
     hint

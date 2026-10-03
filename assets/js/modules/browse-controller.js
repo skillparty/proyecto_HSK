@@ -794,9 +794,10 @@ class BrowseController {
             return;
         }
 
+        const searchIcon = window.hskIcons?.render?.('search', { size: 40 }) || '';
         vocabularyGrid.innerHTML =
             '<div class="no-results">' +
-            '<div class="no-results-icon">🔍</div>' +
+            '<div class="no-results-icon">' + searchIcon + '</div>' +
             '<h4>' + ((this.app.getTranslation && this.app.getTranslation('noVocabularyFound')) || 'No words found') + '</h4>' +
             '<p>' + ((this.app.getTranslation && this.app.getTranslation('tryAdjustingSearch')) || 'Try adjusting the search or filters.') + '</p>' +
             '</div>';

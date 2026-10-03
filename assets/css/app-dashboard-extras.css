@@ -672,15 +672,32 @@ html[data-theme="light"] .dashboard-3d-portal {
 
 /* ── Header streak enhancements ──────────────────────────────────── */
 .header-streak-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1rem;
     line-height: 1;
-    filter: grayscale(1);
-    transition: filter 0.3s ease;
+    color: var(--color-text-dim, #71717a);
+    transition: color 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+}
+
+.header-streak-icon svg {
+    display: block;
+    color: currentColor;
+    stroke: currentColor;
 }
 
 #header-streak-stat.streak-active .header-streak-icon {
-    filter: none;
+    color: var(--color-primary, #e53935);
     animation: streakPulse 2s ease-in-out infinite;
+}
+
+.hsk-icon {
+    display: inline-block;
+    vertical-align: -0.15em;
+    stroke: currentColor;
+    fill: none;
+    flex-shrink: 0;
 }
 
 @keyframes streakPulse {

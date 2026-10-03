@@ -729,7 +729,10 @@ class WritingSheetsController {
             const qrHtml = this.state.showAudioQR ? `
                 <div class="ws-header-qr-wrap" title="Escanea con la cámara de tu móvil para escuchar la pronunciación">
                     ${this.generateQRCodeSvg(pageItems.map(i => i.hanzi).join(""), 42)}
-                    <span class="ws-qr-caption">🔊 Audio QR</span>
+                    <span class="ws-qr-caption" style="display:inline-flex; align-items:center; justify-content:center; gap:3px;">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <span>Audio QR</span>
+                    </span>
                 </div>
             ` : "";
 
@@ -830,7 +833,10 @@ class WritingSheetsController {
             const qrHtml = this.state.showAudioQR ? `
                 <div class="ws-header-qr-wrap" title="Escanea con la cámara de tu móvil para escuchar la pronunciación">
                     ${this.generateQRCodeSvg(pageItems.map(i => i.hanzi).join(""), 42)}
-                    <span class="ws-qr-caption">🔊 Audio QR</span>
+                    <span class="ws-qr-caption" style="display:inline-flex; align-items:center; justify-content:center; gap:3px;">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <span>Audio QR</span>
+                    </span>
                 </div>
             ` : "";
 

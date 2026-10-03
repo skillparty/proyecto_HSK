@@ -445,17 +445,25 @@ class ToneTrainerGame {
             ? Math.round((this.state.challengeCorrect / this.state.challengeTotal) * 100)
             : 0;
 
-        let medal = "🥉 Oído de Bronce";
-        if (this.state.challengeScore >= 400) medal = "👑 Maestro del Oído";
-        else if (this.state.challengeScore >= 250) medal = "🥇 Oído de Oro";
-        else if (this.state.challengeScore >= 120) medal = "🥈 Oído de Plata";
+        let medal = isEs ? "Oído de Bronce" : "Bronze Ear";
+        let medalIcon = window.hskIcons?.render?.("award", { size: 18, stroke: "#d97706" }) || "";
+        if (this.state.challengeScore >= 400) {
+            medal = isEs ? "Maestro del Oído" : "Master Ear";
+            medalIcon = window.hskIcons?.render?.("crown", { size: 18, stroke: "#eab308" }) || "";
+        } else if (this.state.challengeScore >= 250) {
+            medal = isEs ? "Oído de Oro" : "Gold Ear";
+            medalIcon = window.hskIcons?.render?.("trophy", { size: 18, stroke: "#eab308" }) || "";
+        } else if (this.state.challengeScore >= 120) {
+            medal = isEs ? "Oído de Plata" : "Silver Ear";
+            medalIcon = window.hskIcons?.render?.("medal", { size: 18, stroke: "#94a3b8" }) || "";
+        }
 
         const feedback = document.getElementById("tt-feedback");
         if (feedback) {
             feedback.innerHTML = `
                 <div class="tt-challenge-summary">
-                    <h4>🏁 ${isEs ? "¡Desafío 60s Completado!" : "60s Challenge Finished!"}</h4>
-                    <p class="tt-challenge-medal">${medal}</p>
+                    <h4>${window.hskIcons?.render?.("flag", { size: 18 }) || ""} ${isEs ? "¡Desafío 60s Completado!" : "60s Challenge Finished!"}</h4>
+                    <p class="tt-challenge-medal" style="display:inline-flex; align-items:center; gap:6px;">${medalIcon} <span>${medal}</span></p>
                     <div class="tt-summary-metrics">
                         <span>${isEs ? "Puntuación:" : "Score:"} <strong>${this.state.challengeScore} pts</strong></span>
                         <span>${isEs ? "Aciertos:" : "Correct:"} <strong>${this.state.challengeCorrect} / ${this.state.challengeTotal}</strong></span>
@@ -840,7 +848,8 @@ class ToneTrainerGame {
         const nextBtn = document.getElementById("tt-next-btn");
 
         if (feedback) {
-            feedback.innerHTML = `<span>🎯 ${msg}</span>`;
+            const icon = window.hskIcons?.render?.('target', { size: 16, stroke: '#065f46' }) || '';
+            feedback.innerHTML = `<span style="display:inline-flex; align-items:center; gap:6px;">${icon} <span>${msg}</span></span>`;
             feedback.className = "tt-feedback-card correct";
             feedback.style.display = "block";
         }
@@ -886,7 +895,8 @@ class ToneTrainerGame {
         const nextBtn = document.getElementById("tt-next-btn");
 
         if (feedback) {
-            feedback.innerHTML = `<span>❌ ${msg}</span>`;
+            const icon = window.hskIcons?.render?.('cross', { size: 16, stroke: '#991b1b' }) || '';
+            feedback.innerHTML = `<span style="display:inline-flex; align-items:center; gap:6px;">${icon} <span>${msg}</span></span>`;
             feedback.className = "tt-feedback-card incorrect";
             feedback.style.display = "block";
         }
@@ -911,7 +921,7 @@ class ToneTrainerGame {
         const accVal = document.getElementById("tt-accuracy-val");
 
         if (scoreVal) scoreVal.textContent = this.state.score;
-        if (streakVal) streakVal.textContent = `${this.state.streak} 🔥`;
+        if (streakVal) streakVal.textContent = this.state.streak;
 
         if (accVal) {
             const pct = this.state.totalQuestions > 0

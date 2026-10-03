@@ -220,7 +220,7 @@ class GradedReaderGame {
             this.rwpFavBtn.addEventListener("click", () => {
                 if (this.activePopoverWord && this.app.deckManager) {
                     const isNowFav = this.app.deckManager.toggleFavorite(this.activePopoverWord);
-                    this.rwpFavBtn.textContent = isNowFav ? "⭐" : "☆";
+                    this.rwpFavBtn.innerHTML = window.hskIcons?.render?.('star', { size: 14, fill: isNowFav ? 'currentColor' : 'none' }) || (isNowFav ? '★' : '☆');
                     this.app.showToast(
                         isNowFav ? "Guardado en Favoritos" : "Retirado de Favoritos",
                         "success",
@@ -377,7 +377,7 @@ class GradedReaderGame {
 
         if (this.rwpFavBtn && this.app?.deckManager) {
             const isFav = this.app.deckManager.isFavorite(word);
-            this.rwpFavBtn.textContent = isFav ? "⭐" : "☆";
+            this.rwpFavBtn.innerHTML = window.hskIcons?.render?.('star', { size: 14, fill: isFav ? 'currentColor' : 'none' }) || (isFav ? '★' : '☆');
         }
 
         // Position popover relative to article card
@@ -525,8 +525,8 @@ class GradedReaderGame {
         const isEs = this.app?.currentLanguage !== "en";
 
         this.quizScoreBanner.innerHTML = isEs
-            ? `🎉 ¡Completado! Acertaste <strong>${correctCount} / ${total}</strong> preguntas de comprensión.`
-            : `🎉 Completed! You got <strong>${correctCount} / ${total}</strong> comprehension questions correct.`;
+            ? `¡Completado! Acertaste <strong>${correctCount} / ${total}</strong> preguntas de comprensión.`
+            : `Completed! You got <strong>${correctCount} / ${total}</strong> comprehension questions correct.`;
         this.quizScoreBanner.style.display = "block";
 
         if (correctCount === total && this.app?.achievementManager) {

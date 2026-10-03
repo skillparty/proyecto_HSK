@@ -5,7 +5,7 @@ const HSK_DIALOGUE_SCENARIOS = [
         id: "restaurant",
         name: "在餐厅点菜",
         nameEn: "At the Restaurant",
-        icon: "🥢",
+        icon: "utensils",
         desc: "Aprende a pedir la carta, ordenar platos típicos y pedir la cuenta.",
         descEn: "Learn to ask for the menu, order typical dishes, and ask for the bill.",
         turns: [
@@ -119,7 +119,7 @@ const HSK_DIALOGUE_SCENARIOS = [
         id: "train-ticket",
         name: "买高铁票",
         nameEn: "Buying High-Speed Train Tickets",
-        icon: "🚄",
+        icon: "compass",
         desc: "Compra billetes de tren bala de Beijing a Shanghai y elige horario.",
         descEn: "Buy bullet train tickets from Beijing to Shanghai and choose departure time.",
         turns: [
@@ -181,7 +181,7 @@ const HSK_DIALOGUE_SCENARIOS = [
         id: "market",
         name: "在市场买水果与讲价",
         nameEn: "At the Market & Bargaining",
-        icon: "🍎",
+        icon: "book",
         desc: "Pregunta precios, negocia un descuento amistoso y compra fruta fresca.",
         descEn: "Ask prices, negotiate a friendly discount, and buy fresh fruit.",
         turns: [
@@ -299,9 +299,10 @@ class DialogueTutorGame {
         if (!this.scenariosBar) return;
         this.scenariosBar.innerHTML = HSK_DIALOGUE_SCENARIOS.map((scenario) => {
             const isActive = scenario.id === this.currentScenario.id;
+            const iconSvg = window.hskIcons?.render?.(scenario.icon, { size: 16 }) || "";
             return `
                 <button type="button" class="tutor-scenario-chip ${isActive ? "active" : ""}" data-scenario-id="${scenario.id}">
-                    <span>${scenario.icon}</span>
+                    <span style="display:inline-flex; align-items:center;">${iconSvg}</span>
                     <span>${scenario.name}</span>
                 </button>
             `;
@@ -328,7 +329,9 @@ class DialogueTutorGame {
 
         const isEs = this.app?.currentLanguage !== "en";
 
-        if (this.scenarioIcon) this.scenarioIcon.textContent = scenario.icon;
+        if (this.scenarioIcon) {
+            this.scenarioIcon.innerHTML = window.hskIcons?.render?.(scenario.icon, { size: 20 }) || "";
+        }
         if (this.scenarioName) this.scenarioName.textContent = isEs ? scenario.name : (scenario.nameEn || scenario.name);
         if (this.scenarioDesc) this.scenarioDesc.textContent = isEs ? scenario.desc : (scenario.descEn || scenario.desc);
         if (this.fluencyScore) this.fluencyScore.textContent = "100%";
@@ -362,6 +365,8 @@ class DialogueTutorGame {
         const isEs = this.app?.currentLanguage !== "en";
         const meaning = isEs ? turn.meaning : (turn.meaningEn || turn.meaning);
         const tip = isEs ? turn.cultureTip : (turn.cultureTipEn || turn.cultureTip);
+        const audioSvg = window.hskIcons?.render?.("volume-2", { size: 16 }) || "";
+        const tipSvg = window.hskIcons?.render?.("lightbulb", { size: 16 }) || "";
 
         const msgEl = document.createElement("div");
         msgEl.className = "tutor-chat-message bot";
@@ -371,9 +376,9 @@ class DialogueTutorGame {
                 <div class="tutor-bubble-hanzi">${turn.hanzi}</div>
                 <div class="tutor-bubble-pinyin">${turn.pinyin}</div>
                 <div class="tutor-bubble-meaning">${meaning}</div>
-                <button type="button" class="tutor-play-btn" title="Escuchar">🔊</button>
+                <button type="button" class="tutor-play-btn" title="Escuchar" aria-label="Escuchar">${audioSvg}</button>
             </div>
-            ${tip ? `<div class="tutor-culture-tip"><span>💡</span> <div>${tip}</div></div>` : ""}
+            ${tip ? `<div class="tutor-culture-tip"><span style="display:inline-flex; align-items:center;">${tipSvg}</span> <div>${tip}</div></div>` : ""}
         `;
 
         const playBtn = msgEl.querySelector(".tutor-play-btn");
@@ -389,6 +394,7 @@ class DialogueTutorGame {
         if (!this.chatFeed) return;
         const isEs = this.app?.currentLanguage !== "en";
         const meaning = isEs ? option.meaning : (option.meaningEn || option.meaning);
+        const audioSvg = window.hskIcons?.render?.("volume-2", { size: 16 }) || "";
 
         const msgEl = document.createElement("div");
         msgEl.className = "tutor-chat-message user";
@@ -398,7 +404,7 @@ class DialogueTutorGame {
                 <div class="tutor-bubble-hanzi">${option.hanzi}</div>
                 <div class="tutor-bubble-pinyin">${option.pinyin}</div>
                 <div class="tutor-bubble-meaning">${meaning}</div>
-                <button type="button" class="tutor-play-btn" title="Escuchar">🔊</button>
+                <button type="button" class="tutor-play-btn" title="Escuchar" aria-label="Escuchar">${audioSvg}</button>
             </div>
         `;
 
@@ -499,7 +505,7 @@ class DialogueTutorGame {
             this.recognition.onstart = () => {
                 this.isListening = true;
                 if (this.micBtn) this.micBtn.classList.add("listening");
-                this.app.showToast("🎙️ Escuchando... Di una de las opciones en mandarín", "info", 2000);
+                this.app.showToast("Escuchando... Di una de las opciones en mandarín", "info", 2000);
             };
 
             this.recognition.onresult = (event) => {
@@ -543,7 +549,7 @@ class DialogueTutorGame {
             }
         });
 
-        this.app.showToast(`🎙️ Detectado: "${transcript}"`, "success", 1800);
+        this.app.showToast(`Detectado: "${transcript}"`, "success", 1800);
         this.handleUserReply(bestMatch);
     }
 }

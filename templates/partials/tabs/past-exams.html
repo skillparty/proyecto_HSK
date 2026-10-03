@@ -73,7 +73,12 @@
                                 <span id="past-exam-score">0</span>
                             </div>
                             <div id="past-exam-timer-badge" class="quiz-timer-badge" style="display: none;">
-                                <span class="timer-icon">⏱️</span>
+                                <span class="timer-icon" aria-hidden="true">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </span>
                                 <span id="past-exam-timer-val">15:00</span>
                             </div>
                         </div>
@@ -85,7 +90,7 @@
                                 <div class="past-exam-nav-legend">
                                     <span class="legend-item"><span class="legend-dot current"></span> <span data-i18n="pastExamsNavCurrent">Actual</span></span>
                                     <span class="legend-item"><span class="legend-dot answered"></span> <span data-i18n="pastExamsNavAnswered">Respondida</span></span>
-                                    <span class="legend-item"><span class="legend-dot flagged"></span> <span data-i18n="pastExamsNavFlagged">Marcada 🚩</span></span>
+                                    <span class="legend-item"><span class="legend-dot flagged"></span> <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px; margin-right:2px;" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg><span data-i18n="pastExamsNavFlagged">Marcada</span></span>
                                 </div>
                             </div>
                             <div class="past-exam-nav-grid" id="past-exam-nav-grid"></div>
@@ -97,7 +102,13 @@
                             <!-- Listening Audio Box -->
                             <div id="past-exam-audio-container" class="past-exam-audio-box" style="display: none;">
                                 <button id="past-exam-play-audio-btn" type="button" class="btn btn-secondary past-exam-audio-btn">
-                                    <span class="audio-icon">🔊</span>
+                                    <span class="audio-icon" aria-hidden="true">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                        </svg>
+                                    </span>
                                     <span id="past-exam-audio-btn-text" data-i18n="pastExamsPlayAudio">Escuchar audio (听力)</span>
                                 </button>
                                 <span id="past-exam-audio-plays" class="past-exam-audio-plays"></span>
@@ -107,7 +118,13 @@
                             <div class="quiz-options" id="past-exam-options"></div>
 
                             <div class="past-exam-actions-bar">
-                                <button id="past-exam-flag-btn" type="button" class="btn btn-outline past-exam-flag-btn" data-i18n="pastExamsFlagQuestion">🚩 Marcar para revisar</button>
+                                <button id="past-exam-flag-btn" type="button" class="btn btn-outline past-exam-flag-btn">
+                                    <svg class="flag-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px; vertical-align:-2px;" aria-hidden="true">
+                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+                                        <line x1="4" y1="22" x2="4" y2="15"></line>
+                                    </svg>
+                                    <span id="past-exam-flag-btn-text" data-i18n="pastExamsFlagQuestion">Marcar para revisar</span>
+                                </button>
                                 <div class="past-exam-nav-btns">
                                     <button id="past-exam-prev" type="button" class="btn btn-secondary" style="display: none;" data-i18n="previous">Anterior</button>
                                     <button id="past-exam-submit" class="btn btn-primary" disabled data-i18n="submit">Enviar</button>

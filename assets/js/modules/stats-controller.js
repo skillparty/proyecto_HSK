@@ -330,56 +330,56 @@ class StatsController {
         const achievementsList = [
             {
                 id: 'first-steps',
-                title: isEs ? 'Primeros Pasos 👣' : 'First Steps 👣',
+                title: isEs ? 'Primeros Pasos' : 'First Steps',
                 desc: isEs ? 'Estudia tu primera tarjeta de vocabulario.' : 'Study your first vocabulary card.',
                 iconBg: 'radial-gradient(circle, #34d399, #059669)',
                 condition: (s) => (s.totalStudied || 0) >= 1
             },
             {
                 id: 'streak-fire',
-                title: isEs ? 'Racha de Fuego 🔥' : 'On Fire 🔥',
+                title: isEs ? 'Racha de Fuego' : 'On Fire',
                 desc: isEs ? 'Mantén una racha de estudio de al menos 3 días.' : 'Keep a study streak of at least 3 days.',
                 iconBg: 'radial-gradient(circle, #f59e0b, #d97706)',
                 condition: (s) => (s.currentStreak || 0) >= 3
             },
             {
                 id: 'snake-amateur',
-                title: isEs ? 'Viborita Amateur 🐍' : 'Snake Amateur 🐍',
+                title: isEs ? 'Viborita Amateur' : 'Snake Amateur',
                 desc: isEs ? 'Logra 20 puntos en el juego de clasificadores.' : 'Score 20 points in the Quantifier Snake game.',
                 iconBg: 'radial-gradient(circle, #60a5fa, #2563eb)',
                 condition: (s) => (s.snakeHighScore || 0) >= 20
             },
             {
                 id: 'snake-master',
-                title: isEs ? 'Viborita Master 👑' : 'Snake Master 👑',
+                title: isEs ? 'Viborita Master' : 'Snake Master',
                 desc: isEs ? 'Logra 60 puntos en el juego de clasificadores.' : 'Score 60 points in the Quantifier Snake game.',
                 iconBg: 'radial-gradient(circle, #c084fc, #7c3aed)',
                 condition: (s) => (s.snakeHighScore || 0) >= 60
             },
             {
                 id: 'exam-done',
-                title: isEs ? 'Estrella del Examen 📝' : 'Test Taker 📝',
+                title: isEs ? 'Estrella del Examen' : 'Test Taker',
                 desc: isEs ? 'Completa 1 examen oficial HSK de práctica.' : 'Complete 1 official HSK practice exam.',
                 iconBg: 'radial-gradient(circle, #f472b6, #db2777)',
                 condition: (s) => (s.quizzesCompleted || 0) >= 1
             },
             {
                 id: 'matrix-done',
-                title: isEs ? 'Fusión de Caracteres 🌌' : 'Character Fusion 🌌',
+                title: isEs ? 'Fusión de Caracteres' : 'Character Fusion',
                 desc: isEs ? 'Completa una ronda de la Matriz de Fusión.' : 'Complete a round of the Fusion Matrix game.',
                 iconBg: 'radial-gradient(circle, #fb7185, #e11d48)',
                 condition: (s) => (s.matrixRounds || 0) >= 1
             },
             {
                 id: 'bilingual',
-                title: isEs ? 'Mente Bilingüe 🌎' : 'Bilingual Mind 🌎',
+                title: isEs ? 'Mente Bilingüe' : 'Bilingual Mind',
                 desc: isEs ? 'Estudia con las traducciones en inglés y español.' : 'Study with both English and Spanish translations.',
                 iconBg: 'radial-gradient(circle, #2dd4bf, #0d9488)',
                 condition: () => true // Siempre activo ahora que el reverso de la tarjeta unificado es la norma
             },
             {
                 id: 'accuracy-expert',
-                title: isEs ? 'Precisión HSK 🎯' : 'HSK Accuracy Pro 🎯',
+                title: isEs ? 'Precisión HSK' : 'HSK Accuracy Pro',
                 desc: isEs ? 'Precisión >= 85% con al menos 15 tarjetas estudiadas.' : 'Accuracy >= 85% with at least 15 cards studied.',
                 iconBg: 'radial-gradient(circle, #fb923c, #ea580c)',
                 condition: (s) => {
@@ -394,9 +394,13 @@ class StatsController {
             const badge = document.createElement('div');
             badge.className = `achievement-badge ${isUnlocked ? 'achievement-badge--unlocked' : 'achievement-badge--locked'}`;
             
+            const badgeIcon = isUnlocked
+                ? (window.hskIcons?.render?.('trophy', { size: 18 }) || '')
+                : (window.hskIcons?.render?.('lock', { size: 18 }) || '');
+
             badge.innerHTML = `
                 <div class="achievement-icon" style="${isUnlocked ? `background: ${ach.iconBg};` : 'background: rgba(148, 163, 184, 0.12);'}">
-                    ${isUnlocked ? '🏆' : '🔒'}
+                    ${badgeIcon}
                 </div>
                 <div class="achievement-info">
                     <div class="achievement-title">${ach.title}</div>
