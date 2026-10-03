@@ -208,12 +208,17 @@ class HanziCanvasController {
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
 
-        // Ghost character in light tint
-        ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+        const isLight = (typeof document !== "undefined" && (
+            document.documentElement.getAttribute("data-theme") === "light" ||
+            document.body?.classList?.contains("light-theme")
+        ));
+
+        // Ghost character in theme-adapted tint (dark ink on light paper, soft frost on dark stone)
+        ctx.fillStyle = isLight ? "rgba(15, 23, 42, 0.14)" : "rgba(255, 255, 255, 0.14)";
         ctx.fillText(this.currentChar, size / 2, size / 2 + size * 0.04);
 
-        // Subtle outline for tracing
-        ctx.strokeStyle = "rgba(225, 29, 72, 0.18)";
+        // Subtle vermillion outline for tracing
+        ctx.strokeStyle = isLight ? "rgba(225, 29, 72, 0.32)" : "rgba(225, 29, 72, 0.22)";
         ctx.lineWidth = 1.5;
         ctx.strokeText(this.currentChar, size / 2, size / 2 + size * 0.04);
 

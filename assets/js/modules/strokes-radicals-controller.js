@@ -173,11 +173,15 @@ class StrokesRadicalsController {
         const typeFilter = document.getElementById('strokes-radicals-type');
         const levelFilter = document.getElementById('strokes-radicals-level');
         const searchInput = document.getElementById('strokes-radicals-search');
+        const searchClearBtn = document.getElementById('strokes-radicals-search-clear');
         const practiceDifficulty = document.getElementById('sr-practice-difficulty');
 
         this.state.typeFilter = typeFilter ? typeFilter.value : 'all';
         this.state.levelFilter = levelFilter ? levelFilter.value : 'all';
         this.state.searchTerm = (searchInput ? searchInput.value : '').trim().toLowerCase();
+        if (searchClearBtn && searchInput) {
+            searchClearBtn.style.display = searchInput.value ? 'inline-flex' : 'none';
+        }
         this.practice.state.difficulty = practiceDifficulty
             ? this.practice.sanitizeDifficulty(practiceDifficulty.value)
             : this.practice.sanitizeDifficulty(this.practice.state.difficulty || 'auto');
@@ -541,7 +545,15 @@ class StrokesRadicalsController {
         }
 
         if (searchInput) {
+            const searchClearBtn = document.getElementById('strokes-radicals-search-clear');
+            const updateClearBtn = () => {
+                if (searchClearBtn) {
+                    searchClearBtn.style.display = searchInput.value ? 'inline-flex' : 'none';
+                }
+            };
+
             searchInput.addEventListener('input', () => {
+                updateClearBtn();
                 if (this.searchRenderTimer) {
                     clearTimeout(this.searchRenderTimer);
                 }
@@ -551,6 +563,15 @@ class StrokesRadicalsController {
                     this.render();
                 }, 140);
             });
+
+            if (searchClearBtn) {
+                searchClearBtn.addEventListener('click', () => {
+                    searchInput.value = '';
+                    updateClearBtn();
+                    searchInput.focus();
+                    this.render();
+                });
+            }
         }
 
         if (practiceDifficulty) {

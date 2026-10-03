@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+2c2d8b88";
+const SW_VERSION = "4.70.0+1d4794a9";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -18,7 +18,7 @@ const PRECACHE_FILES = [
   "./assets/css/app-home.css?v=624dabde",
   "./assets/css/app-practice.css?v=f4eadb83",
   "./assets/css/app-browse.css?v=06964ebd",
-  "./assets/css/app-strokes.css?v=2a3bae39",
+  "./assets/css/app-strokes.css?v=dff411bb",
   "./assets/css/app-quiz.css?v=a56de94f",
   "./assets/css/app-stats.css?v=cd1fd78c",
   "./assets/css/app-enhancements.css?v=99d811b4",
@@ -73,7 +73,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=19134431",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=68c3e7b3",
+  "./assets/js/modules/ui-controller.js?v=7abc6acf",
   "./assets/js/modules/navigation-controller.js?v=952afc11",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",
@@ -98,7 +98,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/strokes-radicals-catalog-data.js",
   "./assets/js/modules/strokes-radicals-practice.js",
   "./assets/js/modules/hanzi-canvas-controller.js",
-  "./assets/js/modules/strokes-radicals-controller.js?v=23cc2c2c",
+  "./assets/js/modules/strokes-radicals-controller.js?v=c1d41335",
   "./assets/js/progress-integrator.js?v=0f7f559e",
   "./assets/js/auth-backend.js?v=816f190e",
   "./assets/js/user-progress-backend.js?v=f5b2ec4e",

@@ -169,5 +169,24 @@ describe("HanziCanvasController", () => {
     expect(controller.ctx.quadraticCurveTo).toHaveBeenCalled();
     expect(controller.ctx.stroke).toHaveBeenCalled();
   });
+
+  test("drawGhostCharacter renders with appropriate tint in dark and light modes", () => {
+    controller.initialize();
+    controller.showGhost = true;
+    controller.currentChar = "永";
+
+    // Dark theme default
+    document.documentElement.setAttribute("data-theme", "dark");
+    document.body.className = "dark-theme";
+    controller.drawGhostCharacter();
+    expect(controller.ctx.fillText).toHaveBeenCalledWith("永", expect.any(Number), expect.any(Number));
+    expect(controller.ctx.fillStyle).toBe("rgba(255, 255, 255, 0.14)");
+
+    // Light theme
+    document.documentElement.setAttribute("data-theme", "light");
+    document.body.className = "light-theme";
+    controller.drawGhostCharacter();
+    expect(controller.ctx.fillStyle).toBe("rgba(15, 23, 42, 0.14)");
+  });
 });
 

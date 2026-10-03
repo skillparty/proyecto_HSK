@@ -313,7 +313,7 @@ class UIController {
               await this.loadScript("assets/js/modules/hanzi-canvas-controller.js");
             }
             if (!window.StrokesRadicalsController) {
-              await this.loadScript("assets/js/modules/strokes-radicals-controller.js?v=23cc2c2c");
+              await this.loadScript("assets/js/modules/strokes-radicals-controller.js?v=c1d41335");
             }
             if (!this.app.strokesRadicalsController) {
               this.app.strokesRadicalsController = new window.StrokesRadicalsController(this.app);
