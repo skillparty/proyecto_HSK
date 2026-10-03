@@ -98,7 +98,7 @@
                                     <!-- Front Face -->
                                     <div class="card-face card-front">
                                         <div class="card-top-bar">
-                                            <div class="hsk-academic-seal">学</div>
+                                            <div class="hsk-academic-seal" title="Aprendizaje (Estudiar)">学</div>
                                             <div class="card-top-actions">
                                                 <button type="button" id="flashcard-front-audio-btn" class="card-action-icon-btn" title="Escuchar pronunciación" aria-label="Escuchar pronunciación">
                                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
@@ -122,7 +122,7 @@
 
                                     <!-- Back Face -->
                                     <div class="card-face card-back">
-                                        <div class="hsk-academic-seal">德</div>
+                                        <div class="hsk-academic-seal seal-back" title="Virtud y Sabiduría">德</div>
                                         <div class="card-answer" id="answer-text"></div>
                                         <div class="card-details" id="full-info"></div>
                                     </div>
@@ -231,7 +231,12 @@
                                     <option value="5000" selected>5s</option>
                                     <option value="8000">8s</option>
                                 </select>
-                                <button type="button" id="hf-close-btn" class="hf-btn hf-close" title="Cerrar modo manos libres" aria-label="Cerrar">✕</button>
+                                <button type="button" id="hf-close-btn" class="hf-btn hf-close" title="Cerrar modo manos libres" aria-label="Cerrar">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
                             </div>
                         </aside>
                     </div>

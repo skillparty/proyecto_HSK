@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+dd8ceec8";
+const SW_VERSION = "4.70.0+2c2d8b88";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -16,8 +16,8 @@ const PRECACHE_FILES = [
   "./assets/css/app-base.css?v=a184c466",
   "./assets/css/app-header-nav.css?v=690efec1",
   "./assets/css/app-home.css?v=624dabde",
-  "./assets/css/app-practice.css?v=ec0265ad",
-  "./assets/css/app-browse.css?v=fbb33c28",
+  "./assets/css/app-practice.css?v=f4eadb83",
+  "./assets/css/app-browse.css?v=06964ebd",
   "./assets/css/app-strokes.css?v=2a3bae39",
   "./assets/css/app-quiz.css?v=a56de94f",
   "./assets/css/app-stats.css?v=cd1fd78c",
@@ -60,7 +60,7 @@ const PRECACHE_FILES = [
   "./assets/js/bootstrap-diagnostics.js?v=8a60ac53",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=fdbcd458",
-  "./assets/js/translations.js?v=a8669dd4",
+  "./assets/js/translations.js?v=c27d4303",
   "./assets/js/firebase-client.js?v=620f489f",
   "./assets/js/firebase-progress-sync.js?v=bf85fc76",
   "./assets/js/modules/srs-engine.js?v=49945573",
@@ -73,7 +73,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=19134431",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=85ead038",
+  "./assets/js/modules/ui-controller.js?v=68c3e7b3",
   "./assets/js/modules/navigation-controller.js?v=952afc11",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",
@@ -85,7 +85,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/culture/china-provinces.js",
   "./assets/js/modules/memories-controller.js",
   "./assets/js/modules/language-controller.js?v=57c17946",
-  "./assets/js/modules/browse-controller.js?v=8863de49",
+  "./assets/js/modules/browse-controller.js?v=f728392f",
   "./assets/js/modules/interaction-controller.js?v=e9b006fc",
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-question-bank.js",

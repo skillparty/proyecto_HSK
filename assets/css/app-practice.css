@@ -275,18 +275,23 @@
     border-radius: var(--radius-xl, 20px);
     background: var(--bg-panel);
     border: 1.5px solid var(--color-border);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 22px 26px;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, transform 0.25s ease;
+}
+
+.flashcard:hover .card-face {
+    border-color: rgba(244, 63, 94, 0.35);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(244, 63, 94, 0.12);
 }
 
 .card-front {
     z-index: 2;
-    background: linear-gradient(180deg, var(--bg-panel) 0%, rgba(255, 255, 255, 0.02) 100%);
+    background: linear-gradient(175deg, var(--bg-panel) 0%, rgba(244, 63, 94, 0.02) 100%);
 }
 
 .card-back {
@@ -356,21 +361,37 @@
     fill: #f59e0b;
 }
 
-/* Academic Seals */
+/* Academic Seals: Authentic Chinese vermillion seal stamp (印章) */
 .hsk-academic-seal {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-chinese-serif, serif);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: #dc2626;
-    border: 1.5px solid rgba(220, 38, 38, 0.4);
-    background: rgba(220, 38, 38, 0.08);
-    box-shadow: inset 0 0 6px rgba(220, 38, 38, 0.1);
+    font-family: var(--font-chinese-serif, "Noto Serif SC", serif);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff;
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    border: 1.5px solid #ef4444;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    user-select: none;
+    letter-spacing: -0.05em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hsk-academic-seal:hover {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.45);
+}
+
+.hsk-academic-seal.seal-back {
+    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+    border-color: #dc2626;
+    margin-bottom: 8px;
+    align-self: flex-start;
 }
 
 /* Character Calligraphy Grid (Front Face) */
@@ -867,13 +888,22 @@
 .speech-rec-btn.recording {
     background: #ef4444;
     color: #ffffff;
-    animation: micPulse 1.2s infinite;
+    animation: micPulse 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes micPulse {
-    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
-    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 12px rgba(239, 68, 68, 0);
+        transform: scale(1.08);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+        transform: scale(1);
+    }
 }
 
 .check-submit-btn {
@@ -998,84 +1028,93 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 6px 4px;
-    border-radius: var(--radius-md, 10px);
+    gap: 2px;
+    padding: 8px 6px;
+    border-radius: var(--radius-md, 12px);
     border: 1.5px solid transparent;
     cursor: pointer;
-    min-height: 50px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    min-height: 54px;
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     user-select: none;
     touch-action: manipulation;
+    position: relative;
+    overflow: hidden;
 }
 
 .srs-btn:hover {
     transform: translateY(-2px);
 }
 
-.srs-btn:active {
-    transform: translateY(1px);
+.srs-btn:active,
+.srs-btn.active-rating {
+    transform: translateY(1px) scale(0.97);
 }
 
 .srs-key {
-    font-size: 0.68rem;
-    font-weight: 700;
-    opacity: 0.6;
+    font-size: 0.65rem;
+    font-weight: 800;
     font-family: var(--font-mono, monospace);
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 4px;
+    padding: 1px 6px;
+    line-height: 1.2;
 }
 
 .srs-label {
-    font-size: 0.84rem;
+    font-size: 0.86rem;
     font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
 .srs-sub {
     font-size: 0.68rem;
-    font-weight: 500;
-    opacity: 0.75;
+    font-weight: 600;
+    opacity: 0.85;
+    font-family: var(--font-mono, monospace);
 }
 
 .srs-again {
-    background: rgba(244, 63, 94, 0.1);
+    background: rgba(244, 63, 94, 0.12);
     color: #f43f5e;
     border-color: rgba(244, 63, 94, 0.3);
 }
 .srs-again:hover {
-    background: rgba(244, 63, 94, 0.2);
+    background: rgba(244, 63, 94, 0.22);
     border-color: #f43f5e;
-    box-shadow: 0 0 14px rgba(244, 63, 94, 0.3);
+    box-shadow: 0 4px 16px rgba(244, 63, 94, 0.35);
 }
 
 .srs-hard {
-    background: rgba(245, 158, 11, 0.1);
+    background: rgba(245, 158, 11, 0.12);
     color: #f59e0b;
     border-color: rgba(245, 158, 11, 0.3);
 }
 .srs-hard:hover {
-    background: rgba(245, 158, 11, 0.2);
+    background: rgba(245, 158, 11, 0.22);
     border-color: #f59e0b;
-    box-shadow: 0 0 14px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
 }
 
 .srs-good {
-    background: rgba(59, 130, 246, 0.1);
+    background: rgba(59, 130, 246, 0.12);
     color: #3b82f6;
     border-color: rgba(59, 130, 246, 0.3);
 }
 .srs-good:hover {
-    background: rgba(59, 130, 246, 0.2);
+    background: rgba(59, 130, 246, 0.22);
     border-color: #3b82f6;
-    box-shadow: 0 0 14px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.35);
 }
 
 .srs-easy {
-    background: rgba(16, 185, 129, 0.1);
+    background: rgba(16, 185, 129, 0.12);
     color: #10b981;
     border-color: rgba(16, 185, 129, 0.3);
 }
 .srs-easy:hover {
-    background: rgba(16, 185, 129, 0.2);
+    background: rgba(16, 185, 129, 0.22);
     border-color: #10b981;
-    box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
 }
 
 /* Keyboard Hints Bar */

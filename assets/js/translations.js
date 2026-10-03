@@ -509,6 +509,7 @@ const translations = {
         allVocabularyLoaded: "[✓] ¡Todo el vocabulario cargado!",
         noVocabularyFound: "No se encontró vocabulario",
         tryAdjustingSearch: "Prueba ajustando tu búsqueda o filtro",
+        resetFilters: "Restablecer filtros",
         noVocabularyForLevel: "No hay vocabulario disponible para HSK nivel {level}",
 
         // PDF Export & Selection
@@ -1588,6 +1589,7 @@ const translations = {
         allVocabularyLoaded: "[✓] All vocabulary loaded!",
         noVocabularyFound: "No vocabulary found",
         tryAdjustingSearch: "Try adjusting your search or filter",
+        resetFilters: "Reset filters",
         noVocabularyForLevel: "No vocabulary available for HSK level {level}",
 
         // PDF Export & Selection
@@ -2657,6 +2659,7 @@ const translations = {
         allVocabularyLoaded: "Весь словарь уровня успешно загружен",
         noVocabularyFound: "Ничего не найдено",
         tryAdjustingSearch: "Попробуйте изменить поисковый запрос или уровень HSK",
+        resetFilters: "Сбросить фильтры",
         noVocabularyForLevel: "Нет доступных слов для уровня HSK {level}",
         exportPdfBtn: "Экспорт в PDF",
         exportPdfTitle: "Экспорт карточек и прописей в PDF",
@@ -3680,6 +3683,7 @@ const translations = {
         allVocabularyLoaded: "โหลดคำศัพท์ทั้งหมดในระดับนี้ครบแล้ว",
         noVocabularyFound: "ไม่พบคำศัพท์ที่ตรงกับการค้นหา",
         tryAdjustingSearch: "ลองปรับคำค้นหาหรือระดับ HSK ใหม่อีกครั้ง",
+        resetFilters: "รีเซ็ตตัวกรอง",
         noVocabularyForLevel: "ไม่มีคำศัพท์ในระดับ HSK {level}",
         exportPdfBtn: "ส่งออกเป็นไฟล์ PDF",
         exportPdfTitle: "ส่งออกบัตรคำและสมุดคัดลายมือเป็น PDF",

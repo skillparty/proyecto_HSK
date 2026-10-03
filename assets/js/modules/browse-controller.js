@@ -167,6 +167,56 @@ class BrowseController {
         if (ankiSelectedBtn) {
             ankiSelectedBtn.addEventListener("click", () => this.exportSelectedToAnki());
         }
+
+        // Botón para limpiar campo de búsqueda omnibar
+        const searchInput = document.getElementById('search-input');
+        const searchClearBtn = document.getElementById('search-clear-btn');
+        if (searchInput && searchClearBtn && !searchClearBtn.dataset.boundClearSearch) {
+            searchClearBtn.dataset.boundClearSearch = 'true';
+            const updateClearBtn = () => {
+                searchClearBtn.style.display = searchInput.value ? 'inline-flex' : 'none';
+            };
+            searchInput.addEventListener('input', updateClearBtn);
+            searchClearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                updateClearBtn();
+                searchInput.focus();
+                this.filterVocabulary();
+            });
+            updateClearBtn();
+        }
+
+        // Chips rápidos de filtrado por nivel HSK
+        const chipsContainer = document.getElementById('browse-level-chips');
+        if (chipsContainer && !chipsContainer.dataset.boundChips) {
+            chipsContainer.dataset.boundChips = 'true';
+            chipsContainer.addEventListener('click', (e) => {
+                const chip = e.target.closest('.level-chip');
+                if (!chip) return;
+                const level = chip.dataset.level;
+                const levelFilter = document.getElementById('browse-level-filter');
+                if (levelFilter) {
+                    levelFilter.value = level;
+                }
+                this.syncLevelChips(level);
+                this.filterVocabulary();
+            });
+        }
+    }
+
+    syncLevelChips(level) {
+        if (typeof document === 'undefined') return;
+        const chips = document.querySelectorAll('.browse-level-chips .level-chip');
+        if (!chips || chips.length === 0) return;
+        chips.forEach(chip => {
+            const match = String(chip.dataset.level) === String(level);
+            chip.classList.toggle('active', match);
+            if (match) {
+                chip.setAttribute('aria-selected', 'true');
+            } else {
+                chip.removeAttribute('aria-selected');
+            }
+        });
     }
 
     getOrCreateSentinel() {
@@ -355,6 +405,12 @@ class BrowseController {
 
         const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
         const selectedLevel = levelFilter ? levelFilter.value : 'all';
+        this.syncLevelChips(selectedLevel);
+
+        const searchClearBtn = document.getElementById('search-clear-btn');
+        if (searchClearBtn && searchInput) {
+            searchClearBtn.style.display = searchInput.value ? 'inline-flex' : 'none';
+        }
 
         let entries;
         if (selectedLevel !== 'all') {
@@ -794,13 +850,37 @@ class BrowseController {
             return;
         }
 
-        const searchIcon = window.hskIcons?.render?.('search', { size: 40 }) || '';
+        const searchIcon = window.hskIcons?.render?.('search', { size: 36 }) ||
+            '<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>';
+        const resetIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>';
+        const noFoundText = (this.app.getTranslation && this.app.getTranslation('noVocabularyFound')) || 'No words found';
+        const adjustText = (this.app.getTranslation && this.app.getTranslation('tryAdjustingSearch')) || 'Try adjusting the search or filters.';
+        const resetText = (this.app.getTranslation && this.app.getTranslation('resetFilters')) || 'Restablecer filtros';
+
         vocabularyGrid.innerHTML =
             '<div class="no-results">' +
             '<div class="no-results-icon">' + searchIcon + '</div>' +
-            '<h4>' + ((this.app.getTranslation && this.app.getTranslation('noVocabularyFound')) || 'No words found') + '</h4>' +
-            '<p>' + ((this.app.getTranslation && this.app.getTranslation('tryAdjustingSearch')) || 'Try adjusting the search or filters.') + '</p>' +
+            '<h4>' + noFoundText + '</h4>' +
+            '<p>' + adjustText + '</p>' +
+            '<button type="button" id="browse-reset-filters-btn" class="btn btn-sm btn-primary reset-filter-btn" style="margin-top: 14px; display: inline-flex; align-items: center; gap: 6px;">' +
+                resetIcon +
+                '<span>' + resetText + '</span>' +
+            '</button>' +
             '</div>';
+
+        const resetBtn = document.getElementById('browse-reset-filters-btn');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                const searchInput = document.getElementById('search-input');
+                if (searchInput) searchInput.value = '';
+                const searchClearBtn = document.getElementById('search-clear-btn');
+                if (searchClearBtn) searchClearBtn.style.display = 'none';
+                const levelFilter = document.getElementById('browse-level-filter');
+                if (levelFilter) levelFilter.value = 'all';
+                this.syncLevelChips('all');
+                this.filterVocabulary();
+            });
+        }
     }
 
     exportToAnkiCsv() {

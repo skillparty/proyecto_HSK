@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-12T03:56:00.622Z",
+  "generatedAt": "2026-10-03T23:09:27.556Z",
   "totals": {
     "english": 5000,
-    "spanish": 5041,
+    "spanish": 4999,
     "missingTranslations": 0,
     "orphanSpanishEntries": 0,
     "overallCoverage": 100

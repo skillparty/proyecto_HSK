@@ -8,39 +8,188 @@
    9. BROWSE MODULE
    ============================================================================ */
 .search-section {
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     background: var(--bg-panel);
-    padding: 20px;
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 16px 20px;
+    border-radius: var(--radius-lg, 16px);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .search-container {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Omnibar Search Wrapper */
+.browse-search-wrapper {
+    position: relative;
+    flex: 2;
+    min-width: 240px;
+    display: flex;
+    align-items: center;
+}
+
+.browse-search-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.browse-search-wrapper:focus-within .browse-search-icon {
+    color: var(--primary, #f43f5e);
 }
 
 .search-input {
-    flex: 2;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid var(--color-border);
     color: var(--text-main);
-    padding: 12px 20px;
-    border-radius: var(--radius-sm);
-    font-size: 1rem;
-    min-width: 200px;
+    padding: 10px 38px 10px 42px;
+    border-radius: var(--radius-md, 10px);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .search-input:focus {
     outline: none;
-    border-color: var(--primary);
-    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary, #f43f5e);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.18);
 }
 
 .search-input:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--primary, #f43f5e);
     outline-offset: 2px;
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.search-clear-btn:hover {
+    color: var(--primary, #f43f5e);
+    background: rgba(255, 255, 255, 0.08);
+    transform: scale(1.1);
+}
+
+/* Filter Groups (Level & Sort) */
+.browse-filter-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md, 10px);
+    padding: 2px 10px;
+    min-height: 42px;
+    transition: border-color 0.2s ease;
+}
+
+.browse-filter-group:hover,
+.browse-filter-group:focus-within {
+    border-color: rgba(244, 63, 94, 0.4);
+}
+
+.browse-filter-label {
+    color: var(--primary, #f43f5e);
+    display: flex;
+    align-items: center;
+}
+
+.browse-filter-group .select-input {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 4px;
+    cursor: pointer;
+    outline: none;
+}
+
+.browse-tool-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 42px;
+    padding: 8px 14px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    border-radius: var(--radius-md, 10px);
+    white-space: nowrap;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.browse-tool-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Quick HSK Level Filter Chips */
+.browse-level-chips {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 2px 0;
+}
+
+.browse-level-chips::-webkit-scrollbar {
+    display: none;
+}
+
+.level-chip {
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    touch-action: manipulation;
+}
+
+.level-chip:hover {
+    color: var(--primary, #f43f5e);
+    border-color: rgba(244, 63, 94, 0.4);
+    background: rgba(244, 63, 94, 0.06);
+    transform: translateY(-1px);
+}
+
+.level-chip.active {
+    color: #ffffff;
+    background: var(--primary, #f43f5e);
+    border-color: var(--primary, #f43f5e);
+    box-shadow: 0 3px 12px rgba(244, 63, 94, 0.35);
+    font-weight: 700;
 }
 
 .vocabulary-grid {
@@ -250,11 +399,26 @@ html[data-theme="dark"] .vocab-character-box {
         gap: 10px;
     }
 
+    .browse-search-wrapper {
+        min-width: 100%;
+        width: 100%;
+    }
+
     .search-input {
         min-width: 100%;
         width: 100%;
         min-height: 44px;
-        padding: 10px 14px;
+        padding: 10px 36px 10px 38px;
+    }
+
+    .browse-filter-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .browse-tool-btn {
+        width: 100%;
+        justify-content: center;
     }
 
     .vocabulary-grid {
@@ -366,13 +530,21 @@ html[data-theme="dark"] .vocab-character-box {
     padding: 48px 16px;
     background: var(--bg-card);
     border: 1px dashed var(--color-border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-lg, 16px);
     color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .no-results .no-results-icon {
     font-size: 2.5rem;
     margin-bottom: 12px;
+    color: var(--primary, #f43f5e);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .no-results h4 {
@@ -386,21 +558,40 @@ html[data-theme="dark"] .vocab-character-box {
     color: var(--text-muted);
 }
 
+.no-results .reset-filter-btn {
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--primary, #f43f5e);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.no-results .reset-filter-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(244, 63, 94, 0.35);
+}
+
 /* ---- Selection Mode & Floating Action Bar ---- */
 .selection-floating-bar {
     position: sticky;
-    top: 10px;
+    top: 12px;
     z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px 18px;
+    gap: 12px;
+    padding: 12px 20px;
     background: var(--bg-panel, #ffffff);
-    border: 1.5px solid var(--primary, #e53935);
-    border-radius: var(--radius-md, 12px);
-    box-shadow: 0 10px 25px -5px rgba(229, 57, 53, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--primary, #f43f5e);
+    border-radius: var(--radius-md, 14px);
+    box-shadow: 0 12px 32px -4px rgba(244, 63, 94, 0.22), 0 8px 16px -6px rgba(0, 0, 0, 0.12);
     margin-bottom: 16px;
     animation: slideDownFade 0.25s ease-out;
 }
@@ -411,15 +602,24 @@ html[data-theme="dark"] .vocab-character-box {
 }
 
 .selection-bar-info {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     font-weight: 700;
-    color: var(--primary, #e53935);
+    color: var(--primary, #f43f5e);
 }
 
 .selection-bar-actions {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 8px;
+}
+
+.browse-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: var(--radius-md, 8px);
+    font-weight: 600;
 }
 
 .vocab-card {
@@ -447,17 +647,22 @@ html[data-theme="dark"] .vocab-character-box {
 }
 
 .vocab-card-select-checkbox {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--primary, #e53935);
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary, #f43f5e);
     cursor: pointer;
     border-radius: 4px;
+    transition: transform 0.15s ease;
+}
+
+.vocab-card-select-checkbox:hover {
+    transform: scale(1.15);
 }
 
 .vocab-card.is-card-selected {
-    border-color: var(--primary, #e53935);
-    background-color: rgba(229, 57, 53, 0.03);
-    box-shadow: 0 0 0 1.5px var(--primary, #e53935);
+    border-color: var(--primary, #f43f5e);
+    background-color: rgba(244, 63, 94, 0.04);
+    box-shadow: 0 0 0 1.5px var(--primary, #f43f5e), 0 8px 24px rgba(244, 63, 94, 0.15);
 }
 
 /* Tablet Responsive Browse Layout (641px - 1024px) */
