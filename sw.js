@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+8f6cd317";
+const SW_VERSION = "4.70.0+dd8ceec8";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -73,7 +73,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=19134431",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=e27fa548",
+  "./assets/js/modules/ui-controller.js?v=85ead038",
   "./assets/js/modules/navigation-controller.js?v=952afc11",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",

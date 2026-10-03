@@ -726,7 +726,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/app-videos.css?v=f5735c3e");
             if (!window.VideosController) {
-              await this.loadScript("assets/js/modules/videos-controller.js?v=0acd6107");
+              await this.loadScript("assets/js/modules/videos-controller.js?v=b4e8c5fa");
             }
             if (!this.app.videosController) {
               this.app.videosController = new window.VideosController(this.app);

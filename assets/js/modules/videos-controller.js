@@ -628,7 +628,7 @@ class VideosController {
 
     // Update iframe src with start time & enablejsapi for playback speed control
     const startParam = startSeconds > 0 ? `&start=${startSeconds}` : "";
-    iframe.src = `https://www.youtube-nocookie.com/embed/${vid.videoId}?enablejsapi=1&autoplay=1&rel=0${startParam}`;
+    iframe.src = `https://www.youtube.com/embed/${vid.videoId}?enablejsapi=1&autoplay=1&rel=0${startParam}`;
 
     if (titleEl) titleEl.textContent = vid.title[currentLang] || vid.title.es;
     if (channelEl) channelEl.textContent = channel ? channel.name : vid.channelId;
@@ -636,9 +636,7 @@ class VideosController {
     if (categoryEl) categoryEl.textContent = vid.category;
 
     if (extLink) {
-      extLink.href = channel
-        ? channel.url
-        : `https://www.youtube.com/watch?v=${vid.videoId}`;
+      extLink.href = `https://www.youtube.com/watch?v=${vid.videoId}`;
     }
 
     if (vid.notes && notesCard && notesText) {
