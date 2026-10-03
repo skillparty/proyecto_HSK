@@ -338,18 +338,27 @@ class MatrixGame {
             }
         }));
 
-        // Feedback visual
+        // Feedback visual con multiplicador de combo
         element.classList.add('correct');
-        this.viewController.showFeedback('correct', `+${roundPoints} puntos`);
+        const streak = this.sessionStats.streak;
+        let comboText = `+${roundPoints} puntos`;
+        if (streak >= 10) {
+            comboText = `💥 ULTRA COMBO x4! +${roundPoints}`;
+        } else if (streak >= 6) {
+            comboText = `⚡ MEGA COMBO x3! +${roundPoints}`;
+        } else if (streak >= 3) {
+            comboText = `🔥 COMBO x2! +${roundPoints}`;
+        }
+        this.viewController.showFeedback('correct', comboText);
 
         // Play audio pronunciation of the correct character
         if (window.app && typeof window.app.playAudio === 'function' && this.currentWord?.character) {
             window.app.playAudio(this.currentWord.character);
         }
 
-        // Haptic feedback
+        // Haptic feedback (intensifies with streak)
         if (typeof navigator !== "undefined" && navigator.vibrate) {
-            navigator.vibrate(25);
+            navigator.vibrate(streak >= 3 ? [20, 30, 40] : 25);
         }
 
         // Play streak fanfare on multiples of 5

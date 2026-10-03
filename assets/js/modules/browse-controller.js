@@ -5,14 +5,78 @@ class BrowseController {
         this.scrollCleanupHandlers = [];
         this.selectedWords = new Set();
         this.isSelectionMode = false;
+        this.searchIndexCache = {
+            vocabularyRef: null,
+            searchRecords: null,
+            byLevel: new Map()
+        };
 
         if (typeof window !== 'undefined') {
             window.addEventListener('hsk:vocabulary-ready', () => {
+                this.searchIndexCache.vocabularyRef = null;
                 if (this.app.browseState && (!this.app.browseState.filteredVocabulary || this.app.browseState.filteredVocabulary.length === 0)) {
                     this.filterVocabulary();
                 }
             });
+            window.addEventListener('hsk:vocabulary-fully-loaded', () => {
+                this.searchIndexCache.vocabularyRef = null;
+                if (this.app.browseState) {
+                    this.filterVocabulary();
+                }
+            });
         }
+    }
+
+    ensureSearchIndex() {
+        const vocab = this.app.vocabulary || [];
+        if (this.searchIndexCache.vocabularyRef === vocab && this.searchIndexCache.searchRecords) {
+            return;
+        }
+
+        const normalizeClean = (text) => {
+            if (!text) return '';
+            return text
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .replace(/ü/g, 'v')
+                .replace(/[^a-z0-9]/g, '');
+        };
+
+        const records = [];
+        const byLevel = new Map();
+        byLevel.set('all', []);
+
+        for (let i = 0; i < vocab.length; i++) {
+            const w = vocab[i];
+            const lvl = Number(w.level || 0);
+            const pinyinLower = (w.pinyin || '').toLowerCase();
+            const pinyinClean = normalizeClean(w.pinyin);
+
+            const entry = {
+                word: w,
+                character: w.character || '',
+                pinyin: pinyinLower,
+                pinyinClean: pinyinClean,
+                english: (w.english || '').toLowerCase(),
+                spanish: (w.spanish || '').toLowerCase(),
+                translation: (w.translation || '').toLowerCase(),
+                level: lvl
+            };
+
+            records.push(entry);
+            if (!byLevel.has(lvl)) {
+                byLevel.set(lvl, []);
+            }
+            byLevel.get(lvl).push(entry);
+            byLevel.get('all').push(entry);
+        }
+
+        this.searchIndexCache = {
+            vocabularyRef: vocab,
+            searchRecords: records,
+            byLevel: byLevel
+        };
     }
 
     // getMeaningForLanguage vive en app.js: también lo usan practice,
@@ -287,23 +351,38 @@ class BrowseController {
             return;
         }
 
+        this.ensureSearchIndex();
+
         const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
         const selectedLevel = levelFilter ? levelFilter.value : 'all';
 
-        let filteredVocab = this.app.vocabulary || [];
-
+        let entries;
         if (selectedLevel !== 'all') {
-            filteredVocab = filteredVocab.filter(word => Number(word.level) === Number(selectedLevel));
+            const numLevel = Number(selectedLevel);
+            entries = this.searchIndexCache.byLevel.get(numLevel) || [];
+        } else {
+            entries = this.searchIndexCache.byLevel.get('all') || [];
         }
 
+        let filteredVocab;
         if (searchTerm) {
-            filteredVocab = filteredVocab.filter(word =>
-                (word.character && word.character.includes(searchTerm)) ||
-                (word.pinyin && word.pinyin.toLowerCase().includes(searchTerm)) ||
-                (word.english && word.english.toLowerCase().includes(searchTerm)) ||
-                (word.translation && word.translation.toLowerCase().includes(searchTerm)) ||
-                (word.spanish && word.spanish.toLowerCase().includes(searchTerm))
-            );
+            const cleanSearch = searchTerm.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ü/g, 'v').replace(/[^a-z0-9]/g, '');
+            filteredVocab = [];
+            for (let i = 0; i < entries.length; i++) {
+                const e = entries[i];
+                if (
+                    (e.character && e.character.includes(searchTerm)) ||
+                    (e.pinyin && e.pinyin.includes(searchTerm)) ||
+                    (cleanSearch && e.pinyinClean && e.pinyinClean.includes(cleanSearch)) ||
+                    (e.english && e.english.includes(searchTerm)) ||
+                    (e.translation && e.translation.includes(searchTerm)) ||
+                    (e.spanish && e.spanish.includes(searchTerm))
+                ) {
+                    filteredVocab.push(e.word);
+                }
+            }
+        } else {
+            filteredVocab = entries.map(e => e.word);
         }
 
         const sortOrderSelect = document.getElementById('browse-sort-order');

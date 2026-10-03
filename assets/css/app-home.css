@@ -700,3 +700,39 @@ html[data-theme="light"] .achievement-item.lock {
     font-size: 0.88rem;
 }
 
+.quest-share-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-color, rgba(0, 0, 0, 0.12));
+}
+
+.quest-share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quest-share-btn:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(211, 47, 47, 0.25);
+}
+
+.quest-share-btn:active {
+    transform: translateY(0);
+}
+
+

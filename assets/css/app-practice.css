@@ -1155,6 +1155,36 @@
     transform: rotate(12deg) scale(1);
 }
 
+.flashcard.swiping-up {
+    border-color: #3b82f6;
+    box-shadow: 0 -10px 28px rgba(59, 130, 246, 0.45);
+}
+
+.flashcard.swiping-up::before {
+    content: "★ FÁCIL";
+    left: 50%;
+    top: 20px;
+    bottom: auto;
+    right: auto;
+    background: rgba(59, 130, 246, 0.94);
+    color: #ffffff;
+    border: 2px solid #60a5fa;
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+}
+
+html[lang="en"] .flashcard::before {
+    content: "✓ GOOD";
+}
+
+html[lang="en"] .flashcard::after {
+    content: "↺ AGAIN";
+}
+
+html[lang="en"] .flashcard.swiping-up::before {
+    content: "★ EASY";
+}
+
 /* ----------------------------------------------------------------------------
    Hands-Free Floating Player Bar
    ---------------------------------------------------------------------------- */

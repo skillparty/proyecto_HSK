@@ -399,6 +399,9 @@ class InteractionController {
                 if (event.target.closest('button, input, textarea, a, select, [data-action], .vocab-audio-btn, .speaker-btn, .card-action-icon-btn, .flashcard-fav-btn')) {
                     return;
                 }
+                if (this._justSwipedFlashcard) {
+                    return;
+                }
                 this.app.flipCard();
             });
         }
@@ -419,14 +422,18 @@ class InteractionController {
             let touchStartX = 0;
             let touchStartY = 0;
             let currentTranslateX = 0;
+            let currentTranslateY = 0;
             let isSwiping = false;
+            let swipeDirection = null; // 'x' | 'y'
 
             flashcardArea.addEventListener('touchstart', (event) => {
                 if (!event.touches || event.touches.length !== 1) return;
                 touchStartX = event.touches[0].clientX;
                 touchStartY = event.touches[0].clientY;
                 currentTranslateX = 0;
+                currentTranslateY = 0;
                 isSwiping = false;
+                swipeDirection = null;
                 flashcard.style.transition = 'none';
             }, { passive: true });
 
@@ -435,82 +442,124 @@ class InteractionController {
                 const deltaX = event.touches[0].clientX - touchStartX;
                 const deltaY = event.touches[0].clientY - touchStartY;
 
-                if (!isSwiping && Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 10) {
-                    return;
+                if (!isSwiping) {
+                    if (Math.abs(deltaX) > 12 && Math.abs(deltaX) >= Math.abs(deltaY)) {
+                        isSwiping = true;
+                        swipeDirection = 'x';
+                    } else if (deltaY < -15 && Math.abs(deltaY) > Math.abs(deltaX)) {
+                        isSwiping = true;
+                        swipeDirection = 'y';
+                    } else {
+                        return;
+                    }
                 }
 
-                if (Math.abs(deltaX) > 12) {
-                    isSwiping = true;
+                if (swipeDirection === 'x') {
                     currentTranslateX = deltaX;
                     const rotateDeg = Math.min(Math.max(deltaX * 0.06, -10), 10);
                     flashcard.style.transform = `translateX(${deltaX}px) rotate(${rotateDeg}deg)`;
 
                     if (deltaX > 35) {
                         flashcard.classList.add('swiping-right');
-                        flashcard.classList.remove('swiping-left');
+                        flashcard.classList.remove('swiping-left', 'swiping-up');
                     } else if (deltaX < -35) {
                         flashcard.classList.add('swiping-left');
-                        flashcard.classList.remove('swiping-right');
+                        flashcard.classList.remove('swiping-right', 'swiping-up');
                     } else {
+                        flashcard.classList.remove('swiping-right', 'swiping-left', 'swiping-up');
+                    }
+                } else if (swipeDirection === 'y') {
+                    currentTranslateY = deltaY;
+                    const scaleFactor = Math.max(0.92, 1 - Math.abs(deltaY) * 0.0008);
+                    flashcard.style.transform = `translateY(${deltaY}px) scale(${scaleFactor})`;
+
+                    if (deltaY < -35) {
+                        flashcard.classList.add('swiping-up');
                         flashcard.classList.remove('swiping-right', 'swiping-left');
+                    } else {
+                        flashcard.classList.remove('swiping-up');
                     }
                 }
             }, { passive: true });
 
             flashcardArea.addEventListener('touchend', () => {
                 flashcard.style.transition = 'transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease';
-                flashcard.classList.remove('swiping-right', 'swiping-left');
+                flashcard.classList.remove('swiping-right', 'swiping-left', 'swiping-up');
 
-                if (isSwiping && Math.abs(currentTranslateX) > 55) {
+                if (isSwiping) {
+                    this._justSwipedFlashcard = true;
+                    setTimeout(() => {
+                        this._justSwipedFlashcard = false;
+                    }, 250);
+
                     if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
                         try {
                             navigator.vibrate(20);
                         } catch {
-                            // Haptics not supported or permitted on device
                             void 0;
                         }
                     }
 
-                    if (currentTranslateX > 0) {
-                        flashcard.style.transform = 'translateX(110%) rotate(12deg)';
+                    if (swipeDirection === 'x' && Math.abs(currentTranslateX) > 55) {
+                        if (currentTranslateX > 0) {
+                            flashcard.style.transform = 'translateX(110%) rotate(12deg)';
+                            setTimeout(() => {
+                                flashcard.style.transition = 'none';
+                                flashcard.style.transform = '';
+                                if (this.app.flashcardManager.isFlipped) {
+                                    this.app.flashcardManager.handleDifficulty('good');
+                                } else {
+                                    this.app.flashcardManager.nextCard();
+                                }
+                            }, 180);
+                        } else {
+                            flashcard.style.transform = 'translateX(-110%) rotate(-12deg)';
+                            setTimeout(() => {
+                                flashcard.style.transition = 'none';
+                                flashcard.style.transform = '';
+                                if (this.app.flashcardManager.isFlipped) {
+                                    this.app.flashcardManager.handleDifficulty('again');
+                                } else {
+                                    this.app.flashcardManager.previousCard();
+                                }
+                            }, 180);
+                        }
+                    } else if (swipeDirection === 'y' && currentTranslateY < -50) {
+                        flashcard.style.transform = 'translateY(-110%) scale(0.9)';
                         setTimeout(() => {
                             flashcard.style.transition = 'none';
                             flashcard.style.transform = '';
                             if (this.app.flashcardManager.isFlipped) {
-                                this.app.flashcardManager.handleDifficulty('good');
+                                this.app.flashcardManager.handleDifficulty('easy');
                             } else {
-                                this.app.flashcardManager.nextCard();
+                                this.app.flashcardManager.flipCard();
                             }
                         }, 180);
                     } else {
-                        flashcard.style.transform = 'translateX(-110%) rotate(-12deg)';
-                        setTimeout(() => {
-                            flashcard.style.transition = 'none';
-                            flashcard.style.transform = '';
-                            if (this.app.flashcardManager.isFlipped) {
-                                this.app.flashcardManager.handleDifficulty('again');
-                            } else {
-                                this.app.flashcardManager.previousCard();
-                            }
-                        }, 180);
+                        flashcard.style.transform = '';
                     }
                 } else {
                     flashcard.style.transform = '';
                 }
                 isSwiping = false;
+                swipeDirection = null;
                 currentTranslateX = 0;
+                currentTranslateY = 0;
             }, { passive: true });
         }
 
         const levelSelect = document.getElementById('level-select');
         if (levelSelect) {
-            levelSelect.addEventListener('change', (event) => {
+            levelSelect.addEventListener('change', async (event) => {
                 const nextLevel = event.target.value;
                 this.app.currentLevel = nextLevel;
                 try {
                     localStorage.setItem('hsk-last-level', nextLevel);
                 } catch (e) {
                     this.app.logWarn('Error saving level preference:', e);
+                }
+                if (this.app.vocabularyController && typeof this.app.vocabularyController.ensureLevelLoaded === 'function') {
+                    await this.app.vocabularyController.ensureLevelLoaded(nextLevel);
                 }
                 this.app.flashcardManager.setupSession();
             });
@@ -658,7 +707,10 @@ class InteractionController {
 
         const searchInput = document.getElementById('search-input');
         if (searchInput) {
-            searchInput.addEventListener('input', () => this.app.filterVocabulary());
+            const debouncedFilter = (typeof window.hskDebounce === 'function')
+                ? window.hskDebounce(() => this.app.filterVocabulary(), 160)
+                : () => this.app.filterVocabulary();
+            searchInput.addEventListener('input', debouncedFilter);
         }
 
         const browseLevelFilter = document.getElementById('browse-level-filter');

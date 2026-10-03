@@ -581,7 +581,7 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
         // Search input
         const searchInput = this.container.querySelector("#provinces-search-input");
         if (searchInput) {
-            searchInput.addEventListener("input", (e) => {
+            const handleSearch = (e) => {
                 this.searchQuery = e.target.value;
                 const stage = this.container.querySelector("#provinces-view-stage");
                 if (stage) {
@@ -589,7 +589,11 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
                     this.bindStageEvents(stage);
                     this.bindAudioButtons(stage);
                 }
-            });
+            };
+            const debouncedSearch = (typeof window.hskDebounce === "function")
+                ? window.hskDebounce(handleSearch, 160)
+                : handleSearch;
+            searchInput.addEventListener("input", debouncedSearch);
         }
 
         const stage = this.container.querySelector("#provinces-view-stage");

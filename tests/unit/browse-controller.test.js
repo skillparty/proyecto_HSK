@@ -175,6 +175,11 @@ describe("BrowseController", () => {
       controller.filterVocabulary();
       expect(mockApp.browseState.filteredVocabulary.length).toBe(1);
       expect(mockApp.browseState.filteredVocabulary[0].character).toBe("苹果");
+
+      searchInput.value = "nihao";
+      controller.filterVocabulary();
+      expect(mockApp.browseState.filteredVocabulary.length).toBe(1);
+      expect(mockApp.browseState.filteredVocabulary[0].character).toBe("你好");
     });
 
     it("shows no-results state when search yields no matches", () => {

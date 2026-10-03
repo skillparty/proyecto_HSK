@@ -244,3 +244,98 @@
     outline: none;
     border-color: var(--primary, #e11d48);
 }
+
+/* ============================================================================
+   MOBILE RESPONSIVE DECK MANAGER (< 680px)
+   ============================================================================ */
+@media (max-width: 680px) {
+    .deck-modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+        height: 100dvh;
+    }
+
+    .deck-modal-dialog {
+        width: 100%;
+        max-width: 100%;
+        max-height: min(90dvh, 640px);
+        border-radius: 20px 20px 0 0;
+        border-bottom: none;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .deck-modal-dialog::before {
+        content: '';
+        display: block;
+        width: 36px;
+        height: 4px;
+        background: var(--color-border, rgba(255, 255, 255, 0.2));
+        border-radius: 4px;
+        margin: 8px auto 0;
+    }
+
+    .deck-modal-header {
+        padding: 12px 18px;
+    }
+
+    .deck-modal-title {
+        font-size: 1.15rem;
+    }
+
+    .deck-modal-close {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        touch-action: manipulation;
+    }
+
+    .deck-modal-tabs {
+        padding: 0 10px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .deck-modal-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .deck-tab-btn {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        touch-action: manipulation;
+    }
+
+    .deck-modal-body {
+        padding: 14px 16px max(16px, env(safe-area-inset-bottom, 0px));
+    }
+
+    .deck-item-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .deck-actions-group {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .deck-btn-sm {
+        min-height: 40px;
+        padding: 8px 14px;
+        font-size: 0.84rem;
+        touch-action: manipulation;
+    }
+
+    .deck-input-group input,
+    .deck-input-group textarea {
+        font-size: 16px !important;
+    }
+}

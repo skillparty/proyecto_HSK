@@ -722,16 +722,31 @@
 /* 4-Line Pinyin Guide Box (Optional) */
 .ws-pinyin-guide-box {
     width: 100%;
-    height: 6mm;
+    height: 6.5mm;
     margin-bottom: 1mm;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.35);
     background-image: linear-gradient(to bottom,
-        transparent 0%, transparent 33%,
-        rgba(220, 38, 38, 0.25) 33%, rgba(220, 38, 38, 0.25) 35%,
-        transparent 35%, transparent 66%,
-        rgba(220, 38, 38, 0.25) 66%, rgba(220, 38, 38, 0.25) 68%,
-        transparent 68%, transparent 100%
+        transparent 0%, transparent 32%,
+        rgba(220, 38, 38, 0.28) 32%, rgba(220, 38, 38, 0.28) 34%,
+        transparent 34%, transparent 65%,
+        rgba(220, 38, 38, 0.28) 65%, rgba(220, 38, 38, 0.28) 67%,
+        transparent 67%, transparent 100%
     );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.ws-pinyin-guide-box .ws-pinyin-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #475569;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    user-select: none;
+    pointer-events: none;
 }
 
 /* Sheet Exterior Footer */

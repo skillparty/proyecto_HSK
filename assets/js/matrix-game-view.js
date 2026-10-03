@@ -11,32 +11,32 @@ class MatrixGameView {
 
     renderMatrix() {
         const matrixContainer = document.getElementById('character-matrix');
+        if (!matrixContainer) return;
         const gridSize = this.game.config[this.game.difficulty].gridSize;
 
-        // Limpiar matriz anterior
-        matrixContainer.innerHTML = '';
-
         // Restablecer eventos de puntero
-        if (matrixContainer) {
-            matrixContainer.style.pointerEvents = 'auto';
-        }
+        matrixContainer.style.pointerEvents = 'auto';
 
         // Establecer grid CSS
         matrixContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
         matrixContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
 
-        // Crear celdas
+        // Crear celdas en batch atómico con DocumentFragment (cero layout thrashing)
+        const fragment = document.createDocumentFragment();
         this.game.matrixCharacters.forEach((char, index) => {
             const cell = document.createElement('button');
             cell.className = 'matrix-char';
             cell.textContent = char;
             cell.dataset.index = index;
 
-            // Añadir animación de entrada
-            cell.style.animationDelay = `${index * 0.02}s`;
+            // Añadir animación de entrada escalonada suave
+            cell.style.animationDelay = `${index * 0.015}s`;
 
-            matrixContainer.appendChild(cell);
+            fragment.appendChild(cell);
         });
+
+        matrixContainer.innerHTML = '';
+        matrixContainer.appendChild(fragment);
     }
 
     showFeedback(type, message) {

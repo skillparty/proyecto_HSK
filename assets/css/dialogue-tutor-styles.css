@@ -379,3 +379,129 @@
     justify-content: center;
     gap: 12px;
 }
+
+/* ============================================================================
+   MOBILE RESPONSIVE DIALOGUE TUTOR (< 680px)
+   ============================================================================ */
+@media (max-width: 680px) {
+    .tutor-container {
+        padding: 10px 4px calc(var(--bottom-nav-height, 60px) + var(--safe-area-bottom, 0px) + 20px);
+    }
+
+    .tutor-header-banner {
+        padding: 16px 14px;
+        margin-bottom: 14px;
+        border-radius: 14px;
+    }
+
+    .tutor-main-title {
+        font-size: 1.25rem;
+        gap: 6px;
+    }
+
+    .tutor-subtitle {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .tutor-scenarios-bar {
+        gap: 8px;
+        padding-top: 10px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .tutor-scenarios-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tutor-scenario-chip {
+        min-height: 42px;
+        padding: 8px 14px;
+        font-size: 0.82rem;
+        touch-action: manipulation;
+    }
+
+    .tutor-workspace-card {
+        padding: 16px 12px;
+        border-radius: 16px;
+        gap: 16px;
+    }
+
+    .tutor-scenario-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 12px;
+    }
+
+    .tutor-scenario-name {
+        font-size: 1.1rem;
+    }
+
+    .tutor-score-badge {
+        align-self: flex-start;
+        font-size: 0.8rem;
+        padding: 4px 12px;
+    }
+
+    .tutor-chat-feed {
+        min-height: 250px;
+        max-height: 380px;
+        padding: 8px 6px;
+        border-radius: 12px;
+    }
+
+    .tutor-chat-message {
+        max-width: 92%;
+    }
+
+    .tutor-bubble {
+        padding: 10px 14px;
+        border-radius: 14px;
+    }
+
+    .tutor-bubble-hanzi {
+        font-size: 1.15rem;
+    }
+
+    .tutor-play-btn {
+        min-width: 36px;
+        min-height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        touch-action: manipulation;
+    }
+
+    .tutor-reply-card {
+        min-height: 48px;
+        padding: 12px 14px;
+        touch-action: manipulation;
+    }
+
+    .tutor-reply-card:active {
+        transform: scale(0.98);
+    }
+
+    .tutor-mic-btn {
+        min-height: 38px;
+        padding: 6px 14px;
+        touch-action: manipulation;
+    }
+
+    .tutor-finished-banner {
+        padding: 18px 14px;
+    }
+
+    .tutor-finished-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .tutor-finished-actions .btn {
+        width: 100%;
+        min-height: 46px;
+        touch-action: manipulation;
+    }
+}

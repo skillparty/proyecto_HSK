@@ -31,6 +31,19 @@
     return escapeHtml(url);
   }
 
+  // Utilidad de debounce estándar para amortiguar inputs de búsqueda y eventos de alta frecuencia.
+  function debounce(fn, delay = 150) {
+    let timer = null;
+    return function (...args) {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = null;
+        fn.apply(this, args);
+      }, delay);
+    };
+  }
+
   window.hskEscapeHtml = escapeHtml;
   window.hskSafeHttpsUrl = safeHttpsUrl;
+  window.hskDebounce = debounce;
 })();

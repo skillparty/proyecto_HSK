@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+1ad11b12";
+const SW_VERSION = "4.70.0+a368db8a";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -26,9 +26,9 @@ const PRECACHE_FILES = [
   "./assets/css/matrix-game-styles.css?v=0572521c",
   "./assets/css/leaderboard-styles.css",
   "./assets/css/user-profile-styles.css?v=c3c180e3",
-  "./assets/css/command-palette.css?v=86b01884",
-  "./assets/css/achievements-styles.css?v=11478cfc",
-  "./assets/css/deck-manager-styles.css?v=ed48188f",
+  "./assets/css/command-palette.css?v=7cdcaaa7",
+  "./assets/css/achievements-styles.css?v=84df079b",
+  "./assets/css/deck-manager-styles.css?v=cba043b4",
   "./assets/css/quantifier-snake-styles.css?v=48278d55",
   "./assets/css/tones-invaders-styles.css?v=7dd57740",
   "./assets/css/hanzi-builder-styles.css?v=2995e713",
@@ -195,24 +195,17 @@ const PRECACHE_FILES = [
   "./assets/images/logo05.png",
   "./assets/images/logo06.png",
   "./assets/images/background01.webp",
-  "./assets/videos/snakeGame.mp4",
-  "./assets/videos/toneInvader.mp4",
-  "./assets/videos/characterEvolution.mp4",
-  "./assets/videos/operaPekin.mp4",
-  "./assets/videos/technologyEvolution.mp4",
-  "./assets/videos/traditionalMedicine.mp4",
 ];
 
 // PRECACHE_FILES es la fuente única (scripts/build/apply-cache-versions.js
 // parsea ese bloque para validar existencia y calcular SW_VERSION). Los dos
 // tiers se derivan por predicado para no duplicar rutas.
 //
-// Opcional = data, media y todo lo específico de una pestaña/juego. Son ~4 MB
-// que no hacen falta para arrancar y que el fetch handler recachea en runtime.
+// Opcional = data, media e interfaces específicas de pestaña/juego.
+// Se excluyen deliberadamente vídeos grandes (~18 MB) para no saturar ancho de banda ni cuotas móviles.
 const OPTIONAL_PRECACHE_PATTERNS = [
   "/assets/data/",
   "/assets/images/",
-  "/assets/videos/",
   // El markup diferido de cada pestaña: por definición no hace falta para
   // arrancar, se pide al abrir la pestaña. Sin esto, stats.html y los
   // culture-*.html caerían en el shell crítico por no matchear ningún patrón.
@@ -273,6 +266,10 @@ function shouldCacheRuntime(request) {
   if (!isSameOrigin(request.url)) return false;
 
   const url = new URL(request.url);
+  // Excluir streaming de vídeos pesados de CacheStorage
+  if (request.destination === "video" || url.pathname.endsWith(".mp4")) {
+    return false;
+  }
   const isAssetPath =
     url.pathname.includes("/assets/") || url.pathname.includes("/config/");
   const isCacheableType = ["style", "script", "font", "image"].includes(

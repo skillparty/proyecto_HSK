@@ -150,4 +150,24 @@ describe("HanziCanvasController", () => {
     expect(coords.pressure).toBe(0.85);
     expect(coords.pointerType).toBe("pen");
   });
+
+  test("drawStroke smoothly interpolates multi-point strokes using quadratic curves", () => {
+    controller.initialize();
+    const stroke = {
+      points: [
+        { x: 10, y: 10, pressure: 0.5, time: 1000 },
+        { x: 20, y: 30, pressure: 0.6, time: 1050 },
+        { x: 40, y: 60, pressure: 0.7, time: 1100 },
+        { x: 60, y: 90, pressure: 0.5, time: 1150 },
+      ],
+      color: "#e11d48",
+      width: 12,
+    };
+
+    controller.drawStroke(stroke);
+    expect(controller.ctx.beginPath).toHaveBeenCalled();
+    expect(controller.ctx.quadraticCurveTo).toHaveBeenCalled();
+    expect(controller.ctx.stroke).toHaveBeenCalled();
+  });
 });
+

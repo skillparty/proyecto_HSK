@@ -145,6 +145,18 @@ describe("FlashcardManager", () => {
       expect(manager.sessionIndex).toBe(0);
     });
 
+    test("handleSwipe vertical upward flips when not flipped and marks easy when flipped", () => {
+      manager.flipCard = vi.fn();
+      manager.isFlipped = false;
+      manager.handleSwipe(100, 105, 200, 120); // Swipe up while unflipped
+      expect(manager.flipCard).toHaveBeenCalled();
+
+      manager.isFlipped = true;
+      manager.handleDifficulty = vi.fn();
+      manager.handleSwipe(100, 105, 200, 120); // Swipe up while flipped
+      expect(manager.handleDifficulty).toHaveBeenCalledWith("easy");
+    });
+
     test("handleDifficulty calls markAsKnown with difficulty rating", () => {
       manager.isFlipped = true;
       manager.handleDifficulty("good");

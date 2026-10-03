@@ -245,3 +245,75 @@ describe("IndexedDB storage mirror", () => {
     expect(engine.records["1:国"].reps).toBe(2);
   });
 });
+
+describe("FSRS modern algorithm", () => {
+  test("allows switching algorithm between sm2 and fsrs", () => {
+    const engine = freshEngine();
+    expect(engine.getAlgorithm()).toBe("sm2");
+
+    engine.setAlgorithm("fsrs");
+    expect(engine.getAlgorithm()).toBe("fsrs");
+    expect(window.localStorage.getItem("hsk-srs-algorithm")).toBe("fsrs");
+
+    engine.setAlgorithm("sm2");
+    expect(engine.getAlgorithm()).toBe("sm2");
+  });
+
+  test("initial FSRS ratings compute stability and difficulty appropriately", () => {
+    const engine = freshEngine();
+    engine.setAlgorithm("fsrs");
+
+    const goodRec = engine.rate(word("字"), "good");
+    expect(goodRec.algorithm).toBe("fsrs");
+    expect(goodRec.stability).toBe(2.4);
+    expect(goodRec.difficulty).toBeGreaterThan(0);
+    expect(goodRec.reps).toBe(1);
+    expect(goodRec.interval).toBeGreaterThanOrEqual(2);
+
+    const easyRec = engine.rate(word("水"), "easy");
+    expect(easyRec.stability).toBe(5.8);
+    expect(easyRec.interval).toBeGreaterThanOrEqual(5);
+
+    const againRec = engine.rate(word("难"), "again");
+    expect(againRec.stability).toBe(0.4);
+    expect(againRec.reps).toBe(0);
+    expect(againRec.interval).toBe(0);
+  });
+
+  test("subsequent review in FSRS updates stability and retrievability", () => {
+    const engine = freshEngine();
+    engine.setAlgorithm("fsrs");
+
+    const first = engine.rate(word("书"), "good");
+    expect(first.stability).toBe(2.4);
+
+    // Fast-forward 2 days
+    vi.setSystemTime(NOW + 2 * D.DAY_MS);
+    const retrievabilityBefore = engine.getRetrievability(word("书"), NOW + 2 * D.DAY_MS);
+    expect(retrievabilityBefore).toBeGreaterThan(0.8);
+    expect(retrievabilityBefore).toBeLessThanOrEqual(1.0);
+
+    const second = engine.rate(word("书"), "good");
+    expect(second.stability).toBeGreaterThan(first.stability);
+    expect(second.reps).toBe(2);
+  });
+
+  test("FSRS lapse increments lapses and updates post-lapse stability", () => {
+    const engine = freshEngine();
+    engine.setAlgorithm("fsrs");
+
+    engine.rate(word("忘"), "good");
+    vi.setSystemTime(NOW + 3 * D.DAY_MS);
+    const lapsed = engine.rate(word("忘"), "again");
+
+    expect(lapsed.lapses).toBe(1);
+    expect(lapsed.reps).toBe(0);
+    expect(lapsed.interval).toBe(0);
+    expect(lapsed.due).toBe(NOW + 3 * D.DAY_MS + D.LEARNING_STEP_MS);
+  });
+
+  test("getRetrievability handles unreviewed words and returns 0", () => {
+    const engine = freshEngine();
+    expect(engine.getRetrievability(word("新"))).toBe(0);
+  });
+});

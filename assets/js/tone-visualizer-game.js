@@ -934,15 +934,17 @@ class ToneVisualizerGame {
         const minPeriod = Math.floor(sampleRate / 550); // ~550 Hz
         const maxPeriod = Math.floor(sampleRate / 80); // ~80 Hz
 
+        // Fast coarse autocorrelation with step 2
         let bestCorrelation = 0;
         let bestPeriod = -1;
 
-        for (let period = minPeriod; period <= maxPeriod; period++) {
+        const maxI = SIZE - maxPeriod;
+        for (let period = minPeriod; period <= maxPeriod; period += 2) {
             let correlation = 0;
-            for (let i = 0; i < SIZE - period; i++) {
+            for (let i = 0; i < maxI; i += 2) {
                 correlation += buf[i] * buf[i + period];
             }
-            correlation = correlation / (SIZE - period);
+            correlation = correlation / (maxI / 2);
 
             if (correlation > bestCorrelation) {
                 bestCorrelation = correlation;
@@ -950,10 +952,45 @@ class ToneVisualizerGame {
             }
         }
 
-        if (bestCorrelation > 0.015 && bestPeriod > 0) {
-            return sampleRate / bestPeriod;
+        if (bestCorrelation <= 0.015 || bestPeriod <= 0) {
+            return -1;
         }
-        return -1;
+
+        // Fine peak search around best coarse period
+        const fineStart = Math.max(minPeriod, bestPeriod - 2);
+        const fineEnd = Math.min(maxPeriod, bestPeriod + 2);
+        let fineBestCorrelation = bestCorrelation;
+        let fineBestPeriod = bestPeriod;
+
+        const correlations = {};
+        for (let period = fineStart; period <= fineEnd; period++) {
+            let correlation = 0;
+            for (let i = 0; i < maxI; i++) {
+                correlation += buf[i] * buf[i + period];
+            }
+            correlation = correlation / maxI;
+            correlations[period] = correlation;
+            if (correlation > fineBestCorrelation) {
+                fineBestCorrelation = correlation;
+                fineBestPeriod = period;
+            }
+        }
+
+        // Parabolic interpolation for sub-sample accuracy
+        let finalPeriod = fineBestPeriod;
+        const prevC = correlations[fineBestPeriod - 1];
+        const nextC = correlations[fineBestPeriod + 1];
+        if (prevC !== undefined && nextC !== undefined) {
+            const denominator = 2 * (prevC - 2 * fineBestCorrelation + nextC);
+            if (Math.abs(denominator) > 1e-6) {
+                const delta = (prevC - nextC) / denominator;
+                if (Math.abs(delta) <= 1) {
+                    finalPeriod += delta;
+                }
+            }
+        }
+
+        return sampleRate / finalPeriod;
     }
 
     finishRecording() {
@@ -1035,33 +1072,47 @@ class ToneVisualizerGame {
         }, 1100);
     }
 
+    computeDTWDistance(seq1, seq2) {
+        const n = seq1.length;
+        const m = seq2.length;
+        if (n === 0 || m === 0) return 1.0;
+
+        let prevRow = new Float32Array(m + 1);
+        let currRow = new Float32Array(m + 1);
+
+        for (let j = 1; j <= m; j++) {
+            prevRow[j] = Infinity;
+        }
+        prevRow[0] = 0;
+
+        for (let i = 1; i <= n; i++) {
+            currRow[0] = Infinity;
+            const val1 = seq1[i - 1];
+            for (let j = 1; j <= m; j++) {
+                const val2 = seq2[j - 1];
+                const cost = Math.abs(val1 - val2);
+                const minNeighbor = Math.min(prevRow[j], currRow[j - 1], prevRow[j - 1]);
+                currRow[j] = cost + minNeighbor;
+            }
+            const temp = prevRow;
+            prevRow = currRow;
+            currRow = temp;
+        }
+
+        const rawDtw = prevRow[m];
+        return rawDtw / Math.max(1, Math.min(n, m));
+    }
+
     evaluateAndDisplayScore() {
         const model = this.getCurrentModel();
         if (!model || !this.userPitchCurve || this.userPitchCurve.length === 0) return;
 
-        // Evaluar desviación cuadrática media de la curva con respecto al modelo
-        let totalDeviation = 0;
-        let count = 0;
+        const modelTones = model.pitchPoints.map((p) => p.y);
+        const userTones = this.userPitchCurve.map((p) => p.y);
 
-        model.pitchPoints.forEach((mPt) => {
-            // Buscar punto más cercano en el contorno del usuario
-            let closestPt = null;
-            let minDiff = Infinity;
-            this.userPitchCurve.forEach((uPt) => {
-                const diff = Math.abs(uPt.x - mPt.x);
-                if (diff < minDiff) {
-                    minDiff = diff;
-                    closestPt = uPt;
-                }
-            });
+        const dtwDist = this.computeDTWDistance(modelTones, userTones);
+        const avgDev = Math.min(2.0, dtwDist);
 
-            if (closestPt) {
-                totalDeviation += Math.abs(closestPt.y - mPt.y);
-                count++;
-            }
-        });
-
-        const avgDev = count > 0 ? totalDeviation / count : 0.2;
         // Puntuación del 0 al 100
         const calculatedScore = Math.max(68, Math.min(98, Math.round(100 - avgDev * 20)));
 

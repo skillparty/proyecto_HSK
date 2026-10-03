@@ -252,7 +252,10 @@ class RadicalDecomposerGame {
 
     bindEvents() {
         if (this.searchInput) {
-            this.searchInput.addEventListener("input", (e) => this.handleSearch(e.target.value));
+            const debouncedSearch = (typeof window.hskDebounce === "function")
+                ? window.hskDebounce((val) => this.handleSearch(val), 160)
+                : (val) => this.handleSearch(val);
+            this.searchInput.addEventListener("input", (e) => debouncedSearch(e.target.value));
         }
 
         if (this.audioBtn) {

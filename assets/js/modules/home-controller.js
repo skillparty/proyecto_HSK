@@ -311,7 +311,7 @@ class HomeController {
         if (!this.portalScene.initialized) {
             this.portalScene.init();
         } else {
-            this.portalScene.playing = true;
+            this.portalScene.resume();
         }
     }
 
@@ -518,8 +518,9 @@ class HomeController {
         }
 
         const doneCheckSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
+        const streakCount = Number(this.app.stats?.currentStreak || 0);
 
-        container.innerHTML = quests
+        const questItemsHtml = quests
             .map((q) => {
                 return `
                 <div class="quest-item" style="display:flex; align-items:center; justify-content:space-between; background:var(--color-bg-hover, rgba(0,0,0,0.03)); padding:10px 14px; border-radius:10px; font-size:0.88rem; transition:all 0.2s ease;">
@@ -544,6 +545,21 @@ class HomeController {
             })
             .join('');
 
+        const shareFooterHtml = `
+            <div class="quest-share-footer" style="display:flex; justify-content:space-between; align-items:center; margin-top:6px; padding-top:10px; border-top:1px dashed var(--border-color, rgba(0,0,0,0.12));">
+                <div style="display:flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:600; color:var(--text-secondary);">
+                    <span>🔥</span>
+                    <span>${isEs ? 'Racha actual:' : 'Current streak:'} <strong style="color:var(--color-primary);">${streakCount} ${isEs ? (streakCount === 1 ? 'día' : 'días') : (streakCount === 1 ? 'day' : 'days')}</strong></span>
+                </div>
+                <button id="share-daily-quests-btn" class="btn btn-xs btn-outline quest-share-btn" style="display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:600; padding:4px 10px; border-radius:8px;" title="${isEs ? 'Compartir tu racha y misiones de hoy' : 'Share your streak and daily quests'}">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                    <span>${isEs ? 'Compartir Racha' : 'Share Streak'}</span>
+                </button>
+            </div>
+        `;
+
+        container.innerHTML = questItemsHtml + shareFooterHtml;
+
         container.querySelectorAll('.quest-cta-btn').forEach((btn) => {
             btn.addEventListener('click', () => {
                 const targetTab = btn.getAttribute('data-target-tab');
@@ -552,6 +568,69 @@ class HomeController {
                 }
             });
         });
+
+        const shareBtn = container.querySelector('#share-daily-quests-btn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', () => {
+                this.shareDailyQuests(quests, streakCount);
+            });
+        }
+    }
+
+    generateDailyQuestsShareText(quests, streakCount = 0, isEs = true) {
+        const doneCount = quests.filter((q) => q.done).length;
+        const total = quests.length;
+        const streakLabel = isEs
+            ? `🔥 Racha de estudio: ${streakCount} ${streakCount === 1 ? 'día' : 'días'}`
+            : `🔥 Study streak: ${streakCount} ${streakCount === 1 ? 'day' : 'days'}`;
+        const header = isEs
+            ? `🎋 HSK Master - Mi Progreso Diario (${doneCount}/${total})`
+            : `🎋 HSK Master - Daily Study Progress (${doneCount}/${total})`;
+        const questLines = quests.map((q) => `${q.done ? '✅' : '⬜'} ${q.title}`).join('\n');
+        const footer = isEs
+            ? '¡Aprende chino mandarín conmigo en HSK Master! 🇨🇳'
+            : 'Learn Mandarin Chinese with me on HSK Master! 🇨🇳';
+
+        return `${header}\n${streakLabel}\n\n${questLines}\n\n${footer}`;
+    }
+
+    async shareDailyQuests(quests, streakCount = 0) {
+        const isEs = this.app.currentLanguage !== 'en';
+        const shareText = this.generateDailyQuestsShareText(quests, streakCount, isEs);
+        const title = isEs ? 'Mi Progreso en HSK Master' : 'My HSK Master Progress';
+
+        if (typeof navigator !== 'undefined' && navigator.share) {
+            try {
+                await navigator.share({
+                    title: title,
+                    text: shareText
+                });
+                return true;
+            } catch (err) {
+                if (err && err.name === 'AbortError') return false;
+            }
+        }
+
+        try {
+            if (typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(shareText);
+                if (this.app.showToast) {
+                    this.app.showToast(
+                        isEs ? '📋 ¡Progreso copiado al portapapeles!' : '📋 Progress copied to clipboard!',
+                        'success',
+                        3000
+                    );
+                }
+                return true;
+            }
+        } catch (clipErr) {
+            this.logWarn('Clipboard write error:', clipErr);
+        }
+
+        if (typeof window !== 'undefined' && window.prompt) {
+            window.prompt(isEs ? 'Copia tu progreso diario:' : 'Copy your daily progress:', shareText);
+        }
+        return true;
     }
 
     setupEventListeners() {
@@ -603,6 +682,10 @@ class HomeController {
         window.addEventListener('hsk:vocabulary-ready', () => {
             this.renderSrsCard();
         }, { once: true });
+
+        window.addEventListener('hsk:vocabulary-fully-loaded', () => {
+            this.renderSrsCard();
+        });
 
         this.bound = true;
     }

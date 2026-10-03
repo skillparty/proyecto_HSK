@@ -154,6 +154,12 @@ class UIController {
       window.wordLinkerGame.togglePause();
     }
 
+    if (oldTab === "home") {
+      this.app.homeController?.portalScene?.pause?.();
+    } else if (tabName === "home") {
+      this.app.homeController?.portalScene?.resume?.();
+    }
+
     try {
       localStorage.setItem(this.app.lastTabStorageKey, tabName);
     } catch (error) {

@@ -78,3 +78,21 @@ describe("safeHttpsUrl", () => {
     );
   });
 });
+
+describe("hskDebounce", () => {
+  test("retrasa la ejecución hasta que pase el tiempo de espera", async () => {
+    const debounce = window.hskDebounce;
+    let callCount = 0;
+    const fn = debounce(() => {
+      callCount++;
+    }, 50);
+
+    fn();
+    fn();
+    fn();
+    expect(callCount).toBe(0);
+
+    await new Promise((resolve) => setTimeout(resolve, 60));
+    expect(callCount).toBe(1);
+  });
+});

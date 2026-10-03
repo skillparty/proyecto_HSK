@@ -9,6 +9,9 @@ class HomeCulturalPortalScene {
         this.homeController = homeController;
         this.initialized = false;
         this.playing = false;
+        this.rafId = null;
+        this.animate = null;
+        this.boundVisibility = false;
     }
 
     init() {
@@ -331,13 +334,21 @@ class HomeCulturalPortalScene {
         // --- 8. Animation Loop ---
         const clock = new THREE.Clock();
 
-        const animate = () => {
-            requestAnimationFrame(animate);
+        this.animate = () => {
+            if (!this.playing) {
+                this.rafId = null;
+                return;
+            }
 
             // Only render when the Home tab is visible
             const homePanel = document.getElementById('home');
-            if (!homePanel || !homePanel.classList.contains('active') || homePanel.style.display === 'none') return;
-            if (!this.playing) return;
+            if (!homePanel || !homePanel.classList.contains('active') || homePanel.style.display === 'none') {
+                this.playing = false;
+                this.rafId = null;
+                return;
+            }
+
+            this.rafId = requestAnimationFrame(this.animate);
 
             const dt = clock.getDelta();
             const t = clock.getElapsedTime();
@@ -469,9 +480,49 @@ class HomeCulturalPortalScene {
         };
         window.addEventListener('resize', onResize);
         setTimeout(onResize, 80);
-        animate();
+
+        if (!this.boundVisibility) {
+            this.boundVisibility = true;
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    this.pause();
+                } else {
+                    const homePanel = document.getElementById('home');
+                    if (homePanel && homePanel.classList.contains('active') && homePanel.style.display !== 'none') {
+                        this.resume();
+                    }
+                }
+            });
+        }
+
+        this.resume();
     }
 
+    pause() {
+        this.playing = false;
+        if (this.rafId) {
+            cancelAnimationFrame(this.rafId);
+            this.rafId = null;
+        }
+    }
+
+    resume() {
+        if (!this.initialized) {
+            this.init();
+            return;
+        }
+        const homePanel = document.getElementById('home');
+        if (!homePanel || !homePanel.classList.contains('active') || homePanel.style.display === 'none') {
+            return;
+        }
+        if (this.playing && this.rafId) {
+            return;
+        }
+        this.playing = true;
+        if (typeof this.animate === 'function') {
+            this.rafId = requestAnimationFrame(this.animate);
+        }
+    }
 }
 
 window.HomeCulturalPortalScene = HomeCulturalPortalScene;

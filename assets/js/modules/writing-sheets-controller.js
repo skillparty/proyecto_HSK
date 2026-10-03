@@ -662,7 +662,8 @@ class WritingSheetsController {
                 }
             }
 
-            const pinyinGuide = showPinyinLines ? `<div class="ws-pinyin-guide-box"></div>` : "";
+            const pinyinText = (i === 0 && showPinyin && item.pinyin) ? `<span class="ws-pinyin-text">${item.pinyin}</span>` : "";
+            const pinyinGuide = showPinyinLines ? `<div class="ws-pinyin-guide-box${i === 0 ? " ws-pinyin-model" : ""}">${pinyinText}</div>` : "";
 
             slotsHtml += `
                 <div style="display: flex; flex-direction: column; align-items: center;">

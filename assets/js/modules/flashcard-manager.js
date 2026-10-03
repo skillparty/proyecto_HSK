@@ -663,7 +663,21 @@ class FlashcardManager {
     });
   }
 
-  handleSwipe(startX, endX) {
+  handleSwipe(startX, endX, startY, endY) {
+    if (
+      startY !== undefined &&
+      endY !== undefined &&
+      startY - endY > 50 &&
+      Math.abs(endY - startY) > Math.abs(endX - startX)
+    ) {
+      if (this.isFlipped) {
+        this.handleDifficulty("easy");
+      } else {
+        this.flipCard();
+      }
+      return;
+    }
+
     if (Math.abs(endX - startX) < 50) return;
     if (endX < startX) this.nextCard();
     else this.previousCard();

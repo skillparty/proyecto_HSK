@@ -1027,14 +1027,18 @@ class MemoriesController {
     // Search input
     const searchInput = document.getElementById("memories-search-input");
     if (searchInput) {
-      searchInput.addEventListener("input", (e) => {
+      const handleSearch = (e) => {
         this.searchQuery = e.target.value;
         const main = document.getElementById("memories-main-view");
         if (main) {
           main.innerHTML = this.renderActiveView(this.getFilteredData());
           this.bindCardEvents();
         }
-      });
+      };
+      const debouncedSearch = (typeof window.hskDebounce === "function")
+        ? window.hskDebounce(handleSearch, 160)
+        : handleSearch;
+      searchInput.addEventListener("input", debouncedSearch);
     }
 
     // View switchers

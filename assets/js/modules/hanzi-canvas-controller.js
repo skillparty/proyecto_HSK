@@ -239,18 +239,34 @@ class HanziCanvasController {
             return;
         }
 
-        // Draw segmented strokes with variable brush width based on stylus pressure
+        // Draw smooth calligraphic strokes with variable brush width based on stylus pressure and velocity
         for (let i = 0; i < pts.length - 1; i++) {
             const p1 = pts[i];
             const p2 = pts[i + 1];
+
+            let effPressure = p2.pressure || 0.5;
+            if (p1.time && p2.time && (!p2.pointerType || p2.pointerType !== "pen")) {
+                const dt = Math.max(1, p2.time - p1.time);
+                const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+                const speed = dist / dt;
+                effPressure = Math.max(0.25, Math.min(1.0, 0.55 - speed * 0.08));
+            }
+
             const p1Width = baseWidth * (0.4 + 1.2 * (p1.pressure || 0.5));
-            const p2Width = baseWidth * (0.4 + 1.2 * (p2.pressure || 0.5));
+            const p2Width = baseWidth * (0.4 + 1.2 * effPressure);
             const avgWidth = (p1Width + p2Width) / 2;
 
             ctx.lineWidth = Math.max(2, avgWidth);
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
+
+            const midX = (p1.x + p2.x) / 2;
+            const midY = (p1.y + p2.y) / 2;
+            if (i < pts.length - 2) {
+                ctx.quadraticCurveTo(p1.x, p1.y, midX, midY);
+            } else {
+                ctx.lineTo(p2.x, p2.y);
+            }
             ctx.stroke();
         }
 

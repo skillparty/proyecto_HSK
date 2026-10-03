@@ -172,6 +172,27 @@ describe("ToneVisualizerGame", () => {
     expect(hz).toBe(-1);
   });
 
+  test("detectFundamentalFrequency accurately detects ~440 Hz periodic wave", () => {
+    const sampleRate = 44100;
+    const buffer = new Float32Array(2048);
+    for (let i = 0; i < 2048; i++) {
+      buffer[i] = Math.sin((2 * Math.PI * 440 * i) / sampleRate);
+    }
+    const hz = game.detectFundamentalFrequency(buffer, sampleRate);
+    expect(hz).toBeGreaterThan(430);
+    expect(hz).toBeLessThan(450);
+  });
+
+  test("computeDTWDistance scores exact match as 0 and different contours proportionally", () => {
+    const seqA = [5, 5, 5, 5, 5]; // 1st tone (flat high)
+    const seqB = [5, 5, 5, 5, 5];
+    const seqC = [1, 2, 3, 4, 5]; // 2nd tone (rising)
+
+    expect(game.computeDTWDistance(seqA, seqB)).toBe(0);
+    const distDifferent = game.computeDTWDistance(seqA, seqC);
+    expect(distDifferent).toBeGreaterThan(1.0);
+  });
+
   test("smoothPitchPoints applies moving average correctly", () => {
     const raw = [
       { x: 0.1, y: 3.0 },

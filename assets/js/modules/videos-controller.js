@@ -113,10 +113,14 @@ class VideosController {
 
     const searchInput = document.getElementById("videos-search-input");
     if (searchInput) {
-      searchInput.addEventListener("input", (e) => {
+      const handleInput = (e) => {
         this.searchQuery = e.target.value.trim().toLowerCase();
         this.renderVideos();
-      });
+      };
+      const debouncedInput = (typeof window.hskDebounce === "function")
+        ? window.hskDebounce(handleInput, 160)
+        : handleInput;
+      searchInput.addEventListener("input", debouncedInput);
     }
 
     const customUrlBtn = document.getElementById("videos-custom-url-btn");

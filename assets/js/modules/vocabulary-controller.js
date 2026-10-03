@@ -1,29 +1,48 @@
 class VocabularyController {
     constructor(app) {
         this.app = app;
+        this.levelCache = new Map();
+        this.backgroundLoadingPromise = null;
+        this.isFullyLoaded = false;
+    }
+
+    async loadSingleLevel(level, lang) {
+        const numLevel = Number(level);
+        if (!numLevel || numLevel < 1 || numLevel > 6) return [];
+        const suffix = lang === 'es' ? 'es' : 'en';
+        const cacheKey = `hsk${numLevel}_${suffix}`;
+        if (this.levelCache.has(cacheKey)) {
+            return this.levelCache.get(cacheKey);
+        }
+
+        try {
+            const response = await fetch(`assets/data/vocab/hsk${numLevel}_${suffix}.json`);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            let words = await response.json();
+            if (lang !== 'es') {
+                words = words.map((word) => ({
+                    ...word,
+                    english: word.translation || word.english,
+                    spanish: word.spanish || null
+                }));
+            }
+            this.levelCache.set(cacheKey, words);
+            return words;
+        } catch (error) {
+            this.app.logWarn(`[LOAD] Failed to load HSK${numLevel} (${suffix}):`, error);
+            return [];
+        }
     }
 
     /**
      * Load all 6 level split files in parallel and merge.
-     * Split files have lesson metadata and canonical order pre-computed —
-     * no secondary fetches needed.
      */
     async loadAllLevelsSplit(lang) {
         const levels = [1, 2, 3, 4, 5, 6];
-        const suffix = lang === 'es' ? 'es' : 'en';
         const results = await Promise.all(
-            levels.map(async (level) => {
-                try {
-                    const response = await fetch(`assets/data/vocab/hsk${level}_${suffix}.json`);
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}`);
-                    }
-                    return await response.json();
-                } catch (error) {
-                    this.app.logWarn(`[LOAD] Failed to load HSK${level} (${suffix}):`, error);
-                    return [];
-                }
-            })
+            levels.map((level) => this.loadSingleLevel(level, lang))
         );
 
         const vocabulary = results.flat();
@@ -31,6 +50,93 @@ class VocabularyController {
             throw new Error('No vocabulary level files could be loaded');
         }
         return vocabulary;
+    }
+
+    mergeWordsIntoApp(newWords) {
+        const existingMap = new Map();
+        (this.app.vocabulary || []).forEach(w => {
+            const key = `${w.character}_${w.pinyin}_${w.level}`;
+            existingMap.set(key, w);
+        });
+
+        let added = false;
+        newWords.forEach(w => {
+            const key = `${w.character}_${w.pinyin}_${w.level}`;
+            if (!existingMap.has(key)) {
+                existingMap.set(key, w);
+                added = true;
+            }
+        });
+
+        if (added) {
+            this.app.vocabulary = Array.from(existingMap.values());
+            this.app.vocabulary.sort((a, b) => Number(a.level || 0) - Number(b.level || 0));
+        }
+    }
+
+    async ensureLevelLoaded(level) {
+        const targetLanguage = this.app.currentLanguage || 'en';
+        if (level === 'all') {
+            return this.ensureAllLevelsLoaded();
+        }
+        const numLevel = Number(level);
+        if (!numLevel || numLevel < 1 || numLevel > 6) {
+            return this.app.vocabulary;
+        }
+
+        const hasLevel = (this.app.vocabulary || []).some(w => Number(w.level) === numLevel);
+        if (hasLevel) {
+            return this.app.vocabulary;
+        }
+
+        const words = await this.loadSingleLevel(numLevel, targetLanguage);
+        if (words && words.length > 0) {
+            this.mergeWordsIntoApp(words);
+        }
+        return this.app.vocabulary;
+    }
+
+    async ensureAllLevelsLoaded() {
+        if (this.isFullyLoaded && this.app.vocabulary && this.app.vocabulary.length > 1000) {
+            return this.app.vocabulary;
+        }
+        if (this.backgroundLoadingPromise) {
+            await this.backgroundLoadingPromise;
+            return this.app.vocabulary;
+        }
+        const targetLanguage = this.app.currentLanguage || 'en';
+        this.app.vocabulary = await this.loadAllLevelsSplit(targetLanguage);
+        this.isFullyLoaded = true;
+        this.app.allVocabularyLoaded = true;
+        window.dispatchEvent(new CustomEvent('hsk:vocabulary-fully-loaded'));
+        return this.app.vocabulary;
+    }
+
+    async streamRemainingLevels(priorityLevel, lang) {
+        const remainingLevels = [1, 2, 3, 4, 5, 6].filter(lvl => lvl !== priorityLevel);
+        this.backgroundLoadingPromise = (async () => {
+            for (const level of remainingLevels) {
+                // Pequeña pausa para no congestionar el hilo de red durante las animaciones de boot
+                await new Promise(r => setTimeout(r, 60));
+                const words = await this.loadSingleLevel(level, lang);
+                if (words && words.length > 0) {
+                    this.mergeWordsIntoApp(words);
+                    window.dispatchEvent(new CustomEvent('hsk:vocabulary-level-ready', {
+                        detail: { level, total: this.app.vocabulary.length }
+                    }));
+                }
+            }
+            this.isFullyLoaded = true;
+            this.app.allVocabularyLoaded = true;
+            this.app.logDebug(`[OK] All HSK levels loaded in background: ${this.app.vocabulary.length} total items`);
+            window.dispatchEvent(new CustomEvent('hsk:vocabulary-fully-loaded'));
+
+            if (this.app.uiController && this.app.uiController.activeTab === 'stats') {
+                this.app.updateStats();
+            }
+        })();
+
+        return this.backgroundLoadingPromise;
     }
 
     async loadVocabulary(forceLanguage = null) {
@@ -46,32 +152,32 @@ class VocabularyController {
 
         const loadTask = async () => {
             const targetLanguage = forceLanguage || this.app.currentLanguage || 'en';
-            this.app.logDebug('[LOAD] Starting lazy load for ' + targetLanguage + ' vocabulary…');
+            this.app.logDebug('[LOAD] Starting optimized progressive load for ' + targetLanguage + ' vocabulary…');
 
             try {
-                // Use pre-split files: lesson metadata + canonical order already embedded.
-                // Eliminates secondary fetches for EN canonical order (ES mode) and lesson-order map.
-                this.app.vocabulary = await this.loadAllLevelsSplit(targetLanguage);
+                const requestedLevel = this.app.currentLevel;
+                const priorityLevel = (requestedLevel && requestedLevel !== 'all') ? Number(requestedLevel) : 1;
 
-                if (targetLanguage !== 'es') {
-                    this.app.vocabulary = this.app.vocabulary.map((word) => ({
-                        ...word,
-                        english: word.translation || word.english,
-                        spanish: word.spanish || null
-                    }));
+                if (requestedLevel === 'all') {
+                    this.app.vocabulary = await this.loadAllLevelsSplit(targetLanguage);
+                    this.isFullyLoaded = true;
+                    this.app.allVocabularyLoaded = true;
+                } else {
+                    // Carga rápida del nivel prioritario (ej. HSK 1 ~20 KB)
+                    this.app.vocabulary = await this.loadSingleLevel(priorityLevel, targetLanguage);
+                    if (!this.app.vocabulary || this.app.vocabulary.length === 0) {
+                        this.app.vocabulary = await this.loadSingleLevel(1, targetLanguage);
+                    }
+                    // Carga progresiva en segundo plano de los demás niveles
+                    this.streamRemainingLevels(priorityLevel, targetLanguage);
                 }
 
                 // Las frases de ejemplo NO bloquean el arranque: son 238 KB
-                // gzip y solo se ven en el reverso de la tarjeta, que el
-                // usuario tarda segundos en destapar. Esperarlas acá retrasaba
-                // la primera flashcard por un dato que todavía no se muestra.
-                // Hasta que lleguen, el reverso cae en el bloque de "practicá
-                // con esta palabra", que es el mismo fallback que usa una
-                // palabra sin ejemplo.
+                // gzip y solo se ven en el reverso de la tarjeta.
                 this.app.exampleSentences = this.app.exampleSentences || {};
                 this.loadExampleSentences();
 
-                this.app.logDebug('[OK] Loaded ' + this.app.vocabulary.length + ' items');
+                this.app.logDebug('[OK] Priority vocabulary loaded: ' + this.app.vocabulary.length + ' items');
                 this.app.vocabularyLoaded = true;
                 this.app.vocabularyLoading = false;
 
@@ -85,9 +191,6 @@ class VocabularyController {
             } catch (error) {
                 this.app.logError('[✗] Error loading ' + targetLanguage + ':', error);
 
-                // Última red: mini-vocabulario embebido para que la UI no quede
-                // vacía. Los splits están precacheados por el SW; si fallan,
-                // ningún otro fetch al mismo origen va a funcionar.
                 this.createFallbackVocabulary();
 
                 this.app.vocabularyLoaded = true;

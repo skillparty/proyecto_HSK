@@ -191,6 +191,7 @@ class HSKApp {
     downloadHealthSummaryFile() { return this.healthController.downloadHealthSummaryFile(); }
     logRuntimeIssue(source, message) { return this.healthController.logRuntimeIssue(source, message); }
     async loadVocabulary(forceLanguage = null) { return this.vocabularyController.loadVocabulary(forceLanguage); }
+    async ensureAllVocabularyLoaded() { return this.vocabularyController.ensureAllLevelsLoaded(); }
     createFallbackVocabulary() { return this.vocabularyController.createFallbackVocabulary(); }
     loadUserPreferences() { return this.vocabularyController.loadUserPreferences(); }
     initializeKeyboardShortcuts() { return this.interactionController.initializeKeyboardShortcuts(); }
