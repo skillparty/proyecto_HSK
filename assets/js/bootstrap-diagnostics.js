@@ -52,6 +52,16 @@ window.addEventListener('error', (event) => {
 
 // Global promise rejection display
 window.addEventListener('unhandledrejection', (event) => {
+    const reasonMsg = String(event.reason?.message || event.reason || '');
+    // Ignore benign browser lifecycle events that are not application errors
+    if (
+        reasonMsg.includes('View transition was skipped') ||
+        reasonMsg.includes('Transition was skipped') ||
+        (event.reason?.name === 'AbortError' && reasonMsg.includes('aborted'))
+    ) {
+        return;
+    }
+
     console.error('[✗] Unhandled rejection:', event.reason);
     const errorDiv = document.createElement('div');
     errorDiv.className = 'debug-error-banner';
@@ -62,7 +72,6 @@ window.addEventListener('unhandledrejection', (event) => {
         box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 2px solid #f97316;
         font-family: monospace; line-height: 1.4; pointer-events: auto;
     `;
-    const reasonMsg = event.reason?.message || event.reason;
     const stack = event.reason?.stack ? event.reason.stack.split('\n')[0] : 'No stack trace';
     errorDiv.innerHTML = `
         <div style="font-weight: bold; margin-bottom: 8px; font-size: 16px;">Promise Rejection</div>

@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+c82c2ba0";
+const SW_VERSION = "4.70.0+8f6cd317";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -57,7 +57,7 @@ const PRECACHE_FILES = [
   "./assets/js/utils/icons.js?v=1b0c0084",
   "./assets/js/utils/event-bus.js?v=731dc7f7",
   "./assets/js/utils/idb-storage.js?v=1a3ee4b2",
-  "./assets/js/bootstrap-diagnostics.js?v=3422f458",
+  "./assets/js/bootstrap-diagnostics.js?v=8a60ac53",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=fdbcd458",
   "./assets/js/translations.js?v=a8669dd4",
@@ -73,7 +73,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=19134431",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=b31cc83d",
+  "./assets/js/modules/ui-controller.js?v=e27fa548",
   "./assets/js/modules/navigation-controller.js?v=952afc11",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",

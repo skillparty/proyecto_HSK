@@ -205,19 +205,49 @@ class UIController {
       });
     };
 
-    const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const isDocumentVisible =
+      typeof document !== "undefined" &&
+      document.visibilityState === "visible";
 
-    if (typeof document !== "undefined" && typeof document.startViewTransition === "function" && !prefersReducedMotion) {
-      const transition = document.startViewTransition(() => updateTabDOM());
-      transition.finished.finally(() => {
-        const heading = document.querySelector(`#${tabName} h2, #${tabName} h3, #${tabName}`);
-        if (heading && typeof heading.focus === "function") {
-          if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
-          heading.focus({ preventScroll: true });
+    const focusTabHeading = () => {
+      const heading = document.querySelector(`#${tabName} h2, #${tabName} h3, #${tabName}`);
+      if (heading && typeof heading.focus === "function") {
+        if (!heading.hasAttribute("tabindex")) heading.setAttribute("tabindex", "-1");
+        heading.focus({ preventScroll: true });
+      }
+    };
+
+    if (
+      isDocumentVisible &&
+      typeof document !== "undefined" &&
+      typeof document.startViewTransition === "function" &&
+      !prefersReducedMotion
+    ) {
+      try {
+        const transition = document.startViewTransition(() => updateTabDOM());
+        // Handle skipped transitions gracefully (e.g. document hidden, tab change, media playback)
+        if (transition && typeof transition.ready?.catch === "function") {
+          transition.ready.catch(() => {});
         }
-      });
+        if (transition && typeof transition.finished?.catch === "function") {
+          transition.finished
+            .catch(() => {})
+            .finally(() => {
+              focusTabHeading();
+            });
+        } else {
+          focusTabHeading();
+        }
+      } catch {
+        updateTabDOM();
+        focusTabHeading();
+      }
     } else {
       updateTabDOM();
+      focusTabHeading();
     }
 
     // Notify app to initialize tab-specific content

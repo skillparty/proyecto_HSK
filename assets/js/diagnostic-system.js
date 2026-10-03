@@ -36,6 +36,14 @@ class HSKDiagnosticSystem {
 
         // Capturar promesas rechazadas
         window.addEventListener('unhandledrejection', (event) => {
+            const message = String(event.reason?.message || event.reason || '');
+            if (
+                message.includes('View transition was skipped') ||
+                message.includes('Transition was skipped') ||
+                (event.reason?.name === 'AbortError' && message.includes('aborted'))
+            ) {
+                return;
+            }
             this.logError({
                 type: 'Unhandled Promise Rejection',
                 message: event.reason?.message || event.reason,

@@ -245,6 +245,14 @@ class HealthController {
                 }
             }
 
+            if (
+                message.includes('View transition was skipped') ||
+                message.includes('Transition was skipped') ||
+                (reason?.name === 'AbortError' && message.includes('aborted'))
+            ) {
+                return;
+            }
+
             this.logRuntimeIssue('promise', message);
         });
     }
