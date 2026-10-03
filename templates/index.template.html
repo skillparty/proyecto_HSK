@@ -77,12 +77,12 @@
     <link rel="stylesheet" href="assets/css/design-tokens.css?v=d874e7b6" id="design-tokens">
     <!-- Split de styles-professional.css: el orden de estos <link> ES la cascada, no reordenar -->
     <link rel="stylesheet" href="assets/css/app-base.css?v=a184c466" id="main-stylesheet">
-    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=690efec1">
+    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=15795e50">
     <link rel="stylesheet" href="assets/css/app-home.css?v=624dabde">
     <link rel="stylesheet" href="assets/css/app-practice.css?v=f4eadb83">
     <link rel="stylesheet" href="assets/css/app-browse.css?v=06964ebd">
     <link rel="stylesheet" href="assets/css/app-strokes.css?v=dff411bb">
-    <link rel="stylesheet" href="assets/css/app-quiz.css?v=a56de94f">
+    <link rel="stylesheet" href="assets/css/app-quiz.css?v=02a1716f">
     <link rel="stylesheet" href="assets/css/app-stats.css?v=cd1fd78c">
     <link rel="stylesheet" href="assets/css/app-enhancements.css?v=99d811b4">
     <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=da016a08">
@@ -331,24 +331,31 @@
                             </button>
                         </div>
                         <button class="nav-dropdown-item" data-tab="practice">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><rect x="2" y="7" width="16" height="14" rx="2"></rect><path d="M6 3h12a2 2 0 0 1 2 2v12"></path></svg>
                             <span data-i18n="practiceTab">Practice</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="browse">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                             <span data-i18n="browseTab">Browse</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="strokes-radicals">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"></path><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"></path></svg>
                             <span data-i18n="strokesRadicalsTab">Trazos & Radicales</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="writing-sheets">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
                             <span data-i18n="writingSheetsTab">Plantillas de Escritura</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="graded-reader">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
                             <span data-i18n="gradedReaderTab">Lector Graduado</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="dialogue-tutor">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                             <span data-i18n="dialogueTutorTab">Tutor Conversacional</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="radical-decomposer">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                             <span data-i18n="radicalDecomposerTab">Laboratorio de Radicales</span>
                         </button>
                     </div>
@@ -380,15 +387,19 @@
                             </button>
                         </div>
                         <button class="nav-dropdown-item" data-tab="quiz">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                             <span data-i18n="quizTab">Quiz</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="past-exams">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                             <span data-i18n="pastExamsTab">Exámenes</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="tone-trainer">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
                             <span data-i18n="toneTrainerTab">Entrenador de Oído</span>
                         </button>
                         <button class="nav-dropdown-item" data-tab="tone-visualizer">
+                            <svg class="dropdown-item-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; flex-shrink: 0;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                             <span data-i18n="toneVisualizerTab">Visualizador de Tonos</span>
                         </button>
                     </div>

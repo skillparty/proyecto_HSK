@@ -402,6 +402,23 @@ html[data-theme="light"] .nav-dropdown-item {
     color: var(--color-text-charcoal);
 }
 
+.dropdown-item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.75;
+    transition: opacity var(--transition-fast) ease, transform var(--transition-fast) ease;
+}
+
+.nav-dropdown-item:hover .dropdown-item-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.nav-dropdown-item.active .dropdown-item-icon {
+    opacity: 1;
+}
+
 .nav-dropdown-item:hover {
     color: var(--color-accent);
     background: rgba(255, 255, 255, 0.08);
