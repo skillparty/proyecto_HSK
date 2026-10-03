@@ -156,8 +156,8 @@ class PracticeViewController {
                 <div class="translations-section">
                     <div class="translation-item primary-translation">
                         <div class="translation-header">
-                            <span class="lang-flag">${this.app.currentLanguage === 'es' ? 'ES' : 'EN'}</span>
-                            <span class="lang-name">${this.app.currentLanguage === 'es' ? 'Español' : 'English'}</span>
+                            <span class="lang-flag">${this.app.currentLanguage === 'es' ? 'ES' : this.app.currentLanguage === 'ru' ? 'RU' : this.app.currentLanguage === 'th' ? 'TH' : 'EN'}</span>
+                            <span class="lang-name">${this.app.currentLanguage === 'es' ? (this.app.getTranslation('spanish') || 'Español') : this.app.currentLanguage === 'ru' ? (this.app.getTranslation('russian') || 'Русский') : this.app.currentLanguage === 'th' ? (this.app.getTranslation('thai') || 'ภาษาไทย') : (this.app.getTranslation('english') || 'English')}</span>
                         </div>
                         <div class="translation-content">${meaning}</div>
                     </div>
@@ -477,8 +477,8 @@ class PracticeViewController {
         const lessonNumber = Number(word.lesson || 0);
         const lessonOrder = Number(word.lessonOrder || word.orderInLesson || 0);
 
-        const lessonWord = lang === 'es' ? 'Lección' : 'Lesson';
-        const orderWord = lang === 'es' ? 'Palabra' : 'Word';
+        const lessonWord = lang === 'es' ? 'Lección' : lang === 'ru' ? 'Урок' : lang === 'th' ? 'บทเรียน' : 'Lesson';
+        const orderWord = lang === 'es' ? 'Palabra' : lang === 'ru' ? 'Слово' : lang === 'th' ? 'คำ' : 'Word';
         const segments = [];
 
         if (level) segments.push(`HSK ${level}`);

@@ -10,37 +10,55 @@ describe("Translations (i18n) Parity & Completeness", () => {
     const fn = new Function("window", `${fileContent}; return translations;`);
     const translations = fn({});
 
-    it("has both 'es' and 'en' language dictionaries", () => {
+    const languages = ["es", "en", "ru", "th"];
+
+    it("has all 4 language dictionaries (es, en, ru, th)", () => {
         expect(translations).toBeDefined();
-        expect(translations.es).toBeTypeOf("object");
-        expect(translations.en).toBeTypeOf("object");
+        languages.forEach((lang) => {
+            expect(translations[lang]).toBeTypeOf("object");
+        });
     });
 
-    it("maintains 100% key parity between ES and EN", () => {
+    it("maintains 100% key parity across all four languages", () => {
         const esKeys = Object.keys(translations.es);
-        const enKeys = Object.keys(translations.en);
+        expect(esKeys.length).toBeGreaterThan(1000);
 
-        const missingInEn = esKeys.filter((k) => !(k in translations.en));
-        const missingInEs = enKeys.filter((k) => !(k in translations.es));
+        languages.forEach((lang) => {
+            const langKeys = Object.keys(translations[lang]);
+            const missing = esKeys.filter((k) => !(k in translations[lang]));
+            const extra = langKeys.filter((k) => !(k in translations.es));
 
-        expect(missingInEn).toEqual([]);
-        expect(missingInEs).toEqual([]);
-        expect(esKeys.length).toBe(enKeys.length);
-        expect(esKeys.length).toBeGreaterThan(800);
+            expect(missing, `Keys missing in ${lang}`).toEqual([]);
+            expect(extra, `Extra keys in ${lang}`).toEqual([]);
+            expect(langKeys.length).toBe(esKeys.length);
+        });
     });
 
-    it("contains no empty string or null values in either language", () => {
-        for (const v of Object.values(translations.es)) {
-            expect(typeof v).toBe("string");
-            expect(v.trim().length).toBeGreaterThan(0);
-        }
-        for (const v of Object.values(translations.en)) {
-            expect(typeof v).toBe("string");
-            expect(v.trim().length).toBeGreaterThan(0);
+    it("contains no empty string or null values in any language", () => {
+        languages.forEach((lang) => {
+            for (const [k, v] of Object.entries(translations[lang])) {
+                expect(typeof v, `Key ${k} in ${lang} must be string`).toBe("string");
+                expect(v.trim().length, `Key ${k} in ${lang} cannot be empty`).toBeGreaterThan(0);
+            }
+        });
+    });
+
+    it("maintains identical interpolation placeholders across all languages", () => {
+        const placeholderRegex = /\{([a-zA-Z0-9_]+)\}/g;
+        const esKeys = Object.keys(translations.es);
+
+        for (const key of esKeys) {
+            const refMatches = (translations.en[key].match(placeholderRegex) || []).sort();
+
+            for (const lang of ["es", "ru", "th"]) {
+                const langMatches = (translations[lang][key].match(placeholderRegex) || []).sort();
+                expect(langMatches, `Placeholder mismatch for key '${key}' in ${lang}`).toEqual(refMatches);
+            }
         }
     });
 
-    it("correctly includes cultural games and modern module keys in English", () => {
+    it("correctly includes cultural games and modern module keys in all languages", () => {
+        // English
         expect(translations.en.cityVocabTitle).toBe("Essential Travel Vocabulary");
         expect(translations.en.scrollPresetQuietNight).toContain("Li Bai");
         expect(translations.en.nameTraitWisdom).toContain("Wisdom");
@@ -49,5 +67,21 @@ describe("Translations (i18n) Parity & Completeness", () => {
         expect(translations.en.shadowSceneCounter).toBe("Scene 1 of 4");
         expect(translations.en.strokesCanvasTitle).toBe("Writing & Calligraphy Canvas");
         expect(translations.en.tone1NameInitial).toContain("High Level");
+
+        // Russian
+        expect(translations.ru.cityVocabTitle).toBe("Необходимый словарь для поездки");
+        expect(translations.ru.scrollPresetQuietNight).toContain("Ли Бо");
+        expect(translations.ru.nameTraitWisdom).toContain("Мудрость");
+        expect(translations.ru.appTitle).toBe("Confuc10++");
+        expect(translations.ru.russian).toBe("Русский");
+        expect(translations.ru.thai).toBe("Тайский");
+
+        // Thai
+        expect(translations.th.cityVocabTitle).toBe("คำศัพท์จำเป็นสำหรับการท่องเที่ยว");
+        expect(translations.th.scrollPresetQuietNight).toContain("หลี่ไป๋");
+        expect(translations.th.nameTraitWisdom).toContain("ปัญญา");
+        expect(translations.th.appTitle).toBe("Confuc10++");
+        expect(translations.th.russian).toBe("ภาษารัสเซีย");
+        expect(translations.th.thai).toBe("ภาษาไทย");
     });
 });

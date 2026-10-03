@@ -254,7 +254,7 @@ class UIController {
         (async () => {
           try {
             if (!window.BrowseController) {
-              await this.loadScript("assets/js/modules/browse-controller.js?v=6c8c3c15");
+              await this.loadScript("assets/js/modules/browse-controller.js?v=0b2cc599");
             }
             if (!this.app.browseController) {
               this.app.browseController = new window.BrowseController(this.app);
@@ -442,7 +442,7 @@ class UIController {
               await this.loadScript("assets/js/matrix-game-view.js");
             }
             if (!window.MatrixGame) {
-              await this.loadScript("assets/js/matrix-game.js?v=ca5b9b2e");
+              await this.loadScript("assets/js/matrix-game.js?v=8f3eff3a");
             }
             if (typeof renderMatrixGameInterface === "undefined") {
               await this.loadScript("assets/js/matrix-game-ui.js");
@@ -696,7 +696,7 @@ class UIController {
           try {
             await this.loadStylesheet("assets/css/app-videos.css?v=f5735c3e");
             if (!window.VideosController) {
-              await this.loadScript("assets/js/modules/videos-controller.js?v=3fc0373d");
+              await this.loadScript("assets/js/modules/videos-controller.js?v=b25d2a46");
             }
             if (!this.app.videosController) {
               this.app.videosController = new window.VideosController(this.app);

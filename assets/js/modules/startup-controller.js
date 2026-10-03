@@ -36,6 +36,10 @@ class StartupController {
 
                         const langLabel = nextLanguage === 'es'
                             ? (this.app.getTranslation('spanish') || 'Español')
+                            : nextLanguage === 'ru'
+                            ? (this.app.getTranslation('russian') || 'Русский')
+                            : nextLanguage === 'th'
+                            ? (this.app.getTranslation('thai') || 'ภาษาไทย')
                             : (this.app.getTranslation('english') || 'English');
                         this.app.showToast(
                             (this.app.getTranslation('languageUpdated') || 'Language updated') + ': ' + langLabel,

@@ -343,3 +343,14 @@ html[data-theme="dark"] .sr-reference-stat-value {
 html[data-theme="dark"] .etym-toggle-btn.is-active {
     color: #ef4444;
 }
+
+/* Localization typography adjustments */
+html[lang="th"] {
+    --font-main: "Sarabun", "Noto Sans Thai", "Thonburi", "Leelawadee UI", "Inter", -apple-system, system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+html[lang="ru"] {
+    hyphens: auto;
+}
+

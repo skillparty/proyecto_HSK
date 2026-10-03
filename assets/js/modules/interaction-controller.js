@@ -185,7 +185,10 @@ class InteractionController {
             langToggle.addEventListener('click', () => {
                 const manager = window.languageManager;
                 if (!manager) return;
-                const newLang = manager.currentLanguage === 'en' ? 'es' : 'en';
+                const supportedLanguages = ['es', 'en', 'ru', 'th'];
+                const currentIndex = supportedLanguages.indexOf(manager.currentLanguage);
+                const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % supportedLanguages.length : 0;
+                const newLang = supportedLanguages[nextIndex];
                 manager.setLanguage(newLang);
                 this.app.updateLanguageDisplay();
             });
