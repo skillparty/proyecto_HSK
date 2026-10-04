@@ -253,6 +253,14 @@ html[data-theme="light"] .culture-dropdown-pillar {
     margin: 0;
 }
 
+.wisdom-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.wisdom-action-btn,
 .wisdom-shuffle-btn {
     display: inline-flex;
     align-items: center;
@@ -268,10 +276,16 @@ html[data-theme="light"] .culture-dropdown-pillar {
     transition: all var(--transition-fast, 0.15s ease);
 }
 
+.wisdom-action-btn:hover,
 .wisdom-shuffle-btn:hover {
     border-color: var(--primary, #e53935);
     color: var(--primary, #e53935);
     background: rgba(225, 29, 72, 0.05);
+}
+
+.wisdom-action-btn:active,
+.wisdom-shuffle-btn:active {
+    transform: scale(0.97);
 }
 
 .wisdom-content-row {
@@ -347,8 +361,82 @@ html[data-theme="light"] .culture-dropdown-pillar {
 }
 
 /* ==========================================================================
-   4. FILTROS POR PILAR CULTURAL
+   4. FILTROS Y BÚSQUEDA DE MÓDULOS CULTURALES
    ========================================================================== */
+
+.culture-controls-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.culture-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 12px);
+    transition: all var(--transition-fast, 0.15s ease);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.culture-search-box:focus-within {
+    border-color: var(--primary, #e53935);
+    box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.culture-search-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 14px;
+    color: var(--text-muted);
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.culture-search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.92rem;
+    color: var(--text-main);
+    padding: 12px 14px;
+    font-family: inherit;
+}
+
+.culture-search-input::placeholder {
+    color: var(--text-dim);
+}
+
+.culture-search-clear-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: rgba(128, 128, 128, 0.15);
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+    flex-shrink: 0;
+}
+
+.culture-search-clear-btn:hover {
+    background: rgba(225, 29, 72, 0.15);
+    color: var(--primary, #e53935);
+    transform: scale(1.05);
+}
+
+.culture-search-clear-btn.is-hidden {
+    display: none;
+}
 
 .culture-filter-bar {
     display: flex;
@@ -615,6 +703,72 @@ html[data-theme="light"] .culture-dropdown-pillar {
     background: #c62828;
     transform: translateX(2px);
     box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+}
+
+/* Empty State / No Search Results */
+.culture-no-results {
+    background: var(--bg-panel);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 44px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 8px 0;
+}
+
+.culture-no-results.is-hidden {
+    display: none;
+}
+
+.culture-no-results-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(225, 29, 72, 0.08);
+    color: var(--primary, #e53935);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+.culture-no-results-text {
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0;
+    line-height: 1.45;
+}
+
+.culture-reset-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    color: var(--primary, #e53935);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.culture-reset-btn:hover {
+    border-color: var(--primary, #e53935);
+    background: rgba(225, 29, 72, 0.06);
+    transform: translateY(-1px);
+}
+
+.culture-reset-btn:active {
+    transform: scale(0.98);
 }
 
 /* ==========================================================================

@@ -300,6 +300,7 @@
     constructor(app) {
       this.app = app;
       this.activePillar = "all";
+      this.searchQuery = "";
       this.currentChengyuIndex = 0;
       this.isInitialized = false;
 
@@ -351,11 +352,61 @@
       }
     }
 
+    escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    normalizeText(str) {
+      if (!str) return "";
+      return String(str)
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+    }
+
+    matchesSearch(mod, query) {
+      if (!query) return true;
+      const q = this.normalizeText(query);
+      if (!q) return true;
+
+      const translatedTitle = this.app?.getTranslation?.(mod.titleKey) || "";
+      const translatedPillar = this.app?.getTranslation?.(mod.pillarKey) || "";
+
+      const haystack = [
+        mod.title,
+        translatedTitle,
+        mod.hanzi,
+        mod.descEs,
+        mod.descEn,
+        mod.vocabHanzi,
+        mod.vocabPinyin,
+        mod.vocabMeaningEs,
+        mod.vocabMeaningEn,
+        mod.pillar,
+        translatedPillar,
+      ]
+        .map((s) => this.normalizeText(s))
+        .join(" ");
+
+      const terms = q.split(/\s+/).filter(Boolean);
+      return terms.every((term) => haystack.includes(term));
+    }
+
     render() {
       if (!this.container) return;
       const isEn = this.app?.currentLanguage === "en";
       const exploredSet = this.getExploredSet();
       const currentChengyu = CHENGYU_WISDOM_BANK[this.currentChengyuIndex] || CHENGYU_WISDOM_BANK[0];
+      const searchPlaceholder =
+        this.app?.getTranslation?.("cultureSearchPlaceholder") ||
+        "Buscar módulos, dinastías, artes, medicina, Hanzi...";
 
       const html = `
         <div class="culture-hub-container">
@@ -395,10 +446,16 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M6 6h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path><line x1="12" y1="6" x2="12" y2="18"></line></svg>
                 <span data-i18n="cultureDailyWisdom">${this.app?.getTranslation?.("cultureDailyWisdom") || "Sabiduría Milenaria (Proverbio del Día)"}</span>
               </h3>
-              <button type="button" class="wisdom-shuffle-btn" id="culture-wisdom-shuffle-btn">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
-                <span data-i18n="cultureShuffleWisdom">${this.app?.getTranslation?.("cultureShuffleWisdom") || "Otro Proverbio"}</span>
-              </button>
+              <div class="wisdom-actions">
+                <button type="button" class="wisdom-action-btn" id="culture-wisdom-copy-btn" title="Copiar proverbio" aria-label="Copiar proverbio">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span id="wisdom-copy-label" data-i18n="cultureCopyWisdom">${this.app?.getTranslation?.("cultureCopyWisdom") || "Copiar Ficha"}</span>
+                </button>
+                <button type="button" class="wisdom-shuffle-btn" id="culture-wisdom-shuffle-btn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                  <span data-i18n="cultureShuffleWisdom">${this.app?.getTranslation?.("cultureShuffleWisdom") || "Otro Proverbio"}</span>
+                </button>
+              </div>
             </div>
             <div class="wisdom-content-row">
               <div class="wisdom-character-block">
@@ -415,33 +472,73 @@
             </div>
           </div>
 
-          <!-- Pillar Filters Bar -->
-          <div class="culture-filter-bar" role="tablist" aria-label="Filtro de pilares culturales">
-            <button type="button" class="culture-filter-chip ${this.activePillar === "all" ? "active" : ""}" data-pillar="all" role="tab" aria-selected="${this.activePillar === "all"}">
-              <span data-i18n="cultureFilterAll">${this.app?.getTranslation?.("cultureFilterAll") || "Todos los Módulos"}</span>
-              <span class="chip-count">13</span>
-            </button>
-            <button type="button" class="culture-filter-chip ${this.activePillar === "lang" ? "active" : ""}" data-pillar="lang" role="tab" aria-selected="${this.activePillar === "lang"}">
-              <span data-i18n="culturePillarLanguage">${this.app?.getTranslation?.("culturePillarLanguage") || "Lengua & Caligrafía"}</span>
-              <span class="chip-count">4</span>
-            </button>
-            <button type="button" class="culture-filter-chip ${this.activePillar === "geo" ? "active" : ""}" data-pillar="geo" role="tab" aria-selected="${this.activePillar === "geo"}">
-              <span data-i18n="culturePillarGeography">${this.app?.getTranslation?.("culturePillarGeography") || "Geografía & Ciudades"}</span>
-              <span class="chip-count">2</span>
-            </button>
-            <button type="button" class="culture-filter-chip ${this.activePillar === "arts" ? "active" : ""}" data-pillar="arts" role="tab" aria-selected="${this.activePillar === "arts"}">
-              <span data-i18n="culturePillarArts">${this.app?.getTranslation?.("culturePillarArts") || "Artes Escénicas & Tradición"}</span>
-              <span class="chip-count">4</span>
-            </button>
-            <button type="button" class="culture-filter-chip ${this.activePillar === "sci" ? "active" : ""}" data-pillar="sci" role="tab" aria-selected="${this.activePillar === "sci"}">
-              <span data-i18n="culturePillarSociety">${this.app?.getTranslation?.("culturePillarSociety") || "Ciencia, Costumbres & Sociedad"}</span>
-              <span class="chip-count">3</span>
-            </button>
+          <!-- Controls Section: Search & Pillar Filters -->
+          <div class="culture-controls-section">
+            <div class="culture-search-box">
+              <span class="culture-search-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </span>
+              <input
+                type="search"
+                id="culture-search-input"
+                class="culture-search-input"
+                placeholder="${this.escapeHtml(searchPlaceholder)}"
+                value="${this.escapeHtml(this.searchQuery)}"
+                aria-label="${this.escapeHtml(searchPlaceholder)}"
+                autocomplete="off"
+              />
+              <button
+                type="button"
+                id="culture-search-clear"
+                class="culture-search-clear-btn ${this.searchQuery ? "" : "is-hidden"}"
+                title="Limpiar búsqueda"
+                aria-label="Limpiar búsqueda"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+
+            <div class="culture-filter-bar" role="tablist" aria-label="Filtro de pilares culturales">
+              <button type="button" class="culture-filter-chip ${this.activePillar === "all" ? "active" : ""}" data-pillar="all" role="tab" aria-selected="${this.activePillar === "all"}">
+                <span data-i18n="cultureFilterAll">${this.app?.getTranslation?.("cultureFilterAll") || "Todos los Módulos"}</span>
+                <span class="chip-count">13</span>
+              </button>
+              <button type="button" class="culture-filter-chip ${this.activePillar === "lang" ? "active" : ""}" data-pillar="lang" role="tab" aria-selected="${this.activePillar === "lang"}">
+                <span data-i18n="culturePillarLanguage">${this.app?.getTranslation?.("culturePillarLanguage") || "Lengua & Caligrafía"}</span>
+                <span class="chip-count">4</span>
+              </button>
+              <button type="button" class="culture-filter-chip ${this.activePillar === "geo" ? "active" : ""}" data-pillar="geo" role="tab" aria-selected="${this.activePillar === "geo"}">
+                <span data-i18n="culturePillarGeography">${this.app?.getTranslation?.("culturePillarGeography") || "Geografía & Ciudades"}</span>
+                <span class="chip-count">2</span>
+              </button>
+              <button type="button" class="culture-filter-chip ${this.activePillar === "arts" ? "active" : ""}" data-pillar="arts" role="tab" aria-selected="${this.activePillar === "arts"}">
+                <span data-i18n="culturePillarArts">${this.app?.getTranslation?.("culturePillarArts") || "Artes Escénicas & Tradición"}</span>
+                <span class="chip-count">4</span>
+              </button>
+              <button type="button" class="culture-filter-chip ${this.activePillar === "sci" ? "active" : ""}" data-pillar="sci" role="tab" aria-selected="${this.activePillar === "sci"}">
+                <span data-i18n="culturePillarSociety">${this.app?.getTranslation?.("culturePillarSociety") || "Ciencia, Costumbres & Sociedad"}</span>
+                <span class="chip-count">3</span>
+              </button>
+            </div>
           </div>
 
           <!-- Cultural Cards Grid -->
           <div class="culture-cards-grid" id="culture-cards-grid">
             ${this.renderModuleCards(exploredSet, isEn)}
+          </div>
+
+          <!-- No Results Empty State -->
+          <div class="culture-no-results is-hidden" id="culture-no-results">
+            <div class="culture-no-results-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+            <p class="culture-no-results-text" data-i18n="cultureNoResults">
+              ${this.app?.getTranslation?.("cultureNoResults") || "No se encontraron módulos culturales para esta búsqueda."}
+            </p>
+            <button type="button" class="culture-reset-btn" id="culture-reset-filters-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+              <span data-i18n="cultureResetFilters">${this.app?.getTranslation?.("cultureResetFilters") || "Restablecer filtros"}</span>
+            </button>
           </div>
 
           <!-- Timeline Ribbon -->
@@ -482,12 +579,15 @@
       `;
 
       this.container.innerHTML = html;
+      this.applyFilters();
     }
 
     renderModuleCards(exploredSet, isEn) {
       return CULTURE_MODULES_DATA.map((mod) => {
         const isExplored = exploredSet.has(mod.id);
-        const isHidden = this.activePillar !== "all" && this.activePillar !== mod.pillar;
+        const isHidden =
+          (this.activePillar !== "all" && this.activePillar !== mod.pillar) ||
+          !this.matchesSearch(mod, this.searchQuery);
         const tagClass = `tag-${mod.pillar}`;
         const pillarName = this.app?.getTranslation?.(mod.pillarKey) || mod.pillar;
         const title = this.app?.getTranslation?.(mod.titleKey) || mod.title;
@@ -544,7 +644,16 @@
     bindEvents() {
       if (!this.container) return;
 
-      // Filter chips click
+      // Live search input listener
+      const searchInput = this.container.querySelector("#culture-search-input");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          this.searchQuery = e.target.value;
+          this.applyFilters();
+        });
+      }
+
+      // Filter chips and actions click delegation
       this.container.addEventListener("click", (e) => {
         const filterChip = e.target.closest(".culture-filter-chip");
         if (filterChip) {
@@ -552,6 +661,33 @@
           if (pillar) {
             this.setFilter(pillar);
           }
+          return;
+        }
+
+        // Search clear button
+        const clearBtn = e.target.closest("#culture-search-clear");
+        if (clearBtn) {
+          this.searchQuery = "";
+          const input = this.container.querySelector("#culture-search-input");
+          if (input) {
+            input.value = "";
+            input.focus();
+          }
+          this.applyFilters();
+          return;
+        }
+
+        // Reset filters button
+        const resetBtn = e.target.closest("#culture-reset-filters-btn");
+        if (resetBtn) {
+          this.resetFilters();
+          return;
+        }
+
+        // Wisdom copy button
+        const copyBtn = e.target.closest("#culture-wisdom-copy-btn");
+        if (copyBtn) {
+          this.copyWisdomCard();
           return;
         }
 
@@ -599,6 +735,35 @@
       });
     }
 
+    applyFilters() {
+      if (!this.container) return;
+      const cards = this.container.querySelectorAll(".culture-card");
+      const clearBtn = this.container.querySelector("#culture-search-clear");
+      const noResultsEl = this.container.querySelector("#culture-no-results");
+
+      if (clearBtn) {
+        clearBtn.classList.toggle("is-hidden", !this.searchQuery.trim());
+      }
+
+      let visibleCount = 0;
+      cards.forEach((card) => {
+        const cardId = card.getAttribute("data-card-id");
+        const cardPillar = card.getAttribute("data-card-pillar");
+        const mod = CULTURE_MODULES_DATA.find((m) => m.id === cardId);
+
+        const pillarMatches = this.activePillar === "all" || cardPillar === this.activePillar;
+        const searchMatches = mod ? this.matchesSearch(mod, this.searchQuery) : true;
+
+        const isVisible = pillarMatches && searchMatches;
+        card.classList.toggle("is-hidden", !isVisible);
+        if (isVisible) visibleCount++;
+      });
+
+      if (noResultsEl) {
+        noResultsEl.classList.toggle("is-hidden", visibleCount > 0);
+      }
+    }
+
     setFilter(pillar) {
       this.activePillar = pillar;
       const chips = this.container?.querySelectorAll(".culture-filter-chip");
@@ -609,15 +774,88 @@
         chip.setAttribute("aria-selected", String(isActive));
       });
 
-      const cards = this.container?.querySelectorAll(".culture-card");
-      cards?.forEach((card) => {
-        const cardPillar = card.getAttribute("data-card-pillar");
-        if (pillar === "all" || cardPillar === pillar) {
-          card.classList.remove("is-hidden");
-        } else {
-          card.classList.add("is-hidden");
-        }
+      this.applyFilters();
+    }
+
+    resetFilters() {
+      this.searchQuery = "";
+      this.activePillar = "all";
+
+      const searchInput = this.container?.querySelector("#culture-search-input");
+      if (searchInput) {
+        searchInput.value = "";
+        searchInput.focus();
+      }
+
+      const chips = this.container?.querySelectorAll(".culture-filter-chip");
+      chips?.forEach((chip) => {
+        const isAll = chip.getAttribute("data-pillar") === "all";
+        chip.classList.toggle("active", isAll);
+        chip.setAttribute("aria-selected", String(isAll));
       });
+
+      this.applyFilters();
+    }
+
+    async copyWisdomCard() {
+      const current = CHENGYU_WISDOM_BANK[this.currentChengyuIndex] || CHENGYU_WISDOM_BANK[0];
+      const isEn = this.app?.currentLanguage === "en";
+      const literal = isEn ? current.literalEn : current.literalEs;
+      const desc = isEn ? current.descEn : current.descEs;
+
+      const textToCopy = [
+        `🏮 Proverbio Chino del Día (中华成语)`,
+        `${current.hanzi} · ${current.pinyin}`,
+        `"${literal}"`,
+        `${isEn ? "Meaning:" : "Significado:"} ${desc}`,
+        `— Proyecto HSK (Portal Cultural)`,
+      ].join("\n");
+
+      let success = false;
+      if (typeof navigator !== "undefined" && navigator?.clipboard?.writeText) {
+        try {
+          await navigator.clipboard.writeText(textToCopy);
+          success = true;
+        } catch {
+          success = this.fallbackCopyText(textToCopy);
+        }
+      } else {
+        success = this.fallbackCopyText(textToCopy);
+      }
+
+      if (success) {
+        const copyLabel = document.getElementById("wisdom-copy-label");
+        if (copyLabel) {
+          const originalText = copyLabel.textContent;
+          const copiedText = this.app?.getTranslation?.("cultureCopiedWisdom") || "¡Copiado!";
+          copyLabel.textContent = copiedText;
+          setTimeout(() => {
+            if (copyLabel) copyLabel.textContent = originalText;
+          }, 2000);
+        }
+        if (this.app?.showToast) {
+          this.app.showToast(this.app?.getTranslation?.("cultureCopiedWisdom") || "¡Copiado al portapapeles!");
+        }
+      }
+    }
+
+    fallbackCopyText(text) {
+      if (typeof document === "undefined") return false;
+      try {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "absolute";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(textarea);
+        return ok;
+      } catch (err) {
+        if (this.app?.logWarn) this.app.logWarn("Fallback copy error:", err);
+        return false;
+      }
     }
 
     shuffleWisdom() {

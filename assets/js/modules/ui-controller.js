@@ -270,7 +270,26 @@ class UIController {
     this.runTabInitialization(tabName);
   }
 
+  markCultureTabExplored(tabName) {
+    const CULTURE_TABS = new Set([
+      "culture-characters", "calligraphy-scroll", "chinese-names", "memories",
+      "culture-provinces", "china-cities",
+      "culture-opera", "shadow-theatre", "lyrics-lab", "culture-arts",
+      "culture-medicine", "culture-technology", "culture-clothing"
+    ]);
+    if (!CULTURE_TABS.has(tabName)) return;
+    try {
+      const raw = localStorage.getItem("hsk_culture_explored");
+      const set = new Set(raw ? JSON.parse(raw) : []);
+      set.add(tabName);
+      localStorage.setItem("hsk_culture_explored", JSON.stringify([...set]));
+    } catch (err) {
+      if (this.app?.logWarn) this.app.logWarn("Error saving explored culture tab:", err);
+    }
+  }
+
   runTabInitialization(tabName) {
+    this.markCultureTabExplored(tabName);
     switch (tabName) {
       case "home":
         if (
@@ -597,7 +616,7 @@ class UIController {
       case "culture":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/app-culture.css?v=e36c8bc4", "culture-hub-stylesheet");
+            await this.loadStylesheet("assets/css/app-culture.css?v=05100270", "culture-hub-stylesheet");
             if (!window.CultureHubController) {
               await this.loadScript("assets/js/modules/culture/culture-hub.js");
             }

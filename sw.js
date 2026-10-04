@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+6a200080";
+const SW_VERSION = "4.70.0+85731c2e";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -14,7 +14,7 @@ const PRECACHE_FILES = [
   "./config/manifest.json",
   "./assets/css/design-tokens.css?v=d874e7b6",
   "./assets/css/app-base.css?v=a184c466",
-  "./assets/css/app-header-nav.css?v=15795e50",
+  "./assets/css/app-header-nav.css?v=9476ab97",
   "./assets/css/app-home.css?v=624dabde",
   "./assets/css/app-practice.css?v=f4eadb83",
   "./assets/css/app-browse.css?v=06964ebd",
@@ -46,7 +46,7 @@ const PRECACHE_FILES = [
   "./assets/css/tone-visualizer-styles.css",
   "./assets/css/calligraphy-scroll-styles.css",
   "./assets/css/chinese-names-styles.css",
-  "./assets/css/app-culture.css?v=e36c8bc4",
+  "./assets/css/app-culture.css?v=05100270",
   "./assets/css/culture-provinces.css",
   "./assets/css/app-videos.css?v=f5735c3e",
   "./assets/css/app-memories.css",
@@ -61,7 +61,7 @@ const PRECACHE_FILES = [
   "./assets/js/bootstrap-diagnostics.js?v=8a60ac53",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=fdbcd458",
-  "./assets/js/translations.js?v=eab63018",
+  "./assets/js/translations.js?v=7ef2806c",
   "./assets/js/firebase-client.js?v=620f489f",
   "./assets/js/firebase-progress-sync.js?v=bf85fc76",
   "./assets/js/modules/srs-engine.js?v=49945573",
@@ -74,7 +74,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=d18e498c",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=7a26b28a",
+  "./assets/js/modules/ui-controller.js?v=8026d257",
   "./assets/js/modules/navigation-controller.js?v=2be96299",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/culture-hub.js",
@@ -88,7 +88,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/memories-controller.js",
   "./assets/js/modules/language-controller.js?v=57c17946",
   "./assets/js/modules/browse-controller.js?v=f728392f",
-  "./assets/js/modules/interaction-controller.js?v=e9b006fc",
+  "./assets/js/modules/interaction-controller.js?v=b099784a",
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-question-bank.js",
   "./assets/js/modules/past-exams-controller.js?v=04dc220c",

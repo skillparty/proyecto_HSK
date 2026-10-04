@@ -631,6 +631,16 @@ class MemoriesController {
 
     this.container.innerHTML = `
       <div class="memories-container">
+        <!-- Breadcrumb Navigation -->
+        <div class="culture-submodule-header-nav">
+          <button type="button" class="culture-back-to-hub-btn" data-culture-nav="hub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            <span>${this.app?.getTranslation?.("cultureBackToPortal") || (isEs ? "Volver al Portal Cultural" : "Back to Culture Portal")}</span>
+          </button>
+          <span class="culture-crumb-sep" aria-hidden="true">/</span>
+          <span class="culture-crumb-current">${isEs ? "Baúl de los Recuerdos" : "Memory Trunk"}</span>
+        </div>
+
         <!-- 1. HERO BANNER -->
         <header class="memories-hero">
           <div class="memories-hero-content">

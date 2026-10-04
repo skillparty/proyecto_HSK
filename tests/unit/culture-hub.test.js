@@ -46,6 +46,11 @@ describe("CultureHubController", () => {
           cultureFilterAll: "Todos los Módulos",
           cultureDiscoveredPill: "Explorados",
           cultureShuffleWisdom: "Otro Proverbio",
+          cultureSearchPlaceholder: "Buscar módulos, dinastías, artes, medicina, Hanzi...",
+          cultureCopyWisdom: "Copiar Ficha",
+          cultureCopiedWisdom: "¡Copiado!",
+          cultureNoResults: "No se encontraron módulos culturales para esta búsqueda.",
+          cultureResetFilters: "Restablecer filtros",
         };
         return dict[key] || key;
       }),
@@ -254,6 +259,118 @@ describe("CultureHubController", () => {
       const literalEl = document.getElementById("wisdom-literal-text");
       expect(literalEl).not.toBeNull();
       expect(literalEl.textContent.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe("Instant Search and Filtering", () => {
+    beforeEach(async () => {
+      await controller.init();
+    });
+
+    it("filters cards dynamically when searching by term (accent-insensitive)", () => {
+      const searchInput = document.getElementById("culture-search-input");
+      searchInput.value = "opera";
+      searchInput.dispatchEvent(new Event("input"));
+
+      expect(controller.searchQuery).toBe("opera");
+      const visibleCards = document.querySelectorAll(".culture-card:not(.is-hidden)");
+      expect(visibleCards.length).toBeGreaterThanOrEqual(1);
+      const operaCard = document.querySelector('.culture-card[data-card-id="culture-opera"]');
+      expect(operaCard.classList.contains("is-hidden")).toBe(false);
+    });
+
+    it("matches Chinese characters in title or vocabulary", () => {
+      const searchInput = document.getElementById("culture-search-input");
+      searchInput.value = "甲骨文";
+      searchInput.dispatchEvent(new Event("input"));
+
+      const visibleCards = document.querySelectorAll(".culture-card:not(.is-hidden)");
+      expect(visibleCards.length).toBe(1);
+      expect(visibleCards[0].getAttribute("data-card-id")).toBe("culture-characters");
+    });
+
+    it("shows empty state when no cards match search", () => {
+      const searchInput = document.getElementById("culture-search-input");
+      searchInput.value = "xyznonexistent999";
+      searchInput.dispatchEvent(new Event("input"));
+
+      const visibleCards = document.querySelectorAll(".culture-card:not(.is-hidden)");
+      expect(visibleCards.length).toBe(0);
+
+      const noResults = document.getElementById("culture-no-results");
+      expect(noResults.classList.contains("is-hidden")).toBe(false);
+    });
+
+    it("clears search query and restores cards when clicking clear button", () => {
+      const searchInput = document.getElementById("culture-search-input");
+      searchInput.value = "medicina";
+      searchInput.dispatchEvent(new Event("input"));
+
+      const clearBtn = document.getElementById("culture-search-clear");
+      expect(clearBtn.classList.contains("is-hidden")).toBe(false);
+
+      clearBtn.click();
+      expect(controller.searchQuery).toBe("");
+      expect(searchInput.value).toBe("");
+
+      const visibleCards = document.querySelectorAll(".culture-card:not(.is-hidden)");
+      expect(visibleCards.length).toBe(13);
+      expect(clearBtn.classList.contains("is-hidden")).toBe(true);
+    });
+
+    it("resets both search query and pillar filter when clicking reset button in empty state", () => {
+      controller.setFilter("geo");
+      const searchInput = document.getElementById("culture-search-input");
+      searchInput.value = "nomatch";
+      searchInput.dispatchEvent(new Event("input"));
+
+      const resetBtn = document.getElementById("culture-reset-filters-btn");
+      expect(resetBtn).not.toBeNull();
+      resetBtn.click();
+
+      expect(controller.searchQuery).toBe("");
+      expect(controller.activePillar).toBe("all");
+      const visibleCards = document.querySelectorAll(".culture-card:not(.is-hidden)");
+      expect(visibleCards.length).toBe(13);
+    });
+  });
+
+  describe("Wisdom Card Copy & Share", () => {
+    beforeEach(async () => {
+      app.showToast = vi.fn();
+      await controller.init();
+    });
+
+    it("copies formatted wisdom markdown to clipboard using navigator.clipboard", async () => {
+      let writtenText = "";
+      Object.assign(navigator, {
+        clipboard: {
+          writeText: vi.fn(async (text) => {
+            writtenText = text;
+          }),
+        },
+      });
+
+      const copyBtn = document.getElementById("culture-wisdom-copy-btn");
+      expect(copyBtn).not.toBeNull();
+      copyBtn.click();
+
+      await Promise.resolve();
+
+      expect(navigator.clipboard.writeText).toHaveBeenCalled();
+      expect(writtenText).toContain("Proverbio Chino del Día");
+      expect(writtenText).toContain("Proyecto HSK");
+      expect(app.showToast).toHaveBeenCalled();
+    });
+
+    it("falls back to execCommand copy when navigator.clipboard is not available", () => {
+      delete navigator.clipboard;
+      document.execCommand = vi.fn().mockReturnValue(true);
+
+      const copyBtn = document.getElementById("culture-wisdom-copy-btn");
+      copyBtn.click();
+
+      expect(document.execCommand).toHaveBeenCalledWith("copy");
     });
   });
 });

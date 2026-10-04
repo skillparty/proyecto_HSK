@@ -255,6 +255,18 @@ class InteractionController {
             });
         });
 
+        // Setup culture submodule breadcrumb return clicks
+        document.addEventListener('click', (event) => {
+            const cultureNavBtn = event.target.closest('[data-culture-nav="hub"]');
+            if (cultureNavBtn) {
+                if (this.app?.switchTab) {
+                    this.app.switchTab('culture');
+                } else if (this.app?.uiController?.switchTab) {
+                    this.app.uiController.switchTab('culture');
+                }
+            }
+        });
+
         // Setup mobile sheet close buttons
         document.querySelectorAll('.nav-dropdown-close').forEach((closeBtn) => {
             closeBtn.addEventListener('click', (event) => {
