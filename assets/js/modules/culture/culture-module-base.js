@@ -23,10 +23,57 @@ class CultureModuleBase {
     try {
       await this.loadData();
       this.render();
+      this.injectNavigationHeader();
+      this.markExploredInStorage();
       this.isInitialized = true;
     } catch (err) {
       console.error(`[CultureModule] Error initializing ${this.title}:`, err);
       this.renderError(err && err.message ? err.message : String(err));
+    }
+  }
+
+  injectNavigationHeader() {
+    if (!this.container) return;
+    if (this.container.querySelector(".culture-submodule-header-nav")) return;
+
+    const nav = document.createElement("div");
+    nav.className = "culture-submodule-header-nav";
+    const label = this.app?.getTranslation?.("cultureBackToPortal") || "Portal Cultural";
+    nav.innerHTML = `
+      <button type="button" class="culture-back-to-hub-btn" data-culture-nav="hub">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>${label}</span>
+      </button>
+      <span class="culture-crumb-sep" aria-hidden="true">/</span>
+      <span class="culture-crumb-current">${this.title}</span>
+    `;
+
+    const backBtn = nav.querySelector("[data-culture-nav='hub']");
+    if (backBtn) {
+      backBtn.addEventListener("click", () => {
+        if (this.app?.switchTab) {
+          this.app.switchTab("culture");
+        } else if (this.app?.uiController?.switchTab) {
+          this.app.uiController.switchTab("culture");
+        }
+      });
+    }
+
+    this.container.insertBefore(nav, this.container.firstChild);
+  }
+
+  markExploredInStorage() {
+    try {
+      const panel = this.container?.closest(".tab-panel");
+      const tabId = panel?.id || this.containerId.replace("-content", "");
+      if (tabId) {
+        const raw = localStorage.getItem("hsk_culture_explored");
+        const set = new Set(raw ? JSON.parse(raw) : []);
+        set.add(tabId);
+        localStorage.setItem("hsk_culture_explored", JSON.stringify([...set]));
+      }
+    } catch (err) {
+      if (this.app?.logWarn) this.app.logWarn("Error saving explored culture module in storage:", err);
     }
   }
 

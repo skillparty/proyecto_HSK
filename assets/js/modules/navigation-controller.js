@@ -17,6 +17,7 @@ class NavigationController {
       "tone-trainer",
       "leaderboard",
       "stats",
+      "culture",
       "culture-characters",
       "culture-medicine",
       "culture-opera",

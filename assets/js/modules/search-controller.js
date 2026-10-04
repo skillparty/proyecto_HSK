@@ -22,6 +22,7 @@ class SearchController {
             { id: "word-linker", title: "Juego: Conector de Palabras", titleEn: "Game: Word Linker", icon: "link", group: "nav" },
             { id: "sentence-builder", title: "Juego: Constructor de Oraciones", titleEn: "Game: Sentence Builder", icon: "puzzle", group: "nav" },
             { id: "etymology", title: "Etimología de Caracteres", titleEn: "Character Etymology", icon: "scroll", group: "nav" },
+            { id: "culture", title: "Portal Cultural de China (Hub)", titleEn: "China Cultural Portal & Hub", icon: "temple", group: "nav" },
             { id: "culture-characters", title: "Cultura: Evolución de Caracteres", titleEn: "Culture: Character Evolution", icon: "lantern", group: "nav" },
             { id: "culture-medicine", title: "Cultura: Medicina Tradicional", titleEn: "Culture: Traditional Medicine", icon: "leaf", group: "nav" },
             { id: "culture-opera", title: "Cultura: Ópera de Pekín", titleEn: "Culture: Peking Opera", icon: "mask", group: "nav" },
@@ -159,6 +160,15 @@ class SearchController {
                 icon: "mountain",
                 execute: () => {
                     this.app.switchTab("culture-provinces");
+                },
+            },
+            {
+                id: "action-open-culture",
+                title: "Abrir Portal Cultural de China",
+                titleEn: "Open China Cultural Portal & Hub",
+                icon: "temple",
+                execute: () => {
+                    this.app.switchTab("culture");
                 },
             },
             {

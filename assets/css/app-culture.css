@@ -1,0 +1,754 @@
+/* app-culture.css — Confuc10++ Sistema Cultural & Portal de China
+   Organización en 4 Pilares: Lengua, Geografía, Artes y Ciencia.
+   100% Adaptativo a Modos Claro y Oscuro, Cero Emojis (SVG Vector Icons). */
+
+/* ==========================================================================
+   1. MEGA-DROPDOWN CULTURA (Desktop & Mobile)
+   ========================================================================== */
+
+#nav-dropdown-culture {
+    min-width: 580px;
+    max-width: 680px;
+    padding: 14px 16px;
+}
+
+.culture-dropdown-featured {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-radius: var(--radius-md, 10px);
+    background: rgba(225, 29, 72, 0.08);
+    border: 1px solid rgba(225, 29, 72, 0.25);
+    color: var(--primary, #e53935);
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.culture-dropdown-featured:hover {
+    background: rgba(225, 29, 72, 0.15);
+    border-color: var(--primary, #e53935);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.18);
+}
+
+.culture-dropdown-featured .featured-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.culture-dropdown-featured .featured-badge {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--primary, #e53935);
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.culture-dropdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.culture-dropdown-pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-md, 8px);
+    padding: 4px;
+}
+
+html[data-theme="light"] .culture-dropdown-pillar {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.culture-dropdown-pillar .nav-dropdown-section-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--primary, #e53935);
+    padding: 6px 10px 4px;
+    margin: 0;
+    border-bottom: 1px dashed var(--color-border);
+}
+
+.culture-dropdown-pillar .nav-dropdown-item {
+    padding: 7px 10px;
+    font-size: 0.86rem;
+    gap: 8px;
+    border-radius: 6px;
+}
+
+/* Pillar Specific Color Accents */
+.pillar-lang .dropdown-item-icon { color: #e11d48; }
+.pillar-geo .dropdown-item-icon { color: #10b981; }
+.pillar-arts .dropdown-item-icon { color: #f59e0b; }
+.pillar-sci .dropdown-item-icon { color: #8b5cf6; }
+
+/* Responsive adjustments for mobile dropdown */
+@media (max-width: 768px) {
+    #nav-dropdown-culture {
+        min-width: unset;
+        max-width: 100%;
+        padding: 10px 12px;
+    }
+
+    .culture-dropdown-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+/* ==========================================================================
+   2. PORTAL CULTURAL DE CHINA (CULTURE HUB / MAIN TAB)
+   ========================================================================== */
+
+.culture-hub-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 12px 14px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Header Banner */
+.culture-hub-banner {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 28px 28px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.culture-hub-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #e11d48 0%, #f59e0b 50%, #10b981 100%);
+}
+
+.culture-hub-title-group {
+    flex: 1;
+    min-width: 280px;
+}
+
+.culture-hub-main-title {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: -0.02em;
+}
+
+.culture-hub-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(225, 29, 72, 0.1);
+    color: var(--primary, #e53935);
+    flex-shrink: 0;
+}
+
+.culture-hub-subtitle {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    max-width: 720px;
+}
+
+/* Banner Stats Row */
+.culture-hub-stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.culture-hub-stat-item {
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    padding: 8px 16px;
+    border-radius: var(--radius-md, 10px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.culture-hub-stat-val {
+    color: var(--primary, #e53935);
+    font-weight: 800;
+    font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   3. SABIDURÍA MILENARIA / PROVERBIO DEL DÍA (CHENGYU CARD)
+   ========================================================================== */
+
+.culture-wisdom-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 22px 24px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.wisdom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 12px;
+}
+
+.wisdom-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--primary, #e53935);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.wisdom-shuffle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.wisdom-shuffle-btn:hover {
+    border-color: var(--primary, #e53935);
+    color: var(--primary, #e53935);
+    background: rgba(225, 29, 72, 0.05);
+}
+
+.wisdom-content-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.wisdom-character-block {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.wisdom-hanzi {
+    font-family: var(--font-chinese, "Noto Serif SC", serif);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 900;
+    color: var(--text-main);
+    line-height: 1.1;
+    letter-spacing: 2px;
+}
+
+.wisdom-pinyin {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary, #e53935);
+    font-family: var(--font-mono, monospace);
+}
+
+.wisdom-audio-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(225, 29, 72, 0.1);
+    border: 1px solid rgba(225, 29, 72, 0.25);
+    color: var(--primary, #e53935);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wisdom-audio-btn:hover {
+    background: rgba(225, 29, 72, 0.2);
+    transform: scale(1.08);
+}
+
+.wisdom-meanings {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.wisdom-literal {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.wisdom-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* ==========================================================================
+   4. FILTROS POR PILAR CULTURAL
+   ========================================================================== */
+
+.culture-filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+}
+
+.culture-filter-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.culture-filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.culture-filter-chip:hover {
+    border-color: var(--primary, #e53935);
+    color: var(--text-main);
+    background: rgba(225, 29, 72, 0.05);
+}
+
+.culture-filter-chip.active {
+    background: var(--primary, #e53935);
+    border-color: var(--primary, #e53935);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.22);
+}
+
+.culture-filter-chip .chip-count {
+    font-size: 0.74rem;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    color: inherit;
+}
+
+.culture-filter-chip:not(.active) .chip-count {
+    background: rgba(128, 128, 128, 0.15);
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   5. TARJETAS DE MÓDULOS CULTURALES (13 CARDS GRID)
+   ========================================================================== */
+
+.culture-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.culture-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.culture-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary, #e53935);
+    box-shadow: 0 8px 24px rgba(225, 29, 72, 0.12);
+}
+
+.culture-card.is-hidden {
+    display: none !important;
+}
+
+/* Card Header */
+.culture-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.culture-pillar-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+.tag-lang {
+    background: rgba(225, 29, 72, 0.1);
+    border: 1px solid rgba(225, 29, 72, 0.25);
+    color: #e11d48;
+}
+
+.tag-geo {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: #10b981;
+}
+
+.tag-arts {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: #f59e0b;
+}
+
+.tag-sci {
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    color: #8b5cf6;
+}
+
+.culture-card-explored-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--success, #10b981);
+    background: rgba(16, 185, 129, 0.1);
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+/* Card Body */
+.culture-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.culture-card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.culture-card-hanzi {
+    font-family: var(--font-chinese, "Noto Serif SC", serif);
+    font-size: 1rem;
+    color: var(--primary, #e53935);
+    font-weight: 700;
+}
+
+.culture-card-desc {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* Key Vocab Highlight Box */
+.culture-key-vocab-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 8px);
+    padding: 7px 12px;
+    margin-top: 4px;
+}
+
+.key-vocab-content {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.key-vocab-hanzi {
+    font-family: var(--font-chinese, "Noto Serif SC", serif);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.key-vocab-pinyin {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+.key-vocab-meaning {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.culture-card-audio-btn {
+    border: none;
+    background: rgba(225, 29, 72, 0.1);
+    color: var(--primary, #e53935);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.culture-card-audio-btn:hover {
+    background: var(--primary, #e53935);
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* Card Footer & Action CTA */
+.culture-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 4px;
+    padding-top: 10px;
+    border-top: 1px solid var(--color-border);
+}
+
+.culture-explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 16px;
+    border-radius: var(--radius-md, 8px);
+    background: var(--primary, #e53935);
+    color: #ffffff;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.culture-explore-btn:hover {
+    background: #c62828;
+    transform: translateX(2px);
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+}
+
+/* ==========================================================================
+   6. CRONOLOGÍA DE LAS DINASTÍAS CHINAS (TIMELINE RIBBON)
+   ========================================================================== */
+
+.culture-timeline-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 22px 24px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.timeline-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px 0;
+}
+
+.timeline-ribbon {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+}
+
+.timeline-step {
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 10px);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+    border-top: 3px solid var(--primary, #e53935);
+}
+
+.step-dynasty {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.step-period {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-weight: 600;
+    font-family: var(--font-mono, monospace);
+}
+
+.step-highlight {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.35;
+    margin: 2px 0 0;
+}
+
+/* ==========================================================================
+   7. BREADCRUMBS Y RETORNO EN SUBMÓDULOS CULTURALES
+   ========================================================================== */
+
+.culture-submodule-header-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.88rem;
+}
+
+.culture-back-to-hub-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.culture-back-to-hub-btn:hover {
+    border-color: var(--primary, #e53935);
+    color: var(--primary, #e53935);
+    background: rgba(225, 29, 72, 0.06);
+    transform: translateX(-2px);
+}
+
+.culture-crumb-sep {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+.culture-crumb-current {
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .culture-hub-banner {
+        padding: 18px 16px;
+    }
+
+    .culture-hub-main-title {
+        font-size: 1.35rem;
+    }
+
+    .culture-wisdom-card {
+        padding: 16px;
+    }
+
+    .wisdom-content-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .culture-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-ribbon {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+ff257444";
+const SW_VERSION = "4.70.0+6a200080";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -46,6 +46,7 @@ const PRECACHE_FILES = [
   "./assets/css/tone-visualizer-styles.css",
   "./assets/css/calligraphy-scroll-styles.css",
   "./assets/css/chinese-names-styles.css",
+  "./assets/css/app-culture.css?v=e36c8bc4",
   "./assets/css/culture-provinces.css",
   "./assets/css/app-videos.css?v=f5735c3e",
   "./assets/css/app-memories.css",
@@ -54,13 +55,13 @@ const PRECACHE_FILES = [
   "./assets/css/app-writing-sheets.css",
   "./assets/css/flashcard-pdf-styles.css",
   "./assets/js/utils/html.js?v=1c9811b7",
-  "./assets/js/utils/icons.js?v=1b0c0084",
+  "./assets/js/utils/icons.js?v=30cd43de",
   "./assets/js/utils/event-bus.js?v=731dc7f7",
   "./assets/js/utils/idb-storage.js?v=1a3ee4b2",
   "./assets/js/bootstrap-diagnostics.js?v=8a60ac53",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=fdbcd458",
-  "./assets/js/translations.js?v=37ab1598",
+  "./assets/js/translations.js?v=eab63018",
   "./assets/js/firebase-client.js?v=620f489f",
   "./assets/js/firebase-progress-sync.js?v=bf85fc76",
   "./assets/js/modules/srs-engine.js?v=49945573",
@@ -73,9 +74,10 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=d18e498c",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=11dc1d3a",
-  "./assets/js/modules/navigation-controller.js?v=952afc11",
+  "./assets/js/modules/ui-controller.js?v=7a26b28a",
+  "./assets/js/modules/navigation-controller.js?v=2be96299",
   "./assets/js/modules/culture/culture-module-base.js",
+  "./assets/js/modules/culture/culture-hub.js",
   "./assets/js/modules/culture/character-evolution.js",
   "./assets/js/modules/culture/traditional-medicine.js",
   "./assets/js/modules/culture/peking-opera.js",
@@ -140,6 +142,7 @@ const PRECACHE_FILES = [
   "./assets/partials/tabs/stats.html",
   "./assets/partials/tabs/leaderboard.html",
   "./assets/partials/tabs/etymology.html",
+  "./assets/partials/tabs/culture.html",
   "./assets/partials/tabs/culture-characters.html",
   "./assets/partials/tabs/culture-medicine.html",
   "./assets/partials/tabs/culture-opera.html",

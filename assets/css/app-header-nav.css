@@ -1291,4 +1291,116 @@ html[data-theme="light"] .nav-dropdown-item.active {
     line-height: 1;
 }
 
+/* ==========================================================================
+   MEGA-DROPDOWN CULTURA (Desktop & Mobile)
+   ========================================================================== */
+
+#nav-dropdown-culture {
+    min-width: 580px;
+    max-width: 680px;
+    padding: 14px 16px;
+}
+
+.culture-dropdown-featured {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-radius: var(--radius-md, 10px);
+    background: rgba(225, 29, 72, 0.08);
+    border: 1px solid rgba(225, 29, 72, 0.25);
+    color: var(--primary, #e53935);
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.culture-dropdown-featured:hover {
+    background: rgba(225, 29, 72, 0.15);
+    border-color: var(--primary, #e53935);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.18);
+}
+
+.culture-dropdown-featured .featured-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.culture-dropdown-featured .featured-badge {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--primary, #e53935);
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.culture-dropdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.culture-dropdown-pillar {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-md, 8px);
+    padding: 4px;
+}
+
+html[data-theme="light"] .culture-dropdown-pillar {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.culture-dropdown-pillar .nav-dropdown-section-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--primary, #e53935);
+    padding: 6px 10px 4px;
+    margin: 0;
+    border-bottom: 1px dashed var(--color-border);
+}
+
+.culture-dropdown-pillar .nav-dropdown-item {
+    padding: 7px 10px;
+    font-size: 0.86rem;
+    gap: 8px;
+    border-radius: 6px;
+}
+
+/* Pillar Specific Color Accents */
+.pillar-lang .dropdown-item-icon { color: #e11d48; }
+.pillar-geo .dropdown-item-icon { color: #10b981; }
+.pillar-arts .dropdown-item-icon { color: #f59e0b; }
+.pillar-sci .dropdown-item-icon { color: #8b5cf6; }
+
+/* Responsive adjustments for mobile dropdown */
+@media (max-width: 768px) {
+    #nav-dropdown-culture {
+        min-width: unset;
+        max-width: 100%;
+        padding: 10px 12px;
+    }
+
+    .culture-dropdown-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+
 

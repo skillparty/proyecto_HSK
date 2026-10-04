@@ -594,6 +594,22 @@ class UIController {
           }
         })();
         break;
+      case "culture":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/app-culture.css?v=e36c8bc4", "culture-hub-stylesheet");
+            if (!window.CultureHubController) {
+              await this.loadScript("assets/js/modules/culture/culture-hub.js");
+            }
+            if (!this.app.cultureHubController) {
+              this.app.cultureHubController = new window.CultureHubController(this.app);
+            }
+            await this.app.cultureHubController.init();
+          } catch (err) {
+            this.logError("culture hub init failed:", err);
+          }
+        })();
+        break;
       case "culture-characters":
         (async () => {
           try {
@@ -964,6 +980,7 @@ class UIController {
             "matrix",
             "leaderboard",
             "stats",
+            "culture",
             "culture-characters",
             "culture-medicine",
             "culture-opera",
@@ -1160,6 +1177,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "stats",
   "leaderboard",
   "etymology",
+  "culture",
   "culture-characters",
   "culture-medicine",
   "culture-opera",
