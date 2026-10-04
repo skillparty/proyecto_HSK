@@ -1,7 +1,19 @@
                 <!-- Quiz Tab -->
                 <div id="quiz" class="tab-panel" tabindex="0">
                     <div class="quiz-setup" id="quiz-setup">
-                        <h2 data-i18n="configureQuiz">Configure Quiz</h2>
+                        <div class="quiz-header-banner">
+                            <div class="quiz-title-group">
+                                <h2 class="quiz-main-title">
+                                    <span class="quiz-title-icon" aria-hidden="true">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                        </svg>
+                                    </span>
+                                    <span data-i18n="configureQuiz">Configure Quiz</span>
+                                </h2>
+                                <p class="quiz-subtitle" data-i18n="quizSubtitle">Pon a prueba tu vocabulario, comprensión auditiva y lectura con feedback instantáneo y análisis de errores.</p>
+                            </div>
+                        </div>
                         <div class="quiz-options-grid">
                             <div class="control-group">
                                 <label for="quiz-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
@@ -66,6 +78,9 @@
                                 <span data-i18n="score">Score</span>:
                                 <span id="quiz-score">0</span>
                             </div>
+                        </div>
+                        <div class="quiz-progress-bar-track" aria-hidden="true">
+                            <div id="quiz-progress-bar-fill" class="quiz-progress-bar-fill" style="width: 10%;"></div>
                         </div>
                         <div class="quiz-content" id="quiz-content">
                             <div class="question-text" id="quiz-question"></div>

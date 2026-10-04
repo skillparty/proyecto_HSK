@@ -118,6 +118,11 @@ class QuizEngine {
     if (currentSpan) currentSpan.textContent = currentQuestionNumber;
     if (totalSpan) totalSpan.textContent = totalQuestions;
     if (scoreSpan) scoreSpan.textContent = this.state.score;
+    const progressBar = document.getElementById("quiz-progress-bar-fill");
+    if (progressBar && totalQuestions > 0) {
+      const pct = Math.min(100, Math.round((currentQuestionNumber / totalQuestions) * 100));
+      progressBar.style.width = `${pct}%`;
+    }
 
     const mode = this.state.mode || "meaning";
     const correctAnswerMeaning = this.app.getMeaningForLanguage(question);

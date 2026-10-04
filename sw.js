@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+cb0beac9";
+const SW_VERSION = "4.70.0+ff257444";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -19,7 +19,7 @@ const PRECACHE_FILES = [
   "./assets/css/app-practice.css?v=f4eadb83",
   "./assets/css/app-browse.css?v=06964ebd",
   "./assets/css/app-strokes.css?v=dff411bb",
-  "./assets/css/app-quiz.css?v=02a1716f",
+  "./assets/css/app-quiz.css?v=c5b0c646",
   "./assets/css/app-stats.css?v=cd1fd78c",
   "./assets/css/app-enhancements.css?v=99d811b4",
   "./assets/css/app-dashboard-extras.css?v=da016a08",
@@ -60,7 +60,7 @@ const PRECACHE_FILES = [
   "./assets/js/bootstrap-diagnostics.js?v=8a60ac53",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=fdbcd458",
-  "./assets/js/translations.js?v=c27d4303",
+  "./assets/js/translations.js?v=37ab1598",
   "./assets/js/firebase-client.js?v=620f489f",
   "./assets/js/firebase-progress-sync.js?v=bf85fc76",
   "./assets/js/modules/srs-engine.js?v=49945573",
@@ -70,10 +70,10 @@ const PRECACHE_FILES = [
   "./assets/js/modules/achievement-manager.js?v=59794665",
   "./assets/js/modules/practice-view-controller.js?v=e37ce237",
   "./assets/js/modules/audio-controller.js?v=c3447649",
-  "./assets/js/modules/quiz-engine.js?v=19134431",
+  "./assets/js/modules/quiz-engine.js?v=d18e498c",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=7abc6acf",
+  "./assets/js/modules/ui-controller.js?v=11dc1d3a",
   "./assets/js/modules/navigation-controller.js?v=952afc11",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/character-evolution.js",

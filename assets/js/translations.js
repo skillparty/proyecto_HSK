@@ -677,6 +677,7 @@ const translations = {
 
         // Quiz Section
         configureQuiz: "Configurar Quiz",
+        quizSubtitle: "Pon a prueba tu vocabulario, comprensión auditiva y lectura con feedback instantáneo y análisis de errores.",
         numberOfQuestions: "Número de preguntas:",
         startQuiz: "Comenzar",
         question: "Pregunta",
@@ -1757,6 +1758,7 @@ const translations = {
 
         // Quiz Section
         configureQuiz: "Configure Quiz",
+        quizSubtitle: "Test your vocabulary, listening comprehension, and reading skills with instant feedback and mistake analysis.",
         numberOfQuestions: "Number of questions:",
         startQuiz: "Start",
         question: "Question",
@@ -2821,6 +2823,7 @@ const translations = {
         onboardingHomeHint: "Нажмите на любую карточку выше, чтобы сразу перейти к тренировке.",
         onboardingModuleHint: "Подсказка: в модуле «{module}» выполните быстрое действие для фиксации прогресса.",
         configureQuiz: "Настройка параметров теста",
+        quizSubtitle: "Проверьте словарный запас, восприятие на слух и чтение с мгновенной обратной связью и разбором ошибок.",
         numberOfQuestions: "Количество вопросов:",
         startQuiz: "Начать тест",
         question: "Вопрос",
@@ -3845,6 +3848,7 @@ const translations = {
         onboardingHomeHint: "แตะที่การ์ดใดก็ได้ด้านบนเพื่อเริ่มเรียนรู้หรือเล่นเกมได้ทันที",
         onboardingModuleHint: "คำแนะนำ: ในส่วน {module} ทำกิจกรรมสั้นๆ เพื่อบันทึกความก้าวหน้า",
         configureQuiz: "กำหนดค่าแบบทดสอบ",
+        quizSubtitle: "ทดสอบคำศัพท์ การฟัง และการอ่าน พร้อมรับคำแนะนำและสรุปข้อผิดพลาดทันที",
         numberOfQuestions: "จำนวนคำถาม:",
         startQuiz: "เริ่มทำแบบทดสอบ",
         question: "คำถาม",

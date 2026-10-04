@@ -39,7 +39,15 @@
 }
 
 .tt-title-icon {
-    font-size: 1.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(225, 29, 72, 0.1);
+    color: var(--primary, #e53935);
+    flex-shrink: 0;
 }
 
 .tt-subtitle {
@@ -75,7 +83,7 @@
 .tt-stat-val {
     font-size: 1.05rem;
     font-weight: 700;
-    color: var(--color-primary, #e53935);
+    color: var(--primary, #e53935);
     font-family: var(--font-mono, monospace);
 }
 
@@ -101,19 +109,19 @@
 }
 
 .tt-mode-tab:hover {
-    border-color: rgba(229, 57, 53, 0.45);
+    border-color: rgba(225, 29, 72, 0.45);
     transform: translateY(-2px);
 }
 
 .tt-mode-tab.active {
-    border-color: var(--color-primary, #e53935);
-    background: rgba(229, 57, 53, 0.08);
-    box-shadow: 0 4px 14px rgba(229, 57, 53, 0.15);
+    border-color: var(--primary, #e53935);
+    background: rgba(225, 29, 72, 0.08);
+    box-shadow: 0 4px 14px rgba(225, 29, 72, 0.15);
 }
 
 .tt-mode-icon {
     font-size: 1.3rem;
-    color: var(--color-primary, #e53935);
+    color: var(--primary, #e53935);
     flex-shrink: 0;
 }
 

@@ -328,7 +328,7 @@ class UIController {
         (async () => {
           try {
             if (!window.QuizEngine) {
-              await this.loadScript("assets/js/modules/quiz-engine.js?v=19134431");
+              await this.loadScript("assets/js/modules/quiz-engine.js?v=d18e498c");
             }
             if (!window.QuizLegacyController) {
               await this.loadScript("assets/js/modules/quiz-legacy-controller.js?v=0c8d314f");

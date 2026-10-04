@@ -82,7 +82,7 @@
     <link rel="stylesheet" href="assets/css/app-practice.css?v=f4eadb83">
     <link rel="stylesheet" href="assets/css/app-browse.css?v=06964ebd">
     <link rel="stylesheet" href="assets/css/app-strokes.css?v=dff411bb">
-    <link rel="stylesheet" href="assets/css/app-quiz.css?v=02a1716f">
+    <link rel="stylesheet" href="assets/css/app-quiz.css?v=c5b0c646">
     <link rel="stylesheet" href="assets/css/app-stats.css?v=cd1fd78c">
     <link rel="stylesheet" href="assets/css/app-enhancements.css?v=99d811b4">
     <link rel="stylesheet" href="assets/css/app-dashboard-extras.css?v=da016a08">
@@ -1206,7 +1206,19 @@
                 <!-- Quiz Tab -->
                 <div id="quiz" class="tab-panel" tabindex="0">
                     <div class="quiz-setup" id="quiz-setup">
-                        <h2 data-i18n="configureQuiz">Configure Quiz</h2>
+                        <div class="quiz-header-banner">
+                            <div class="quiz-title-group">
+                                <h2 class="quiz-main-title">
+                                    <span class="quiz-title-icon" aria-hidden="true">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                        </svg>
+                                    </span>
+                                    <span data-i18n="configureQuiz">Configure Quiz</span>
+                                </h2>
+                                <p class="quiz-subtitle" data-i18n="quizSubtitle">Pon a prueba tu vocabulario, comprensión auditiva y lectura con feedback instantáneo y análisis de errores.</p>
+                            </div>
+                        </div>
                         <div class="quiz-options-grid">
                             <div class="control-group">
                                 <label for="quiz-level" class="control-label" data-i18n="levelLabel">HSK Level</label>
@@ -1271,6 +1283,9 @@
                                 <span data-i18n="score">Score</span>:
                                 <span id="quiz-score">0</span>
                             </div>
+                        </div>
+                        <div class="quiz-progress-bar-track" aria-hidden="true">
+                            <div id="quiz-progress-bar-fill" class="quiz-progress-bar-fill" style="width: 10%;"></div>
                         </div>
                         <div class="quiz-content" id="quiz-content">
                             <div class="question-text" id="quiz-question"></div>
@@ -1951,7 +1966,7 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=c27d4303" defer></script>
+    <script src="assets/js/translations.js?v=37ab1598" defer></script>
     <script src="assets/js/utils/idb-storage.js?v=1a3ee4b2" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=bf85fc76" defer></script>
 
@@ -1983,7 +1998,7 @@
     <script src="assets/js/modules/vocabulary-controller.js?v=597710da" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=aa8b0d0c" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=99c4153a" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=7abc6acf" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=11dc1d3a" defer></script>
     <script src="assets/js/modules/offline-manager.js?v=cbdc5843" defer></script>
     <script src="assets/js/modules/home-cultural-portal-scene.js?v=68416bcb" defer></script>
     <script src="assets/js/modules/home-controller.js?v=88500735" defer></script>
