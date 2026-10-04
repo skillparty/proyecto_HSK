@@ -29,9 +29,34 @@ describe("CultureHubController", () => {
       render: vi.fn((name) => `<svg class="hsk-icon-${name}"></svg>`),
     };
 
+    const createdDecks = [];
+    const deckWords = new Map();
+
     app = {
       currentLanguage: "es",
       switchTab: vi.fn(),
+      showToast: vi.fn(),
+      addExperience: vi.fn(),
+      deckManager: {
+        getAllDecks: vi.fn(() => [...createdDecks]),
+        createDeck: vi.fn((name, desc) => {
+          const newDeck = { id: `deck-${createdDecks.length + 1}`, name, description: desc };
+          createdDecks.push(newDeck);
+          deckWords.set(newDeck.id, []);
+          return newDeck;
+        }),
+        addWordToDeck: vi.fn((deckId, wordObj) => {
+          const list = deckWords.get(deckId) || [];
+          list.push(wordObj);
+          deckWords.set(deckId, list);
+          return true;
+        }),
+        removeWordFromDeck: vi.fn((deckId, wordChar) => {
+          const list = deckWords.get(deckId) || [];
+          deckWords.set(deckId, list.filter((w) => w.character !== wordChar));
+          return true;
+        }),
+      },
       getTranslation: vi.fn((key) => {
         const dict = {
           culturePortalTitle: "Portal Cultural de China · 中华文化大观",
@@ -51,6 +76,20 @@ describe("CultureHubController", () => {
           cultureCopiedWisdom: "¡Copiado!",
           cultureNoResults: "No se encontraron módulos culturales para esta búsqueda.",
           cultureResetFilters: "Restablecer filtros",
+          culturePassportTitle: "Pasaporte Cultural de China",
+          culturePassportSubtitle: "Colección de Sellos Imperiales (朱砂印章)",
+          cultureRankNovice: "Viajero Principiante",
+          cultureRankExplorer: "Explorador de Tradiciones",
+          cultureRankScholar: "Erudito Cultural",
+          cultureRankMaster: "Gran Erudito de Sinología",
+          cultureTriviaTitle: "Reto Cultural del Día",
+          cultureTriviaCorrect: "¡Correcto!",
+          cultureTriviaIncorrect: "No exactamente...",
+          cultureTriviaNext: "Siguiente Reto",
+          cultureAddToDeck: "Guardar en Mazo Cultural",
+          cultureRemovedFromDeck: "Eliminado de Vocabulario Cultural",
+          cultureAddedToDeck: "¡Guardado en Vocabulario Cultural!",
+          cultureDynastyAll: "Todas las épocas",
         };
         return dict[key] || key;
       }),
@@ -371,6 +410,234 @@ describe("CultureHubController", () => {
       copyBtn.click();
 
       expect(document.execCommand).toHaveBeenCalledWith("copy");
+    });
+  });
+
+  describe("Imperial Cultural Passport (通关文牒)", () => {
+    beforeEach(async () => {
+      await controller.init();
+    });
+
+    it("renders passport card with 13 imperial seals", () => {
+      const passportCard = document.getElementById("culture-passport-card");
+      expect(passportCard).not.toBeNull();
+      expect(passportCard.classList.contains("is-open")).toBe(false);
+
+      const seals = passportCard.querySelectorAll(".imperial-seal");
+      expect(seals.length).toBe(13);
+    });
+
+    it("toggles passport visibility when clicking toggle button in hero stats", () => {
+      const toggleBtn = document.getElementById("culture-passport-toggle-btn");
+      const passportCard = document.getElementById("culture-passport-card");
+      expect(toggleBtn).not.toBeNull();
+      expect(passportCard.classList.contains("is-open")).toBe(false);
+
+      toggleBtn.click();
+      expect(passportCard.classList.contains("is-open")).toBe(true);
+      expect(controller.isPassportOpen).toBe(true);
+
+      toggleBtn.click();
+      expect(passportCard.classList.contains("is-open")).toBe(false);
+      expect(controller.isPassportOpen).toBe(false);
+    });
+
+    it("calculates scholar ranks correctly based on exploration count", () => {
+      expect(controller.getRank(0).code).toBe("novice");
+      expect(controller.getRank(3).code).toBe("novice");
+      expect(controller.getRank(4).code).toBe("explorer");
+      expect(controller.getRank(7).code).toBe("explorer");
+      expect(controller.getRank(8).code).toBe("scholar");
+      expect(controller.getRank(12).code).toBe("scholar");
+      expect(controller.getRank(13).code).toBe("master");
+    });
+
+    it("updates seal status to is-stamped and navigates when clicking a seal", () => {
+      const sealCharacters = document.querySelector('.imperial-seal[data-seal-target="culture-characters"]');
+      expect(sealCharacters).not.toBeNull();
+      expect(sealCharacters.classList.contains("is-pending")).toBe(true);
+
+      sealCharacters.click();
+
+      expect(app.switchTab).toHaveBeenCalledWith("culture-characters");
+      expect(controller.getExploredSet().has("culture-characters")).toBe(true);
+      expect(sealCharacters.classList.contains("is-stamped")).toBe(true);
+    });
+  });
+
+  describe("Daily Cultural Trivia (Reto Cultural del Día)", () => {
+    beforeEach(async () => {
+      await controller.init();
+    });
+
+    it("renders daily trivia card with question, options and xp badge", () => {
+      const triviaCard = document.getElementById("culture-trivia-card");
+      expect(triviaCard).not.toBeNull();
+
+      const options = triviaCard.querySelectorAll(".trivia-option-btn");
+      expect(options.length).toBe(4);
+
+      const feedback = triviaCard.querySelector(".trivia-feedback");
+      expect(feedback.classList.contains("is-hidden")).toBe(true);
+    });
+
+    it("handles correct answer, displays feedback and explanation, and awards +20 XP", () => {
+      const correctBtn = document.querySelector('.trivia-option-btn[data-trivia-opt="0"]');
+      expect(correctBtn).not.toBeNull();
+
+      correctBtn.click();
+
+      expect(controller.triviaAnswered).toBe(true);
+      const updatedBtn = document.querySelector('.trivia-option-btn[data-trivia-opt="0"]');
+      expect(updatedBtn.classList.contains("is-correct")).toBe(true);
+      expect(app.showToast).toHaveBeenCalled();
+      expect(localStorage.getItem("hsk_culture_trivia_xp")).toBe("20");
+
+      const feedback = document.querySelector(".trivia-feedback");
+      expect(feedback.classList.contains("is-hidden")).toBe(false);
+      const explanation = document.getElementById("culture-trivia-explanation");
+      expect(explanation.textContent.length).toBeGreaterThan(0);
+    });
+
+    it("handles incorrect answer, marks option wrong, and reveals correct option", () => {
+      const wrongBtn = document.querySelector('.trivia-option-btn[data-trivia-opt="1"]');
+      expect(wrongBtn).not.toBeNull();
+
+      wrongBtn.click();
+
+      expect(controller.triviaAnswered).toBe(true);
+      const updatedWrongBtn = document.querySelector('.trivia-option-btn[data-trivia-opt="1"]');
+      expect(updatedWrongBtn.classList.contains("is-wrong")).toBe(true);
+
+      const correctBtn = document.querySelector('.trivia-option-btn[data-trivia-opt="0"]');
+      expect(correctBtn.classList.contains("is-correct")).toBe(true);
+
+      const feedback = document.querySelector(".trivia-feedback");
+      expect(feedback.classList.contains("is-hidden")).toBe(false);
+    });
+
+    it("advances to next question when clicking next trivia button", () => {
+      const initialIdx = controller.currentTriviaIndex;
+      const optBtn = document.querySelector('.trivia-option-btn[data-trivia-opt="0"]');
+      optBtn.click();
+
+      const nextBtn = document.getElementById("culture-trivia-next-btn");
+      expect(nextBtn).not.toBeNull();
+      nextBtn.click();
+
+      expect(controller.currentTriviaIndex).toBe((initialIdx + 1) % 6);
+      expect(controller.triviaAnswered).toBe(false);
+      expect(controller.triviaSelectedOption).toBeNull();
+    });
+  });
+
+  describe("SRS Cultural Vocabulary Connector", () => {
+    beforeEach(async () => {
+      await controller.init();
+    });
+
+    it("renders deck bookmark button on each module card", () => {
+      const deckBtns = document.querySelectorAll(".culture-card-deck-btn");
+      expect(deckBtns.length).toBe(13);
+    });
+
+    it("adds vocabulary to Vocabulario Cultural deck on click", () => {
+      const firstBtn = document.querySelector('.culture-card-deck-btn[data-culture-deck-mod="culture-characters"]');
+      expect(firstBtn).not.toBeNull();
+      expect(firstBtn.classList.contains("is-in-deck")).toBe(false);
+
+      firstBtn.click();
+
+      expect(firstBtn.classList.contains("is-in-deck")).toBe(true);
+      expect(app.deckManager.createDeck).toHaveBeenCalledWith("Vocabulario Cultural", expect.any(String));
+      expect(app.deckManager.addWordToDeck).toHaveBeenCalled();
+      expect(app.showToast).toHaveBeenCalled();
+
+      const savedWords = JSON.parse(localStorage.getItem("hsk_culture_deck_words") || "[]");
+      expect(savedWords).toContain("甲骨文");
+    });
+
+    it("removes vocabulary from deck when clicking bookmark button a second time", () => {
+      const firstBtn = document.querySelector('.culture-card-deck-btn[data-culture-deck-mod="culture-characters"]');
+      firstBtn.click(); // Add
+      expect(firstBtn.classList.contains("is-in-deck")).toBe(true);
+
+      firstBtn.click(); // Remove
+      expect(firstBtn.classList.contains("is-in-deck")).toBe(false);
+      expect(app.deckManager.removeWordFromDeck).toHaveBeenCalled();
+
+      const savedWords = JSON.parse(localStorage.getItem("hsk_culture_deck_words") || "[]");
+      expect(savedWords).not.toContain("甲骨文");
+    });
+  });
+
+  describe("Dynastic Timeline Filtering", () => {
+    beforeEach(async () => {
+      await controller.init();
+    });
+
+    it("renders 5 clickable dynasty steps in timeline ribbon", () => {
+      const steps = document.querySelectorAll(".timeline-step.is-clickable");
+      expect(steps.length).toBe(5);
+    });
+
+    it("filters cards to specific dynasty when clicking dynasty step", () => {
+      const qinHanStep = document.querySelector('.timeline-step[data-dynasty="qin-han"]');
+      expect(qinHanStep).not.toBeNull();
+
+      qinHanStep.click();
+
+      expect(controller.activeDynasty).toBe("qin-han");
+      expect(qinHanStep.classList.contains("active")).toBe(true);
+
+      const visibleCards = document.querySelectorAll(".culture-card:not(.is-hidden)");
+      expect(visibleCards.length).toBeGreaterThan(0);
+      visibleCards.forEach((card) => {
+        const id = card.getAttribute("data-card-id");
+        expect(["culture-characters", "culture-greatwall", "culture-silkroad", "culture-medicine", "culture-tea", "culture-provinces"]).toContain(id);
+      });
+    });
+
+    it("clears dynasty filter when clicking active step again (toggle behavior)", () => {
+      const qinHanStep = document.querySelector('.timeline-step[data-dynasty="qin-han"]');
+      qinHanStep.click();
+      expect(controller.activeDynasty).toBe("qin-han");
+
+      qinHanStep.click();
+      expect(controller.activeDynasty).toBeNull();
+      expect(qinHanStep.classList.contains("active")).toBe(false);
+
+      const visibleCards = document.querySelectorAll(".culture-card:not(.is-hidden)");
+      expect(visibleCards.length).toBe(13);
+    });
+
+    it("clears dynasty filter when clicking the timeline clear button", () => {
+      const tangSongStep = document.querySelector('.timeline-step[data-dynasty="tang-song"]');
+      tangSongStep.click();
+      expect(controller.activeDynasty).toBe("tang-song");
+
+      const clearBtn = document.getElementById("culture-dynasty-clear-btn");
+      expect(clearBtn).not.toBeNull();
+
+      clearBtn.click();
+      expect(controller.activeDynasty).toBeNull();
+
+      const visibleCards = document.querySelectorAll(".culture-card:not(.is-hidden)");
+      expect(visibleCards.length).toBe(13);
+    });
+
+    it("combines dynasty filter with pillar filter and search", () => {
+      // 1. Filter to 'lang' pillar
+      controller.setFilter("lang");
+      // 2. Filter dynasty to 'shang-zhou'
+      controller.setDynastyFilter("shang-zhou");
+      // 3. Search for 'caracteres'
+      controller.searchQuery = "caracteres";
+      controller.applyFilters();
+
+      const visibleCards = document.querySelectorAll(".culture-card:not(.is-hidden)");
+      expect(visibleCards.length).toBe(1);
+      expect(visibleCards[0].getAttribute("data-card-id")).toBe("culture-characters");
     });
   });
 });

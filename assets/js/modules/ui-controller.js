@@ -616,7 +616,7 @@ class UIController {
       case "culture":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/app-culture.css?v=05100270", "culture-hub-stylesheet");
+            await this.loadStylesheet("assets/css/app-culture.css?v=dad7aa0d", "culture-hub-stylesheet");
             if (!window.CultureHubController) {
               await this.loadScript("assets/js/modules/culture/culture-hub.js");
             }

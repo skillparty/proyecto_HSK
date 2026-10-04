@@ -209,6 +209,25 @@ html[data-theme="light"] .culture-dropdown-pillar {
     font-weight: 600;
 }
 
+.culture-hub-stat-item.culture-passport-toggle-btn {
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.culture-hub-stat-item.culture-passport-toggle-btn:hover {
+    border-color: var(--primary, #e53935);
+    background: rgba(225, 29, 72, 0.06);
+    transform: translateY(-1px);
+}
+
+.stat-passport-seal-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary, #e53935);
+    margin-left: 2px;
+}
+
 .culture-hub-stat-val {
     color: var(--primary, #e53935);
     font-weight: 800;
@@ -216,7 +235,171 @@ html[data-theme="light"] .culture-dropdown-pillar {
 }
 
 /* ==========================================================================
-   3. SABIDURÍA MILENARIA / PROVERBIO DEL DÍA (CHENGYU CARD)
+   2B. PASAPORTE CULTURAL IMPERIAL (通关文牒 & 朱砂印章)
+   ========================================================================== */
+
+.culture-passport-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 22px 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.culture-passport-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #b91c1c;
+}
+
+.passport-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 1px dashed var(--color-border);
+    padding-bottom: 14px;
+}
+
+.passport-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.passport-seal-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(185, 28, 28, 0.1);
+    color: #b91c1c;
+    border: 1px solid rgba(185, 28, 28, 0.25);
+    flex-shrink: 0;
+}
+
+.passport-title {
+    margin: 0 0 2px 0;
+    font-size: 1.12rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.passport-subtitle {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.passport-rank-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(225, 29, 72, 0.08);
+    border: 1px solid rgba(225, 29, 72, 0.25);
+    color: var(--primary, #e53935);
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.passport-rank-badge.rank-master {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(225, 29, 72, 0.15));
+    border-color: #f59e0b;
+    color: #b45309;
+    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.2);
+}
+
+html[data-theme="dark"] .passport-rank-badge.rank-master {
+    color: #fbbf24;
+}
+
+.passport-seals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 12px;
+}
+
+.imperial-seal {
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 4px;
+    background: var(--bg-card);
+    border: 1.5px dashed var(--color-border);
+    color: var(--text-dim);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imperial-seal:hover {
+    transform: translateY(-2px) scale(1.05);
+    border-color: var(--primary, #e53935);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.imperial-seal.is-stamped {
+    background: rgba(185, 28, 28, 0.06);
+    border: 2px solid #b91c1c;
+    color: #b91c1c;
+    box-shadow: 0 2px 10px rgba(185, 28, 28, 0.12);
+}
+
+.seal-char {
+    font-family: var(--font-chinese, "Noto Serif SC", serif);
+    font-size: 1.15rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 1px;
+}
+
+.seal-caption {
+    font-size: 0.64rem;
+    font-weight: 700;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+}
+
+.seal-status-dot {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: #10b981;
+}
+
+.seal-status-pending {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+}
+
+/* ==========================================================================
+   3. SABIDURÍA MILENARIA & RETO CULTURAL DEL DÍA
    ========================================================================== */
 
 .culture-wisdom-card {
@@ -358,6 +541,185 @@ html[data-theme="light"] .culture-dropdown-pillar {
     color: var(--text-muted);
     line-height: 1.45;
     margin: 0;
+}
+
+/* Row containing Wisdom Card and Daily Trivia */
+.culture-wisdom-trivia-row {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 20px;
+    align-items: stretch;
+}
+
+@media (max-width: 960px) {
+    .culture-wisdom-trivia-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.culture-trivia-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    padding: 22px 24px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.trivia-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 12px;
+}
+
+.trivia-title-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.trivia-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary, #e53935);
+}
+
+.trivia-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--primary, #e53935);
+    margin: 0;
+}
+
+.trivia-badge-xp {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(245, 158, 11, 0.15);
+    color: #d97706;
+    font-weight: 800;
+    font-size: 0.76rem;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+html[data-theme="dark"] .trivia-badge-xp {
+    color: #fbbf24;
+}
+
+.trivia-question {
+    font-size: 0.93rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.45;
+}
+
+.trivia-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+@media (max-width: 600px) {
+    .trivia-options-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.trivia-option-btn {
+    display: flex;
+    align-items: center;
+    padding: 9px 12px;
+    border-radius: var(--radius-md, 8px);
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    color: var(--text-main);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.trivia-option-btn:hover:not(:disabled) {
+    border-color: var(--primary, #e53935);
+    background: rgba(225, 29, 72, 0.04);
+    transform: translateY(-1px);
+}
+
+.trivia-option-btn.is-correct {
+    background: rgba(16, 185, 129, 0.12) !important;
+    border-color: #10b981 !important;
+    color: #065f46 !important;
+    font-weight: 800;
+}
+
+html[data-theme="dark"] .trivia-option-btn.is-correct {
+    color: #34d399 !important;
+}
+
+.trivia-option-btn.is-wrong {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-color: #ef4444 !important;
+    color: #991b1b !important;
+}
+
+html[data-theme="dark"] .trivia-option-btn.is-wrong {
+    color: #f87171 !important;
+}
+
+.trivia-feedback {
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 8px);
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.trivia-feedback.is-hidden {
+    display: none;
+}
+
+.trivia-explanation {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+    line-height: 1.4;
+}
+
+.trivia-next-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--primary, #e53935);
+    color: #ffffff;
+    border: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.trivia-next-btn:hover {
+    background: #c62828;
+    transform: translateX(1px);
 }
 
 /* ==========================================================================
@@ -654,6 +1016,38 @@ html[data-theme="light"] .culture-dropdown-pillar {
     color: var(--text-muted);
 }
 
+.key-vocab-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.culture-card-deck-btn {
+    border: 1px solid transparent;
+    background: rgba(225, 29, 72, 0.08);
+    color: var(--primary, #e53935);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.culture-card-deck-btn:hover {
+    background: var(--primary, #e53935);
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+.culture-card-deck-btn.is-in-deck {
+    background: #b91c1c;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(185, 28, 28, 0.25);
+}
+
 .culture-card-audio-btn {
     border: none;
     background: rgba(225, 29, 72, 0.1);
@@ -783,6 +1177,15 @@ html[data-theme="light"] .culture-dropdown-pillar {
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
 }
 
+.timeline-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
 .timeline-title {
     font-size: 0.95rem;
     font-weight: 800;
@@ -790,7 +1193,27 @@ html[data-theme="light"] .culture-dropdown-pillar {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 0 0 16px 0;
+    margin: 0;
+}
+
+.timeline-dynasty-clear-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(225, 29, 72, 0.08);
+    border: 1px solid rgba(225, 29, 72, 0.25);
+    color: var(--primary, #e53935);
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.timeline-dynasty-clear-btn:hover {
+    background: var(--primary, #e53935);
+    color: #ffffff;
 }
 
 .timeline-ribbon {
@@ -809,6 +1232,25 @@ html[data-theme="light"] .culture-dropdown-pillar {
     gap: 4px;
     position: relative;
     border-top: 3px solid var(--primary, #e53935);
+}
+
+.timeline-step.is-clickable {
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+}
+
+.timeline-step.is-clickable:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary, #e53935);
+    box-shadow: 0 4px 14px rgba(225, 29, 72, 0.12);
+}
+
+.timeline-step.is-clickable.active {
+    background: rgba(225, 29, 72, 0.06);
+    border-color: var(--primary, #e53935);
+    border-top: 3px solid var(--primary, #e53935);
+    box-shadow: 0 4px 14px rgba(225, 29, 72, 0.18);
 }
 
 .step-dynasty {
