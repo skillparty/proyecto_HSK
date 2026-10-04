@@ -687,6 +687,9 @@ class CharacterEvolutionModule extends (window.CultureModuleBase || CultureModul
     }
 
     this.container.innerHTML = html;
+    if (typeof this.injectNavigationHeader === "function") {
+      this.injectNavigationHeader();
+    }
     this.bindAudioButtons();
     if (typeof this.bindMediaToggle === 'function') {
       this.bindMediaToggle('characters', lang);

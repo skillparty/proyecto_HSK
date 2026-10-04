@@ -15,6 +15,8 @@ class MockCultureModuleBase {
     return document.getElementById(this.containerId);
   }
 
+  injectNavigationHeader() {}
+
   getSpeakerBtn(text, title) {
     return `<button type="button" class="culture-speaker-btn" data-culture-speak="${text}" title="${title}">🔊</button>`;
   }

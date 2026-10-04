@@ -629,16 +629,44 @@ class MemoriesController {
     const isEs = this.lang === "es";
     const filteredList = this.getFilteredData();
 
+    // Check deck state for memories module
+    const rawDeck = typeof localStorage !== "undefined" ? localStorage.getItem("hsk_culture_deck_words") : null;
+    let isInDeck = false;
+    try {
+      const deckSet = new Set(rawDeck ? JSON.parse(rawDeck) : []);
+      isInDeck = deckSet.has("记忆");
+    } catch {
+      isInDeck = false;
+    }
+
     this.container.innerHTML = `
       <div class="memories-container">
         <!-- Breadcrumb Navigation -->
         <div class="culture-submodule-header-nav">
-          <button type="button" class="culture-back-to-hub-btn" data-culture-nav="hub">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            <span>${this.app?.getTranslation?.("cultureBackToPortal") || (isEs ? "Volver al Portal Cultural" : "Back to Culture Portal")}</span>
-          </button>
-          <span class="culture-crumb-sep" aria-hidden="true">/</span>
-          <span class="culture-crumb-current">${isEs ? "Baúl de los Recuerdos" : "Memory Trunk"}</span>
+          <div class="culture-submodule-nav-left">
+            <button type="button" class="culture-back-to-hub-btn" data-culture-nav="hub" title="${isEs ? "Volver al Portal Cultural" : "Back to Culture Portal"}" aria-label="${isEs ? "Volver al Portal Cultural" : "Back to Culture Portal"}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              <span data-i18n="cultureBackToPortal">${this.app?.getTranslation?.("cultureBackToPortal") || (isEs ? "Volver al Portal Cultural" : "Back to Culture Portal")}</span>
+            </button>
+            <span class="culture-crumb-sep" aria-hidden="true">/</span>
+            <span class="culture-pillar-tag tag-lang culture-crumb-pillar">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path></svg>
+              <span data-i18n="culturePillarLanguage">${this.app?.getTranslation?.("culturePillarLanguage") || (isEs ? "Lengua & Caligrafía" : "Language & Calligraphy")}</span>
+            </span>
+            <span class="culture-crumb-sep" aria-hidden="true">/</span>
+            <span class="culture-crumb-current"><span data-i18n="memoriesTab">${this.app?.getTranslation?.("memoriesTab") || (isEs ? "Baúl de los Recuerdos" : "Memory Trunk")}</span> <span class="culture-crumb-hanzi">记忆宝盒</span></span>
+          </div>
+
+          <div class="culture-submodule-nav-actions">
+            <button type="button" class="culture-submodule-seal-badge is-stamped" data-culture-nav="passport" title="${isEs ? "Sello Imperial (通关文牒)" : "Imperial Seal"}" aria-label="${isEs ? "Ver Pasaporte Imperial" : "View Imperial Passport"}">
+              <span class="submodule-seal-char">宝盒</span>
+              <span class="submodule-seal-text">朱砂印章</span>
+            </button>
+            <button type="button" class="culture-card-deck-btn ${isInDeck ? "is-in-deck" : ""}" data-culture-deck-mod="memories" title="${isInDeck ? (this.app?.getTranslation?.("cultureRemovedFromDeck") || (isEs ? "Guardado en Mazo Cultural" : "Saved in Cultural Deck")) : (this.app?.getTranslation?.("cultureAddToDeck") || (isEs ? "Guardar en Mazo Cultural" : "Save in Cultural Deck"))}" aria-label="Mazo Cultural">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="${isInDeck ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+              <span>记忆</span>
+            </button>
+          </div>
         </div>
 
         <!-- 1. HERO BANNER -->

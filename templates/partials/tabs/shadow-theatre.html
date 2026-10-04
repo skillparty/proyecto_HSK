@@ -2,12 +2,29 @@
     <div class="shadow-container">
         <!-- Breadcrumb Navigation -->
         <div class="culture-submodule-header-nav">
-            <button type="button" class="culture-back-to-hub-btn" data-culture-nav="hub">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                <span data-i18n="cultureBackToPortal">Volver al Portal Cultural</span>
-            </button>
-            <span class="culture-crumb-sep" aria-hidden="true">/</span>
-            <span class="culture-crumb-current" data-i18n="shadowTheatreTab">Teatro de Sombras</span>
+            <div class="culture-submodule-nav-left">
+                <button type="button" class="culture-back-to-hub-btn" data-culture-nav="hub" title="Volver al Portal Cultural" aria-label="Volver al Portal Cultural">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    <span data-i18n="cultureBackToPortal">Volver al Portal Cultural</span>
+                </button>
+                <span class="culture-crumb-sep" aria-hidden="true">/</span>
+                <span class="culture-pillar-tag tag-arts culture-crumb-pillar">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    <span data-i18n="culturePillarArts">Artes & Tradición</span>
+                </span>
+                <span class="culture-crumb-sep" aria-hidden="true">/</span>
+                <span class="culture-crumb-current"><span data-i18n="shadowTheatreTab">Teatro de Sombras</span> <span class="culture-crumb-hanzi">皮影戏</span></span>
+            </div>
+            <div class="culture-submodule-nav-actions">
+                <button type="button" class="culture-submodule-seal-badge is-stamped" data-culture-nav="passport" title="Sello Imperial (通关文牒)" aria-label="Ver Pasaporte Imperial">
+                    <span class="submodule-seal-char">皮影</span>
+                    <span class="submodule-seal-text">朱砂印章</span>
+                </button>
+                <button type="button" class="culture-card-deck-btn" data-culture-deck-mod="shadow-theatre" title="Guardar en Mazo Cultural" aria-label="Mazo Cultural">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+                    <span>皮影</span>
+                </button>
+            </div>
         </div>
 
         <!-- Header Banner -->

@@ -255,7 +255,7 @@ class InteractionController {
             });
         });
 
-        // Setup culture submodule breadcrumb return clicks
+        // Setup culture submodule breadcrumb return clicks, passport shortcut, and deck toggle
         document.addEventListener('click', (event) => {
             const cultureNavBtn = event.target.closest('[data-culture-nav="hub"]');
             if (cultureNavBtn) {
@@ -263,6 +263,33 @@ class InteractionController {
                     this.app.switchTab('culture');
                 } else if (this.app?.uiController?.switchTab) {
                     this.app.uiController.switchTab('culture');
+                }
+                return;
+            }
+
+            const passportBtn = event.target.closest('[data-culture-nav="passport"]');
+            if (passportBtn) {
+                if (this.app?.cultureHubController) {
+                    this.app.cultureHubController.isPassportOpen = true;
+                }
+                if (this.app?.switchTab) {
+                    this.app.switchTab('culture');
+                } else if (this.app?.uiController?.switchTab) {
+                    this.app.uiController.switchTab('culture');
+                }
+                return;
+            }
+
+            const cultureDeckBtn = event.target.closest('[data-culture-deck-mod]');
+            if (cultureDeckBtn) {
+                const inHub = cultureDeckBtn.closest('#culture-cards-grid');
+                if (!inHub) {
+                    const modId = cultureDeckBtn.getAttribute('data-culture-deck-mod');
+                    const modules = window.CULTURE_MODULES_DATA || window.CultureHubController?.MODULES_DATA || [];
+                    const mod = modules.find((m) => m.id === modId);
+                    if (mod && window.CultureHubController?.toggleVocabDeck) {
+                        window.CultureHubController.toggleVocabDeck(mod, this.app);
+                    }
                 }
             }
         });

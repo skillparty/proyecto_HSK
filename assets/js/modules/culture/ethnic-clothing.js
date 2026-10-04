@@ -454,6 +454,9 @@ class EthnicClothingModule extends (window.CultureModuleBase || CultureModuleBas
     `;
 
     this.container.innerHTML = html;
+    if (typeof this.injectNavigationHeader === "function") {
+      this.injectNavigationHeader();
+    }
     this.bindAudioButtons();
 
     // Attach event listeners for filtering

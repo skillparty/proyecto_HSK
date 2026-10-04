@@ -497,69 +497,7 @@
     }
 
     toggleVocabDeck(mod) {
-      if (!mod || !mod.vocabHanzi) return false;
-      const set = this.getCulturalDeckWords();
-      const isSaved = set.has(mod.vocabHanzi);
-      let nowSaved = false;
-
-      if (isSaved) {
-        set.delete(mod.vocabHanzi);
-        nowSaved = false;
-        try {
-          if (this.app?.deckManager) {
-            const allDecks = this.app.deckManager.getAllDecks();
-            const deck = allDecks.find((d) => d.name === "Vocabulario Cultural");
-            if (deck) {
-              this.app.deckManager.removeWordFromDeck(deck.id, mod.vocabHanzi);
-            }
-          }
-        } catch (err) {
-          if (this.app?.logWarn) this.app.logWarn("Error removing from deckManager:", err);
-        }
-        const msg = this.app?.getTranslation?.("cultureRemovedFromDeck") || "Eliminado de Vocabulario Cultural";
-        if (this.app?.showToast) this.app.showToast(msg);
-      } else {
-        set.add(mod.vocabHanzi);
-        nowSaved = true;
-        try {
-          if (this.app?.deckManager) {
-            const allDecks = this.app.deckManager.getAllDecks();
-            let deck = allDecks.find((d) => d.name === "Vocabulario Cultural");
-            if (!deck) {
-              deck = this.app.deckManager.createDeck("Vocabulario Cultural", "Vocabulario clave del Portal Cultural de China");
-            }
-            if (deck) {
-              this.app.deckManager.addWordToDeck(deck.id, {
-                character: mod.vocabHanzi,
-                pinyin: mod.vocabPinyin,
-                spanish: mod.vocabMeaningEs,
-                english: mod.vocabMeaningEn,
-                level: "Cultura",
-              });
-            }
-          }
-        } catch (err) {
-          if (this.app?.logWarn) this.app.logWarn("Error adding to deckManager:", err);
-        }
-        const msg = this.app?.getTranslation?.("cultureAddedToDeck") || "¡Guardado en Vocabulario Cultural!";
-        if (this.app?.showToast) this.app.showToast(msg);
-      }
-
-      localStorage.setItem("hsk_culture_deck_words", JSON.stringify([...set]));
-
-      // Update button appearance
-      const btn = this.container?.querySelector(`.culture-card-deck-btn[data-culture-deck-mod="${mod.id}"]`);
-      if (btn) {
-        btn.classList.toggle("is-in-deck", nowSaved);
-        const svg = btn.querySelector("svg");
-        if (svg) svg.setAttribute("fill", nowSaved ? "currentColor" : "none");
-        const titleText = nowSaved
-          ? this.app?.getTranslation?.("cultureRemovedFromDeck") || "Guardado en Mazo Cultural"
-          : this.app?.getTranslation?.("cultureAddToDeck") || "Guardar en Mazo Cultural";
-        btn.setAttribute("title", titleText);
-        btn.setAttribute("aria-label", titleText);
-      }
-
+      const nowSaved = CultureHubController.toggleVocabDeck(mod, this.app);
       return nowSaved;
     }
 
@@ -1438,14 +1376,93 @@
       }
     }
   }
+ 
+  CultureHubController.MODULES_DATA = CULTURE_MODULES_DATA;
+
+  CultureHubController.getCulturalDeckWords = function () {
+    try {
+      const raw = localStorage.getItem("hsk_culture_deck_words");
+      return new Set(raw ? JSON.parse(raw) : []);
+    } catch {
+      return new Set();
+    }
+  };
+
+  CultureHubController.toggleVocabDeck = function (mod, app) {
+    if (!mod || !mod.vocabHanzi) return false;
+    const set = CultureHubController.getCulturalDeckWords();
+    const isSaved = set.has(mod.vocabHanzi);
+    let nowSaved = false;
+
+    if (isSaved) {
+      set.delete(mod.vocabHanzi);
+      nowSaved = false;
+      try {
+        if (app?.deckManager) {
+          const allDecks = app.deckManager.getAllDecks();
+          const deck = allDecks.find((d) => d.name === "Vocabulario Cultural");
+          if (deck) {
+            app.deckManager.removeWordFromDeck(deck.id, mod.vocabHanzi);
+          }
+        }
+      } catch (err) {
+        if (app?.logWarn) app.logWarn("Error removing from deckManager:", err);
+      }
+      const msg = app?.getTranslation?.("cultureRemovedFromDeck") || "Eliminado de Vocabulario Cultural";
+      if (app?.showToast) app.showToast(msg);
+    } else {
+      set.add(mod.vocabHanzi);
+      nowSaved = true;
+      try {
+        if (app?.deckManager) {
+          const allDecks = app.deckManager.getAllDecks();
+          let deck = allDecks.find((d) => d.name === "Vocabulario Cultural");
+          if (!deck) {
+            deck = app.deckManager.createDeck("Vocabulario Cultural", "Vocabulario clave del Portal Cultural de China");
+          }
+          if (deck) {
+            app.deckManager.addWordToDeck(deck.id, {
+              character: mod.vocabHanzi,
+              pinyin: mod.vocabPinyin,
+              spanish: mod.vocabMeaningEs,
+              english: mod.vocabMeaningEn,
+              level: "Cultura",
+            });
+          }
+        }
+      } catch (err) {
+        if (app?.logWarn) app.logWarn("Error adding to deckManager:", err);
+      }
+      const msg = app?.getTranslation?.("cultureAddedToDeck") || "¡Guardado en Vocabulario Cultural!";
+      if (app?.showToast) app.showToast(msg);
+    }
+
+    localStorage.setItem("hsk_culture_deck_words", JSON.stringify([...set]));
+
+    // Update all matching buttons across the DOM (in Hub cards and in submodule headers!)
+    document.querySelectorAll(`.culture-card-deck-btn[data-culture-deck-mod="${mod.id}"]`).forEach((btn) => {
+      btn.classList.toggle("is-in-deck", nowSaved);
+      const svg = btn.querySelector("svg");
+      if (svg) svg.setAttribute("fill", nowSaved ? "currentColor" : "none");
+      const titleText = nowSaved
+        ? app?.getTranslation?.("cultureRemovedFromDeck") || "Guardado en Mazo Cultural"
+        : app?.getTranslation?.("cultureAddToDeck") || "Guardar en Mazo Cultural";
+      btn.setAttribute("title", titleText);
+      btn.setAttribute("aria-label", titleText);
+    });
+
+    return nowSaved;
+  };
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = CultureHubController;
   }
   if (typeof window !== "undefined") {
     window.CultureHubController = CultureHubController;
+    window.CULTURE_MODULES_DATA = CULTURE_MODULES_DATA;
   }
   if (typeof globalThis !== "undefined") {
     globalThis.CultureHubController = CultureHubController;
+    globalThis.CULTURE_MODULES_DATA = CULTURE_MODULES_DATA;
   }
 })();

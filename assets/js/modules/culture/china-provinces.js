@@ -113,6 +113,9 @@ class ChinaProvincesModule extends (window.CultureModuleBase || CultureModuleBas
             </dialog>
         `;
 
+        if (typeof this.injectNavigationHeader === "function") {
+            this.injectNavigationHeader();
+        }
         this.bindEvents();
         this.bindAudioButtons(this.container);
     }

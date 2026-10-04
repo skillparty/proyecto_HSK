@@ -109,11 +109,79 @@ describe("CultureModuleBase", () => {
     expect(globalThis.speechSynthesis.speak).toHaveBeenCalled();
   });
 
-  it("re-renders on languageChanged event if already initialized", async () => {
+  it("re-renders on languageChanged event if already initialized and preserves navigation header", async () => {
     await moduleInstance.initialize();
     const renderSpy = vi.spyOn(moduleInstance, "render");
 
     window.dispatchEvent(new CustomEvent("languageChanged"));
     expect(renderSpy).toHaveBeenCalled();
+
+    const header = document.querySelector(".culture-submodule-header-nav");
+    expect(header).not.toBeNull();
+  });
+
+  it("enriches navigation header with pillar tag, seal badge, and SRS deck button", async () => {
+    window.CULTURE_MODULES_DATA = [
+      {
+        id: "culture-characters",
+        pillar: "lang",
+        pillarKey: "culturePillarLanguage",
+        titleKey: "cultureCharactersTab",
+        title: "Evolución de Caracteres",
+        hanzi: "汉字演变",
+        sealChar: "演变",
+        vocabHanzi: "甲骨文",
+        icon: "lantern",
+      },
+    ];
+
+    window.CultureHubController = {
+      toggleVocabDeck: vi.fn((mod) => {
+        const raw = localStorage.getItem("hsk_culture_deck_words");
+        const set = new Set(raw ? JSON.parse(raw) : []);
+        set.add(mod.vocabHanzi);
+        localStorage.setItem("hsk_culture_deck_words", JSON.stringify([...set]));
+        document.querySelectorAll(`.culture-card-deck-btn[data-culture-deck-mod="${mod.id}"]`).forEach((btn) => {
+          btn.classList.add("is-in-deck");
+        });
+        return true;
+      }),
+    };
+
+    app.cultureHubController = { isPassportOpen: false };
+
+    await moduleInstance.initialize();
+
+    const nav = document.querySelector(".culture-submodule-header-nav");
+    expect(nav).not.toBeNull();
+
+    // Check pillar badge
+    const pillarTag = nav.querySelector(".culture-crumb-pillar");
+    expect(pillarTag).not.toBeNull();
+    expect(pillarTag.classList.contains("tag-lang")).toBe(true);
+
+    // Check Hanzi subtitle
+    const hanziSpan = nav.querySelector(".culture-crumb-hanzi");
+    expect(hanziSpan).not.toBeNull();
+    expect(hanziSpan.textContent).toBe("汉字演变");
+
+    // Check seal badge
+    const sealBadge = nav.querySelector(".culture-submodule-seal-badge");
+    expect(sealBadge).not.toBeNull();
+    expect(sealBadge.textContent).toContain("演变");
+
+    // Clicking seal badge returns to culture tab and opens passport
+    sealBadge.click();
+    expect(app.cultureHubController.isPassportOpen).toBe(true);
+    expect(app.switchTab).toHaveBeenCalledWith("culture");
+
+    // Check SRS deck bookmark button
+    const deckBtn = nav.querySelector(".culture-card-deck-btn");
+    expect(deckBtn).not.toBeNull();
+    expect(deckBtn.textContent).toContain("甲骨文");
+
+    deckBtn.click();
+    expect(window.CultureHubController.toggleVocabDeck).toHaveBeenCalled();
+    expect(deckBtn.classList.contains("is-in-deck")).toBe(true);
   });
 });

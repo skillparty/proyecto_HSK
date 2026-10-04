@@ -1281,23 +1281,35 @@ html[data-theme="dark"] .trivia-option-btn.is-wrong {
 .culture-submodule-header-nav {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--color-border);
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 14px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     font-size: 0.88rem;
+}
+
+.culture-submodule-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .culture-back-to-hub-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--bg-card);
+    background: var(--bg-panel);
     border: 1px solid var(--color-border);
     color: var(--text-muted);
-    padding: 6px 12px;
+    padding: 5px 12px;
     border-radius: 999px;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 700;
     cursor: pointer;
     transition: all var(--transition-fast, 0.15s ease);
@@ -1306,18 +1318,130 @@ html[data-theme="dark"] .trivia-option-btn.is-wrong {
 .culture-back-to-hub-btn:hover {
     border-color: var(--primary, #e53935);
     color: var(--primary, #e53935);
-    background: rgba(225, 29, 72, 0.06);
+    background: rgba(225, 29, 72, 0.08);
     transform: translateX(-2px);
 }
 
 .culture-crumb-sep {
     color: var(--text-dim);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+}
+
+.culture-crumb-pillar {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
 }
 
 .culture-crumb-current {
     color: var(--text-main);
+    font-weight: 800;
+    font-size: 0.92rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.culture-crumb-hanzi {
+    font-family: var(--font-chinese, "Noto Serif SC", serif);
+    font-weight: 900;
+    color: var(--primary, #e53935);
+    letter-spacing: 0.5px;
+}
+
+.culture-submodule-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.culture-submodule-seal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(185, 28, 28, 0.08);
+    border: 1.5px solid #b91c1c;
+    color: #b91c1c;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 0.76rem;
+    font-weight: 800;
+}
+
+.culture-submodule-seal-badge:hover {
+    transform: translateY(-1px) scale(1.03);
+    background: rgba(185, 28, 28, 0.15);
+    box-shadow: 0 2px 10px rgba(185, 28, 28, 0.2);
+}
+
+.submodule-seal-char {
+    font-family: var(--font-chinese, "Noto Serif SC", serif);
+    font-size: 0.92rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.submodule-seal-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.3px;
+}
+
+.culture-submodule-header-nav .culture-card-deck-btn {
+    width: auto;
+    height: auto;
+    padding: 4px 10px;
+    border-radius: 999px;
+    gap: 5px;
+    font-size: 0.78rem;
     font-weight: 700;
+}
+
+/* ==========================================================================
+   8. ESTILOS ACADÉMICOS Y COMPONENTES VISUALES COMPARTIDOS
+   ========================================================================== */
+
+.section-header-academic {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 28px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(225, 29, 72, 0.25);
+    letter-spacing: 0.02em;
+}
+
+.section-header-academic::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background: var(--primary, #e53935);
+    border-radius: 2px;
+}
+
+.citations-section {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--bg-panel);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-lg, 14px);
+}
+
+.citations-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    line-height: 1.6;
 }
 
 /* Responsive adjustments */

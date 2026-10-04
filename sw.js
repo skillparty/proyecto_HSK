@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+1f998007";
+const SW_VERSION = "4.70.0+4485eba6";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -46,7 +46,7 @@ const PRECACHE_FILES = [
   "./assets/css/tone-visualizer-styles.css",
   "./assets/css/calligraphy-scroll-styles.css",
   "./assets/css/chinese-names-styles.css",
-  "./assets/css/app-culture.css?v=dad7aa0d",
+  "./assets/css/app-culture.css?v=1a4b27b9",
   "./assets/css/culture-provinces.css",
   "./assets/css/app-videos.css?v=f5735c3e",
   "./assets/css/app-memories.css",
@@ -74,7 +74,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=d18e498c",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=c88389ec",
+  "./assets/js/modules/ui-controller.js?v=133c5a07",
   "./assets/js/modules/navigation-controller.js?v=2be96299",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/culture-hub.js",
@@ -88,7 +88,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/memories-controller.js",
   "./assets/js/modules/language-controller.js?v=57c17946",
   "./assets/js/modules/browse-controller.js?v=f728392f",
-  "./assets/js/modules/interaction-controller.js?v=b099784a",
+  "./assets/js/modules/interaction-controller.js?v=6f1d435e",
   "./assets/js/modules/game-engine.js",
   "./assets/js/modules/past-exams-question-bank.js",
   "./assets/js/modules/past-exams-controller.js?v=04dc220c",

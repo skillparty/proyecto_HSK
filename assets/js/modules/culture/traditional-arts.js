@@ -513,6 +513,9 @@ class TraditionalArtsModule extends (window.CultureModuleBase || CultureModuleBa
     `;
 
     this.container.innerHTML = html;
+    if (typeof this.injectNavigationHeader === "function") {
+      this.injectNavigationHeader();
+    }
     this.bindAudioButtons();
 
     // Attach Event Listeners

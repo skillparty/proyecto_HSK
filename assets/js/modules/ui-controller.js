@@ -272,17 +272,20 @@ class UIController {
 
   markCultureTabExplored(tabName) {
     const CULTURE_TABS = new Set([
-      "culture-characters", "calligraphy-scroll", "chinese-names", "memories",
+      "culture", "culture-characters", "calligraphy-scroll", "chinese-names", "memories",
       "culture-provinces", "china-cities",
       "culture-opera", "shadow-theatre", "lyrics-lab", "culture-arts",
       "culture-medicine", "culture-technology", "culture-clothing"
     ]);
     if (!CULTURE_TABS.has(tabName)) return;
     try {
-      const raw = localStorage.getItem("hsk_culture_explored");
-      const set = new Set(raw ? JSON.parse(raw) : []);
-      set.add(tabName);
-      localStorage.setItem("hsk_culture_explored", JSON.stringify([...set]));
+      if (tabName !== "culture") {
+        const raw = localStorage.getItem("hsk_culture_explored");
+        const set = new Set(raw ? JSON.parse(raw) : []);
+        set.add(tabName);
+        localStorage.setItem("hsk_culture_explored", JSON.stringify([...set]));
+      }
+      this.loadStylesheet("assets/css/app-culture.css?v=1a4b27b9");
     } catch (err) {
       if (this.app?.logWarn) this.app.logWarn("Error saving explored culture tab:", err);
     }
@@ -616,7 +619,7 @@ class UIController {
       case "culture":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/app-culture.css?v=dad7aa0d", "culture-hub-stylesheet");
+            await this.loadStylesheet("assets/css/app-culture.css?v=1a4b27b9", "culture-hub-stylesheet");
             if (!window.CultureHubController) {
               await this.loadScript("assets/js/modules/culture/culture-hub.js");
             }

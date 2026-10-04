@@ -9,12 +9,20 @@ class CultureModuleBase {
     window.addEventListener('languageChanged', () => {
       if (this.isInitialized) {
         this.render();
+        this.injectNavigationHeader();
       }
     });
   }
 
   get container() {
     return document.getElementById(this.containerId);
+  }
+
+  get moduleMetadata() {
+    const panel = this.container?.closest(".tab-panel");
+    const tabId = panel?.id || this.containerId.replace("-content", "");
+    const modules = window.CULTURE_MODULES_DATA || window.CultureHubController?.MODULES_DATA || [];
+    return modules.find((m) => m.id === tabId) || null;
   }
 
   async initialize() {
@@ -36,18 +44,54 @@ class CultureModuleBase {
     if (!this.container) return;
     if (this.container.querySelector(".culture-submodule-header-nav")) return;
 
+    const mod = this.moduleMetadata;
     const nav = document.createElement("div");
     nav.className = "culture-submodule-header-nav";
+
     const label = this.app?.getTranslation?.("cultureBackToPortal") || "Portal Cultural";
+    const pillarName = mod ? (this.app?.getTranslation?.(mod.pillarKey) || mod.pillar) : "";
+    const title = mod ? (this.app?.getTranslation?.(mod.titleKey) || this.title) : this.title;
+    const hanzi = mod?.hanzi || "";
+    const sealChar = mod?.sealChar || "";
+    const vocabHanzi = mod?.vocabHanzi || "";
+
+    const rawDeck = localStorage.getItem("hsk_culture_deck_words");
+    let isInDeck = false;
+    try {
+      const deckSet = new Set(rawDeck ? JSON.parse(rawDeck) : []);
+      isInDeck = vocabHanzi ? deckSet.has(vocabHanzi) : false;
+    } catch {
+      isInDeck = false;
+    }
+
     nav.innerHTML = `
-      <button type="button" class="culture-back-to-hub-btn" data-culture-nav="hub">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        <span>${label}</span>
-      </button>
-      <span class="culture-crumb-sep" aria-hidden="true">/</span>
-      <span class="culture-crumb-current">${this.title}</span>
+      <div class="culture-submodule-nav-left">
+        <button type="button" class="culture-back-to-hub-btn" data-culture-nav="hub" title="Volver al Portal Cultural" aria-label="Volver al Portal Cultural">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span data-i18n="cultureBackToPortal">${label}</span>
+        </button>
+        <span class="culture-crumb-sep" aria-hidden="true">/</span>
+        ${mod ? `<span class="culture-pillar-tag tag-${mod.pillar} culture-crumb-pillar">${window.hskIcons?.render?.(mod.icon, { size: 12 }) || ""}<span>${pillarName}</span></span><span class="culture-crumb-sep" aria-hidden="true">/</span>` : ""}
+        <span class="culture-crumb-current">${title} ${hanzi ? `<span class="culture-crumb-hanzi">${hanzi}</span>` : ""}</span>
+      </div>
+
+      <div class="culture-submodule-nav-actions">
+        ${sealChar ? `
+          <button type="button" class="culture-submodule-seal-badge is-stamped" data-culture-nav="passport" title="Sello Imperial (通关文牒)" aria-label="Ver Pasaporte Imperial">
+            <span class="submodule-seal-char">${sealChar}</span>
+            <span class="submodule-seal-text">朱砂印章</span>
+          </button>
+        ` : ""}
+        ${vocabHanzi ? `
+          <button type="button" class="culture-card-deck-btn ${isInDeck ? "is-in-deck" : ""}" data-culture-deck-mod="${mod.id}" title="${isInDeck ? (this.app?.getTranslation?.("cultureRemovedFromDeck") || "Guardado en Mazo Cultural") : (this.app?.getTranslation?.("cultureAddToDeck") || "Guardar en Mazo Cultural")}" aria-label="Mazo Cultural">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="${isInDeck ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+            <span>${vocabHanzi}</span>
+          </button>
+        ` : ""}
+      </div>
     `;
 
+    // Back to hub click
     const backBtn = nav.querySelector("[data-culture-nav='hub']");
     if (backBtn) {
       backBtn.addEventListener("click", () => {
@@ -55,6 +99,32 @@ class CultureModuleBase {
           this.app.switchTab("culture");
         } else if (this.app?.uiController?.switchTab) {
           this.app.uiController.switchTab("culture");
+        }
+      });
+    }
+
+    // Passport click
+    const passportBtn = nav.querySelector("[data-culture-nav='passport']");
+    if (passportBtn) {
+      passportBtn.addEventListener("click", () => {
+        if (this.app?.cultureHubController) {
+          this.app.cultureHubController.isPassportOpen = true;
+        }
+        if (this.app?.switchTab) {
+          this.app.switchTab("culture");
+        } else if (this.app?.uiController?.switchTab) {
+          this.app.uiController.switchTab("culture");
+        }
+      });
+    }
+
+    // Deck toggle button click
+    const deckBtn = nav.querySelector("[data-culture-deck-mod]");
+    if (deckBtn && mod) {
+      deckBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (window.CultureHubController?.toggleVocabDeck) {
+          window.CultureHubController.toggleVocabDeck(mod, this.app);
         }
       });
     }
