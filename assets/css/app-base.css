@@ -75,19 +75,19 @@ html[data-theme="dark"] body {
     background-image: radial-gradient(1100px 480px at 50% -120px, rgba(229, 57, 53, 0.09), transparent 70%);
 }
 
-/* Mural caligráfico (evolución de la escritura) reservado para el home.
-   Capa fija con fade para que el cambio de tab no repinte el body. */
+/* Patrón sutil recursivo con espirales (Fusión Bolivia - China: Tiwanaku/Chakana & Nubes Xiangyun).
+   Capa fija para una atmósfera continua sin repintar el body. */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: -1;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.92)),
+        linear-gradient(rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.92)),
         url("../images/background01.webp");
     background-size: cover;
     background-position: center;
-    opacity: 0;
+    opacity: 0.7;
     transition: opacity 0.4s ease;
     pointer-events: none;
 }
@@ -96,11 +96,15 @@ html[data-theme="dark"] body::before {
     background-image:
         linear-gradient(rgba(10, 10, 15, 0.90), rgba(10, 10, 15, 0.95)),
         url("../images/background01.webp");
-    opacity: 0.9;
+    opacity: 0.75;
 }
 
 html[data-active-tab="home"] body::before {
     opacity: 1;
+}
+
+html[data-theme="dark"][data-active-tab="home"] body::before {
+    opacity: 0.9;
 }
 
 h1, h2, h3, h4, h5, h6 {
