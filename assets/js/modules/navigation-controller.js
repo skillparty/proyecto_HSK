@@ -8,6 +8,7 @@ class NavigationController {
       "strokes-radicals",
       "quiz",
       "past-exams",
+      "games",
       "snake-quantifiers",
       "matrix",
       "tones-invaders",

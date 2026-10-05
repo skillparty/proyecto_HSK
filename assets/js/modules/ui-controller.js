@@ -406,6 +406,24 @@ class UIController {
           }
         })();
         break;
+      case "games":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/games-hub-styles.css");
+            if (!window.GamesHubController) {
+              await this.loadScript("assets/js/modules/games-hub-controller.js");
+            }
+            if (!window.gamesHubController && window.GamesHubController) {
+              window.gamesHubController = new window.GamesHubController(this.app);
+            }
+            if (window.gamesHubController) {
+              window.gamesHubController.init();
+            }
+          } catch (err) {
+            this.logError("Failed to lazy load games-hub-controller", err);
+          }
+        })();
+        break;
       case "snake-quantifiers":
         (async () => {
           await this.loadStylesheet("assets/css/quantifier-snake-styles.css?v=48278d55");
@@ -1014,6 +1032,7 @@ class UIController {
             "strokes-radicals",
             "quiz",
             "past-exams",
+            "games",
             "snake-quantifiers",
             "matrix",
             "leaderboard",
@@ -1205,6 +1224,7 @@ class UIController {
 // boot (interaction-controller ata 15 listeners ahí), y diferirlo los dejaría
 // enganchando a la nada, en silencio.
 UIController.DEFERRED_TAB_PANELS = new Set([
+  "games",
   "strokes-radicals",
   "snake-quantifiers",
   "tones-invaders",

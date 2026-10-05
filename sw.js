@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+5910bbc2";
+const SW_VERSION = "4.70.0+3ebb9d16";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -47,6 +47,7 @@ const PRECACHE_FILES = [
   "./assets/css/tone-visualizer-styles.css",
   "./assets/css/calligraphy-scroll-styles.css",
   "./assets/css/chinese-names-styles.css",
+  "./assets/css/games-hub-styles.css",
   "./assets/css/app-culture.css?v=1a4b27b9",
   "./assets/css/culture-provinces.css",
   "./assets/css/app-videos.css?v=f5735c3e",
@@ -62,7 +63,7 @@ const PRECACHE_FILES = [
   "./assets/js/bootstrap-diagnostics.js?v=8a60ac53",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=fdbcd458",
-  "./assets/js/translations.js?v=235a9dad",
+  "./assets/js/translations.js?v=d3c6c198",
   "./assets/js/firebase-client.js?v=620f489f",
   "./assets/js/firebase-progress-sync.js?v=bf85fc76",
   "./assets/js/modules/srs-engine.js?v=49945573",
@@ -75,8 +76,8 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=d18e498c",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=07d8f009",
-  "./assets/js/modules/navigation-controller.js?v=4c58e1d2",
+  "./assets/js/modules/ui-controller.js?v=a4a948c7",
+  "./assets/js/modules/navigation-controller.js?v=5e789547",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/culture-hub.js",
   "./assets/js/modules/culture/character-evolution.js",
@@ -98,6 +99,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quantifier-snake-controller.js?v=dd2830f0",
   "./assets/js/modules/quantifier-snake-versus-renderer.js",
   "./assets/js/modules/quantifier-snake-versus.js?v=ff794386",
+  "./assets/js/modules/games-hub-controller.js",
   "./assets/js/modules/strokes-radicals-catalog-data.js",
   "./assets/js/modules/strokes-radicals-practice.js",
   "./assets/js/modules/hanzi-canvas-controller.js",
@@ -134,6 +136,7 @@ const PRECACHE_FILES = [
   "./assets/js/modules/writing-sheets-controller.js",
   "./assets/js/modules/flashcard-pdf-controller.js",
   "./assets/vendor/hanzi-writer.min.js",
+  "./assets/partials/tabs/games.html",
   "./assets/partials/tabs/strokes-radicals.html",
   "./assets/partials/tabs/snake-quantifiers.html",
   "./assets/partials/tabs/tones-invaders.html",
