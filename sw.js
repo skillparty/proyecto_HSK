@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+48e85b88";
+const SW_VERSION = "4.70.0+5910bbc2";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -38,6 +38,7 @@ const PRECACHE_FILES = [
   "./assets/css/graded-reader-styles.css",
   "./assets/css/dialogue-tutor-styles.css",
   "./assets/css/radical-decomposer-styles.css",
+  "./assets/css/measure-words-styles.css",
   "./assets/css/skill-tree-styles.css",
   "./assets/css/lyrics-lab-styles.css",
   "./assets/css/shadow-theatre-styles.css",
@@ -61,7 +62,7 @@ const PRECACHE_FILES = [
   "./assets/js/bootstrap-diagnostics.js?v=8a60ac53",
   "./assets/js/firebase-bootstrap.js?v=39292ce5",
   "./assets/js/sw-register.js?v=fdbcd458",
-  "./assets/js/translations.js?v=698688d4",
+  "./assets/js/translations.js?v=235a9dad",
   "./assets/js/firebase-client.js?v=620f489f",
   "./assets/js/firebase-progress-sync.js?v=bf85fc76",
   "./assets/js/modules/srs-engine.js?v=49945573",
@@ -74,8 +75,8 @@ const PRECACHE_FILES = [
   "./assets/js/modules/quiz-engine.js?v=d18e498c",
   "./assets/js/modules/quiz-legacy-controller.js?v=0c8d314f",
   "./assets/js/modules/stats-controller.js?v=7ef71be1",
-  "./assets/js/modules/ui-controller.js?v=a9d0f51d",
-  "./assets/js/modules/navigation-controller.js?v=2be96299",
+  "./assets/js/modules/ui-controller.js?v=07d8f009",
+  "./assets/js/modules/navigation-controller.js?v=4c58e1d2",
   "./assets/js/modules/culture/culture-module-base.js",
   "./assets/js/modules/culture/culture-hub.js",
   "./assets/js/modules/culture/character-evolution.js",
@@ -118,6 +119,7 @@ const PRECACHE_FILES = [
   "./assets/js/graded-reader-game.js",
   "./assets/js/dialogue-tutor-game.js",
   "./assets/js/radical-decomposer-game.js",
+  "./assets/js/measure-words-game.js",
   "./assets/js/skill-tree-game.js",
   "./assets/js/lyrics-lab-game.js",
   "./assets/js/shadow-theatre-game.js",
@@ -155,6 +157,7 @@ const PRECACHE_FILES = [
   "./assets/partials/tabs/graded-reader.html",
   "./assets/partials/tabs/dialogue-tutor.html",
   "./assets/partials/tabs/radical-decomposer.html",
+  "./assets/partials/tabs/measure-words.html",
   "./assets/partials/tabs/skill-tree.html",
   "./assets/partials/tabs/lyrics-lab.html",
   "./assets/partials/tabs/shadow-theatre.html",
@@ -191,6 +194,7 @@ const PRECACHE_FILES = [
   "./assets/data/hsk_past_exams.json",
   "./assets/data/hsk_example_sentences.json",
   "./assets/data/quantifier_snake_words.json",
+  "./assets/data/measure-words-sentences.json",
   "./assets/data/etymology/seccion-a.json",
   "./assets/data/etymology/seccion-b.json",
   "./assets/data/etymology/seccion-c.json",

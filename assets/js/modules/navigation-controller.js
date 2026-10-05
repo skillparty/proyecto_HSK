@@ -30,6 +30,7 @@ class NavigationController {
       "graded-reader",
       "dialogue-tutor",
       "radical-decomposer",
+      "measure-words",
       "skill-tree",
       "lyrics-lab",
       "shadow-theatre",

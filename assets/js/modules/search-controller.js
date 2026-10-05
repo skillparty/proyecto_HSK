@@ -109,6 +109,15 @@ class SearchController {
                 },
             },
             {
+                id: "action-open-measure-words",
+                title: "Abrir Reto de Clasificadores y Medidas (量词)",
+                titleEn: "Open Chinese Measure Words & Classifiers Lab",
+                icon: "tag",
+                execute: () => {
+                    this.app.switchTab("measure-words");
+                },
+            },
+            {
                 id: "action-open-skill-tree",
                 title: "Abrir Mapa de Aventura y Árbol de Habilidades RPG",
                 titleEn: "Open RPG Adventure Map & Skill Tree",

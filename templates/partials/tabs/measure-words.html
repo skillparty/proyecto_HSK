@@ -1,0 +1,189 @@
+<div id="measure-words" class="tab-panel" data-tab="measure-words">
+    <div class="measure-words-container">
+        <!-- Header Banner -->
+        <header class="mw-header-banner">
+            <div class="mw-header-main">
+                <div class="mw-title-group">
+                    <h2 class="mw-main-title">
+                        <span class="mw-title-icon" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="10" rx="2"></rect>
+                                <line x1="6" y1="7" x2="6" y2="17"></line>
+                                <line x1="10" y1="7" x2="10" y2="12"></line>
+                                <line x1="14" y1="7" x2="14" y2="17"></line>
+                                <line x1="18" y1="7" x2="18" y2="12"></line>
+                            </svg>
+                        </span>
+                        <span data-i18n="measureWordsTitle">Reto de Clasificadores & Medidas</span>
+                        <span class="mw-hanzi-badge">量词宝典</span>
+                    </h2>
+                    <p class="mw-subtitle" data-i18n="measureWordsSubtitle">
+                        Completa oraciones escogiendo el clasificador (量词) correcto según el sustantivo y aprende las reglas de uso en contexto.
+                    </p>
+                </div>
+
+                <!-- Stats summary pills -->
+                <div class="mw-header-stats">
+                    <div class="mw-stat-pill" title="Racha actual">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        <span class="mw-stat-num" id="mw-streak-count">0</span>
+                        <span class="mw-stat-label" data-i18n="mwStreakLabel">Racha</span>
+                    </div>
+                    <div class="mw-stat-pill" title="Aciertos y total">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span class="mw-stat-num"><span id="mw-score-count">0</span>/<span id="mw-total-count">0</span></span>
+                        <span class="mw-stat-label" data-i18n="mwScoreLabel">Aciertos</span>
+                    </div>
+                    <div class="mw-stat-pill" title="Precisión">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
+                        <span class="mw-stat-num" id="mw-accuracy-rate">0%</span>
+                        <span class="mw-stat-label" data-i18n="mwAccuracyLabel">Precisión</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Switcher Tabs -->
+            <nav class="mw-view-tabs" aria-label="Modo de estudio de clasificadores">
+                <button type="button" class="mw-view-tab-btn active" id="mw-tab-btn-challenge" data-target="challenge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span data-i18n="mwTabChallenge">Reto de Oraciones</span>
+                </button>
+                <button type="button" class="mw-view-tab-btn" id="mw-tab-btn-dictionary" data-target="dictionary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    <span data-i18n="mwTabDictionary">Guía de Clasificadores</span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- VIEW 1: SENTENCE CHALLENGE -->
+        <section class="mw-view-section" id="mw-view-challenge">
+            <!-- Filter & Controls Toolbar -->
+            <div class="mw-toolbar">
+                <div class="mw-filters-group">
+                    <!-- HSK Level Filter -->
+                    <div class="mw-filter-wrap">
+                        <label for="mw-level-filter" class="mw-toolbar-label" data-i18n="mwLevelFilterLabel">Nivel:</label>
+                        <select id="mw-level-filter" class="mw-select">
+                            <option value="all" data-i18n="mwFilterAllLevels">Todos los niveles</option>
+                            <option value="1">HSK 1</option>
+                            <option value="2">HSK 2</option>
+                            <option value="3">HSK 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="mw-filter-wrap">
+                        <label for="mw-category-filter" class="mw-toolbar-label" data-i18n="mwCategoryFilterLabel">Categoría:</label>
+                        <select id="mw-category-filter" class="mw-select">
+                            <option value="all" data-i18n="mwFilterAllCategories">Todas las categorías</option>
+                            <option value="publications" data-i18n="mwCatPublications">Libros & Publicaciones</option>
+                            <option value="animals" data-i18n="mwCatAnimals">Animales & Aves</option>
+                            <option value="clothes" data-i18n="mwCatClothes">Prendas & Ropa</option>
+                            <option value="vehicles" data-i18n="mwCatVehicles">Vehículos & Ruedas</option>
+                            <option value="containers" data-i18n="mwCatContainers">Contenedores & Bebidas</option>
+                            <option value="flat" data-i18n="mwCatFlat">Planos & Hojas</option>
+                            <option value="long" data-i18n="mwCatLong">Largos & Flexibles</option>
+                            <option value="tools" data-i18n="mwCatTools">Instrumentos & Mangos</option>
+                            <option value="machines" data-i18n="mwCatMachines">Aparatos & Máquinas</option>
+                            <option value="places" data-i18n="mwCatPlaces">Lugares & Estructuras</option>
+                            <option value="respect" data-i18n="mwCatRespect">Personas de Respeto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Toggles & Action Buttons -->
+                <div class="mw-toggles-group">
+                    <button type="button" class="mw-toggle-btn active" id="mw-toggle-pinyin" title="Mostrar/ocultar Pinyin">
+                        <span class="mw-toggle-icon">P</span>
+                        <span data-i18n="mwTogglePinyin">Pinyin</span>
+                    </button>
+                    <button type="button" class="mw-toggle-btn active" id="mw-toggle-translation" title="Mostrar/ocultar Traducción">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span data-i18n="mwToggleTranslation">Traducción</span>
+                    </button>
+                    <button type="button" class="mw-action-btn" id="mw-audio-sentence-btn" title="Escuchar pronunciación">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <span data-i18n="mwAudioBtn">Escuchar</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Question & Card Stage -->
+            <div class="mw-stage-card">
+                <!-- Card Meta Bar -->
+                <div class="mw-card-meta">
+                    <span class="mw-badge mw-badge-hsk" id="mw-badge-hsk">HSK 1</span>
+                    <span class="mw-badge mw-badge-cat" id="mw-badge-cat">Publicaciones</span>
+                    <span class="mw-question-counter" id="mw-question-counter">Pregunta 1 de 30</span>
+                </div>
+
+                <!-- Sentence Display Zone -->
+                <div class="mw-sentence-box">
+                    <div class="mw-pinyin-line" id="mw-pinyin-line">Wǒ mǎi le yì [ ___ ] xīn hànyǔ cídiǎn.</div>
+                    <div class="mw-hanzi-line">
+                        <span class="mw-part-before" id="mw-part-before">我买了一</span>
+                        <span class="mw-cloze-target" id="mw-cloze-target" aria-live="polite">
+                            <span class="mw-target-inner" id="mw-target-char">?</span>
+                        </span>
+                        <span class="mw-part-after" id="mw-part-after">新汉语词典。</span>
+                    </div>
+                    <div class="mw-translation-line" id="mw-translation-line">Compré un nuevo diccionario de chino.</div>
+                </div>
+
+                <!-- Multiple Choice Grid -->
+                <div class="mw-options-container">
+                    <div class="mw-options-header">
+                        <span data-i18n="mwChoosePrompt">Elige el clasificador correcto:</span>
+                        <span class="mw-keyboard-tip" data-i18n="mwKeyboardTip">Teclas [1] a [4]</span>
+                    </div>
+                    <div class="mw-options-grid" id="mw-options-grid" role="group" aria-label="Opciones de clasificadores">
+                        <!-- Options injected dynamically by JS -->
+                    </div>
+                </div>
+
+                <!-- Interactive Explanation & Feedback Banner -->
+                <div class="mw-feedback-panel" id="mw-feedback-panel" style="display: none;">
+                    <div class="mw-feedback-header">
+                        <div class="mw-feedback-icon" id="mw-feedback-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </div>
+                        <div class="mw-feedback-status" id="mw-feedback-status">¡Correcto!</div>
+                    </div>
+                    <div class="mw-feedback-body">
+                        <p class="mw-feedback-text" id="mw-feedback-text"></p>
+                    </div>
+                    <div class="mw-feedback-actions">
+                        <button type="button" class="mw-btn mw-btn-secondary" id="mw-replay-audio-btn">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                            <span data-i18n="mwRepeatAudio">Repetir Audio</span>
+                        </button>
+                        <button type="button" class="mw-btn mw-btn-primary" id="mw-next-btn">
+                            <span data-i18n="mwNextQuestion">Siguiente Oración</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 2: CLASSIFIER REFERENCE & DICTIONARY -->
+        <section class="mw-view-section" id="mw-view-dictionary" style="display: none;">
+            <div class="mw-dictionary-toolbar">
+                <div class="mw-search-input-wrap">
+                    <span class="mw-search-icon" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </span>
+                    <input type="text" id="mw-dict-search" class="mw-input" placeholder="Buscar clasificador por hanzi, pinyin o significado (ej. 本, ben, libros)..." autocomplete="off" spellcheck="false" />
+                </div>
+                <div class="mw-dict-chips" id="mw-dict-chips">
+                    <!-- Category filter chips -->
+                </div>
+            </div>
+
+            <!-- Grid of Classifiers -->
+            <div class="mw-dictionary-grid" id="mw-dictionary-grid">
+                <!-- Injected dynamically by JS -->
+            </div>
+        </section>
+    </div>
+</div>

@@ -855,6 +855,22 @@ class UIController {
           }
         })();
         break;
+      case "measure-words":
+        (async () => {
+          try {
+            await this.loadStylesheet("assets/css/measure-words-styles.css", "measure-words-stylesheet");
+            if (!window.MeasureWordsGame) {
+              await this.loadScript("assets/js/measure-words-game.js");
+            }
+            if (window.MeasureWordsGame && !window.measureWordsGame) {
+              window.measureWordsGame = new window.MeasureWordsGame(this.app);
+              window.measureWordsGame.init();
+            }
+          } catch (err) {
+            this.logError("measure-words init failed:", err);
+          }
+        })();
+        break;
       case "skill-tree":
         (async () => {
           try {
@@ -1213,6 +1229,7 @@ UIController.DEFERRED_TAB_PANELS = new Set([
   "graded-reader",
   "dialogue-tutor",
   "radical-decomposer",
+  "measure-words",
   "skill-tree",
   "lyrics-lab",
   "shadow-theatre",

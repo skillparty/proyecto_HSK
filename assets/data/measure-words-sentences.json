@@ -1,0 +1,1337 @@
+{
+  "quantifiers": [
+    {
+      "id": "ge",
+      "hanzi": "个",
+      "pinyin": "gè",
+      "es": "Uso general para personas, frutas y conceptos abstractos",
+      "en": "General classifier for people, fruits, and abstract concepts",
+      "ru": "Универсальное счетное слово для людей, предметов и понятий",
+      "th": "ลักษณนามทั่วไปสำหรับคน ผลไม้ และสิ่งของ",
+      "category": "general",
+      "commonNouns": [
+        { "hanzi": "人", "pinyin": "rén", "es": "persona", "en": "person" },
+        { "hanzi": "苹果", "pinyin": "píngguǒ", "es": "manzana", "en": "apple" },
+        { "hanzi": "朋友", "pinyin": "péngyou", "es": "amigo", "en": "friend" },
+        { "hanzi": "问题", "pinyin": "wèntí", "es": "pregunta / problema", "en": "question / problem" },
+        { "hanzi": "星期", "pinyin": "xīngqī", "es": "semana", "en": "week" }
+      ],
+      "mnemonic": {
+        "es": "El clasificador más común. Cuando dudes, 个 te salvará, pero aprender los específicos demuestra maestría.",
+        "en": "The most versatile classifier. Use it as a fallback, but specific classifiers show true fluency."
+      },
+      "example": {
+        "hanzi": "我想吃一个苹果。",
+        "pinyin": "Wǒ xiǎng chī yí gè píngguǒ.",
+        "es": "Quiero comer una manzana.",
+        "en": "I want to eat an apple."
+      }
+    },
+    {
+      "id": "ben",
+      "hanzi": "本",
+      "pinyin": "běn",
+      "es": "Libros, revistas, diccionarios y publicaciones encuadernadas",
+      "en": "Books, magazines, dictionaries, and bound publications",
+      "ru": "Книги, журналы, словари и печатные издания в переплете",
+      "th": "หนังสือ นิตยสาร พจนานุกรม และสิ่งพิมพ์เป็นเล่ม",
+      "category": "publications",
+      "commonNouns": [
+        { "hanzi": "书", "pinyin": "shū", "es": "libro", "en": "book" },
+        { "hanzi": "词典", "pinyin": "cídiǎn", "es": "diccionario", "en": "dictionary" },
+        { "hanzi": "杂志", "pinyin": "zázhì", "es": "revista", "en": "magazine" },
+        { "hanzi": "笔记本", "pinyin": "bǐjìběn", "es": "cuaderno", "en": "notebook" }
+      ],
+      "mnemonic": {
+        "es": "Un árbol (木) con una raya en la base que indica la raíz: ¡los libros son la raíz de la sabiduría!",
+        "en": "A tree (木) with a line at the base marking the root: books are the root of knowledge!"
+      },
+      "example": {
+        "hanzi": "桌上有一本汉语词典。",
+        "pinyin": "Zhuō shàng yǒu yì běn hànyǔ cídiǎn.",
+        "es": "Sobre la mesa hay un diccionario de chino.",
+        "en": "There is a Chinese dictionary on the table."
+      }
+    },
+    {
+      "id": "zhi",
+      "hanzi": "只",
+      "pinyin": "zhī",
+      "es": "Animales pequeños y aves, o uno de un par",
+      "en": "Small animals, birds, or one of a pair",
+      "ru": "Животные, птицы или один предмет из пары",
+      "th": "สัตว์ขนาดเล็ก นก หรือของชิ้นเดียวจากคู่",
+      "category": "animals",
+      "commonNouns": [
+        { "hanzi": "猫", "pinyin": "māo", "es": "gato", "en": "cat" },
+        { "hanzi": "狗", "pinyin": "gǒu", "es": "perro", "en": "dog" },
+        { "hanzi": "鸟", "pinyin": "niǎo", "es": "pájaro", "en": "bird" },
+        { "hanzi": "鸡", "pinyin": "jī", "es": "pollo", "en": "chicken" },
+        { "hanzi": "手", "pinyin": "shǒu", "es": "mano (suelta)", "en": "single hand" }
+      ],
+      "mnemonic": {
+        "es": "Se usa para gatos, perros, aves e insectos, y también para una mano u ojo individual.",
+        "en": "Used for cats, dogs, birds, insects, and single items from a pair (one hand, one shoe)."
+      },
+      "example": {
+        "hanzi": "我家有一只黑色的小猫。",
+        "pinyin": "Wǒ jiā yǒu yì zhī hēisè de xiǎomāo.",
+        "es": "En mi casa hay un gatito negro.",
+        "en": "I have a small black cat at home."
+      }
+    },
+    {
+      "id": "zhang",
+      "hanzi": "张",
+      "pinyin": "zhāng",
+      "es": "Objetos planos y superficies extendidas: papel, fotos, mesas, camas",
+      "en": "Flat objects and sheets: paper, photos, tickets, tables, beds",
+      "ru": "Плоские предметы: бумага, билеты, фотографии, столы, кровати",
+      "th": "วัตถุแบน เช่น แผ่นกระดาษ รูปภาพ ตั๋ว โต๊ะ เตียง",
+      "category": "flat",
+      "commonNouns": [
+        { "hanzi": "纸", "pinyin": "zhǐ", "es": "papel", "en": "paper" },
+        { "hanzi": "照片", "pinyin": "zhàopiàn", "es": "foto", "en": "photo" },
+        { "hanzi": "票", "pinyin": "piào", "es": "boleto / billete", "en": "ticket" },
+        { "hanzi": "桌子", "pinyin": "zhuōzi", "es": "mesa", "en": "table" },
+        { "hanzi": "床", "pinyin": "chuáng", "es": "cama", "en": "bed" },
+        { "hanzi": "地图", "pinyin": "dìtú", "es": "mapa", "en": "map" }
+      ],
+      "mnemonic": {
+        "es": "Tiene el radical de arco (弓) extendiéndose (长): todo lo que se despliega o tiene superficie plana.",
+        "en": "Features the bow (弓) stretching long (长): anything that spreads flat or unfolds."
+      },
+      "example": {
+        "hanzi": "我买了两张电影票。",
+        "pinyin": "Wǒ mǎi le liǎng zhāng diànyǐng piào.",
+        "es": "Compré dos boletos de cine.",
+        "en": "I bought two movie tickets."
+      }
+    },
+    {
+      "id": "tiao",
+      "hanzi": "条",
+      "pinyin": "tiáo",
+      "es": "Cosas largas, delgadas y flexibles: peces, pantalones, ríos, caminos",
+      "en": "Long, narrow, flexible things: fish, pants, skirts, rivers, roads",
+      "ru": "Длинные, гибкие предметы: рыбы, брюки, реки, дороги",
+      "th": "สิ่งของยาว เรียว หรือยืดหยุ่น เช่น ปลา กางเกง แม่น้ำ ถนน",
+      "category": "long",
+      "commonNouns": [
+        { "hanzi": "鱼", "pinyin": "yú", "es": "pez / pescado", "en": "fish" },
+        { "hanzi": "裤子", "pinyin": "kùzi", "es": "pantalones", "en": "pants" },
+        { "hanzi": "裙子", "pinyin": "qúnzi", "es": "falda", "en": "skirt" },
+        { "hanzi": "路", "pinyin": "lù", "es": "camino / carretera", "en": "road" },
+        { "hanzi": "河", "pinyin": "hé", "es": "río", "en": "river" },
+        { "hanzi": "领带", "pinyin": "lǐngdài", "es": "corbata", "en": "necktie" }
+      ],
+      "mnemonic": {
+        "es": "Visualiza la silueta de un pez o un sendero ondulante que se extiende a lo largo.",
+        "en": "Visualize the undulating body of a fish or a winding river stretching far ahead."
+      },
+      "example": {
+        "hanzi": "这条小河里的水很清澈。",
+        "pinyin": "Zhè tiáo xiǎohé lǐ de shuǐ hěn qīngchè.",
+        "es": "El agua de este riachuelo es muy cristalina.",
+        "en": "The water in this stream is very clear."
+      }
+    },
+    {
+      "id": "jian",
+      "hanzi": "件",
+      "pinyin": "jiàn",
+      "es": "Prendas de ropa superiores, asuntos, regalos y equipaje",
+      "en": "Items of upper clothing, affairs, matters, and gifts",
+      "ru": "Предметы верхней одежды, дела, события, подарки",
+      "th": "เสื้อผ้าชิ้นบน ธุระ เรื่องราว หรือของขวัญ",
+      "category": "clothes",
+      "commonNouns": [
+        { "hanzi": "衣服", "pinyin": "yīfu", "es": "ropa", "en": "clothes" },
+        { "hanzi": "衬衫", "pinyin": "chènshān", "es": "camisa", "en": "shirt" },
+        { "hanzi": "事", "pinyin": "shì", "es": "asunto / cosa", "en": "matter / affair" },
+        { "hanzi": "礼物", "pinyin": "lǐwù", "es": "regalo", "en": "gift" },
+        { "hanzi": "行李", "pinyin": "xíngli", "es": "equipaje", "en": "luggage" }
+      ],
+      "mnemonic": {
+        "es": "Persona (亻) junto a buey (牛): las pertenencias y quehaceres importantes de cada individuo.",
+        "en": "Person (亻) alongside an ox (牛): an individual's personal belongings or crucial business."
+      },
+      "example": {
+        "hanzi": "这件衣服不仅漂亮而且舒服。",
+        "pinyin": "Zhè jiàn yīfu bùjǐn piàoliang érqiě shūfu.",
+        "es": "Esta prenda no solo es bonita sino también cómoda.",
+        "en": "This piece of clothing is not only pretty but also comfortable."
+      }
+    },
+    {
+      "id": "liang",
+      "hanzi": "辆",
+      "pinyin": "liàng",
+      "es": "Vehículos con ruedas: coches, bicicletas, autobuses, taxis",
+      "en": "Wheeled vehicles: cars, bicycles, buses, taxis",
+      "ru": "Колесный транспорт: автомобили, велосипеды, автобусы",
+      "th": "ยานพาหนะที่มีล้อ เช่น รถยนต์ จักรยาน รถเมล์",
+      "category": "vehicles",
+      "commonNouns": [
+        { "hanzi": "车", "pinyin": "chē", "es": "coche / vehículo", "en": "car / vehicle" },
+        { "hanzi": "自行车", "pinyin": "zìxíngchē", "es": "bicicleta", "en": "bicycle" },
+        { "hanzi": "出租车", "pinyin": "chūzūchē", "es": "taxi", "en": "taxi" },
+        { "hanzi": "公共汽车", "pinyin": "gōnggòng qìchē", "es": "autobús", "en": "bus" }
+      ],
+      "mnemonic": {
+        "es": "Tiene el radical de vehículo (车) a la izquierda: ¡imposible de olvidar para ruedas!",
+        "en": "Starts with the vehicle radical (车) right on the left: dedicated to rolling wheels!"
+      },
+      "example": {
+        "hanzi": "门前停着一辆白色汽车。",
+        "pinyin": "Mén qián tíng zhe yí liàng báisè qìchē.",
+        "es": "Frente a la puerta está estacionado un coche blanco.",
+        "en": "A white car is parked in front of the door."
+      }
+    },
+    {
+      "id": "bei",
+      "hanzi": "杯",
+      "pinyin": "bēi",
+      "es": "Bebidas servidas en vaso, taza o copa",
+      "en": "Cups or glasses of liquid (tea, water, coffee)",
+      "ru": "Чашки и стаканы напитков (чай, кофе, вода)",
+      "th": "แก้วหรือถ้วยเครื่องดื่ม เช่น ชา กาแฟ น้ำ",
+      "category": "containers",
+      "commonNouns": [
+        { "hanzi": "茶", "pinyin": "chá", "es": "té", "en": "tea" },
+        { "hanzi": "水", "pinyin": "shuǐ", "es": "agua", "en": "water" },
+        { "hanzi": "咖啡", "pinyin": "kāfēi", "es": "café", "en": "coffee" },
+        { "hanzi": "牛奶", "pinyin": "niúnǎi", "es": "leche", "en": "milk" }
+      ],
+      "mnemonic": {
+        "es": "Madera (木) + no (不): antiguamente las copas no eran de madera sino de cerámica o jade.",
+        "en": "Wood (木) + not (不): historically sacred cups weren't crude wood, but jade or pottery."
+      },
+      "example": {
+        "hanzi": "我想喝一杯热绿茶。",
+        "pinyin": "Wǒ xiǎng hē yì bēi rè lǜchá.",
+        "es": "Quiero beber una taza de té verde caliente.",
+        "en": "I'd like to drink a cup of hot green tea."
+      }
+    },
+    {
+      "id": "wan",
+      "hanzi": "碗",
+      "pinyin": "wǎn",
+      "es": "Porciones servidas en cuenco o tazón de sopa, arroz, fideos",
+      "en": "Bowls of food: rice, soup, noodles",
+      "ru": "Пиалы и миски еды: рис, суп, лапша",
+      "th": "ชามอาหาร เช่น ข้าว ซุป บะหมี่",
+      "category": "containers",
+      "commonNouns": [
+        { "hanzi": "米饭", "pinyin": "mǐfàn", "es": "arroz cocido", "en": "cooked rice" },
+        { "hanzi": "面条", "pinyin": "miàntiáo", "es": "fideos", "en": "noodles" },
+        { "hanzi": "汤", "pinyin": "tāng", "es": "sopa", "en": "soup" },
+        { "hanzi": "牛肉面", "pinyin": "niúròumiàn", "es": "fideos con ternera", "en": "beef noodles" }
+      ],
+      "mnemonic": {
+        "es": "Tiene el radical de piedra (石): los cuencos tradicionales chinos se tallaban en piedra o cerámica.",
+        "en": "Features the stone radical (石): traditional Chinese bowls were carved from stone and ceramic."
+      },
+      "example": {
+        "hanzi": "请给我来一碗热汤。",
+        "pinyin": "Qǐng gěi wǒ lái yì wǎn rè tāng.",
+        "es": "Por favor tráeme un tazón de sopa caliente.",
+        "en": "Please bring me a bowl of hot soup."
+      }
+    },
+    {
+      "id": "shuang",
+      "hanzi": "双",
+      "pinyin": "shuāng",
+      "es": "Pares inseparables: zapatos, palillos, calcetines, guantes",
+      "en": "Pairs of items: shoes, chopsticks, socks, gloves",
+      "ru": "Пары предметов: обувь, палочки для еды, носки",
+      "th": "คู่ เช่น ตะเกียบ รองเท้า ถุงเท้า",
+      "category": "pairs",
+      "commonNouns": [
+        { "hanzi": "筷子", "pinyin": "kuàizi", "es": "palillos", "en": "chopsticks" },
+        { "hanzi": "鞋子", "pinyin": "xiézi", "es": "zapatos", "en": "shoes" },
+        { "hanzi": "袜子", "pinyin": "wàzi", "es": "calcetines", "en": "socks" },
+        { "hanzi": "眼睛", "pinyin": "yǎnjing", "es": "ojos (el par)", "en": "eyes (pair)" }
+      ],
+      "mnemonic": {
+        "es": "Representa dos manos derechas (又 又) trabajando juntas en perfecta armonía y equilibrio.",
+        "en": "Formed by two right hands (又 又) working together in balanced companionship."
+      },
+      "example": {
+        "hanzi": "中国人习惯用一双筷子吃饭。",
+        "pinyin": "Zhōngguórén xíguàn yòng yì shuāng kuàizi chīfàn.",
+        "es": "Los chinos están acostumbrados a comer con un par de palillos.",
+        "en": "Chinese people are used to eating with a pair of chopsticks."
+      }
+    },
+    {
+      "id": "zhi-stick",
+      "hanzi": "支",
+      "pinyin": "zhī",
+      "es": "Objetos cilíndricos, alargados o rígidos: bolígrafos, lápices, velas",
+      "en": "Stick-like, rigid cylindrical objects: pens, pencils, candles",
+      "ru": "Тонкие продолговатые предметы: ручки, карандаши",
+      "th": "แท่งหรือด้าม เช่น ปากกา ดินสอ",
+      "category": "tools",
+      "commonNouns": [
+        { "hanzi": "笔", "pinyin": "bǐ", "es": "bolígrafo / pluma", "en": "pen" },
+        { "hanzi": "铅笔", "pinyin": "qiānbǐ", "es": "lápiz", "en": "pencil" },
+        { "hanzi": "毛笔", "pinyin": "máobǐ", "es": "pincel de caligrafía", "en": "calligraphy brush" }
+      ],
+      "mnemonic": {
+        "es": "Mano sosteniendo una rama: ideal para instrumentos de escritura o ramas rígidas.",
+        "en": "A hand grasping a branch: perfect for stiff writing implements and twigs."
+      },
+      "example": {
+        "hanzi": "你能借我一支笔吗？",
+        "pinyin": "Nǐ néng jiè wǒ yì zhī bǐ ma?",
+        "es": "¿Me puedes prestar un bolígrafo?",
+        "en": "Could you lend me a pen?"
+      }
+    },
+    {
+      "id": "tai",
+      "hanzi": "台",
+      "pinyin": "tái",
+      "es": "Aparatos electrónicos, máquinas y computadoras",
+      "en": "Electronic appliances, machines, and computers",
+      "ru": "Приборы, техника, станки и компьютеры",
+      "th": "เครื่องใช้ไฟฟ้า เครื่องจักร คอมพิวเตอร์",
+      "category": "machines",
+      "commonNouns": [
+        { "hanzi": "电脑", "pinyin": "diànnǎo", "es": "computadora", "en": "computer" },
+        { "hanzi": "电视", "pinyin": "diànshì", "es": "televisor", "en": "television" },
+        { "hanzi": "冰箱", "pinyin": "bīngxiāng", "es": "refrigerador", "en": "refrigerator" },
+        { "hanzi": "洗衣机", "pinyin": "xǐyījī", "es": "lavadora", "en": "washing machine" }
+      ],
+      "mnemonic": {
+        "es": "Plataforma o pedestal: los aparatos de tecnología se colocan sobre una base.",
+        "en": "Platform or stage: heavy machinery and desktop tech rest firmly on a stand."
+      },
+      "example": {
+        "hanzi": "我买了一台新电脑。",
+        "pinyin": "Wǒ mǎi le yì tái xīn diànnǎo.",
+        "es": "Compré una computadora nueva.",
+        "en": "I bought a new computer."
+      }
+    },
+    {
+      "id": "ba",
+      "hanzi": "把",
+      "pinyin": "bǎ",
+      "es": "Objetos con asa o mango: sillas, paraguas, cuchillos, llaves",
+      "en": "Objects with a handle: chairs, umbrellas, knives, keys",
+      "ru": "Предметы с ручкой: стулья, зонты, ножи, ключи",
+      "th": "ของที่มีด้ามจับ เช่น เก้าอี้ ร่ม มีด กุญแจ",
+      "category": "tools",
+      "commonNouns": [
+        { "hanzi": "椅子", "pinyin": "yǐzi", "es": "silla", "en": "chair" },
+        { "hanzi": "伞", "pinyin": "sǎn", "es": "paraguas", "en": "umbrella" },
+        { "hanzi": "钥匙", "pinyin": "yàoshi", "es": "llave", "en": "key" },
+        { "hanzi": "刀", "pinyin": "dāo", "es": "cuchillo", "en": "knife" }
+      ],
+      "mnemonic": {
+        "es": "Tiene el radical de mano (扌): todo lo que tu mano empuña firmemente por el mango.",
+        "en": "Contains the hand radical (扌): anything your grip holds securely by a handle."
+      },
+      "example": {
+        "hanzi": "出门别忘了带一把雨伞。",
+        "pinyin": "Chūmén bié wàng le dài yì bǎ yǔsǎn.",
+        "es": "No olvides llevar un paraguas al salir.",
+        "en": "Don't forget to take an umbrella when heading out."
+      }
+    },
+    {
+      "id": "feng",
+      "hanzi": "封",
+      "pinyin": "fēng",
+      "es": "Cartas selladas, sobres y correos electrónicos",
+      "en": "Sealed items, letters, and emails",
+      "ru": "Письма в конверте, почтовые отправления, e-mail",
+      "th": "จดหมายที่ปิดผนึก ซอง หรืออีเมล",
+      "category": "publications",
+      "commonNouns": [
+        { "hanzi": "信", "pinyin": "xìn", "es": "carta", "en": "letter" },
+        { "hanzi": "电子邮件", "pinyin": "diànzǐ yóujiàn", "es": "correo electrónico", "en": "email" }
+      ],
+      "mnemonic": {
+        "es": "Significa sellar o cerrar herméticamente: para correspondencia que viaja protegida.",
+        "en": "Literally means to seal: reserved for sealed envelopes and correspondence."
+      },
+      "example": {
+        "hanzi": "我收到了一封来自中国朋友的信。",
+        "pinyin": "Wǒ shōudào le yì fēng láizì zhōngguó péngyou de xìn.",
+        "es": "Recibí una carta de un amigo chino.",
+        "en": "I received a letter from a Chinese friend."
+      }
+    },
+    {
+      "id": "ke",
+      "hanzi": "棵",
+      "pinyin": "kē",
+      "es": "Árboles y plantas con tronco o tallo",
+      "en": "Trees and rooted plants",
+      "ru": "Деревья и растения",
+      "th": "ต้นไม้และพืชที่มีลำต้น",
+      "category": "nature",
+      "commonNouns": [
+        { "hanzi": "树", "pinyin": "shù", "es": "árbol", "en": "tree" },
+        { "hanzi": "草", "pinyin": "cǎo", "es": "hierba / planta", "en": "grass / plant" }
+      ],
+      "mnemonic": {
+        "es": "Árbol (木) + fruto/resultado (果): vegetales que crecen del suelo con ramas y frutos.",
+        "en": "Tree (木) + fruit (果): organic flora flourishing from roots to treetop."
+      },
+      "example": {
+        "hanzi": "院子里种了一棵大苹果树。",
+        "pinyin": "Yuànzi lǐ zhòng le yì kē dà píngguǒshù.",
+        "es": "En el patio se plantó un gran manzano.",
+        "en": "A big apple tree was planted in the yard."
+      }
+    },
+    {
+      "id": "ping",
+      "hanzi": "瓶",
+      "pinyin": "píng",
+      "es": "Líquidos en botella o frasco",
+      "en": "Bottles of liquid (water, beer, soda)",
+      "ru": "Бутылки напитков",
+      "th": "ขวด เช่น น้ำดื่ม เบียร์ น้ำอัดลม",
+      "category": "containers",
+      "commonNouns": [
+        { "hanzi": "矿泉水", "pinyin": "kuàngquánshuǐ", "es": "agua mineral", "en": "mineral water" },
+        { "hanzi": "啤酒", "pinyin": "píjiǔ", "es": "cerveza", "en": "beer" },
+        { "hanzi": "可乐", "pinyin": "kělè", "es": "refresco de cola", "en": "cola" }
+      ],
+      "mnemonic": {
+        "es": "Vasija de barro (瓦) que contiene líquidos embotellados listos para servir.",
+        "en": "Earthenware container (瓦) storing refreshing bottled beverages."
+      },
+      "example": {
+        "hanzi": "请给我一瓶冰水。",
+        "pinyin": "Qǐng gěi wǒ yì píng bīngshuǐ.",
+        "es": "Por favor, dame una botella de agua fría.",
+        "en": "Please give me a bottle of cold water."
+      }
+    },
+    {
+      "id": "wei",
+      "hanzi": "位",
+      "pinyin": "wèi",
+      "es": "Personas con tono de cortesía, respeto y honorífico",
+      "en": "Polite and respectful classifier for esteemed people and guests",
+      "ru": "Вежливое счетное слово для уважаемых людей, гостей и специалистов",
+      "th": "ท่าน / คน (คำสุภาพสำหรับบุคคล แขก ครู อาจารย์)",
+      "category": "respect",
+      "commonNouns": [
+        { "hanzi": "老师", "pinyin": "lǎoshī", "es": "profesor", "en": "teacher" },
+        { "hanzi": "客人", "pinyin": "kèrén", "es": "invitado / cliente", "en": "guest / customer" },
+        { "hanzi": "医生", "pinyin": "yīshēng", "es": "médico", "en": "doctor" },
+        { "hanzi": "先生", "pinyin": "xiānsheng", "es": "señor", "en": "gentleman" }
+      ],
+      "mnemonic": {
+        "es": "Persona (亻) en su lugar o rango (立): resalta la dignidad de la persona con elegancia.",
+        "en": "Person (亻) standing proudly (立): acknowledges high honor and social esteem."
+      },
+      "example": {
+        "hanzi": "这是一位经验丰富的老师。",
+        "pinyin": "Zhè shì yí wèi jīngyàn fēngfù de lǎoshī.",
+        "es": "Este es un profesor con mucha experiencia.",
+        "en": "This is an experienced teacher."
+      }
+    },
+    {
+      "id": "zuo",
+      "hanzi": "座",
+      "pinyin": "zuò",
+      "es": "Estructuras inmensas, montañas, puentes, grandes edificios y ciudades",
+      "en": "Immense immovable landmarks: mountains, bridges, towers, cities",
+      "ru": "Крупные неподвижные сооружения: горы, мосты, здания, города",
+      "th": "สิ่งก่อสร้างขนาดใหญ่ ภูเขา สะพาน ตึกระฟ้า เมือง",
+      "category": "places",
+      "commonNouns": [
+        { "hanzi": "山", "pinyin": "shān", "es": "montaña", "en": "mountain" },
+        { "hanzi": "桥", "pinyin": "qiáo", "es": "puente", "en": "bridge" },
+        { "hanzi": "大楼", "pinyin": "dàlóu", "es": "edificio alto", "en": "tall building" },
+        { "hanzi": "城市", "pinyin": "chéngshì", "es": "ciudad", "en": "city" }
+      ],
+      "mnemonic": {
+        "es": "Un asiento (座) gigantesco donde la naturaleza o la arquitectura reposa con solidez.",
+        "en": "A colossal throne or seat (座) anchoring grand mountains and skyscrapers."
+      },
+      "example": {
+        "hanzi": "学校后面有一座很高的大山。",
+        "pinyin": "Xuéxiào hòumiàn yǒu yí zuò hěn gāo de dàshān.",
+        "es": "Detrás de la escuela hay una montaña muy alta.",
+        "en": "There is a very tall mountain behind the school."
+      }
+    },
+    {
+      "id": "pan",
+      "hanzi": "盘",
+      "pinyin": "pán",
+      "es": "Platos de comida servidos en bandeja o plato llano",
+      "en": "Plates or dishes of served food",
+      "ru": "Блюда и тарелки с готовой едой",
+      "th": "จานอาหาร เช่น กับข้าว เกี๊ยว ผลไม้",
+      "category": "containers",
+      "commonNouns": [
+        { "hanzi": "菜", "pinyin": "cài", "es": "plato de comida", "en": "dish / course" },
+        { "hanzi": "饺子", "pinyin": "jiǎozi", "es": "dumplings / ravioles", "en": "dumplings" },
+        { "hanzi": "水果", "pinyin": "shuǐguǒ", "es": "fruta servida", "en": "fruit plate" }
+      ],
+      "mnemonic": {
+        "es": "Plato hondo de loza (皿) presentado sobre la mesa listo para compartir.",
+        "en": "Vessel/dish radical (皿) at the base holding banquet dishes ready to share."
+      },
+      "example": {
+        "hanzi": "桌上摆着一盘热腾腾的饺子。",
+        "pinyin": "Zhuō shàng bǎi zhe yì pán rèténgténg de jiǎozi.",
+        "es": "En la mesa hay un plato de empanadillas humeantes.",
+        "en": "A steaming plate of dumplings is set on the table."
+      }
+    },
+    {
+      "id": "jia",
+      "hanzi": "家",
+      "pinyin": "jiā",
+      "es": "Establecimientos comerciales, empresas, tiendas, restaurantes, hospitales",
+      "en": "Commercial establishments: shops, companies, restaurants, banks",
+      "ru": "Заведения, предприятия: магазины, рестораны, компании, банки",
+      "th": "สถานประกอบการ เช่น ร้านค้า บริษัท ร้านอาหาร ธนาคาร",
+      "category": "places",
+      "commonNouns": [
+        { "hanzi": "饭馆", "pinyin": "fànguǎn", "es": "restaurante", "en": "restaurant" },
+        { "hanzi": "商店", "pinyin": "shāngdiàn", "es": "tienda", "en": "shop / store" },
+        { "hanzi": "公司", "pinyin": "gōngsī", "es": "empresa", "en": "company" },
+        { "hanzi": "医院", "pinyin": "yīyuàn", "es": "hospital", "en": "hospital" },
+        { "hanzi": "银行", "pinyin": "yínháng", "es": "banco", "en": "bank" }
+      ],
+      "mnemonic": {
+        "es": "Hogar (家): los negocios y comercios son como familias organizadas bajo un mismo techo.",
+        "en": "Home (家): institutions and storefronts treated like corporate households."
+      },
+      "example": {
+        "hanzi": "这家中国饭馆的菜真地道。",
+        "pinyin": "Zhè jiā zhōngguó fànguǎn de cài zhēn dìdao.",
+        "es": "La comida de este restaurante chino es verdaderamente auténtica.",
+        "en": "The food in this Chinese restaurant is truly authentic."
+      }
+    }
+  ],
+  "sentences": [
+    {
+      "id": "sent-01",
+      "hsk": 1,
+      "category": "publications",
+      "sentenceBefore": "我买了一",
+      "sentenceAfter": "新汉语词典。",
+      "displaySentence": "我买了一 [ ___ ] 新汉语词典。",
+      "fullSentence": "我买了一本新汉语词典。",
+      "pinyin": "Wǒ mǎi le yì běn xīn hànyǔ cídiǎn.",
+      "pinyinCloze": "Wǒ mǎi le yì [ ___ ] xīn hànyǔ cídiǎn.",
+      "translations": {
+        "es": "Compré un nuevo diccionario de chino.",
+        "en": "I bought a new Chinese dictionary.",
+        "ru": "Я купил новый словарь китайского языка.",
+        "th": "ฉันซื้อพจนานุกรมภาษาจีนเล่มใหม่หนึ่งเล่ม"
+      },
+      "targetClassifier": "本",
+      "targetClassifierId": "ben",
+      "targetNoun": "词典",
+      "options": ["本", "张", "个", "条"],
+      "explanation": {
+        "es": "本 (běn) es el clasificador para libros, cuadernos, revistas y diccionarios.",
+        "en": "本 (běn) is used for books, notebooks, magazines, and dictionaries.",
+        "ru": "本 (běn) используется для словарей, книг и тетрадей.",
+        "th": "本 (běn) ใช้สำหรับพจนานุกรม หนังสือ และนิตยสาร"
+      }
+    },
+    {
+      "id": "sent-02",
+      "hsk": 1,
+      "category": "containers",
+      "sentenceBefore": "天气很热，我想喝一",
+      "sentenceAfter": "水。",
+      "displaySentence": "天气很热，我想喝一 [ ___ ] 水。",
+      "fullSentence": "天气很热，我想喝一杯水。",
+      "pinyin": "Tiānqì hěn rè, wǒ xiǎng hē yì bēi shuǐ.",
+      "pinyinCloze": "Tiānqì hěn rè, wǒ xiǎng hē yì [ ___ ] shuǐ.",
+      "translations": {
+        "es": "Hace mucho calor, quiero beber un vaso de agua.",
+        "en": "It is very hot, I'd like to drink a glass of water.",
+        "ru": "Очень жарко, я хочу выпить стакан воды.",
+        "th": "อากาศร้อนมาก ฉันอยากดื่มน้ำสักแก้ว"
+      },
+      "targetClassifier": "杯",
+      "targetClassifierId": "bei",
+      "targetNoun": "水",
+      "options": ["杯", "碗", "件", "双"],
+      "explanation": {
+        "es": "杯 (bēi) se usa para bebidas servidas en vaso o taza.",
+        "en": "杯 (bēi) is used for liquids served in a cup or glass.",
+        "ru": "杯 (bēi) означает «стакан» или «чашка» напитка.",
+        "th": "杯 (bēi) หมายถึง แก้ว หรือ ถ้วยเครื่องดื่ม"
+      }
+    },
+    {
+      "id": "sent-03",
+      "hsk": 1,
+      "category": "animals",
+      "sentenceBefore": "我的邻居家养了一",
+      "sentenceAfter": "可爱的小狗。",
+      "displaySentence": "我的邻居家养了一 [ ___ ] 可爱的小狗。",
+      "fullSentence": "我的邻居家养了一只可爱的小狗。",
+      "pinyin": "Wǒ de línjū jiā yǎng le yì zhī kě'ài de xiǎogǒu.",
+      "pinyinCloze": "Wǒ de línjū jiā yǎng le yì [ ___ ] kě'ài de xiǎogǒu.",
+      "translations": {
+        "es": "La familia de mi vecino cría un perrito adorable.",
+        "en": "My neighbor's family keeps a cute puppy.",
+        "ru": "Мой сосед держит милую собачку.",
+        "th": "บ้านเพื่อนบ้านของฉันเลี้ยงสุนัขตัวน้อยน่ารักหนึ่งตัว"
+      },
+      "targetClassifier": "只",
+      "targetClassifierId": "zhi",
+      "targetNoun": "小狗",
+      "options": ["只", "条", "辆", "个"],
+      "explanation": {
+        "es": "只 (zhī) es el clasificador estándar para animales pequeños y mascotas como perros, gatos y pájaros.",
+        "en": "只 (zhī) is the standard measure word for small animals like dogs, cats, and birds.",
+        "ru": "只 (zhī) — счетное слово для животных и птиц.",
+        "th": "只 (zhī) เป็นลักษณนามสำหรับสัตว์ เช่น สุนัข แมว นก"
+      }
+    },
+    {
+      "id": "sent-04",
+      "hsk": 1,
+      "category": "general",
+      "sentenceBefore": "桌子上放着四",
+      "sentenceAfter": "红苹果。",
+      "displaySentence": "桌子上放着四 [ ___ ] 红苹果。",
+      "fullSentence": "桌子上放着四个红苹果。",
+      "pinyin": "Zhuōzi shàng fàng zhe sì gè hóng píngguǒ.",
+      "pinyinCloze": "Zhuōzi shàng fàng zhe sì [ ___ ] hóng píngguǒ.",
+      "translations": {
+        "es": "Sobre la mesa hay cuatro manzanas rojas.",
+        "en": "There are four red apples on the table.",
+        "ru": "На столе лежат четыре красных яблока.",
+        "th": "บนโต๊ะมีแอปเปิ้ลสีแดงสี่ลูก"
+      },
+      "targetClassifier": "个",
+      "targetClassifierId": "ge",
+      "targetNoun": "苹果",
+      "options": ["个", "本", "支", "座"],
+      "explanation": {
+        "es": "个 (gè) es el clasificador general para frutas como manzanas, naranjas y sandías.",
+        "en": "个 (gè) is the standard general classifier for round fruits like apples.",
+        "ru": "个 (gè) используется для фруктов и круглых предметов.",
+        "th": "个 (gè) เป็นลักษณนามทั่วไปสำหรับผลไม้ เช่น แอปเปิ้ล"
+      }
+    },
+    {
+      "id": "sent-05",
+      "hsk": 1,
+      "category": "flat",
+      "sentenceBefore": "你能给我一",
+      "sentenceAfter": "干净的白纸吗？",
+      "displaySentence": "你能给我一 [ ___ ] 干净的白纸吗？",
+      "fullSentence": "你能给我一张干净的白纸吗？",
+      "pinyin": "Nǐ néng gěi wǒ yì zhāng gānjìng de bái zhǐ ma?",
+      "pinyinCloze": "Nǐ néng gěi wǒ yì [ ___ ] gānjìng de bái zhǐ ma?",
+      "translations": {
+        "es": "¿Me puedes dar una hoja de papel blanco limpio?",
+        "en": "Can you give me a sheet of clean white paper?",
+        "ru": "Можешь дать мне лист чистой белой бумаги?",
+        "th": "คุณขอกระดาษขาวสะอาดให้ฉันสักแผ่นได้ไหม"
+      },
+      "targetClassifier": "张",
+      "targetClassifierId": "zhang",
+      "targetNoun": "白纸",
+      "options": ["张", "双", "把", "支"],
+      "explanation": {
+        "es": "张 (zhāng) se utiliza para objetos planos y delgados como papel, fotos o billetes.",
+        "en": "张 (zhāng) is used for flat and thin objects such as paper, photos, and tickets.",
+        "ru": "张 (zhāng) используется для плоских предметов: листов бумаги, фото.",
+        "th": "张 (zhāng) ใช้สำหรับสิ่งของแบนราบ เช่น กระดาษ รูปภาพ"
+      }
+    },
+    {
+      "id": "sent-06",
+      "hsk": 2,
+      "category": "long",
+      "sentenceBefore": "湖里有很多",
+      "sentenceAfter": "金色的鱼在游。",
+      "displaySentence": "湖里有很多 [ ___ ] 金色的鱼在游。",
+      "fullSentence": "湖里有很多条金色的鱼在游。",
+      "pinyin": "Hú lǐ yǒu hěn duō tiáo jīnsè de yú zài yóu.",
+      "pinyinCloze": "Hú lǐ yǒu hěn duō [ ___ ] jīnsè de yú zài yóu.",
+      "translations": {
+        "es": "En el lago hay muchos peces dorados nadando.",
+        "en": "In the lake, many golden fish are swimming.",
+        "ru": "В озере плавает много золотых рыбок.",
+        "th": "ในทะเลสาบมีปลาสีทองหลายตัวกำลังว่ายน้ำ"
+      },
+      "targetClassifier": "条",
+      "targetClassifierId": "tiao",
+      "targetNoun": "鱼",
+      "options": ["条", "只", "件", "棵"],
+      "explanation": {
+        "es": "条 (tiáo) clasifica peces y animales alargados y sinuosos, además de ríos y pantalones.",
+        "en": "条 (tiáo) classifies fish, snakes, and long sinuous things like rivers and trousers.",
+        "ru": "条 (tiáo) используется для рыб, змей, рек и длинных предметов.",
+        "th": "条 (tiáo) ใช้สำหรับปลา สิ่งของหรือสัตว์ที่มีลำตัวยาวเรียว เช่น แม่น้ำ กางเกง"
+      }
+    },
+    {
+      "id": "sent-07",
+      "hsk": 2,
+      "category": "clothes",
+      "sentenceBefore": "冬天来了，我想买一",
+      "sentenceAfter": "厚大衣。",
+      "displaySentence": "冬天来了，我想买一 [ ___ ] 厚大衣。",
+      "fullSentence": "冬天来了，我想买一件厚大衣。",
+      "pinyin": "Dōngtiān lái le, wǒ xiǎng mǎi yí jiàn hòu dàyī.",
+      "pinyinCloze": "Dōngtiān lái le, wǒ xiǎng mǎi yí [ ___ ] hòu dàyī.",
+      "translations": {
+        "es": "Llegó el invierno, quiero comprar un abrigo grueso.",
+        "en": "Winter has arrived, I want to buy a thick overcoat.",
+        "ru": "Пришла зима, я хочу купить теплое пальто.",
+        "th": "ฤดูหนาวมาถึงแล้ว ฉันอยากซื้อเสื้อโค้ตหนาๆ สักตัว"
+      },
+      "targetClassifier": "件",
+      "targetClassifierId": "jian",
+      "targetNoun": "大衣",
+      "options": ["件", "双", "本", "台"],
+      "explanation": {
+        "es": "件 (jiàn) es el clasificador para prendas superiores (abrigos, camisas, chaquetas).",
+        "en": "件 (jiàn) is the classifier for upper clothing items like coats, shirts, and jackets.",
+        "ru": "件 (jiàn) используется для предметов верхней одежды: пальто, курток, рубашек.",
+        "th": "件 (jiàn) ใช้สำหรับเสื้อผ้าชิ้นบน เช่น เสื้อโค้ต เสื้อเชิ้ต"
+      }
+    },
+    {
+      "id": "sent-08",
+      "hsk": 2,
+      "category": "vehicles",
+      "sentenceBefore": "我每天骑一",
+      "sentenceAfter": "蓝色自行车去学校。",
+      "displaySentence": "我每天骑一 [ ___ ] 蓝色自行车去学校。",
+      "fullSentence": "我每天骑一辆蓝色自行车去学校。",
+      "pinyin": "Wǒ měitiān qí yí liàng lánsè zìxíngchē qù xuéxiào.",
+      "pinyinCloze": "Wǒ měitiān qí yí [ ___ ] lánsè zìxíngchē qù xuéxiào.",
+      "translations": {
+        "es": "Todos los días monto una bicicleta azul a la escuela.",
+        "en": "Every day I ride a blue bicycle to school.",
+        "ru": "Каждый день я еду в школу на синем велосипеде.",
+        "th": "ฉันปั่นจักรยานสีน้ำเงินหนึ่งคันไปโรงเรียนทุกวัน"
+      },
+      "targetClassifier": "辆",
+      "targetClassifierId": "liang",
+      "targetNoun": "自行车",
+      "options": ["辆", "台", "个", "只"],
+      "explanation": {
+        "es": "辆 (liàng) se usa para vehículos terrestres con ruedas (bicicletas, coches, autobuses).",
+        "en": "辆 (liàng) is specifically for wheeled terrestrial vehicles (bicycles, cars, buses).",
+        "ru": "辆 (liàng) используется для колесного транспорта: велосипедов, машин.",
+        "th": "辆 (liàng) ใช้สำหรับยานพาหนะที่มีล้อ เช่น จักรยาน รถยนต์"
+      }
+    },
+    {
+      "id": "sent-09",
+      "hsk": 2,
+      "category": "containers",
+      "sentenceBefore": "服务员，请给我们两",
+      "sentenceAfter": "牛肉面。",
+      "displaySentence": "服务员，请给我们两 [ ___ ] 牛肉面。",
+      "fullSentence": "服务员，请给我们两碗牛肉面。",
+      "pinyin": "Fúwùyuán, qǐng gěi wǒmen liǎng wǎn niúròumiàn.",
+      "pinyinCloze": "Fúwùyuán, qǐng gěi wǒmen liǎng [ ___ ] niúròumiàn.",
+      "translations": {
+        "es": "Camarero, por favor denos dos tazones de fideos con ternera.",
+        "en": "Waiter, please bring us two bowls of beef noodles.",
+        "ru": "Официант, пожалуйста, принесите нам две пиалы лапши с говядиной.",
+        "th": "บริกรครับ ขอสองชามบะหมี่เนื้อวัวครับ"
+      },
+      "targetClassifier": "碗",
+      "targetClassifierId": "wan",
+      "targetNoun": "牛肉面",
+      "options": ["碗", "杯", "瓶", "盘"],
+      "explanation": {
+        "es": "碗 (wǎn) es cuenco o tazón, el clasificador tradicional para sopas, fideos y arroz.",
+        "en": "碗 (wǎn) means bowl, used for noodles, soup, and bowls of rice.",
+        "ru": "碗 (wǎn) означает чашу или миску, используется для лапши, супа и риса.",
+        "th": "碗 (wǎn) คือ ชาม สำหรับใส่บะหมี่ ซุป ข้าวสวย"
+      }
+    },
+    {
+      "id": "sent-10",
+      "hsk": 2,
+      "category": "pairs",
+      "sentenceBefore": "他买了一",
+      "sentenceAfter": "非常舒适的新运动鞋。",
+      "displaySentence": "他买了一 [ ___ ] 非常舒适的新运动鞋。",
+      "fullSentence": "他买了一双非常舒适的新运动鞋。",
+      "pinyin": "Tā mǎi le yì shuāng fēicháng shūshì de xīn yùndòngxié.",
+      "pinyinCloze": "Tā mǎi le yì [ ___ ] fēicháng shūshì de xīn yùndòngxié.",
+      "translations": {
+        "es": "Compró un par de zapatillas deportivas nuevas muy cómodas.",
+        "en": "He bought a pair of very comfortable new sneakers.",
+        "ru": "Он купил пару очень удобных новых кроссовок.",
+        "th": "เขาซื้อรองเท้าผ้าใบคู่ใหม่ที่ใส่สบายมากหนึ่งคู่"
+      },
+      "targetClassifier": "双",
+      "targetClassifierId": "shuang",
+      "targetNoun": "运动鞋",
+      "options": ["双", "件", "条", "只"],
+      "explanation": {
+        "es": "双 (shuāng) se emplea para objetos que vienen en pares (zapatos, calcetines, palillos).",
+        "en": "双 (shuāng) is for paired items (shoes, socks, chopsticks, gloves).",
+        "ru": "双 (shuāng) используется для парных предметов: обуви, носков, палочек.",
+        "th": "双 (shuāng) ใช้สำหรับสิ่งของที่เป็นคู่ เช่น รองเท้า ถุงเท้า ตะเกียบ"
+      }
+    },
+    {
+      "id": "sent-11",
+      "hsk": 2,
+      "category": "tools",
+      "sentenceBefore": "你能借给我一",
+      "sentenceAfter": "铅笔写字吗？",
+      "displaySentence": "你能借给我一 [ ___ ] 铅笔写字吗？",
+      "fullSentence": "你能借给我一支铅笔写字吗？",
+      "pinyin": "Nǐ néng jiè gěi wǒ yì zhī qiānbǐ xiězì ma?",
+      "pinyinCloze": "Nǐ néng jiè gěi wǒ yì [ ___ ] qiānbǐ xiězì ma?",
+      "translations": {
+        "es": "¿Me puedes prestar un lápiz para escribir?",
+        "en": "Can you lend me a pencil to write?",
+        "ru": "Можешь одолжить мне карандаш для записей?",
+        "th": "คุณให้ฉันยืมดินสอสักแท่งเพื่อเขียนได้ไหม"
+      },
+      "targetClassifier": "支",
+      "targetClassifierId": "zhi-stick",
+      "targetNoun": "铅笔",
+      "options": ["支", "把", "张", "只"],
+      "explanation": {
+        "es": "支 (zhī) es el clasificador para instrumentos cilíndricos de escribir (lápices, bolígrafos, pinceles).",
+        "en": "支 (zhī) is the measure word for rod-like writing implements (pencils, pens, brushes).",
+        "ru": "支 (zhī) используется для ручек, карандашей и кистей.",
+        "th": "支 (zhī) ใช้สำหรับเครื่องเขียนทรงแท่ง เช่น ดินสอ ปากกา พู่กัน"
+      }
+    },
+    {
+      "id": "sent-12",
+      "hsk": 2,
+      "category": "machines",
+      "sentenceBefore": "客厅里新买了一",
+      "sentenceAfter": "六十五寸的智能电视。",
+      "displaySentence": "客厅里新买了一 [ ___ ] 六十五寸的智能电视。",
+      "fullSentence": "客厅里新买了一台六十五寸的智能电视。",
+      "pinyin": "Kètīng lǐ xīn mǎi le yì tái liùshíwǔ cùn de zhìnéng diànshì.",
+      "pinyinCloze": "Kètīng lǐ xīn mǎi le yì [ ___ ] liùshíwǔ cùn de zhìnéng diànshì.",
+      "translations": {
+        "es": "En la sala compramos una nueva televisión inteligente de 65 pulgadas.",
+        "en": "We bought a new 65-inch smart TV for the living room.",
+        "ru": "В гостиную купили новый 65-дюймовый смарт-телевизор.",
+        "th": "ในห้องนั่งเล่นเพิ่งซื้อสมาร์ตทีวีขนาด 65 นิ้วมาหนึ่งเครื่อง"
+      },
+      "targetClassifier": "台",
+      "targetClassifierId": "tai",
+      "targetNoun": "电视",
+      "options": ["台", "件", "个", "张"],
+      "explanation": {
+        "es": "台 (tái) es el clasificador para máquinas, electrodomésticos y computadoras.",
+        "en": "台 (tái) is used for machines, home appliances, and computers.",
+        "ru": "台 (tái) используется для техники, компьютеров и бытовых приборов.",
+        "th": "台 (tái) ใช้สำหรับเครื่องใช้ไฟฟ้า เครื่องจักร คอมพิวเตอร์ ทีวี"
+      }
+    },
+    {
+      "id": "sent-13",
+      "hsk": 2,
+      "category": "tools",
+      "sentenceBefore": "外面正在下大雨，请带上一",
+      "sentenceAfter": "雨伞。",
+      "displaySentence": "外面正在下大雨，请带上一 [ ___ ] 雨伞。",
+      "fullSentence": "外面正在下大雨，请带上一把雨伞。",
+      "pinyin": "Wàimiàn zhèngzài xià dàyǔ, qǐng dài shàng yì bǎ yǔsǎn.",
+      "pinyinCloze": "Wàimiàn zhèngzài xià dàyǔ, qǐng dài shàng yì [ ___ ] yǔsǎn.",
+      "translations": {
+        "es": "Afuera está lloviendo fuerte, por favor lleva un paraguas.",
+        "en": "It is raining heavily outside, please take an umbrella.",
+        "ru": "На улице идет сильный дождь, пожалуйста, возьми зонт.",
+        "th": "ข้างนอกฝนกำลังตกหนัก กรุณาพกร่มไปด้วยหนึ่งคัน"
+      },
+      "targetClassifier": "把",
+      "targetClassifierId": "ba",
+      "targetNoun": "雨伞",
+      "options": ["把", "支", "条", "双"],
+      "explanation": {
+        "es": "把 (bǎ) se utiliza para objetos con mango o empuñadura (paraguas, sillas, cuchillos, llaves).",
+        "en": "把 (bǎ) is used for objects with handles (umbrellas, chairs, knives, keys).",
+        "ru": "把 (bǎ) используется для предметов с ручкой (зонты, стулья, ножи, ключи).",
+        "th": "把 (bǎ) ใช้สำหรับสิ่งของที่มีด้ามจับ เช่น ร่ม เก้าอี้ มีด กุญแจ"
+      }
+    },
+    {
+      "id": "sent-14",
+      "hsk": 2,
+      "category": "respect",
+      "sentenceBefore": "今天来给我们讲座的是一",
+      "sentenceAfter": "著名教授。",
+      "displaySentence": "今天来给我们讲座的是一 [ ___ ] 著名教授。",
+      "fullSentence": "今天来给我们讲座的是一位著名教授。",
+      "pinyin": "Jīntiān lái gěi wǒmen jiǎngzuò de shì yí wèi zhùmíng jiàoshòu.",
+      "pinyinCloze": "Jīntiān lái gěi wǒmen jiǎngzuò de shì yí [ ___ ] zhùmíng jiàoshòu.",
+      "translations": {
+        "es": "Quien vino hoy a darnos la conferencia es un profesor distinguido.",
+        "en": "The person giving our lecture today is a renowned professor.",
+        "ru": "Лекцию нам сегодня читает один известный профессор.",
+        "th": "ผู้ที่มาบรรยายให้เราในวันนี้คือศาสตราจารย์ชื่อดังท่านหนึ่ง"
+      },
+      "targetClassifier": "位",
+      "targetClassifierId": "wei",
+      "targetNoun": "教授",
+      "options": ["位", "个", "家", "张"],
+      "explanation": {
+        "es": "位 (wèi) es el clasificador honorífico y respetuoso para personas destacadas o invitados.",
+        "en": "位 (wèi) is the polite and respectful classifier for esteemed individuals and guests.",
+        "ru": "位 (wèi) — уважительное слово для людей (учителей, врачей, профессоров).",
+        "th": "位 (wèi) เป็นลักษณนามแสดงความสุภาพสำหรับบุคคล เช่น อาจารย์ แพทย์ แขก"
+      }
+    },
+    {
+      "id": "sent-15",
+      "hsk": 2,
+      "category": "containers",
+      "sentenceBefore": "运动完后，他大口喝了一",
+      "sentenceAfter": "矿泉水。",
+      "displaySentence": "运动完后，他大口喝了一 [ ___ ] 矿泉水。",
+      "fullSentence": "运动完后，他大口喝了一瓶矿泉水。",
+      "pinyin": "Yùndòng wán hòu, tā dàkǒu hē le yì píng kuàngquánshuǐ.",
+      "pinyinCloze": "Yùndòng wán hòu, tā dàkǒu hē le yì [ ___ ] kuàngquánshuǐ.",
+      "translations": {
+        "es": "Tras hacer deporte, bebió con avidez una botella de agua mineral.",
+        "en": "After exercising, he gulped down a bottle of mineral water.",
+        "ru": "После тренировки он залпом выпил бутылку минеральной воды.",
+        "th": "หลังออกกำลังกายเสร็จ เขาได้ดื่มน้ำแร่หนึ่งขวดอย่างรวดเร็ว"
+      },
+      "targetClassifier": "瓶",
+      "targetClassifierId": "ping",
+      "targetNoun": "矿泉水",
+      "options": ["瓶", "杯", "碗", "本"],
+      "explanation": {
+        "es": "瓶 (píng) cuantifica líquidos envasados en botellas o frascos.",
+        "en": "瓶 (píng) is bottle, used for bottled beverages like mineral water, soda, or beer.",
+        "ru": "瓶 (píng) переводится как «бутылка» для напитков.",
+        "th": "瓶 (píng) แปลว่า ขวด ใช้สำหรับเครื่องดื่มบรรจุขวด"
+      }
+    },
+    {
+      "id": "sent-16",
+      "hsk": 2,
+      "category": "places",
+      "sentenceBefore": "学校附近新开了一",
+      "sentenceAfter": "地道的四川饭馆。",
+      "displaySentence": "学校附近新开了一 [ ___ ] 地道的四川饭馆。",
+      "fullSentence": "学校附近新开了一家地道的四川饭馆。",
+      "pinyin": "Xuéxiào fùjìn xīn kāi le yì jiā dìdao de sìchuān fànguǎn.",
+      "pinyinCloze": "Xuéxiào fùjìn xīn kāi le yì [ ___ ] dìdao de sìchuān fànguǎn.",
+      "translations": {
+        "es": "Cerca de la escuela abrió un auténtico restaurante de Sichuan.",
+        "en": "An authentic Sichuan restaurant just opened near the school.",
+        "ru": "Рядом со школой открылся аутентичный сычуаньский ресторан.",
+        "th": "ใกล้โรงเรียนมีร้านอาหารเสฉวนแท้ๆ เพิ่งเปิดใหม่หนึ่งร้าน"
+      },
+      "targetClassifier": "家",
+      "targetClassifierId": "jia",
+      "targetNoun": "饭馆",
+      "options": ["家", "座", "台", "个"],
+      "explanation": {
+        "es": "家 (jiā) se utiliza para establecimientos comerciales, tiendas, restaurantes y empresas.",
+        "en": "家 (jiā) is used for commercial establishments, businesses, shops, and restaurants.",
+        "ru": "家 (jiā) используется для заведений: ресторанов, магазинов, компаний.",
+        "th": "家 (jiā) ใช้สำหรับร้านค้า ร้านอาหาร บริษัท สถานประกอบการ"
+      }
+    },
+    {
+      "id": "sent-17",
+      "hsk": 2,
+      "category": "nature",
+      "sentenceBefore": "我家门前生长着一",
+      "sentenceAfter": "高大的松树。",
+      "displaySentence": "我家门前生长着一 [ ___ ] 高大的松树。",
+      "fullSentence": "我家门前生长着一棵高大的松树。",
+      "pinyin": "Wǒ jiā mén qián shēngzhǎng zhe yì kē gāodà de sōngshù.",
+      "pinyinCloze": "Wǒ jiā mén qián shēngzhǎng zhe yì [ ___ ] gāodà de sōngshù.",
+      "translations": {
+        "es": "Frente a mi puerta crece un pino alto y frondoso.",
+        "en": "A tall pine tree grows in front of my front door.",
+        "ru": "Перед моими дверями растет высокая сосна.",
+        "th": "หน้าบ้านของฉันมีต้นสนสูงใหญ่งอกงามอยู่หนึ่งต้น"
+      },
+      "targetClassifier": "棵",
+      "targetClassifierId": "ke",
+      "targetNoun": "松树",
+      "options": ["棵", "条", "支", "座"],
+      "explanation": {
+        "es": "棵 (kē) es el clasificador para árboles y plantas vivas enraizadas.",
+        "en": "棵 (kē) is used for rooted trees and plants.",
+        "ru": "棵 (kē) используется для деревьев и растений.",
+        "th": "棵 (kē) เป็นลักษณนามสำหรับต้นไม้และพืชพรรณ"
+      }
+    },
+    {
+      "id": "sent-18",
+      "hsk": 2,
+      "category": "containers",
+      "sentenceBefore": "妈妈端出了一",
+      "sentenceAfter": "新鲜的热饺子。",
+      "displaySentence": "妈妈端出了一 [ ___ ] 新鲜的热饺子。",
+      "fullSentence": "妈妈端出了一盘新鲜的热饺子。",
+      "pinyin": "Māma duān chū le yì pán xīnxiān de rè jiǎozi.",
+      "pinyinCloze": "Māma duān chū le yì [ ___ ] xīnxiān de rè jiǎozi.",
+      "translations": {
+        "es": "Mamá sacó un plato de dumplings recién hechos y calientes.",
+        "en": "Mom brought out a plate of fresh hot dumplings.",
+        "ru": "Мама вынесла тарелку горячих свежих пельменей.",
+        "th": "คุณแม่ยกเกี๊ยวต้มร้อนๆ สดใหม่ออกมาหนึ่งจาน"
+      },
+      "targetClassifier": "盘",
+      "targetClassifierId": "pan",
+      "targetNoun": "饺子",
+      "options": ["盘", "碗", "本", "把"],
+      "explanation": {
+        "es": "盘 (pán) es el clasificador para platos llanos o bandejas de comida servida.",
+        "en": "盘 (pán) refers to a plate or dish of food served on flat tableware.",
+        "ru": "盘 (pán) означает «тарелка» или «блюдо» еды.",
+        "th": "盘 (pán) คือ จาน ใช้สำหรับอาหารที่เสิร์ฟบนจานแบน"
+      }
+    },
+    {
+      "id": "sent-19",
+      "hsk": 3,
+      "category": "places",
+      "sentenceBefore": "长江上修筑了一",
+      "sentenceAfter": "举世闻名的宏伟大桥。",
+      "displaySentence": "长江上修筑了一 [ ___ ] 举世闻名的宏伟大桥。",
+      "fullSentence": "长江上修筑了一座举世闻名的宏伟大桥。",
+      "pinyin": "Chángjiāng shàng xiūzhù le yí zuò jǔshì wénmíng de hóngwěi dàqiáo.",
+      "pinyinCloze": "Chángjiāng shàng xiūzhù le yí [ ___ ] jǔshì wénmíng de hóngwěi dàqiáo.",
+      "translations": {
+        "es": "Sobre el río Yangtsé se construyó un gran puente de fama mundial.",
+        "en": "A world-renowned grand bridge was built over the Yangtze River.",
+        "ru": "Через реку Янцзы был построен всемирно известный величественный мост.",
+        "th": "บนแม่น้ำแยงซีได้สร้างสะพานใหญ่อันยิ่งใหญ่ที่มีชื่อเสียงระดับโลกหนึ่งแห่ง"
+      },
+      "targetClassifier": "座",
+      "targetClassifierId": "zuo",
+      "targetNoun": "大桥",
+      "options": ["座", "条", "家", "张"],
+      "explanation": {
+        "es": "座 (zuò) clasifica construcciones gigantescas e inamovibles como puentes, montañas o edificios.",
+        "en": "座 (zuò) classifies immovable, grand structures like bridges, mountains, and towers.",
+        "ru": "座 (zuò) используется для крупных строений: мостов, гор, башен.",
+        "th": "座 (zuò) ใช้สำหรับสิ่งก่อสร้างใหญ่ เช่น สะพาน ภูเขา ตึกระฟ้า"
+      }
+    },
+    {
+      "id": "sent-20",
+      "hsk": 3,
+      "category": "publications",
+      "sentenceBefore": "今天上午我给远方的父母寄了一",
+      "sentenceAfter": "充满思念的信。",
+      "displaySentence": "今天上午我给远方的父母寄了一 [ ___ ] 充满思念的信。",
+      "fullSentence": "今天上午我给远方的父母寄了一封充满思念的信。",
+      "pinyin": "Jīntiān shàngwǔ wǒ gěi yuǎnfāng de fùmǔ jì le yì fēng chōngmǎn sīniàn de xìn.",
+      "pinyinCloze": "Jīntiān shàngwǔ wǒ gěi yuǎnfāng de fùmǔ jì le yì [ ___ ] chōngmǎn sīniàn de xìn.",
+      "translations": {
+        "es": "Esta mañana envié a mis lejanos padres una carta llena de añoranza.",
+        "en": "This morning I mailed a letter filled with longing to my distant parents.",
+        "ru": "Сегодня утром я отправил далеким родителям письмо, полное нежности.",
+        "th": "เช้าวันนี้ฉันได้ส่งจดหมายที่เปี่ยมด้วยความคิดถึงหนึ่งฉบับไปให้พ่อแม่ที่อยู่ไกล"
+      },
+      "targetClassifier": "封",
+      "targetClassifierId": "feng",
+      "targetNoun": "信",
+      "options": ["封", "张", "本", "个"],
+      "explanation": {
+        "es": "封 (fēng) es el clasificador para cartas en sobre y correos electrónicos.",
+        "en": "封 (fēng) is used for sealed correspondence like letters and emails.",
+        "ru": "封 (fēng) — счетное слово для писем и электронных сообщений.",
+        "th": "封 (fēng) เป็นลักษณนามสำหรับจดหมายและอีเมล"
+      }
+    },
+    {
+      "id": "sent-21",
+      "hsk": 2,
+      "category": "clothes",
+      "sentenceBefore": "她今天穿了一",
+      "sentenceAfter": "优雅的红裙子。",
+      "displaySentence": "她今天穿了一 [ ___ ] 优雅的红裙子。",
+      "fullSentence": "她今天穿了一条优雅的红裙子。",
+      "pinyin": "Tā jīntiān chuān le yì tiáo yōuyǎ de hóng qúnzi.",
+      "pinyinCloze": "Tā jīntiān chuān le yì [ ___ ] yōuyǎ de hóng qúnzi.",
+      "translations": {
+        "es": "Hoy ella llevaba puesta una elegante falda roja.",
+        "en": "She wore an elegant red skirt today.",
+        "ru": "Сегодня на ней была элегантная красная юбка.",
+        "th": "วันนี้เธอสวมกระโปรงสีแดงที่สง่างามหนึ่งตัว"
+      },
+      "targetClassifier": "条",
+      "targetClassifierId": "tiao",
+      "targetNoun": "裙子",
+      "options": ["条", "件", "张", "双"],
+      "explanation": {
+        "es": "Las faldas (裙子) y pantalones (裤子) son prendas inferiores alargadas y llevan 条 (tiáo), mientras que las superiores llevan 件 (jiàn).",
+        "en": "Skirts (裙子) and trousers (裤子) are lower-body long garments taking 条 (tiáo), whereas upper garments take 件 (jiàn).",
+        "ru": "Юбки и брюки считаются словом 条 (tiáo), в то время как верхняя одежда — 件 (jiàn).",
+        "th": "กระโปรงและกางเกงใช้ 条 (tiáo) ส่วนเสื้อชิ้นบนใช้ 件 (jiàn)"
+      }
+    },
+    {
+      "id": "sent-22",
+      "hsk": 2,
+      "category": "general",
+      "sentenceBefore": "老师今天向大家提出了三",
+      "sentenceAfter": "深刻的问题。",
+      "displaySentence": "老师今天向大家提出了三 [ ___ ] 深刻的问题。",
+      "fullSentence": "老师今天向大家提出了三个深刻的问题。",
+      "pinyin": "Lǎoshī jīntiān xiàng dàjiā tíchū le sān gè shēnkè de wèntí.",
+      "pinyinCloze": "Lǎoshī jīntiān xiàng dàjiā tíchū le sān [ ___ ] shēnkè de wèntí.",
+      "translations": {
+        "es": "El profesor planteó hoy tres preguntas profundas al grupo.",
+        "en": "The teacher raised three insightful questions to everyone today.",
+        "ru": "Учитель сегодня задал аудитории три глубоких вопроса.",
+        "th": "วันนี้อาจารย์ได้ตั้งคำถามที่ลึกซึ้งสามข้อให้กับทุกคน"
+      },
+      "targetClassifier": "个",
+      "targetClassifierId": "ge",
+      "targetNoun": "问题",
+      "options": ["个", "本", "件", "支"],
+      "explanation": {
+        "es": "Para preguntas o dudas (问题), se usa habitualmente 个 (gè).",
+        "en": "Questions (问题) take the general measure word 个 (gè).",
+        "ru": "Для вопросов (问题) обычно используется слово 个 (gè).",
+        "th": "สำหรับคำถาม (问题) มักใช้ลักษณนาม 个 (gè)"
+      }
+    },
+    {
+      "id": "sent-23",
+      "hsk": 2,
+      "category": "tools",
+      "sentenceBefore": "教室里只有一",
+      "sentenceAfter": "结实的旧木头椅子。",
+      "displaySentence": "教室里只有一 [ ___ ] 结实的旧木头椅子。",
+      "fullSentence": "教室里只有一把结实的旧木头椅子。",
+      "pinyin": "Jiàoshì lǐ zhǐyǒu yì bǎ jiēshi de jiù mùtou yǐzi.",
+      "pinyinCloze": "Jiàoshì lǐ zhǐyǒu yì [ ___ ] jiēshi de jiù mùtou yǐzi.",
+      "translations": {
+        "es": "En el aula solo hay una silla de madera vieja y robusta.",
+        "en": "There is only one sturdy old wooden chair in the classroom.",
+        "ru": "В классе остался только один крепкий старый деревянный стул.",
+        "th": "ในห้องเรียนมีเก้าอี้ไม้เก่าที่แข็งแรงอยู่เพียงหนึ่งตัว"
+      },
+      "targetClassifier": "把",
+      "targetClassifierId": "ba",
+      "targetNoun": "椅子",
+      "options": ["把", "张", "条", "台"],
+      "explanation": {
+        "es": "把 (bǎ) es el clasificador para sillas (椅子) por su respaldo/mango que se agarra al moverlas.",
+        "en": "把 (bǎ) is specifically used for chairs (椅子) because of their backrest/grasping handle.",
+        "ru": "把 (bǎ) используется для стульев (椅子) благодаря их спинке/ручке.",
+        "th": "把 (bǎ) เป็นลักษณนามเฉพาะสำหรับเก้าอี้ (椅子)"
+      }
+    },
+    {
+      "id": "sent-24",
+      "hsk": 2,
+      "category": "flat",
+      "sentenceBefore": "钱包里有一",
+      "sentenceAfter": "我童年时的黑白照片。",
+      "displaySentence": "钱包里有一 [ ___ ] 我童年时的黑白照片。",
+      "fullSentence": "钱包里有一张我童年时的黑白照片。",
+      "pinyin": "Qiánbāo lǐ yǒu yì zhāng wǒ tóngnián shí de hēibái zhàopiàn.",
+      "pinyinCloze": "Qiánbāo lǐ yǒu yì [ ___ ] wǒ tóngnián shí de hēibái zhàopiàn.",
+      "translations": {
+        "es": "En la cartera hay una foto en blanco y negro de mi infancia.",
+        "en": "In my wallet, there is a black-and-white photograph from my childhood.",
+        "ru": "В моем кошельке лежит черно-белая фотография моего детства.",
+        "th": "ในกระเป๋าสตางค์มีรูปถ่ายขาวดำในวัยเด็กของฉันหนึ่งใบ"
+      },
+      "targetClassifier": "张",
+      "targetClassifierId": "zhang",
+      "targetNoun": "照片",
+      "options": ["张", "本", "幅", "个"],
+      "explanation": {
+        "es": "照片 (foto) es una lámina plana, por lo que siempre se cuenta con 张 (zhāng).",
+        "en": "Photographs (照片) are thin and flat surfaces, so they always use 张 (zhāng).",
+        "ru": "Фотографии (照片) — это плоские предметы, поэтому используется 张 (zhāng).",
+        "th": "รูปภาพ (照片) เป็นแผ่นแบน จึงใช้ลักษณนาม 张 (zhāng)"
+      }
+    },
+    {
+      "id": "sent-25",
+      "hsk": 2,
+      "category": "general",
+      "sentenceBefore": "今天我有两",
+      "sentenceAfter": "十万火急的重要事情要办。",
+      "displaySentence": "今天我有两 [ ___ ] 十万火急的重要事情要办。",
+      "fullSentence": "今天我有两件十万火急的重要事情要办。",
+      "pinyin": "Jīntiān wǒ yǒu liǎng jiàn shíwànhuǒjí de zhòngyào shìqing yào bàn.",
+      "pinyinCloze": "Jīntiān wǒ yǒu liǎng [ ___ ] shíwànhuǒjí de zhòngyào shìqing yào bàn.",
+      "translations": {
+        "es": "Hoy tengo dos asuntos urgentes e importantes que resolver.",
+        "en": "Today I have two extremely urgent matters to attend to.",
+        "ru": "Сегодня у меня есть два крайне неотложных и важных дела.",
+        "th": "วันนี้ฉันมีเรื่องสำคัญเร่งด่วนสองเรื่องที่ต้องจัดการ"
+      },
+      "targetClassifier": "件",
+      "targetClassifierId": "jian",
+      "targetNoun": "事情",
+      "options": ["件", "个", "条", "本"],
+      "explanation": {
+        "es": "件 (jiàn) es el clasificador formal y correcto para asuntos, trámites y sucesos (事情).",
+        "en": "件 (jiàn) is the precise classifier for affairs, tasks, and matters (事情).",
+        "ru": "件 (jiàn) — правильное счетное слово для дел и событий (事情).",
+        "th": "件 (jiàn) เป็นลักษณนามที่ถูกต้องสำหรับธุระและเรื่องราว (事情)"
+      }
+    },
+    {
+      "id": "sent-26",
+      "hsk": 2,
+      "category": "animals",
+      "sentenceBefore": "树枝上落着两",
+      "sentenceAfter": "正在欢快歌唱的喜鹊。",
+      "displaySentence": "树枝上落着两 [ ___ ] 正在欢快歌唱的喜鹊。",
+      "fullSentence": "树枝上落着两只正在欢快歌唱的喜鹊。",
+      "pinyin": "Shùzhī shàng luò zhe liǎng zhī zhèngzài huānkuài gēchàng de xǐquè.",
+      "pinyinCloze": "Shùzhī shàng luò zhe liǎng [ ___ ] zhèngzài huānkuài gēchàng de xǐquè.",
+      "translations": {
+        "es": "Sobre la rama están posadas dos urracas cantando alegremente.",
+        "en": "Two magpies are perched on the branch singing joyfully.",
+        "ru": "На ветке сидят две сороки, весело щебечущие.",
+        "th": "บนกิ่งไม้มีนกกางเขนสองตัวเกาะอยู่และกำลังร้องเพลงอย่างมีความสุข"
+      },
+      "targetClassifier": "只",
+      "targetClassifierId": "zhi",
+      "targetNoun": "喜鹊",
+      "options": ["只", "条", "头", "棵"],
+      "explanation": {
+        "es": "只 (zhī) es el clasificador para todas las aves y pájaros.",
+        "en": "只 (zhī) is the standard classifier for all birds.",
+        "ru": "只 (zhī) используется для птиц и мелких пернатых.",
+        "th": "只 (zhī) ใช้สำหรับนกทุกชนิด"
+      }
+    },
+    {
+      "id": "sent-27",
+      "hsk": 2,
+      "category": "long",
+      "sentenceBefore": "穿过森林后，出现了一",
+      "sentenceAfter": "通往山顶的平坦小路。",
+      "displaySentence": "穿过森林后，出现了一 [ ___ ] 通往山顶的平坦小路。",
+      "fullSentence": "穿过森林后，出现了一条通往山顶的平坦小路。",
+      "pinyin": "Chuānguò sēnlín hòu, chūxiàn le yì tiáo tōng wǎng shāndǐng de píngtǎn xiǎolù.",
+      "pinyinCloze": "Chuānguò sēnlín hòu, chūxiàn le yì [ ___ ] tōng wǎng shāndǐng de píngtǎn xiǎolù.",
+      "translations": {
+        "es": "Tras cruzar el bosque, apareció un camino llano hacia la cima de la montaña.",
+        "en": "After crossing the forest, a flat path leading to the mountain top appeared.",
+        "ru": "Пройдя через лес, мы вышли на ровную тропинку, ведущую к вершине.",
+        "th": "หลังจากผ่านป่าไป มีเส้นทางราบเรียบสายหนึ่งทอดสู่ยอดเขาปรากฏขึ้น"
+      },
+      "targetClassifier": "条",
+      "targetClassifierId": "tiao",
+      "targetNoun": "小路",
+      "options": ["条", "座", "道", "张"],
+      "explanation": {
+        "es": "Los caminos (路), carreteras y sendas son alargados y se clasifican con 条 (tiáo).",
+        "en": "Paths, roads, and trails are elongated routes classified by 条 (tiáo).",
+        "ru": "Дороги и тропы (路) обозначаются словом 条 (tiáo).",
+        "th": "ถนนหนทางและเส้นทาง (路) ใช้ลักษณนาม 条 (tiáo)"
+      }
+    },
+    {
+      "id": "sent-28",
+      "hsk": 3,
+      "category": "tools",
+      "sentenceBefore": "我刚要开门，才发现没带那",
+      "sentenceAfter": "房门钥匙。",
+      "displaySentence": "我刚要开门，才发现没带那 [ ___ ] 房门钥匙。",
+      "fullSentence": "我刚要开门，才发现没带那把房门钥匙。",
+      "pinyin": "Wǒ gāng yào kāimén, cái fāxiàn méi dài nà bǎ fángmén yàoshi.",
+      "pinyinCloze": "Wǒ gāng yào kāimén, cái fāxiàn méi dài nà [ ___ ] fángmén yàoshi.",
+      "translations": {
+        "es": "Justo cuando iba a abrir la puerta, me di cuenta de que no traía esa llave.",
+        "en": "Just as I was about to open the door, I realized I hadn't brought that key.",
+        "ru": "Только я собрался открыть дверь, как понял, что забыл ключ.",
+        "th": "พอฉันกำลังจะเปิดประตู ก็เพิ่งรู้ว่าไม่ได้เอากุญแจดอกนั้นมา"
+      },
+      "targetClassifier": "把",
+      "targetClassifierId": "ba",
+      "targetNoun": "钥匙",
+      "options": ["把", "个", "根", "支"],
+      "explanation": {
+        "es": "Las llaves (钥匙) se sujetan y giran con los dedos como una empuñadura, por eso llevan 把 (bǎ).",
+        "en": "Keys (钥匙) are gripped and turned with the fingers, taking 把 (bǎ).",
+        "ru": "Ключи (钥匙) берут рукой для открывания замка, поэтому используют 把 (bǎ).",
+        "th": "ลูกกุญแจ (钥匙) ใช้มือจับบิด จึงใช้ลักษณนาม 把 (bǎ)"
+      }
+    },
+    {
+      "id": "sent-29",
+      "hsk": 3,
+      "category": "machines",
+      "sentenceBefore": "工程师正在维修实验室里的三",
+      "sentenceAfter": "大型精密电脑。",
+      "displaySentence": "工程师正在维修实验室里的三 [ ___ ] 大型精密电脑。",
+      "fullSentence": "工程师正在维修实验室里的三台大型精密电脑。",
+      "pinyin": "Gōngchéngshī zhèngzài wéixiū shíyànshì lǐ de sān tái dàxíng jīngmì diànnǎo.",
+      "pinyinCloze": "Gōngchéngshī zhèngzài wéixiū shíyànshì lǐ de sān [ ___ ] dàxíng jīngmì diànnǎo.",
+      "translations": {
+        "es": "El ingeniero está reparando tres computadoras de gran precisión en el laboratorio.",
+        "en": "The engineer is repairing three large precision computers in the lab.",
+        "ru": "Инженер ремонтирует три больших прецизионных компьютера в лаборатории.",
+        "th": "วิศวกรกำลังซ่อมคอมพิวเตอร์ขนาดใหญ่สามเครื่องในห้องปฏิบัติการ"
+      },
+      "targetClassifier": "台",
+      "targetClassifierId": "tai",
+      "targetNoun": "电脑",
+      "options": ["台", "部", "件", "个"],
+      "explanation": {
+        "es": "台 (tái) es el clasificador estándar para ordenadores, maquinaria e instrumentos tecnológicos.",
+        "en": "台 (tái) is the benchmark measure word for computers, machinery, and complex devices.",
+        "ru": "台 (tái) — стандартное слово для компьютеров и сложного оборудования.",
+        "th": "台 (tái) เป็นลักษณนามมาตรฐานสำหรับคอมพิวเตอร์และอุปกรณ์เทคโนโลยี"
+      }
+    },
+    {
+      "id": "sent-30",
+      "hsk": 3,
+      "category": "places",
+      "sentenceBefore": "我的老家坐落在两",
+      "sentenceAfter": "连绵起伏的翠绿青山之间。",
+      "displaySentence": "我的老家坐落在两 [ ___ ] 连绵起伏的翠绿青山之间。",
+      "fullSentence": "我的老家坐落在两座连绵起伏的翠绿青山之间。",
+      "pinyin": "Wǒ de lǎojiā zuòluò zài liǎng zuò liánmián qǐfú de cuìlǜ qīngshān zhī jiān.",
+      "pinyinCloze": "Wǒ de lǎojiā zuòluò zài liǎng [ ___ ] liánmián qǐfú de cuìlǜ qīngshān zhī jiān.",
+      "translations": {
+        "es": "Mi pueblo natal está situado entre dos montañas verdes ondulantes.",
+        "en": "My hometown is nestled between two rolling green mountains.",
+        "ru": "Моя малая родина расположена между двумя зелеными горными вершинами.",
+        "th": "บ้านเกิดของฉันตั้งอยู่ระหว่างภูเขาสีเขียวขจีสองลูก"
+      },
+      "targetClassifier": "座",
+      "targetClassifierId": "zuo",
+      "targetNoun": "青山",
+      "options": ["座", "棵", "条", "处"],
+      "explanation": {
+        "es": "Las montañas (山) son formaciones inmóviles colosales y siempre emplean 座 (zuò).",
+        "en": "Mountains (山) are massive immovable landmarks that always take 座 (zuò).",
+        "ru": "Горы (山) всегда требуют счетного слова 座 (zuò).",
+        "th": "ภูเขา (山) เป็นสิ่งใหญ่โตมั่นคงถาวร จึงใช้ 座 (zuò) เสมอ"
+      }
+    }
+  ]
+}
