@@ -681,6 +681,17 @@ class InteractionController {
             });
         }
 
+        const toneColorsSelect = document.getElementById('tone-colors-select');
+        if (toneColorsSelect) {
+            toneColorsSelect.addEventListener('change', (event) => {
+                if (this.app?.setToneScheme) {
+                    this.app.setToneScheme(event.target.value);
+                } else if (this.app?.themeController?.setToneScheme) {
+                    this.app.themeController.setToneScheme(event.target.value);
+                }
+            });
+        }
+
         const headerSearch = document.getElementById('header-search');
         if (headerSearch) {
             headerSearch.addEventListener('click', (e) => {

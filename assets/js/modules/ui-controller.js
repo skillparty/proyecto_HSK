@@ -535,12 +535,12 @@ class UIController {
       case "tones-invaders":
         (async () => {
           try {
-            await this.loadStylesheet("assets/css/tones-invaders-styles.css?v=7dd57740");
+            await this.loadStylesheet("assets/css/tones-invaders-styles.css?v=ac26dbf7");
             if (!window.TonesInvadersRenderer) {
               await this.loadScript("assets/js/tones-invaders-renderer.js");
             }
             if (!window.TonesInvadersGame) {
-              await this.loadScript("assets/js/tones-invaders-game.js?v=5a68c907");
+              await this.loadScript("assets/js/tones-invaders-game.js?v=ac80689a");
             }
             if (!window.tonesInvadersGame) {
               window.tonesInvadersGame = new TonesInvadersGame(this.app);

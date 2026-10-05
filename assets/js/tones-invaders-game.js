@@ -136,6 +136,25 @@ class TonesInvadersGame {
         this.ctx.scale(dpr * (width / this.logicalWidth), dpr * (height / this.logicalHeight));
     }
     
+    updateToneColors() {
+        if (typeof window === 'undefined' || typeof document === 'undefined') return;
+        try {
+            const style = getComputedStyle(document.documentElement);
+            const t1 = style.getPropertyValue('--color-tone-1').trim();
+            const t2 = style.getPropertyValue('--color-tone-2').trim();
+            const t3 = style.getPropertyValue('--color-tone-3').trim();
+            const t4 = style.getPropertyValue('--color-tone-4').trim();
+            const t0 = style.getPropertyValue('--color-tone-0').trim();
+            if (t1) this.toneColors[1] = t1;
+            if (t2) this.toneColors[2] = t2;
+            if (t3) this.toneColors[3] = t3;
+            if (t4) this.toneColors[4] = t4;
+            if (t0) this.toneColors[5] = t0;
+        } catch {
+            // Ignore in environments without DOM styles
+        }
+    }
+
     // Initialize game DOM events
     initialize() {
         if (this.isInitialized) return;
@@ -147,6 +166,11 @@ class TonesInvadersGame {
         // Responsive sizing
         this.resizeCanvas();
         window.addEventListener('resize', () => this.resizeCanvas());
+
+        this.updateToneColors();
+        if (window.app?.eventBus) {
+            window.app.eventBus.on('toneSchemeChanged', () => this.updateToneColors());
+        }
         
         // Start Button
         const startBtn = document.getElementById('tones-inv-start-btn');

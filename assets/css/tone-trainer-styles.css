@@ -443,11 +443,11 @@
     font-weight: 800;
 }
 
-.tt-contour-1 { color: #e11d48; }
-.tt-contour-2 { color: #f59e0b; }
-.tt-contour-3 { color: #3b82f6; }
-.tt-contour-4 { color: #10b981; }
-.tt-contour-5 { color: #8b5cf6; }
+.tt-contour-1 { color: var(--color-tone-1, #e11d48); }
+.tt-contour-2 { color: var(--color-tone-2, #f59e0b); }
+.tt-contour-3 { color: var(--color-tone-3, #3b82f6); }
+.tt-contour-4 { color: var(--color-tone-4, #10b981); }
+.tt-contour-5 { color: var(--color-tone-0, #8b5cf6); }
 
 .tt-tone-label {
     font-size: 0.8rem;

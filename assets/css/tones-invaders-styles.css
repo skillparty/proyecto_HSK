@@ -232,29 +232,29 @@
 .tones-inv-tone-btn:active { transform: scale(.92); }
 
 .tones-inv-tone-btn[data-tone="1"] {
-    background: rgba(220,38,38,.15);
-    border-color: #dc2626;
-    color: #dc2626;
+    background: color-mix(in srgb, var(--color-tone-1, #dc2626) 15%, transparent);
+    border-color: var(--color-tone-1, #dc2626);
+    color: var(--color-tone-1, #dc2626);
 }
 .tones-inv-tone-btn[data-tone="2"] {
-    background: rgba(22,163,74,.15);
-    border-color: #16a34a;
-    color: #16a34a;
+    background: color-mix(in srgb, var(--color-tone-2, #16a34a) 15%, transparent);
+    border-color: var(--color-tone-2, #16a34a);
+    color: var(--color-tone-2, #16a34a);
 }
 .tones-inv-tone-btn[data-tone="3"] {
-    background: rgba(37,99,235,.15);
-    border-color: #2563eb;
-    color: #2563eb;
+    background: color-mix(in srgb, var(--color-tone-3, #2563eb) 15%, transparent);
+    border-color: var(--color-tone-3, #2563eb);
+    color: var(--color-tone-3, #2563eb);
 }
 .tones-inv-tone-btn[data-tone="4"] {
-    background: rgba(124,58,237,.15);
-    border-color: #7c3aed;
-    color: #7c3aed;
+    background: color-mix(in srgb, var(--color-tone-4, #7c3aed) 15%, transparent);
+    border-color: var(--color-tone-4, #7c3aed);
+    color: var(--color-tone-4, #7c3aed);
 }
 .tones-inv-tone-btn[data-tone="5"] {
-    background: rgba(107,114,128,.15);
-    border-color: #6b7280;
-    color: #6b7280;
+    background: color-mix(in srgb, var(--color-tone-0, #6b7280) 15%, transparent);
+    border-color: var(--color-tone-0, #6b7280);
+    color: var(--color-tone-0, #6b7280);
 }
 
 /* ── Actions bar ─────────────────────────────────────── */

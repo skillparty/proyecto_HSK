@@ -310,6 +310,32 @@ html[data-theme="dark"] {
 .tone-4 { color: var(--color-tone-4) !important; }
 .tone-0 { color: var(--color-tone-0) !important; }
 
+/* ---- ALTERNATIVE TONE COLOR SCHEME ----
+   1er Tono: Amarillo (#d97706 light, #facc15 dark)
+   2do Tono: Azul     (#2563eb light, #60a5fa dark)
+   3er Tono: Verde    (#16a34a light, #4ade80 dark)
+   4to Tono: Rojo     (#dc2626 light, #f87171 dark)
+   Tono 0:   Gris     (#6b7280 light, #9ca3af dark)
+*/
+html[data-tone-scheme="alt"],
+body[data-tone-scheme="alt"] {
+    --color-tone-1: #d97706; /* Amarillo / Ámbar dorado (1er Tono) */
+    --color-tone-2: #2563eb; /* Azul (2do Tono) */
+    --color-tone-3: #16a34a; /* Verde (3er Tono) */
+    --color-tone-4: #dc2626; /* Rojo (4to Tono) */
+    --color-tone-0: #6b7280; /* Gris (Neutro) */
+}
+
+html[data-theme="dark"][data-tone-scheme="alt"],
+body[data-theme="dark"][data-tone-scheme="alt"],
+html[data-theme="dark"] body[data-tone-scheme="alt"] {
+    --color-tone-1: #facc15; /* Amarillo brillante */
+    --color-tone-2: #60a5fa; /* Azul claro */
+    --color-tone-3: #4ade80; /* Verde claro */
+    --color-tone-4: #f87171; /* Rojo claro */
+    --color-tone-0: #9ca3af; /* Gris claro */
+}
+
 /* Accesibilidad: respetar la preferencia de movimiento reducido (WCAG 2.3.3).
    Neutraliza transiciones/animaciones CSS para usuarios sensibles al movimiento.
    (Las animaciones de canvas de los juegos usan rAF y se controlan aparte.) */

@@ -58,6 +58,14 @@ class LanguageController {
             voiceSelect.setAttribute('aria-label', title);
             voiceSelect.setAttribute('data-tooltip', tooltip);
         }
+
+        const toneColorsSelect = document.getElementById('tone-colors-select');
+        if (toneColorsSelect) {
+            const title = this.getTranslation('toneColorsSelectorTitle') || 'Tone Colors';
+            toneColorsSelect.title = title;
+            toneColorsSelect.setAttribute('aria-label', title);
+            toneColorsSelect.setAttribute('data-tooltip', title);
+        }
     }
 
     relocalizeQuizQuestionsToCurrentVocabulary() {

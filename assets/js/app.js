@@ -52,6 +52,7 @@ class HSKApp {
         this.practiceMode = 'char-to-english';
         this.practiceOrderMode = 'lesson';
         this.toneCheckMode = localStorage.getItem('hsk-tone-check-mode') || 'standard';
+        this.toneColorScheme = localStorage.getItem('hsk-tone-color-scheme') || 'default';
         this.isDarkMode = true; // Default to dark theme (PlanetScale style)
         this.isAudioEnabled = true;
         this.selectedVoice = 'auto'; // 'male', 'female', 'auto'
@@ -335,6 +336,9 @@ class HSKApp {
     toggleTheme() { return this.themeController.toggleTheme(); }
     applyTheme() { return this.themeController.applyTheme(); }
     updateThemeButton() { return this.themeController.updateThemeButton(); }
+    initializeToneScheme() { return this.themeController.initializeToneScheme(); }
+    setToneScheme(scheme) { return this.themeController.setToneScheme(scheme); }
+    getToneScheme() { return this.themeController.getToneScheme(); }
     loadStats() { return this.storageController.loadStats(); }
     saveStats() { return this.storageController.saveStats(); }
     loadSettings() { return this.storageController.loadSettings(); }

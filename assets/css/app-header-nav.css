@@ -198,6 +198,32 @@ div.nav-group.desktop-only {
     box-shadow: var(--shadow-glow);
 }
 
+#tone-colors-select {
+    min-width: 140px;
+    max-width: 175px;
+}
+
+.tone-preview-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.tone-preview-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.tone-preview-dot-1 { background-color: var(--color-tone-1); }
+.tone-preview-dot-2 { background-color: var(--color-tone-2); }
+.tone-preview-dot-3 { background-color: var(--color-tone-3); }
+.tone-preview-dot-4 { background-color: var(--color-tone-4); }
+
 #header-search {
     background: var(--color-bg-input);
     border: 1px solid var(--color-border);

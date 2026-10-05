@@ -8,6 +8,7 @@ class ThemeController {
         this.app.isDarkMode = savedTheme === 'dark';
         this.applyTheme();
         this.updateThemeButton();
+        this.initializeToneScheme();
     }
 
     toggleTheme() {
@@ -115,6 +116,57 @@ class ThemeController {
             darkIcon.style.display = 'none';
             themeToggle.classList.remove('active');
         }
+    }
+
+    initializeToneScheme() {
+        const savedScheme = (typeof localStorage !== 'undefined')
+            ? (localStorage.getItem('hsk-tone-color-scheme') || 'default')
+            : 'default';
+        this.setToneScheme(savedScheme, false);
+    }
+
+    setToneScheme(scheme, showFeedback = true) {
+        const validScheme = scheme === 'alt' ? 'alt' : 'default';
+        this.app.toneColorScheme = validScheme;
+
+        if (typeof document !== 'undefined') {
+            document.documentElement.setAttribute('data-tone-scheme', validScheme);
+            document.body.setAttribute('data-tone-scheme', validScheme);
+
+            const select = document.getElementById('tone-colors-select');
+            if (select && select.value !== validScheme) {
+                select.value = validScheme;
+            }
+        }
+
+        try {
+            if (typeof localStorage !== 'undefined') {
+                localStorage.setItem('hsk-tone-color-scheme', validScheme);
+            }
+        } catch (e) {
+            if (this.app?.logWarn) this.app.logWarn('Error saving tone color scheme preference:', e);
+        }
+
+        if (this.app?.eventBus) {
+            this.app.eventBus.emit('toneSchemeChanged', validScheme);
+        }
+
+        if (showFeedback && this.app?.showHeaderNotification) {
+            const msg = validScheme === 'alt'
+                ? (this.app.getTranslation('toneColorsAltActivated') || 'Paleta alternativa de tonos activada')
+                : (this.app.getTranslation('toneColorsDefaultActivated') || 'Paleta estándar de tonos activada');
+            this.app.showHeaderNotification(msg);
+        }
+
+        if (this.app?.logDebug) {
+            this.app.logDebug('[theme] Tone color scheme set to: ' + validScheme);
+        }
+    }
+
+    getToneScheme() {
+        return this.app.toneColorScheme ||
+            (typeof localStorage !== 'undefined' ? localStorage.getItem('hsk-tone-color-scheme') : null) ||
+            'default';
     }
 }
 

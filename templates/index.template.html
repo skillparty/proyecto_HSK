@@ -74,13 +74,13 @@
     </script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/design-tokens.css?v=d874e7b6" id="design-tokens">
+    <link rel="stylesheet" href="assets/css/design-tokens.css?v=f287ea0a" id="design-tokens">
     <!-- Split de styles-professional.css: el orden de estos <link> ES la cascada, no reordenar -->
     <link rel="stylesheet" href="assets/css/app-base.css?v=136f09db" id="main-stylesheet">
-    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=9476ab97">
+    <link rel="stylesheet" href="assets/css/app-header-nav.css?v=2c3e32d2">
     <link rel="stylesheet" href="assets/css/app-home.css?v=624dabde">
     <link rel="stylesheet" href="assets/css/app-practice.css?v=f4eadb83">
-    <link rel="stylesheet" href="assets/css/app-browse.css?v=06964ebd">
+    <link rel="stylesheet" href="assets/css/app-browse.css?v=f49d45c3">
     <link rel="stylesheet" href="assets/css/app-strokes.css?v=dff411bb">
     <link rel="stylesheet" href="assets/css/app-quiz.css?v=c5b0c646">
     <link rel="stylesheet" href="assets/css/app-stats.css?v=cd1fd78c">
@@ -215,6 +215,23 @@
                                     <option value="auto">Auto</option>
                                     <option value="male">Masculino</option>
                                     <option value="female">Femenino</option>
+                                </select>
+                            </label>
+
+                            <label class="settings-row" id="tone-colors-settings-row">
+                                <span class="settings-row-label">
+                                    <span data-i18n="toneColorsSelectorTitle">Colores Tonos</span>
+                                    <span class="tone-preview-dots" aria-hidden="true" title="Previsualización de tonos">
+                                        <span class="tone-preview-dot tone-preview-dot-1"></span>
+                                        <span class="tone-preview-dot tone-preview-dot-2"></span>
+                                        <span class="tone-preview-dot tone-preview-dot-3"></span>
+                                        <span class="tone-preview-dot tone-preview-dot-4"></span>
+                                    </span>
+                                </span>
+                                <select id="tone-colors-select" title="Colores de Tonos"
+                                    data-i18n-title="toneColorsSelectorTitle">
+                                    <option value="default" data-i18n="toneColorsDefault">Estándar (Rojo, Verde, Azul, Morado)</option>
+                                    <option value="alt" data-i18n="toneColorsAlt">Alternativo (Amarillo, Azul, Verde, Rojo)</option>
                                 </select>
                             </label>
 
@@ -1094,7 +1111,7 @@
 
 
     <!-- Core Scripts -->
-    <script src="assets/js/translations.js?v=2d6263f2" defer></script>
+    <script src="assets/js/translations.js?v=698688d4" defer></script>
     <script src="assets/js/utils/idb-storage.js?v=1a3ee4b2" defer></script>
     <script src="assets/js/firebase-progress-sync.js?v=bf85fc76" defer></script>
 
@@ -1106,7 +1123,7 @@
     <script src="assets/js/modules/achievement-manager.js?v=59794665" defer></script>
     <!-- quiz-engine.js, quiz-legacy-controller.js, stats-controller.js loaded on demand by ui-controller.js -->
 
-    <script src="assets/js/modules/theme-controller.js?v=01706794" defer></script>
+    <script src="assets/js/modules/theme-controller.js?v=6db15927" defer></script>
     <script src="assets/js/modules/audio-controller.js?v=c3447649" defer></script>
     <!-- browse-controller.js loaded on demand by ui-controller.js -->
 
@@ -1114,19 +1131,19 @@
     <script src="assets/js/modules/modal-controller.js?v=53800ca8" defer></script>
     <script src="assets/js/modules/health-controller.js?v=3c79dadc" defer></script>
     <script src="assets/js/modules/storage-controller.js?v=1707b7b5" defer></script>
-    <script src="assets/js/modules/language-controller.js?v=57c17946" defer></script>
+    <script src="assets/js/modules/language-controller.js?v=d5d6d98f" defer></script>
     <script src="assets/js/modules/progress-controller.js?v=34a14089" defer></script>
     <script src="assets/js/modules/navigation-controller.js?v=2be96299" defer></script>
     <script src="assets/js/modules/search-controller.js?v=25d446c1" defer></script>
     <script src="assets/js/modules/practice-view-controller.js?v=e37ce237" defer></script>
     <script src="assets/js/modules/hands-free-controller.js?v=ce2a191f" defer></script>
     <script src="assets/js/modules/feedback-controller.js?v=91e61708" defer></script>
-    <script src="assets/js/modules/interaction-controller.js?v=6f1d435e" defer></script>
+    <script src="assets/js/modules/interaction-controller.js?v=64b4e408" defer></script>
     <!-- past-exams-controller.js, quantifier-snake-{utils,canvas,controller,versus}.js loaded on demand by ui-controller.js -->
     <script src="assets/js/modules/vocabulary-controller.js?v=597710da" defer></script>
     <script src="assets/js/modules/legacy-flow-controller.js?v=aa8b0d0c" defer></script>
     <script src="assets/js/modules/startup-controller.js?v=99c4153a" defer></script>
-    <script src="assets/js/modules/ui-controller.js?v=133c5a07" defer></script>
+    <script src="assets/js/modules/ui-controller.js?v=a9d0f51d" defer></script>
     <script src="assets/js/modules/offline-manager.js?v=cbdc5843" defer></script>
     <script src="assets/js/modules/home-cultural-portal-scene.js?v=68416bcb" defer></script>
     <script src="assets/js/modules/home-controller.js?v=88500735" defer></script>
@@ -1145,7 +1162,7 @@
             document.body.appendChild(script);
         }
     </script>
-    <script src="assets/js/app.js?v=c5e60823" defer></script>
+    <script src="assets/js/app.js?v=4102efed" defer></script>
     <!-- matrix-game.js, tones-invaders-game.js, leaderboard.js loaded on demand by ui-controller.js -->
 
     <!-- Background Image Integration -->

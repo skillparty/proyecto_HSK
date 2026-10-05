@@ -134,34 +134,34 @@
 
 /* Tone specific semantic colors for pills */
 .tone-pill-btn[data-tone="1"].active {
-    border-color: #e11d48;
-    background: rgba(225, 29, 72, 0.14);
+    border-color: var(--color-tone-1, #e11d48);
+    background: color-mix(in srgb, var(--color-tone-1, #e11d48) 14%, transparent);
 }
-.tone-pill-btn[data-tone="1"].active .tone-pill-char { color: #e11d48; }
+.tone-pill-btn[data-tone="1"].active .tone-pill-char { color: var(--color-tone-1, #e11d48); }
 
 .tone-pill-btn[data-tone="2"].active {
-    border-color: #10b981;
-    background: rgba(16, 185, 129, 0.14);
+    border-color: var(--color-tone-2, #10b981);
+    background: color-mix(in srgb, var(--color-tone-2, #10b981) 14%, transparent);
 }
-.tone-pill-btn[data-tone="2"].active .tone-pill-char { color: #10b981; }
+.tone-pill-btn[data-tone="2"].active .tone-pill-char { color: var(--color-tone-2, #10b981); }
 
 .tone-pill-btn[data-tone="3"].active {
-    border-color: #f59e0b;
-    background: rgba(245, 158, 11, 0.14);
+    border-color: var(--color-tone-3, #f59e0b);
+    background: color-mix(in srgb, var(--color-tone-3, #f59e0b) 14%, transparent);
 }
-.tone-pill-btn[data-tone="3"].active .tone-pill-char { color: #f59e0b; }
+.tone-pill-btn[data-tone="3"].active .tone-pill-char { color: var(--color-tone-3, #f59e0b); }
 
 .tone-pill-btn[data-tone="4"].active {
-    border-color: #8b5cf6;
-    background: rgba(139, 92, 246, 0.14);
+    border-color: var(--color-tone-4, #8b5cf6);
+    background: color-mix(in srgb, var(--color-tone-4, #8b5cf6) 14%, transparent);
 }
-.tone-pill-btn[data-tone="4"].active .tone-pill-char { color: #8b5cf6; }
+.tone-pill-btn[data-tone="4"].active .tone-pill-char { color: var(--color-tone-4, #8b5cf6); }
 
 .tone-pill-btn[data-tone="0"].active {
-    border-color: #64748b;
-    background: rgba(100, 116, 139, 0.14);
+    border-color: var(--color-tone-0, #64748b);
+    background: color-mix(in srgb, var(--color-tone-0, #64748b) 14%, transparent);
 }
-.tone-pill-btn[data-tone="0"].active .tone-pill-char { color: #94a3b8; }
+.tone-pill-btn[data-tone="0"].active .tone-pill-char { color: var(--color-tone-0, #94a3b8); }
 
 /* Syllable Selector Row */
 .syllable-selector-row,
