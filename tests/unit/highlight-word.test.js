@@ -62,3 +62,34 @@ describe("highlightWordInSentence — patrones correlativos", () => {
     );
   });
 });
+
+describe("getClassifierCard — flashcard details", () => {
+  test("returns empty string if word is not a mapped noun", () => {
+    const app = {
+      classifierMap: {
+        "书": [{ qId: "ben", hanzi: "本", pinyin: "běn" }]
+      },
+      getTranslation: () => "Clasificador"
+    };
+    const ctrl = new window.PracticeViewController(app);
+    expect(ctrl.getClassifierCard({ character: "好" })).toBe("");
+    expect(ctrl.getClassifierCard(null)).toBe("");
+  });
+
+  test("returns classifier card markup when word has a classifier", () => {
+    window.hskEscapeHtml = (str) => str || "";
+    const app = {
+      classifierMap: {
+        "书": [{ qId: "ben", hanzi: "本", pinyin: "běn" }]
+      },
+      getTranslation: (key) => (key === "classifierLabel" ? "Clasificador" : "Ver en Guía de Clasificadores")
+    };
+    const ctrl = new window.PracticeViewController(app);
+    const html = ctrl.getClassifierCard({ character: "书" });
+    expect(html).toContain("detail-card-classifier");
+    expect(html).toContain("本");
+    expect(html).toContain("běn");
+    expect(html).toContain("一本书");
+    expect(html).toContain('data-classifier-qid="ben"');
+  });
+});

@@ -135,6 +135,8 @@ class PracticeViewController {
         const backChars = Array.from(backWord);
         const backContainerClass = `card-back-character-container ${backChars.length > 1 ? 'multi-char' : ''} ${backChars.length > 2 ? 'triple-char' : ''}`;
         const lessonMeta = this.getLessonMetadataLabel(this.app.currentWord);
+        const classifierCard = this.getClassifierCard(this.app.currentWord);
+        const gridClass = classifierCard ? 'details-grid' : 'details-grid details-grid--single';
 
         fullInfo.innerHTML = `
             <div class="word-info-expanded">
@@ -170,7 +172,7 @@ class PracticeViewController {
                     </div>
                 </div>
 
-                <div class="details-grid details-grid--single">
+                <div class="${gridClass}">
                     <div class="detail-card">
                         <div class="detail-icon">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -184,6 +186,7 @@ class PracticeViewController {
                             <div class="detail-value tone-display">${this.getToneVisuals(this.app.currentWord.pinyin) || '?'}</div>
                         </div>
                     </div>
+                    ${classifierCard}
                 </div>
 
                 ${this.getExampleSentence(this.app.currentWord)}
@@ -200,8 +203,68 @@ class PracticeViewController {
             });
         }
 
+        const classifierBtn = fullInfo.querySelector('.detail-card-classifier');
+        if (classifierBtn) {
+            const handleClassifierJump = () => {
+                const qId = classifierBtn.getAttribute('data-classifier-qid');
+                window.pendingMeasureWordFilter = qId;
+                if (this.app.navigationController?.switchTab) {
+                    this.app.navigationController.switchTab('measure-words');
+                } else if (this.app.switchTab) {
+                    this.app.switchTab('measure-words');
+                }
+                if (qId && window.measureWordsGame) {
+                    window.measureWordsGame.specificClassifierFilter = qId;
+                    window.measureWordsGame.applyFilters();
+                    window.measureWordsGame.currentIndex = 0;
+                    window.measureWordsGame.switchView('challenge');
+                    window.measureWordsGame.renderCurrentSentence();
+                    window.measureWordsGame.updateActiveFilterIndicator?.();
+                }
+            };
+            classifierBtn.addEventListener('click', handleClassifierJump);
+            classifierBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleClassifierJump();
+                }
+            });
+        }
+
         this.resetCardState();
         this.app.logDebug('Card updated: ' + this.app.currentWord.character + ' (' + mode + ')');
+    }
+
+    getClassifierCard(word) {
+        if (!word || !word.character) return '';
+        const list = this.app.classifierMap?.[word.character];
+        if (!list || list.length === 0) return '';
+
+        const primary = list[0];
+        const label = this.app.getTranslation('classifierLabel') || 'Clasificador';
+        const countPhrase = `一${primary.hanzi}${word.character}`;
+        const titleText = this.app.getTranslation('mwViewInGuide') || 'Ver en Guía de Clasificadores';
+
+        return `
+            <div class="detail-card detail-card-classifier" title="${titleText}" data-classifier-qid="${window.hskEscapeHtml(primary.qId || '')}" role="button" tabindex="0">
+                <div class="detail-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="10" rx="2"></rect>
+                        <line x1="6" y1="7" x2="6" y2="17"></line>
+                        <line x1="10" y1="7" x2="10" y2="12"></line>
+                        <line x1="14" y1="7" x2="14" y2="17"></line>
+                        <line x1="18" y1="7" x2="18" y2="12"></line>
+                    </svg>
+                </div>
+                <div class="detail-info">
+                    <div class="detail-label">${label}</div>
+                    <div class="detail-value classifier-display">
+                        <span class="classifier-badge"><span class="classifier-char">${primary.hanzi}</span> <span class="classifier-pinyin">${primary.pinyin}</span></span>
+                        <span class="classifier-phrase">${countPhrase}</span>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     getStrokeCount(character) {

@@ -36,6 +36,11 @@ class MeasureWordsGame {
     this.container = document.getElementById("measure-words");
     if (!this.container) return;
 
+    if (window.pendingMeasureWordFilter) {
+      this.specificClassifierFilter = window.pendingMeasureWordFilter;
+      window.pendingMeasureWordFilter = null;
+    }
+
     this.cacheElements();
     this.bindEvents();
     await this.loadData();
@@ -57,6 +62,11 @@ class MeasureWordsGame {
     this.viewDictionary = this.container.querySelector("#mw-view-dictionary");
     this.tabBtnChallenge = this.container.querySelector("#mw-tab-btn-challenge");
     this.tabBtnDictionary = this.container.querySelector("#mw-tab-btn-dictionary");
+
+    // Active filter banner
+    this.activeFilterIndicator = this.container.querySelector("#mw-active-filter-indicator");
+    this.activeFilterChar = this.container.querySelector("#mw-filter-char");
+    this.clearFilterBtn = this.container.querySelector("#mw-clear-filter-btn");
 
     // Challenge toolbar
     this.levelFilterSelect = this.container.querySelector("#mw-level-filter");
@@ -99,6 +109,17 @@ class MeasureWordsGame {
       this.tabBtnDictionary.addEventListener("click", () => this.switchView("dictionary"));
     }
 
+    // Active filter clear button
+    if (this.clearFilterBtn) {
+      this.clearFilterBtn.addEventListener("click", () => {
+        this.specificClassifierFilter = null;
+        this.applyFilters();
+        this.currentIndex = 0;
+        this.renderCurrentSentence();
+        this.updateActiveFilterIndicator();
+      });
+    }
+
     // Filter controls
     if (this.levelFilterSelect) {
       this.levelFilterSelect.addEventListener("change", (e) => {
@@ -107,6 +128,7 @@ class MeasureWordsGame {
         this.applyFilters();
         this.currentIndex = 0;
         this.renderCurrentSentence();
+        this.updateActiveFilterIndicator();
       });
     }
 
@@ -117,6 +139,7 @@ class MeasureWordsGame {
         this.applyFilters();
         this.currentIndex = 0;
         this.renderCurrentSentence();
+        this.updateActiveFilterIndicator();
       });
     }
 
@@ -249,6 +272,21 @@ class MeasureWordsGame {
     }
 
     this.filteredSentences = pool;
+    this.updateActiveFilterIndicator();
+  }
+
+  updateActiveFilterIndicator() {
+    if (!this.activeFilterIndicator) return;
+    if (this.specificClassifierFilter) {
+      const qData = this.quantifiers.find(
+        (q) => q.id === this.specificClassifierFilter || q.hanzi === this.specificClassifierFilter
+      );
+      const char = qData ? `${qData.hanzi} (${qData.pinyin})` : this.specificClassifierFilter;
+      if (this.activeFilterChar) this.activeFilterChar.textContent = char;
+      this.activeFilterIndicator.style.display = "flex";
+    } else {
+      this.activeFilterIndicator.style.display = "none";
+    }
   }
 
   switchView(viewName) {

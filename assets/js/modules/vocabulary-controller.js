@@ -176,6 +176,8 @@ class VocabularyController {
                 // gzip y solo se ven en el reverso de la tarjeta.
                 this.app.exampleSentences = this.app.exampleSentences || {};
                 this.loadExampleSentences();
+                this.app.classifierMap = this.app.classifierMap || {};
+                this.loadClassifierMap();
 
                 this.app.logDebug('[OK] Priority vocabulary loaded: ' + this.app.vocabulary.length + ' items');
                 this.app.vocabularyLoaded = true;
@@ -231,6 +233,47 @@ class VocabularyController {
             });
 
         return this.app.exampleSentencesPromise;
+    }
+
+    loadClassifierMap() {
+        if (this.app.classifierMapPromise) return this.app.classifierMapPromise;
+
+        this.app.classifierMapPromise = fetch('assets/data/measure-words-sentences.json')
+            .then((response) => {
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                return response.json();
+            })
+            .then((data) => {
+                const map = {};
+                (data.quantifiers || []).forEach((q) => {
+                    (q.commonNouns || []).forEach((noun) => {
+                        if (!map[noun.hanzi]) map[noun.hanzi] = [];
+                        if (!map[noun.hanzi].some((existing) => existing.hanzi === q.hanzi)) {
+                            map[noun.hanzi].push({
+                                qId: q.id,
+                                hanzi: q.hanzi,
+                                pinyin: q.pinyin,
+                                category: q.category,
+                                es: q.es,
+                                en: q.en,
+                                ru: q.ru,
+                                th: q.th
+                            });
+                        }
+                    });
+                });
+                this.app.classifierMap = map;
+                this.app.logDebug('[CLASSIFIERS] Loaded dynamic classifier map:', Object.keys(map).length, 'nouns');
+                return map;
+            })
+            .catch((error) => {
+                this.app.logWarn('[CLASSIFIERS] Failed to load classifier map:', error);
+                this.app.classifierMap = {};
+                this.app.classifierMapPromise = null;
+                return {};
+            });
+
+        return this.app.classifierMapPromise;
     }
 
     createFallbackVocabulary() {

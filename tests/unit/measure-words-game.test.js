@@ -54,6 +54,11 @@ const setupDOM = () => {
         <button id="mw-toggle-translation" class="active"></button>
         <button id="mw-audio-sentence-btn"></button>
 
+        <div id="mw-active-filter-indicator" style="display: none;">
+          <strong id="mw-filter-char"></strong>
+          <button id="mw-clear-filter-btn"></button>
+        </div>
+
         <span id="mw-badge-hsk"></span>
         <span id="mw-badge-cat"></span>
         <span id="mw-question-counter"></span>
@@ -287,6 +292,46 @@ describe("MeasureWordsGame", () => {
     const prevIndex = game.currentIndex;
     window.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
     expect(game.currentIndex).toBe(prevIndex + 1);
+  });
+
+  test("shows active filter indicator and allows clearing it", async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => dataset,
+    });
+    await game.init();
+
+    const indicator = document.getElementById("mw-active-filter-indicator");
+    const filterChar = document.getElementById("mw-filter-char");
+    const clearBtn = document.getElementById("mw-clear-filter-btn");
+
+    expect(indicator.style.display).toBe("none");
+
+    // Set specific filter
+    game.specificClassifierFilter = "ben";
+    game.applyFilters();
+
+    expect(indicator.style.display).toBe("flex");
+    expect(filterChar.textContent).toContain("本");
+
+    // Click clear button
+    clearBtn.click();
+    expect(game.specificClassifierFilter).toBeNull();
+    expect(indicator.style.display).toBe("none");
+  });
+
+  test("picks up pendingMeasureWordFilter on init", async () => {
+    window.pendingMeasureWordFilter = "zhi";
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => dataset,
+    });
+
+    const newGame = new window.MeasureWordsGame(app);
+    await newGame.init();
+
+    expect(newGame.specificClassifierFilter).toBe("zhi");
+    expect(window.pendingMeasureWordFilter).toBeNull();
   });
 });
 

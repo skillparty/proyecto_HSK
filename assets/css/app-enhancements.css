@@ -541,6 +541,45 @@ body.zen-mode .practice-container {
     border-color: rgba(245, 158, 11, 0.15);
 }
 
+.detail-card-classifier {
+    cursor: pointer;
+}
+
+.detail-card-classifier:hover {
+    border-color: rgba(200, 16, 46, 0.4);
+    background: rgba(200, 16, 46, 0.05);
+}
+
+.classifier-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.classifier-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    background: rgba(200, 16, 46, 0.12);
+    color: var(--primary-color, #c8102e);
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.classifier-badge .classifier-pinyin {
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.85;
+}
+
+.classifier-phrase {
+    font-size: 0.85rem;
+    color: var(--text-muted, #94a3b8);
+}
+
 .detail-icon {
     width: 32px;
     height: 32px;
