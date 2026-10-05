@@ -339,7 +339,7 @@
 /* ── Games Grid ────────────────────────────────────────────────────────── */
 .gh-games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
     gap: 20px;
 }
 
@@ -610,3 +610,315 @@
 [data-theme="dark"] .gh-card-footer {
     border-top-color: #334155;
 }
+
+/* ── Responsive & Mobile Optimizations ─────────────────────────────────── */
+@media (max-width: 768px) {
+    .games-hub-container {
+        padding: 12px 12px calc(var(--bottom-nav-height, 60px) + var(--safe-area-bottom, 0px) + 24px);
+    }
+
+    .gh-hero-banner {
+        padding: 18px 16px;
+        gap: 16px;
+        margin-bottom: 16px;
+        border-radius: var(--radius-md, 16px);
+    }
+
+    .gh-hero-content {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .gh-hero-title {
+        font-size: clamp(1.35rem, 5.5vw, 1.65rem);
+        gap: 10px;
+    }
+
+    .gh-title-icon {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 10px;
+    }
+
+    .gh-title-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .gh-hero-subtitle {
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+
+    .gh-hero-stats {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        align-self: stretch;
+    }
+
+    .gh-stat-card {
+        min-width: 0;
+        padding: 8px 10px;
+        gap: 8px;
+        border-radius: var(--radius-sm, 10px);
+    }
+
+    .gh-stat-icon-wrap {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+        border-radius: 8px;
+    }
+
+    .gh-stat-icon-wrap svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .gh-stat-val {
+        font-size: 1.05rem;
+    }
+
+    .gh-stat-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.02em;
+    }
+
+    /* Daily Featured Card */
+    .gh-featured-section {
+        margin-bottom: 18px;
+    }
+
+    .gh-featured-card {
+        padding: 16px 14px;
+        border-radius: var(--radius-md, 14px);
+    }
+
+    .gh-featured-body {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .gh-featured-info {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .gh-featured-title {
+        font-size: 1.15rem;
+    }
+
+    .gh-featured-desc {
+        font-size: 0.85rem;
+        line-height: 1.45;
+        margin-bottom: 10px;
+    }
+
+    .gh-featured-action {
+        width: 100%;
+    }
+
+    .gh-btn-featured {
+        width: 100%;
+        justify-content: center;
+        min-height: 44px;
+        font-size: 0.94rem;
+        padding: 10px 18px;
+    }
+
+    /* Controls Bar & Chips Horizontal Scroll */
+    .gh-controls-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .gh-filter-chips {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 8px;
+        width: 100%;
+        padding: 2px 2px 6px;
+    }
+
+    .gh-filter-chips::-webkit-scrollbar {
+        display: none;
+    }
+
+    .gh-chip-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+        min-height: 38px;
+        padding: 7px 12px;
+        font-size: 0.82rem;
+    }
+
+    .gh-search-wrap {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .gh-search-input {
+        min-height: 40px;
+        font-size: 0.88rem;
+    }
+
+    /* Arcade In-Game Topbar */
+    .game-arcade-topbar {
+        padding: 8px 12px;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .game-breadcrumb-group {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: 0.82rem;
+        gap: 6px;
+    }
+
+    .game-breadcrumb-back {
+        padding: 4px 6px;
+        font-size: 0.8rem;
+    }
+
+    .game-breadcrumb-current {
+        max-width: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .game-quick-tools {
+        flex-shrink: 0;
+        gap: 6px;
+    }
+
+    .game-switcher-select {
+        max-width: 130px;
+        padding: 6px 8px;
+        font-size: 0.78rem;
+        min-height: 36px;
+    }
+
+    .game-tool-btn {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        min-height: 36px;
+    }
+}
+
+@media (max-width: 640px) {
+    .gh-games-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .gh-game-card {
+        padding: 16px 14px;
+        border-radius: var(--radius-md, 14px);
+    }
+
+    .gh-card-header {
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+
+    .gh-card-icon-avatar {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        border-radius: 12px;
+    }
+
+    .gh-card-icon-avatar svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .gh-card-name {
+        font-size: 1.05rem;
+    }
+
+    .gh-card-desc {
+        font-size: 0.84rem;
+        margin-bottom: 12px;
+    }
+
+    .gh-card-mechanics {
+        margin-bottom: 12px;
+        gap: 4px;
+    }
+
+    .gh-mech-tag {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+
+    .gh-card-footer {
+        padding-top: 12px;
+        gap: 8px;
+    }
+
+    .gh-btn-play {
+        min-height: 42px;
+        padding: 8px 16px;
+        font-size: 0.88rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gh-hero-banner {
+        padding: 14px 12px;
+    }
+
+    .gh-hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .gh-stat-card {
+        padding: 6px 6px;
+        gap: 6px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .gh-stat-icon-wrap {
+        display: none;
+    }
+
+    .gh-stat-val {
+        font-size: 0.98rem;
+    }
+
+    .gh-stat-label {
+        font-size: 0.62rem;
+        line-height: 1.2;
+    }
+
+    .game-breadcrumb-back span {
+        max-width: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .game-breadcrumb-current {
+        max-width: 100px;
+    }
+
+    .game-switcher-select {
+        max-width: 105px;
+    }
+}
+

@@ -462,12 +462,6 @@
     gap: 14px;
 }
 
-@media (max-width: 640px) {
-    .mw-options-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 .mw-option-card {
     position: relative;
     display: flex;
@@ -743,7 +737,7 @@
 /* Dictionary Grid */
 .mw-dictionary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
     gap: 16px;
 }
 
@@ -956,3 +950,344 @@
 [data-theme="dark"] .mw-feedback-panel.error {
     background: rgba(239, 68, 68, 0.15);
 }
+
+/* ── Responsive & Mobile Optimizations ─────────────────────────────────── */
+@media (max-width: 768px) {
+    .measure-words-container {
+        padding: 12px 10px calc(var(--bottom-nav-height, 60px) + var(--safe-area-bottom, 0px) + 24px);
+    }
+
+    .mw-header-banner {
+        padding: 16px 14px 12px;
+        margin-bottom: 14px;
+        border-radius: var(--radius-md, 14px);
+    }
+
+    .mw-header-main {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .mw-title-group {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .mw-main-title {
+        font-size: clamp(1.2rem, 5vw, 1.45rem);
+        gap: 8px;
+    }
+
+    .mw-title-icon {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        border-radius: 8px;
+    }
+
+    .mw-title-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .mw-subtitle {
+        font-size: 0.86rem;
+        line-height: 1.5;
+    }
+
+    .mw-header-stats {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .mw-stat-pill {
+        min-width: 0;
+        padding: 6px 6px;
+        font-size: 0.76rem;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .mw-stat-pill svg {
+        width: 13px;
+        height: 13px;
+    }
+
+    .mw-stat-label {
+        font-size: 0.7rem;
+    }
+
+    .mw-view-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding-top: 10px;
+    }
+
+    .mw-view-tab-btn {
+        justify-content: center;
+        min-height: 42px;
+        padding: 8px 10px;
+        font-size: 0.86rem;
+    }
+
+    /* Toolbar */
+    .mw-toolbar {
+        padding: 10px 12px;
+        gap: 10px;
+        margin-bottom: 14px;
+        border-radius: var(--radius-md, 12px);
+    }
+
+    .mw-filters-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .mw-filter-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        min-width: 0;
+    }
+
+    .mw-toolbar-label {
+        font-size: 0.78rem;
+    }
+
+    .mw-select {
+        width: 100%;
+        min-height: 38px;
+        font-size: 0.82rem;
+        padding: 6px 8px;
+    }
+
+    .mw-toggles-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .mw-toggle-btn,
+    .mw-action-btn {
+        justify-content: center;
+        min-height: 38px;
+        padding: 6px 4px;
+        font-size: 0.78rem;
+    }
+
+    /* Stage Card & Sentences */
+    .mw-stage-card {
+        padding: 16px 12px;
+        border-radius: var(--radius-md, 14px);
+        margin-bottom: 16px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    .mw-card-meta {
+        margin-bottom: 14px;
+        gap: 6px;
+    }
+
+    .mw-badge {
+        font-size: 0.72rem;
+        padding: 3px 8px;
+    }
+
+    .mw-question-counter {
+        font-size: 0.78rem;
+    }
+
+    .mw-sentence-box {
+        padding: 18px 10px;
+        margin-bottom: 18px;
+        border-radius: var(--radius-sm, 12px);
+    }
+
+    .mw-pinyin-line {
+        font-size: clamp(0.92rem, 3.8vw, 1.05rem);
+        margin-bottom: 8px;
+        min-height: 1.4em;
+    }
+
+    .mw-hanzi-line {
+        font-size: clamp(1.4rem, 6vw, 1.9rem);
+        margin-bottom: 10px;
+        line-height: 1.5;
+        gap: 3px;
+    }
+
+    .mw-cloze-target {
+        min-width: 48px;
+        height: 48px;
+        font-size: clamp(1.4rem, 6vw, 1.85rem);
+        margin: 0 4px;
+        border-radius: 10px;
+    }
+
+    .mw-translation-line {
+        font-size: clamp(0.86rem, 3.4vw, 0.96rem);
+        line-height: 1.45;
+    }
+}
+
+@media (max-width: 640px) {
+    .mw-active-filter-indicator {
+        padding: 10px 12px;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+    }
+
+    .mw-filter-text {
+        font-size: 0.84rem;
+        flex: 1 1 100%;
+    }
+
+    .mw-clear-filter-btn {
+        width: 100%;
+        justify-content: center;
+        min-height: 36px;
+        font-size: 0.82rem;
+    }
+
+    .mw-keyboard-tip {
+        display: none;
+    }
+
+    .mw-options-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .mw-option-card {
+        min-height: 94px;
+        padding: 12px 8px;
+        border-radius: var(--radius-sm, 12px);
+    }
+
+    .mw-option-key {
+        display: none;
+    }
+
+    .mw-option-char {
+        font-size: clamp(1.6rem, 7vw, 1.95rem);
+    }
+
+    .mw-option-pinyin {
+        font-size: 0.82rem;
+    }
+
+    .mw-option-hint {
+        font-size: 0.72rem;
+    }
+
+    /* Feedback Panel */
+    .mw-feedback-panel {
+        padding: 14px 12px;
+        margin-top: 12px;
+    }
+
+    .mw-feedback-header {
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+
+    .mw-feedback-status {
+        font-size: 0.98rem;
+    }
+
+    .mw-feedback-text {
+        font-size: 0.88rem;
+        margin-bottom: 12px;
+    }
+
+    .mw-feedback-actions {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .mw-btn {
+        width: 100%;
+        min-height: 44px;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+
+    /* Dictionary View Mobile */
+    .mw-dictionary-toolbar {
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .mw-input {
+        padding: 10px 14px 10px 38px;
+        min-height: 42px;
+        font-size: 0.88rem;
+    }
+
+    .mw-dict-chips {
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 6px;
+    }
+
+    .mw-dict-chips::-webkit-scrollbar {
+        display: none;
+    }
+
+    .mw-chip-btn {
+        padding: 5px 10px;
+        font-size: 0.78rem;
+        flex-shrink: 0;
+        min-height: 34px;
+    }
+
+    .mw-dictionary-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .mw-dict-card {
+        padding: 16px 14px;
+        border-radius: var(--radius-sm, 12px);
+    }
+
+    .mw-practice-filter-btn {
+        min-height: 44px;
+        font-size: 0.86rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .mw-header-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
+    }
+
+    .mw-stat-pill {
+        padding: 4px 4px;
+    }
+
+    .mw-stat-pill svg {
+        display: none;
+    }
+
+    .mw-cloze-target {
+        min-width: 42px;
+        height: 42px;
+        font-size: 1.35rem;
+    }
+}
+

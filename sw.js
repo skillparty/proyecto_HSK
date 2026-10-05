@@ -1,4 +1,4 @@
-const SW_VERSION = "4.70.0+12bc1f08";
+const SW_VERSION = "4.70.0+1268d114";
 const STATIC_CACHE = `hsk-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `hsk-runtime-${SW_VERSION}`;
 const CACHE_PREFIXES = [
@@ -21,7 +21,7 @@ const PRECACHE_FILES = [
   "./assets/css/app-strokes.css?v=dff411bb",
   "./assets/css/app-quiz.css?v=c5b0c646",
   "./assets/css/app-stats.css?v=cd1fd78c",
-  "./assets/css/app-enhancements.css?v=decc7df5",
+  "./assets/css/app-enhancements.css?v=6049b97e",
   "./assets/css/app-dashboard-extras.css?v=da016a08",
   "./assets/css/matrix-game-styles.css?v=0572521c",
   "./assets/css/leaderboard-styles.css",

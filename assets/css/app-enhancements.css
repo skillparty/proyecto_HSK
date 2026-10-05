@@ -828,7 +828,24 @@ body.zen-mode .practice-container {
     .translations-section,
     .details-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 8px;
+    }
+
+    .detail-card {
+        padding: 6px 10px;
+    }
+
+    .classifier-display {
+        gap: 6px;
+    }
+
+    .classifier-badge {
+        font-size: 0.84rem;
+        padding: 2px 6px;
+    }
+
+    .classifier-phrase {
+        font-size: 0.82rem;
     }
 }
 
