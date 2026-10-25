@@ -343,7 +343,11 @@ class GameProgressReporter {
                 'tones-invaders': 'tonesInvadersHighScore',
                 'word-linker': 'wordLinkerHighScore',
                 'quantifier-snake': 'snakeHighScore',
-                'matrix': 'matrixHighScore'
+                'snake-quantifiers': 'snakeHighScore',
+                'matrix': 'matrixHighScore',
+                'sentence-builder': 'sentenceBuilderHighScore',
+                'hanzi-mahjong': 'mahjongHighScore',
+                'tone-trainer': 'toneTrainerHighScore'
             };
 
             const statKey = scoreMap[gameId];

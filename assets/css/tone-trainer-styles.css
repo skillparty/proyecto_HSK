@@ -409,6 +409,8 @@
     transition: all 0.2s ease;
     color: var(--text-main);
     position: relative;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .tt-tone-card:hover {
@@ -492,6 +494,8 @@
     font-size: 1.05rem;
     font-weight: 600;
     min-height: 70px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .tt-choice-btn:hover {

@@ -162,5 +162,84 @@ describe("SentenceBuilderGame", () => {
       expect(pool.length).toBeGreaterThan(0);
       expect(pool.every((s) => Number(s.level) === 1)).toBe(true);
     });
+
+    test("indexes dictionary sentencesData using vocabulary levels and length limits", () => {
+      app.vocabulary = [
+        { character: "汉语", level: 1 },
+        { character: "重要", level: 3 },
+      ];
+      game.sentencesData = {
+        "汉语": { chinese: "我在学汉语。", pinyin: "wǒ zài xué hànyǔ", spanish: "Estoy aprendiendo chino." },
+        "重要": { chinese: "这很重要。", pinyin: "zhè hěn zhòngyào", spanish: "Esto es muy importante." },
+        "超长": { chinese: "这是一个超级超级长而且绝对不适合作为拼图游戏的极其冗长的句子。", pinyin: "...", spanish: "..." },
+      };
+
+      game.buildSentencePoolCache();
+      expect(game.indexedSentences).toBeDefined();
+      // Length filter eliminates sentence > 12 characters
+      expect(game.indexedSentences.length).toBe(2);
+
+      game.state.level = "1";
+      const poolLvl1 = game.getSentencePool();
+      expect(poolLvl1.some((s) => s.word === "汉语")).toBe(true);
+      expect(poolLvl1.every((s) => Number(s.level) === 1)).toBe(true);
+
+      game.state.level = "3";
+      const poolLvl3 = game.getSentencePool();
+      expect(poolLvl3.some((s) => s.word === "重要")).toBe(true);
+    });
+  });
+
+  describe("lifecycle, pause and score persistence", () => {
+    test("increments app.stats.sentencesBuilt on correct answer", () => {
+      app.stats = { sentencesBuilt: 0 };
+      app.saveStats = vi.fn();
+      app.achievementManager = { checkAchievements: vi.fn() };
+
+      game.state.placedTiles = [
+        { id: "t1", text: "我" },
+        { id: "t2", text: "是" },
+        { id: "t3", text: "学生" },
+      ];
+      game.state.targetTokens = ["我", "是", "学生"];
+      game.checkAnswer();
+
+      expect(app.stats.sentencesBuilt).toBe(1);
+      expect(app.saveStats).toHaveBeenCalled();
+      expect(app.achievementManager.checkAchievements).toHaveBeenCalled();
+    });
+
+    test("pause and resume toggle isPaused and clear/start interval", () => {
+      game.state.isPlaying = true;
+      game.state.mode = "time-attack";
+      game.state.timerInterval = 123;
+
+      game.pause();
+      expect(game.state.isPaused).toBe(true);
+      expect(game.state.timerInterval).toBeNull();
+
+      game.resume();
+      expect(game.state.isPaused).toBe(false);
+      expect(game.state.timerInterval).not.toBeNull();
+      clearInterval(game.state.timerInterval);
+    });
+
+    test("endGame saves sentenceBuilderHighScore and dispatches hsk:game-result", () => {
+      app.stats = { sentenceBuilderHighScore: 50 };
+      app.saveStats = vi.fn();
+      game.state.score = 120;
+      game.state.bestStreak = 4;
+      game.state.isPlaying = true;
+
+      const eventSpy = vi.fn();
+      document.addEventListener("hsk:game-result", eventSpy);
+
+      game.endGame();
+
+      expect(app.stats.sentenceBuilderHighScore).toBe(120);
+      expect(app.saveStats).toHaveBeenCalled();
+      expect(localStorage.getItem("sentenceBuilderHighScore")).toBe("120");
+      expect(eventSpy).toHaveBeenCalled();
+    });
   });
 });

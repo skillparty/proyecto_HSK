@@ -25,6 +25,33 @@ class MatrixScoreController {
         localStorage.setItem(key, JSON.stringify(scores));
         this.game.highScores = scores;
 
+        if (window.app?.stats) {
+            const prevHigh = window.app.stats.matrixHighScore || 0;
+            if (this.game.score > prevHigh) {
+                window.app.stats.matrixHighScore = this.game.score;
+            }
+            window.app.saveStats?.();
+            window.app.achievementManager?.checkAchievements?.();
+        }
+        try {
+            const localHs = parseInt(localStorage.getItem('matrixHighScore') || '0', 10);
+            if (this.game.score > localHs) {
+                localStorage.setItem('matrixHighScore', String(this.game.score));
+            }
+        } catch {
+            // Ignore storage access restrictions
+        }
+
+        document.dispatchEvent(new CustomEvent('hsk:game-result', {
+            detail: {
+                game: 'matrix',
+                score: this.game.score,
+                level: this.game.currentLevel,
+                difficulty: this.game.difficulty,
+                accuracy
+            }
+        }));
+
         if (!this.game.legacyBackendApiEnabled) {
             return isNewRecord;
         }

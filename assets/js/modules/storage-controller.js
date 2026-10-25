@@ -42,6 +42,22 @@ class StorageController {
         Number(this.app.stats.matrixRounds || 0) || 0;
       this.app.stats.snakeHighScore =
         Number(this.app.stats.snakeHighScore || 0) || 0;
+      this.app.stats.tonesInvadersHighScore =
+        Number(this.app.stats.tonesInvadersHighScore || 0) || 0;
+      this.app.stats.hanziBuilderHighScore =
+        Number(this.app.stats.hanziBuilderHighScore || 0) || 0;
+      this.app.stats.wordLinkerHighScore =
+        Number(this.app.stats.wordLinkerHighScore || 0) || 0;
+      this.app.stats.sentenceBuilderHighScore =
+        Number(this.app.stats.sentenceBuilderHighScore || 0) || 0;
+      this.app.stats.mahjongHighScore =
+        Number(this.app.stats.mahjongHighScore || 0) || 0;
+      this.app.stats.matrixHighScore =
+        Number(this.app.stats.matrixHighScore || 0) || 0;
+      this.app.stats.toneTrainerHighScore =
+        Number(this.app.stats.toneTrainerHighScore || 0) || 0;
+      this.app.stats.sentencesBuilt =
+        Number(this.app.stats.sentencesBuilt || 0) || 0;
     } catch (error) {
       this.app.logWarn("Error loading stats:", error);
     }

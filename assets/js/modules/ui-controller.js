@@ -153,6 +153,38 @@ class UIController {
     ) {
       window.wordLinkerGame.togglePause();
     }
+    if (
+      oldTab === "sentence-builder" &&
+      window.sentenceBuilderGame &&
+      window.sentenceBuilderGame.state.isPlaying &&
+      !window.sentenceBuilderGame.state.isPaused
+    ) {
+      window.sentenceBuilderGame.pause();
+    }
+    if (
+      oldTab === "hanzi-mahjong" &&
+      window.hanziMahjongGame &&
+      !window.hanziMahjongGame.isPaused &&
+      window.hanziMahjongGame.pairsRemaining > 0
+    ) {
+      window.hanziMahjongGame.pause();
+    }
+    if (
+      oldTab === "snake-quantifiers" &&
+      this.app.quantifierSnakeController &&
+      this.app.quantifierSnakeController.state.isRunning &&
+      !this.app.quantifierSnakeController.state.isPaused
+    ) {
+      this.app.quantifierSnakeController.togglePause();
+    }
+    if (
+      oldTab === "tone-trainer" &&
+      window.toneTrainerGame &&
+      window.toneTrainerGame.state.challengeActive &&
+      !window.toneTrainerGame.state.isPaused
+    ) {
+      window.toneTrainerGame.pauseChallenge();
+    }
 
     if (oldTab === "home") {
       this.app.homeController?.portalScene?.pause?.();
@@ -410,6 +442,9 @@ class UIController {
         (async () => {
           try {
             await this.loadStylesheet("assets/css/games-hub-styles.css");
+            if (!window.GameStateManager) {
+              await this.loadScript("assets/js/modules/game-engine.js");
+            }
             if (!window.GamesHubController) {
               await this.loadScript("assets/js/modules/games-hub-controller.js");
             }
@@ -418,6 +453,9 @@ class UIController {
             }
             if (window.gamesHubController) {
               window.gamesHubController.init();
+              if (typeof window.gamesHubController.refresh === "function") {
+                window.gamesHubController.refresh();
+              }
             }
           } catch (err) {
             this.logError("Failed to lazy load games-hub-controller", err);

@@ -186,6 +186,13 @@
     font-weight: 800;
     font-size: 0.74rem;
     border: 1px solid #fde68a;
+    transition: all 0.2s ease;
+}
+
+.gh-bonus-xp.claimed {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #86efac;
 }
 
 .gh-featured-body {

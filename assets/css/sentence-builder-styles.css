@@ -222,6 +222,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .sb-tile:hover {
@@ -253,6 +255,8 @@
     box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
     animation: tilePopIn 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition: transform 0.15s ease, background 0.15s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .sb-target-tile:hover {

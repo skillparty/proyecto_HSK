@@ -239,6 +239,8 @@
     user-select: none;
     transition: all 0.2s;
     box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .word-link-cell:hover {

@@ -279,6 +279,8 @@
     user-select: none;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     transition: all 0.15s;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 .hanzi-build-part:hover {
     transform: translateY(-2px);

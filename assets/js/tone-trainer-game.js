@@ -436,6 +436,35 @@ class ToneTrainerGame {
             this.state.challengeInterval = null;
         }
         this.state.challengeActive = false;
+        this.state.isPaused = false;
+    }
+
+    pauseChallenge() {
+        if (!this.state.challengeActive || this.state.isPaused) return;
+        this.state.isPaused = true;
+        if (this.state.challengeInterval) {
+            clearInterval(this.state.challengeInterval);
+            this.state.challengeInterval = null;
+        }
+    }
+
+    resumeChallenge() {
+        if (!this.state.challengeActive || !this.state.isPaused) return;
+        this.state.isPaused = false;
+        const countdownEl = document.getElementById("tt-challenge-countdown");
+        const barFill = document.getElementById("tt-challenge-bar-fill");
+
+        this.state.challengeInterval = setInterval(() => {
+            this.state.challengeSeconds -= 1;
+            if (countdownEl) countdownEl.textContent = `${this.state.challengeSeconds}s`;
+            if (barFill) {
+                const pct = (this.state.challengeSeconds / 60) * 100;
+                barFill.style.width = `${Math.max(0, pct)}%`;
+            }
+            if (this.state.challengeSeconds <= 0) {
+                this.endChallenge();
+            }
+        }, 1000);
     }
 
     endChallenge() {
@@ -457,6 +486,34 @@ class ToneTrainerGame {
             medal = isEs ? "Oído de Plata" : "Silver Ear";
             medalIcon = window.hskIcons?.render?.("medal", { size: 18, stroke: "#94a3b8" }) || "";
         }
+
+        // Save high score and report progress
+        if (this.app?.stats) {
+            const prevHigh = this.app.stats.toneTrainerHighScore || 0;
+            if (this.state.challengeScore > prevHigh) {
+                this.app.stats.toneTrainerHighScore = this.state.challengeScore;
+            }
+            this.app.saveStats?.();
+            this.app.achievementManager?.checkAchievements?.();
+        }
+        try {
+            const localHs = parseInt(localStorage.getItem("toneTrainerHighScore") || "0", 10);
+            if (this.state.challengeScore > localHs) {
+                localStorage.setItem("toneTrainerHighScore", String(this.state.challengeScore));
+            }
+        } catch {
+            // Ignore storage restrictions
+        }
+
+        // Fire game result event
+        document.dispatchEvent(new CustomEvent('hsk:game-result', {
+            detail: {
+                game: 'tone-trainer',
+                score: this.state.challengeScore,
+                accuracy: acc,
+                level: this.state.selectedLevel
+            }
+        }));
 
         const feedback = document.getElementById("tt-feedback");
         if (feedback) {

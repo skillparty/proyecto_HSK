@@ -87,7 +87,15 @@ class HSKApp {
             quizzesCompleted: 0,
             quizAnswered: 0,
             matrixRounds: 0,
-            snakeHighScore: 0
+            snakeHighScore: 0,
+            tonesInvadersHighScore: 0,
+            hanziBuilderHighScore: 0,
+            wordLinkerHighScore: 0,
+            sentenceBuilderHighScore: 0,
+            mahjongHighScore: 0,
+            matrixHighScore: 0,
+            toneTrainerHighScore: 0,
+            sentencesBuilt: 0
         };
 
         this.syncToastState = {

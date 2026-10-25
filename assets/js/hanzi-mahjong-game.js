@@ -5,16 +5,62 @@ const MAHJONG_RADICAL_PAIRS = [
     { id: "hua", partA: "讠", partB: "舌", result: "话", meaning: "Hablar / Palabra" },
     { id: "hao", partA: "女", partB: "子", result: "好", meaning: "Bueno / Bien" },
     { id: "ni", partA: "亻", partB: "尔", result: "你", meaning: "Tú" },
-    { id: "lin", partA: "木", partB: "木", result: "林", meaning: "Bosque" },
-    { id: "ming", partA: "日", partB: "月", result: "明", meaning: "Brillante" },
+    { id: "lin", partA: "木", partB: "木", result: "林", meaning: "Bosque / Arboleda" },
+    { id: "ming", partA: "日", partB: "月", result: "明", meaning: "Brillante / Mañana" },
     { id: "chi", partA: "口", partB: "乞", result: "吃", meaning: "Comer" },
     { id: "qiu", partA: "禾", partB: "火", result: "秋", meaning: "Otoño" },
     { id: "xiu", partA: "亻", partB: "木", result: "休", meaning: "Descansar" },
     { id: "ma", partA: "口", partB: "马", result: "吗", meaning: "Partícula interrogativa" },
-    { id: "xie", partA: "讠", partB: "身", result: "谢", meaning: "Agradecer" },
-    { id: "he", partA: "口", partB: "渴", result: "喝", meaning: "Beber" },
-    { id: "qing", partA: "氵", partB: "青", result: "清", meaning: "Claro / Puro" },
-    { id: "zhu", partA: "亻", partB: "主", result: "住", meaning: "Vivir / Residir" }
+    { id: "ba", partA: "口", partB: "巴", result: "吧", meaning: "Partícula sugerencia" },
+    { id: "he", partA: "口", partB: "曷", result: "喝", meaning: "Beber" },
+    { id: "qing_shui", partA: "氵", partB: "青", result: "清", meaning: "Claro / Puro" },
+    { id: "zhu", partA: "亻", partB: "主", result: "住", meaning: "Vivir / Residir" },
+    { id: "ta_m", partA: "亻", partB: "也", result: "他", meaning: "Él" },
+    { id: "ta_f", partA: "女", partB: "也", result: "她", meaning: "Ella" },
+    { id: "ma_mum", partA: "女", partB: "马", result: "妈", meaning: "Mamá" },
+    { id: "ba_dad", partA: "父", partB: "巴", result: "爸", meaning: "Papá" },
+    { id: "nan", partA: "田", partB: "力", result: "男", meaning: "Hombre / Masculino" },
+    { id: "jia", partA: "宀", partB: "豕", result: "家", meaning: "Casa / Familia" },
+    { id: "zao", partA: "日", partB: "十", result: "早", meaning: "Temprano" },
+    { id: "xing", partA: "日", partB: "生", result: "星", meaning: "Estrella" },
+    { id: "shi", partA: "日", partB: "寸", result: "时", meaning: "Tiempo / Hora" },
+    { id: "wen", partA: "门", partB: "口", result: "问", meaning: "Preguntar" },
+    { id: "jian_room", partA: "门", partB: "日", result: "间", meaning: "Espacio / Habitación" },
+    { id: "jian_sharp", partA: "小", partB: "大", result: "尖", meaning: "Puntiagudo" },
+    { id: "guo", partA: "囗", partB: "玉", result: "国", meaning: "País / Nación" },
+    { id: "yin", partA: "囗", partB: "大", result: "因", meaning: "Causa / Porque" },
+    { id: "hui", partA: "囗", partB: "口", result: "回", meaning: "Volver / Regresar" },
+    { id: "yuan", partA: "囗", partB: "元", result: "园", meaning: "Jardín / Parque" },
+    { id: "zi", partA: "宀", partB: "子", result: "字", meaning: "Carácter / Letra" },
+    { id: "an", partA: "宀", partB: "女", result: "安", meaning: "Paz / Tranquilo" },
+    { id: "shuo", partA: "讠", partB: "兑", result: "说", meaning: "Hablar / Decir" },
+    { id: "yu", partA: "讠", partB: "吾", result: "语", meaning: "Idioma / Lengua" },
+    { id: "shi_know", partA: "讠", partB: "只", result: "识", meaning: "Conocer / Saber" },
+    { id: "du", partA: "讠", partB: "卖", result: "读", meaning: "Leer" },
+    { id: "qing_ask", partA: "讠", partB: "青", result: "请", meaning: "Por favor / Invitar" },
+    { id: "men", partA: "亻", partB: "门", result: "们", meaning: "Sufijo plural" },
+    { id: "wei", partA: "亻", partB: "立", result: "位", meaning: "Clasificador cortés" },
+    { id: "xin", partA: "亻", partB: "言", result: "信", meaning: "Carta / Creer" },
+    { id: "peng", partA: "月", partB: "月", result: "朋", meaning: "Amigo" },
+    { id: "hui_can", partA: "人", partB: "云", result: "会", meaning: "Saber / Reunión" },
+    { id: "jie", partA: "女", partB: "且", result: "姐", meaning: "Hermana mayor" },
+    { id: "mei", partA: "女", partB: "未", result: "妹", meaning: "Hermana menor" },
+    { id: "fan", partA: "饣", partB: "反", result: "饭", meaning: "Comida / Arroz" },
+    { id: "yin_drink", partA: "饣", partB: "欠", result: "饮", meaning: "Beber" },
+    { id: "da", partA: "扌", partB: "丁", result: "打", meaning: "Golpear / Jugar" },
+    { id: "zhao", partA: "扌", partB: "戈", result: "找", meaning: "Buscar" },
+    { id: "jiang", partA: "氵", partB: "工", result: "江", meaning: "Río Yangtze" },
+    { id: "he_river", partA: "氵", partB: "可", result: "河", meaning: "Río" },
+    { id: "xi", partA: "氵", partB: "先", result: "洗", meaning: "Lavar" },
+    { id: "qing_day", partA: "日", partB: "青", result: "晴", meaning: "Soleado" },
+    { id: "kuai", partA: "忄", partB: "夬", result: "快", meaning: "Rápido / Feliz" },
+    { id: "mang", partA: "忄", partB: "亡", result: "忙", meaning: "Ocupado" },
+    { id: "xiang", partA: "相", partB: "心", result: "想", meaning: "Pensar / Extrañar" },
+    { id: "wang", partA: "亡", partB: "心", result: "忘", meaning: "Olvidar" },
+    { id: "xian", partA: "王", partB: "见", result: "现", meaning: "Presente / Ahora" },
+    { id: "wan", partA: "王", partB: "元", result: "玩", meaning: "Jugar" },
+    { id: "qian", partA: "钅", partB: "戋", result: "钱", meaning: "Dinero" },
+    { id: "cuo", partA: "钅", partB: "昔", result: "错", meaning: "Equivocado / Error" }
 ];
 
 const MAHJONG_COMPOUND_PAIRS = [
@@ -31,7 +77,43 @@ const MAHJONG_COMPOUND_PAIRS = [
     { id: "gaoxing", partA: "高", partB: "兴", result: "高兴", meaning: "Feliz" },
     { id: "yiyuan", partA: "医", partB: "院", result: "医院", meaning: "Hospital" },
     { id: "shangdian", partA: "商", partB: "店", result: "商店", meaning: "Tienda" },
-    { id: "fanguan", partA: "饭", partB: "馆", result: "饭馆", meaning: "Restaurante" }
+    { id: "fanguan", partA: "饭", partB: "馆", result: "饭馆", meaning: "Restaurante" },
+    { id: "laoshi", partA: "老", partB: "师", result: "老师", meaning: "Profesor" },
+    { id: "renshi", partA: "认", partB: "识", result: "认识", meaning: "Conocer" },
+    { id: "xuexi", partA: "学", partB: "习", result: "学习", meaning: "Estudiar" },
+    { id: "diannao", partA: "电", partB: "脑", result: "电脑", meaning: "Ordenador" },
+    { id: "dianying", partA: "电", partB: "影", result: "电影", meaning: "Película" },
+    { id: "dianshi", partA: "电", partB: "视", result: "电视", meaning: "Televisión" },
+    { id: "dongxi", partA: "东", partB: "西", result: "东西", meaning: "Cosas / Objetos" },
+    { id: "tianqi", partA: "天", partB: "气", result: "天气", meaning: "Clima / Tiempo" },
+    { id: "piaoliang", partA: "漂", partB: "亮", result: "漂亮", meaning: "Bonito / Hermoso" },
+    { id: "shuohua", partA: "说", partB: "话", result: "说话", meaning: "Hablar" },
+    { id: "hanyu", partA: "汉", partB: "语", result: "汉语", meaning: "Idioma chino" },
+    { id: "shihou", partA: "时", partB: "候", result: "时候", meaning: "Momento / Tiempo" },
+    { id: "xiansheng", partA: "先", partB: "生", result: "先生", meaning: "Señor" },
+    { id: "xiaojie", partA: "小", partB: "姐", result: "小姐", meaning: "Señorita" },
+    { id: "yisheng", partA: "医", partB: "生", result: "医生", meaning: "Médico" },
+    { id: "yifu", partA: "衣", partB: "服", result: "衣服", meaning: "Ropa" },
+    { id: "shuiguo", partA: "水", partB: "果", result: "水果", meaning: "Fruta" },
+    { id: "shuijiao", partA: "睡", partB: "觉", result: "睡觉", meaning: "Dormir" },
+    { id: "paobu", partA: "跑", partB: "步", result: "跑步", meaning: "Correr" },
+    { id: "yundong", partA: "运", partB: "动", result: "运动", meaning: "Deporte / Ejercicio" },
+    { id: "shijian", partA: "时", partB: "间", result: "时间", meaning: "Tiempo" },
+    { id: "zhunbei", partA: "准", partB: "备", result: "准备", meaning: "Preparar" },
+    { id: "jieshao", partA: "介", partB: "绍", result: "介绍", meaning: "Presentar" },
+    { id: "shenti", partA: "身", partB: "体", result: "身体", meaning: "Cuerpo / Salud" },
+    { id: "bangzhu", partA: "帮", partB: "助", result: "帮助", meaning: "Ayudar / Ayuda" },
+    { id: "pianyi", partA: "便", partB: "宜", result: "便宜", meaning: "Barato" },
+    { id: "shiqing", partA: "事", partB: "情", result: "事情", meaning: "Asunto / Cosa" },
+    { id: "xiwang", partA: "希", partB: "望", result: "希望", meaning: "Esperar / Desear" },
+    { id: "yisi", partA: "意", partB: "思", result: "意思", meaning: "Significado" },
+    { id: "jingchang", partA: "经", partB: "常", result: "经常", meaning: "A menudo" },
+    { id: "yijing", partA: "已", partB: "经", result: "已经", meaning: "Ya" },
+    { id: "fangjian", partA: "房", partB: "间", result: "房间", meaning: "Habitación" },
+    { id: "jichang", partA: "机", partB: "场", result: "机场", meaning: "Aeropuerto" },
+    { id: "chezhan", partA: "车", partB: "站", result: "车站", meaning: "Estación / Parada" },
+    { id: "gongsi", partA: "公", partB: "司", result: "公司", meaning: "Empresa" },
+    { id: "youxi", partA: "游", partB: "戏", result: "游戏", meaning: "Juego" }
 ];
 
 class HanziMahjongGame {
@@ -48,6 +130,7 @@ class HanziMahjongGame {
         this.pairsRemaining = 8;
         this.targetPairs = 8;
         this.tiles = [];
+        this.isPaused = false;
     }
 
     init() {
@@ -180,12 +263,72 @@ class HanziMahjongGame {
         if (this.hintsCountEl) this.hintsCountEl.textContent = this.hintsRemaining;
     }
 
+    getAvailablePairs() {
+        if (this.currentMode === "radicals") {
+            return [...MAHJONG_RADICAL_PAIRS];
+        }
+
+        // Modo palabras compuestas: intentar enriquecer con vocabulario real de la app
+        const dynamicPairs = [];
+        if (this.app?.vocabulary && Array.isArray(this.app.vocabulary)) {
+            for (const item of this.app.vocabulary) {
+                if (item.character && item.character.length === 2) {
+                    const charA = item.character[0];
+                    const charB = item.character[1];
+                    // Filtrar caracteres repetidos para tablero limpio (ej. 妈妈)
+                    if (charA !== charB) {
+                        const meaning = (this.app.currentLanguage === "es"
+                            ? (item.spanish || item.translation || item.english)
+                            : (item.english || item.translation || item.spanish)) || item.character;
+                        dynamicPairs.push({
+                            id: `dyn_${item.character}`,
+                            partA: charA,
+                            partB: charB,
+                            result: item.character,
+                            meaning
+                        });
+                    }
+                }
+            }
+        }
+
+        if (dynamicPairs.length >= this.targetPairs) {
+            return dynamicPairs;
+        }
+
+        return [...MAHJONG_COMPOUND_PAIRS];
+    }
+
     setupBoardTiles() {
-        const dataset = this.currentMode === "radicals" ? MAHJONG_RADICAL_PAIRS : MAHJONG_COMPOUND_PAIRS;
-        const pool = [...dataset].sort(() => Math.random() - 0.5).slice(0, this.targetPairs);
+        const available = this.getAvailablePairs();
+        const shuffled = [...available].sort(() => Math.random() - 0.5);
+
+        // Seleccionar pares garantizando caracteres únicos en el tablero para evitar ambigüedades
+        const selectedPairs = [];
+        const usedChars = new Set();
+
+        for (const pair of shuffled) {
+            if (!usedChars.has(pair.partA) && !usedChars.has(pair.partB)) {
+                selectedPairs.push(pair);
+                usedChars.add(pair.partA);
+                usedChars.add(pair.partB);
+                if (selectedPairs.length >= this.targetPairs) break;
+            }
+        }
+
+        // Si faltasen pares disjuntos, rellenar del resto del conjunto
+        if (selectedPairs.length < this.targetPairs) {
+            for (const pair of shuffled) {
+                if (!selectedPairs.some(p => p.id === pair.id)) {
+                    selectedPairs.push(pair);
+                    if (selectedPairs.length >= this.targetPairs) break;
+                }
+            }
+        }
+
         const rawTiles = [];
 
-        pool.forEach((pair) => {
+        selectedPairs.forEach((pair) => {
             rawTiles.push({
                 uid: `${pair.id}-A`,
                 pairId: pair.id,
@@ -233,7 +376,7 @@ class HanziMahjongGame {
 
     handleTileClick(idx, tileEl) {
         const tile = this.tiles[idx];
-        if (!tile || tile.isMatched) return;
+        if (!tile || tile.isMatched || this.isPaused) return;
 
         this.playTileClickSound();
 
@@ -375,7 +518,39 @@ class HanziMahjongGame {
         this.app?.showToast?.("Fichas barajadas", "info", 1200);
     }
 
+    pause() {
+        if (this.isPaused || this.pairsRemaining <= 0) return;
+        this.isPaused = true;
+        if (this.timerInterval) {
+            clearInterval(this.timerInterval);
+            this.timerInterval = null;
+        }
+        this.boardEl?.classList?.add("mahjong-paused");
+    }
+
+    resume() {
+        if (!this.isPaused || this.pairsRemaining <= 0) return;
+        this.isPaused = false;
+        this.boardEl?.classList?.remove("mahjong-paused");
+        if (!this.timerInterval) {
+            this.timerInterval = setInterval(() => {
+                if (this.isPaused) return;
+                this.timerSeconds += 1;
+                this.updateTimerDisplay();
+            }, 1000);
+        }
+    }
+
+    togglePause() {
+        if (this.isPaused) {
+            this.resume();
+        } else {
+            this.pause();
+        }
+    }
+
     handleVictory() {
+        this.isPaused = false;
         if (this.timerInterval) clearInterval(this.timerInterval);
 
         // Bonificación por tiempo
@@ -385,6 +560,34 @@ class HanziMahjongGame {
 
         if (this.finalScoreEl) this.finalScoreEl.textContent = this.score;
         if (this.victoryOverlay) this.victoryOverlay.style.display = "flex";
+
+        // Guardar récord de puntuación y emitir evento
+        if (this.app?.stats) {
+            const prevHigh = this.app.stats.mahjongHighScore || 0;
+            if (this.score > prevHigh) {
+                this.app.stats.mahjongHighScore = this.score;
+            }
+            this.app.saveStats?.();
+            this.app.achievementManager?.checkAchievements?.();
+        }
+        try {
+            const localHs = parseInt(localStorage.getItem("mahjongHighScore") || "0", 10);
+            if (this.score > localHs) {
+                localStorage.setItem("mahjongHighScore", String(this.score));
+            }
+        } catch {
+            // Ignore storage access restrictions
+        }
+
+        document.dispatchEvent(new CustomEvent('hsk:game-result', {
+            detail: {
+                game: 'hanzi-mahjong',
+                score: this.score,
+                mode: this.currentMode,
+                difficulty: this.currentDifficulty,
+                timeSpent: this.timerSeconds
+            }
+        }));
 
         if (typeof navigator !== 'undefined' && navigator.vibrate) {
             navigator.vibrate([100, 50, 150]);

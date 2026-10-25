@@ -67,17 +67,81 @@ class HanziBuilderGame {
             "海": { parts: ["氵", "每"], pinyin: "hǎi", translation: "mar" },
             "江": { parts: ["氵", "工"], pinyin: "jiāng", translation: "río" },
             "河": { parts: ["氵", "可"], pinyin: "hé", translation: "río" },
-            "洗": { parts: ["氵", "先"], pinyin: "xǐ", translation: "lavar" }
+            "洗": { parts: ["氵", "先"], pinyin: "xǐ", translation: "lavar" },
+            "吃": { parts: ["口", "乞"], pinyin: "chī", translation: "comer" },
+            "叫": { parts: ["口", "丩"], pinyin: "jiào", translation: "llamarse / gritar" },
+            "听": { parts: ["口", "斤"], pinyin: "tīng", translation: "escuchar / oír" },
+            "吹": { parts: ["口", "欠"], pinyin: "chuī", translation: "soplar" },
+            "响": { parts: ["口", "向"], pinyin: "xiǎng", translation: "sonar / ruidoso" },
+            "吵": { parts: ["口", "少"], pinyin: "chǎo", translation: "ruidoso / discutir" },
+            "住": { parts: ["亻", "主"], pinyin: "zhù", translation: "vivir / residir" },
+            "做": { parts: ["亻", "故"], pinyin: "zuò", translation: "hacer" },
+            "件": { parts: ["亻", "牛"], pinyin: "jiàn", translation: "pieza / clasificador" },
+            "借": { parts: ["亻", "昔"], pinyin: "jiè", translation: "prestar / pedir prestado" },
+            "像": { parts: ["亻", "象"], pinyin: "xiàng", translation: "parecerse" },
+            "读": { parts: ["讠", "卖"], pinyin: "dú", translation: "leer" },
+            "请": { parts: ["讠", "青"], pinyin: "qǐng", translation: "por favor / invitar" },
+            "认": { parts: ["讠", "人"], pinyin: "rèn", translation: "reconocer / conocer" },
+            "课": { parts: ["讠", "果"], pinyin: "kè", translation: "lección / clase" },
+            "谁": { parts: ["讠", "隹"], pinyin: "shuí", translation: "quién" },
+            "晴": { parts: ["日", "青"], pinyin: "qíng", translation: "soleado / despejado" },
+            "昨": { parts: ["日", "乍"], pinyin: "zuó", translation: "ayer" },
+            "晚": { parts: ["日", "免"], pinyin: "wǎn", translation: "tarde / noche" },
+            "清": { parts: ["氵", "青"], pinyin: "qīng", translation: "claro / puro" },
+            "汉": { parts: ["氵", "又"], pinyin: "hàn", translation: "chino / lengua Han" },
+            "冷": { parts: ["冫", "令"], pinyin: "lěng", translation: "frío" },
+            "冰": { parts: ["冫", "水"], pinyin: "bīng", translation: "hielo" },
+            "次": { parts: ["冫", "欠"], pinyin: "cì", translation: "vez / número de veces" },
+            "准": { parts: ["冫", "隹"], pinyin: "zhǔn", translation: "exacto / preparar" },
+            "姓": { parts: ["女", "生"], pinyin: "xìng", translation: "apellido" },
+            "始": { parts: ["女", "台"], pinyin: "shǐ", translation: "comenzar / principio" },
+            "奶": { parts: ["女", "乃"], pinyin: "nǎi", translation: "leche / abuela" },
+            "快": { parts: ["忄", "夬"], pinyin: "kuài", translation: "rápido / alegre" },
+            "慢": { parts: ["忄", "曼"], pinyin: "màn", translation: "lento" },
+            "忙": { parts: ["忄", "亡"], pinyin: "máng", translation: "ocupado" },
+            "懂": { parts: ["忄", "董"], pinyin: "dǒng", translation: "entender / comprender" },
+            "想": { parts: ["相", "心"], pinyin: "xiǎng", translation: "pensar / extrañar" },
+            "忘": { parts: ["亡", "心"], pinyin: "wàng", translation: "olvidar" },
+            "您": { parts: ["你", "心"], pinyin: "nín", translation: "usted (cortés)" },
+            "意": { parts: ["音", "心"], pinyin: "yì", translation: "significado / intención" },
+            "现": { parts: ["王", "见"], pinyin: "xiàn", translation: "aparecer / presente" },
+            "理": { parts: ["王", "里"], pinyin: "lǐ", translation: "razón / lógica" },
+            "球": { parts: ["王", "求"], pinyin: "qiú", translation: "pelota / esfera" },
+            "钱": { parts: ["钅", "戋"], pinyin: "qián", translation: "dinero" },
+            "错": { parts: ["钅", "昔"], pinyin: "cuò", translation: "error / equivocado" },
+            "钟": { parts: ["钅", "中"], pinyin: "zhōng", translation: "reloj / campana" },
+            "铁": { parts: ["钅", "失"], pinyin: "tiě", translation: "hierro" },
+            "饱": { parts: ["饣", "包"], pinyin: "bǎo", translation: "saciado / lleno" },
+            "馆": { parts: ["饣", "官"], pinyin: "guǎn", translation: "edificio / restaurante" },
+            "饿": { parts: ["饣", "我"], pinyin: "è", translation: "hambriento" },
+            "笑": { parts: ["竹", "夭"], pinyin: "xiào", translation: "reír / sonreír" },
+            "笔": { parts: ["竹", "毛"], pinyin: "bǐ", translation: "bolígrafo / pluma" }
         };
         
         // Decoy components pool to spice up the game
-        this.decoys = ["木", "口", "讠", "亻", "女", "宀", "日", "门", "囗", "子", "也", "马", "目", "力", "田", "十", "寸", "大", "小", "父", "月", "云", "且", "未", "可", "饣", "王", "元", "𧾷", "扌", "氵", "先", "每"];
+        this.decoys = [
+            "木", "口", "讠", "亻", "女", "宀", "日", "门", "囗", "子", "也", "马", "目", "力",
+            "田", "十", "寸", "大", "小", "父", "月", "云", "且", "未", "可", "饣", "王", "元",
+            "𧾷", "扌", "氵", "先", "每", "青", "心", "忄", "钅", "冫", "竹", "欠", "亡", "生"
+        ];
         
         // State
         this.state = this.getInitialState();
         
         this.timerIntervalId = null;
         this.isInitialized = false;
+    }
+
+    getAllComponentsPool() {
+        const partsSet = new Set(this.decoys || []);
+        if (this.decompositions) {
+            for (const item of Object.values(this.decompositions)) {
+                if (Array.isArray(item.parts)) {
+                    item.parts.forEach(p => partsSet.add(p));
+                }
+            }
+        }
+        return Array.from(partsSet);
     }
     
     getInitialState() {
@@ -128,7 +192,7 @@ class HanziBuilderGame {
         this.state.isPlaying = true;
         
         // Build words list
-        const appWords = window.app.vocabulary || [];
+        const appWords = this.app?.vocabulary || window.app?.vocabulary || [];
         const matchingWords = [];
         
         // Filter from database what matches level
@@ -249,7 +313,8 @@ class HanziBuilderGame {
         let paletteOptions = [...correctParts];
         
         // Add decoys
-        const shuffledDecoys = this.shuffleArray(this.decoys).filter(d => !correctParts.includes(d));
+        const allComponents = this.getAllComponentsPool();
+        const shuffledDecoys = this.shuffleArray(allComponents).filter(d => !correctParts.includes(d));
         for (let i = 0; i < 4; i++) {
             if (shuffledDecoys[i]) {
                 paletteOptions.push(shuffledDecoys[i]);
@@ -419,12 +484,22 @@ class HanziBuilderGame {
         setTimeout(() => this.playSynth(110, 'triangle', 0.25, 0.45), 250);
         
         // Save high score and report progress
-        if (window.app && window.app.stats) {
-            const prevHigh = window.app.stats.hanziBuilderHighScore || 0;
+        const appRef = this.app || window.app;
+        if (appRef && appRef.stats) {
+            const prevHigh = appRef.stats.hanziBuilderHighScore || 0;
             if (this.state.score > prevHigh) {
-                window.app.stats.hanziBuilderHighScore = this.state.score;
+                appRef.stats.hanziBuilderHighScore = this.state.score;
             }
-            window.app.saveStats();
+            appRef.saveStats?.();
+            appRef.achievementManager?.checkAchievements?.();
+        }
+        try {
+            const localHs = parseInt(localStorage.getItem("hanziBuilderHighScore") || "0", 10);
+            if (this.state.score > localHs) {
+                localStorage.setItem("hanziBuilderHighScore", String(this.state.score));
+            }
+        } catch {
+            // Ignore storage restrictions
         }
         
         // Fire game result event for dashboard integration

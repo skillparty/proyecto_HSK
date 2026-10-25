@@ -121,4 +121,63 @@ describe("HanziMahjongGame", () => {
     expect(game.hintsRemaining).toBe(2);
     expect(document.querySelectorAll(".mahjong-tile.hinted").length).toBe(2);
   });
+
+  test("pause and resume toggle isPaused and clear/restore timerInterval", () => {
+    game.init();
+    expect(game.isPaused).toBe(false);
+
+    game.pause();
+    expect(game.isPaused).toBe(true);
+    expect(game.timerInterval).toBeNull();
+
+    game.resume();
+    expect(game.isPaused).toBe(false);
+    expect(game.timerInterval).not.toBeNull();
+    clearInterval(game.timerInterval);
+  });
+
+  test("handleVictory saves mahjongHighScore and dispatches hsk:game-result", () => {
+    app.stats = { mahjongHighScore: 100 };
+    app.saveStats = vi.fn();
+    app.achievementManager = {
+      fireConfetti: vi.fn(),
+      checkAchievements: vi.fn(),
+    };
+
+    game.init();
+    game.score = 450;
+    game.timerSeconds = 50;
+
+    const eventSpy = vi.fn();
+    document.addEventListener("hsk:game-result", eventSpy);
+
+    game.handleVictory();
+
+    expect(app.stats.mahjongHighScore).toBeGreaterThanOrEqual(450);
+    expect(app.saveStats).toHaveBeenCalled();
+    expect(localStorage.getItem("mahjongHighScore")).toBeTruthy();
+    expect(eventSpy).toHaveBeenCalled();
+  });
+
+  test("compounds mode utilizes dynamic app vocabulary when available", () => {
+    app.vocabulary = [
+      { character: "汉语", spanish: "idioma chino" },
+      { character: "学习", spanish: "estudiar" },
+      { character: "电脑", spanish: "ordenador" },
+      { character: "电影", spanish: "película" },
+      { character: "电视", spanish: "televisión" },
+      { character: "天气", spanish: "clima" },
+      { character: "衣服", spanish: "ropa" },
+      { character: "准备", spanish: "preparar" },
+    ];
+
+    game.init();
+    const modeBtns = document.querySelectorAll(".mahjong-mode-btn");
+    modeBtns[1].click(); // compounds mode
+
+    expect(game.currentMode).toBe("compounds");
+    const available = game.getAvailablePairs();
+    expect(available.some((p) => p.id.startsWith("dyn_"))).toBe(true);
+    expect(game.tiles.length).toBe(16);
+  });
 });

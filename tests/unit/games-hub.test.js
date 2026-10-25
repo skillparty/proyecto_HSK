@@ -8,6 +8,7 @@ const stubApp = () => ({
   logDebug: vi.fn(),
   logWarn: vi.fn(),
   logError: vi.fn(),
+  showToast: vi.fn(),
   stats: {
     tonesInvadersHighScore: 1500,
     matrixHighScore: 820,
@@ -28,6 +29,7 @@ const setupDOM = () => {
         </header>
 
         <section class="gh-featured-section">
+          <span class="gh-bonus-xp">+50 XP Bonus</span>
           <h3 id="gh-featured-title"></h3>
           <p id="gh-featured-desc"></p>
           <span id="gh-featured-skill"></span>
@@ -41,6 +43,7 @@ const setupDOM = () => {
             <button type="button" class="gh-chip-btn" data-filter="radicals">Radicales</button>
             <button type="button" class="gh-chip-btn" data-filter="vocab">Vocabulario</button>
             <button type="button" class="gh-chip-btn" data-filter="grammar">Gramática</button>
+            <button type="button" class="gh-chip-btn" data-filter="culture">Cultura</button>
           </div>
           <input type="text" id="gh-search-input" />
         </section>
@@ -59,6 +62,12 @@ const setupDOM = () => {
     <div id="hanzi-builder" class="tab-panel">
       <div class="hanzi-build-shell"></div>
     </div>
+    <div id="tone-trainer" class="tab-panel">
+      <div class="tone-trainer-container"></div>
+    </div>
+    <div id="china-cities" class="tab-panel">
+      <div class="cities-container"></div>
+    </div>
   `;
 };
 
@@ -74,8 +83,8 @@ describe("GamesHubController", () => {
     controller = new window.GamesHubController(app);
   });
 
-  test("instantiates with 7 games catalog", () => {
-    expect(controller.gamesList).toHaveLength(7);
+  test("instantiates with 12 games catalog", () => {
+    expect(controller.gamesList).toHaveLength(12);
     const gameIds = controller.gamesList.map((g) => g.id);
     expect(gameIds).toContain("tones-invaders");
     expect(gameIds).toContain("snake-quantifiers");
@@ -84,13 +93,18 @@ describe("GamesHubController", () => {
     expect(gameIds).toContain("sentence-builder");
     expect(gameIds).toContain("hanzi-mahjong");
     expect(gameIds).toContain("matrix");
+    expect(gameIds).toContain("tone-trainer");
+    expect(gameIds).toContain("radical-decomposer");
+    expect(gameIds).toContain("china-cities");
+    expect(gameIds).toContain("shadow-theatre");
+    expect(gameIds).toContain("lyrics-lab");
   });
 
   test("init caches elements and populates stats and daily featured game", () => {
     controller.init();
 
     const totalEl = document.getElementById("gh-total-games-count");
-    expect(totalEl.textContent).toBe("7");
+    expect(totalEl.textContent).toBe("12");
 
     const sumEl = document.getElementById("gh-high-scores-sum");
     expect(parseInt(sumEl.textContent.replace(/,/g, ""), 10)).toBeGreaterThanOrEqual(2320); // 1500 + 820
@@ -102,28 +116,41 @@ describe("GamesHubController", () => {
     expect(playBtn.getAttribute("data-target-tab")).toBeTruthy();
   });
 
-  test("renders all 7 game cards initially", () => {
+  test("renders all 12 game cards initially", () => {
     controller.init();
     const grid = document.getElementById("gh-games-grid");
     const cards = grid.querySelectorAll(".gh-game-card");
-    expect(cards).toHaveLength(7);
+    expect(cards).toHaveLength(12);
   });
 
   test("filtering by skill updates card count", () => {
     controller.init();
+    const grid = document.getElementById("gh-games-grid");
+
     const tonesChip = document.querySelector('.gh-chip-btn[data-filter="tones"]');
     tonesChip.click();
-
     expect(controller.activeFilter).toBe("tones");
-    const grid = document.getElementById("gh-games-grid");
-    const cards = grid.querySelectorAll(".gh-game-card");
-    expect(cards.length).toBe(1); // tones-invaders
+    expect(grid.querySelectorAll(".gh-game-card").length).toBe(2); // tones-invaders, tone-trainer
 
     const vocabChip = document.querySelector('.gh-chip-btn[data-filter="vocab"]');
     vocabChip.click();
     expect(controller.activeFilter).toBe("vocab");
-    const vocabCards = grid.querySelectorAll(".gh-game-card");
-    expect(vocabCards.length).toBe(2); // word-linker, matrix
+    expect(grid.querySelectorAll(".gh-game-card").length).toBe(2); // word-linker, matrix
+
+    const radicalsChip = document.querySelector('.gh-chip-btn[data-filter="radicals"]');
+    radicalsChip.click();
+    expect(controller.activeFilter).toBe("radicals");
+    expect(grid.querySelectorAll(".gh-game-card").length).toBe(3); // hanzi-builder, hanzi-mahjong, radical-decomposer
+
+    const grammarChip = document.querySelector('.gh-chip-btn[data-filter="grammar"]');
+    grammarChip.click();
+    expect(controller.activeFilter).toBe("grammar");
+    expect(grid.querySelectorAll(".gh-game-card").length).toBe(2); // snake-quantifiers, sentence-builder
+
+    const cultureChip = document.querySelector('.gh-chip-btn[data-filter="culture"]');
+    cultureChip.click();
+    expect(controller.activeFilter).toBe("culture");
+    expect(grid.querySelectorAll(".gh-game-card").length).toBe(3); // china-cities, shadow-theatre, lyrics-lab
   });
 
   test("search input filters game cards", () => {
@@ -243,4 +270,67 @@ describe("GamesHubController", () => {
     const thTitles = Array.from(grid.querySelectorAll(".gh-card-name")).map((el) => el.textContent);
     expect(thTitles).toContain("ยานรบฝึกวรรณยุกต์");
   });
+
+  test("refresh re-evaluates high scores and re-renders cards and featured game", () => {
+    controller.init();
+    app.stats.tonesInvadersHighScore = 3000;
+    controller.refresh();
+
+    const sumEl = document.getElementById("gh-high-scores-sum");
+    expect(parseInt(sumEl.textContent.replace(/,/g, ""), 10)).toBeGreaterThanOrEqual(3820);
+  });
+
+  test("claims daily featured game bonus when matching game completes", () => {
+    controller.init();
+    const todayGame = controller.getDailyFeaturedGame();
+    expect(controller.isDailyBonusClaimed()).toBe(false);
+
+    // Simulate completion of another game
+    document.dispatchEvent(new CustomEvent("hsk:game-result", {
+      detail: { game: "different-game", score: 100 }
+    }));
+    expect(controller.isDailyBonusClaimed()).toBe(false);
+
+    // Simulate completion of today's featured game
+    document.dispatchEvent(new CustomEvent("hsk:game-result", {
+      detail: { game: todayGame.id, score: 500 }
+    }));
+    expect(controller.isDailyBonusClaimed()).toBe(true);
+    expect(app.showToast).toHaveBeenCalled();
+    expect(Number(localStorage.getItem("hsk_culture_trivia_xp"))).toBeGreaterThanOrEqual(50);
+  });
+
+  test("injects topbar into tone-trainer and handles scroll lock on tone-trainer tab", () => {
+    controller.init();
+    const ttPanel = document.getElementById("tone-trainer");
+    const topBar = ttPanel.querySelector(".game-arcade-topbar");
+    expect(topBar).toBeTruthy();
+
+    // Scroll lock on tone-trainer
+    document.getElementById("games").classList.remove("active");
+    ttPanel.classList.add("active");
+
+    const arrowEvent = new KeyboardEvent("keydown", { key: "ArrowDown", cancelable: true });
+    const arrowSpy = vi.spyOn(arrowEvent, "preventDefault");
+    window.dispatchEvent(arrowEvent);
+    expect(arrowSpy).toHaveBeenCalled();
+  });
+
+  test("renders custom badges and scores for exploratory and cultural activities", () => {
+    localStorage.setItem("hsk_unlocked_city_stamps", JSON.stringify(["beijing", "xian", "shanghai"]));
+    controller.init();
+
+    const grid = document.getElementById("gh-games-grid");
+    const citiesCard = grid.querySelector('.gh-game-card[data-game="china-cities"]');
+    expect(citiesCard).toBeTruthy();
+    expect(citiesCard.querySelector(".gh-score-label").textContent).toBe("Sellos de Viaje");
+    expect(citiesCard.querySelector(".gh-score-val").textContent).toContain("3 desbloqueados");
+    expect(citiesCard.querySelector(".gh-btn-play").textContent).toContain("Viajar");
+
+    const decompCard = grid.querySelector('.gh-game-card[data-game="radical-decomposer"]');
+    expect(decompCard.querySelector(".gh-score-label").textContent).toBe("Modalidad");
+    expect(decompCard.querySelector(".gh-score-val").textContent).toBe("Laboratorio");
+    expect(decompCard.querySelector(".gh-btn-play").textContent).toContain("Explorar");
+  });
 });
+

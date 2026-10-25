@@ -3,6 +3,13 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 import "../../assets/js/tone-trainer-game.js";
 
 const stubApp = () => ({
+  stats: {
+    toneTrainerHighScore: 0,
+  },
+  saveStats: vi.fn(),
+  achievementManager: {
+    checkAchievements: vi.fn(),
+  },
   vocabulary: [
     { character: "汉语", pinyin: "Hànyǔ", spanish: "idioma chino", level: 1 },
     { character: "学校", pinyin: "xuéxiào", spanish: "escuela", level: 1 },
@@ -229,4 +236,51 @@ describe("ToneTrainerGame", () => {
 
     expect(app.audioController.playAudio).toHaveBeenCalledWith("你好");
   });
+
+  test("pauses and resumes challenge countdown interval", () => {
+    game.initialize();
+    game.startChallenge();
+    expect(game.state.challengeActive).toBe(true);
+    expect(game.state.isPaused).toBe(false);
+
+    game.pauseChallenge();
+    expect(game.state.isPaused).toBe(true);
+    expect(game.state.challengeInterval).toBeNull();
+
+    game.resumeChallenge();
+    expect(game.state.isPaused).toBe(false);
+    expect(game.state.challengeInterval).not.toBeNull();
+
+    game.stopChallenge();
+    expect(game.state.challengeActive).toBe(false);
+  });
+
+  test("endChallenge saves stats, triggers achievements, and fires hsk:game-result event", () => {
+    const resultListener = vi.fn();
+    document.addEventListener("hsk:game-result", resultListener);
+
+    game.initialize();
+    game.state.challengeActive = true;
+    game.state.challengeScore = 320;
+    game.state.challengeTotal = 15;
+    game.state.challengeCorrect = 14;
+
+    game.endChallenge();
+
+    expect(app.stats.toneTrainerHighScore).toBe(320);
+    expect(app.saveStats).toHaveBeenCalled();
+    expect(app.achievementManager.checkAchievements).toHaveBeenCalled();
+    expect(localStorage.getItem("toneTrainerHighScore")).toBe("320");
+    expect(resultListener).toHaveBeenCalledWith(
+      expect.objectContaining({
+        detail: expect.objectContaining({
+          game: "tone-trainer",
+          score: 320,
+        }),
+      })
+    );
+
+    document.removeEventListener("hsk:game-result", resultListener);
+  });
 });
+

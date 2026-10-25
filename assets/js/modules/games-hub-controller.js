@@ -175,6 +175,131 @@ class GamesHubController {
         bgGradient: "linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(16, 185, 129, 0.15))",
         iconColor: "#22c55e",
         scoreKey: "matrixHighScore"
+      },
+      {
+        id: "tone-trainer",
+        tabId: "tone-trainer",
+        title: "Entrenador de Tonos",
+        titleEn: "Tone Ear Trainer",
+        titleRu: "Тренер тонов",
+        titleTh: "ฝึกฟังเสียงวรรณยุกต์",
+        hanzi: "声调大师",
+        category: "tones",
+        levels: "HSK 1 - 6",
+        skill: "Oído Fino & Desafío 60s",
+        skillEn: "Ear Training & 60s Challenge",
+        skillRu: "Слуховая тренировка и 60с спринт",
+        skillTh: "ฝึกทักษะการฟังและท้าทาย 60 วิ",
+        desc: "Entrena tu oído fonético con pares mínimos, combinaciones de dos tonos, tono neutro y modo desafío contrarreloj con multiplicador de combo.",
+        descEn: "Sharpen your ear with minimal pairs, two-tone sandhi combinations, neutral tones, and timed 60s challenge mode.",
+        descRu: "Тренируйте слух на минимальных парах, тональных сочетаниях, нейтральном тоне и в спринт-режиме.",
+        descTh: "ฝึกทักษะการฟังขั้นสูงด้วยคู่เสียงใกล้เคียง คำประสมสองพยางค์ และโหมดแข่งขันจับเวลา 60 วินาที",
+        modes: ["Tonos individuales", "Pares mínimos", "Desafío Contrarreloj 60s"],
+        iconSvg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>`,
+        bgGradient: "linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(168, 85, 247, 0.15))",
+        iconColor: "#ef4444",
+        scoreKey: "toneTrainerHighScore"
+      },
+      {
+        id: "radical-decomposer",
+        tabId: "radical-decomposer",
+        title: "Laboratorio de Radicales",
+        titleEn: "Radical Decomposer Lab",
+        titleRu: "Лаборатория радикалов",
+        titleTh: "ห้องทดลองหมวดนำอักษรจีน",
+        hanzi: "拆字工坊",
+        category: "radicals",
+        levels: "HSK 1 - 6",
+        skill: "Anatomía & Mnemotecnia",
+        skillEn: "Anatomy & Mnemonics",
+        skillRu: "Анатомия и мнемоника",
+        skillTh: "โครงสร้างอักษรและเทคนิคจำ",
+        desc: "Descompón caracteres chinos en sus componentes etimológicos, descubre historias mnemotécnicas ilustradas y explora caracteres hermanos.",
+        descEn: "Deconstruct Chinese characters into their etymological building blocks, explore visual mnemonics, and discover sibling characters.",
+        descRu: "Разбирайте иероглифы на этимологические составляющие, изучайте мнемонические истории и находите родственные знаки.",
+        descTh: "แยกส่วนประกอบตัวอักษรจีนตามหลักนิรุกติศาสตร์ เรียนรู้เรื่องราวช่วยจำ และสำรวจตัวอักษรที่มีรากศัพท์เดียวกัน",
+        modes: ["Ecuación de componentes", "Historias mnemotécnicas", "Familia de caracteres"],
+        iconSvg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`,
+        bgGradient: "linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(14, 165, 233, 0.15))",
+        iconColor: "#3b82f6",
+        badgeText: "Laboratorio",
+        btnText: "Explorar"
+      },
+      {
+        id: "china-cities",
+        tabId: "china-cities",
+        title: "Explorador de Ciudades",
+        titleEn: "China Cities Explorer",
+        titleRu: "Города Китая",
+        titleTh: "สำรวจเมืองและเส้นทางจีน",
+        hanzi: "华夏寻踪",
+        category: "culture",
+        levels: "Todos",
+        skill: "Geografía & Rutas",
+        skillEn: "Geography & Travel",
+        skillRu: "География и маршруты",
+        skillTh: "ภูมิศาสตร์และการท่องเที่ยว",
+        desc: "Viaja por las grandes metrópolis de China, aprende frases de supervivencia, descubre gastronomía típica y colecciona sellos de viaje en tu pasaporte.",
+        descEn: "Journey across China's iconic cities, master travel survival phrases, discover regional cuisine, and collect passport stamps.",
+        descRu: "Путешествуйте по городам Китая, учите фразы выживания, пробуйте местную кухню и собирайте визовые штампы.",
+        descTh: "เดินทางสู่เมืองสำคัญของจีน เรียนรู้ประโยคเอาตัวรอด เมนูอาหารท้องถิ่น และสะสมตราประทับลงพาสปอร์ต",
+        modes: ["Pasaporte de Sellos", "Guía de Supervivencia", "Quiz Cultural"],
+        iconSvg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>`,
+        bgGradient: "linear-gradient(135deg, rgba(234, 88, 12, 0.15), rgba(245, 158, 11, 0.15))",
+        iconColor: "#ea580c",
+        scoreKey: "chinaCitiesStampsCount",
+        badgeText: "Pasaporte",
+        btnText: "Viajar"
+      },
+      {
+        id: "shadow-theatre",
+        tabId: "shadow-theatre",
+        title: "Teatro de Sombras",
+        titleEn: "Shadow Puppet Theatre",
+        titleRu: "Театр теней",
+        titleTh: "หุ่นเงาเล่าตำนานจีน",
+        hanzi: "皮影戏坊",
+        category: "culture",
+        levels: "Todos",
+        skill: "Leyendas & Chengyu",
+        skillEn: "Legends & Idioms",
+        skillRu: "Легенды и чэнъюи",
+        skillTh: "นิทานโบราณและสำนวนจีน",
+        desc: "Revive mitos chinos milenarios a través del arte tradicional de las sombras chinescas con audio sincronizado, moralejas y modismos Chengyu.",
+        descEn: "Experience ancient Chinese legends through animated shadow puppetry, synchronized audio, morals, and Chengyu idioms.",
+        descRu: "Погрузитесь в мифы древнего Китая через искусство театра теней с озвучкой, моралью и идиомами чэнъюй.",
+        descTh: "สัมผัสตำนานจีนโบราณผ่านศิลปะการแสดงหุ่นเงา พร้อมเสียงบรรยาย ข้อคิด และสำนวนเฉิงอวี่",
+        modes: ["Escenas interactivas", "Lectura guiada", "Quiz de comprensión"],
+        iconSvg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
+        bgGradient: "linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15))",
+        iconColor: "#a855f7",
+        badgeText: "Teatro",
+        btnText: "Ver Obra"
+      },
+      {
+        id: "lyrics-lab",
+        tabId: "lyrics-lab",
+        title: "Laboratorio de Canciones",
+        titleEn: "Lyrics Karaoke Lab",
+        titleRu: "Музыкальная лаборатория",
+        titleTh: "ร้องเพลงฝึกภาษาจีน",
+        hanzi: "音乐歌坊",
+        category: "culture",
+        levels: "HSK 1 - 4",
+        skill: "Karaoke & Rimas",
+        skillEn: "Karaoke & Rhymes",
+        skillRu: "Караоке и рифмы",
+        skillTh: "คาราโอเกะและจังหวะดนตรี",
+        desc: "Aprende mandarín cantando clásicos infantiles y canciones populares chinas con karaoke línea por línea, pinyin dinámico y desglose léxico.",
+        descEn: "Sing along to popular Chinese rhymes and songs with line-by-line karaoke, dynamic pinyin, and vocabulary highlights.",
+        descRu: "Учите китайский язык через классические детские песни и популярные мелодии с построчным караоке и пиньинем.",
+        descTh: "เรียนภาษาจีนผ่านการร้องเพลงด้วยคาราโอเกะทีละบรรทัด พร้อมพินอินและเจาะลึกคำศัพท์สำคัญ",
+        modes: ["Modo Karaoke", "Lectura guiada línea por línea", "Desglose de vocabulario"],
+        iconSvg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
+        bgGradient: "linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(244, 63, 94, 0.15))",
+        iconColor: "#ec4899",
+        badgeText: "Karaoke",
+        btnText: "Cantar"
       }
     ];
 
@@ -205,6 +330,7 @@ class GamesHubController {
     this.featuredDesc = this.container.querySelector("#gh-featured-desc");
     this.featuredSkill = this.container.querySelector("#gh-featured-skill");
     this.featuredPlayBtn = this.container.querySelector("#gh-featured-play-btn");
+    this.featuredBonusEl = this.container.querySelector(".gh-bonus-xp");
   }
 
   bindEvents() {
@@ -241,13 +367,88 @@ class GamesHubController {
         }
       });
     }
+
+    // Listen for game results to refresh stats and award daily challenge bonus
+    if (GamesHubController._activeResultListener) {
+      document.removeEventListener("hsk:game-result", GamesHubController._activeResultListener);
+    }
+    this.boundGameResultHandler = (e) => {
+      this.recordGameLaunch();
+      if (e.detail?.game) {
+        this.claimDailyBonus(e.detail.game);
+      }
+      this.renderHeroStats();
+      this.renderCards();
+    };
+    GamesHubController._activeResultListener = this.boundGameResultHandler;
+    document.addEventListener("hsk:game-result", this.boundGameResultHandler);
+  }
+
+  getTodayKey() {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+  }
+
+  getDailyFeaturedGame() {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = now - start;
+    const oneDay = 1000 * 60 * 60 * 24;
+    const dayOfYear = Math.floor(diff / oneDay);
+    return this.gamesList[dayOfYear % this.gamesList.length];
+  }
+
+  isDailyBonusClaimed() {
+    try {
+      return localStorage.getItem(`hsk_daily_game_bonus_${this.getTodayKey()}`) === "true";
+    } catch {
+      return false;
+    }
+  }
+
+  claimDailyBonus(gameId) {
+    const todayGame = this.getDailyFeaturedGame();
+    if (!todayGame) return false;
+    if (gameId !== todayGame.id && gameId !== todayGame.tabId) return false;
+    if (this.isDailyBonusClaimed()) return false;
+
+    try {
+      localStorage.setItem(`hsk_daily_game_bonus_${this.getTodayKey()}`, "true");
+      const currentXP = Number(localStorage.getItem("hsk_culture_trivia_xp") || 0) + 50;
+      localStorage.setItem("hsk_culture_trivia_xp", String(currentXP));
+
+      if (window.progressIntegrator) {
+        window.progressIntegrator.updateProgress({
+          totalStudied: (window.progressIntegrator.getLocalProgress().totalStudied || 0) + 1
+        });
+      }
+
+      const toastMsg = this.app?.currentLanguage === "en"
+        ? "🎉 Daily Game Challenge Completed! +50 XP"
+        : "🎉 ¡Reto Diario del Salón de Juegos Completado! +50 XP";
+      this.app?.showToast?.(toastMsg, "success", 4000);
+
+      this.renderFeaturedGame();
+      return true;
+    } catch (e) {
+      this.app?.logWarn?.("Error claiming daily game bonus", e);
+      return false;
+    }
+  }
+
+  refresh() {
+    this.renderHeroStats();
+    this.renderFeaturedGame();
+    this.renderCards();
   }
 
   renderHeroStats() {
     let totalScore = 0;
     this.gamesList.forEach((g) => {
-      const score = this.getGameHighScore(g);
-      totalScore += score;
+      if (g.scoreKey && g.id !== "china-cities") {
+        const score = this.getGameHighScore(g);
+        totalScore += score;
+      }
     });
 
     if (this.totalGamesEl) this.totalGamesEl.textContent = this.gamesList.length.toString();
@@ -259,14 +460,7 @@ class GamesHubController {
   }
 
   renderFeaturedGame() {
-    // Determine daily featured game based on day of year
-    const now = new Date();
-    const start = new Date(now.getFullYear(), 0, 0);
-    const diff = now - start;
-    const oneDay = 1000 * 60 * 60 * 24;
-    const dayOfYear = Math.floor(diff / oneDay);
-    const game = this.gamesList[dayOfYear % this.gamesList.length];
-
+    const game = this.getDailyFeaturedGame();
     const lang = this.app?.currentLanguage || "es";
     const title = lang === "en" ? game.titleEn : lang === "ru" ? game.titleRu : lang === "th" ? game.titleTh : game.title;
     const desc = lang === "en" ? game.descEn : lang === "ru" ? game.descRu : lang === "th" ? game.descTh : game.desc;
@@ -276,6 +470,17 @@ class GamesHubController {
     if (this.featuredDesc) this.featuredDesc.textContent = desc;
     if (this.featuredSkill) this.featuredSkill.textContent = skill;
     if (this.featuredPlayBtn) this.featuredPlayBtn.setAttribute("data-target-tab", game.tabId);
+
+    if (this.featuredBonusEl) {
+      const claimed = this.isDailyBonusClaimed();
+      if (claimed) {
+        this.featuredBonusEl.textContent = lang === "en" ? "✓ Bonus Claimed" : "✓ Bonus Reclamado";
+        this.featuredBonusEl.classList.add("claimed");
+      } else {
+        this.featuredBonusEl.textContent = "+50 XP Bonus";
+        this.featuredBonusEl.classList.remove("claimed");
+      }
+    }
   }
 
   renderCards() {
@@ -315,11 +520,26 @@ class GamesHubController {
     filtered.forEach((game) => {
       const card = document.createElement("article");
       card.className = "gh-game-card";
+      card.setAttribute("data-game", game.id);
 
       const title = lang === "en" ? game.titleEn : lang === "ru" ? game.titleRu : lang === "th" ? game.titleTh : game.title;
       const desc = lang === "en" ? game.descEn : lang === "ru" ? game.descRu : lang === "th" ? game.descTh : game.desc;
       const skill = lang === "en" ? game.skillEn : lang === "ru" ? game.skillRu : lang === "th" ? game.skillTh : game.skill;
       const highScore = this.getGameHighScore(game);
+
+      let scoreDisplay = "—";
+      let scoreLabel = lang === "en" ? "Personal Best" : "Récord Personal";
+      if (game.id === "china-cities") {
+        scoreLabel = lang === "en" ? "Travel Stamps" : "Sellos de Viaje";
+        scoreDisplay = highScore > 0 ? `${highScore} ${lang === "en" ? "unlocked" : "desbloqueados"}` : (lang === "en" ? "0 stamps" : "0 sellos");
+      } else if (game.scoreKey) {
+        scoreDisplay = highScore > 0 ? `${highScore.toLocaleString()} pts` : "—";
+      } else {
+        scoreLabel = lang === "en" ? "Experience" : "Modalidad";
+        scoreDisplay = game.badgeText || (lang === "en" ? "Interactive" : "Interactivo");
+      }
+
+      const playText = game.btnText || (lang === "en" ? "Play" : "Jugar");
 
       const mechsHtml = game.modes
         .map((m) => `<span class="gh-mech-tag">${m}</span>`)
@@ -350,12 +570,12 @@ class GamesHubController {
 
         <div class="gh-card-footer">
           <div class="gh-card-score">
-            <span class="gh-score-label">Récord Personal</span>
-            <span class="gh-score-val">${highScore > 0 ? highScore.toLocaleString() + " pts" : "—"}</span>
+            <span class="gh-score-label">${scoreLabel}</span>
+            <span class="gh-score-val">${scoreDisplay}</span>
           </div>
           <button type="button" class="gh-btn-play" data-tab-launch="${game.tabId}">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            <span>Jugar</span>
+            <span>${playText}</span>
           </button>
         </div>
       `;
@@ -377,8 +597,24 @@ class GamesHubController {
   getGameHighScore(game) {
     let hs = 0;
     try {
+      if (game.id === "china-cities") {
+        const raw = localStorage.getItem("hsk_unlocked_city_stamps");
+        if (raw) {
+          try {
+            const stamps = JSON.parse(raw);
+            if (Array.isArray(stamps)) return stamps.length;
+          } catch {
+            // Ignore JSON parse error
+          }
+        }
+        return 0;
+      }
+
       if (window.app?.stats && game.scoreKey && window.app.stats[game.scoreKey]) {
         hs = Math.max(hs, parseInt(window.app.stats[game.scoreKey], 10) || 0);
+      }
+      if (this.app?.stats && game.scoreKey && this.app.stats[game.scoreKey]) {
+        hs = Math.max(hs, parseInt(this.app.stats[game.scoreKey], 10) || 0);
       }
       // Check localStorage common keys
       const localDirect = localStorage.getItem(game.scoreKey);
@@ -390,6 +626,25 @@ class GamesHubController {
           const v = localStorage.getItem(`quantifier-snake-highscore-all-${diff}`);
           if (v) hs = Math.max(hs, parseInt(v, 10) || 0);
         });
+      }
+
+      // Check matrix multi-level keys fallback
+      if (game.id === "matrix") {
+        for (let lvl = 1; lvl <= 6; lvl++) {
+          ["easy", "normal", "hard"].forEach((diff) => {
+            const raw = localStorage.getItem(`matrix-highscores-${lvl}-${diff}`);
+            if (raw) {
+              try {
+                const arr = JSON.parse(raw);
+                if (Array.isArray(arr) && arr[0]?.score) {
+                  hs = Math.max(hs, arr[0].score);
+                }
+              } catch {
+                // Ignore parse errors
+              }
+            }
+          });
+        }
       }
     } catch {
       // Ignore localStorage access restrictions
@@ -478,7 +733,7 @@ class GamesHubController {
       }
 
       // Prepend inside shell or container
-      const shell = tabEl.querySelector(".snakeq-shell, .tones-inv-shell, .hanzi-build-shell, .word-link-shell, .sentence-builder-container, .mahjong-container, .matrix-game-container");
+      const shell = tabEl.querySelector(".snakeq-shell, .tones-inv-shell, .hanzi-build-shell, .word-link-shell, .sentence-builder-container, .mahjong-container, .matrix-game-container, .tone-trainer-container, .decomposer-container, .cities-container, .shadow-container, .lyrics-container");
       if (shell) {
         shell.insertBefore(topBar, shell.firstChild);
       } else {
@@ -497,7 +752,7 @@ class GamesHubController {
     const activePanel = document.querySelector(".tab-panel.active");
     if (!activePanel) return;
 
-    const gameTabIds = ["snake-quantifiers", "tones-invaders", "matrix", "hanzi-builder", "word-linker", "sentence-builder", "hanzi-mahjong"];
+    const gameTabIds = ["snake-quantifiers", "tones-invaders", "matrix", "hanzi-builder", "word-linker", "sentence-builder", "hanzi-mahjong", "tone-trainer"];
     const currentTab = activePanel.getAttribute("data-tab") || activePanel.id;
 
     if (gameTabIds.includes(currentTab)) {

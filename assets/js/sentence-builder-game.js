@@ -24,6 +24,7 @@ class SentenceBuilderGame {
             placedTiles: [], // [{ id, text }]
             hintCount: 0,
             isSolved: false,
+            isPaused: false,
         };
 
         this.fallbackSentences = [
@@ -104,6 +105,7 @@ class SentenceBuilderGame {
             if (response.ok) {
                 const data = await response.json();
                 this.sentencesData = data;
+                this.buildSentencePoolCache();
             }
         } catch (error) {
             this.app?.logWarn?.("Could not load full example sentences dataset, using fallback:", error);
@@ -111,6 +113,42 @@ class SentenceBuilderGame {
             this.isLoadingSentences = false;
         }
         return this.sentencesData;
+    }
+
+    buildSentencePoolCache() {
+        if (!this.sentencesData) return;
+
+        // Build character -> level map from app vocabulary
+        const wordLevelMap = new Map();
+        if (Array.isArray(this.app?.vocabulary)) {
+            for (const v of this.app.vocabulary) {
+                if (v.character && v.level && !wordLevelMap.has(v.character)) {
+                    wordLevelMap.set(v.character, Number(v.level));
+                }
+            }
+        }
+
+        const indexed = [];
+        const entries = Array.isArray(this.sentencesData)
+            ? this.sentencesData.map((item) => [item.word || item.character || "", item])
+            : Object.entries(this.sentencesData);
+
+        for (const [word, entry] of entries) {
+            if (!entry || !entry.chinese) continue;
+            const clean = this.cleanPunctuation(entry.chinese);
+            // Usability for mobile and desktop: keep sentences between 3 and 12 characters
+            if (clean.length < 3 || clean.length > 12) continue;
+
+            const lvl = Number(entry.level) || wordLevelMap.get(word) || 0;
+            indexed.push({
+                ...entry,
+                word,
+                level: lvl,
+                charCount: clean.length,
+            });
+        }
+
+        this.indexedSentences = indexed;
     }
 
     cleanPunctuation(text) {
@@ -188,6 +226,13 @@ class SentenceBuilderGame {
         if (playAgainBtn) playAgainBtn.addEventListener("click", () => this.startGame());
 
         this.loadSentencesData();
+        if (this.app?.ensureAllVocabularyLoaded) {
+            this.app.ensureAllVocabularyLoaded().then(() => {
+                this.buildSentencePoolCache();
+            }).catch(() => {
+                // Ignore load error
+            });
+        }
         this.isInitialized = true;
     }
 
@@ -249,8 +294,39 @@ class SentenceBuilderGame {
         }
     }
 
+    pause() {
+        if (!this.state.isPlaying || this.state.isPaused) return;
+        this.state.isPaused = true;
+        if (this.state.timerInterval) {
+            clearInterval(this.state.timerInterval);
+            this.state.timerInterval = null;
+        }
+        const arena = document.getElementById("sb-arena");
+        if (arena) arena.classList.add("sb-paused");
+    }
+
+    resume() {
+        if (!this.state.isPlaying || !this.state.isPaused) return;
+        this.state.isPaused = false;
+        const arena = document.getElementById("sb-arena");
+        if (arena) arena.classList.remove("sb-paused");
+
+        if (this.state.mode === "time-attack" && !this.state.timerInterval) {
+            this.state.timerInterval = setInterval(() => this.tickTimer(), 1000);
+        }
+    }
+
+    togglePause() {
+        if (this.state.isPaused) {
+            this.resume();
+        } else {
+            this.pause();
+        }
+    }
+
     endGame() {
         this.state.isPlaying = false;
+        this.state.isPaused = false;
         if (this.state.timerInterval) {
             clearInterval(this.state.timerInterval);
             this.state.timerInterval = null;
@@ -261,10 +337,42 @@ class SentenceBuilderGame {
         const finalScore = document.getElementById("sb-final-score");
         const finalStreak = document.getElementById("sb-final-streak");
 
-        if (arena) arena.style.display = "none";
+        if (arena) {
+            arena.style.display = "none";
+            arena.classList.remove("sb-paused");
+        }
         if (gameOverCard) gameOverCard.style.display = "flex";
         if (finalScore) finalScore.textContent = this.state.score;
         if (finalStreak) finalStreak.innerHTML = `${this.state.bestStreak} ${window.hskIcons?.render?.('flame', { size: 14 }) || ''}`;
+
+        // Save high score and report progress
+        if (this.app?.stats) {
+            const prevHigh = this.app.stats.sentenceBuilderHighScore || 0;
+            if (this.state.score > prevHigh) {
+                this.app.stats.sentenceBuilderHighScore = this.state.score;
+            }
+            this.app.saveStats?.();
+            this.app.achievementManager?.checkAchievements?.();
+        }
+        try {
+            const localHs = parseInt(localStorage.getItem("sentenceBuilderHighScore") || "0", 10);
+            if (this.state.score > localHs) {
+                localStorage.setItem("sentenceBuilderHighScore", String(this.state.score));
+            }
+        } catch {
+            // Ignore storage access restrictions
+        }
+
+        // Fire game result event
+        document.dispatchEvent(new CustomEvent('hsk:game-result', {
+            detail: {
+                game: 'sentence-builder',
+                score: this.state.score,
+                streak: this.state.bestStreak,
+                level: this.state.level,
+                mode: this.state.mode
+            }
+        }));
 
         if (this.state.score >= 50) {
             this.app?.audioController?.playStreakFanfare?.();
@@ -274,21 +382,27 @@ class SentenceBuilderGame {
     }
 
     getSentencePool() {
+        if (!this.indexedSentences && this.sentencesData) {
+            this.buildSentencePoolCache();
+        }
+
         let pool = [];
-        if (this.sentencesData) {
-            const entries = Object.values(this.sentencesData);
+        if (this.indexedSentences && this.indexedSentences.length > 0) {
             if (this.state.level === "all") {
-                pool = entries;
+                pool = this.indexedSentences;
             } else {
                 const lvlNum = Number(this.state.level);
-                pool = entries.filter((e) => {
-                    const wordLevel = Number(e.level || 0);
-                    return wordLevel === lvlNum || (wordLevel === 0 && lvlNum <= 2);
-                });
+                pool = this.indexedSentences.filter((e) => e.level === lvlNum);
+
+                // If word levels were not yet resolved when first cached, re-attempt cache build
+                if (pool.length === 0 && this.app?.vocabulary?.length) {
+                    this.buildSentencePoolCache();
+                    pool = this.indexedSentences.filter((e) => e.level === lvlNum);
+                }
             }
         }
 
-        if (pool.length < 5) {
+        if (pool.length === 0) {
             pool = this.fallbackSentences.filter((s) =>
                 this.state.level === "all" ? true : Number(s.level) === Number(this.state.level),
             );
@@ -541,6 +655,13 @@ class SentenceBuilderGame {
 
             // Pronounce Chinese sentence
             this.playSentenceAudio();
+
+            // Increment sentencesBuilt and check achievements
+            if (this.app?.stats) {
+                this.app.stats.sentencesBuilt = (this.app.stats.sentencesBuilt || 0) + 1;
+                this.app.saveStats?.();
+                this.app.achievementManager?.checkAchievements?.();
+            }
         } else {
             // Incorrect
             this.state.streak = 0;
